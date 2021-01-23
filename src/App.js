@@ -1,20 +1,26 @@
 import './App.css';
 
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import { Router, Redirect, Route, Switch } from 'react-router-dom';
+import { history } from './helpers';
 
 import Login from './components/anonymous/Login.js'
 import Home from './components/connected/Home.js'
+
+import { PrivateRoute } from './components/connected/PrivateRoute';
 
 function App() {
   return (
     <div className="App">
       <h1>Portail conseiller</h1>
-      <Router>
+      <Router history={history}>
         <Switch>
-          <Route path='/login' component={Login}/>
-          <Route path='/portail' component={Home}/>
-          <Route render={() => <Redirect to="/login"/>}/>
+          <PrivateRoute exact path="/" component={Home} />
+          <Route path="/login" component={Login} />
+          <Redirect from="*" to="/" />
         </Switch>
+
+
+
       </Router>
     </div>
   );
