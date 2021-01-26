@@ -11,6 +11,9 @@
 # production
 /build
 
+# Sub directories js, css and fonts
+/public/
+
 # misc
 .DS_Store
 .env.local
