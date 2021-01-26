@@ -44,22 +44,22 @@ function Login() {
         </div>
 
         <div>
-          <label>Identifiant</label>
-          <input name="username" value={username} onChange={handleChange} className={(submitted && !username ? ' is-invalid' : '')} />
+          <label className="rf-label" for="username">Identifiant</label>
+          <input id="username" name="username" value={username} onChange={handleChange} className={(submitted && !username ? ' is-invalid rf-input' : 'rf-input')} />
           {submitted && !username &&
             <div className="invalid">Identifiant requis</div>
           }
         </div>
 
         <div>
-          <label>Mot de passe</label>
-          <input name="password" type="password" value={password} onChange={handleChange} className={(submitted && !password ? ' is-invalid' : '')} />
+          <label class="rf-label" for="password">Mot de passe</label>
+          <input id="password" name="password" type="password" value={password} onChange={handleChange} className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')} />
           {submitted && !password &&
             <div className="invalid">Mot de passe requis</div>
           }
         </div>
         {loggingIn && <span>Connexion en cours...</span>}
-        <button onClick={handleSubmit}>Se connecter</button>
+        <button className="rf-btn" onClick={handleSubmit}>Se connecter</button>
       </div>
     </div>
   );
