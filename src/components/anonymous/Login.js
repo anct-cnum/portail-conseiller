@@ -43,17 +43,17 @@ function Login() {
           {error && <span>`{error.error}`</span>}
         </div>
 
-        <div>
-          <label className="rf-label" for="username">Identifiant</label>
-          <input id="username" name="username" value={username} onChange={handleChange} className={(submitted && !username ? ' is-invalid rf-input' : 'rf-input')} />
+        <div className="rf-my-3w">
+          <label className="rf-label">Identifiant</label>
+          <input name="username" value={username} onChange={handleChange} className={(submitted && !username ? ' is-invalid rf-input' : 'rf-input')} />
           {submitted && !username &&
             <div className="invalid">Identifiant requis</div>
           }
         </div>
 
-        <div>
-          <label class="rf-label" for="password">Mot de passe</label>
-          <input id="password" name="password" type="password" value={password} onChange={handleChange} className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')} />
+        <div className="rf-my-3w">
+          <label className="rf-label">Mot de passe</label>
+          <input name="password" type="password" value={password} onChange={handleChange} className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')} />
           {submitted && !password &&
             <div className="invalid">Mot de passe requis</div>
           }
