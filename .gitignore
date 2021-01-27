@@ -12,7 +12,9 @@
 /build
 
 # Sub directories js, css and fonts
-/public/
+/public/css
+/public/fonts
+/public/js
 
 # misc
 .DS_Store
