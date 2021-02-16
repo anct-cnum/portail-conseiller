@@ -177,7 +177,7 @@
         "nofunc"
       ],
       // Node.js
-  
+
       "handle-callback-err": 1,
       "no-mixed-requires": [
         "error",
