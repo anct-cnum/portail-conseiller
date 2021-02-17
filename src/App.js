@@ -4,7 +4,7 @@ import { history } from './helpers';
 
 import Login from './components/anonymous/Login.js';
 import Home from './components/connected/Home.js';
-import CreatePassword from './components/anonymous/CreatePassword';
+import ChoosePassword from './components/anonymous/ChoosePassword';
 
 import PrivateRoute from './components/connected/PrivateRoute';
 
@@ -15,10 +15,9 @@ function App() {
     <div className="App">
       <Router history={history}>
         <Switch>
-          <PrivateRoute exact path="/" component={Home} />
           <Route path="/login" component={Login} />
-          <Route path="/createPassword" component={CreatePassword} />
-          <Redirect from="*" to="/" />
+          <Route path="/inscription/:token" component={ChoosePassword} />
+          <PrivateRoute exact path="*" component={Home} />
         </Switch>
       </Router>
     </div>

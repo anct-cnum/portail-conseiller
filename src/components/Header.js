@@ -22,7 +22,7 @@ function Header({ linkAccount }) {
                 </div>
               </div>
               {linkAccount === 'noConnected' &&
-                <div className="rf-header__tools">
+                <div className="rf-header__tools" style={{ marginBottom: '33px' }}>
                   <div className="rf-shortcuts">
                     <ul className="rf-shortcuts__list">
                       <li className="rf-shortcuts__item">

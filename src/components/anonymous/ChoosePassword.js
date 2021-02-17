@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import Header from '../Header';
 import Footer from '../Footer';
 
-function CreatePassword() {
+function ChoosePassword() {
 
   const [inputs, setInputs] = useState({
     username: '',
@@ -27,7 +27,7 @@ function CreatePassword() {
   }
 
   return (
-    <div className="createPassword">
+    <div className="choosePassword">
       <Header linkAccount="noConnected"/>
       {/* Start content */}
       <div className="rf-container" style={{ backgroundColor: '#2a2a2a', margin: '0px', maxWidth: 'unset' }}>
@@ -120,4 +120,4 @@ function CreatePassword() {
 
 }
 
-export default CreatePassword;
+export default ChoosePassword;
