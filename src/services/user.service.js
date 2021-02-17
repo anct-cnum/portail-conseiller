@@ -4,19 +4,50 @@ export const userService = {
 };
 
 function login(username, password) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const user = { username };
-      if (username === 'test' && password === 'test') {
-        localStorage.setItem('user', JSON.stringify(user));
-        resolve(user);
-      } else {
-        reject({ error: 'Indentifiants incorrects' });
-      }
-    }, 1000);
+
+  const strategy = process.env.REACT_APP_STRATEGYAUTH;
+  const apiUrlAuth = `${process.env.REACT_APP_API}/authentication`;
+
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      'strategy': strategy,
+      'name': username,
+      'password': password
+    })
+  };
+
+  return fetch(apiUrlAuth, requestOptions)
+  .then(handleResponse)
+  .then(user => {
+    return user;
   });
 }
 
 function logout() {
   localStorage.removeItem('user');
+}
+
+function handleResponse(response) {
+  return response.text().then(text => {
+    const data = text && JSON.parse(text);
+    if (!response.ok) {
+      if (response.status === 401) {
+        logout();
+        return Promise.reject({ error: 'Indentifiants incorrects' });
+      }
+      const error = (data && data.message) || response.statusText;
+      return Promise.reject(error);
+    }
+
+    if (data.user.roles[0] !== 'conseiller') {
+      logout();
+      return Promise.reject({ error: 'Indentifiants incorrects' });
+    }
+
+    return data;
+  });
 }

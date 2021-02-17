@@ -4,17 +4,20 @@ import { history } from './helpers';
 
 import Login from './components/anonymous/Login.js';
 import Home from './components/connected/Home.js';
+import ChoosePassword from './components/anonymous/ChoosePassword';
 
 import PrivateRoute from './components/connected/PrivateRoute';
+
+require('dotenv').config();
 
 function App() {
   return (
     <div className="App">
       <Router history={history}>
         <Switch>
-          <PrivateRoute exact path="/" component={Home} />
           <Route path="/login" component={Login} />
-          <Redirect from="*" to="/" />
+          <Route path="/inscription/:token" component={ChoosePassword} />
+          <PrivateRoute exact path="*" component={Home} />
         </Switch>
       </Router>
     </div>
