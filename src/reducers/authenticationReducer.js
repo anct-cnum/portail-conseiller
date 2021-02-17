@@ -20,6 +20,6 @@ export default function authentication(state = initialState, action) {
     case 'LOGOUT':
       return {};
     default:
-      return state
+      return state;
   }
 }
