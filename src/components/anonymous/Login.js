@@ -47,7 +47,7 @@ function Login() {
                 <a className="rf-header__operator" href="/" style={{ boxShadow: 'none' }}>
                   <img src="/logos/logo-conseiller-numérique-nb.svg" alt="logo Conseiller Numérique France Services" style={{ height: '50px' }}/>
                 </a>
-                <div className="rf-header__navbar" style={{ marginBottom: '17px' }}>
+                <div className="rf-header__navbar" style={{ marginBottom: '13px' }}>
                   <div className="rf-service">
                     <a className="rf-service__title" href="/" title="Portail Conseiller Numérique">
                       Portail Conseiller Numérique
@@ -120,7 +120,7 @@ function Login() {
               <div className="rf-col-1"></div>
               <div className="rf-col-10">
                 <div className="rf-footer__body">
-                  <div className="rf-container">
+                  <div className="rf-container" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
                     <div className="rf-grid-row rf-grid-row--bottom">
                       <div>
                         <div className="rf-footer__brand">
