@@ -12,8 +12,12 @@ function login(username, password) {
 
     userService.login(username, password)
     .then(
-      user => {
-        dispatch(success(user));
+      data => {
+        data.user.role = data.user.roles[0];
+        delete data.user.roles;
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem('user', JSON.stringify(data));
+        dispatch(success(data));
         history.push('/');
       },
       error => {
