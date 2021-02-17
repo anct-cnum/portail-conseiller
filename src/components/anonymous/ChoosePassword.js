@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { history } from '../../helpers/history';
 import Header from '../Header';
 import Footer from '../Footer';
 
@@ -22,7 +23,7 @@ function ChoosePassword() {
   function handleSubmit() {
     setSubmitted(true);
     if (passwordConfirm && password) {
-      //TODO history.push('/validationAccount');
+      history.push('/validation');
     }
   }
 
@@ -79,7 +80,10 @@ function ChoosePassword() {
             </div>
             <div className="rf-mb-3w">
               <label className="rf-label">Mot de passe</label>
-              <input name="password" value={password} onChange={handleChange} className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')} />
+              <input name="password"
+                type="password"
+                value={password}
+                onChange={handleChange} className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')} />
               {submitted && !password &&
                   <div className="invalid">Mot de passe requis</div>
               }
@@ -88,7 +92,7 @@ function ChoosePassword() {
               <label className="rf-label">Confirmer le mot de passe</label>
               <input
                 name="passwordConfirm"
-                type="passwordConfirm"
+                type="password"
                 value={passwordConfirm}
                 onChange={handleChange} className={(submitted && passwordConfirm !== password ? ' is-invalid rf-input' : 'rf-input')} />
               {submitted && passwordConfirm !== password &&
