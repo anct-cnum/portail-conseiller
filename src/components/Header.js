@@ -11,7 +11,7 @@ function Header({ linkAccount }) {
           <div className="rf-col-10">
             <div className="rf-header__body">
               <a className="rf-header__operator" href="/" style={{ boxShadow: 'none' }}>
-                <img src="/logos/logo-conseiller-numérique-nb.svg" alt="logo Conseiller Numérique France Services" style={{ height: '50px' }}/>
+                <img src="/logos/logo-conseiller-numerique-nb.svg" alt="logo Conseiller Numérique France Services" style={{ height: '50px' }}/>
               </a>
               <div className="rf-header__navbar" style={{ marginBottom: '13px' }}>
                 <div className="rf-service">
