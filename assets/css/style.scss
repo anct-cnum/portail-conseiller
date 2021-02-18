@@ -7,10 +7,21 @@
     color: black;
 }
 
-.choosePassword p {
+.choosePassword p, .validationAccount p {
   margin-bottom: 0;
 }
 
 .invalid {
   color: #FF3333;
+}
+
+.support-btn {
+  display: inline-block;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 50px;
+  width: 60%;
+  color: white!important;
+  font-size: small;
+  padding: 0.5rem;
 }

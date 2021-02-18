@@ -21,12 +21,14 @@ function Header({ linkAccount }) {
                   <p className="rf-service__tagline">Réseau des conseillers numériques France Services</p>
                 </div>
               </div>
-              {linkAccount === 'noConnected' &&
+              {linkAccount !== undefined &&
                 <div className="rf-header__tools" style={{ marginBottom: '33px' }}>
                   <div className="rf-shortcuts">
                     <ul className="rf-shortcuts__list">
                       <li className="rf-shortcuts__item">
-                        <a href="/login" className="rf-link" target="_self">J&rsquo;ai déjà un compte</a>
+                        { linkAccount === 'noConnected' ?
+                          <a href="/login" className="rf-link" target="_self">J&rsquo;ai déjà un compte</a> :
+                          <span className="rf-link" style={{ cursor: 'unset' }}> { linkAccount } </span> }
                       </li>
                     </ul>
                   </div>
