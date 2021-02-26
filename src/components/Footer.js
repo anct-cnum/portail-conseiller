@@ -92,13 +92,13 @@ function Footer({ type }) {
                         </li>
                         <li className="rf-footer__bottom-item">
                           <a className="rf-footer__bottom-link rf-px-1w"
-                            href="https://cellar-c2.services.clever-cloud.com/conseiller-numerique/CGU-Donn%C3%A9es_personnellesConseiller_Num%C3%A9rique.pdf">
+                            href="https://cdn.conseiller-numerique.gouv.fr/CGU-Donn%C3%A9es_personnellesConseiller_Num%C3%A9rique.pdf">
                         Données personnelles
                           </a>
                         </li>
                         <li className="rf-footer__bottom-item">
                           <a className="rf-footer__bottom-link rf-px-1w"
-                            href="https://cellar-c2.services.clever-cloud.com/conseiller-numerique/CGU-Donn%C3%A9es_personnellesConseiller_Num%C3%A9rique.pdf">
+                            href="https://cdn.conseiller-numerique.gouv.fr/CGU-Donn%C3%A9es_personnellesConseiller_Num%C3%A9rique.pdf">
                         Conditions générales d&rsquo;utilisation
                           </a>
                         </li>
