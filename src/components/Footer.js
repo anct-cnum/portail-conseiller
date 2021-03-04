@@ -18,25 +18,26 @@ function Footer({ type }) {
                     <div>
                       <div className="rf-footer__brand">
                         <a className="rf-footer__brand-link" href="/">
-                          <div className="rf-mr-4w" style={{ display: 'inline-block' }} >
-                            <img src="/logos/logo-rf-nb.svg" alt="logo République Française" style={{ height: '80px' }}/>
-                          </div>
-                          <div className="rf-mr-4w" style={{ display: 'inline-block' }} >
-                            <img src="/logos/logo-anct-nb.svg" alt="logo Agence Nationale De La Cohésion Des Territoires" style={{ height: '59px' }}/>
-                          </div>
-                          <div className="rf-mr-4w" style={{ display: 'inline-block' }} >
-                            <img src="/logos/logo-banque-des-territoires-nb.svg" alt="logo Banque Des Territoires"
-                              style={{ height: '35px', marginBottom: '27px' }}/>
+                          <div style={{ display: 'inline-block' }} >
+                            <img src="/logos/logo-rf-nb.svg" alt="logo République Française" style={{ height: '80px', marginRight: '28px' }}/>
                           </div>
                           <div style={{ display: 'inline-block' }} >
-                            <img src="/logos/logo-france-relance-nb.svg" alt="logo France Relance" style={{ height: '5rem' }}/>
+                            <img src="/logos/logo-anct-nb.svg" alt="logo Agence Nationale De La Cohésion Des Territoires"
+                              style={{ height: '59px', marginRight: '50px' }}/>
+                          </div>
+                          <div style={{ display: 'inline-block' }} >
+                            <img src="/logos/logo-banque-des-territoires-nb.svg" alt="logo Banque Des Territoires"
+                              style={{ height: '35px', marginBottom: '27px', marginRight: '50px' }}/>
+                          </div>
+                          <div style={{ display: 'inline-block' }} >
+                            <img src="/logos/logo-france-relance-nb.svg" alt="logo France Relance" style={{ height: '70px', marginBottom: '7px' }}/>
                           </div>
                         </a>
                       </div>
                       <div className="rf-footer__content rf-mt-3w">
                         <p className="rf-footer__content-desc">
-                      Conseiller numérique France Services est un dispositif financé par l&rsquo;Etat dans le cadre de France Relance.
-                      Il est piloté par l&rsquo;Agence nationale de la cohésion des territoires et opéré par la Banque des territoires
+                      Conseiller numérique France Services est un dispositif financé par l&rsquo;&Eacute;tat dans le cadre de France Relance.
+                      Il est piloté par l&rsquo;Agence nationale de la cohésion des territoires et opéré par la Banque des Territoires.
                         </p>
                       </div>
                       <div>
@@ -78,7 +79,7 @@ function Footer({ type }) {
                     <div className="rf-footer__bottom">
                       <ul className="rf-footer__bottom-list">
                         <li className="rf-footer__bottom-item">
-                          <a className="rf-footer__bottom-link rf-px-1w" href="https://aide.conseiller-numerique.gouv.fr/fr/">FAQ</a>
+                          <a className="rf-footer__bottom-link rf-pr-1w" href="https://aide.conseiller-numerique.gouv.fr/fr/">FAQ</a>
                         </li>
                         <li className="rf-footer__bottom-item">
                           <a className="rf-footer__bottom-link rf-px-1w"
