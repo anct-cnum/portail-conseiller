@@ -52,7 +52,8 @@ function ValidationAccount() {
               <strong>strasbourg</strong>
             </p>
             <p className="rf-pb-3w">
-              <button className="rf-btn rf-text--bold big-btn" onClick={handleSubmit} style={{ background: 'white', width: '35%' }}>Finaliser mon accès</button>
+              <button className="rf-btn rf-text--bold big-btn finalButton" onClick={handleSubmit}
+                style={{ background: 'white', width: '50%' }}>Finaliser mon accès</button>
             </p>
           </div>
           <div className="rf-col-3"></div>

@@ -30,3 +30,33 @@
   font-size: 56px!important;
   line-height: 1.25em!important;
 }
+
+/* custom point de rupture LG du DS */
+@media (min-width: 992px) {
+
+  .avatarConseiller {
+    margin-left: 0!important;
+  }
+
+}
+
+/* custom point de rupture XS du DS */
+@media (max-width: 576px) {
+
+  .avatar {
+    margin-left: 32px!important;
+  }
+
+  .avatarCoordinatrice {
+    margin-right: 32px!important;
+  }
+
+  .logoFooter {
+    margin-bottom: 32px;
+  }
+
+  .finalButton {
+    width: 80%!important;
+  }
+
+}

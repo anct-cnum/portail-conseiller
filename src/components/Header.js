@@ -15,8 +15,8 @@ function Header({ linkAccount }) {
               </a>
               <div className="rf-header__navbar" style={{ marginBottom: '13px' }}>
                 <div className="rf-service">
-                  <a className="rf-service__title" href="/" title="Portail Conseiller Numérique">
-                    Portail Conseiller Numérique
+                  <a className="rf-service__title" href="/" title="Coop">
+                    Coop&nbsp;&nbsp;<span style={{ fontSize: 'small' }}>v { process.env.REACT_APP_VERSION }</span>
                   </a>
                   <p className="rf-service__tagline">Réseau des conseillers numériques France Services</p>
                 </div>

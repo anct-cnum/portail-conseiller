@@ -8,7 +8,8 @@ let config = {
   entry: './assets/js/app.js',
   output: {
     path: path.resolve(__dirname, './public'),
-    filename: './js/bundle.[contenthash].js'
+    publicPath: '/',
+    filename: 'js/bundle.[contenthash].js'
   },
   module: {
     rules: [{
@@ -41,7 +42,7 @@ let config = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: './css/bundle.[contenthash].css',
+      filename: 'css/bundle.[contenthash].css',
     }),
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: ['**/css', '**/js']
