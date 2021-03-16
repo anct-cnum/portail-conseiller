@@ -19,18 +19,20 @@ function Footer({ type }) {
                       <div className="rf-footer__brand">
                         <a className="rf-footer__brand-link" href="/">
                           <div style={{ display: 'inline-block' }} >
-                            <img src="/logos/logo-rf-nb.svg" alt="logo République Française" style={{ height: '80px', marginRight: '28px' }}/>
+                            <img src="/logos/logo-rf-nb.svg" alt="logo République Française"
+                              style={{ height: '80px', marginRight: '28px' }} className="logoFooter"/>
                           </div>
                           <div style={{ display: 'inline-block' }} >
                             <img src="/logos/logo-anct-nb.svg" alt="logo Agence Nationale De La Cohésion Des Territoires"
-                              style={{ height: '59px', marginRight: '50px' }}/>
+                              style={{ height: '59px', marginRight: '50px' }} className="logoFooter"/>
                           </div>
                           <div style={{ display: 'inline-block' }} >
                             <img src="/logos/logo-banque-des-territoires-nb.svg" alt="logo Banque Des Territoires"
-                              style={{ height: '35px', marginBottom: '27px', marginRight: '50px' }}/>
+                              style={{ height: '35px', marginBottom: '27px', marginRight: '50px' }} className="logoFooter"/>
                           </div>
                           <div style={{ display: 'inline-block' }} >
-                            <img src="/logos/logo-france-relance-nb.svg" alt="logo France Relance" style={{ height: '70px', marginBottom: '7px' }}/>
+                            <img src="/logos/logo-france-relance-nb.svg" alt="logo France Relance"
+                              style={{ height: '70px', marginBottom: '7px' }} className="logoFooter"/>
                           </div>
                         </a>
                       </div>
@@ -68,7 +70,7 @@ function Footer({ type }) {
                             </p>
                           </div>
                           <div className="rf-col-6" style={{ textAlign: 'center', marginTop: '0.8rem' }}>
-                            <a className="rf-btn support-btn" href="/">{/* TODO LINK CONTACT */}
+                            <a className="rf-btn support-btn" target="blank" href="https://aide.conseiller-numerique.gouv.fr/fr/">
                               Contacter le support
                             </a>
                           </div>

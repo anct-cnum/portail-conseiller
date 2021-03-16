@@ -37,7 +37,7 @@ function handleResponse(response) {
     if (!response.ok) {
       if (response.status === 401) {
         logout();
-        return Promise.reject({ error: 'Indentifiants incorrects' });
+        return Promise.reject({ error: 'Identifiants incorrects' });
       }
       const error = (data && data.message) || response.statusText;
       return Promise.reject(error);
@@ -45,7 +45,7 @@ function handleResponse(response) {
 
     if (data.user.roles[0] !== 'conseiller') {
       logout();
-      return Promise.reject({ error: 'Indentifiants incorrects' });
+      return Promise.reject({ error: 'Identifiants incorrects' });
     }
 
     return data;
