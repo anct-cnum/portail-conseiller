@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../../helpers/history';
 import Header from '../Header';
 import Footer from '../Footer';
+import PropTypes from 'prop-types';
+import { userActions } from '../../actions';
 
-function ChoosePassword() {
+function ChoosePassword({ match }) {
 
   const [inputs, setInputs] = useState({
     username: '',
@@ -14,15 +16,30 @@ function ChoosePassword() {
   const [submitted, setSubmitted] = useState(false);
   const { passwordConfirm, password } = inputs;
   const error = useSelector(state => state.authentication.error);
+  const dispatch = useDispatch();
+
+  const token = match.params.token;
+  const verifyingToken = useSelector(state => state.createAccount.verifyingToken);
+  const tokenVerified = useSelector(state => state.createAccount.tokenVerified);
+  const user = useSelector(state => state.createAccount.user);
+  const passwordChoosen = useSelector(state => state.createAccount.passwordChoosen);
+  const choosingPassword = useSelector(state => state.createAccount.choosingPassword);
+
+  useEffect(() => {
+    dispatch(userActions.verifyToken(token));
+  }, []);
 
   function handleChange(e) {
     const { name, value } = e.target;
     setInputs(inputs => ({ ...inputs, [name]: value }));
   }
 
+  const checkComplexity = password => password.length >= 6;
+
   function handleSubmit() {
     setSubmitted(true);
-    if (passwordConfirm && password) {
+    if (password && passwordConfirm === password && checkComplexity(password)) {
+      dispatch(userActions.choosePassword(token, password));
       history.push('/validation');
     }
   }
@@ -57,7 +74,7 @@ function ChoosePassword() {
           <div className="rf-col-8" style={{ textAlign: 'center' }}>
             <p>
               Vous vous apprêtez à finaliser la création de votre compte avec votre adresse mail :<br/>
-              <strong>test@gmail.com</strong>
+              <strong>{user?.name}</strong>
             </p>
           </div>
           <div className="rf-col-2"></div>
@@ -71,41 +88,57 @@ function ChoosePassword() {
           </div>
           <div className="rf-col-3"></div>
         </div>
-        <div className="rf-grid-row rf-grid-row--top rf-grid-row--center rf-pb-7w">
-          <div className="rf-col-sm-1 rf-col-lg-4"></div>
-          {/* Form */}
-          <div className="rf-col-sm-8 rf-col-lg-4" style={{ textAlign: 'center' }}>
-            <div>
-              {error && <span className="invalid">{error.error}</span>}
-            </div>
-            <div className="rf-mb-3w">
-              <label className="rf-label">Mot de passe</label>
-              <input name="password"
-                type="password"
-                value={password}
-                onChange={handleChange} className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')} />
-              {submitted && !password &&
-                  <div className="invalid">Mot de passe requis</div>
-              }
-            </div>
-            <div className="rf-mb-5w">
-              <label className="rf-label">Confirmer le mot de passe</label>
-              <input
-                name="passwordConfirm"
-                type="password"
-                value={passwordConfirm}
-                onChange={handleChange} className={(submitted && passwordConfirm !== password ? ' is-invalid rf-input' : 'rf-input')} />
-              {submitted && passwordConfirm !== password &&
-                  <div className="invalid">La confirmation du mot de passe doit correspondre</div>
-              }
-            </div>
-            <div>
-              <button className="rf-btn rf-text--bold big-btn" onClick={handleSubmit} style={{ background: 'white' }}>C&rsquo;est parti !</button>
-              <br/>
-            </div>
+
+        { verifyingToken &&
+          <div className="rf-grid-row rf-grid-row--center rf-mb-3w">
+            <span>Chargement...</span>
           </div>
-          <div className="rf-col-sm-1 rf-col-lg-4"></div>
-        </div>
+        }
+        
+        { tokenVerified === false &&
+          <div className="rf-grid-row rf-grid-row--center rf-mb-3w">
+            <span style={{ color: 'red' }}>Désolé mais le lien est invalide.</span>
+          </div>
+        }
+
+        { tokenVerified && !passwordChoosen &&
+          <div className="rf-grid-row rf-grid-row--top rf-grid-row--center rf-pb-7w">
+            <div className="rf-col-sm-1 rf-col-lg-4"></div>
+            {/* Form */}
+            <div className="rf-col-sm-8 rf-col-lg-4" style={{ textAlign: 'center' }}>
+              <div>
+                {error && <span className="invalid">{error.error}</span>}
+              </div>
+              <div className="rf-mb-3w">
+                <label className="rf-label">Mot de passe</label>
+                <input name="password"
+                  type="password"
+                  value={password}
+                  onChange={handleChange} className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')} />
+                {submitted && !password &&
+                    <div className="invalid">Mot de passe requis</div>
+                }
+              </div>
+              <div className="rf-mb-5w">
+                <label className="rf-label">Confirmer le mot de passe</label>
+                <input
+                  name="passwordConfirm"
+                  type="password"
+                  value={passwordConfirm}
+                  onChange={handleChange} className={(submitted && passwordConfirm !== password ? ' is-invalid rf-input' : 'rf-input')} />
+                {submitted && passwordConfirm !== password &&
+                    <div className="invalid">La confirmation du mot de passe doit correspondre</div>
+                }
+              </div>
+              {choosingPassword && <span>Chargement...</span>}
+              <div>
+                <button className="rf-btn rf-text--bold big-btn" onClick={handleSubmit} style={{ background: 'white' }}>C&rsquo;est parti !</button>
+                <br/>
+              </div>
+            </div>
+            <div className="rf-col-sm-1 rf-col-lg-4"></div>
+          </div>
+        }
         <div className="rf-grid-row rf-grid-row--center rf-pb-12w">
           <div className="rf-col-1"></div>
           <div className="rf-col-10" style={{ textAlign: 'center' }}>
@@ -123,5 +156,9 @@ function ChoosePassword() {
   );
 
 }
+
+ChoosePassword.propTypes = {
+  match: PropTypes.object
+};
 
 export default ChoosePassword;

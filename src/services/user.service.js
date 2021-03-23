@@ -1,6 +1,8 @@
 export const userService = {
   login,
   logout,
+  choosePassword,
+  verifyToken,
 };
 
 function login(username, password) {
@@ -50,4 +52,31 @@ function handleResponse(response) {
 
     return data;
   });
+}
+
+function choosePassword(token, password) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      'password': password
+    })
+  };
+
+  let uri = `${apiUrlRoot}/users/choosePassword/${token}`;
+  return fetch(uri, requestOptions).then(handleResponse);
+}
+
+function verifyToken(token) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+  const requestOptions = {
+    method: 'GET'
+  };
+
+  let uri = `${apiUrlRoot}/users/verifyToken/${token}`;
+  return fetch(uri, requestOptions).then(handleResponse);
 }
