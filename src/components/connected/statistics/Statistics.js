@@ -1,4 +1,5 @@
 import React from 'react';
+import { history } from '../../../helpers';
 
 import ElementButton from './ElementButton';
 import LeftPage from './LeftPage';
@@ -15,10 +16,10 @@ function Statistics() {
             <h2>Vos Statistiques</h2>
           </div>
           <div className="rf-col-2">
-            <ElementButton titre="Accueil"/>
+            <ElementButton titre="Accueil" onClick={() => history.push('/') }/>
           </div>
           <div className="rf-col-4">
-            <ElementButton titre="Enregistrer un nouvel accompagnement"/>
+            <ElementButton titre="Enregistrer un nouvel accompagnement" onClick={() => history.push('/compte-rendu-activite')}/>
           </div>
           <div className="rf-col-4">
             <LeftPage/>
@@ -36,5 +37,3 @@ function Statistics() {
 }
 
 export default Statistics;
-/*
-          */

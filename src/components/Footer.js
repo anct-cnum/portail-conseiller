@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Footer({ type }) {
+function Footer({ type, titreBouton }) {
 
   return (
     <footer className="rf-footer" role="contentinfo" id="footer">
@@ -71,7 +71,7 @@ function Footer({ type }) {
                           </div>
                           <div className="rf-col-6" style={{ textAlign: 'center', marginTop: '0.8rem' }}>
                             <a className="rf-btn support-btn" target="blank" href="https://aide.conseiller-numerique.gouv.fr/fr/">
-                              Contacter le support
+                              {titreBouton === undefined ? 'Contacter le support' : titreBouton}
                             </a>
                           </div>
                         </div>
@@ -124,7 +124,8 @@ function Footer({ type }) {
 }
 
 Footer.propTypes = {
-  type: PropTypes.string
+  type: PropTypes.string,
+  titreBouton: PropTypes.string,
 };
 
 export default Footer;

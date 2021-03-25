@@ -1,4 +1,6 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import Header from '../Header';
 import Footer from '../Footer';
@@ -6,20 +8,22 @@ import Statistics from './statistics/Statistics';
 
 function Home() {
 
-  //<h2>Mon portail</h2>
-  //<Link to="/login">Se déconnecter</Link>
+  const user = useSelector(state => state.authentication.user.user);
 
   return (
     <div className="Home">
-      <div>
-        <Header/>
+      <Header linkAccount={user?.name}/>
+      <div className="rf-container">
+        <div className="rf-grid-row rf-grid-row--end rf-mb-7w">
+          <Link className="rf-btn rf-btn--sm" to="/login">Se déconnecter&nbsp;<i className="ri-logout-box-r-line"></i></Link>
+        </div>
       </div>
-      <div>
-        <Statistics/>
+      <div className="rf-container">
+        <div className="rf-grid-row rf-mb-10w">
+          <Statistics/>
+        </div>
       </div>
-      <div>
-        <Footer/>
-      </div>
+      <Footer/>
     </div>
 
   );
