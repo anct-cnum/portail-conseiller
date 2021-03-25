@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { history } from '../../helpers/history';
 import Header from '../Header';
 import Footer from '../Footer';
 import PropTypes from 'prop-types';
@@ -40,7 +39,7 @@ function ChoosePassword({ match }) {
     setSubmitted(true);
     if (password && passwordConfirm === password && checkComplexity(password)) {
       dispatch(userActions.choosePassword(token, password));
-      history.push('/validation');
+      dispatch(userActions.login(user.name, password, '/validation'));
     }
   }
 
@@ -94,7 +93,7 @@ function ChoosePassword({ match }) {
             <span>Chargement...</span>
           </div>
         }
-        
+
         { tokenVerified === false &&
           <div className="rf-grid-row rf-grid-row--center rf-mb-3w">
             <span style={{ color: 'red' }}>Désolé mais le lien est invalide.</span>
@@ -117,6 +116,9 @@ function ChoosePassword({ match }) {
                   onChange={handleChange} className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')} />
                 {submitted && !password &&
                     <div className="invalid">Mot de passe requis</div>
+                }
+                { password && !checkComplexity(password) &&
+                  <span style={{ color: 'red' }}>Le mot de passe doit contenir au moins 6 caractères.</span>
                 }
               </div>
               <div className="rf-mb-5w">

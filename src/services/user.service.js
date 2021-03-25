@@ -45,7 +45,8 @@ function handleResponse(response) {
       return Promise.reject(error);
     }
 
-    if (data.user.roles[0] !== 'conseiller') {
+    //login and verify token data !== conseiller
+    if (data.user?.roles[0] !== 'conseiller' && data.roles[0] !== 'conseiller') {
       logout();
       return Promise.reject({ error: 'Identifiants incorrects' });
     }

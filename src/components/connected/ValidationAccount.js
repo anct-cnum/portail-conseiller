@@ -1,16 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { history } from '../../helpers/history';
 import Header from '../Header';
 import Footer from '../Footer';
+import { useSelector, useDispatch } from 'react-redux';
+import { conseillerActions, structureActions } from '../../actions';
+import { userEntityId } from '../../helpers';
 
 function ValidationAccount() {
 
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.createAccount.user);
+  const conseiller = useSelector(state => state.conseiller?.conseiller);
+  const structure = useSelector(state => state.structure?.structure);
+
+  useEffect(() => {
+    dispatch(conseillerActions.get(userEntityId()));
+  }, []);
+
+  useEffect(() => {
+    if (conseiller !== undefined) {
+      dispatch(structureActions.get(conseiller?.idStructure));
+    }
+  }, [conseiller]);
+
   function handleSubmit() {
-    //TODO dispatch choose password and go to last step
+    history.push('/'); //Go home
   }
 
   return (
     <div className="validationAccount">
-      <Header linkAccount="toto@gmail.com"/>
+      <Header linkAccount={user?.name}/>
       {/* Start content */}
       <div className="rf-container" style={{ backgroundColor: '#2a2a2a', margin: '0px', maxWidth: 'unset' }}>
         <div className="rf-grid-row rf-grid-row--top rf-grid-row--center rf-mb-5w">
@@ -37,19 +56,23 @@ function ValidationAccount() {
           <div className="rf-col-3"></div>
           <div className="rf-col-6" style={{ textAlign: 'center', color: '#BFBFE3' }}>
             <p className="rf-mb-4w">
-              <strong>Jonathan Dupond</strong>
+              <strong>
+                <span style={{ textTransform: 'capitalize' }}>
+                  {conseiller?.prenom}&nbsp;{conseiller?.nom}
+                </span>
+              </strong>
             </p>
             <p className="rf-mb-4w">
-              <strong>CCAS de Strasbourg</strong>
+              <strong>{ structure?.nom }</strong>
             </p>
             <p className="rf-mb-4w">
-              <strong>5 rue des paquerettes</strong>
+              {/*TODO ADDRESSE <strong>{ structure?.adresse }</strong> */}
             </p>
             <p className="rf-mb-4w">
-              <strong>67000</strong>
+              <strong>{ structure?.codePostal }</strong>
             </p>
             <p className="rf-mb-7w" style={{ textTransform: 'uppercase' }}>
-              <strong>strasbourg</strong>
+              {/*TODO NOM VILLE <strong>{ structure?.nomVille }</strong> */}
             </p>
             <p className="rf-pb-3w">
               <button className="rf-btn rf-text--bold big-btn finalButton" onClick={handleSubmit}
