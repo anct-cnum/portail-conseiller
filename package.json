@@ -12,6 +12,8 @@
     "bufferutil": "^4.0.3",
     "canvas": "^2.5.0",
     "dotenv": "^8.2.0",
+    "highcharts": "^9.0.1",
+    "highcharts-react-official": "^3.0.0",
     "postcss": "^8.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
