@@ -62,14 +62,14 @@ function Footer({ type, titreBouton }) {
                     <div>
                       <div className="rf-container" style={{ padding: 0 }}>
                         <div className="rf-grid-row">
-                          <div className="rf-col-6">
-                            <p style={{ fontSize: '0.7rem' }}>
+                          <div className="rf-col-xs-12 rf-col-sm-6">
+                            <p style={{ fontSize: '0.7rem', marginBottom: '2.5rem' }}>
                               L&rsquo;équipe de conception de la plateforme Conseiller numérique France Services travaille en amélioration continue.
                               Vous avez une idée, une réclamation, vous souhaitez exprimer un avis ? N&rsquo;hésitez pas à nous contacter en cliquant
                               sur le bouton ci-contre
                             </p>
                           </div>
-                          <div className="rf-col-6" style={{ textAlign: 'center', marginTop: '0.8rem' }}>
+                          <div className="rf-col-xs-12 rf-col-sm-6 footerButton" style={{ textAlign: 'center', marginTop: '0.8rem' }}>
                             <a className="rf-btn support-btn" target="blank" href="https://aide.conseiller-numerique.gouv.fr/fr/">
                               {titreBouton === undefined ? 'Contacter le support' : titreBouton}
                             </a>
