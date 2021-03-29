@@ -12,15 +12,15 @@ function Cra() {
     <>
       <Header linkAccount={user?.name}/>
       <div className="rf-container cra">
-        <div className="rf-grid-row rf-grid-row--center rf-my-12w rf-pt-1w rf-pb-3w">
+        <div className="rf-grid-row rf-grid-row--center rf-my-md-12w rf-pt-1w rf-pb-3w">
           <span className="titre">Mon suivi d&rsquo;activité</span>
         </div>
         <div className="rf-grid-row rf-grid-row--gutters rf-grid-row--middle rf-mb-7w">
           <div className="rf-col-1"></div>
-          <div className="rf-col-2">
+          <div className="rf-col-xs-10 rf-col-sm-10 rf-col-md-2">
             <span className="question">Où l&rsquo;accompagnement a-t-il eu lieu ?</span>
           </div>
-          <div className="rf-col-6">
+          <div className="responsiveSelect">
             <SelectCP/>
           </div>
         </div>

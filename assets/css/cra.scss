@@ -16,11 +16,26 @@ $blue: #2B8BF7;
 
   .buttonCP {
     height: 104px;
-    width: 529px;
+    width: 100%;
     border: 1px solid white;
     border-radius: 20px;
     background-color: $background;
     color: white;
+    text-align: center;
+    cursor: pointer;
+    font-family: 'Marianne'!important;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .buttonCP-filled {
+    border-color: white;
+    height: 104px;
+    width: 100%;
+    border: 1px solid white;
+    border-radius: 20px;
+    background-color: white;
+    color: black;
     text-align: center;
     cursor: pointer;
     font-family: 'Marianne'!important;
@@ -48,7 +63,6 @@ $blue: #2B8BF7;
 
   .dropdown {
     position: relative;
-    display: inline-block;
   }
 
   .dropdown-content {
@@ -60,6 +74,10 @@ $blue: #2B8BF7;
     border: 1px solid white;
     cursor: pointer;
     margin-top: -2rem;
+  }
+
+  .dropdown-expanded {
+    border-radius: 0!important;
   }
 
   .dropdown-content:hover, .dropdown-content:focus {
@@ -82,6 +100,25 @@ $blue: #2B8BF7;
 
   .show {
     display: block;
+  }
+
+  .responsiveSelect {
+    width: calc(533%/12);
+  }
+
+  /* custom point de rupture MD du DS */
+  @media (max-width: 768px) {
+
+    .titre {
+      font-size:28px;
+      line-height:40px;
+    }
+
+    .responsiveSelect {
+      width: calc(1000%/12);
+      margin: 0 auto;
+    }
+
   }
 
 }

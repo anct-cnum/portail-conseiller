@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { craActions } from '.././../../../actions';
 import codesPostaux from '../../../../data/codesPostaux.json';
 
 function SelectCP() {
 
   const [codePostalList, setCodePostalList] = useState([]);
+  const dispatch = useDispatch();
+  let cra = useSelector(state => state.cra);
 
   //Remove doublons if necessary
   const removeDuplicatesFromArray = arr => [...new Set(
@@ -13,29 +17,19 @@ function SelectCP() {
   //filter array with search
   const filterArray = text => {
     return removeDuplicatesFromArray(codesPostaux).filter(
-      codePostal => String(codePostal.Code_postal).startsWith(text) || String(codePostal.Nom_Commune).startsWith(text)
+      codePostal => String(codePostal.Code_postal).startsWith(text) || String(codePostal.Nom_commune.toLowerCase()).startsWith(text.toLowerCase())
     );
   };
 
   //Select Option and set value
   const onClickOption = e => {
-    document.getElementById('buttonCP').style.borderColor = 'white';
-    document.getElementById('buttonCP').style.backgroundColor = 'white';
-    document.getElementById('buttonCP').style.color = 'black';
-    document.getElementById('myDropdown').classList.toggle('show');
-    document.getElementById('buttonCP').textContent = e.target.value;
-    document.getElementById('buttonCP').value = e.target.value;
+    dispatch(craActions.updateCP(e.target.value));
   };
 
   //Keyup to reload list with search filter
   const onKeyUp = () => {
-    document.getElementById('buttonCP').style.borderColor = '#2B8BF7';
     let input = document.getElementById('searchCP');
-    if (input.value.length <= 2) {
-      document.getElementById('searchCP').style.borderRadius = '0 0 20px 20px';
-    } else {
-      document.getElementById('searchCP').style.borderRadius = 0;
-    }
+    dispatch(craActions.searchInput(input.value.length > 2));
     if (input.value.length > 2) {
       let codesPostauxFiltered = filterArray(input.value);
       let options = [];
@@ -46,7 +40,7 @@ function SelectCP() {
           {codePostal.Code_postal} {codePostal.Nom_commune}
         </option>
       ));
-      options = options.slice(0, 5); // print only 5 elements by default
+      options = options.slice(0, 6); // print only 6 elements by default
       setCodePostalList(options);
     } else {
       setCodePostalList([]);
@@ -55,27 +49,34 @@ function SelectCP() {
 
   //OnClick button
   const onClickButton = () => {
-    document.getElementById('myDropdown').classList.toggle('show');
+    dispatch(craActions.getSearchlist());
   };
 
-  //OnClick input
-  const onClickInput = () => {
-    document.getElementById('buttonCP').style.borderColor = '#2B8BF7';
+  //Focus input
+  const focusInput = () => {
+    document.getElementById('searchCP').focus();
+    document.getElementById('searchCP').select();
   };
 
   return (
     <div className="dropdown">
-      <button id="buttonCP" onClick={onClickButton} className="buttonCP">Entrez le code postal...</button>
-      <div id="myDropdown" className="dropdown-content">
+      <button id="buttonCP"
+        onClick={onClickButton}
+        onMouseMove={focusInput}
+        className={`${cra?.cp === undefined ? 'buttonCP' : 'buttonCP-filled'}`}
+        style={cra?.searchCP === true ? { borderColor: '#2B8BF7' } : { borderColor: 'white' }}>
+        {cra?.cp === undefined ? 'Entrez le code postal...' : cra.cp}
+      </button>
+      <div id="myDropdown"
+        className={`dropdown-content ${(cra?.searchCP === true || cra?.searchInput === true) ? 'show' : ''}`}>
         <input
           autoComplete="off"
           type="text"
           id="searchCP"
           name="searchCP"
-          className="searchCP"
-          placeholder="Saisissez au moins 2 caractères"
-          onKeyUp={onKeyUp}
-          onClick={onClickInput}/>
+          className={`searchCP ${cra?.searchInput === true ? 'dropdown-expanded' : ''}`}
+          placeholder="Saisissez au moins 3 caractères"
+          onKeyUp={onKeyUp}/>
         {codePostalList}
       </div>
     </div>
