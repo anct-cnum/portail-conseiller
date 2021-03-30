@@ -1,0 +1,124 @@
+$background: #1e1e1e;
+$blue: #2B8BF7;
+
+.cra {
+
+  .titre {
+    font-size: 56px;
+    font-weight: 100;
+  }
+
+  .question {
+    height: 42px;
+    font-size: 14px;
+    font-weight: 100;
+  }
+
+  .buttonCP {
+    height: 104px;
+    width: 100%;
+    border: 1px solid white;
+    border-radius: 20px;
+    background-color: $background;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    font-family: 'Marianne'!important;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .buttonCP-filled {
+    border-color: white;
+    height: 104px;
+    width: 100%;
+    border: 1px solid white;
+    border-radius: 20px;
+    background-color: white;
+    color: black;
+    text-align: center;
+    cursor: pointer;
+    font-family: 'Marianne'!important;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .buttonCP:focus {
+    outline: none;
+    border-color: $blue;
+  }
+
+  .searchCP {
+  padding: 14px 20px 12px 45px;
+  border: none;
+  width: 100%;
+  border-radius: 0 0 20px 20px;
+  text-align: center;
+  }
+
+  .searchCP::placeholder {
+    color: $background;
+    text-align: center;
+  }
+
+  .dropdown {
+    position: relative;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    width: 100%;
+    background-color: $background;
+    border-radius: 0 0 20px 20px;
+    border: 1px solid white;
+    cursor: pointer;
+    margin-top: -2rem;
+  }
+
+  .dropdown-expanded {
+    border-radius: 0!important;
+  }
+
+  .dropdown-content:hover, .dropdown-content:focus {
+    outline: none;
+    border-color: $blue;
+    border-top: 0;
+  }
+
+  .dropdown-content option {
+    padding: 8px;
+    text-align: center;
+  }
+
+  .dropdown-content option:hover {
+    padding: 8px;
+    text-align: center;
+    background-color: white;
+    color: black;
+  }
+
+  .show {
+    display: block;
+  }
+
+  .responsiveSelect {
+    width: calc(533%/12);
+  }
+
+  /* custom point de rupture MD du DS */
+  @media (max-width: 768px) {
+
+    .titre {
+      font-size:28px;
+      line-height:40px;
+    }
+
+    .responsiveSelect {
+      width: calc(1000%/12);
+      margin: 0 auto;
+    }
+
+  }
+
+}
