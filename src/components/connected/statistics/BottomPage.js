@@ -1,10 +1,70 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import roundedCorner from 'highcharts-rounded-corners';
 
-function BottomPage() {
+function BottomPage(props) {
   roundedCorner(Highcharts);
+
+  const tabColorAge = ['#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e'];
+  const tabColorStatut = ['#a2b4b1', '#ffdbd2', '#a3a6bc', '#ddb094', '#fff480'];
+
+  const periodeTest = props.dataStats.periodes[0];
+  const statsEvolutions = periodeTest.statsEvolutions;
+  const statsUsagers = periodeTest.statsUsagers;
+  const statsAges = periodeTest.statsAges;
+
+  let moisEvolution = [];
+  let valeurEvolution = [];
+  let valeurCumul = [];
+  let cumul = 0;
+  statsEvolutions.forEach(evolution => {
+    cumul += evolution.valeur;
+    moisEvolution.push(evolution.nom);
+    valeurEvolution.push(evolution.valeur);
+    valeurCumul.push(cumul);
+  });
+
+  let valeursAges = [];
+  statsAges.forEach((age, i) => {
+    if (i === statsAges.length - 1) {
+
+    }
+    valeursAges.push({
+      name: age.nom,
+      data: [age.valeur],
+      color: tabColorAge[i],
+      tooltip: {
+        valueSuffix: '%'
+      }
+    });
+  });
+  valeursAges[0].borderRadiusTopLeft = '50%';
+  valeursAges[0].borderRadiusTopRight = '50%';
+  valeursAges[valeursAges.length - 1].borderRadiusBottomLeft = '50%';
+  valeursAges[valeursAges.length - 1].borderRadiusBottomRight = '50%';
+
+  let valeursStatus = [];
+  statsUsagers.forEach((statut, i) => {
+    if (i === statsUsagers.length - 1) {
+
+    }
+    valeursStatus.push({
+      name: statut.nom,
+      data: [statut.valeur],
+      color: tabColorStatut[i],
+      tooltip: {
+        valueSuffix: '%'
+      }
+    });
+  });
+
+  valeursStatus[0].borderRadiusTopLeft = '50%';
+  valeursStatus[0].borderRadiusTopRight = '50%';
+  valeursStatus[valeursStatus.length - 1].borderRadiusBottomLeft = '50%';
+  valeursStatus[valeursStatus.length - 1].borderRadiusBottomRight = '50%';
 
   const optionsChart1 = {
     credits: {
@@ -16,6 +76,8 @@ function BottomPage() {
     },
     title: {
       text: 'Evolution des accompagnements',
+      margin: 48,
+      align: 'left',
       style: {
         color: '#ffffff',
         fontSize: '18px',
@@ -23,7 +85,7 @@ function BottomPage() {
       }
     },
     xAxis: [{
-      categories: ['Avril', 'Mai', 'Juin', 'Juillet'],
+      categories: moisEvolution,
       crosshair: true,
       lineWidth: 0,
       labels: {
@@ -73,17 +135,20 @@ function BottomPage() {
       backgroundColor: '#1e1e1e',
       itemStyle: {
         color: '#cdc8c3',
+      },
+      itemHoverStyle: {
+        color: '#ffffff'
       }
     },
     series: [{
-      name: 'Accompagnement cumulés',
+      name: 'Accompagnement par mois',
       type: 'column',
       yAxis: 1,
-      data: [25, 85, 45, 75],
+      data: valeurEvolution,
       color: '#169b62'
     }, {
-      name: 'Accompagnement par mois',
-      data: [25, 110, 155, 230],
+      name: 'Accompagnement cumulés',
+      data: valeurCumul,
       lineWidth: 5,
       color: '#f7a35c'
     }]
@@ -105,10 +170,12 @@ function BottomPage() {
     },
     title: {
       text: 'Tranches d\'âge des usagers',
+      margin: 48,
+      align: 'left',
       style: {
         color: '#ffffff',
         fontSize: '18px',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
       }
     },
     plotOptions: {
@@ -116,56 +183,32 @@ function BottomPage() {
         stacking: 'normal',
       },
       bar: {
-        pointPadding: 0.4,
+        pointPadding: 0.2,
         borderWidth: 0
       }
     },
     legend: {
       backgroundColor: '#1e1e1e',
+      itemMarginBottom: 10,
+      itemWidth: 200,
+      y: -80,
+      align: 'left',
+      reversed: true,
       itemStyle: {
         color: '#cdc8c3',
+      },
+      itemHoverStyle: {
+        color: '#ffffff'
+      },
+      labelFormatter: function() {
+        if (this.data !== []) {
+          return this.name + ' <span class="valeur-legende">' + this.options.data[0] + '%</span>';
+        } else {
+          return this.name;
+        }
       }
     },
-    series: [{
-      name: '- 12 ans',
-      data: [4],
-      tooltip: {
-        valueSuffix: '%'
-      },
-      color: '#ff0185',
-      borderRadiusTopLeft: '50%',
-      borderRadiusTopRight: '50%',
-    }, {
-      name: '12-18 ans',
-      data: [8],
-      tooltip: {
-        valueSuffix: '%'
-      },
-      color: '#5770be'
-    }, {
-      name: '18-35 ans',
-      data: [12],
-      tooltip: {
-        valueSuffix: '%'
-      },
-      color: '#cac5b0'
-    }, {
-      name: '35-60 ans',
-      data: [31],
-      tooltip: {
-        valueSuffix: '%'
-      },
-      color: '#ff6f4c'
-    }, {
-      name: 'Plus de 60 ans',
-      data: [45],
-      tooltip: {
-        valueSuffix: '%'
-      },
-      color: '#169b62',
-      borderRadiusBottomLeft: '50%',
-      borderRadiusBottomRight: '50%',
-    }]
+    series: valeursAges
   };
 
   const optionsChart3 = {
@@ -184,6 +227,8 @@ function BottomPage() {
     },
     title: {
       text: 'Statut des usagers',
+      margin: 48,
+      align: 'left',
       style: {
         color: '#ffffff',
         fontSize: '18px',
@@ -195,41 +240,32 @@ function BottomPage() {
         stacking: 'normal',
       },
       bar: {
-        pointPadding: 0.4,
+        pointPadding: 0.2,
         borderWidth: 0
       }
     },
     legend: {
       backgroundColor: '#1e1e1e',
+      itemMarginBottom: 10,
+      itemWidth: 200,
+      y: -80,
+      align: 'left',
+      reversed: true,
       itemStyle: {
         color: '#cdc8c3',
+      },
+      itemHoverStyle: {
+        color: '#ffffff'
+      },
+      labelFormatter: function() {
+        if (this.data !== []) {
+          return this.name + ' <span class="valeur-legende">' + this.options.data[0] + '%</span>';
+        } else {
+          return this.name;
+        }
       }
     },
-    series: [{
-      name: 'Non renseigné',
-      data: [2],
-      color: '#a2b4b1',
-      borderRadiusTopLeft: '50%',
-      borderRadiusTopRight: '50%',
-    }, {
-      name: 'Etudiant',
-      data: [8],
-      color: '#ffdbd2'
-    }, {
-      name: 'En emploi',
-      data: [20],
-      color: '#a3a6bc'
-    }, {
-      name: 'Sans emploi',
-      data: [35],
-      color: '#ddb094'
-    }, {
-      name: 'Retraité',
-      data: [37],
-      color: '#fff480',
-      borderRadiusBottomLeft: '50%',
-      borderRadiusBottomRight: '50%',
-    }]
+    series: valeursStatus,
   };
 
   return (
@@ -247,4 +283,7 @@ function BottomPage() {
   );
 }
 
+BottomPage.propTypes = {
+  dataStats: PropTypes.object,
+};
 export default BottomPage;

@@ -9,10 +9,19 @@ function StatisticsRenewal(props) {
   return (
     <div className="rf-container">
       <div className="rf-grid-row">
-        <div className="rf-col-6"><ElementNumber nombre={props.nbReconduction}/></div>
-        <div className="rf-col-6"> <ElementText texte="accompagnements reconduits"/></div>
-        <div className="rf-col-6"><ElementNumber nombre={props.tauxReconduction} caracteresSpeciaux={props.caracteresSpeciaux}/></div>
-        <div className="rf-col-6"><ElementText texte="taux moyen de reconduction sur l’ensemble des accompagnements"/></div>
+        <div className="rf-col-6">
+          <ElementNumber nombre={props.nbReconduction} classe="numbers"/></div>
+        <div className="rf-col-6">
+          <ElementText texte="accompagnements reconduits"/></div>
+        <div className="rf-col-6">
+          <ElementNumber nombre={props.tauxReconduction} caracteresSpeciaux={props.caracteresSpeciaux} classe="numbers"/>
+        </div>
+        <div className="rf-col-6">
+          <ElementText texte="taux moyen de reconduction sur l’ensemble des accompagnements"/>
+        </div>
+      </div>
+      <div className="rf-col-12">
+        <div className="rf-m-6w"></div>
       </div>
     </div>
   );

@@ -5,13 +5,14 @@ function ElementNumber(props) {
 
   let chaine = (props.caracteresSpeciaux) ? props.caracteresSpeciaux : '';
   return (
-    <div>{props.nombre}{chaine}</div>
+    <div className={props.classe}>{props.nombre}{chaine}</div>
   );
 }
 
 ElementNumber.propTypes = {
   nombre: PropTypes.number,
-  caracteresSpeciaux: PropTypes.string
+  caracteresSpeciaux: PropTypes.string,
+  classe: PropTypes.string
 };
 
 export default ElementNumber;

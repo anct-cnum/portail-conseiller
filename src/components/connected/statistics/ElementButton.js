@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function ElementButton(props) {
 
   return (
-    <button className="rf-btn rf-btn--secondary">{props.titre}</button>
+    <a className="rf-btn statistics-btn">{props.titre}</a>
   );
 }
 

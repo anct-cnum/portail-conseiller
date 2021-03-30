@@ -1,25 +1,49 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import roundedCorner from 'highcharts-rounded-corners';
 
-function RightPage() {
+function RightPage(props) {
+
   roundedCorner(Highcharts);
 
-  const themesAccompagnement = [
-    'Équipement informatique &nbsp;&nbsp;<b>5</b>',
-    'Naviguer sur Internet &nbsp;&nbsp;<b>40</b>',
-    'Courriels &nbsp;&nbsp;<b>10</b>',
-    'Applications smartphone &nbsp;&nbsp;<b>7</b>',
-    'Gestion de contenus numériques &nbsp;&nbsp;<b>6</b>',
-    'Env., vocab. numérique &nbsp;&nbsp;<b>21</b>',
-    'Traitement de texte &nbsp;&nbsp;<b>8</b>',
-    'Échanger avec ses proches &nbsp;&nbsp;<b>13</b>',
-    'Emploi, formation &nbsp;&nbsp;<b>18</b>',
-    'Accompagner son enfant &nbsp;&nbsp;<b>9</b>',
-    'Numérique et TPE/PME &nbsp;&nbsp;<b>25</b>',
-    'Démarche en ligne &nbsp;&nbsp;<b>17</b>'
-  ];
+  const tabColorTheme = ['#cac5b0', '#abb8df', '#fdcf41', '#169b62', '#80d5c6', '#ff8d7e', '#714753', '#956052', '#ddb094', '#5770be', '#ffed33', '#be9b31'];
+  const tabColorLieux = ['#ffcc9f', '#ff8d7e', '#466964', '#5770be'];
+  const periodeTest = props.dataStats.periodes[0];
+  const statsThemes = periodeTest.statsThemes;
+  const statsDurees = periodeTest.statsDurees;
+  const statsLieux = periodeTest.statsLieux;
+
+  let themesAccompagnement = [];
+  let valeursAccompagnement = [];
+  statsThemes.forEach((theme, i) => {
+    themesAccompagnement.push(theme.nom + '&nbsp;&nbsp;<b>' + theme.valeur + '</b>');
+    valeursAccompagnement.push({
+      y: theme.valeur,
+      color: tabColorTheme[i],
+    });
+  });
+
+  let valeursLieux = [];
+  statsLieux.forEach((lieu, i) => {
+    valeursLieux.push({
+      name: lieu.nom,
+      y: lieu.valeur,
+      color: tabColorLieux[i],
+    });
+  });
+
+  let dureeAccompagnement = [];
+  let valeursDurees = [];
+  statsDurees.forEach(duree => {
+    dureeAccompagnement.push(duree.nom);
+    valeursDurees.push({
+      y: duree.valeur,
+      color: '#abcdf5',
+    });
+  });
 
   const optionsChart1 = {
     credits: {
@@ -31,10 +55,12 @@ function RightPage() {
     },
     title: {
       text: 'Thèmes des accompagnements',
+      margin: 48,
+      align: 'left',
       style: {
         color: '#ffffff',
         fontSize: '18px',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
       }
     },
     legend: {
@@ -59,7 +85,6 @@ function RightPage() {
       labels: {
         format: '{value}',
         style: {
-          fontSize: 16,
           color: '#ffffff',
         }
       },
@@ -72,45 +97,7 @@ function RightPage() {
       labels: '',
     },
     series: [{
-      data: [
-        {
-          y: 5,
-          color: '#cac5b0',
-
-        }, {
-          y: 40,
-          color: '#abb8df',
-        }, {
-          y: 10,
-          color: '#fdcf41',
-        }, {
-          y: 7,
-          color: '#169b62',
-        }, {
-          y: 6,
-          color: '#80d5c6',
-        }, {
-          y: 21,
-          color: '#ff8d7e',
-        }, {
-          y: 8,
-          color: '#714753',
-        }, {
-          y: 13,
-          color: '#956052',
-        }, {
-          y: 18,
-          color: '#ddb094',
-        }, {
-          y: 9,
-          color: '#5770be',
-        }, {
-          y: 25,
-          color: '#ffed33',
-        }, {
-          y: 17,
-          color: '#be9b31',
-        }],
+      data: valeursAccompagnement,
     }]
   };
 
@@ -123,11 +110,14 @@ function RightPage() {
       backgroundColor: '#1e1e1e',
     },
     plotOptions: {
+      innerHeight:240,
       pie: {
         allowPointSelect: true,
         cursor: 'pointer',
         dataLabels: {
-          enabled: false
+          format: '{point.y}',
+          color: '#fff',
+          distance: '-40%'
         },
         showInLegend: true,
         borderWidth: 0
@@ -135,6 +125,8 @@ function RightPage() {
     },
     title: {
       text: 'Lieux des accompagnements',
+      margin: 48,
+      align: 'left',
       style: {
         color: '#ffffff',
         fontSize: '18px',
@@ -144,26 +136,13 @@ function RightPage() {
     legend: {
       itemStyle: {
         color: '#cdc8c3',
+      },
+      itemHoverStyle: {
+        color: '#ffffff'
       }
     },
     series: [{
-      data: [{
-        name: 'À domicile',
-        y: 12,
-        color: '#ffcc9f'
-      }, {
-        name: 'À distance',
-        y: 15,
-        color: '#ff8d7e'
-      }, {
-        name: 'Autre lieu',
-        y: 27,
-        color: '#466964'
-      }, {
-        name: 'Lieu de rattachement',
-        y: 22,
-        color: '#5770be'
-      }]
+      data: valeursLieux
     }]
   };
 
@@ -176,7 +155,7 @@ function RightPage() {
       backgroundColor: '#1e1e1e',
     },
     xAxis: {
-      categories: ['0 à 30 min.', '30 min. à 1h', '1h à 2h', '2h ou plus'],
+      categories: dureeAccompagnement,
       title: {
         text: null
       },
@@ -220,6 +199,8 @@ function RightPage() {
     },
     title: {
       text: 'Durée des accompagnements',
+      margin: 48,
+      align: 'left',
       style: {
         color: '#ffffff',
         fontSize: '18px',
@@ -227,33 +208,32 @@ function RightPage() {
       }
     },
     series: [{
-      data: [{
-        y: 1,
-        color: '#abcdf5'
-      }, {
-        y: 3,
-        color: '#abcdf5'
-      }, {
-        y: 2,
-        color: '#abcdf5'
-      }, {
-        y: 5,
-        color: '#abcdf5'
-      }]
+      data: valeursDurees
     }]
   };
 
   return (
     <div className="rf-container">
       <div className="rf-grid-row">
-        <div className="rf-col-12"><hr></hr></div>
+        <div className="rf-col-12">
+          <hr></hr>
+          <div className="rf-m-6w"></div>
+        </div>
         <div className="rf-col-12"><HighchartsReact highcharts={Highcharts} options={optionsChart1} /></div>
-        <div className="rf-col-12"><hr></hr></div>
+        <div className="rf-col-12">
+          <div className="rf-m-6w"></div>
+          <hr></hr>
+          <div className="rf-m-6w"></div>
+        </div>
         <div className="rf-col-6"><HighchartsReact highcharts={Highcharts} options={optionsChart2} /></div>
         <div className="rf-col-6"><HighchartsReact highcharts={Highcharts} options={optionsChart3} /></div>
       </div>
     </div>
   );
 }
+
+RightPage.propTypes = {
+  dataStats: PropTypes.object,
+};
 
 export default RightPage;
