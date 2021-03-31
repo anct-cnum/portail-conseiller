@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function ElementButton(props) {
+function ElementButton({ titre, onClick, classButton }) {
 
   return (
-    <button className="rf-btn rf-btn--secondary" onClick={props.onClick}>{props.titre}</button>
+    <button className={classButton} onClick={onClick}>{titre}</button>
   );
 }
 
 ElementButton.propTypes = {
   titre: PropTypes.string,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  classButton: PropTypes.string
 };
 
 export default ElementButton;

@@ -9,9 +9,8 @@ function StatisticsAccompaniment(props) {
   return (
     <div className="rf-container">
       <div className="rf-grid-row">
-        <div className="rf-col-6"><ElementNumber nombre={props.nbAccompagnement}/></div>
-        <div className="rf-col-6"><ElementText texte="accompagnements réalisés durant cette période" /></div>
-        <div className="rf-col-12"><hr></hr></div>
+        <div className="rf-col-5"><ElementNumber nombre={props.nbAccompagnement} classe="number"/></div>
+        <div className="rf-col-7"><ElementText texte="accompagnements réalisés durant cette période" /></div>
       </div>
     </div>
   );

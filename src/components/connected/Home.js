@@ -23,10 +23,10 @@ function Home() {
         <div className="rf-grid-row rf-grid-row--center rf-mb-4w">
           <div className="rf-col-1"></div>
           <div className="rf-col-5">
-            <ElementButton titre="Accueil" onClick={() => history.push('/statistiques') }/>
+            <ElementButton titre="Accueil" onClick={() => history.push('/statistiques')} classButton="menu-btn"/>
           </div>
           <div className="rf-col-5">
-            <ElementButton titre="Enregistrer un nouvel accompagnement" onClick={() => history.push('/compte-rendu-activite')}/>
+            <ElementButton titre="Enregistrer un nouvel accompagnement" onClick={() => history.push('/compte-rendu-activite')} classButton="menu-btn"/>
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function ElementText(props) {
 
   return (
-    <div>{props.texte}</div>
+    <div className="text">{props.texte}</div>
   );
 }
 
