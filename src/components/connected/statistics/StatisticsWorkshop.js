@@ -9,15 +9,10 @@ function StatisticsWorkshop(props) {
   return (
     <div className="rf-container">
       <div className="rf-grid-row">
-        <div className="rf-col-6"><ElementNumber nombre={props.nbAteliers} classe="numbers"/></div>
-        <div className="rf-col-6"><ElementText texte="ateliers réalisés"/></div>
-        <div className="rf-col-6"><ElementNumber nombre={props.nbTotalParticipant} classe="numbers"/></div>
-        <div className="rf-col-6"><ElementText texte="participants au total"/></div>
-        <div className="rf-col-12">
-          <div className="rf-m-6w"></div>
-          <hr></hr>
-          <div className="rf-m-6w"></div>
-        </div>
+        <div className="rf-col-5"><ElementNumber nombre={props.nbAteliers} classe="numbers"/></div>
+        <div className="rf-col-7"><ElementText texte="ateliers réalisés"/><br/></div>
+        <div className="rf-col-5"><ElementNumber nombre={props.nbTotalParticipant} classe="numbers"/></div>
+        <div className="rf-col-7"><ElementText texte="participants au total"/></div>
       </div>
     </div>
   );

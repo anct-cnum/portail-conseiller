@@ -12,14 +12,13 @@ function BottomPage(props) {
   const tabColorStatut = ['#a2b4b1', '#ffdbd2', '#a3a6bc', '#ddb094', '#fff480'];
 
   const periodeTest = props.dataStats.periodes[0];
-  const statsEvolutions = periodeTest.statsEvolutions;
-  const statsUsagers = periodeTest.statsUsagers;
-  const statsAges = periodeTest.statsAges;
+  const { statsEvolutions, statsUsagers, statsAges } = periodeTest;
 
   let moisEvolution = [];
   let valeurEvolution = [];
   let valeurCumul = [];
   let cumul = 0;
+
   statsEvolutions.forEach(evolution => {
     cumul += evolution.valeur;
     moisEvolution.push(evolution.nom);
@@ -27,63 +26,101 @@ function BottomPage(props) {
     valeurCumul.push(cumul);
   });
 
-  let valeursAges = [];
-  statsAges.forEach((age, i) => {
-    if (i === statsAges.length - 1) {
+  let valeursAges = getValeurs(statsAges, tabColorAge);
+  let valeursStatus = getValeurs(statsUsagers, tabColorStatut);
 
-    }
-    valeursAges.push({
-      name: age.nom,
-      data: [age.valeur],
-      color: tabColorAge[i],
-      tooltip: {
-        valueSuffix: '%'
-      }
+  function getValeurs(statValeurs, tabCouleurs) {
+    let tabValeurs = [];
+    statValeurs.forEach((element, i) => {
+      tabValeurs.push({
+        name: element.nom,
+        data: [element.valeur],
+        color: tabCouleurs[i],
+        tooltip: {
+          valueSuffix: '%'
+        }
+      });
     });
-  });
-  valeursAges[0].borderRadiusTopLeft = '50%';
-  valeursAges[0].borderRadiusTopRight = '50%';
-  valeursAges[valeursAges.length - 1].borderRadiusBottomLeft = '50%';
-  valeursAges[valeursAges.length - 1].borderRadiusBottomRight = '50%';
 
-  let valeursStatus = [];
-  statsUsagers.forEach((statut, i) => {
-    if (i === statsUsagers.length - 1) {
+    tabValeurs[0].borderRadiusTopLeft = '50%';
+    tabValeurs[0].borderRadiusTopRight = '50%';
+    tabValeurs[tabValeurs.length - 1].borderRadiusBottomLeft = '50%';
+    tabValeurs[tabValeurs.length - 1].borderRadiusBottomRight = '50%';
 
-    }
-    valeursStatus.push({
-      name: statut.nom,
-      data: [statut.valeur],
-      color: tabColorStatut[i],
-      tooltip: {
-        valueSuffix: '%'
+    return tabValeurs;
+  }
+
+  const titreEvoAccompagnement = setOptionsTitre('Évolution des accompagnements');
+  const titreAgeUsagers = setOptionsTitre('Tranches d\'âge des usagers');
+  const titreStatutUsagers = setOptionsTitre('Statut des usagers');
+
+  function setOptionsTitre(optionTitre) {
+    const titre = {
+      text: optionTitre,
+      margin: 48,
+      align: 'left',
+      style: {
+        color: '#ffffff',
+        fontSize: '17px',
+        fontWeight: 'bold'
       }
-    });
-  });
+    };
+    return titre;
+  }
 
-  valeursStatus[0].borderRadiusTopLeft = '50%';
-  valeursStatus[0].borderRadiusTopRight = '50%';
-  valeursStatus[valeursStatus.length - 1].borderRadiusBottomLeft = '50%';
-  valeursStatus[valeursStatus.length - 1].borderRadiusBottomRight = '50%';
+  const legendBarStacked = getLegendOptionBarStacked();
+  const plotOptionsBarStacked = getPlotOptionsBarStacked();
 
-  const optionsChart1 = {
+  function getLegendOptionBarStacked() {
+    const legend = {
+      backgroundColor: '#1e1e1e',
+      itemMarginBottom: 10,
+      itemWidth: 200,
+      y: -80,
+      align: 'left',
+      reversed: true,
+      itemStyle: {
+        color: '#cdc8c3',
+      },
+      itemHoverStyle: {
+        color: '#ffffff'
+      },
+      labelFormatter: function() {
+        if (this.data !== []) {
+          return this.name + ' <span class="valeur-legende">' + this.options.data[0] + '%</span>';
+        } else {
+          return this.name;
+        }
+      }
+    };
+    return legend;
+  }
+
+  function getPlotOptionsBarStacked() {
+    const plotOptions = {
+      series: {
+        stacking: 'normal',
+      },
+      bar: {
+        pointPadding: 0.2,
+        borderWidth: 0
+      }
+    };
+    return plotOptions;
+  }
+
+  const optionsEvolutionAccompagnements = {
     credits: {
       enabled: false
     },
     chart: {
       zoomType: 'xy',
       backgroundColor: '#1e1e1e',
-    },
-    title: {
-      text: 'Evolution des accompagnements',
-      margin: 48,
-      align: 'left',
       style: {
-        color: '#ffffff',
-        fontSize: '18px',
-        fontWeight: 'bold'
+        fontFamily: 'Marianne'
       }
     },
+    title: titreEvoAccompagnement,
     xAxis: [{
       categories: moisEvolution,
       crosshair: true,
@@ -154,13 +191,16 @@ function BottomPage(props) {
     }]
   };
 
-  const optionsChart2 = {
+  const optionsAgeUsagers = {
     credits: {
       enabled: false
     },
     chart: {
       type: 'bar',
       backgroundColor: '#1e1e1e',
+      style: {
+        fontFamily: 'Marianne'
+      }
     },
     yAxis: {
       visible: false
@@ -168,56 +208,22 @@ function BottomPage(props) {
     xAxis: {
       visible: false
     },
-    title: {
-      text: 'Tranches d\'âge des usagers',
-      margin: 48,
-      align: 'left',
-      style: {
-        color: '#ffffff',
-        fontSize: '18px',
-        fontWeight: 'bold',
-      }
-    },
-    plotOptions: {
-      series: {
-        stacking: 'normal',
-      },
-      bar: {
-        pointPadding: 0.2,
-        borderWidth: 0
-      }
-    },
-    legend: {
-      backgroundColor: '#1e1e1e',
-      itemMarginBottom: 10,
-      itemWidth: 200,
-      y: -80,
-      align: 'left',
-      reversed: true,
-      itemStyle: {
-        color: '#cdc8c3',
-      },
-      itemHoverStyle: {
-        color: '#ffffff'
-      },
-      labelFormatter: function() {
-        if (this.data !== []) {
-          return this.name + ' <span class="valeur-legende">' + this.options.data[0] + '%</span>';
-        } else {
-          return this.name;
-        }
-      }
-    },
+    title: titreAgeUsagers,
+    plotOptions: plotOptionsBarStacked,
+    legend: legendBarStacked,
     series: valeursAges
   };
 
-  const optionsChart3 = {
+  const optionsStatutUsagers = {
     credits: {
       enabled: false
     },
     chart: {
       type: 'bar',
       backgroundColor: '#1e1e1e',
+      style: {
+        fontFamily: 'Marianne'
+      }
     },
     yAxis: {
       visible: false
@@ -225,58 +231,21 @@ function BottomPage(props) {
     xAxis: {
       visible: false
     },
-    title: {
-      text: 'Statut des usagers',
-      margin: 48,
-      align: 'left',
-      style: {
-        color: '#ffffff',
-        fontSize: '18px',
-        fontWeight: 'bold'
-      }
-    },
-    plotOptions: {
-      series: {
-        stacking: 'normal',
-      },
-      bar: {
-        pointPadding: 0.2,
-        borderWidth: 0
-      }
-    },
-    legend: {
-      backgroundColor: '#1e1e1e',
-      itemMarginBottom: 10,
-      itemWidth: 200,
-      y: -80,
-      align: 'left',
-      reversed: true,
-      itemStyle: {
-        color: '#cdc8c3',
-      },
-      itemHoverStyle: {
-        color: '#ffffff'
-      },
-      labelFormatter: function() {
-        if (this.data !== []) {
-          return this.name + ' <span class="valeur-legende">' + this.options.data[0] + '%</span>';
-        } else {
-          return this.name;
-        }
-      }
-    },
+    title: titreStatutUsagers,
+    plotOptions: plotOptionsBarStacked,
+    legend: legendBarStacked,
     series: valeursStatus,
   };
 
   return (
     <div className="rf-container">
-      <div className="rf-grid-row">
-        <div className="rf-col-4"><hr></hr></div>
-        <div className="rf-col-4"><hr></hr></div>
-        <div className="rf-col-4"><hr></hr></div>
-        <div className="rf-col-4"><HighchartsReact highcharts={Highcharts} options={optionsChart1} /></div>
-        <div className="rf-col-4"><HighchartsReact highcharts={Highcharts} options={optionsChart2} /></div>
-        <div className="rf-col-4"><HighchartsReact highcharts={Highcharts} options={optionsChart3} /></div>
+      <div className="rf-grid-row rf-grid-row--gutters">
+        <div className="rf-col-4"><hr className="bar" /></div>
+        <div className="rf-col-4"><hr className="bar" /></div>
+        <div className="rf-col-4"><hr className="bar" /></div>
+        <div className="rf-col-4"><HighchartsReact highcharts={Highcharts} options={optionsEvolutionAccompagnements} /></div>
+        <div className="rf-col-4"><HighchartsReact highcharts={Highcharts} options={optionsAgeUsagers} /></div>
+        <div className="rf-col-4"><HighchartsReact highcharts={Highcharts} options={optionsStatutUsagers} /></div>
         <div className="rf-col-12"><hr></hr></div>
       </div>
     </div>

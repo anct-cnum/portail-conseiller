@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function ElementButton(props) {
+function ElementButton({ titre }) {
 
   return (
-    <a className="rf-btn statistics-btn">{props.titre}</a>
+    <a className="rf-btn statistics-btn">{titre}</a>
   );
 }
 

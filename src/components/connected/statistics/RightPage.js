@@ -11,10 +11,9 @@ function RightPage(props) {
 
   const tabColorTheme = ['#cac5b0', '#abb8df', '#fdcf41', '#169b62', '#80d5c6', '#ff8d7e', '#714753', '#956052', '#ddb094', '#5770be', '#ffed33', '#be9b31'];
   const tabColorLieux = ['#ffcc9f', '#ff8d7e', '#466964', '#5770be'];
+
   const periodeTest = props.dataStats.periodes[0];
-  const statsThemes = periodeTest.statsThemes;
-  const statsDurees = periodeTest.statsDurees;
-  const statsLieux = periodeTest.statsLieux;
+  const { statsThemes, statsDurees, statsLieux } = periodeTest;
 
   let themesAccompagnement = [];
   let valeursAccompagnement = [];
@@ -45,13 +44,17 @@ function RightPage(props) {
     });
   });
 
-  const optionsChart1 = {
+  const optionsThemeAccompagnements = {
     credits: {
       enabled: false
     },
     chart: {
       type: 'bar',
       backgroundColor: '#1e1e1e',
+      height: 352,
+      style: {
+        fontFamily: 'Marianne'
+      }
     },
     title: {
       text: 'Thèmes des accompagnements',
@@ -101,16 +104,19 @@ function RightPage(props) {
     }]
   };
 
-  const optionsChart2 = {
+  const optionsLieuxAccompagnements = {
     credits: {
       enabled: false
     },
     chart: {
       type: 'pie',
       backgroundColor: '#1e1e1e',
+      height: 352,
+      style: {
+        fontFamily: 'Marianne'
+      }
     },
     plotOptions: {
-      innerHeight:240,
       pie: {
         allowPointSelect: true,
         cursor: 'pointer',
@@ -146,13 +152,17 @@ function RightPage(props) {
     }]
   };
 
-  const optionsChart3 = {
+  const optionsDureeAccompagnements = {
     credits: {
       enabled: false
     },
     chart: {
       type: 'column',
       backgroundColor: '#1e1e1e',
+      height: 352,
+      style: {
+        fontFamily: 'Marianne'
+      }
     },
     xAxis: {
       categories: dureeAccompagnement,
@@ -214,19 +224,19 @@ function RightPage(props) {
 
   return (
     <div className="rf-container">
-      <div className="rf-grid-row">
+      <div className="rf-grid-row ">
         <div className="rf-col-12">
-          <hr></hr>
+          <hr/>
           <div className="rf-m-6w"></div>
         </div>
-        <div className="rf-col-12"><HighchartsReact highcharts={Highcharts} options={optionsChart1} /></div>
+        <div className="rf-col-12"><HighchartsReact highcharts={Highcharts} options={optionsThemeAccompagnements} /></div>
         <div className="rf-col-12">
           <div className="rf-m-6w"></div>
-          <hr></hr>
+          <hr/>
           <div className="rf-m-6w"></div>
         </div>
-        <div className="rf-col-6"><HighchartsReact highcharts={Highcharts} options={optionsChart2} /></div>
-        <div className="rf-col-6"><HighchartsReact highcharts={Highcharts} options={optionsChart3} /></div>
+        <div className="rf-col-6"><HighchartsReact highcharts={Highcharts} options={optionsLieuxAccompagnements} /></div>
+        <div className="rf-col-6"><HighchartsReact highcharts={Highcharts} options={optionsDureeAccompagnements} /></div>
       </div>
     </div>
   );

@@ -9,15 +9,10 @@ function StatisticsPersonalAccompaniment(props) {
   return (
     <div className="rf-container">
       <div className="rf-grid-row">
-        <div className="rf-col-6"><ElementNumber nombre={props.nbAccompagnementPerso} classe="numbers"/></div>
-        <div className="rf-col-6"><ElementText texte="accompagnements personnalisés réalisés"/></div>
-        <div className="rf-col-6"><ElementNumber nombre={props.nbDemandePonctuel} classe="numbers"/></div>
-        <div className="rf-col-6"><ElementText texte="demandes ponctuelles"/></div>
-        <div className="rf-col-12">
-          <div className="rf-m-6w"></div>
-          <hr></hr>
-          <div className="rf-m-6w"></div>
-        </div>
+        <div className="rf-col-5"><ElementNumber nombre={props.nbAccompagnementPerso} classe="numbers"/></div>
+        <div className="rf-col-7"><ElementText texte="accompagnements personnalisés réalisés"/><br/></div>
+        <div className="rf-col-5"><ElementNumber nombre={props.nbDemandePonctuel} classe="numbers"/></div>
+        <div className="rf-col-7"><ElementText texte="demandes ponctuelles"/></div>
       </div>
     </div>
   );

@@ -4,12 +4,13 @@ import ElementButton from './ElementButton';
 import LeftPage from './LeftPage';
 import RightPage from './RightPage';
 import BottomPage from './BottomPage';
+import StatisticsBanner from './StatisticsBanner';
 
 function Statistics() {
   const donneesStatistiques = {
     periodes: [{
-      dateDebut: '01/04/2021',
-      dateFin: '02/05/2021',
+      dateDebut: '04/01/2021',
+      dateFin: '05/02/2021',
       nbAccompagnement: 78,
       nbAteliers: 3,
       nbTotalParticipant: 25,
@@ -77,7 +78,7 @@ function Statistics() {
             <div className="rf-m-1w"></div>
           </div>
           <div className="rf-col-xs-12 rf-col-md-6 title">
-            <h2>Vos Statistiques</h2>
+            <h1 className="title" >Vos Statistiques</h1>
           </div>
           <div className="rf-col-2">
             <ElementButton titre="Accueil"/>
@@ -94,8 +95,12 @@ function Statistics() {
           <div className="rf-col-12">
             <BottomPage dataStats={donneesStatistiques}/>
           </div>
+          <div className="rf-col-12">
+            <StatisticsBanner />
+          </div>
         </div>
       </div>
+
     </div>
   );
 }

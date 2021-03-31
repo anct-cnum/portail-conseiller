@@ -17,13 +17,23 @@ function LeftPage(props) {
           <PeriodStatistics dateDebut={periodeTest.dateDebut} dateFin={periodeTest.dateFin} />
         </div>
         <div className="rf-col-12">
+          <div className="rf-m-6w"></div>
           <StatisticsAccompaniment nbAccompagnement={periodeTest.nbAccompagnement} />
+          <div className="rf-m-6w"></div>
+          <hr className="bar"/>
+          <div className="rf-m-6w"></div>
         </div>
         <div className="rf-col-12">
           <StatisticsWorkshop nbAteliers={periodeTest.nbAteliers} nbTotalParticipant={periodeTest.nbTotalParticipant}/>
+          <div className="rf-m-6w"></div>
+          <hr className="bar"/>
+          <div className="rf-m-6w"></div>
         </div>
         <div className="rf-col-12">
           <StatisticsPersonalAccompaniment nbAccompagnementPerso={periodeTest.nbAccompagnementPerso} nbDemandePonctuel={periodeTest.nbDemandePonctuel} />
+          <div className="rf-m-6w"></div>
+          <hr className="bar"/>
+          <div className="rf-m-6w"></div>
         </div>
         <div className="rf-col-12">
           <StatisticsRenewal nbReconduction={periodeTest.nbReconduction} tauxReconduction={periodeTest.tauxReconduction} caracteresSpeciaux="%" />
