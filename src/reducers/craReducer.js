@@ -17,6 +17,11 @@ export default function cra(state = null, action) {
         searchInput: false,
         cp: action.cp,
       };
+    case 'UPDATE_CANAL':
+      return {
+        ...state,
+        canal: action.canal,
+      };
     default:
       return state;
   }

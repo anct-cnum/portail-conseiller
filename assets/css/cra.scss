@@ -3,6 +3,7 @@ $blue: #2B8BF7;
 
 .cra {
 
+  /** START SELECT CP **/
   .titre {
     font-size: 56px;
     font-weight: 100;
@@ -120,5 +121,74 @@ $blue: #2B8BF7;
     }
 
   }
+  /** END SELECT CP **/
+
+  /** START RADIO CANAL **/
+  .radioRattachement {
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid white;
+    background-color: $background;
+  }
+
+  .radioRattachement-selected {
+    background-color: white!important;
+    color: black!important;
+  }
+
+  .labelRadioCustom {
+    padding-top: 2.5rem;
+  }
+
+  .responsiveRadioCanal1, .responsiveRadioCanal2 {
+    width: calc(266%/12);
+  }
+
+  .responsiveRadioCanalVertical {
+    align-self: flex-start;
+    width: calc(266%/12);
+  }
+
+  .lieuRattachement {
+    height: 28px;
+  }
+
+  .autreLieu {
+    height: 14px;
+    margin-top: 0.9rem;
+  }
+
+  .distance, .domicile {
+    display: flex;
+  }
+
+  /* custom point de rupture MD du DS */
+  @media (max-width: 768px) {
+
+    .responsiveRadioCanal1 {
+      width: calc(500%/12);
+      margin-left: calc(100%/12);;
+    }
+
+    .responsiveRadioCanal2 {
+      width: calc(500%/12);
+    }
+
+    .responsiveRadioCanalVertical {
+      width: calc(10000%/12);
+      margin-left: calc(100%/12);
+      display: flex;
+    }
+
+    .responsiveRadioCanalVertical .radioRattachement {
+      margin-bottom: 0.5rem;
+    }
+
+    .responsiveRadioCanalVertical .radioButton {
+      width: calc(545%/12);
+    }
+
+  }
+  /** END RADIO CANAL **/
 
 }

@@ -8,7 +8,7 @@ export const userActions = {
   verifyToken,
 };
 
-function login(username, password, to = null) {
+function login(username, password, to) {
   return dispatch => {
     dispatch(request({ username }));
 
@@ -20,8 +20,8 @@ function login(username, password, to = null) {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(data));
         dispatch(success(data));
-        if (to === null) {
-          history.push('/');
+        if (to.pathname === '/') {
+          history.push('/statistiques');
         } else {
           history.push(to);
         }

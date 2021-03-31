@@ -24,7 +24,7 @@ function ValidationAccount() {
   }, [conseiller]);
 
   function handleSubmit() {
-    history.push('/'); //Go home
+    history.push('/statistiques'); //Go home stats
   }
 
   return (

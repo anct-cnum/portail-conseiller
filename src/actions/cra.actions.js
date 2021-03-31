@@ -2,6 +2,7 @@ export const craActions = {
   getSearchlist,
   searchInput,
   updateCP,
+  updateCanal,
 };
 
 function getSearchlist() {
@@ -14,4 +15,8 @@ function searchInput(search) {
 
 function updateCP(cp) {
   return { type: 'UPDATE_CP', cp };
+}
+
+function updateCanal(canal) {
+  return { type: 'UPDATE_CANAL', canal };
 }
