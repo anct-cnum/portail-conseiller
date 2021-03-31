@@ -1,10 +1,9 @@
 import React from 'react';
-
-import ElementButton from './ElementButton';
 import LeftPage from './LeftPage';
 import RightPage from './RightPage';
 import BottomPage from './BottomPage';
-import StatisticsBanner from './StatisticsBanner';
+import Footer from '../../Footer';
+import StatisticsBanner from '../statistics/StatisticsBanner';
 
 function Statistics() {
   const donneesStatistiques = {
@@ -70,21 +69,9 @@ function Statistics() {
   return (
     <div className="Statistics">
       <div className="rf-container">
-        <div className="rf-grid-row rf-grid-row--gutters">
+        <div className="rf-grid-row">
           <div className="rf-col-12">
-            <div className="rf-m-12w"></div>
-          </div>
-          <div className="rf-col-12">
-            <div className="rf-m-1w"></div>
-          </div>
-          <div className="rf-col-xs-12 rf-col-md-6 title">
-            <h1 className="title" >Vos Statistiques</h1>
-          </div>
-          <div className="rf-col-2">
-            <ElementButton titre="Accueil"/>
-          </div>
-          <div className="rf-col-4">
-            <ElementButton titre="Enregistrer un nouvel accompagnement"/>
+            <h2>Vos Statistiques</h2>
           </div>
           <div className="rf-col-4">
             <LeftPage dataStats={donneesStatistiques}/>
@@ -100,7 +87,7 @@ function Statistics() {
           </div>
         </div>
       </div>
-
+      <Footer type="support" titreBouton="Donner mon avis sur cette page"/>
     </div>
   );
 }

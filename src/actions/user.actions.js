@@ -4,9 +4,11 @@ import { history } from '../helpers';
 export const userActions = {
   login,
   logout,
+  choosePassword,
+  verifyToken,
 };
 
-function login(username, password) {
+function login(username, password, to) {
   return dispatch => {
     dispatch(request({ username }));
 
@@ -18,7 +20,11 @@ function login(username, password) {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(data));
         dispatch(success(data));
-        history.push('/');
+        if (to.pathname === '/') {
+          history.push('/statistiques');
+        } else {
+          history.push(to);
+        }
       },
       error => {
         dispatch(failure(error));
@@ -40,4 +46,60 @@ function login(username, password) {
 function logout() {
   userService.logout();
   return { type: 'LOGOUT' };
+}
+
+function choosePassword(token, password) {
+  return dispatch => {
+    dispatch(request(token));
+
+    userService.choosePassword(token, password)
+    .then(
+      user => {
+        user.role = user.roles[0];
+        delete user.roles;
+        dispatch(success(user));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request(token) {
+    return { type: 'CHOOSE_PASSWORD_REQUEST', token };
+  }
+  function success(user) {
+    return { type: 'CHOOSE_PASSWORD_SUCCESS', user };
+  }
+  function failure(error) {
+    return { type: 'CHOOSE_PASSWORD_FAILURE', error };
+  }
+}
+
+function verifyToken(token) {
+  return dispatch => {
+    dispatch(request(token));
+
+    userService.verifyToken(token)
+    .then(
+      user => {
+        user.role = user.roles[0];
+        delete user.roles;
+        dispatch(success(user));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request(token) {
+    return { type: 'VERIFY_TOKEN_REQUEST', token };
+  }
+  function success(user) {
+    return { type: 'VERIFY_TOKEN_SUCCESS', user };
+  }
+  function failure(error) {
+    return { type: 'VERIFY_TOKEN_FAILURE', error };
+  }
 }

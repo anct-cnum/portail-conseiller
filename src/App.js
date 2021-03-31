@@ -3,9 +3,9 @@ import { Router, Route, Switch } from 'react-router-dom';
 import { history } from './helpers';
 
 import Login from './components/anonymous/Login.js';
-import Home from './components/connected/Home.js';
+import Home from './components/connected/Home';
 import ChoosePassword from './components/anonymous/ChoosePassword';
-import ValidationAccount from './components/anonymous/ValidationAccount';
+import ValidationAccount from './components/connected/ValidationAccount';
 
 import PrivateRoute from './components/connected/PrivateRoute';
 

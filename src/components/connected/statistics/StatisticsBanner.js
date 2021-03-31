@@ -18,7 +18,7 @@ function StatisticsBanner() {
           </table>
         </div>
         <div className="rf-col-4">
-          <a className="rf-btn statistics-btn">Voir les statistiques nationales</a>
+          <a className="rf-btn menu-btn">Voir les statistiques nationales</a>
         </div>
 
       </div>
