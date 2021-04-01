@@ -15,7 +15,8 @@ function Activite() {
         <div className="rf-col-xs-10 rf-col-sm-10 rf-col-md-2">
           <span className="question">Quel type d&rsquo;activité venez-vous de réaliser ?</span>
         </div>
-        <div className="responsiveRadioActivity1" style={cra?.activite === 'Atelier Collectif' ? { display: 'none' } : { display: 'block' }}>
+        {cra?.activite !== 'Atelier Collectif' &&
+        <div className="responsiveRadioActivity1">
           <BigRadioButton
             type="activite"
             label="Atelier Collectif"
@@ -24,11 +25,14 @@ function Activite() {
             heightImage="56px"
             classDiv="atelierCollectif"/>
         </div>
-        <div className="responsiveRadioActivity1" style={cra?.activite !== 'Atelier Collectif' ? { display: 'none' } : { display: 'block' }}>
+        }
+        {cra?.activite === 'Atelier Collectif' &&
+        <div className="responsiveRadioActivity1">
           <CountRadioButton
             type="participants"
             label="participants"/>
         </div>
+        }
         <div className="responsiveRadioActivity2">
           <BigRadioButton
             type="activite"
