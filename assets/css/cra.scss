@@ -87,12 +87,12 @@ $blue: #2B8BF7;
     border-top: 0;
   }
 
-  .dropdown-content option {
+  .dropdown-content div {
     padding: 8px;
     text-align: center;
   }
 
-  .dropdown-content option:hover {
+  .dropdown-content div:hover {
     padding: 8px;
     text-align: center;
     background-color: white;
@@ -123,7 +123,7 @@ $blue: #2B8BF7;
   }
   /** END SELECT CP **/
 
-  /** START RADIO CANAL **/
+  /** START RADIO CANAL & ACTIVITY **/
   .radioRattachement {
     width: 100%;
     border-radius: 20px;
@@ -140,7 +140,7 @@ $blue: #2B8BF7;
     padding-top: 2.5rem;
   }
 
-  .responsiveRadioCanal1, .responsiveRadioCanal2 {
+  .responsiveRadioCanal1, .responsiveRadioCanal2, .responsiveRadioActivity1, .responsiveRadioActivity2, .responsiveRadioActivity3Big {
     width: calc(266%/12);
   }
 
@@ -149,7 +149,11 @@ $blue: #2B8BF7;
     width: calc(266%/12);
   }
 
-  .lieuRattachement {
+  .responsiveRadioActivity3Small {
+    display: none;
+  }
+
+  .lieuRattachement, .atelierCollectif, .accIndividuel, .demPonctuelle {
     height: 28px;
   }
 
@@ -165,13 +169,23 @@ $blue: #2B8BF7;
   /* custom point de rupture MD du DS */
   @media (max-width: 768px) {
 
-    .responsiveRadioCanal1 {
+    .responsiveRadioCanal1, .responsiveRadioActivity1 {
       width: calc(500%/12);
-      margin-left: calc(100%/12);;
+      margin-left: calc(100%/12);
     }
 
-    .responsiveRadioCanal2 {
+    .responsiveRadioCanal2, .responsiveRadioActivity2 {
       width: calc(500%/12);
+    }
+
+    .responsiveRadioActivity3Big {
+      display: none;
+    }
+
+    .responsiveRadioActivity3Small {
+      display: block;
+      margin-left: calc(100%/12);
+      width: calc(1000%/12);
     }
 
     .responsiveRadioCanalVertical {
@@ -189,6 +203,6 @@ $blue: #2B8BF7;
     }
 
   }
-  /** END RADIO CANAL **/
+  /** END RADIO CANAL & ACTIVITY **/
 
 }
