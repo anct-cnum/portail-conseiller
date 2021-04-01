@@ -26,6 +26,12 @@ export default function cra(state = null, action) {
       return {
         ...state,
         activite: action.activite,
+        nbParticipants: action.activite === 'Atelier Collectif' ? 5 : null
+      };
+    case 'UPDATE_NB_PARTICIPANTS':
+      return {
+        ...state,
+        nbParticipants: action.nbParticipants,
       };
     default:
       return state;
