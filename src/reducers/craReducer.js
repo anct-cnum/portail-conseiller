@@ -22,6 +22,11 @@ export default function cra(state = null, action) {
         ...state,
         canal: action.canal,
       };
+    case 'UPDATE_ACTIVITE':
+      return {
+        ...state,
+        activite: action.activite,
+      };
     default:
       return state;
   }

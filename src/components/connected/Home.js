@@ -5,7 +5,7 @@ import { history } from '../../helpers';
 import Header from '../Header';
 import ElementButton from './commun/ElementButton';
 import Statistics from './statistics/Statistics';
-import Cra from './cra/cra';
+import Cra from './cra';
 
 function Home() {
 
