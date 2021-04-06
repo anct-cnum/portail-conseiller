@@ -23,6 +23,15 @@ function RightPage(props) {
       y: theme.valeur,
       color: tabColorTheme[i],
     });
+    /* Version tablette et mobile */
+
+  });
+
+  let graphiquesResponsiveTheme = [];
+  statsThemes.forEach((theme, i) => {
+    graphiquesResponsiveTheme.push(
+
+    );
   });
 
   let valeursLieux = [];
@@ -52,6 +61,7 @@ function RightPage(props) {
       type: 'bar',
       backgroundColor: '#1e1e1e',
       height: 352,
+      marginLeft: 205,
       style: {
         fontFamily: 'Marianne'
       }
@@ -60,6 +70,7 @@ function RightPage(props) {
       text: 'Thèmes des accompagnements',
       margin: 48,
       align: 'left',
+      x: -10,
       style: {
         color: '#ffffff',
         fontSize: '18px',
@@ -101,7 +112,8 @@ function RightPage(props) {
     },
     series: [{
       data: valeursAccompagnement,
-    }]
+    }],
+
   };
 
   const optionsLieuxAccompagnements = {
@@ -112,6 +124,8 @@ function RightPage(props) {
       type: 'pie',
       backgroundColor: '#1e1e1e',
       height: 352,
+      marginLeft: 0,
+      marginRight: 50,
       style: {
         fontFamily: 'Marianne'
       }
@@ -131,7 +145,8 @@ function RightPage(props) {
     },
     title: {
       text: 'Lieux des accompagnements',
-      margin: 48,
+      margin: 50,
+      x: -10,
       align: 'left',
       style: {
         color: '#ffffff',
@@ -147,9 +162,28 @@ function RightPage(props) {
         color: '#ffffff'
       }
     },
+    tooltip: {
+      enabled: false
+    },
     series: [{
       data: valeursLieux
-    }]
+    }],
+    responsive: {
+      rules: [{
+        condition: {
+          minWidth: 320,
+          maxWidth: 500
+        },
+        chartOptions: {
+          chart: {
+            width: 200
+          }
+        },
+        navigator: {
+          enabled: false
+        }
+      }]
+    }
   };
 
   const optionsDureeAccompagnements = {
@@ -205,12 +239,13 @@ function RightPage(props) {
       enabled: false
     },
     tooltip: {
-      pointFormat: '<div style="text-align: right">{point.y}</div>'
+      enabled: false
     },
     title: {
       text: 'Durée des accompagnements',
       margin: 48,
       align: 'left',
+      x: -10,
       style: {
         color: '#ffffff',
         fontSize: '18px',
@@ -219,24 +254,36 @@ function RightPage(props) {
     },
     series: [{
       data: valeursDurees
-    }]
+    }],
+    responsive: {
+      rules: [{
+        condition: {
+          minWidth: 320,
+          maxWidth: 500
+        },
+        chartOptions: {
+          chart: {
+            width: 200
+          }
+        },
+        navigator: {
+          enabled: false
+        }
+      }]
+    }
   };
 
   return (
-    <div className="rf-container">
+    <div className="rf-container-fluid">
       <div className="rf-grid-row ">
+        <div className="rf-col-lg-12"><HighchartsReact highcharts={Highcharts} options={optionsThemeAccompagnements} /></div>
         <div className="rf-col-12">
-          <hr/>
-          <div className="rf-m-6w"></div>
+          <div className="rf-my-6w"><hr/></div>
         </div>
-        <div className="rf-col-12"><HighchartsReact highcharts={Highcharts} options={optionsThemeAccompagnements} /></div>
-        <div className="rf-col-12">
-          <div className="rf-m-6w"></div>
-          <hr/>
-          <div className="rf-m-6w"></div>
+        <div className="rf-col-lg-6"><HighchartsReact highcharts={Highcharts} options={optionsLieuxAccompagnements} /></div>
+        <div className="rf-col-lg-6">
+          <div className="rf-ml-6w"><HighchartsReact highcharts={Highcharts} options={optionsDureeAccompagnements} /></div>
         </div>
-        <div className="rf-col-6"><HighchartsReact highcharts={Highcharts} options={optionsLieuxAccompagnements} /></div>
-        <div className="rf-col-6"><HighchartsReact highcharts={Highcharts} options={optionsDureeAccompagnements} /></div>
       </div>
     </div>
   );

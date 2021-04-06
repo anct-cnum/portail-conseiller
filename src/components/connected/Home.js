@@ -33,7 +33,6 @@ function Home() {
       <Route path={`/statistiques`} component={Statistics} />
       <Route path={`/compte-rendu-activite`} component={Cra} />
     </div>
-
   );
 }
 

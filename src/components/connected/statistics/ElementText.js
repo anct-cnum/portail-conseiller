@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 function ElementText(props) {
 
   return (
-    <div className="text">{props.texte}</div>
+    <div className={props.classe}>{props.texte}</div>
   );
 }
 
 ElementText.propTypes = {
-  texte: PropTypes.string
+  texte: PropTypes.string,
+  classe: PropTypes.string,
 };
 
 

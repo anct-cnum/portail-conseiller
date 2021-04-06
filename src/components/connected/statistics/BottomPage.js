@@ -37,8 +37,8 @@ function BottomPage(props) {
         data: [element.valeur],
         color: tabCouleurs[i],
         tooltip: {
-          valueSuffix: '%'
-        }
+          enabled: false
+        },
       });
     });
 
@@ -58,6 +58,7 @@ function BottomPage(props) {
     const titre = {
       text: optionTitre,
       margin: 48,
+      x: -11,
       align: 'left',
       style: {
         color: '#ffffff',
@@ -116,6 +117,7 @@ function BottomPage(props) {
     chart: {
       zoomType: 'xy',
       backgroundColor: '#1e1e1e',
+      marginLeft: 35,
       style: {
         fontFamily: 'Marianne'
       }
@@ -166,7 +168,7 @@ function BottomPage(props) {
       }
     },
     tooltip: {
-      shared: true
+      enabled: false
     },
     legend: {
       backgroundColor: '#1e1e1e',
@@ -188,7 +190,23 @@ function BottomPage(props) {
       data: valeurCumul,
       lineWidth: 5,
       color: '#f7a35c'
-    }]
+    }],
+    responsive: {
+      rules: [{
+        condition: {
+          minWidth: 320,
+          maxWidth: 500
+        },
+        chartOptions: {
+          chart: {
+            width: 200
+          }
+        },
+        navigator: {
+          enabled: false
+        }
+      }]
+    }
   };
 
   const optionsAgeUsagers = {
@@ -211,7 +229,26 @@ function BottomPage(props) {
     title: titreAgeUsagers,
     plotOptions: plotOptionsBarStacked,
     legend: legendBarStacked,
-    series: valeursAges
+    series: valeursAges,
+    tooltip: {
+      enabled: false
+    },
+    responsive: {
+      rules: [{
+        condition: {
+          minWidth: 320,
+          maxWidth: 500
+        },
+        chartOptions: {
+          chart: {
+            width: 200
+          }
+        },
+        navigator: {
+          enabled: false
+        }
+      }]
+    }
   };
 
   const optionsStatutUsagers = {
@@ -235,18 +272,43 @@ function BottomPage(props) {
     plotOptions: plotOptionsBarStacked,
     legend: legendBarStacked,
     series: valeursStatus,
+    tooltip: {
+      enabled: false
+    },
+    responsive: {
+      rules: [{
+        condition: {
+          minWidth: 320,
+          maxWidth: 500
+        },
+        chartOptions: {
+          chart: {
+            width: 200
+          }
+        },
+        navigator: {
+          enabled: false
+        }
+      }]
+    }
   };
 
   return (
-    <div className="rf-container">
-      <div className="rf-grid-row rf-grid-row--gutters">
-        <div className="rf-col-4"><hr className="bar" /></div>
-        <div className="rf-col-4"><hr className="bar" /></div>
-        <div className="rf-col-4"><hr className="bar" /></div>
-        <div className="rf-col-4"><HighchartsReact highcharts={Highcharts} options={optionsEvolutionAccompagnements} /></div>
-        <div className="rf-col-4"><HighchartsReact highcharts={Highcharts} options={optionsAgeUsagers} /></div>
-        <div className="rf-col-4"><HighchartsReact highcharts={Highcharts} options={optionsStatutUsagers} /></div>
-        <div className="rf-col-12"><hr></hr></div>
+    <div className="rf-container-fluid">
+      <div className="rf-grid-row ">
+        <div className="rf-col-offset-lg-1"></div>
+        <div className="rf-col-lg-3">
+          <div className="rf-mt-6w rf-mb-5w"><hr/></div>
+          <HighchartsReact highcharts={Highcharts} options={optionsEvolutionAccompagnements} /></div>
+        <div className="rf-col-offset-lg-1"></div>
+        <div className="rf-col-lg-3">
+          <div className="rf-mt-6w rf-mb-5w"><hr/></div>
+          <HighchartsReact highcharts={Highcharts} options={optionsAgeUsagers} /></div>
+        <div className="rf-col-offset-lg-1"></div>
+        <div className="rf-col-lg-3">
+          <div className="rf-mt-6w rf-mb-5w"><hr/></div>
+          <HighchartsReact highcharts={Highcharts} options={optionsStatutUsagers} /></div>
+        <div className="rf-m-10w"></div>
       </div>
     </div>
   );

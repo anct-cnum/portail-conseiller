@@ -7,12 +7,12 @@ import ElementText from './ElementText';
 function StatisticsPersonalAccompaniment(props) {
 
   return (
-    <div className="rf-container">
+    <div className="rf-container-fluid">
       <div className="rf-grid-row">
-        <div className="rf-col-5"><ElementNumber nombre={props.nbAccompagnementPerso} classe="numbers"/></div>
-        <div className="rf-col-7"><ElementText texte="accompagnements personnalisés réalisés"/><br/></div>
-        <div className="rf-col-5"><ElementNumber nombre={props.nbDemandePonctuel} classe="numbers"/></div>
-        <div className="rf-col-7"><ElementText texte="demandes ponctuelles"/></div>
+        <div className="rf-col-2 rf-col-lg-4"><ElementNumber nombre={props.nbAccompagnementPerso} classe="numbers"/></div>
+        <div className="rf-col-10 rf-col-lg-8"><ElementText texte="accompagnements personnalisés réalisés"/><br/></div>
+        <div className="rf-col-2 rf-col-lg-4"><ElementNumber nombre={props.nbDemandePonctuel} classe="numbers"/></div>
+        <div className="rf-col-10 rf-col-lg-8"><ElementText texte="demandes ponctuelles"/></div>
       </div>
     </div>
   );

@@ -3,24 +3,43 @@ import React from 'react';
 function StatisticsBanner() {
 
   return (
-    <div className="rf-container">
-      <div className="rf-grid-row rf-grid-row--gutters">
-        <div className="rf-col-8">
-          <table className="table-link">
-            <tbody>
-              <tr>
-                <td><a href=""><span></span>Revenir à l’étape précédente</a></td>
-                <td><a href=""><span></span>Annuler la dernière saisie</a></td>
-                <td><a href=""><span></span>Exporter au format PDF</a></td>
-                <td><a href=""><span></span>Exporter au format CSV</a></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="rf-col-4">
-          <a className="rf-btn menu-btn">Voir les statistiques nationales</a>
-        </div>
 
+    <div className="rf-container-fluid">
+      <div className="rf-grid-row">
+        <div className="rf-col-offset-lg-1"></div>
+        <div className="rf-col-lg-4">
+          <ul className="rf-footer__bottom-list">
+            <li className="rf-footer__bottom-item">
+              <a className="rf-footer__bottom-link rf-pr-1w" href="">
+                <img className="image-banniere" src="/logos/statistics/logo-fleche-gauche.svg" alt="Revenir à l’étape précédente"/>
+                Revenir à l’étape précédente
+              </a>
+            </li>
+            <li className="rf-footer__bottom-item">
+              <a className="rf-footer__bottom-link rf-pl-1w " href="">
+                <img className="image-banniere" src="/logos/statistics/logo-croix.svg" alt="Annuler la dernière saisie"/>
+                Annuler la dernière saisie
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div className="rf-col-lg-4">
+          <ul className="rf-footer__bottom-list max-width-list">
+            <li className="rf-footer__bottom-item">
+              <a className="rf-footer__bottom-link rf-pr-1w rf-pl-6w" href="">
+                Exporter au format PDF
+              </a>
+            </li>
+            <li className="rf-footer__bottom-item">
+              <a className="rf-footer__bottom-link rf-pr-4w rf-pl-1w" href="">
+                Exporter au format CSV
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div className="rf-col-lg-3">
+          <a className="rf-btn menu-btn droite-btn">Voir les statistiques nationales</a>
+        </div>
       </div>
     </div>
   );
