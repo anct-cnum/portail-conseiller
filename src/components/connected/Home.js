@@ -15,19 +15,23 @@ function Home() {
     <div className="Home">
       <Header linkAccount={user?.name}/>
       <div className="rf-container">
-        <div className="rf-grid-row rf-grid-row--end rf-mb-2w">
+        <div className="rf-grid-row rf-grid-row--center rf-my-2w">
+          <ElementButton
+            titre="Accueil"
+            onClick={() => history.push('/')}
+            classButton="menu-btn"
+            pathname="/" />
+          <ElementButton
+            titre="Statistiques"
+            onClick={() => history.push('/statistiques')}
+            classButton="menu-btn"
+            pathname="/statistiques"/>
+          <ElementButton
+            titre="Enregistrer un nouvel accompagnement"
+            onClick={() => history.push('/compte-rendu-activite')}
+            classButton="menu-btn"
+            pathname="/compte-rendu-activite"/>
           <Link className="rf-btn rf-btn--sm" to="/login">Se déconnecter&nbsp;<i className="ri-logout-box-r-line"></i></Link>
-        </div>
-      </div>
-      <div className="rf-container">
-        <div className="rf-grid-row rf-grid-row--center rf-mb-4w">
-          <div className="rf-col-1"></div>
-          <div className="rf-col-5">
-            <ElementButton titre="Accueil" onClick={() => history.push('/statistiques')} classButton="menu-btn"/>
-          </div>
-          <div className="rf-col-5">
-            <ElementButton titre="Enregistrer un nouvel accompagnement" onClick={() => history.push('/compte-rendu-activite')} classButton="menu-btn"/>
-          </div>
         </div>
       </div>
       <Route path={`/statistiques`} component={Statistics} />

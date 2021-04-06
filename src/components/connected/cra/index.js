@@ -10,7 +10,7 @@ function Cra() {
     <>
       <div className="rf-container cra">
         <div className="rf-grid-row rf-grid-row--center rf-my-md-12w rf-pt-1w rf-pb-3w">
-          <span className="titre">Mon suivi d&rsquo;activité</span>
+          <h1 className="titre">Mon suivi d&rsquo;activité</h1>
         </div>
         <CodePostal/>
         <Canal/>

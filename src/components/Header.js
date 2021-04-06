@@ -6,9 +6,8 @@ function Header({ linkAccount }) {
   return (
     <header className="rf-header" role="banner">
       <div className="rf-container">
-        <div className="rf-grid-row rf-grid-row--top">
-          <div className="rf-col-1"></div>
-          <div className="rf-col-10">
+        <div className="rf-grid-row rf-grid-row--top rf-grid-row--center">
+          <div className="rf-col-xs-10 rf-col-sm-10 rf-col-md-10 rf-col-xl-12">
             <div className="rf-header__body">
               <a className="rf-header__operator" href="/" style={{ boxShadow: 'none' }}>
                 <img src="/logos/logo-conseiller-numerique-nb.svg" alt="logo Conseiller Numérique France Services" style={{ height: '50px' }}/>
@@ -36,7 +35,6 @@ function Header({ linkAccount }) {
               }
             </div>
           </div>
-          <div className="rf-col-1"></div>
         </div>
       </div>
     </header>
