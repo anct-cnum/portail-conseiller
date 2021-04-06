@@ -3,12 +3,18 @@ $blue: #2B8BF7;
 
 .cra {
 
-  /** START SELECT CP **/
-  .titre {
-    font-size: 56px;
-    font-weight: 100;
+  *:focus {
+    outline: none;
   }
 
+  .titre {
+    font-size: 56px;
+    line-height: 72px;
+    margin: 0;
+    font-family: 'MarianneThin', Arial, sans-serif;
+  }
+
+  /** START SELECT CP **/
   .question {
     height: 42px;
     font-size: 14px;
@@ -24,7 +30,7 @@ $blue: #2B8BF7;
     color: white;
     text-align: center;
     cursor: pointer;
-    font-family: 'Marianne'!important;
+    font-family: 'MarianneMedium', Arial, sans-serif!important;
     font-size: 16px;
     font-weight: 500;
   }
@@ -39,14 +45,9 @@ $blue: #2B8BF7;
     color: black;
     text-align: center;
     cursor: pointer;
-    font-family: 'Marianne'!important;
+    font-family: 'MarianneMedium', Arial, sans-serif!important;
     font-size: 16px;
     font-weight: 500;
-  }
-
-  .buttonCP:focus {
-    outline: none;
-    border-color: $blue;
   }
 
   .searchCP {
@@ -83,7 +84,6 @@ $blue: #2B8BF7;
 
   .dropdown-content:hover, .dropdown-content:focus {
     outline: none;
-    border-color: $blue;
     border-top: 0;
   }
 
@@ -105,10 +105,29 @@ $blue: #2B8BF7;
 
   .responsiveSelect {
     width: calc(533%/12);
+    padding-left: 0.75rem;
+  }
+
+  /* custom point de rupture XL du DS */
+  @media (max-width: 1247px) {
+
+    .questionResponsive {
+      margin-left: calc(100%/12);
+    }
+
+  }
+
+  /* custom point de rupture LG du DS */
+  @media (max-width: 1024px) {
+
+    .responsiveSelect {
+      padding-left: 0.5rem;
+    }
+
   }
 
   /* custom point de rupture MD du DS */
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
 
     .titre {
       font-size:28px;
@@ -118,6 +137,19 @@ $blue: #2B8BF7;
     .responsiveSelect {
       width: calc(1000%/12);
       margin: 0 auto;
+    }
+
+  }
+
+  /* custom point de rupture SM du DS */
+  @media (max-width: 576px) {
+
+    .questionResponsive {
+      margin-left: 0;
+    }
+
+    .responsiveSelect {
+      width: calc(1200%/12);
     }
 
   }
@@ -137,8 +169,13 @@ $blue: #2B8BF7;
     color: black!important;
   }
 
-  .labelRadioCustom {
+  .labelBigRadioCustom {
     padding-top: 2.5rem;
+    font-family: 'MarianneMedium', Arial, sans-serif!important;
+  }
+
+  .labelSmallRadioCustom {
+    font-family: 'MarianneMedium', Arial, sans-serif!important;
   }
 
   .countRadioLabel {
@@ -156,10 +193,15 @@ $blue: #2B8BF7;
 
   .countRadioCalcul:hover {
     background-color: $background;
-    
+    border-radius: 0 0 0 20px;
+
     .labelCalculCustom {
       color: white;
     }
+  }
+
+  .countRadioCalcul ~ .countRadioCalcul:hover {
+    border-radius: 0 0 20px 0;
   }
 
   .labelCalculCustom {
@@ -170,6 +212,10 @@ $blue: #2B8BF7;
 
   .responsiveRadioCanal1, .responsiveRadioCanal2, .responsiveRadioActivity1, .responsiveRadioActivity2, .responsiveRadioActivity3Big {
     width: calc(266%/12);
+  }
+
+  .responsiveRadioCanal1, .responsiveRadioActivity1 {
+    padding-left: 0.75rem;
   }
 
   .responsiveRadioCanalVertical {
@@ -186,16 +232,23 @@ $blue: #2B8BF7;
   }
 
   .autreLieu {
-    height: 14px;
-    margin-top: 0.9rem;
+    height: 26px;
   }
 
   .distance, .domicile {
     display: flex;
   }
 
+  /* custom point de rupture LG du DS */
+  @media (max-width: 1024px) {
+
+    .responsiveRadioCanal1, .responsiveRadioActivity1 {
+      padding-left: 0.5rem;
+    }
+  }
+
   /* custom point de rupture MD du DS */
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
 
     .responsiveRadioCanal1, .responsiveRadioActivity1 {
       width: calc(500%/12);
@@ -214,12 +267,14 @@ $blue: #2B8BF7;
       display: block;
       margin-left: calc(100%/12);
       width: calc(1000%/12);
+      padding-left: 0.5rem;
     }
 
     .responsiveRadioCanalVertical {
       width: calc(10000%/12);
       margin-left: calc(100%/12);
       display: flex;
+      padding-left: 0.5rem;
     }
 
     .responsiveRadioCanalVertical .radioRattachement {
@@ -231,6 +286,30 @@ $blue: #2B8BF7;
     }
 
   }
+
+    /* custom point de rupture SM du DS */
+    @media (max-width: 576px) {
+
+      .responsiveRadioCanal1, .responsiveRadioActivity1, .responsiveRadioCanal2, .responsiveRadioActivity2 {
+        width: calc(600%/12);
+        margin-left: 0;
+      }
+
+      .responsiveRadioActivity3Small {
+        width: calc(12000%/12);
+        margin-left: 0;
+      }
+
+      .responsiveRadioCanalVertical {
+        width: calc(1200%/12);
+        margin-left: 0;
+      }
+
+      .responsiveRadioCanalVertical .radioButton {
+        width: calc(600%/12);
+      }
+
+    }
   /** END RADIO CANAL & ACTIVITY **/
 
 }
