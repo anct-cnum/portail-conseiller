@@ -22,6 +22,17 @@ export default function cra(state = null, action) {
         ...state,
         canal: action.canal,
       };
+    case 'UPDATE_ACTIVITE':
+      return {
+        ...state,
+        activite: action.activite,
+        nbParticipants: action.activite === 'Atelier Collectif' ? 5 : null
+      };
+    case 'UPDATE_NB_PARTICIPANTS':
+      return {
+        ...state,
+        nbParticipants: action.nbParticipants,
+      };
     default:
       return state;
   }

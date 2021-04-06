@@ -3,6 +3,8 @@ export const craActions = {
   searchInput,
   updateCP,
   updateCanal,
+  updateActivite,
+  updateNbParticipants,
 };
 
 function getSearchlist() {
@@ -19,4 +21,12 @@ function updateCP(cp) {
 
 function updateCanal(canal) {
   return { type: 'UPDATE_CANAL', canal };
+}
+
+function updateActivite(activite) {
+  return { type: 'UPDATE_ACTIVITE', activite };
+}
+
+function updateNbParticipants(nbParticipants) {
+  return { type: 'UPDATE_NB_PARTICIPANTS', nbParticipants };
 }

@@ -1,3 +1,29 @@
+//Marianne Thin et Medium imported manually (not in the package DS)
+@font-face {
+  font-family: MarianneThin;
+  src: url(/public/fontsAddons/Marianne-Thin.woff2);
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: MarianneThinItalic;
+  src: url(/public/fontsAddons/Marianne-Thin_Italic.woff2);
+  font-weight: italic;
+}
+
+@font-face {
+  font-family: MarianneMedium;
+  src: url(/public/fontsAddons/Marianne-Medium.woff2);
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: MarianneMediumItalic;
+  src: url(/public/fontsAddons/Marianne-Medium_Italic.woff2);
+  font-weight: italic;
+}
+
+
 .menu-btn {
   background-color: transparent !important;
   border: 1px solid #fff !important;
@@ -5,11 +31,20 @@
   border-radius: 40px;
   font-weight: 600;
   height: 64px;
+  width: 15%;
+  margin-right: 25px;
+  outline: none;
+  cursor: pointer;
   --color-hover: #fff !important;
   &:hover {
     background-color: #fff !important;
     color: #1e1e1e !important;
   }
+}
+
+.menu-btn-active {
+  background-color: white!important;
+  color: #1e1e1e!important;
 }
 
 .big-btn {
@@ -33,11 +68,16 @@
   display: inline-block;
   background-color: transparent;
   border: 1px solid white;
-  border-radius: 50px;
+  border-radius: 40px;
   width: 60%;
   color: white!important;
-  font-size: small;
-  padding: 0.5rem;
+  font-size: 16px;
+  padding: 24px;
+}
+
+.rf-btn.support-btn:hover, .rf-btn.support-btn:active {
+  --color-hover: $background!important;
+  --color-active: $background!important;
 }
 
 .titrage {

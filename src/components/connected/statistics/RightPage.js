@@ -146,6 +146,7 @@ function RightPage(props) {
     title: {
       text: 'Lieux des accompagnements',
       margin: 50,
+      width: 260,
       x: -10,
       align: 'left',
       style: {
@@ -167,23 +168,7 @@ function RightPage(props) {
     },
     series: [{
       data: valeursLieux
-    }],
-    responsive: {
-      rules: [{
-        condition: {
-          minWidth: 320,
-          maxWidth: 500
-        },
-        chartOptions: {
-          chart: {
-            width: 200
-          }
-        },
-        navigator: {
-          enabled: false
-        }
-      }]
-    }
+    }]
   };
 
   const optionsDureeAccompagnements = {
@@ -245,7 +230,8 @@ function RightPage(props) {
       text: 'Durée des accompagnements',
       margin: 48,
       align: 'left',
-      x: -10,
+      width: 260,
+      x: -11,
       style: {
         color: '#ffffff',
         fontSize: '18px',
@@ -254,38 +240,34 @@ function RightPage(props) {
     },
     series: [{
       data: valeursDurees
-    }],
-    responsive: {
-      rules: [{
-        condition: {
-          minWidth: 320,
-          maxWidth: 500
-        },
-        chartOptions: {
-          chart: {
-            width: 200
-          }
-        },
-        navigator: {
-          enabled: false
-        }
-      }]
-    }
+    }]
   };
 
   return (
-    <div className="rf-container-fluid">
-      <div className="rf-grid-row ">
-        <div className="rf-col-lg-12"><HighchartsReact highcharts={Highcharts} options={optionsThemeAccompagnements} /></div>
+    <>
+      <div className="rf-grid-row">
+        <div className="rf-col-12">
+          <HighchartsReact highcharts={Highcharts} options={optionsThemeAccompagnements} />
+        </div>
+      </div>
+
+      <div className="rf-grid-row">
         <div className="rf-col-12">
           <div className="rf-my-6w"><hr/></div>
         </div>
-        <div className="rf-col-lg-6"><HighchartsReact highcharts={Highcharts} options={optionsLieuxAccompagnements} /></div>
-        <div className="rf-col-lg-6">
-          <div className="rf-ml-6w"><HighchartsReact highcharts={Highcharts} options={optionsDureeAccompagnements} /></div>
+      </div>
+
+      <div className="rf-grid-row">
+        <div className="rf-col-xs-12 rf-col-lg-6">
+          <HighchartsReact highcharts={Highcharts} options={optionsLieuxAccompagnements} />
+        </div>
+        <div className="rf-col-xs-12 rf-col-lg-6">
+          <div className="rf-ml-6w">
+            <HighchartsReact highcharts={Highcharts} options={optionsDureeAccompagnements} />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

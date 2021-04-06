@@ -6,8 +6,7 @@ function StatisticsBanner() {
 
     <div className="rf-container-fluid">
       <div className="rf-grid-row">
-        <div className="rf-col-sm-1"></div>
-        <div className="rf-col-lg-4 afficher-etapes">
+        <div className="rf-col-lg-5 afficher-etapes">
           <ul className="rf-footer__bottom-list">
             <li className="rf-footer__bottom-item">
               <a className="rf-footer__bottom-link rf-pr-sm-1w" href="">
@@ -23,6 +22,7 @@ function StatisticsBanner() {
             </li>
           </ul>
         </div>
+
         <div className="rf-col-lg-4 afficher-export">
           <ul className="rf-footer__bottom-list max-width-list">
             <li className="rf-footer__bottom-item">
@@ -38,7 +38,7 @@ function StatisticsBanner() {
           </ul>
         </div>
         <div className="rf-col-lg-3">
-          <a className="rf-btn menu-btn droite-btn">Voir les statistiques nationales</a>
+          <a className="statistiques_nationales-btn droite-btn">Voir les statistiques nationales</a>
         </div>
       </div>
     </div>

@@ -21,7 +21,7 @@ function login(username, password, to) {
         localStorage.setItem('user', JSON.stringify(data));
         dispatch(success(data));
         if (to.pathname === '/') {
-          history.push('/statistiques');
+          history.push('/');
         } else {
           history.push(to);
         }

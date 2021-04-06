@@ -24,7 +24,7 @@ function ValidationAccount() {
   }, [conseiller]);
 
   function handleSubmit() {
-    history.push('/statistiques'); //Go home stats
+    history.push('/'); //TODO PROCESS CHANGING
   }
 
   return (
@@ -65,16 +65,27 @@ function ValidationAccount() {
             <p className="rf-mb-4w">
               <strong>{ structure?.nom }</strong>
             </p>
+            { structure?.insee?.etablissement?.adresse?.l4 &&
             <p className="rf-mb-4w">
-              {/*TODO ADDRESSE <strong>{ structure?.adresse }</strong> */}
+              <strong>{ structure?.insee?.etablissement?.adresse?.l4 }</strong>
             </p>
+            }
+            { structure?.insee?.etablissement?.adresse?.l5 &&
             <p className="rf-mb-4w">
-              <strong>{ structure?.codePostal }</strong>
+              <strong>{ structure?.insee?.etablissement?.adresse?.l5 }</strong>
             </p>
+            }
+            { structure?.insee?.etablissement?.adresse?.code_postal &&
+            <p className="rf-mb-4w">
+              <strong>{ structure?.insee?.etablissement?.adresse?.code_postal }</strong>
+            </p>
+            }
+            { structure?.insee?.etablissement?.adresse?.localite &&
             <p className="rf-mb-7w" style={{ textTransform: 'uppercase' }}>
-              {/*TODO NOM VILLE <strong>{ structure?.nomVille }</strong> */}
+              <strong>{ structure?.insee?.etablissement?.adresse?.localite }</strong>
             </p>
-            <p className="rf-pb-3w">
+            }
+            <p className="rf-pb-3w rf-mt-4w">
               <button className="rf-btn rf-text--bold big-btn finalButton" onClick={handleSubmit}
                 style={{ background: 'white', width: '50%' }}>Finaliser mon accès</button>
             </p>

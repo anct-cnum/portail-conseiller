@@ -110,12 +110,25 @@
     display: inline-block;
     margin: 0 5px -3px 0;
   }
+  .statistiques_nationales-btn {
+    background-color: transparent;
+    border: 1px solid #fff;
+    border-radius: 40px;
+    color: #fff;
+    font-size: 16px;
+    padding: 24px;
+    cursor: pointer;
+    &:hover{
+      color: #1e1e1e !important;
+      background-color: #fff !important;
+    }
+  }
   .droite-btn {
     float: right;
   }
   @media (max-width: 991px) {
     .chevron {
-      margin: 0px 40px 0 0;
+      margin: 10px 40px 0 0;
     }
     .number {
       font-size: 28px;
@@ -127,12 +140,17 @@
       display: none;
     }
   }
+  @media (min-width: 768px) {
+    .hr-md-hide {
+      display: none;
+    }
+  }
   @media (max-width: 767px) {
     .hr-sm-hide {
       display: none;
     }
     .chevron {
-
+      margin: 0px 6% 0 0;
     }
     .rf-footer__bottom-link {
       font-size: 16px;

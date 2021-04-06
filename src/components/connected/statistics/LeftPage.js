@@ -30,6 +30,9 @@ function LeftPage(props) {
         nbUsagersAtelierCollectif={periode.nbUsagersAtelierCollectif}
         nbReconduction={periode.nbReconduction}
         caracteresSpeciaux="%" />
+      <div className="rf-m-xs-to-md-7v"></div>
+      <hr className="hr-md-hide" />
+      <div className="rf-m-xs-to-md-7v"></div>
     </>
   );
 }

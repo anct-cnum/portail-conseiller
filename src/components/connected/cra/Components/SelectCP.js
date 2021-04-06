@@ -23,7 +23,7 @@ function SelectCP() {
 
   //Select Option and set value
   const onClickOption = e => {
-    dispatch(craActions.updateCP(e.target.value));
+    dispatch(craActions.updateCP(e.target.getAttribute('value')));
   };
 
   //Keyup to reload list with search filter
@@ -34,11 +34,11 @@ function SelectCP() {
       let codesPostauxFiltered = filterArray(input.value);
       let options = [];
       codesPostauxFiltered.forEach(codePostal => options.push(
-        <option key={`${codePostal.Code_postal} ${codePostal.Nom_commune}`}
+        <div key={`${codePostal.Code_postal} ${codePostal.Nom_commune}`}
           value={`${codePostal.Code_postal} ${codePostal.Nom_commune}`}
           onClick={onClickOption}>
           {codePostal.Code_postal} {codePostal.Nom_commune}
-        </option>
+        </div>
       ));
       options = options.slice(0, 6); // print only 6 elements by default
       setCodePostalList(options);
@@ -63,9 +63,8 @@ function SelectCP() {
       <button id="buttonCP"
         onClick={onClickButton}
         onMouseMove={focusInput}
-        className={`${cra?.cp === undefined ? 'buttonCP' : 'buttonCP-filled'}`}
-        style={cra?.searchCP === true ? { borderColor: '#2B8BF7' } : { borderColor: 'white' }}>
-        {cra?.cp === undefined ? 'Entrez le code postal...' : cra.cp}
+        className={`${cra?.cp === undefined ? 'buttonCP' : 'buttonCP-filled'}`}>
+        {cra?.cp === undefined ? 'Entrez le code postal ou la commune...' : cra.cp}
       </button>
       <div id="myDropdown"
         className={`dropdown-content ${(cra?.searchCP === true || cra?.searchInput === true) ? 'show' : ''}`}>

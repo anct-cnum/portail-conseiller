@@ -3,12 +3,18 @@ $blue: #2B8BF7;
 
 .cra {
 
-  /** START SELECT CP **/
-  .titre {
-    font-size: 56px;
-    font-weight: 100;
+  *:focus {
+    outline: none;
   }
 
+  .titre {
+    font-size: 56px;
+    line-height: 72px;
+    margin: 0;
+    font-family: 'MarianneThin', Arial, sans-serif;
+  }
+
+  /** START SELECT CP **/
   .question {
     height: 42px;
     font-size: 14px;
@@ -24,7 +30,7 @@ $blue: #2B8BF7;
     color: white;
     text-align: center;
     cursor: pointer;
-    font-family: 'Marianne'!important;
+    font-family: 'MarianneMedium', Arial, sans-serif!important;
     font-size: 16px;
     font-weight: 500;
   }
@@ -39,14 +45,9 @@ $blue: #2B8BF7;
     color: black;
     text-align: center;
     cursor: pointer;
-    font-family: 'Marianne'!important;
+    font-family: 'MarianneMedium', Arial, sans-serif!important;
     font-size: 16px;
     font-weight: 500;
-  }
-
-  .buttonCP:focus {
-    outline: none;
-    border-color: $blue;
   }
 
   .searchCP {
@@ -83,16 +84,15 @@ $blue: #2B8BF7;
 
   .dropdown-content:hover, .dropdown-content:focus {
     outline: none;
-    border-color: $blue;
     border-top: 0;
   }
 
-  .dropdown-content option {
+  .dropdown-content div {
     padding: 8px;
     text-align: center;
   }
 
-  .dropdown-content option:hover {
+  .dropdown-content div:hover {
     padding: 8px;
     text-align: center;
     background-color: white;
@@ -105,10 +105,29 @@ $blue: #2B8BF7;
 
   .responsiveSelect {
     width: calc(533%/12);
+    padding-left: 0.75rem;
+  }
+
+  /* custom point de rupture XL du DS */
+  @media (max-width: 1247px) {
+
+    .questionResponsive {
+      margin-left: calc(100%/12);
+    }
+
+  }
+
+  /* custom point de rupture LG du DS */
+  @media (max-width: 1024px) {
+
+    .responsiveSelect {
+      padding-left: 0.5rem;
+    }
+
   }
 
   /* custom point de rupture MD du DS */
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
 
     .titre {
       font-size:28px;
@@ -123,12 +142,13 @@ $blue: #2B8BF7;
   }
   /** END SELECT CP **/
 
-  /** START RADIO CANAL **/
+  /** START RADIO CANAL & ACTIVITY **/
   .radioRattachement {
     width: 100%;
     border-radius: 20px;
     border: 1px solid white;
     background-color: $background;
+    cursor: pointer;
   }
 
   .radioRattachement-selected {
@@ -136,12 +156,53 @@ $blue: #2B8BF7;
     color: black!important;
   }
 
-  .labelRadioCustom {
+  .labelBigRadioCustom {
     padding-top: 2.5rem;
+    font-family: 'MarianneMedium', Arial, sans-serif!important;
   }
 
-  .responsiveRadioCanal1, .responsiveRadioCanal2 {
+  .labelSmallRadioCustom {
+    font-family: 'MarianneMedium', Arial, sans-serif!important;
+  }
+
+  .countRadioLabel {
+    border-bottom: 1.5px solid black;
+    height: 78px;
+    margin-bottom: 1.2px;
+  }
+
+  .countRadioCalcul {
+    width: 50%;
+    height: 52px;
+    display: inline-block;
+    margin-bottom: -14px;
+  }
+
+  .countRadioCalcul:hover {
+    background-color: $background;
+    border-radius: 0 0 0 20px;
+
+    .labelCalculCustom {
+      color: white;
+    }
+  }
+
+  .countRadioCalcul ~ .countRadioCalcul:hover {
+    border-radius: 0 0 20px 0;
+  }
+
+  .labelCalculCustom {
+    font-size: 2.5rem;
+    padding-top: 10px;
+    color: black;
+  }
+
+  .responsiveRadioCanal1, .responsiveRadioCanal2, .responsiveRadioActivity1, .responsiveRadioActivity2, .responsiveRadioActivity3Big {
     width: calc(266%/12);
+  }
+
+  .responsiveRadioCanal1, .responsiveRadioActivity1 {
+    padding-left: 0.75rem;
   }
 
   .responsiveRadioCanalVertical {
@@ -149,35 +210,58 @@ $blue: #2B8BF7;
     width: calc(266%/12);
   }
 
-  .lieuRattachement {
+  .responsiveRadioActivity3Small {
+    display: none;
+  }
+
+  .lieuRattachement, .atelierCollectif, .accIndividuel, .demPonctuelle {
     height: 28px;
   }
 
   .autreLieu {
-    height: 14px;
-    margin-top: 0.9rem;
+    height: 26px;
   }
 
   .distance, .domicile {
     display: flex;
   }
 
-  /* custom point de rupture MD du DS */
-  @media (max-width: 768px) {
+  /* custom point de rupture LG du DS */
+  @media (max-width: 1024px) {
 
-    .responsiveRadioCanal1 {
+    .responsiveRadioCanal1, .responsiveRadioActivity1 {
+      padding-left: 0.5rem;
+    }
+  }
+
+  /* custom point de rupture MD du DS */
+  @media (max-width: 767px) {
+
+    .responsiveRadioCanal1, .responsiveRadioActivity1 {
       width: calc(500%/12);
-      margin-left: calc(100%/12);;
+      margin-left: calc(100%/12);
     }
 
-    .responsiveRadioCanal2 {
+    .responsiveRadioCanal2, .responsiveRadioActivity2 {
       width: calc(500%/12);
+    }
+
+    .responsiveRadioActivity3Big {
+      display: none;
+    }
+
+    .responsiveRadioActivity3Small {
+      display: block;
+      margin-left: calc(100%/12);
+      width: calc(1000%/12);
+      padding-left: 0.5rem;
     }
 
     .responsiveRadioCanalVertical {
       width: calc(10000%/12);
       margin-left: calc(100%/12);
       display: flex;
+      padding-left: 0.5rem;
     }
 
     .responsiveRadioCanalVertical .radioRattachement {
@@ -189,6 +273,6 @@ $blue: #2B8BF7;
     }
 
   }
-  /** END RADIO CANAL **/
+  /** END RADIO CANAL & ACTIVITY **/
 
 }

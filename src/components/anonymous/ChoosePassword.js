@@ -39,9 +39,15 @@ function ChoosePassword({ match }) {
     setSubmitted(true);
     if (password && passwordConfirm === password && checkComplexity(password)) {
       dispatch(userActions.choosePassword(token, password));
-      dispatch(userActions.login(user.name, password, '/validation'));
     }
   }
+
+  //Go to validation page only if passwordChoosen is success
+  useEffect(() => {
+    if (passwordChoosen === true) {
+      dispatch(userActions.login(user.name, password, '/validation'));
+    }
+  }, [passwordChoosen]);
 
   return (
     <div className="choosePassword">
