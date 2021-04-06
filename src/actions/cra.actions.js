@@ -4,6 +4,7 @@ export const craActions = {
   updateCP,
   updateCanal,
   updateActivite,
+  updateNbParticipants,
 };
 
 function getSearchlist() {
@@ -24,4 +25,8 @@ function updateCanal(canal) {
 
 function updateActivite(activite) {
   return { type: 'UPDATE_ACTIVITE', activite };
+}
+
+function updateNbParticipants(nbParticipants) {
+  return { type: 'UPDATE_NB_PARTICIPANTS', nbParticipants };
 }

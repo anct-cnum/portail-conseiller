@@ -129,6 +129,7 @@ $blue: #2B8BF7;
     border-radius: 20px;
     border: 1px solid white;
     background-color: $background;
+    cursor: pointer;
   }
 
   .radioRattachement-selected {
@@ -138,6 +139,33 @@ $blue: #2B8BF7;
 
   .labelRadioCustom {
     padding-top: 2.5rem;
+  }
+
+  .countRadioLabel {
+    border-bottom: 1.5px solid black;
+    height: 78px;
+    margin-bottom: 1.2px;
+  }
+
+  .countRadioCalcul {
+    width: 50%;
+    height: 52px;
+    display: inline-block;
+    margin-bottom: -14px;
+  }
+
+  .countRadioCalcul:hover {
+    background-color: $background;
+    
+    .labelCalculCustom {
+      color: white;
+    }
+  }
+
+  .labelCalculCustom {
+    font-size: 2.5rem;
+    padding-top: 10px;
+    color: black;
   }
 
   .responsiveRadioCanal1, .responsiveRadioCanal2, .responsiveRadioActivity1, .responsiveRadioActivity2, .responsiveRadioActivity3Big {

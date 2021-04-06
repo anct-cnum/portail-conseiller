@@ -1,8 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import BigRadioButton from './Components/BigRadioButton';
 import SmallRadioButton from './Components/SmallRadioButton';
+import CountRadioButton from './Components/CountRadioButton';
 
 function Activite() {
+
+  let cra = useSelector(state => state.cra);
 
   return (
     <>
@@ -11,6 +15,7 @@ function Activite() {
         <div className="rf-col-xs-10 rf-col-sm-10 rf-col-md-2">
           <span className="question">Quel type d&rsquo;activité venez-vous de réaliser ?</span>
         </div>
+        {cra?.activite !== 'Atelier Collectif' &&
         <div className="responsiveRadioActivity1">
           <BigRadioButton
             type="activite"
@@ -20,6 +25,14 @@ function Activite() {
             heightImage="56px"
             classDiv="atelierCollectif"/>
         </div>
+        }
+        {cra?.activite === 'Atelier Collectif' &&
+        <div className="responsiveRadioActivity1">
+          <CountRadioButton
+            type="participants"
+            label="participants"/>
+        </div>
+        }
         <div className="responsiveRadioActivity2">
           <BigRadioButton
             type="activite"
