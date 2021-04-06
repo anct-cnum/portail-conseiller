@@ -74,31 +74,33 @@ function Statistics() {
   return (
     <div className="Statistics">
       <div className="rf-container">
+
         <div className="rf-grid-row">
-          <div className="rf-col-12">
+          <div className="rf-col-1"></div>
+          <div className="rf-col-11">
             <div className="rf-ml-1w"></div>
             <div className="rf-mb-sm-4w">
               <h1 className="title">Mes Statistiques</h1>
             </div>
           </div>
+        </div>
 
-          <div className="rf-col-offset-lg-1"></div>
-          <div className="rf-col-xs-5">
+        <div className="rf-grid-row">
+          <div className="rf-col-sm-1"></div>
+          <div className="rf-col-sm-4 rf-col-md-3">
             <div className="rf-m-md-2w rf-m-lg-1w"></div>
             <PeriodStatistics dateDebut={donneesStatistiques.periodes[0].dateDebut} dateFin={donneesStatistiques.periodes[0].dateFin} />
           </div>
-          <div className="rf-col-lg-1">
+          <div className="rf-col-1">
             <i className="ri-arrow-down-s-line ri-2x chevron"></i>
           </div>
-          <div className="rf-col-xs-12 rf-col-md-6 rf-col-lg-7">
+          <div className="rf-col-md-6 rf-col-lg-7">
             <div className="rf-m-md-3w"></div>
             <hr className="hr-sm-hide"/>
-            <div className="rf-m-6w"></div>
+            <div className="rf-m-6w rf-m-xs-to-md-7v"></div>
           </div>
         </div>
-      </div>
 
-      <div className="rf-container">
         <div className="rf-grid-row">
           <div className="rf-col-offset-lg-1"></div>
           <div className="rf-col-md-6 rf-col-lg-3">

@@ -120,6 +120,12 @@
     .number {
       font-size: 28px;
     }
+    .rf-m-xs-to-md-7v {
+      margin: 1.75rem !important;
+    }
+    .afficher-export {
+      display: none;
+    }
   }
   @media (max-width: 767px) {
     .hr-sm-hide {
@@ -127,6 +133,15 @@
     }
     .chevron {
 
+    }
+    .rf-footer__bottom-link {
+      font-size: 16px;
+    }
+    .rf-footer__bottom-item{
+      display: block;
+      &::before{
+        display: none;
+      }
     }
   }
 }

@@ -12,17 +12,17 @@ function LeftPage(props) {
   return (
     <>
       <StatisticsAccompaniment nbAccompagnement={periode.nbAccompagnement} />
-      <div className="rf-m-6w"></div>
+      <div className="rf-m-6w rf-m-xs-to-md-7v"></div>
       <hr/>
-      <div className="rf-m-6w"></div>
+      <div className="rf-m-6w rf-m-xs-to-md-7v"></div>
       <StatisticsWorkshop nbAteliers={periode.nbAteliers} nbTotalParticipant={periode.nbTotalParticipant}/>
-      <div className="rf-m-6w"></div>
+      <div className="rf-m-6w rf-m-xs-to-md-7v"></div>
       <hr/>
-      <div className="rf-m-6w"></div>
+      <div className="rf-m-6w rf-m-xs-to-md-7v"></div>
       <StatisticsPersonalAccompaniment nbAccompagnementPerso={periode.nbAccompagnementPerso} nbDemandePonctuel={periode.nbDemandePonctuel} />
-      <div className="rf-m-6w"></div>
+      <div className="rf-m-6w rf-m-xs-to-md-7v"></div>
       <hr/>
-      <div className="rf-m-6w"></div>
+      <div className="rf-m-6w rf-m-xs-to-md-7v"></div>
       <StatisticsRenewal
         nbUsagersBeneficiantSuivi={periode.nbUsagersBeneficiantSuivi}
         tauxTotalUsagersAccompagnes={periode.tauxTotalUsagersAccompagnes}
