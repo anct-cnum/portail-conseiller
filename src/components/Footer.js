@@ -6,9 +6,8 @@ function Footer({ type, titreBouton }) {
   return (
     <footer className="rf-footer" role="contentinfo" id="footer">
       <div className="rf-container">
-        <div className="rf-grid-row">
-          <div className="rf-col-1"></div>
-          <div className="rf-col-10">
+        <div className="rf-grid-row rf-grid-row--center">
+          <div className="rf-col-xs-10 rf-col-sm-10 rf-col-md-10 rf-col-xl-12">
             <div className="rf-footer__body">
               <div className="rf-container" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
                 <div className="rf-grid-row rf-grid-row--bottom">
@@ -63,7 +62,7 @@ function Footer({ type, titreBouton }) {
                       <div className="rf-container" style={{ padding: 0 }}>
                         <div className="rf-grid-row">
                           <div className="rf-col-xs-12 rf-col-sm-6">
-                            <p style={{ fontSize: '0.7rem', marginBottom: '2.5rem' }}>
+                            <p style={{ fontSize: '16px', lineHeight: '24px', marginBottom: '2.5rem' }}>
                               L&rsquo;équipe de conception de la plateforme Conseiller numérique France Services travaille en amélioration continue.
                               Vous avez une idée, une réclamation, vous souhaitez exprimer un avis ? N&rsquo;hésitez pas à nous contacter en cliquant
                               sur le bouton ci-contre
@@ -115,7 +114,6 @@ function Footer({ type, titreBouton }) {
               </div>
             </div>
           </div>
-          <div className="rf-col-1"></div>
         </div>
       </div>
     </footer>

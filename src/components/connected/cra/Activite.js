@@ -11,8 +11,7 @@ function Activite() {
   return (
     <>
       <div className="rf-grid-row rf-grid-row--gutters rf-grid-row--middle rf-mb-7w">
-        <div className="rf-col-1"></div>
-        <div className="rf-col-xs-10 rf-col-sm-10 rf-col-md-2">
+        <div className="rf-col-xs-11 rf-col-sm-11 rf-col-md-2 questionResponsive">
           <span className="question">Quel type d&rsquo;activité venez-vous de réaliser ?</span>
         </div>
         {cra?.activite !== 'Atelier Collectif' &&

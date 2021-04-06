@@ -63,9 +63,8 @@ function SelectCP() {
       <button id="buttonCP"
         onClick={onClickButton}
         onMouseMove={focusInput}
-        className={`${cra?.cp === undefined ? 'buttonCP' : 'buttonCP-filled'}`}
-        style={cra?.searchCP === true ? { borderColor: '#2B8BF7' } : { borderColor: 'white' }}>
-        {cra?.cp === undefined ? 'Entrez le code postal...' : cra.cp}
+        className={`${cra?.cp === undefined ? 'buttonCP' : 'buttonCP-filled'}`}>
+        {cra?.cp === undefined ? 'Entrez le code postal ou la commune...' : cra.cp}
       </button>
       <div id="myDropdown"
         className={`dropdown-content ${(cra?.searchCP === true || cra?.searchInput === true) ? 'show' : ''}`}>
