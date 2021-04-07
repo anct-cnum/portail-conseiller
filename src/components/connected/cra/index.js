@@ -3,6 +3,7 @@ import CodePostal from './CodePostal';
 import Canal from './Canal';
 import Activite from './Activite';
 import Age from './Age';
+import Statut from './Statut';
 import Footer from '../../Footer';
 
 function Cra() {
@@ -17,6 +18,7 @@ function Cra() {
         <Canal/>
         <Activite/>
         <Age/>
+        <Statut/>
       </div>
       <Footer type="support" titreBouton="Donner mon avis sur cette page"/>
     </>

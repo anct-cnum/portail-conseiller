@@ -14,6 +14,9 @@ function SquareButton({ value, label, type }) {
       case 'age':
         dispatch(craActions.updateAge(e.target.getAttribute('value')));
         break;
+      case 'statut':
+        dispatch(craActions.updateStatut(e.target.getAttribute('value')));
+        break;
       default:
         break;
     }

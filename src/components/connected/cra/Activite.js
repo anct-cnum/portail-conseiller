@@ -14,18 +14,19 @@ function Activite() {
         <div className="rf-col-xs-11 rf-col-sm-11 rf-col-md-2 questionResponsive">
           <span className="question">Quel type d&rsquo;activité venez-vous de réaliser ?</span>
         </div>
-        {cra?.activite !== 'Atelier Collectif' &&
+        {cra?.activite !== 'collectif' &&
         <div className="responsiveRadioActivity1">
           <BigRadioButton
             type="activite"
             label="Atelier Collectif"
+            value="collectif"
             image="/logos/cra/logo-atelier.svg"
             imageSelected="/logos/cra/logo-atelier-n.svg"
             heightImage="56px"
             classDiv="atelierCollectif"/>
         </div>
         }
-        {cra?.activite === 'Atelier Collectif' &&
+        {cra?.activite === 'collectif' &&
         <div className="responsiveRadioActivity1">
           <CountRadioButton
             type="participants"
@@ -36,6 +37,7 @@ function Activite() {
           <BigRadioButton
             type="activite"
             label="Accompagnement individuel"
+            value="individuel"
             image="/logos/cra/logo-acc-individuel.svg"
             imageSelected="/logos/cra/logo-acc-individuel-n.svg"
             heightImage="56px"
@@ -45,6 +47,7 @@ function Activite() {
           <BigRadioButton
             type="activite"
             label="Demande ponctuelle"
+            value="ponctuel"
             image="/logos/cra/logo-demande-ponctuelle.svg"
             imageSelected="/logos/cra/logo-demande-ponctuelle-n.svg"
             heightImage="56px"
@@ -54,6 +57,7 @@ function Activite() {
           <SmallRadioButton
             type="activite"
             label="Demande ponctuelle"
+            value="ponctuel"
             image="/logos/cra/logo-demande-ponctuelle.svg"
             imageSelected="/logos/cra/logo-demande-ponctuelle-n.svg"
             heightImage="32px" />

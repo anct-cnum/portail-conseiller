@@ -6,6 +6,7 @@ export const craActions = {
   updateActivite,
   updateNbParticipants,
   updateAge,
+  updateStatut,
 };
 
 function getSearchlist() {
@@ -34,4 +35,8 @@ function updateNbParticipants(nbParticipants) {
 
 function updateAge(age) {
   return { type: 'UPDATE_AGE', age };
+}
+
+function updateStatut(statut) {
+  return { type: 'UPDATE_STATUT', statut };
 }
