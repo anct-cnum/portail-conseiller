@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { history } from '../../helpers';
 import Header from '../Header';
 import ElementButton from './commun/ElementButton';

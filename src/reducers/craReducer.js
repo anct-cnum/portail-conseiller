@@ -33,6 +33,11 @@ export default function cra(state = null, action) {
         ...state,
         nbParticipants: action.nbParticipants,
       };
+    case 'UPDATE_AGE':
+      return {
+        ...state,
+        age: action.age,
+      };
     default:
       return state;
   }
