@@ -1,13 +1,13 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
+import { getCraValue } from '../utils/CraFunctions';
 
 function BigRadioButton({ type, label, image, imageSelected, heightImage, classDiv }) {
 
   const dispatch = useDispatch();
-  let cra = useSelector(state => state.cra);
-  let controlSelected = type === 'canal' ? cra?.canal : cra?.activite;
+  let controlSelected = getCraValue(type);
 
   const onClickRadio = e => {
     switch (type) {
