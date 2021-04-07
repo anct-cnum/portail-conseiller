@@ -12,6 +12,8 @@ export function getCraValue(type) {
       return cra?.activite;
     case 'age':
       return cra?.age;
+    case 'statut':
+      return cra?.statut;
     default:
       return '';
   }

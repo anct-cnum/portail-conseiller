@@ -146,6 +146,7 @@ $blue: #2B8BF7;
 
     .questionResponsive {
       margin-left: 0;
+      width: calc(1200%/12);
     }
 
     .responsiveSelect {
@@ -313,7 +314,7 @@ $blue: #2B8BF7;
     }
   /** END RADIO CANAL & ACTIVITY **/
 
-  /** START SQUARE BUTTON AGE **/
+  /** START SQUARE BUTTON AGE AND STATUT **/
   .squareRattachement {
     width: 100%;
     height: 104px;
@@ -334,24 +335,24 @@ $blue: #2B8BF7;
 
   }
 
-  .responsiveSquareAge1, .responsiveSquareAge2, .responsiveSquareAge3, .responsiveSquareAge4, .responsiveSquareAge5 {
+  .responsiveSquare1, .responsiveSquare2, .responsiveSquare3, .responsiveSquare4, .responsiveSquare5 {
     width: calc(160%/12);
   }
 
-  .responsiveSquareAge1 {
+  .responsiveSquare1 {
     margin-left: 0.75rem;
   }
 
   /* custom point de rupture MD du DS */
   @media (max-width: 767px) {
 
-    .responsiveSquareAge1 {
+    .responsiveSquare1 {
       width: calc(200%/12);
       margin-left: calc(100%/12);
       padding-left: 0.5rem;
     }
 
-    .responsiveSquareAge2, .responsiveSquareAge3, .responsiveSquareAge4, .responsiveSquareAge5 {
+    .responsiveSquare2, .responsiveSquare3, .responsiveSquare4, .responsiveSquare5 {
       width: calc(200%/12);
     }
 
@@ -360,21 +361,21 @@ $blue: #2B8BF7;
     /* custom point de rupture SM du DS */
     @media (max-width: 576px) {
 
-      .responsiveSquareAge1, .responsiveSquareAge2 {
+      .responsiveSquare1, .responsiveSquare2 {
         width: calc(600%/12);
         margin-left: 0;
       }
 
-      .responsiveSquareAge3 {
+      .responsiveSquare3 {
         width: calc(600%/12);
         padding-left: 0.5rem;
       }
 
-      .responsiveSquareAge4 {
+      .responsiveSquare4 {
         width: calc(600%/12);
       }
 
-      .responsiveSquareAge5 {
+      .responsiveSquare5 {
         width: calc(1200%/12);
         padding-left: 0.5rem;
       }
@@ -384,6 +385,6 @@ $blue: #2B8BF7;
       }
 
     }
-/** END SQUARE BUTTON AGE **/
+/** END SQUARE BUTTON AGE AND STATUT **/
 
 }
