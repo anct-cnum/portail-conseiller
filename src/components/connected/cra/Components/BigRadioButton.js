@@ -53,7 +53,6 @@ BigRadioButton.propTypes = {
   value: PropTypes.string,
   image: PropTypes.string,
   imageSelected: PropTypes.string,
-  typeButton: PropTypes.string,
   heightImage: PropTypes.string,
   classDiv: PropTypes.string,
 };
