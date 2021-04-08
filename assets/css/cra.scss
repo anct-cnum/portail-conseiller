@@ -284,7 +284,11 @@ $blue: #2B8BF7;
     }
 
     .responsiveRadioCanalVertical .radioButton {
-      width: calc(545%/12);
+      width: calc(550%/12);
+    }
+
+    .responsiveRadioCanalVertical .radioButton:first-child {
+      width: calc(540%/12);
     }
 
   }
@@ -308,7 +312,11 @@ $blue: #2B8BF7;
       }
 
       .responsiveRadioCanalVertical .radioButton {
-        width: calc(600%/12);
+        width: calc(605%/12);
+      }
+
+      .responsiveRadioCanalVertical .radioButton:first-child {
+        width: calc(595%/12);
       }
 
     }
@@ -385,6 +393,119 @@ $blue: #2B8BF7;
       }
 
     }
-/** END SQUARE BUTTON AGE AND STATUT **/
+  /** END SQUARE BUTTON AGE AND STATUT **/
+
+  /** START CHECKBOX BUTTON THEMES **/
+  .checkboxRattachement {
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid white;
+    background-color: $background;
+    cursor: pointer;
+  }
+
+  .checkboxRattachement-selected {
+    background-color: white!important;
+    color: black!important;
+  }
+
+  .labelCheckboxCustom {
+    font-family: 'MarianneMedium', Arial, sans-serif!important;
+    line-height: 24px;
+    text-align: start;
+    align-self: center;
+  }
+
+  .responsiveCheckbox1 {
+    width: calc(400%/12);
+    margin-left: 0.75rem;
+  }
+
+  .responsiveCheckbox2, .responsiveCheckboxNewRow2 {
+    width: calc(400%/12);
+  }
+
+  .responsiveCheckboxNewRow1 {
+    width: calc(400%/12);
+    margin-left: calc(211%/12);
+  }
+
+  .responsiveSmallCheckbox {
+    width: calc(800%/12);
+    margin-left: calc(211%/12);
+  }
+
+  .questionCheckboxResponsive {
+    height: 108px;
+  }
+
+  /* custom point de rupture XL du DS */
+  @media (max-width: 1247px) {
+
+    .responsiveCheckboxNewRow1, .responsiveSmallCheckbox  {
+      margin-left: calc(315%/12);
+    }
+
+    .questionCheckboxResponsive {
+      margin-left: calc(100%/12);
+    }
+
+  }
+
+  /* custom point de rupture LG du DS */
+  @media (max-width: 991px) {
+
+    .labelCheckboxCustom {
+      font-size: 12px;
+    }
+
+  }
+
+  /* custom point de rupture MD du DS */
+  @media (max-width: 767px) {
+
+    .responsiveCheckbox1, .responsiveCheckboxNewRow1 {
+      width: calc(500%/12);
+      margin-left: calc(100%/12);
+      padding-left: 0.5rem;
+    }
+
+    .responsiveCheckbox2, .responsiveCheckboxNewRow2 {
+      width: calc(500%/12);
+    }
+
+    .responsiveSmallCheckbox {
+      width: calc(1000%/12);
+      margin-left: calc(100%/12);
+      padding-left: 0.5rem;
+    }
+
+    .questionCheckboxResponsive {
+      height: unset;
+    }
+
+  }
+
+  /* custom point de rupture SM du DS */
+  @media (max-width: 576px) {
+
+    .responsiveCheckbox1, .responsiveCheckbox2, .responsiveCheckboxNewRow1, .responsiveCheckboxNewRow2, .responsiveSmallCheckbox {
+      width: calc(1200%/12);
+      margin-left: 0;
+      padding-left: 0.5rem;
+    }
+
+    .labelCheckboxCustom {
+      font-size: 16px;
+    }
+
+    .questionCheckboxResponsive {
+      margin-left: 0;
+      width: calc(1200%/12);
+    }
+
+  }
+
+  /** END CHECKBOX BUTTON THEMES **/
 
 }

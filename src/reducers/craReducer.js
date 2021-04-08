@@ -43,6 +43,11 @@ export default function cra(state = null, action) {
         ...state,
         statut: action.statut,
       };
+    case 'UPDATE_THEMES':
+      return {
+        ...state,
+        themes: action.themes,
+      };
     default:
       return state;
   }
