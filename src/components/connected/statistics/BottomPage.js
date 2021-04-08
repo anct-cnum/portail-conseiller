@@ -59,12 +59,13 @@ function BottomPage(props) {
       text: optionTitre,
       margin: 48,
       x: -11,
-      width: 272,
+      width: 300,
       align: 'left',
       style: {
         color: '#ffffff',
         fontSize: '17px',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        width: '300px'
       }
     };
     return titre;
@@ -78,7 +79,7 @@ function BottomPage(props) {
       backgroundColor: '#1e1e1e',
       itemMarginBottom: 10,
       itemWidth: 200,
-      y: -80,
+
       align: 'left',
       reversed: true,
       itemStyle: {
@@ -105,7 +106,9 @@ function BottomPage(props) {
       },
       bar: {
         pointPadding: 0.2,
-        borderWidth: 0
+        borderWidth: 0,
+        pointWidth: 24
+
       }
     };
     return plotOptions;
@@ -118,7 +121,9 @@ function BottomPage(props) {
     chart: {
       zoomType: 'xy',
       backgroundColor: '#1e1e1e',
-      marginLeft: 35,
+      marginLeft: 40,
+      marginRight: 70,
+      width: 300,
       style: {
         fontFamily: 'Marianne'
       }
@@ -166,6 +171,9 @@ function BottomPage(props) {
     plotOptions: {
       column: {
         borderWidth: 0
+      },
+      series: {
+        pointWidth: 16
       }
     },
     tooltip: {
@@ -200,6 +208,8 @@ function BottomPage(props) {
     },
     chart: {
       type: 'bar',
+      width: 300,
+      height: 300,
       backgroundColor: '#1e1e1e',
       style: {
         fontFamily: 'Marianne'
@@ -226,6 +236,8 @@ function BottomPage(props) {
     },
     chart: {
       type: 'bar',
+      width: 300,
+      height: 300,
       backgroundColor: '#1e1e1e',
       style: {
         fontFamily: 'Marianne'
@@ -247,19 +259,28 @@ function BottomPage(props) {
   };
 
   return (
-    <div className="rf-grid-row ">
-      <div className="rf-col-lg-3">
-        <div className="rf-mt-6w rf-mb-5w"><hr/></div>
-        <HighchartsReact highcharts={Highcharts} options={optionsEvolutionAccompagnements} /></div>
-      <div className="rf-col-offset-lg-1"></div>
-      <div className="rf-col-lg-3">
-        <div className="rf-mt-6w rf-mb-5w"><hr/></div>
-        <HighchartsReact highcharts={Highcharts} options={optionsAgeUsagers} /></div>
-      <div className="rf-col-offset-lg-1"></div>
-      <div className="rf-col-lg-3">
-        <div className="rf-mt-6w rf-mb-5w"><hr/></div>
-        <HighchartsReact highcharts={Highcharts} options={optionsStatutUsagers} /></div>
-      <div className="rf-m-10w"></div>
+    <div className="rf-grid-row">
+
+      <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">
+        <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v"><hr/></div>
+        <HighchartsReact highcharts={Highcharts} options={optionsEvolutionAccompagnements} />
+      </div>
+
+      <div className="rf-col-offset-12 rf-col-offset-md-1"></div>
+
+      <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">
+        <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v"><hr/></div>
+        <HighchartsReact highcharts={Highcharts} options={optionsAgeUsagers} />
+      </div>
+
+      <div className="rf-col-offset-12 rf-col-offset-md-6 rf-col-offset-lg-1"></div>
+
+      <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">
+        <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v"><hr/></div>
+        <HighchartsReact highcharts={Highcharts} options={optionsStatutUsagers} />
+      </div>
+
+      <div className="rf-m-xs-to-md-7v rf-m-9w"></div>
     </div>
   );
 }

@@ -3,10 +3,9 @@ import React from 'react';
 function StatisticsBanner() {
 
   return (
-
     <div className="rf-container-fluid">
-      <div className="rf-grid-row">
-        <div className="rf-col-lg-5 afficher-etapes">
+      <div className="rf-grid-row rf-grid-row--center">
+        <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-7 rf-col-lg-5 afficher-etapes">
           <ul className="rf-footer__bottom-list">
             <li className="rf-footer__bottom-item">
               <a className="rf-footer__bottom-link rf-pr-sm-1w" href="">
@@ -21,23 +20,24 @@ function StatisticsBanner() {
               </a>
             </li>
           </ul>
+          <div className="rf-m-5w"></div>
         </div>
 
-        <div className="rf-col-lg-4 afficher-export">
-          <ul className="rf-footer__bottom-list max-width-list">
+        <div className="rf-col-md-4 rf-col-lg-4 afficher-export">
+          <ul className="rf-footer__bottom-list max-width-list ">
             <li className="rf-footer__bottom-item">
-              <a className="rf-footer__bottom-link rf-pr-1w rf-pl-6w" href="">
+              <a className="rf-footer__bottom-link rf-pr-1w" href="">
                 Exporter au format PDF
               </a>
             </li>
             <li className="rf-footer__bottom-item">
-              <a className="rf-footer__bottom-link rf-pr-4w rf-pl-1w" href="">
+              <a className="rf-footer__bottom-link rf-pl-1w" href="">
                 Exporter au format CSV
               </a>
             </li>
           </ul>
         </div>
-        <div className="rf-col-lg-3">
+        <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-5 rf-col-lg-3">
           <a className="statistiques_nationales-btn droite-btn">Voir les statistiques nationales</a>
         </div>
       </div>

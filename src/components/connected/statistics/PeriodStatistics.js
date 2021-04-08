@@ -8,10 +8,14 @@ function PeriodStatistics(props) {
 
   return (
     <>
-      Période du &nbsp;
-      <ElementDatePicker initDate={props.dateDebut} idDate="datePickerDebut" nomDate="datePickerDebut"/>
-      &nbsp;au&nbsp;
-      <ElementDatePicker initDate={props.dateFin} idDate="datePickerFin" nomDate="datePickerFin"/>
+      <span>Période du &nbsp;</span><br className="periode-xs"/>
+      <span id="span-datePickerDebut" >
+        <ElementDatePicker initDate={props.dateDebut} idDate="datePickerDebut" nomDate="datePickerDebut"/>
+      </span>
+      <span id="span-datePickerFin" >
+        &nbsp;au&nbsp;
+        <ElementDatePicker initDate={props.dateFin} idDate="datePickerFin" nomDate="datePickerFin"/>
+      </span>
     </>
   );
 }

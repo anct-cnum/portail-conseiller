@@ -1,11 +1,16 @@
 .Statistics {
   font-family: Marianne;
   .title {
-    font-weight: 200;
+    font-weight: 100;
+    font-size: 56px;
+    letter-spacing: 0;
+    line-height: 64px;
+  }
+  .periode-xs {
+    display: none;
   }
   .chevron {
-    margin: 15px 70px 0 0;
-    float: right;
+    position: absolute;
   }
   .date-btn {
     &:hover, &:active {
@@ -69,6 +74,11 @@
       bottom: unset !important;
     }
   }
+  .react-datepicker__tab-loop {
+    position: absolute;
+    top: 0px;
+    left: -93px;
+  }
   .number {
     font-weight: 600;
     text-align: right;
@@ -118,6 +128,7 @@
     font-size: 16px;
     padding: 24px;
     cursor: pointer;
+    text-align:center;
     &:hover{
       color: #1e1e1e !important;
       background-color: #fff !important;
@@ -126,18 +137,32 @@
   .droite-btn {
     float: right;
   }
-  @media (max-width: 991px) {
-    .chevron {
-      margin: 10px 40px 0 0;
+  .hr-lg-hide {
+    display: none;
+  }
+  @media (min-width: 991px) {
+    .graphique-responsive-md{
+      display:none;
     }
+    .rf-mt-lg-13w{
+      margin-top: 6.5rem !important;
+    }
+  }
+  @media (max-width: 991px) {
     .number {
       font-size: 28px;
     }
     .rf-m-xs-to-md-7v {
-      margin: 1.75rem !important;
+      margin: 1.75rem 0 !important;
     }
     .afficher-export {
       display: none;
+    }
+    .hr-lg-hide {
+      display: block;
+    }
+    .graphique-responsive-lg{
+      display:none;
     }
   }
   @media (min-width: 768px) {
@@ -146,20 +171,59 @@
     }
   }
   @media (max-width: 767px) {
+
     .hr-sm-hide {
       display: none;
-    }
-    .chevron {
-      margin: 0px 6% 0 0;
     }
     .rf-footer__bottom-link {
       font-size: 16px;
     }
     .rf-footer__bottom-item{
-      display: block;
+      display: inline-block;
       &::before{
         display: none;
       }
+    }
+    .statistiques_nationales-btn {
+      margin: 30px 0;
+      padding: 12px 24px;
+      float: left;
+    }
+    .highcharts-container {
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .title {
+      font-size: 28px;
+      text-align: center;
+    }
+    .statistiques_nationales-btn {
+      margin: 25px 0;
+    }
+    .rf-footer__bottom-item{
+      display: block;
+    }
+  }
+  @media (max-width: 557) {
+    .statistiques_nationales-btn {
+      margin: 64px 0;
+    }
+    .highcharts-title{
+      margin-bottom: 1rem !important;
+    }
+  }
+  @media (max-width: 349px) {
+    .periode-xs {
+      display: block;
+    }
+    .chevron {
+      bottom: 115px;
+      right: 16px;
+    }
+    #span-datePickerDebut .react-datepicker__tab-loop {
+      left: 10px;
     }
   }
 }
