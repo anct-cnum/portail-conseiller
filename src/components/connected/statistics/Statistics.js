@@ -1,11 +1,11 @@
 import React from 'react';
 
-import PeriodStatistics from './PeriodStatistics';
+import PeriodStatistics from './StatisticsPeriod';
 import LeftPage from './LeftPage';
 import RightPage from './RightPage';
 import BottomPage from './BottomPage';
 import Footer from '../../Footer';
-import StatisticsBanner from '../statistics/StatisticsBanner';
+import StatisticsBanner from './StatisticsBanner';
 
 function Statistics() {
   const donneesStatistiques = {
@@ -98,24 +98,17 @@ function Statistics() {
         </div>
 
         <div className="rf-grid-row">
-          <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">
-            <LeftPage dataStats={donneesStatistiques}/>
-          </div>
+
+          <LeftPage donneesStats={donneesStatistiques}/>
 
           <div className="rf-col-offset-md-1"></div>
 
-          <RightPage dataStats={donneesStatistiques}/>
+          <RightPage donneesStats={donneesStatistiques}/>
 
-          <div className="rf-col-12">
-            <BottomPage dataStats={donneesStatistiques}/>
-          </div>
-          <div className="rf-col-12">
-            <hr />
-            <div className="rf-m-5w rf-m-md-4w rf-m-xs-to-md-7v"></div>
-          </div>
-          <div className="rf-col-12">
-            <StatisticsBanner />
-          </div>
+          <BottomPage donneesStats={donneesStatistiques}/>
+
+          <StatisticsBanner />
+
         </div>
       </div>
       <div className="rf-m-5w rf-m-md-9w rf-m-lg-15w"></div>

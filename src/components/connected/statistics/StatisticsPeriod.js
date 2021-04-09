@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ElementDatePicker from './ElementDatePicker';
+import ElementDatePicker from './Components/ElementDatePicker';
 
 
-function PeriodStatistics(props) {
+function StatisticsPeriod(props) {
 
   return (
     <>
@@ -20,10 +20,10 @@ function PeriodStatistics(props) {
   );
 }
 
-PeriodStatistics.propTypes = {
+StatisticsPeriod.propTypes = {
   dateDebut: PropTypes.string,
   dateFin: PropTypes.string
 };
 
 
-export default PeriodStatistics;
+export default StatisticsPeriod;

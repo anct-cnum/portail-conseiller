@@ -8,9 +8,9 @@ import StatisticsRenewal from './StatisticsRenewal';
 
 function LeftPage(props) {
 
-  const periode = props.dataStats.periodes[0];
+  const periode = props.donneesStats.periodes[0];
   return (
-    <>
+    <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">
       <StatisticsAccompaniment nbAccompagnement={periode.nbAccompagnement} />
       <div className="rf-m-6w rf-m-xs-to-md-7v"></div>
       <hr/>
@@ -33,12 +33,12 @@ function LeftPage(props) {
       <div className="rf-m-xs-to-md-7v"></div>
       <hr className="hr-md-hide" />
       <div className="rf-m-xs-to-md-7v"></div>
-    </>
+    </div>
   );
 }
 
 LeftPage.propTypes = {
-  dataStats: PropTypes.object,
+  donneesStats: PropTypes.object,
 };
 
 export default LeftPage;

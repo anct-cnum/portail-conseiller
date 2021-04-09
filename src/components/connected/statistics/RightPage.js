@@ -5,6 +5,8 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import roundedCorner from 'highcharts-rounded-corners';
 
+//import ElementOptions from './Components/ElementOptions';
+
 function RightPage(props) {
 
   roundedCorner(Highcharts);
@@ -12,13 +14,15 @@ function RightPage(props) {
   const tabColorTheme = ['#cac5b0', '#abb8df', '#fdcf41', '#169b62', '#80d5c6', '#ff8d7e', '#714753', '#956052', '#ddb094', '#5770be', '#ffed33', '#be9b31'];
   const tabColorLieux = ['#ffcc9f', '#ff8d7e', '#466964', '#5770be'];
 
-  const periodeTest = props.dataStats.periodes[0];
+  const periodeTest = props.donneesStats.periodes[0];
   const { statsThemes, statsDurees, statsLieux } = periodeTest;
+
+  //const optionsThemes = <ElementOptions donneesStats={statsThemes} variableGraphique={variableGraphique}></ElementOptions>;
 
   let themesAccompagnement = [];
   let valeursAccompagnement = [];
   statsThemes.forEach((theme, i) => {
-    themesAccompagnement.push(theme.nom + '&nbsp;&nbsp;<b>' + theme.valeur + '</b>');
+    themesAccompagnement.push(theme.nom + '&nbsp;&nbsp;&nbsp;&nbsp;<b>' + theme.valeur + '</b>');
     valeursAccompagnement.push({
       y: theme.valeur,
       color: tabColorTheme[i]
@@ -51,7 +55,7 @@ function RightPage(props) {
     chart: {
       type: 'bar',
       backgroundColor: '#1e1e1e',
-      marginLeft: 205,
+      marginLeft: 210,
       style: {
         fontFamily: 'Marianne'
       }
@@ -88,6 +92,7 @@ function RightPage(props) {
       },
       lineWidth: 0,
       gridLineWidth: 0,
+
       labels: {
         format: '{value}',
         style: {
@@ -115,6 +120,7 @@ function RightPage(props) {
     chart: {
       type: 'bar',
       backgroundColor: '#1e1e1e',
+      marginLeft: 0,
       height: 650,
       style: {
         fontFamily: 'Marianne'
@@ -205,9 +211,15 @@ function RightPage(props) {
         borderWidth: 0
       }
     },
+    yAxis: {
+      title: {
+        text: null
+      }
+    },
+    xAxis: null,
     title: {
       text: 'Lieux des accompagnements',
-      margin: 50,
+      margin: 48,
       width: 300,
       x: -10,
       align: 'left',
@@ -317,7 +329,7 @@ function RightPage(props) {
         format: '<b>{value}</b>',
         style: {
           fontSize: 16,
-          color: '#cdc8c3',
+          color: '#fff',
         }
       },
     },
@@ -333,7 +345,7 @@ function RightPage(props) {
         format: '<b>{value}</b>',
         style: {
           fontSize: 16,
-          color: '#cdc8c3',
+          color: '#fff',
         }
       },
     },
@@ -438,7 +450,7 @@ function RightPage(props) {
 }
 
 RightPage.propTypes = {
-  dataStats: PropTypes.object,
+  donneesStats: PropTypes.object,
 };
 
 export default RightPage;

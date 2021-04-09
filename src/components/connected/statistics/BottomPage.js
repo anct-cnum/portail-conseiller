@@ -11,7 +11,7 @@ function BottomPage(props) {
   const tabColorAge = ['#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e'];
   const tabColorStatut = ['#a2b4b1', '#ffdbd2', '#a3a6bc', '#ddb094', '#fff480'];
 
-  const periodeTest = props.dataStats.periodes[0];
+  const periodeTest = props.donneesStats.periodes[0];
   const { statsEvolutions, statsUsagers, statsAges } = periodeTest;
 
   let moisEvolution = [];
@@ -78,7 +78,6 @@ function BottomPage(props) {
       backgroundColor: '#1e1e1e',
       itemMarginBottom: 10,
       itemWidth: 200,
-
       align: 'left',
       reversed: true,
       itemStyle: {
@@ -180,6 +179,7 @@ function BottomPage(props) {
     },
     legend: {
       backgroundColor: '#1e1e1e',
+      align: 'left',
       itemStyle: {
         color: '#cdc8c3',
       },
@@ -209,6 +209,8 @@ function BottomPage(props) {
       type: 'bar',
       width: 300,
       height: 300,
+      marginLeft: 0,
+      marginRight: 0,
       backgroundColor: '#1e1e1e',
       style: {
         fontFamily: 'Marianne'
@@ -258,34 +260,36 @@ function BottomPage(props) {
   };
 
   return (
-    <div className="rf-grid-row">
+    <div className="rf-col-12">
+      <div className="rf-grid-row">
 
-      <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">
-        <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v"><hr/></div>
-        <HighchartsReact highcharts={Highcharts} options={optionsEvolutionAccompagnements} />
-      </div>
+        <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">
+          <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v"><hr/></div>
+          <HighchartsReact highcharts={Highcharts} options={optionsEvolutionAccompagnements} />
+        </div>
 
-      <div className="rf-col-offset-12 rf-col-offset-md-1"></div>
+        <div className="rf-col-offset-12 rf-col-offset-md-1"></div>
 
-      <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">
-        <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v"><hr/></div>
-        <HighchartsReact highcharts={Highcharts} options={optionsAgeUsagers} />
-      </div>
+        <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">
+          <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v"><hr/></div>
+          <HighchartsReact highcharts={Highcharts} options={optionsAgeUsagers} />
+        </div>
 
-      <div className="rf-col-offset-12 rf-col-offset-md-6 rf-col-offset-lg-1"></div>
+        <div className="rf-col-offset-12 rf-col-offset-md-6 rf-col-offset-lg-1"></div>
 
-      <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">
-        <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v"><hr/></div>
-        <HighchartsReact highcharts={Highcharts} options={optionsStatutUsagers} />
-      </div>
-      <div className="rf-col-12">
-        <div className="rf-m-xs-to-md-7v rf-md-9w rf-m-lg-15w"></div>
+        <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">
+          <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v"><hr/></div>
+          <HighchartsReact highcharts={Highcharts} options={optionsStatutUsagers} />
+        </div>
+        <div className="rf-col-12">
+          <div className="rf-m-xs-to-md-7v rf-md-9w rf-m-lg-15w"></div>
+        </div>
       </div>
     </div>
   );
 }
 
 BottomPage.propTypes = {
-  dataStats: PropTypes.object,
+  donneesStats: PropTypes.object,
 };
 export default BottomPage;

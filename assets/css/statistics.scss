@@ -66,12 +66,10 @@
     .react-datepicker__day:hover, .react-datepicker__month-text:hover, .react-datepicker__quarter-text:hover, .react-datepicker__year-text:hover{
       color: #1e1e1e;
     }
-
     .react-datepicker__day--selected, .react-datepicker__day--keyboard-selected {
       color: #1e1e1e;
       background-color: #fff;
     }
-
     .react-date-picker__calendar--open {
       top: 100% !important;
       bottom: unset !important;
@@ -143,6 +141,10 @@
   .hr-lg-hide {
     display: none;
   }
+  .theme-valeur {
+    margin: 0 12px;
+  }
+
   @media (min-width: 991px) {
     .graphique-responsive-md{
       display:none;
