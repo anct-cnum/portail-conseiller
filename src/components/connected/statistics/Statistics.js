@@ -118,7 +118,7 @@ function Statistics() {
           </div>
         </div>
       </div>
-      <div className="rf-m-5w"></div>
+      <div className="rf-m-5w rf-m-md-9w rf-m-lg-15w"></div>
       <Footer type="support" titreBouton="Donner mon avis sur cette page"/>
     </div>
   );

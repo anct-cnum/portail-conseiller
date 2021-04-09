@@ -7,10 +7,11 @@ registerLocale('fr', fr);
 function ElementDatePicker(props) {
 
   const [initDate, setDate] = useState(new Date(props.initDate));
+  const [active, setActive] = useState(false);
 
   const CustomDateInput = forwardRef(
     ({ value, onClick }, ref) => (
-      <span className="date-btn" onClick={onClick} ref={ref}>
+      <span className={active ? 'date-btn date-active' : 'date-btn' } onClick={onClick} ref={ref}>
         <b>{value}</b>
       </span>
     ),
@@ -25,6 +26,8 @@ function ElementDatePicker(props) {
       locale="fr"
       selected={initDate}
       onChange={date => setDate(date)}
+      onCalendarOpen={() => setActive(true)}
+      onCalendarClose={() => setActive(false)}
       customInput={<CustomDateInput />}
     />
   );

@@ -18,6 +18,9 @@
       cursor: pointer;
     }
   }
+  .date-active{
+    color:#7060ff;
+  }
   .react-datepicker{
     background-color: #1e1e1e;
     border: 1px solid #7060ff;
@@ -144,8 +147,11 @@
     .graphique-responsive-md{
       display:none;
     }
-    .rf-mt-lg-13w{
+    .rf-mt-lg-13w {
       margin-top: 6.5rem !important;
+    }
+    .rf-m-lg-15w {
+      margin: 7.5rem 0 !important;
     }
   }
   @media (max-width: 991px) {
@@ -174,6 +180,9 @@
 
     .hr-sm-hide {
       display: none;
+    }
+    .rf-m-sm-4w {
+      margin: 2rem 0 !important;
     }
     .rf-footer__bottom-link {
       font-size: 16px;
@@ -219,11 +228,14 @@
       display: block;
     }
     .chevron {
-      bottom: 115px;
+      bottom: 75px;
       right: 16px;
     }
     #span-datePickerDebut .react-datepicker__tab-loop {
-      left: 10px;
+      left: -2px;
+    }
+    #span-datePickerFin .react-datepicker__tab-loop {
+      left: -114px;
     }
   }
 }

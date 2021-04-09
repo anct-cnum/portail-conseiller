@@ -50,22 +50,21 @@ function BottomPage(props) {
     return tabValeurs;
   }
 
-  const titreEvoAccompagnement = setOptionsTitre('Évolution des accompagnements');
+  const titreEvoAccompagnement = setOptionsTitre('Évolution des accompagnements', false);
   const titreAgeUsagers = setOptionsTitre('Tranches d\'âge des usagers');
   const titreStatutUsagers = setOptionsTitre('Statut des usagers');
 
-  function setOptionsTitre(optionTitre) {
+  function setOptionsTitre(optionTitre, isStackBar = true) {
     const titre = {
       text: optionTitre,
-      margin: 48,
+      margin: isStackBar ? 0 : 48,
       x: -11,
       width: 300,
       align: 'left',
       style: {
         color: '#ffffff',
         fontSize: '17px',
-        fontWeight: 'bold',
-        width: '300px'
+        fontWeight: 'bold'
       }
     };
     return titre;
@@ -107,7 +106,7 @@ function BottomPage(props) {
       bar: {
         pointPadding: 0.2,
         borderWidth: 0,
-        pointWidth: 24
+        pointWidth: 24,
 
       }
     };
@@ -279,8 +278,9 @@ function BottomPage(props) {
         <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v"><hr/></div>
         <HighchartsReact highcharts={Highcharts} options={optionsStatutUsagers} />
       </div>
-
-      <div className="rf-m-xs-to-md-7v rf-m-9w"></div>
+      <div className="rf-col-12">
+        <div className="rf-m-xs-to-md-7v rf-md-9w rf-m-lg-15w"></div>
+      </div>
     </div>
   );
 }

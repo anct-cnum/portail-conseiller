@@ -5,6 +5,11 @@ function StatisticsBanner() {
   return (
     <div className="rf-container-fluid">
       <div className="rf-grid-row rf-grid-row--center">
+
+        <div className="rf-col-12">
+          <div className="rf-m-sm-4w rf-m-5w"></div>
+        </div>
+
         <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-7 rf-col-lg-5 afficher-etapes">
           <ul className="rf-footer__bottom-list">
             <li className="rf-footer__bottom-item">
