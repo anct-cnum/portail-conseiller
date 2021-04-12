@@ -1,13 +1,13 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
+import { getCraValue } from '../utils/CraFunctions';
 
-function SmallRadioButton({ type, label, image, imageSelected, heightImage }) {
+function SmallRadioButton({ type, label, value, image, imageSelected, heightImage }) {
 
   const dispatch = useDispatch();
-  let cra = useSelector(state => state.cra);
-  let controlSelected = type === 'canal' ? cra?.canal : cra?.activite;
+  let controlSelected = getCraValue(type);
 
   const onClickRadio = e => {
     switch (type) {
@@ -23,21 +23,27 @@ function SmallRadioButton({ type, label, image, imageSelected, heightImage }) {
   };
 
   return (
-    <div className="radioButton" onClick={onClickRadio} value={label}>
+    <div className="radioButton" onClick={onClickRadio} value={value}>
       <button id="radioRattachement"
-        className={`radioRattachement ${controlSelected === label ? 'radioRattachement-selected' : ''}`}
+        className={`radioRattachement ${controlSelected === value ? 'radioRattachement-selected' : ''}`}
         style={{ height: '73px' }}
-        value={label}>
-        <div value={label}>
+        value={value}>
+        <div value={value}>
           <img
-            src={controlSelected !== label ? image : imageSelected}
+            src={controlSelected !== value ? image : imageSelected}
             alt={label} height={heightImage}
             style={{ marginTop: '0.2rem', marginRight: '14px' }}
+<<<<<<< HEAD
             value={label}/>
           <span
             className={`rf-label labelSmallRadioCustom ${controlSelected === label ? 'radioRattachement-selected' : ''}`}
+=======
+            value={value}/>
+          <span
+            className={`rf-label labelSmallRadioCustom ${controlSelected === value ? 'radioRattachement-selected' : ''}`}
+>>>>>>> main
             style={{ display: 'inline-block', verticalAlign: 'bottom', lineHeight: '36px' }}
-            value={label}>
+            value={value}>
             {label}
           </span>
         </div>
@@ -49,11 +55,10 @@ function SmallRadioButton({ type, label, image, imageSelected, heightImage }) {
 SmallRadioButton.propTypes = {
   type: PropTypes.string,
   label: PropTypes.string,
+  value: PropTypes.string,
   image: PropTypes.string,
   imageSelected: PropTypes.string,
-  typeButton: PropTypes.string,
   heightImage: PropTypes.string,
-  classDiv: PropTypes.string,
 };
 
 export default SmallRadioButton;

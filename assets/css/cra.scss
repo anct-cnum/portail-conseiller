@@ -140,6 +140,20 @@ $blue: #2B8BF7;
     }
 
   }
+
+  /* custom point de rupture SM du DS */
+  @media (max-width: 576px) {
+
+    .questionResponsive {
+      margin-left: 0;
+      width: calc(1200%/12);
+    }
+
+    .responsiveSelect {
+      width: calc(1200%/12);
+    }
+
+  }
   /** END SELECT CP **/
 
   /** START RADIO CANAL & ACTIVITY **/
@@ -202,7 +216,7 @@ $blue: #2B8BF7;
   }
 
   .responsiveRadioCanal1, .responsiveRadioActivity1 {
-    padding-left: 0.75rem;
+    margin-left: 0.75rem;
   }
 
   .responsiveRadioCanalVertical {
@@ -230,7 +244,7 @@ $blue: #2B8BF7;
   @media (max-width: 1024px) {
 
     .responsiveRadioCanal1, .responsiveRadioActivity1 {
-      padding-left: 0.5rem;
+      margin-left: 0.5rem;
     }
   }
 
@@ -240,6 +254,7 @@ $blue: #2B8BF7;
     .responsiveRadioCanal1, .responsiveRadioActivity1 {
       width: calc(500%/12);
       margin-left: calc(100%/12);
+      padding-left: 0.5rem;
     }
 
     .responsiveRadioCanal2, .responsiveRadioActivity2 {
@@ -269,10 +284,314 @@ $blue: #2B8BF7;
     }
 
     .responsiveRadioCanalVertical .radioButton {
-      width: calc(545%/12);
+      width: calc(550%/12);
+    }
+
+    .responsiveRadioCanalVertical .radioButton:first-child {
+      width: calc(540%/12);
     }
 
   }
+
+    /* custom point de rupture SM du DS */
+    @media (max-width: 576px) {
+
+      .responsiveRadioCanal1, .responsiveRadioActivity1, .responsiveRadioCanal2, .responsiveRadioActivity2 {
+        width: calc(600%/12);
+        margin-left: 0;
+      }
+
+      .responsiveRadioActivity3Small {
+        width: calc(12000%/12);
+        margin-left: 0;
+      }
+
+      .responsiveRadioCanalVertical {
+        width: calc(1200%/12);
+        margin-left: 0;
+      }
+
+      .responsiveRadioCanalVertical .radioButton {
+        width: calc(605%/12);
+      }
+
+      .responsiveRadioCanalVertical .radioButton:first-child {
+        width: calc(595%/12);
+      }
+
+    }
   /** END RADIO CANAL & ACTIVITY **/
+
+  /** START SQUARE BUTTON AGE AND STATUT **/
+  .squareRattachement {
+    width: 100%;
+    height: 104px;
+    border-radius: 20px;
+    border: 1px solid white;
+    background-color: $background;
+    cursor: pointer;
+  }
+
+  .squareRattachement-selected {
+    background-color: white!important;
+    color: black!important;
+  }
+
+  .squareLabel {
+    font-family: 'MarianneMedium', Arial, sans-serif!important;
+    font-size: 16px;
+
+  }
+
+  .responsiveSquare1, .responsiveSquare2, .responsiveSquare3, .responsiveSquare4, .responsiveSquare5 {
+    width: calc(160%/12);
+  }
+
+  .responsiveSquare1 {
+    margin-left: 0.75rem;
+  }
+
+  /* custom point de rupture MD du DS */
+  @media (max-width: 767px) {
+
+    .responsiveSquare1 {
+      width: calc(200%/12);
+      margin-left: calc(100%/12);
+      padding-left: 0.5rem;
+    }
+
+    .responsiveSquare2, .responsiveSquare3, .responsiveSquare4, .responsiveSquare5 {
+      width: calc(200%/12);
+    }
+
+  }
+
+    /* custom point de rupture SM du DS */
+    @media (max-width: 576px) {
+
+      .responsiveSquare1, .responsiveSquare2 {
+        width: calc(600%/12);
+        margin-left: 0;
+      }
+
+      .responsiveSquare3 {
+        width: calc(600%/12);
+        padding-left: 0.5rem;
+      }
+
+      .responsiveSquare4 {
+        width: calc(600%/12);
+      }
+
+      .responsiveSquare5 {
+        width: calc(1200%/12);
+        padding-left: 0.5rem;
+      }
+
+      .squareRattachement {
+        height: 73px;
+      }
+
+    }
+  /** END SQUARE BUTTON AGE AND STATUT **/
+
+  /** START CHECKBOX BUTTON THEMES **/
+  .checkboxRattachement {
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid white;
+    background-color: $background;
+    cursor: pointer;
+  }
+
+  .checkboxRattachement-selected {
+    background-color: white!important;
+    color: black!important;
+  }
+
+  .labelCheckboxCustom {
+    font-family: 'MarianneMedium', Arial, sans-serif!important;
+    line-height: 24px;
+    text-align: start;
+    align-self: center;
+  }
+
+  .responsiveCheckbox1 {
+    width: calc(400%/12);
+    margin-left: 0.75rem;
+  }
+
+  .responsiveCheckbox2, .responsiveCheckboxNewRow2 {
+    width: calc(400%/12);
+  }
+
+  .responsiveCheckboxNewRow1 {
+    width: calc(400%/12);
+    margin-left: calc(211%/12);
+  }
+
+  .responsiveSmallCheckbox {
+    width: calc(800%/12);
+    margin-left: calc(211%/12);
+  }
+
+  .questionCheckboxResponsive {
+    height: 108px;
+  }
+
+  /* custom point de rupture XL du DS */
+  @media (max-width: 1247px) {
+
+    .responsiveCheckboxNewRow1, .responsiveSmallCheckbox  {
+      margin-left: calc(315%/12);
+    }
+
+    .questionCheckboxResponsive {
+      margin-left: calc(100%/12);
+    }
+
+  }
+
+  /* custom point de rupture LG du DS */
+  @media (max-width: 991px) {
+
+    .labelCheckboxCustom {
+      font-size: 12px;
+    }
+
+  }
+
+  /* custom point de rupture MD du DS */
+  @media (max-width: 767px) {
+
+    .responsiveCheckbox1, .responsiveCheckboxNewRow1 {
+      width: calc(500%/12);
+      margin-left: calc(100%/12);
+      padding-left: 0.5rem;
+    }
+
+    .responsiveCheckbox2, .responsiveCheckboxNewRow2 {
+      width: calc(500%/12);
+    }
+
+    .responsiveSmallCheckbox {
+      width: calc(1000%/12);
+      margin-left: calc(100%/12);
+      padding-left: 0.5rem;
+    }
+
+    .questionCheckboxResponsive {
+      height: unset;
+    }
+
+  }
+
+  /* custom point de rupture SM du DS */
+  @media (max-width: 576px) {
+
+    .responsiveCheckbox1, .responsiveCheckbox2, .responsiveCheckboxNewRow1, .responsiveCheckboxNewRow2, .responsiveSmallCheckbox {
+      width: calc(1200%/12);
+      margin-left: 0;
+      padding-left: 0.5rem;
+    }
+
+    .labelCheckboxCustom {
+      font-size: 16px;
+    }
+
+    .questionCheckboxResponsive {
+      margin-left: 0;
+      width: calc(1200%/12);
+    }
+
+  }
+  /** END CHECKBOX BUTTON THEMES **/
+
+  /** START SQUARE BUTTON TIME **/
+  .responsiveSquareTime1, .responsiveSquareTime2, .responsiveSquareTime3 {
+    width: calc(266%/12);
+  }
+
+  .responsiveSquareTime1 {
+    margin-left: 0.75rem;
+  }
+
+  .countSmallRadioLabel {
+    border-bottom: 1.5px solid black;
+    height: 38px;
+    margin-bottom: 1.2px;
+  }
+
+  .countSmallRadioCalcul {
+    width: 50%;
+    height: 52px;
+    display: inline-block;
+    margin-bottom: -14px;
+  }
+
+  .countSmallRadioCalcul:hover {
+    background-color: $background;
+    border-radius: 0 0 0 20px;
+
+    .labelCalculCustom {
+      color: white;
+    }
+  }
+
+  .countSmallRadioCalcul ~ .countSmallRadioCalcul:hover {
+    border-radius: 0 0 20px 0;
+  }
+
+  .labelSmallCount {
+    padding: 5px;
+    color: black;
+    font-size: 16px;
+    font-family: 'MarianneMedium', Arial, sans-serif!important;
+  }
+
+  /* custom point de rupture MD du DS */
+  @media (max-width: 767px) {
+
+    .responsiveSquareTime1 {
+      width: calc(333%/12);
+      margin-left: calc(100%/12);
+      padding-left: 0.5rem;
+    }
+
+    .responsiveSquareTime2, .responsiveSquareTime3 {
+      width: calc(333%/12);
+    }
+
+  }
+
+  @media (max-width: 576px) {
+
+    .responsiveSquareTime1, .responsiveSquareTime2, .responsiveSquareTime3 {
+      margin-left: 0;
+      width: calc(400%/12);
+    }
+
+    .responsiveSquareTime1 .squareRattachement, .responsiveSquareTime2 .squareRattachement, .responsiveSquareTime3 .squareRattachement {
+      height: 80px;
+    }
+
+    .countSmallRadioLabel {
+      height: 28px;
+    }
+
+    .countSmallRadioCalcul {
+      height: 45px;
+    }
+
+    .SmallCountRadioButton .radioRattachement {
+      height: 80px!important;
+    }
+
+    .labelSmallCount {
+      padding: 0;
+    }
+
+  }
+  /** END SQUARE BUTTON TIME **/
 
 }

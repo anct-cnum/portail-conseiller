@@ -26,12 +26,32 @@ export default function cra(state = null, action) {
       return {
         ...state,
         activite: action.activite,
-        nbParticipants: action.activite === 'Atelier Collectif' ? 5 : null
+        nbParticipants: action.activite === 'collectif' ? 5 : null
       };
     case 'UPDATE_NB_PARTICIPANTS':
       return {
         ...state,
         nbParticipants: action.nbParticipants,
+      };
+    case 'UPDATE_AGE':
+      return {
+        ...state,
+        age: action.age,
+      };
+    case 'UPDATE_STATUT':
+      return {
+        ...state,
+        statut: action.statut,
+      };
+    case 'UPDATE_THEMES':
+      return {
+        ...state,
+        themes: action.themes,
+      };
+    case 'UPDATE_DUREE':
+      return {
+        ...state,
+        duree: action.duree,
       };
     default:
       return state;

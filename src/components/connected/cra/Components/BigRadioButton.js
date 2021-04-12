@@ -1,13 +1,13 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
+import { getCraValue } from '../utils/CraFunctions';
 
-function BigRadioButton({ type, label, image, imageSelected, heightImage, classDiv }) {
+function BigRadioButton({ type, label, value, image, imageSelected, heightImage, classDiv }) {
 
   const dispatch = useDispatch();
-  let cra = useSelector(state => state.cra);
-  let controlSelected = type === 'canal' ? cra?.canal : cra?.activite;
+  let controlSelected = getCraValue(type);
 
   const onClickRadio = e => {
     switch (type) {
@@ -23,22 +23,27 @@ function BigRadioButton({ type, label, image, imageSelected, heightImage, classD
   };
 
   return (
-    <div className="radioButton" onClick={onClickRadio} value={label}>
+    <div className="radioButton" onClick={onClickRadio} value={value}>
       <button id="radioRattachement"
-        className={`radioRattachement ${controlSelected === label ? 'radioRattachement-selected' : ''}`}
+        className={`radioRattachement ${controlSelected === value ? 'radioRattachement-selected' : ''}`}
         style={{ height: '144px' }}
-        value={label}>
-        <div value={label}>
-          <div className={classDiv !== undefined ? classDiv : '' } value={label}>
+        value={value}>
+        <div value={value}>
+          <div className={classDiv !== undefined ? classDiv : '' } value={value}>
             <img
-              src={controlSelected !== label ? image : imageSelected}
+              src={controlSelected !== value ? image : imageSelected}
               alt={label}
               height={heightImage}
-              value={label}/>
+              value={value}/>
           </div>
           <span
+<<<<<<< HEAD
             className={`rf-label labelBigRadioCustom ${controlSelected === label ? 'radioRattachement-selected' : ''}`}
             value={label}>
+=======
+            className={`rf-label labelBigRadioCustom ${controlSelected === value ? 'radioRattachement-selected' : ''}`}
+            value={value}>
+>>>>>>> main
             {label}
           </span>
         </div>
@@ -50,9 +55,9 @@ function BigRadioButton({ type, label, image, imageSelected, heightImage, classD
 BigRadioButton.propTypes = {
   type: PropTypes.string,
   label: PropTypes.string,
+  value: PropTypes.string,
   image: PropTypes.string,
   imageSelected: PropTypes.string,
-  typeButton: PropTypes.string,
   heightImage: PropTypes.string,
   classDiv: PropTypes.string,
 };

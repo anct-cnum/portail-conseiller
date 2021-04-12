@@ -1,7 +1,10 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 function Header({ linkAccount }) {
+
+  const location = useLocation();
 
   return (
     <header className="rf-header" role="banner">
@@ -29,6 +32,11 @@ function Header({ linkAccount }) {
                           <a href="/login" className="rf-link" target="_self">J&rsquo;ai déjà un compte</a> :
                           <span className="rf-link" style={{ cursor: 'unset' }}> { linkAccount } </span> }
                       </li>
+                      { linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
+                      <li className="rf-shortcuts__item">
+                        <Link className="rf-btn rf-btn--sm" to="/login" title="Se déconnecter"><i className="ri-logout-box-r-line"></i></Link>
+                      </li>
+                      }
                     </ul>
                   </div>
                 </div>

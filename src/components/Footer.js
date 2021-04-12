@@ -6,8 +6,8 @@ function Footer({ type, titreBouton }) {
   return (
     <footer className="rf-footer" role="contentinfo" id="footer">
       <div className="rf-container">
-        <div className="rf-grid-row">
-          <div className="rf-col-12">
+        <div className="rf-grid-row rf-grid-row--center">
+          <div className="rf-col-xs-10 rf-col-sm-10 rf-col-md-10 rf-col-xl-12">
             <div className="rf-footer__body">
               <div className="rf-container" style={{ paddingLeft: '0px', paddingRight: '0px' }}>
                 <div className="rf-grid-row rf-grid-row--bottom">

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { history } from '../../helpers';
 import Header from '../Header';
 import ElementButton from './commun/ElementButton';
@@ -31,7 +31,6 @@ function Home() {
             onClick={() => history.push('/compte-rendu-activite')}
             classButton="menu-btn"
             pathname="/compte-rendu-activite"/>
-          <Link className="rf-btn rf-btn--sm" to="/login">Se déconnecter&nbsp;<i className="ri-logout-box-r-line"></i></Link>
         </div>
       </div>
       <Route path={`/statistiques`} component={Statistics} />

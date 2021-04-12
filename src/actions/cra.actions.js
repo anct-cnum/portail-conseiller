@@ -5,6 +5,10 @@ export const craActions = {
   updateCanal,
   updateActivite,
   updateNbParticipants,
+  updateAge,
+  updateStatut,
+  updateThemes,
+  updateDuree,
 };
 
 function getSearchlist() {
@@ -29,4 +33,20 @@ function updateActivite(activite) {
 
 function updateNbParticipants(nbParticipants) {
   return { type: 'UPDATE_NB_PARTICIPANTS', nbParticipants };
+}
+
+function updateAge(age) {
+  return { type: 'UPDATE_AGE', age };
+}
+
+function updateStatut(statut) {
+  return { type: 'UPDATE_STATUT', statut };
+}
+
+function updateThemes(themes) {
+  return { type: 'UPDATE_THEMES', themes };
+}
+
+function updateDuree(duree) {
+  return { type: 'UPDATE_DUREE', duree };
 }

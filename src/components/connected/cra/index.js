@@ -2,6 +2,10 @@ import React from 'react';
 import CodePostal from './CodePostal';
 import Canal from './Canal';
 import Activite from './Activite';
+import Age from './Age';
+import Themes from './Themes';
+import Statut from './Statut';
+import Duree from './Duree';
 import Footer from '../../Footer';
 
 function Cra() {
@@ -15,6 +19,10 @@ function Cra() {
         <CodePostal/>
         <Canal/>
         <Activite/>
+        <Age/>
+        <Statut/>
+        <Themes/>
+        <Duree/>
       </div>
       <Footer type="support" titreBouton="Donner mon avis sur cette page"/>
     </>
