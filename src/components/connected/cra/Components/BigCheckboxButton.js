@@ -11,15 +11,14 @@ function BigCheckboxButton({ type, label, value, image, imageSelected, heightIma
   let controlSelected = getCraValue(type);
 
   const onClickCheckbox = e => {
-    let newthemesList = cra?.themes ? cra?.themes : [];
-    if (!newthemesList.includes(e.target.getAttribute('value'))) {
-      newthemesList.push(e.target.getAttribute('value'));
-    } else {
-      newthemesList = newthemesList.filter(theme => theme !== e.target.getAttribute('value'));
-    }
-
     switch (type) {
       case 'themes':
+        let newthemesList = cra?.themes ? cra?.themes : [];
+        if (!newthemesList.includes(e.target.getAttribute('value'))) {
+          newthemesList.push(e.target.getAttribute('value'));
+        } else {
+          newthemesList = newthemesList.filter(theme => theme !== e.target.getAttribute('value'));
+        }
         dispatch(craActions.updateThemes(newthemesList));
         break;
       default:

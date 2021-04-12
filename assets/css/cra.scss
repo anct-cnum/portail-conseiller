@@ -505,7 +505,93 @@ $blue: #2B8BF7;
     }
 
   }
-
   /** END CHECKBOX BUTTON THEMES **/
+
+  /** START SQUARE BUTTON TIME **/
+  .responsiveSquareTime1, .responsiveSquareTime2, .responsiveSquareTime3 {
+    width: calc(266%/12);
+  }
+
+  .responsiveSquareTime1 {
+    margin-left: 0.75rem;
+  }
+
+  .countSmallRadioLabel {
+    border-bottom: 1.5px solid black;
+    height: 38px;
+    margin-bottom: 1.2px;
+  }
+
+  .countSmallRadioCalcul {
+    width: 50%;
+    height: 52px;
+    display: inline-block;
+    margin-bottom: -14px;
+  }
+
+  .countSmallRadioCalcul:hover {
+    background-color: $background;
+    border-radius: 0 0 0 20px;
+
+    .labelCalculCustom {
+      color: white;
+    }
+  }
+
+  .countSmallRadioCalcul ~ .countSmallRadioCalcul:hover {
+    border-radius: 0 0 20px 0;
+  }
+
+  .labelSmallCount {
+    padding: 5px;
+    color: black;
+    font-size: 16px;
+    font-family: 'MarianneMedium', Arial, sans-serif!important;
+  }
+
+  /* custom point de rupture MD du DS */
+  @media (max-width: 767px) {
+
+    .responsiveSquareTime1 {
+      width: calc(333%/12);
+      margin-left: calc(100%/12);
+      padding-left: 0.5rem;
+    }
+
+    .responsiveSquareTime2, .responsiveSquareTime3 {
+      width: calc(333%/12);
+    }
+
+  }
+
+  @media (max-width: 576px) {
+
+    .responsiveSquareTime1, .responsiveSquareTime2, .responsiveSquareTime3 {
+      margin-left: 0;
+      width: calc(400%/12);
+    }
+
+    .responsiveSquareTime1 .squareRattachement, .responsiveSquareTime2 .squareRattachement, .responsiveSquareTime3 .squareRattachement {
+      height: 80px;
+    }
+
+    .countSmallRadioLabel {
+      height: 28px;
+    }
+
+    .countSmallRadioCalcul {
+      height: 45px;
+    }
+
+    .SmallCountRadioButton .radioRattachement {
+      height: 80px!important;
+    }
+
+    .labelSmallCount {
+      padding: 0;
+    }
+
+  }
+  /** END SQUARE BUTTON TIME **/
 
 }

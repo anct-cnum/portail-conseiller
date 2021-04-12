@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
 
-function CountRadioButton({ type, label }) {
+function BigCountRadioButton({ type, label }) {
 
   const dispatch = useDispatch();
   let cra = useSelector(state => state.cra);
@@ -12,7 +12,7 @@ function CountRadioButton({ type, label }) {
     switch (type) {
       case 'participants':
         if (cra?.nbParticipants < 100) {
-          dispatch(craActions.updateNbParticipants(cra?.nbParticipants + 1));
+          dispatch(craActions.updateNbParticipants(Number(cra?.nbParticipants) + 1));
         }
         break;
       default:
@@ -24,7 +24,7 @@ function CountRadioButton({ type, label }) {
     switch (type) {
       case 'participants':
         if (cra?.nbParticipants > 2) {
-          dispatch(craActions.updateNbParticipants(cra?.nbParticipants - 1));
+          dispatch(craActions.updateNbParticipants(Number(cra?.nbParticipants) - 1));
         }
         break;
       default:
@@ -38,7 +38,7 @@ function CountRadioButton({ type, label }) {
         className="radioRattachement radioRattachement-selected"
         style={{ height: '144px', padding: 0 }}>
         <div className="countRadioLabel">
-          <span className="rf-label" style={{ padding: '10px', color: 'black' }}>
+          <span className="rf-label" style={{ padding: '10px', color: 'black', fontFamily: 'MarianneMedium' }}>
             <span style={{ fontSize: '1.5rem' }}>
               {cra?.nbParticipants}
             </span>
@@ -57,9 +57,9 @@ function CountRadioButton({ type, label }) {
   );
 }
 
-CountRadioButton.propTypes = {
+BigCountRadioButton.propTypes = {
   type: PropTypes.string,
   label: PropTypes.string,
 };
 
-export default CountRadioButton;
+export default BigCountRadioButton;

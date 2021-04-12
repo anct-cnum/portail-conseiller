@@ -8,6 +8,7 @@ export const craActions = {
   updateAge,
   updateStatut,
   updateThemes,
+  updateDuree,
 };
 
 function getSearchlist() {
@@ -44,4 +45,8 @@ function updateStatut(statut) {
 
 function updateThemes(themes) {
   return { type: 'UPDATE_THEMES', themes };
+}
+
+function updateDuree(duree) {
+  return { type: 'UPDATE_DUREE', duree };
 }

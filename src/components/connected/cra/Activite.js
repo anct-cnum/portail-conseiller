@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import BigRadioButton from './Components/BigRadioButton';
 import SmallRadioButton from './Components/SmallRadioButton';
-import CountRadioButton from './Components/CountRadioButton';
+import BigCountRadioButton from './Components/BigCountRadioButton';
 
 function Activite() {
 
@@ -28,7 +28,7 @@ function Activite() {
         }
         {cra?.activite === 'collectif' &&
         <div className="responsiveRadioActivity1">
-          <CountRadioButton
+          <BigCountRadioButton
             type="participants"
             label="participants"/>
         </div>
