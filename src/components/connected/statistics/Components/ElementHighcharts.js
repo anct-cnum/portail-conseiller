@@ -58,7 +58,7 @@ function ElementHighcharts(props) {
     } else {
       chart.zoomType = type;
     }
-console.log(chart);
+
     return chart;
   }
 
@@ -544,9 +544,7 @@ console.log(chart);
     xAxis: xAxisStatistiques,
     plotOptions: plotOptionsStatistiques
   };
-  if (typeGraphique === 'column') {
-    console.log(optionsStatistiques);
-  }
+
   return (
     <HighchartsReact highcharts={Highcharts} options={optionsStatistiques} />
   );
