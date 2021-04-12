@@ -48,6 +48,11 @@ export default function cra(state = null, action) {
         ...state,
         themes: action.themes,
       };
+    case 'UPDATE_DUREE':
+      return {
+        ...state,
+        duree: action.duree,
+      };
     default:
       return state;
   }
