@@ -181,10 +181,10 @@ function ElementHighcharts(props) {
           backgroundColor: '#1e1e1e',
           align: 'left',
           itemStyle: {
-            color: '#cdc8c3',
+            color: '#fff',
           },
           itemHoverStyle: {
-            color: '#ffffff'
+            color: '#fff'
           }
         };
 
@@ -199,10 +199,10 @@ function ElementHighcharts(props) {
           align: 'left',
           reversed: true,
           itemStyle: {
-            color: '#cdc8c3',
+            color: '#fff',
           },
           itemHoverStyle: {
-            color: '#ffffff'
+            color: '#fff'
           },
           labelFormatter: function() {
             if (this.data !== []) {
@@ -375,7 +375,7 @@ function ElementHighcharts(props) {
           lineWidth: 0,
           labels: {
             style: {
-              color: '#cdc8c3',
+              color: '#fff',
               fontSize: '15px'
             }
           }
