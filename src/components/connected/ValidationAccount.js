@@ -24,7 +24,7 @@ function ValidationAccount() {
   }, [conseiller]);
 
   function handleSubmit() {
-    history.push('/'); //TODO PROCESS CHANGING
+    history.push('/accueil'); //TODO PROCESS CHANGING
   }
 
   return (

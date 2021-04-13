@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Menu from './connected/Menu';
 
 function Header({ linkAccount }) {
 
@@ -45,6 +46,9 @@ function Header({ linkAccount }) {
           </div>
         </div>
       </div>
+      { linkAccount !== undefined && linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
+        <Menu/>
+      }
     </header>
   );
 

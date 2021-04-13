@@ -23,28 +23,24 @@
   font-weight: italic;
 }
 
-
-.menu-btn {
-  background-color: transparent !important;
-  border: 1px solid #fff !important;
-  color: #fff !important;
-  border-radius: 40px;
-  font-weight: 600;
-  height: 64px;
-  width: 30%;
-  margin-right: 12px;
-  outline: none;
-  cursor: pointer;
-  --color-hover: #fff !important;
-  &:hover {
-    background-color: #fff !important;
-    color: #1e1e1e !important;
-  }
+.linkCustom {
+  font-weight: bold;
+  box-shadow: none!important;
+  padding: 0.5rem;
+  border: 0.125rem solid transparent;
+  border-radius: 15px;
 }
 
-.menu-btn-active {
-  background-color: white!important;
-  color: #1e1e1e!important;
+.linkCustom:hover {
+  border-color: white;
+}
+
+.linkCustom:focus {
+  outline: none!important;
+}
+
+.linkActive {
+  border-color: white;
 }
 
 .big-btn {
