@@ -1,9 +1,11 @@
 import React from 'react';
+
+import PeriodStatistics from './StatisticsPeriod';
 import LeftPage from './LeftPage';
 import RightPage from './RightPage';
 import BottomPage from './BottomPage';
 import Footer from '../../Footer';
-import StatisticsBanner from '../statistics/StatisticsBanner';
+import StatisticsBanner from './StatisticsBanner';
 
 function Statistics() {
   const donneesStatistiques = {
@@ -15,8 +17,11 @@ function Statistics() {
       nbTotalParticipant: 25,
       nbAccompagnementPerso: 19,
       nbDemandePonctuel: 3,
-      nbReconduction: 12,
-      tauxReconduction: 18,
+      nbUsagersBeneficiantSuivi: 12,
+      tauxTotalUsagersAccompagnes: 15,
+      nbUsagersAccompagnementIndividuel: 2,
+      nbUsagersAtelierCollectif: 8,
+      nbReconduction: 8,
       statsThemes: [
         { nom: 'Équipement informatique', valeur: 5 },
         { nom: 'Naviguer sur Internet', valeur: 40 },
@@ -69,24 +74,44 @@ function Statistics() {
   return (
     <div className="Statistics">
       <div className="rf-container">
+
         <div className="rf-grid-row">
           <div className="rf-col-12">
-            <h2>Vos Statistiques</h2>
-          </div>
-          <div className="rf-col-4">
-            <LeftPage dataStats={donneesStatistiques}/>
-          </div>
-          <div className="rf-col-8">
-            <RightPage dataStats={donneesStatistiques}/>
-          </div>
-          <div className="rf-col-12">
-            <BottomPage dataStats={donneesStatistiques}/>
-          </div>
-          <div className="rf-col-12">
-            <StatisticsBanner />
+            <div className="rf-mt-2w rf-mt-md-9w rf-mt-lg-13w"></div>
+            <h1 className="title">Mes Statistiques</h1>
+            <div className="rf-mb-5w rf-mt-md-4w"></div>
           </div>
         </div>
+
+        <div className="rf-grid-row">
+          <div className="rf-col-xs-3 rf-col-sm-7 rf-col-md-6 rf-col-lg-4">
+            <div className="rf-mb-4w rf-mb-md-6w">
+              <PeriodStatistics dateDebut={donneesStatistiques.periodes[0].dateDebut} dateFin={donneesStatistiques.periodes[0].dateFin} />
+              <i className="ri-arrow-down-s-line ri-2x chevron"></i>
+            </div>
+          </div>
+
+          <div className="rf-col-md-6 rf-col-lg-8">
+            <hr className="hr-sm-hide"/>
+            <div className="rf-m-6w rf-m-xs-to-md-7v"></div>
+          </div>
+        </div>
+
+        <div className="rf-grid-row">
+
+          <LeftPage donneesStats={donneesStatistiques}/>
+
+          <div className="rf-col-offset-md-1"></div>
+
+          <RightPage donneesStats={donneesStatistiques}/>
+
+          <BottomPage donneesStats={donneesStatistiques}/>
+
+          <StatisticsBanner />
+
+        </div>
       </div>
+      <div className="rf-m-5w rf-m-md-9w rf-m-lg-15w"></div>
       <Footer type="support" titreBouton="Donner mon avis sur cette page"/>
     </div>
   );

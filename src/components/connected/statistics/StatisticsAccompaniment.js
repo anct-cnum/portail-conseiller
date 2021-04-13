@@ -1,17 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ElementNumber from './ElementNumber';
-import ElementText from './ElementText';
+import ElementNumber from './Components/ElementNumber';
+import ElementText from './Components/ElementText';
 
 function StatisticsAccompaniment(props) {
 
   return (
-    <div className="rf-container">
-      <div className="rf-grid-row">
-        <div className="rf-col-5"><ElementNumber nombre={props.nbAccompagnement} classe="number"/></div>
-        <div className="rf-col-7"><ElementText texte="accompagnements réalisés durant cette période" /></div>
-      </div>
+    <div className="rf-grid-row">
+      <div className="rf-col-2 rf-col-lg-3"><ElementNumber nombre={props.nbAccompagnement} classe="number"/></div>
+      <div className="rf-col-9"><ElementText texte="accompagnements réalisés durant cette période" /></div>
     </div>
   );
 }
