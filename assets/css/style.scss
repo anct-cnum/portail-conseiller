@@ -23,6 +23,16 @@
   font-weight: italic;
 }
 
+/** Trick to fix DS problem with burger menu with react**/
+#burgerMenu {
+  display: none;
+}
+
+.rf-header__navbar button:not(#burgerMenu) {
+  display: none;
+}
+/** End trick**/
+
 .linkCustom {
   font-weight: bold;
   box-shadow: none!important;
@@ -86,6 +96,15 @@
 
   .avatarConseiller {
     margin-left: 0!important;
+  }
+
+}
+
+/* custom point de rupture md du DS */
+@media (max-width: 768px) {
+
+  #burgerMenu {
+    display: block;
   }
 
 }
