@@ -594,4 +594,25 @@ $blue: #2B8BF7;
   }
   /** END SQUARE BUTTON TIME **/
 
+  .submitCra {
+    background-color: white;
+    width: 100%;
+    border-radius: 48px;
+    height: 96px;
+    font-size: 24px;
+    font-family: 'MarianneBold', Arial, sans-serif!important;
+  }
+
+  .submitCra:hover, .submitCra:active {
+    --color-hover: $background!important;
+    --color-active: $background!important;
+  }
+
+  @media (max-width: 576px) {
+
+    .submitResponsive {
+      width: calc(800%/12);
+    }
+
+  }
 }
