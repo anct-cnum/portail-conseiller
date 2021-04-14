@@ -1,11 +1,19 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Menu from './connected/Menu';
+import { menuActions } from '../actions';
 
 function Header({ linkAccount }) {
 
   const location = useLocation();
+  const dispatch = useDispatch();
+
+  const toggleBurgerMenu = () => {
+    dispatch(menuActions.toggleMenu());
+    dispatch(menuActions.toggleNav());
+  };
 
   return (
     <header className="rf-header" role="banner">
@@ -23,6 +31,15 @@ function Header({ linkAccount }) {
                   </a>
                   <p className="rf-service__tagline">Réseau des conseillers numériques France Services</p>
                 </div>
+                { linkAccount !== undefined && linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
+                <button
+                  id="burgerMenu"
+                  className="rf-btn rf-fi-menu-fill rf-btn--icon "
+                  title="Ouvrir le menu"
+                  aria-controls="header-nav-popin"
+                  onClick={toggleBurgerMenu}>
+                </button>
+                }
               </div>
               {linkAccount !== undefined &&
                 <div className="rf-header__tools" style={{ marginBottom: '33px' }}>
