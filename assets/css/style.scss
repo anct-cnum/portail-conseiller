@@ -23,6 +23,12 @@
   font-weight: italic;
 }
 
+@font-face {
+  font-family: MarianneMBold;
+  src: url(/public/fontsAddons/Marianne-Bold.woff2);
+  font-weight: italic;
+}
+
 /** Trick to fix DS problem with burger menu with react**/
 #burgerMenu {
   display: none;

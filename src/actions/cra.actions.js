@@ -10,6 +10,7 @@ export const craActions = {
   updateThemes,
   updateDuree,
   updateAccompagnement,
+  submitCra,
 };
 
 function getSearchlist() {
@@ -54,4 +55,8 @@ function updateDuree(duree) {
 
 function updateAccompagnement(accompagnement) {
   return { type: 'UPDATE_ACCOMPAGNEMENT', accompagnement };
+}
+
+function submitCra(cra) {
+  return { type: 'SUBMIT_CRA' };
 }

@@ -58,6 +58,8 @@ export default function cra(state = null, action) {
         ...state,
         accompagnement: action.accompagnement,
       };
+    case 'SUBMIT_CRA':
+      return null;
     default:
       return state;
   }
