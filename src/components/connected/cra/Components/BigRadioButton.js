@@ -17,6 +17,14 @@ function BigRadioButton({ type, label, value, image, imageSelected, heightImage,
       case 'activite':
         dispatch(craActions.updateActivite(e.target.getAttribute('value')));
         break;
+      case 'accompagnement':
+        //Optional case so deselection is possible
+        if (e.target.getAttribute('value') === controlSelected) {
+          dispatch(craActions.updateAccompagnement(null));
+        } else {
+          dispatch(craActions.updateAccompagnement(e.target.getAttribute('value')));
+        }
+        break;
       default:
         break;
     }

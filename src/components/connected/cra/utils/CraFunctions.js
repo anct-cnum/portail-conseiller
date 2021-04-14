@@ -18,6 +18,8 @@ export function getCraValue(type) {
       return cra?.themes;
     case 'duree':
       return cra?.duree;
+    case 'accompagnement':
+      return cra?.accompagnement;
     default:
       return '';
   }

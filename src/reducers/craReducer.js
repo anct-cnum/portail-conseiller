@@ -53,6 +53,11 @@ export default function cra(state = null, action) {
         ...state,
         duree: action.duree,
       };
+    case 'UPDATE_ACCOMPAGNEMENT':
+      return {
+        ...state,
+        accompagnement: action.accompagnement,
+      };
     default:
       return state;
   }

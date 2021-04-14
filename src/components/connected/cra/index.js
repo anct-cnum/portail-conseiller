@@ -6,6 +6,7 @@ import Age from './Age';
 import Themes from './Themes';
 import Statut from './Statut';
 import Duree from './Duree';
+import Accompagnement from './Accompagnement';
 import Footer from '../../Footer';
 
 function Cra() {
@@ -23,6 +24,7 @@ function Cra() {
         <Statut/>
         <Themes/>
         <Duree/>
+        <Accompagnement/>
       </div>
       <Footer type="support" titreBouton="Donner mon avis sur cette page"/>
     </>

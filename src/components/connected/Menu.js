@@ -8,8 +8,11 @@ function Menu() {
   let menu = useSelector(state => state.menu);
 
   const toggleBurgerMenu = () => {
-    dispatch(menuActions.toggleMenu());
-    dispatch(menuActions.toggleNav());
+    //Only if burger menu opened
+    if (!menu.hiddenMenu && menu.expandNav) {
+      dispatch(menuActions.toggleMenu());
+      dispatch(menuActions.toggleNav());
+    }
   };
 
   return (
@@ -51,7 +54,7 @@ function Menu() {
               </li>
               }
             </ul>
-            { !menu.hiddenMenu &&
+            { !menu.hiddenMenu && menu.expandNav &&
               <button className="rf-btn rf-fi-close-line rf-btn--icon-right rf-btn--sm"
                 title="Fermer"
                 aria-controls="header-nav-popin"
