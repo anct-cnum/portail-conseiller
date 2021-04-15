@@ -17,12 +17,12 @@ function ValidationButton() {
       }
     });
     if (hasErrors) {
-      //Print errors
+      //Affichage des erreurs
       dispatch(craActions.verifyCra(Object.values(cra?.errorsRequired)));
     } else {
-      //No errors, we can send to API only necessary data
+      //Pas d'erreurs, envoi seulement des donnes necessaires à l'API
       let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error, ...dataCraToSend } = cra;
-      //Add optional question
+      //Ajout du choix optionnel si non présent
       if (cra?.accompagnement === undefined) {
         dataCraToSend.accompagnement = null;
       }
@@ -30,7 +30,7 @@ function ValidationButton() {
     }
   };
 
-  //Necessary to update printError when errorsRequired changed
+  //Pour la maj de printError quand errorsRequired change
   useEffect(() => {
     if (cra?.printError) {
       dispatch(craActions.verifyCra(Object.values(cra?.errorsRequired)));
