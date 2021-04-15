@@ -1,3 +1,6 @@
+import { craService } from '../services/cra.service.js';
+import { history } from '../helpers';
+
 export const craActions = {
   getSearchlist,
   searchInput,
@@ -10,6 +13,7 @@ export const craActions = {
   updateThemes,
   updateDuree,
   updateAccompagnement,
+  verifyCra,
   submitCra,
 };
 
@@ -57,6 +61,40 @@ function updateAccompagnement(accompagnement) {
   return { type: 'UPDATE_ACCOMPAGNEMENT', accompagnement };
 }
 
+function verifyCra(errors) {
+  let hasErrors = false;
+  errors.forEach(error => {
+    if (error === true) {
+      hasErrors = true;
+    }
+  });
+  return { type: 'VERIFY_CRA', hasErrors };
+}
+
 function submitCra(cra) {
-  return { type: 'SUBMIT_CRA' };
+  return dispatch => {
+    dispatch(request(cra));
+
+    craService.createCra(cra)
+    .then(
+      cra => {
+        dispatch(success(cra));
+        history.push('/accueil');
+
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request(cra) {
+    return { type: 'SUBMIT_CRA_REQUEST', cra };
+  }
+  function success(cra) {
+    return { type: 'SUBMIT_CRA_SUCCESS', cra };
+  }
+  function failure(error) {
+    return { type: 'SUBMIT_CRA_FAILURE', error };
+  }
 }

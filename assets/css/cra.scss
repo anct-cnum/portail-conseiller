@@ -1,5 +1,6 @@
 $background: #1e1e1e;
 $blue: #2B8BF7;
+$errorDarkMode: #FF3333;
 
 .cra {
 
@@ -12,6 +13,14 @@ $blue: #2B8BF7;
     line-height: 72px;
     margin: 0;
     font-family: 'MarianneThin', Arial, sans-serif;
+  }
+
+  .questionRequired, .labelError {
+    color: $errorDarkMode;
+  }
+
+  .questionRequired::after {
+    content:" * ";
   }
 
   /** START SELECT CP **/

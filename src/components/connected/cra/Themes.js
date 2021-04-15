@@ -1,14 +1,19 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import BigCheckboxButton from './Components/BigCheckboxButton';
 import SmallCheckboxButton from './Components/SmallCheckboxButton';
 
 function Themes() {
 
+  let cra = useSelector(state => state.cra);
+
   return (
     <>
       <div className="rf-grid-row rf-grid-row--gutters rf-grid-row--middle rf-mb-7w">
         <div className="rf-col-xs-11 rf-col-sm-11 rf-col-md-2 questionCheckboxResponsive">
-          <span className="question">Quelle a / ont été la / les thématique(s) de l&rsquo;accompagnement&nbsp;? (choix multiple)</span>
+          <span className={`question ${cra?.printError && cra?.errorsRequired?.themes ? 'questionRequired' : ''}`}>
+            Quelle a / ont été la / les thématique(s) de l&rsquo;accompagnement&nbsp;? (choix multiple)
+          </span>
         </div>
         <div className="responsiveCheckbox1">
           <BigCheckboxButton

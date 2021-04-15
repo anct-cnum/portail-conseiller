@@ -12,7 +12,10 @@ function Activite() {
     <>
       <div className="rf-grid-row rf-grid-row--gutters rf-grid-row--middle rf-mb-7w">
         <div className="rf-col-xs-11 rf-col-sm-11 rf-col-md-2 questionResponsive">
-          <span className="question">Quel type d&rsquo;activité venez-vous de réaliser&nbsp;?</span>
+          <span
+            className={`question ${cra?.printError && cra?.errorsRequired?.activite ? 'questionRequired' : ''}`}>
+              Quel type d&rsquo;activité venez-vous de réaliser&nbsp;?
+          </span>
         </div>
         {cra?.activite !== 'collectif' &&
         <div className="responsiveRadioActivity1">
