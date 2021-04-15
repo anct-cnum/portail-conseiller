@@ -11,7 +11,9 @@ function Duree() {
     <>
       <div className="rf-grid-row rf-grid-row--gutters rf-grid-row--middle rf-mb-7w">
         <div className="rf-col-xs-11 rf-col-sm-11 rf-col-md-2 questionResponsive">
-          <span className="question">Combien de temps a duré l&rsquo;accompagnement&nbsp;?</span>
+          <span className={`question ${cra?.printError && cra?.errorsRequired?.duree ? 'questionRequired' : ''}`}>
+            Combien de temps a duré l&rsquo;accompagnement&nbsp;?
+          </span>
         </div>
         <div className="responsiveSquareTime1">
           <SquareButton
