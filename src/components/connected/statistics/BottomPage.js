@@ -14,8 +14,8 @@ function BottomPage(props) {
   const graphiqueEvolution = {
     graphique: {
       typeGraphique: 'xy',
-      largeurGraphique: 300,
-      hauteurGraphique: null,
+      largeurGraphique: 320,
+      hauteurGraphique: 310,
       margeGaucheGraphique: 40,
       margeDroiteGraphique: 70,
       optionResponsive: false,
@@ -24,7 +24,6 @@ function BottomPage(props) {
     titre: {
       optionTitre: 'Évolution des accompagnements',
       margeTitre: 48,
-      placementTitre: -11
     }
   };
 
@@ -40,8 +39,7 @@ function BottomPage(props) {
     },
     titre: {
       optionTitre: 'Tranches d\'âge des usagers',
-      margeTitre: 48,
-      placementTitre: -10
+      margeTitre: 34,
     }
   };
 
@@ -57,8 +55,7 @@ function BottomPage(props) {
     },
     titre: {
       optionTitre: 'Statut des usagers',
-      margeTitre: 48,
-      placementTitre: -10
+      margeTitre: 34,
     }
   };
 

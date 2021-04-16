@@ -6,7 +6,6 @@ import HighchartsReact from 'highcharts-react-official';
 import roundedCorner from 'highcharts-rounded-corners';
 
 function ElementHighcharts(props) {
-
   roundedCorner(Highcharts);
 
   const { typeGraphique, largeurGraphique, hauteurGraphique,
@@ -45,8 +44,11 @@ function ElementHighcharts(props) {
       marginLeft: margeGaucheGraphique,
       marginRight: margeDroiteGraphique,
       backgroundColor: '#1e1e1e',
+      spacing: [0, 0, 0, 0],
+
       style: {
-        fontFamily: 'Marianne'
+        fontFamily: 'Marianne',
+        marginBottom: 150
       },
       container: {
         onclick: null
@@ -68,12 +70,14 @@ function ElementHighcharts(props) {
       text: optionTitre,
       margin: margeTitre,
       x: placementTitre,
+      y: 13,
       width: 300,
       align: 'left',
       style: {
         color: '#ffffff',
-        fontSize: '18px',
-        fontWeight: 'bold'
+        fontSize: '16px',
+        fontWeight: 'bold',
+        lineHeight: '24px'
       }
     };
 
@@ -97,6 +101,8 @@ function ElementHighcharts(props) {
           name: element.nom,
           data: [element.valeur],
           color: couleursGraphique[i],
+          borderColor: couleursGraphique[i],
+          borderWidth: 1,
         });
       } else {
         valeurs.push({
@@ -108,10 +114,13 @@ function ElementHighcharts(props) {
     });
 
     if (typeGraphique === 'stacked') {
-      valeurs[0].borderRadiusTopLeft = '50%';
-      valeurs[0].borderRadiusTopRight = '50%';
-      valeurs[valeurs.length - 1].borderRadiusBottomLeft = '50%';
-      valeurs[valeurs.length - 1].borderRadiusBottomRight = '50%';
+
+      if (valeurs[0].data[0] >= 8 && valeurs[valeurs.length - 1].data[0] >= 8) {
+        valeurs[0].borderRadiusTopLeft = '100%';
+        valeurs[0].borderRadiusTopRight = '100%';
+        valeurs[valeurs.length - 1].borderRadiusBottomLeft = '100%';
+        valeurs[valeurs.length - 1].borderRadiusBottomRight = '100%';
+      }
       donnees = valeurs;
     } else if (typeGraphique === 'xy') {
       donnees = [{
@@ -119,12 +128,16 @@ function ElementHighcharts(props) {
         type: 'column',
         yAxis: 1,
         data: valeurs,
-        color: '#169b62'
+        color: '#169b62',
       }, {
         name: 'Accompagnement cumulés',
         data: valeursCumul,
         lineWidth: 5,
-        color: '#f7a35c'
+        color: '#f7a35c',
+        marker: {
+          enabled: true,
+          radius: 6
+        },
       }];
     } else {
       donnees = [{
@@ -151,18 +164,19 @@ function ElementHighcharts(props) {
       case 'pie':
 
         legende = {
+          symbolPadding: 12,
+          itemMarginBottom: 5,
           align: 'left',
+          width: 300,
+          x: -10,
           itemStyle: {
             color: '#fff',
+            fontWeight: 400,
+            lineHeight: '20px'
           },
           itemHoverStyle: {
             color: '#fff'
           },
-          bubbleLegend: {
-            style: {
-              marginRight: '12px'
-            }
-          }
         };
 
         break;
@@ -178,14 +192,16 @@ function ElementHighcharts(props) {
       case 'xy':
 
         legende = {
-          backgroundColor: '#1e1e1e',
+          symbolPadding: 12,
+          itemMarginBottom: 5,
           align: 'left',
           itemStyle: {
             color: '#fff',
+            fontWeight: 400,
           },
           itemHoverStyle: {
             color: '#fff'
-          }
+          },
         };
 
         break;
@@ -193,20 +209,31 @@ function ElementHighcharts(props) {
       case 'stacked':
 
         legende = {
-          backgroundColor: '#1e1e1e',
-          itemMarginBottom: 10,
-          itemWidth: 200,
-          align: 'left',
+          symbolPadding: 12,
           reversed: true,
+          align: 'left',
+          x: -10,
+          y: -60,
+          itemMarginBottom: 5,
           itemStyle: {
             color: '#fff',
           },
           itemHoverStyle: {
             color: '#fff'
           },
+          navigation: {
+            enabled: false,
+          },
+          useHTML: true,
           labelFormatter: function() {
             if (this.data !== []) {
-              return this.name + ' <span class="valeur-legende">' + this.options.data[0] + '%</span>';
+              //titre-legende-bis
+              if (this.chart.title.textStr === 'Statut usagers') {
+                return '<span class="titre-legende-bis">' + this.name + ' </span><span class="valeur-legende">' + this.options.data[0] + '%</span>';
+              } else {
+                return '<span class="titre-legende">' + this.name + ' </span><span class="valeur-legende">' + this.options.data[0] + '%</span>';
+              }
+
             } else {
               return this.name;
             }
@@ -235,6 +262,7 @@ function ElementHighcharts(props) {
           },
           gridLineWidth: 0,
           labels: '',
+          fontSize: '12px',
         };
 
         break;
@@ -253,8 +281,11 @@ function ElementHighcharts(props) {
           tickWidth: 1,
           tickColor: '#ffffff',
           gridLineWidth: 0,
+
           labels: {
-            format: '<b>{value}</b>',
+            textAlign: 'left',
+            x: -26,
+            format: '{value}',
             style: {
               fontSize: '12px',
               color: '#ffffff',
@@ -302,6 +333,7 @@ function ElementHighcharts(props) {
 
         axeY = {
           visible: false
+
         };
 
         break;
@@ -325,11 +357,12 @@ function ElementHighcharts(props) {
           },
           lineWidth: 0,
           gridLineWidth: 0,
-
           labels: {
+            x: -24,
             format: '{value}',
             style: {
               color: '#ffffff',
+              fontSize: '12px',
             }
           },
         };
@@ -358,6 +391,8 @@ function ElementHighcharts(props) {
           gridLineWidth: 0,
           lineWidth: 0,
           labels: {
+            y: 34,
+            autoRotation: null,
             format: '<b>{value}</b>',
             style: {
               fontSize: '12px',
@@ -371,12 +406,12 @@ function ElementHighcharts(props) {
       case 'xy':
         axeX = [{
           categories: categoriesAxeX,
-          crosshair: true,
+          crosshair: false,
           lineWidth: 0,
           labels: {
             style: {
               color: '#fff',
-              fontSize: '15px'
+              fontSize: '12px'
             }
           }
         }];
@@ -385,7 +420,7 @@ function ElementHighcharts(props) {
       case 'stacked':
 
         axeX = {
-          visible: false
+          offset: 10,
         };
 
         break;
@@ -406,13 +441,27 @@ function ElementHighcharts(props) {
 
         optionsTrace.bar = {
           borderRadius: 6,
-          borderWidth: 0,
+          borderWidth: 2,
+          borderColor: '#1e1e1e',
           pointWidth: 12,
+          pointPadding: 25,
+          series: {
+            states: {
+              hover: {
+                enabled: false,
+              }
+            },
+          }
         };
 
         if (optionResponsive === true) {
           optionsTrace.series = {
             pointPlacement: 'between',
+            states: {
+              hover: {
+                enabled: false,
+              },
+            },
           };
         }
 
@@ -436,6 +485,7 @@ function ElementHighcharts(props) {
             distance: '-40%',
             style: {
               fontSize: '12px',
+              textOutline: '0px',
             },
           },
           showInLegend: true,
@@ -443,6 +493,14 @@ function ElementHighcharts(props) {
         };
 
         optionsTrace.series = {
+          states: {
+            hover: {
+              enabled: false,
+            },
+            inactive: {
+              opacity: 1
+            }
+          },
           point: {
             events: {
               legendItemClick: function(e) {
@@ -478,6 +536,14 @@ function ElementHighcharts(props) {
             borderWidth: 0,
           },
           series: {
+            states: {
+              hover: {
+                enabled: false,
+              },
+              inactive: {
+                opacity: 1
+              }
+            },
             pointWidth: 16
           }
         };
@@ -488,9 +554,32 @@ function ElementHighcharts(props) {
 
         optionsTrace = {
           column: {
-            borderWidth: 0
+            borderWidth: 0,
+            states: {
+              hover: {
+                enabled: false,
+              },
+              inactive: {
+                opacity: 1,
+              }
+            },
           },
           series: {
+            column: {
+              states: {
+                hover: {
+                  enabled: false
+                }
+              }
+            },
+            states: {
+              hover: {
+                enabled: false,
+              },
+              inactive: {
+                opacity: 1,
+              }
+            },
             pointWidth: 16,
             events: {
               legendItemClick: function(e) {
@@ -507,6 +596,14 @@ function ElementHighcharts(props) {
         optionsTrace = {
           series: {
             stacking: 'normal',
+            states: {
+              hover: {
+                enabled: false,
+              },
+              inactive: {
+                opacity: 1
+              }
+            },
             events: {
               legendItemClick: function(e) {
                 e.preventDefault();
@@ -515,8 +612,7 @@ function ElementHighcharts(props) {
           },
           bar: {
             pointPadding: 0.2,
-            borderWidth: 0,
-            pointWidth: 24,
+            pointWidth: 23,
           }
         };
 

@@ -29,6 +29,7 @@ function ElementDatePicker(props) {
       onCalendarOpen={() => setActive(true)}
       onCalendarClose={() => setActive(false)}
       customInput={<CustomDateInput />}
+      disabledKeyboardNavigation
     />
   );
 }

@@ -16,16 +16,16 @@ function RightPage(props) {
     graphique: {
       typeGraphique: 'bar',
       largeurGraphique: null,
-      hauteurGraphique: 0,
-      margeGaucheGraphique: 210,
+      hauteurGraphique: 282,
+      margeGaucheGraphique: 235,
       margeDroiteGraphique: 0,
       optionResponsive: false,
       couleursGraphique: tabColorTheme
     },
     titre: {
       optionTitre: 'Thèmes des accompagnements',
-      margeTitre: 48,
-      placementTitre: -10
+      margeTitre: 38,
+      placementTitre: 0
     }
   };
 
@@ -42,7 +42,7 @@ function RightPage(props) {
     titre: {
       optionTitre: 'Thèmes des accompagnements',
       margeTitre: 28,
-      placementTitre: -10
+      placementTitre: 0
     }
   };
 
@@ -50,7 +50,7 @@ function RightPage(props) {
     graphique: {
       typeGraphique: 'pie',
       largeurGraphique: 300,
-      hauteurGraphique: 0,
+      hauteurGraphique: 320,
       margeGaucheGraphique: 0,
       margeDroiteGraphique: 10,
       optionResponsive: false,
@@ -59,7 +59,7 @@ function RightPage(props) {
     titre: {
       optionTitre: 'Lieux des accompagnements',
       margeTitre: 48,
-      placementTitre: -10
+      placementTitre: 0
     }
   };
 
@@ -75,17 +75,17 @@ function RightPage(props) {
     },
     titre: {
       optionTitre: 'Lieux des accompagnements',
-      margeTitre: 48,
-      placementTitre: -10
+      margeTitre: -17,
+      placementTitre: 0
     }
   };
 
   const columnGraphique = {
     graphique: {
       typeGraphique: 'column',
-      largeurGraphique: 300,
-      hauteurGraphique: 0,
-      margeGaucheGraphique: null,
+      largeurGraphique: 360,
+      hauteurGraphique: 310,
+      margeGaucheGraphique: 55,
       margeDroiteGraphique: 55,
       optionResponsive: false,
       couleursGraphique: tabColorDuree
@@ -93,7 +93,7 @@ function RightPage(props) {
     titre: {
       optionTitre: 'Durée des accompagnements',
       margeTitre: 48,
-      placementTitre: -12
+      placementTitre: 0
     }
   };
 
