@@ -43,10 +43,10 @@ function Statistics() {
         { nom: 'Lieu de ratachement', valeur: 22 },
       ],
       statsDurees: [
-        { nom: '0 à 30 min.', valeur: 1 },
-        { nom: '30 min. à 1h', valeur: 3 },
-        { nom: '1h à 2h', valeur: 2 },
-        { nom: '2h et plus', valeur: 5 },
+        { nom: '0 à 30 min.', valeur: 5 },
+        { nom: '30 min. à 1h', valeur: 20 },
+        { nom: '1h à 2h', valeur: 16 },
+        { nom: '2h et plus', valeur: 36 },
       ],
       statsEvolutions: [
         { nom: 'Avril', valeur: 25 },
@@ -55,18 +55,18 @@ function Statistics() {
         { nom: 'Juillet', valeur: 75 },
       ],
       statsAges: [
-        { nom: '-12 ans', valeur: 4 },
+        { nom: '-12 ans', valeur: 20 },
         { nom: '12-18 ans', valeur: 8 },
         { nom: '18-35 ans', valeur: 12 },
         { nom: '35-60 ans', valeur: 31 },
-        { nom: '60 ans et plus', valeur: 45 },
+        { nom: '60 ans et plus', valeur: 19 },
       ],
       statsUsagers: [
-        { nom: 'Non renseigné', valeur: 2 },
-        { nom: 'Etudiant', valeur: 8 },
+        { nom: 'Non renseigné', valeur: 8 },
+        { nom: 'Etudiant', valeur: 4 },
         { nom: 'En emploi', valeur: 20 },
         { nom: 'Sans emploi', valeur: 33 },
-        { nom: 'Retraité', valeur: 37 },
+        { nom: 'Retraité', valeur: 25 },
       ]
     }]
   };

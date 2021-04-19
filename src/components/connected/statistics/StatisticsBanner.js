@@ -13,11 +13,11 @@ function StatisticsBanner() {
           <div className="rf-grid-row rf-grid-row--center">
 
             <div className="rf-col-12">
-              <div className="rf-m-sm-4w rf-m-5w"></div>
+              <div className="rf-m-sm-4w rf-m-1w"></div>
             </div>
 
             <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-7 rf-col-lg-5 afficher-etapes">
-              <ul className="rf-footer__bottom-list">
+              <ul className="rf-footer__bottom-list liste-action">
                 <li className="rf-footer__bottom-item">
                   <a className="rf-footer__bottom-link rf-pr-sm-1w" href="">
                     <img className="image-banniere" src="/logos/statistics/logo-fleche-gauche.svg" alt="Revenir à l’étape précédente"/>
@@ -35,7 +35,7 @@ function StatisticsBanner() {
             </div>
 
             <div className="rf-col-md-4 rf-col-lg-4 afficher-export">
-              <ul className="rf-footer__bottom-list max-width-list ">
+              <ul className="rf-footer__bottom-list max-width-list liste-action">
                 <li className="rf-footer__bottom-item">
                   <a className="rf-footer__bottom-link rf-pr-1w" href="">
                     Exporter au format PDF

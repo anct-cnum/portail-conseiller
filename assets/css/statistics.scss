@@ -1,10 +1,10 @@
 .Statistics {
-  font-family: Marianne;
   .title {
     font-weight: 100;
     font-size: 56px;
     letter-spacing: 0;
     line-height: 64px;
+    font-family: MarianneThin;
   }
   .periode-xs {
     display: none;
@@ -14,35 +14,42 @@
   }
   .date-btn {
     &:hover, &:active {
-      color:#7060ff;
+      color:#5398ff;
       cursor: pointer;
     }
   }
   .date-active{
-    color:#7060ff;
+    color:#5398ff;
   }
   .react-datepicker{
+    font-family: Marianne;
     background-color: #1e1e1e;
-    border: 1px solid #7060ff;
+    border: 1px solid #5398ff;
     border-radius: 1.3rem;
     color: #fff;
-    width: 120%;
 
     .react-datepicker__triangle {
       display: none;
     }
     .react-datepicker__navigation--previous {
-      border-right-color: #fff;
+      background: url(../../public/logos/statistics/logo-chevron-gauche.svg) no-repeat;
+      margin-left: 11px;
+      border: none;
+      height: 16px;
+      width: 10px;
     }
     .react-datepicker__navigation--next {
-      border-left-color: #fff;
+      background: url(../../public/logos/statistics/logo-chevron-droit.svg) no-repeat;
+      margin-right: 11px;
+      border: none;
+      height: 16px;
+      width: 10px;
     }
     .react-datepicker__header {
       background-color: #1e1e1e;
       color: #fff;
       border-top-left-radius: 1.4rem;
       border-top-right-radius: 1.4rem;
-      width: 120%;
 
       .react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header {
         color: #fff;
@@ -54,11 +61,12 @@
         color: #fff;
       }
     }
-    .react-datepicker__month {
-      width: 115%;
-    }
     .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+      font-size: 16px;
       color: #fff;
+      width: 28px;
+      height: 28px;
+      margin: 7px;
     }
     .react-datepicker__day--outside-month {
       color: #909090;
@@ -107,16 +115,33 @@
   .text {
     font-size: 16px;
     letter-spacing: 0;
-    line-height: 24px;
+    line-height: 20px;
+    font-weight: 500;
   }
   .texts {
     font-size: 12px;
     letter-spacing: 0;
     line-height: 20px;
   }
-  .valeur-legende {
-    margin-right: 6px;
+  .titre-legende,.titre-legende-bis, .valeur-legende {
+    display:inline-block;
+    font-weight: 400;
+    height: 20px;
   }
+  .titre-legende {
+    width: 80px;
+  }
+  .titre-legende-bis{
+    width: 82px;
+  }
+  .valeur-legende {
+    text-align: right;
+    width: 35px;
+  }
+  .highcharts-legend-item.highcharts-line-series.highcharts-color-undefined.highcharts-series-1 path.highcharts-graph {
+    stroke-width: 0;
+  }
+
   .image-banniere {
     display: inline-block;
     margin: 0 5px -3px 0;
@@ -124,16 +149,14 @@
   .statistiques_nationales-btn {
     background-color: transparent;
     border: 1px solid #fff;
+    line-height: 1.25rem;
     border-radius: 40px;
-    color: #fff;
-    font-size: 16px;
-    padding: 24px;
-    cursor: pointer;
     text-align:center;
-    &:hover{
-      color: #1e1e1e !important;
-      background-color: #fff !important;
-    }
+    box-shadow: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #fff;
+    padding: 21px;
   }
   .droite-btn {
     float: right;
@@ -143,6 +166,9 @@
   }
   .theme-valeur {
     margin: 0 12px;
+  }
+  .liste-action {
+    padding: 0px;
   }
 
   @media (min-width: 991px) {
@@ -174,12 +200,14 @@
     }
   }
   @media (min-width: 768px) {
-    .hr-md-hide {
+    .hr-md-hide, .graphique-responsive-sm {
       display: none;
     }
   }
   @media (max-width: 767px) {
-
+    .graphique-responsive-md-lg {
+      display:none;
+    }
     .hr-sm-hide {
       display: none;
     }
@@ -234,10 +262,10 @@
       right: 16px;
     }
     #span-datePickerDebut .react-datepicker__tab-loop {
-      left: -2px;
+      left: -10px;
     }
     #span-datePickerFin .react-datepicker__tab-loop {
-      left: -114px;
+      left: -122px;
     }
   }
 }

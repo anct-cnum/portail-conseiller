@@ -14,8 +14,8 @@ function BottomPage(props) {
   const graphiqueEvolution = {
     graphique: {
       typeGraphique: 'xy',
-      largeurGraphique: 300,
-      hauteurGraphique: null,
+      largeurGraphique: 320,
+      hauteurGraphique: 310,
       margeGaucheGraphique: 40,
       margeDroiteGraphique: 70,
       optionResponsive: false,
@@ -24,7 +24,23 @@ function BottomPage(props) {
     titre: {
       optionTitre: 'Évolution des accompagnements',
       margeTitre: 48,
-      placementTitre: -11
+    }
+  };
+
+  const graphiqueEvolutionSM = {
+    graphique: {
+      typeGraphique: 'xy',
+      largeurGraphique: 320,
+      hauteurGraphique: 310,
+      margeGaucheGraphique: 40,
+      margeDroiteGraphique: 70,
+      optionResponsive: false,
+      couleursGraphique: tabColorAge
+    },
+    titre: {
+      optionTitre: 'Évolution des accompagnements',
+      margeTitre: 48,
+      placementTitre: 10,
     }
   };
 
@@ -40,8 +56,7 @@ function BottomPage(props) {
     },
     titre: {
       optionTitre: 'Tranches d\'âge des usagers',
-      margeTitre: 48,
-      placementTitre: -10
+      margeTitre: 34,
     }
   };
 
@@ -57,8 +72,7 @@ function BottomPage(props) {
     },
     titre: {
       optionTitre: 'Statut des usagers',
-      margeTitre: 48,
-      placementTitre: -10
+      margeTitre: 34,
     }
   };
 
@@ -68,7 +82,12 @@ function BottomPage(props) {
 
         <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">
           <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v"><hr/></div>
-          <ElementHighcharts donneesStats={statsEvolutions} variablesGraphique={graphiqueEvolution} />
+          <span className="graphique-responsive-md-lg">
+            <ElementHighcharts donneesStats={statsEvolutions} variablesGraphique={graphiqueEvolution} />
+          </span>
+          <span className="graphique-responsive-sm">
+            <ElementHighcharts donneesStats={statsEvolutions} variablesGraphique={graphiqueEvolutionSM} />
+          </span>
         </div>
 
         <div className="rf-col-offset-12 rf-col-offset-md-1"></div>
