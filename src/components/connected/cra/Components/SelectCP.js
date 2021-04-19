@@ -59,21 +59,25 @@ function SelectCP() {
   };
 
   return (
-    <div className="dropdown">
+    <div className="dropdown" style={cra?.searchCP === true ? { marginBottom: '104px' } : {}}>
+      {!cra?.searchCP && !cra?.searchInput &&
       <button id="buttonCP"
         onClick={onClickButton}
-        onMouseMove={focusInput}
         className={`${cra?.cp === undefined ? 'buttonCP' : 'buttonCP-filled'}`}>
         {cra?.cp === undefined ? 'Entrez le code postal ou la commune...' : cra.cp}
       </button>
+      }
       <div id="myDropdown"
-        className={`dropdown-content ${(cra?.searchCP === true || cra?.searchInput === true) ? 'show' : ''}`}>
+        className={`dropdown-content ${(cra?.searchCP === true || cra?.searchInput === true) ? 'show' : ''}`}
+        style={cra?.searchCP === true && codePostalList.length > 0 ? { border: '1px solid white' } : {}}>
         <input
+          onMouseMove={focusInput}
           autoComplete="off"
           type="text"
           id="searchCP"
           name="searchCP"
           className={`searchCP ${cra?.searchInput === true ? 'dropdown-expanded' : ''}`}
+          style={cra?.searchCP === true && codePostalList.length > 0 ? { borderRadius: '20px 20px 0 0' } : {}}
           placeholder="Saisissez au moins 3 caractères"
           onKeyUp={onKeyUp}/>
         {codePostalList}

@@ -11,8 +11,8 @@ function SmallCountRadioButton({ type }) {
   const onClickMore = () => {
     switch (type) {
       case 'duree':
-        if (cra?.duree < 180) {
-          dispatch(craActions.updateDuree(Number(cra?.duree) + 1));
+        if (cra?.duree < 480) {
+          dispatch(craActions.updateDuree(Number(cra?.duree) + 30));
         }
         break;
       default:
@@ -23,8 +23,8 @@ function SmallCountRadioButton({ type }) {
   const onClickLess = () => {
     switch (type) {
       case 'duree':
-        if (cra?.duree > 60) {
-          dispatch(craActions.updateDuree(Number(cra?.duree) - 1));
+        if (cra?.duree > 90) {
+          dispatch(craActions.updateDuree(Number(cra?.duree) - 30));
         }
         break;
       default:

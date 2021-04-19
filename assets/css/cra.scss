@@ -60,11 +60,15 @@ $errorDarkMode: #FF3333;
   }
 
   .searchCP {
+  height: 104px;
   padding: 14px 20px 12px 45px;
   border: none;
   width: 100%;
-  border-radius: 0 0 20px 20px;
+  border-radius: 20px;
   text-align: center;
+  font-family: 'MarianneMedium', Arial, sans-serif!important;
+  font-size: 16px;
+  font-weight: 500;
   }
 
   .searchCP::placeholder {
@@ -81,19 +85,12 @@ $errorDarkMode: #FF3333;
     position: absolute;
     width: 100%;
     background-color: $background;
-    border-radius: 0 0 20px 20px;
-    border: 1px solid white;
+    border-radius: 20px;
     cursor: pointer;
-    margin-top: -2rem;
-  }
-
-  .dropdown-expanded {
-    border-radius: 0!important;
   }
 
   .dropdown-content:hover, .dropdown-content:focus {
     outline: none;
-    border-top: 0;
   }
 
   .dropdown-content div {
@@ -113,17 +110,8 @@ $errorDarkMode: #FF3333;
   }
 
   .responsiveSelect {
-    width: calc(533%/12);
+    width: calc(544%/12);
     padding-left: 0.75rem;
-  }
-
-  /* custom point de rupture XL du DS */
-  @media (max-width: 1247px) {
-
-    .questionResponsive {
-      margin-left: calc(100%/12);
-    }
-
   }
 
   /* custom point de rupture LG du DS */
@@ -191,12 +179,11 @@ $errorDarkMode: #FF3333;
   .countRadioLabel {
     border-bottom: 1.5px solid black;
     height: 78px;
-    margin-bottom: 1.2px;
   }
 
   .countRadioCalcul {
     width: 50%;
-    height: 52px;
+    height: 51px;
     display: inline-block;
     margin-bottom: -14px;
   }
@@ -448,19 +435,6 @@ $errorDarkMode: #FF3333;
     height: 108px;
   }
 
-  /* custom point de rupture XL du DS */
-  @media (max-width: 1247px) {
-
-    .responsiveCheckboxNewRow1, .responsiveSmallCheckbox  {
-      margin-left: calc(315%/12);
-    }
-
-    .questionCheckboxResponsive {
-      margin-left: calc(100%/12);
-    }
-
-  }
-
   /* custom point de rupture LG du DS */
   @media (max-width: 991px) {
 
@@ -528,12 +502,11 @@ $errorDarkMode: #FF3333;
   .countSmallRadioLabel {
     border-bottom: 1.5px solid black;
     height: 38px;
-    margin-bottom: 1.2px;
   }
 
   .countSmallRadioCalcul {
     width: 50%;
-    height: 52px;
+    height: 51px;
     display: inline-block;
     margin-bottom: -14px;
   }
@@ -552,9 +525,8 @@ $errorDarkMode: #FF3333;
   }
 
   .labelSmallCount {
-    padding: 5px;
     color: black;
-    font-size: 16px;
+    font-size: 24px;
     font-family: 'MarianneMedium', Arial, sans-serif!important;
   }
 
@@ -596,19 +568,15 @@ $errorDarkMode: #FF3333;
       height: 80px!important;
     }
 
-    .labelSmallCount {
-      padding: 0;
-    }
-
   }
   /** END SQUARE BUTTON TIME **/
 
   .submitCra {
     background-color: white;
-    width: 100%;
+    width: 70%;
     border-radius: 48px;
     height: 96px;
-    font-size: 24px;
+    font-size: 20px;
     font-family: 'MarianneBold', Arial, sans-serif!important;
   }
 
