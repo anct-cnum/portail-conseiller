@@ -97,6 +97,23 @@ function RightPage(props) {
     }
   };
 
+  const columnGraphiqueSm = {
+    graphique: {
+      typeGraphique: 'column',
+      largeurGraphique: 300,
+      hauteurGraphique: 310,
+      margeGaucheGraphique: 55,
+      margeDroiteGraphique: 55,
+      optionResponsive: false,
+      couleursGraphique: tabColorDuree
+    },
+    titre: {
+      optionTitre: 'Durée des accompagnements',
+      margeTitre: 48,
+      placementTitre: 0
+    }
+  };
+
   return (
     <>
       <div className="rf-col-12 rf-col-md-5 rf-col-lg-7 graphique-responsive-lg">
@@ -157,7 +174,7 @@ function RightPage(props) {
             </div>
 
             <div className="rf-col-12 rf-col-md-6">
-              <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphique} />
+              <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphiqueSm} />
             </div>
           </div>
         </div>

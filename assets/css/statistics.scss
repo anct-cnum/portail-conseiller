@@ -32,16 +32,18 @@
       display: none;
     }
     .react-datepicker__navigation--previous {
-
-      width: 15px;
-      height: 15px;
+      background: url(../../public/logos/statistics/logo-chevron-gauche.svg) no-repeat;
+      margin-left: 11px;
       border: none;
+      height: 16px;
+      width: 10px;
     }
     .react-datepicker__navigation--next {
-
-      width: 15px;
-      height: 15px;
+      background: url(../../public/logos/statistics/logo-chevron-droit.svg) no-repeat;
+      margin-right: 11px;
       border: none;
+      height: 16px;
+      width: 10px;
     }
     .react-datepicker__header {
       background-color: #1e1e1e;
@@ -198,12 +200,14 @@
     }
   }
   @media (min-width: 768px) {
-    .hr-md-hide {
+    .hr-md-hide, .graphique-responsive-sm {
       display: none;
     }
   }
   @media (max-width: 767px) {
-
+    .graphique-responsive-md-lg {
+      display:none;
+    }
     .hr-sm-hide {
       display: none;
     }

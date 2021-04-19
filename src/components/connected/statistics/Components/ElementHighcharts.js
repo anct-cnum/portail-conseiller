@@ -101,7 +101,7 @@ function ElementHighcharts(props) {
           name: element.nom,
           data: [element.valeur],
           color: couleursGraphique[i],
-          borderColor: couleursGraphique[i],
+          borderColor: '#1e1e1e',
           borderWidth: 1,
         });
       } else {
@@ -167,7 +167,6 @@ function ElementHighcharts(props) {
           symbolPadding: 12,
           itemMarginBottom: 5,
           align: 'left',
-          width: 300,
           x: -10,
           itemStyle: {
             color: '#fff',
@@ -530,7 +529,6 @@ function ElementHighcharts(props) {
         break;
 
       case 'column':
-
         optionsTrace = {
           column: {
             borderWidth: 0,
