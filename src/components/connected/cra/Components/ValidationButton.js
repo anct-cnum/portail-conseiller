@@ -48,7 +48,7 @@ function ValidationButton() {
         {saveInProgress &&
           <span>Enregistrement en cours...</span>
         }
-        {!saveInProgress && error &&
+        {!saveInProgress && error && !cra?.printError &&
           <span className="labelError">{error?.toString()}</span>
         }
       </div>

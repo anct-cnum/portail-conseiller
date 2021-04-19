@@ -79,7 +79,7 @@ function submitCra(cra) {
     .then(
       cra => {
         dispatch(success(cra));
-        history.push('/accueil');
+        history.push('/statistiques');
 
       },
       error => {
