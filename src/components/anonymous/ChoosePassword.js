@@ -51,7 +51,7 @@ function ChoosePassword({ match }) {
 
   return (
     <div className="choosePassword">
-      <Header linkAccount="noConnected"/>
+      <Header/>
       {/* Start content */}
       <div className="rf-container" style={{ backgroundColor: '#2a2a2a', margin: '0px', maxWidth: 'unset' }}>
         <div className="rf-grid-row rf-grid-row--top rf-grid-row--center rf-mb-6w">

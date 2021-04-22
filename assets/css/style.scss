@@ -109,6 +109,14 @@
 /* custom point de rupture md du DS */
 @media (max-width: 768px) {
 
+  .headerRow {
+    justify-content: left;
+  }
+
+  .headerCustom {
+    display: none;
+  }
+
   #burgerMenu {
     display: block;
   }
@@ -128,10 +136,6 @@
 
   .logoFooter {
     margin-bottom: 32px;
-  }
-
-  .finalButton {
-    width: 80%!important;
   }
 
   .footerButton {

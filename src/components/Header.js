@@ -18,20 +18,23 @@ function Header({ linkAccount }) {
   return (
     <header className="rf-header" role="banner">
       <div className="rf-container">
-        <div className="rf-grid-row rf-grid-row--top rf-grid-row--center">
+        <div
+          className={`rf-grid-row rf-grid-row--top rf-grid-row--center ${location.pathname === '/validation' || location.pathname.startsWith('/inscription') ? 'headerRow' : ''}`}>
           <div className="rf-col-xs-10 rf-col-sm-10 rf-col-md-10 rf-col-xl-12">
             <div className="rf-header__body">
               <a className="rf-header__operator" href="/" style={{ boxShadow: 'none' }}>
                 <img src="/logos/logo-conseiller-numerique-nb.svg" alt="logo Conseiller Numérique France Services" style={{ height: '50px' }}/>
               </a>
-              <div className="rf-header__navbar" style={{ marginBottom: '13px' }}>
+              <div
+                className={`rf-header__navbar ${location.pathname === '/validation' || location.pathname.startsWith('/inscription') ? 'headerCustom' : ''}`}
+                style={{ marginBottom: '13px' }}>
                 <div className="rf-service">
                   <a className="rf-service__title" href="/" title="Coop">
                     Coop&nbsp;&nbsp;<span style={{ fontSize: 'small' }}>v { process.env.REACT_APP_VERSION }</span>
                   </a>
                   <p className="rf-service__tagline">Réseau des conseillers numériques France Services</p>
                 </div>
-                { linkAccount !== undefined && linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
+                { linkAccount !== undefined &&
                 <button
                   id="burgerMenu"
                   className="rf-btn rf-fi-menu-fill rf-btn--icon "

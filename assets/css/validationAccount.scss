@@ -1,0 +1,120 @@
+.validationAccount {
+
+  .containerCustom {
+    background-color: #2a2a2a;
+    margin:0;
+    padding:0;
+    margin-top: -1px;
+    max-width: unset;
+  }
+
+  .headBand {
+    background: no-repeat url(/public/logos/fresque.svg);
+    background-position: bottom 0px right 70px;
+    background-color: white;
+    text-align: center;
+  }
+
+  .customLabel {
+    color: black;
+    font-size: 24px!important;
+    line-height: 2rem!important;
+    font-family: "MarianneMBold";
+  }
+
+  .processText {
+    text-align: center;
+  }
+
+  .finalButton {
+    background-color: white;
+    width: 30%;
+    color: black!important;
+  }
+
+  .finalButton:hover, .finalButton:active {
+    --color-hover: $background!important;
+    --color-active: $background!important;
+  }
+
+  /* custom point de rupture XL du DS */
+  @media (max-width: 1024px) {
+
+    .headBand {
+      background-position: bottom 0px right 55px;
+      background-size: 25%;
+    }
+
+    .finalButton {
+      width: 40%;
+    }
+
+  }
+
+  /* custom point de rupture MD du DS */
+  @media (max-width: 768px) {
+
+    .headBand {
+      background-position: bottom 0px right 20px;
+      background-size: 28%;
+    }
+
+  }
+
+  /* custom point de rupture XS du DS */
+  @media (max-width: 576px) {
+
+    .containerCustom {
+      padding-top: 0!important;
+    }
+
+    .headBand {
+      padding: 16px!important;
+      background-position: bottom 0px right 0px;
+    }
+
+    .emailLabel {
+      padding-top: 16px;
+      padding-bottom: 32px;
+      display: block;
+      font-size: 12px;
+    }
+
+    .step {
+      margin-bottom: 16px!important;
+    }
+
+    .process {
+      margin-bottom: 32px!important;
+    }
+
+    .processText {
+      margin-left: calc(100%/12);
+      margin-right: calc(100%/12);
+    }
+
+    .buttonResponsive {
+      margin-left: calc(100%/12);
+      margin-right: calc(100%/12);
+      margin-bottom: 40px!important;
+    }
+
+    .coordonnees {
+      margin-left: calc(100%/12);
+      margin-right: calc(100%/12);
+      margin-bottom: 16px!important;
+    }
+
+    .modifCoordonnees {
+      padding-bottom: 64px!important;
+      margin-left: calc(100%/12);
+      margin-right: calc(100%/12);
+    }
+
+    .finalButton {
+      width: 100%!important;
+    }
+
+  }
+
+}

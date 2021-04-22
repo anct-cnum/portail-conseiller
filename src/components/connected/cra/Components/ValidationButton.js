@@ -21,6 +21,7 @@ function ValidationButton() {
       dispatch(craActions.verifyCra(Object.values(cra?.errorsRequired)));
     } else {
       //Pas d'erreurs, envoi seulement des donnes necessaires à l'API
+      // eslint-disable-next-line no-unused-vars
       let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error, ...dataCraToSend } = cra;
       //Ajout du choix optionnel si non présent
       if (cra?.accompagnement === undefined) {
@@ -41,7 +42,9 @@ function ValidationButton() {
     <div className="rf-grid-row rf-grid-row--center rf-pb-12w rf-mb-3w">
       <div className="rf-col-sm-8 rf-col-md-6 submitResponsive" style={{ textAlign: 'center' }}>
         { cra?.printError &&
-          <span className="labelError">Toutes les questions obligatoires n&rsquo;ont pas été répondues (marquées par un *)</span>
+          <span className="labelError" style={{ display: 'block' }}>
+            Toutes les questions obligatoires n&rsquo;ont pas été répondues (marquées par un&nbsp;*)
+          </span>
         }
         <button className="rf-btn rf-text--bold big-btn submitCra" onClick={sendCra}>Valider</button>
         <br/>
