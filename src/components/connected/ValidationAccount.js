@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { history } from '../../helpers/history';
 import Header from '../Header';
 import Footer from '../Footer';
 import { useSelector, useDispatch } from 'react-redux';
@@ -23,74 +22,95 @@ function ValidationAccount() {
     }
   }, [conseiller]);
 
-  function handleSubmit() {
-    history.push('/accueil'); //TODO PROCESS CHANGING
-  }
-
   return (
     <div className="validationAccount">
-      <Header linkAccount={user?.name}/>
-      {/* Start content */}
-      <div className="rf-container" style={{ backgroundColor: '#2a2a2a', margin: '0px', maxWidth: 'unset' }}>
-        <div className="rf-grid-row rf-grid-row--top rf-grid-row--center rf-mb-5w">
-          <div className="rf-col-1"></div>
-          {/* Title */}
-          <div className="rf-col-10 rf-mt-12w" style={{ textAlign: 'center' }}>
-            <h2 style={{ margin: '0' }}>Vos coordonnées professionnelles</h2>
-          </div>
-          <div className="rf-col-1"></div>
+      <Header/>
+      <div className="rf-container rf-container--fluid rf-pt-2w containerCustom">
+        {/* Bandeau */}
+        <div className="rf-grid-row rf-grid-row--center rf-grid-row--middle rf-py-5w rf-mb-9w headBand">
+          <p className="customLabel">Félicitations ! Votre adresse mail vient d&rsquo;être créée&nbsp;:<br/>
+            <span className="emailLabel">{user?.name}</span>
+          </p>
         </div>
-        <div className="rf-grid-row rf-grid-row--center rf-mb-7w">
+        {/* Etape suivante */}
+        <div className="rf-grid-row rf-grid-row--center rf-grid-row--middle rf-mb-6w step">
           <div className="rf-col-3"></div>
           <div className="rf-col-6" style={{ textAlign: 'center' }}>
             <p>
-              <strong>Vous y êtes presque ! Après votre validation, vous accéderez à la visualisation intéractive des conseillers numériques France Services,
-                ainsi qu&rsquo;aux ressources qui vous permettront de démarrer votre activité dans les meilleures conditions.
-                Une fois que vous êtes connecté(e), il vous est également possible de modifier vos données personnelles (nom, prénom).
-              </strong>
+              <strong style={{ fontSize: '24px' }}>&Eacute;tape suivante&nbsp;:</strong>
             </p>
           </div>
           <div className="rf-col-3"></div>
         </div>
-        <div className="rf-grid-row rf-grid-row--center rf-pb-12w">
+        {/* Procédure */}
+        <div className="rf-grid-row rf-grid-row--center rf-grid-row--middle rf-mb-4w process">
+          <div className="rf-col-3"></div>
+          <div className="rf-col-sm-10 rf-col-md-6 processText">
+            <p>
+              Rendez-vous sur la boîte de réception de votre mail Conseiller numérique France Services,
+              et cliquez sur le lien de connexion à l&rsquo;espace Coop qui vous a été envoyé.
+            </p>
+          </div>
+          <div className="rf-col-3"></div>
+        </div>
+        {/* Bouton webmail */}
+        <div className="rf-grid-row rf-grid-row--center rf-grid-row--middle rf-mb-9w buttonResponsive">
+          <div className="rf-col-1"></div>
+          <div className="rf-col-10" style={{ textAlign: 'center' }}>
+            <p>
+              <a href={process.env.REACT_APP_WEBMAIL_URL} className="rf-btn rf-text--bold big-btn finalButton" title="Accéder au webmail">Accéder au webmail</a>
+            </p>
+          </div>
+          <div className="rf-col-1"></div>
+        </div>
+        {/* Titre Coordonnees Pro */}
+        <div className="rf-grid-row rf-grid-row--center rf-grid-row--middle rf-mb-6w coordonnees">
+          <p style={{ textAlign: 'center' }}>
+            <strong style={{ fontSize: '24px' }}>Vos coordonnées professionnelles</strong>
+          </p>
+        </div>
+        {/* Coordonnees */}
+        <div className="rf-grid-row rf-grid-row--center rf-grid-row--middle rf-mb-6w coordonnees">
           <div className="rf-col-3"></div>
           <div className="rf-col-6" style={{ textAlign: 'center', color: '#BFBFE3' }}>
-            <p className="rf-mb-4w">
+            <p>
               <strong>
                 <span style={{ textTransform: 'capitalize' }}>
                   {conseiller?.prenom}&nbsp;{conseiller?.nom}
                 </span>
               </strong>
             </p>
-            <p className="rf-mb-4w">
+            <p>
               <strong>{ structure?.nom }</strong>
             </p>
             { structure?.insee?.etablissement?.adresse?.l4 &&
-            <p className="rf-mb-4w">
+            <p>
               <strong>{ structure?.insee?.etablissement?.adresse?.l4 }</strong>
             </p>
             }
             { structure?.insee?.etablissement?.adresse?.l5 &&
-            <p className="rf-mb-4w">
+            <p>
               <strong>{ structure?.insee?.etablissement?.adresse?.l5 }</strong>
             </p>
             }
             { structure?.insee?.etablissement?.adresse?.code_postal &&
-            <p className="rf-mb-4w">
+            <p>
               <strong>{ structure?.insee?.etablissement?.adresse?.code_postal }</strong>
             </p>
             }
             { structure?.insee?.etablissement?.adresse?.localite &&
-            <p className="rf-mb-7w" style={{ textTransform: 'uppercase' }}>
+            <p style={{ textTransform: 'uppercase' }}>
               <strong>{ structure?.insee?.etablissement?.adresse?.localite }</strong>
             </p>
             }
-            <p className="rf-pb-3w rf-mt-4w">
-              <button className="rf-btn rf-text--bold big-btn finalButton" onClick={handleSubmit}
-                style={{ background: 'white', width: '50%' }}>Finaliser mon accès</button>
-            </p>
           </div>
           <div className="rf-col-3"></div>
+        </div>
+        {/* Procédure */}
+        <div className="rf-grid-row rf-grid-row--center rf-grid-row--middle rf-pb-12w modifCoordonnees">
+          <p style={{ textAlign: 'center' }}>
+            Vous pourrez modifier vos coordonnées professionnelles plus tard.
+          </p>
         </div>
       </div>
       {/* End content */}
