@@ -1,0 +1,21 @@
+.welcome {
+  font-family: Marianne;
+  letter-spacing: 0;
+  .titre {
+    font-family: MarianneThin;
+    text-align: center;
+    font-size: 3.5rem;
+    line-height: 4rem;
+  }
+  .sous-titre {
+    text-align: center;
+    color: #f0f0f0;
+  }
+  .welcome-btn {
+    background-color: #fff;
+    width: 70%;
+    border-radius: 48px;
+    height: 96px;
+    font-size: 20px;
+  }
+}

@@ -19,7 +19,9 @@ function Header({ linkAccount }) {
     <header className="rf-header" role="banner">
       <div className="rf-container">
         <div
-          className={`rf-grid-row rf-grid-row--top rf-grid-row--center ${location.pathname === '/validation' || location.pathname.startsWith('/inscription') ? 'headerRow' : ''}`}>
+          className={`rf-grid-row rf-grid-row--top rf-grid-row--center
+            ${location.pathname === '/validation' || location.pathname.startsWith('/inscription') ? 'headerRow' : ''}`
+          }>
           <div className="rf-col-xs-10 rf-col-sm-10 rf-col-md-10 rf-col-xl-12">
             <div className="rf-header__body">
               <a className="rf-header__operator" href="/" style={{ boxShadow: 'none' }}>
@@ -51,7 +53,10 @@ function Header({ linkAccount }) {
                       <li className="rf-shortcuts__item">
                         { linkAccount === 'noConnected' ?
                           <a href="/login" className="rf-link" target="_self">J&rsquo;ai déjà un compte</a> :
-                          <span className="rf-link" style={{ cursor: 'unset' }}> { linkAccount } </span> }
+                          <span className="rf-link" style={{ cursor: 'unset' }}>
+                            <span className="rf-fi-user-line" aria-hidden="true"></span>
+                            { linkAccount }
+                          </span> }
                       </li>
                       { linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
                       <li className="rf-shortcuts__item">
