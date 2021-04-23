@@ -53,109 +53,145 @@ function ChoosePassword({ match }) {
     <div className="choosePassword">
       <Header/>
       {/* Start content */}
-      <div className="rf-container" style={{ backgroundColor: '#2a2a2a', margin: '0px', maxWidth: 'unset' }}>
-        <div className="rf-grid-row rf-grid-row--top rf-grid-row--center rf-mb-6w">
-          <div className="rf-col-1"></div>
-          {/* Title */}
-          <div className="rf-col-10" style={{ textAlign: 'center' }}>
-            <h1 className="titrage" style={{ margin: '0' }}>Bienvenue sur le Portail<br/>de la communauté des conseillers<br/>numériques France Services</h1>
-          </div>
-          <div className="rf-col-1"></div>
-        </div>
-        <div className="rf-grid-row rf-grid-row--top rf-grid-row--center rf-mb-6w">
-          <div className="rf-col-1"></div>
-          {/* Avatars */}
-          <div className="rf-col-10" style={{ textAlign: 'center' }}>
-            <img src="/avatars/avatar-conseiller.svg" width="125px" alt="Avatar conseiller" className="rf-ml-4w rf-mr-4w avatar avatarConseiller"/>
-            <img src="/avatars/avatar-conseillere.svg" width="125px" alt="Avatar conseillere" className="rf-mr-4w avatar"/>
-            <img src="/avatars/avatar-conseillers.svg" width="125px" alt="Avatar conseillers" className="rf-mr-4w avatar"/>
-            <img src="/avatars/avatar-senior.svg" width="125px" alt="Avatar senior" className="rf-mr-4w avatar"/>
-            <img src="/avatars/avatar-coordinatrice.svg" width="125px" alt="Avatar coordinatrice" className="avatar avatarCoordinatrice"/>
-          </div>
-          <div className="rf-col-1"></div>
-        </div>
-        <div className="rf-grid-row rf-grid-row--center rf-mb-5w">
-          <div className="rf-col-2"></div>
-          <div className="rf-col-8" style={{ textAlign: 'center' }}>
-            <p>
-              Vous vous apprêtez à finaliser la création de votre compte avec votre adresse mail :<br/>
-              <strong>{user?.name}</strong>
-            </p>
-          </div>
-          <div className="rf-col-2"></div>
-        </div>
-        <div className="rf-grid-row rf-grid-row--center rf-mb-3w">
-          <div className="rf-col-3"></div>
-          <div className="rf-col-6" style={{ textAlign: 'center' }}>
-            <p>
-              <strong>Veuillez créer votre mot de passe</strong>
-            </p>
-          </div>
-          <div className="rf-col-3"></div>
-        </div>
 
-        { verifyingToken &&
-          <div className="rf-grid-row rf-grid-row--center rf-mb-3w">
-            <span>Chargement...</span>
-          </div>
-        }
+      <div className="rf-container-fluid">
+        <div className="rf-grid-row rf-grid-row--center">
 
-        { tokenVerified === false &&
-          <div className="rf-grid-row rf-grid-row--center rf-mb-3w">
-            <span style={{ color: 'red' }}>Désolé mais le lien est invalide.</span>
-          </div>
-        }
-
-        { tokenVerified && !passwordChoosen &&
-          <div className="rf-grid-row rf-grid-row--top rf-grid-row--center rf-pb-7w">
-            <div className="rf-col-sm-1 rf-col-lg-4"></div>
-            {/* Form */}
-            <div className="rf-col-sm-8 rf-col-lg-4" style={{ textAlign: 'center' }}>
-              <div>
-                {error && <span className="invalid">{error.error}</span>}
-              </div>
-              <div className="rf-mb-3w">
-                <label className="rf-label">Mot de passe</label>
-                <input name="password"
-                  type="password"
-                  value={password}
-                  onChange={handleChange} className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')} />
-                {submitted && !password &&
-                    <div className="invalid">Mot de passe requis</div>
-                }
-                { password && !checkComplexity(password) &&
-                  <span style={{ color: 'red' }}>Le mot de passe doit contenir au moins 6 caractères.</span>
-                }
-              </div>
-              <div className="rf-mb-5w">
-                <label className="rf-label">Confirmer le mot de passe</label>
-                <input
-                  name="passwordConfirm"
-                  type="password"
-                  value={passwordConfirm}
-                  onChange={handleChange} className={(submitted && passwordConfirm !== password ? ' is-invalid rf-input' : 'rf-input')} />
-                {submitted && passwordConfirm !== password &&
-                    <div className="invalid">La confirmation du mot de passe doit correspondre</div>
-                }
-              </div>
-              {choosingPassword && <span>Chargement...</span>}
-              <div>
-                <button className="rf-btn rf-text--bold big-btn" onClick={handleSubmit} style={{ background: 'white' }}>C&rsquo;est parti !</button>
-                <br/>
+          <div className="rf-col-12 zone-titre">
+            <div className="rf-container">
+              <div className="rf-grid-row rf-grid-row--center">
+                <div className="rf-col-12 rf-col-md-10">
+                  <h1 className="titre rf-my-2w rf-mb-md-5w ">Création de votre boîte mail <br className="br-titre"/>et accès à l&#39;Espace coop</h1>
+                  <p className="sous-titre rf-mb-2w rf-mb-md-4w">
+                    Bonjour <b>{user?.name}</b>, vous êtes sur le point de finaliser l&#39;accès à vos services en ligne
+                    <br/>Conseiller numérique France Services
+                  </p>
+                </div>
               </div>
             </div>
-            <div className="rf-col-sm-1 rf-col-lg-4"></div>
           </div>
-        }
-        <div className="rf-grid-row rf-grid-row--center rf-pb-12w">
-          <div className="rf-col-1"></div>
-          <div className="rf-col-10" style={{ textAlign: 'center' }}>
-            <p>
-              <strong>Accédez aux ressources utiles pour bien démarrer votre activité en quelques clics,<br/>
-                entrez en contact avec les autres conseillers numériques France Services de votre territoire</strong>
-            </p>
+
+          <div className="rf-col-12 zone-mot-de-passe">
+            <div className="rf-container">
+              <div className="rf-grid-row rf-grid-row--center">
+
+                <div className="rf-col-12 rf-col-md-5 rf-mt-2w rf-mt-md-4w">
+                  <h2 className="titre rf-mb-4v">Choisissez un mot de passe <img className="cle" src="/logos/cle.svg"/></h2>
+                  <p className="sous-titre rf-mb-3w">
+                    Celui-ci servira à la fois pour votre connexion au mail, et pour vous identifier sur l’espace Coop, gardez le précieusement !
+                  </p>
+                  <p className="rf-mb-3w">Une boîte mail prenom.nom@conseiller-numerique.fr sera automatiquement créée lorsque vous cliquerez sur Valider.</p>
+                  <p className="rf-mb-md-3w">Accédez ensuite à cette dernière afin de pouvoir effectuer votre première connexion à l’espace Coop.</p>
+                </div>
+
+                <div className="rf-col-12 rf-col-md-5">
+
+                  { verifyingToken || choosingPassword &&
+                    <div className="chargement">
+                      Chargement...
+                    </div>
+                  }
+                  { tokenVerified === false &&
+                    <div className="erreur-token">
+                      <div className="invalid">Désolé mais le lien est invalide.</div>
+                    </div>
+                  }
+
+                  { tokenVerified && !passwordChoosen &&
+                  <div className="rf-mt-11v">
+                    {/* Form */}
+                    <div>
+                      {error && <div className="invalid">{error.error}</div>}
+                    </div>
+
+                    <label className="rf-label">
+                      Veuillez choisir votre mot de passe.
+                      <br/>Celui-ci doit contenir au moins six caractères
+
+                      <input name="password" type="password" value={password}
+                        onChange={handleChange} className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')}
+                      />
+                    </label>
+
+                    {submitted && !password &&
+                    <div className="rf-mt-2w rf-mb-n2w">
+                      <div className="invalid">Mot de passe requis</div>
+                    </div>
+                    }
+                    { password && !checkComplexity(password) &&
+                      <div className="rf-mt-2w rf-mb-n2w">
+                        <div className="invalid">Le mot de passe doit contenir au moins six caractères.</div>
+                      </div>
+                    }
+
+                    <label className="rf-label rf-my-4w">
+                      Confirmer le mot de passe
+
+                      <input name="passwordConfirm" type="password" value={passwordConfirm}
+                        onChange={handleChange} className={(submitted && passwordConfirm !== password ? ' is-invalid rf-input' : 'rf-input')}
+                      />
+                    </label>
+                    {submitted && passwordConfirm !== password &&
+                    <div className="rf-mb-2w rf-mt-n2w">
+                      <div className="invalid rf-mt-2w">Les mots de passe ne correspondent pas. </div>
+                    </div>
+                    }
+
+                    <button className="btn-connexion rf-mb-6w rf-mb-md-7w" onClick={handleSubmit} >Valider le mot de passe</button>
+                  </div>
+                  }
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="rf-col-1"></div>
+
+          <div className="rf-col-12 zone-recapitulatif">
+            <div className="rf-container rf-mt-5w rf-mt-md-9w">
+              <div className="rf-grid-row rf-grid-row--center">
+                <div className="rf-col-offset-md-3" ></div>
+                <div className="rf-col-12 rf-col-md-6 rf-mb-2w etape">Étape 1 :
+                  <img src="/logos/mail-conseiller-numerique.svg" alt="Avatar conseiller" className="rf-ml-4v enveloppe"/>
+                </div>
+                <div className="rf-col-offset-md-3" ></div>
+
+                <div className="rf-col-offset-md-3" ></div>
+                <div className="rf-col-12 rf-col-md-6 rf-mb-2w rf-mb-md-3w descriptif">
+                  La création de votre compte mail <br className="br-mail"/>prenom.nom@conseiller-numerique.fr
+                </div>
+                <div className="rf-col-offset-md-3" ></div>
+
+                <div className="rf-col-offset-md-3" ></div>
+                <div className="rf-col-12 rf-col-md-6 rf-mb-5w rf-mb-md-9w recapitulatif">
+                  Celui-ci vous permettra de recevoir et d’envoyer les courriels en lien <br className="br-mail"/>
+                  avec votre activité. Il vous servira également d’identifiant  pour la <br/>connexion à l’espace Coop.
+                </div>
+                <div className="rf-col-offset-md-3" ></div>
+
+                <div className="rf-col-offset-md-3" ></div>
+                <div className="rf-col-12 rf-col-md-6 rf-mb-2w etape">Étape 2 :
+                  <img src="/avatars/avatar-conseiller.svg" alt="Avatar conseiller" className="avatar-pwd rf-ml-5v"/>
+                  <img src="/avatars/avatar-conseillere.svg" alt="Avatar conseillere" className="avatar-pwd"/>
+                  <img src="/avatars/avatar-conseillers.svg" alt="Avatar conseillers" className="avatar-pwd"/>
+                  <img src="/avatars/avatar-senior.svg" alt="Avatar senior" className="avatar-pwd"/>
+                  <img src="/avatars/avatar-coordinatrice.svg" alt="Avatar coordinatrice" className="avatar-pwd last"/>
+                </div>
+                <div className="rf-col-offset-md-3" ></div>
+
+                <div className="rf-col-offset-md-3" ></div>
+                <div className="rf-col-12 rf-col-md-6 rf-mb-2w rf-mb-md-3w descriptif">
+                  Votre première connexion à votre espace personnel sur coop.conseillernumerique.fr
+                </div>
+                <div className="rf-col-offset-md-3" ></div>
+
+                <div className="rf-col-offset-md-3" ></div>
+                <div className="rf-col-12 rf-col-md-6 rf-mb-8w rf-mb-md-15w recapitulatif">Votre boite mail @conseiller-numerique.fr sert d’identifiant<br/>
+                  Votre mot de passe de connexion est le même.
+                </div>
+                <div className="rf-col-offset-md-3" ></div>
+
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       {/* End content */}
