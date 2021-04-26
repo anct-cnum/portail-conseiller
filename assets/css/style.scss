@@ -24,9 +24,18 @@
 }
 
 @font-face {
-  font-family: MarianneMBold;
+  font-family: MarianneBold;
   src: url(/public/fontsAddons/Marianne-Bold.woff2);
-  font-weight: italic;
+}
+
+@font-face {
+  font-family: MarianneExtraBold;
+  src: url(/public/fontsAddons/Marianne-ExtraBold.woff2);
+}
+
+@font-face {
+  font-family: MarianneRegular;
+  src: url(/public/fontsAddons/Marianne-Regular.woff2);
 }
 
 /** Trick to fix DS problem with burger menu with react**/
@@ -97,15 +106,6 @@
   line-height: 1.25em!important;
 }
 
-/* custom point de rupture LG du DS */
-@media (min-width: 992px) {
-
-  .avatarConseiller {
-    margin-left: 0!important;
-  }
-
-}
-
 /* custom point de rupture md du DS */
 @media (max-width: 768px) {
 
@@ -125,14 +125,6 @@
 
 /* custom point de rupture XS du DS */
 @media (max-width: 576px) {
-
-  .avatar {
-    margin-left: 32px!important;
-  }
-
-  .avatarCoordinatrice {
-    margin-right: 32px!important;
-  }
 
   .logoFooter {
     margin-bottom: 32px;
