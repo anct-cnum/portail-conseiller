@@ -3,9 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import Header from '../Header';
 import Footer from '../Footer';
 import PropTypes from 'prop-types';
-import { userActions } from '../../actions';
+import { userActions, conseillerActions } from '../../actions';
+import { userEntityId } from '../../helpers';
 
 function ChoosePassword({ match }) {
+  const dispatch = useDispatch();
+  const conseiller = useSelector(state => state.conseiller?.conseiller);
+
+  useEffect(() => {
+    dispatch(conseillerActions.get(userEntityId()));
+  }, []);
 
   const [inputs, setInputs] = useState({
     username: '',
@@ -15,7 +22,7 @@ function ChoosePassword({ match }) {
   const [submitted, setSubmitted] = useState(false);
   const { passwordConfirm, password } = inputs;
   const error = useSelector(state => state.authentication.error);
-  const dispatch = useDispatch();
+
 
   const token = match.params.token;
   const verifyingToken = useSelector(state => state.createAccount.verifyingToken);
@@ -63,7 +70,7 @@ function ChoosePassword({ match }) {
                 <div className="rf-col-12 rf-col-md-10">
                   <h1 className="titre rf-my-2w rf-mb-md-5w ">Création de votre boîte mail <br className="br-titre"/>et accès à l&#39;Espace coop</h1>
                   <p className="sous-titre rf-mb-2w rf-mb-md-4w">
-                    Bonjour <b>{user?.name}</b>, vous êtes sur le point de finaliser l&#39;accès à vos services en ligne
+                    Bonjour <b>{conseiller?.prenom} {conseiller?.nom}</b>, vous êtes sur le point de finaliser l&#39;accès à vos services en ligne
                     <br/>Conseiller numérique France Services
                   </p>
                 </div>
