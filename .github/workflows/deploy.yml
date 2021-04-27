@@ -29,6 +29,8 @@ jobs:
       uses: SpicyPizza/create-envfile@v1
       with:
         envkey_REACT_APP_STRATEGYAUTH: "local"
+        envkey_REACT_APP_VERSION: "1.0"
+        envkey_REACT_APP_WEBMAIL_URL: "http://webmail.coop.fr"
         envkey_SECRET_KEY: ${{ secrets.REACT_APP_API_RECETTE }}
         file_name: .env
     - name: Build application
