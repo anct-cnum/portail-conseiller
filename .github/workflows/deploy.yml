@@ -29,7 +29,7 @@ jobs:
       uses: SpicyPizza/create-envfile@v1
       with:
         envkey_REACT_APP_STRATEGYAUTH: "local"
-        envkey_SECRET_KEY: ${{ secrets.REACT_APP_API_RECETTE }}
+        envkey_REACT_APP_API: ${{ secrets.REACT_APP_API_RECETTE }}
         file_name: .env
     - name: Build application
       run: yarn run build
