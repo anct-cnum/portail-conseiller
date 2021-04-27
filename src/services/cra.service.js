@@ -9,7 +9,7 @@ function createCra(cra) {
   const apiUrlRoot = process.env.REACT_APP_API;
 
   const requestOptions = {
-    method: 'CREATE',
+    method: 'POST',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
     body: JSON.stringify({
       cra: cra,
@@ -17,7 +17,7 @@ function createCra(cra) {
     })
   };
 
-  return fetch(`${apiUrlRoot}/cra}`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/cras`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
