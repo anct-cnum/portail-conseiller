@@ -32,13 +32,13 @@ function Menu() {
                     Accueil
                 </Link>
               </li>
-              <li className="rf-nav__item">
+              {/* <li className="rf-nav__item">
                 <Link
                   className={`rf-nav__link linkCustom ${location.pathname === '/statistiques' ? 'linkActive' : ''}`}
                   to="/statistiques" onClick={toggleBurgerMenu}>
                     Statistiques
                 </Link>
-              </li>
+              </li> */}
               <li className="rf-nav__item">
                 <Link
                   className={`rf-nav__link linkCustom ${location.pathname === '/compte-rendu-activite' ? 'linkActive' : ''}`}
