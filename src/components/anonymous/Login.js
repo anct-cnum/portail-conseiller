@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import Header from '../Header';
 import Footer from '../Footer';
 
 import { userActions } from '../../actions';
@@ -39,67 +38,64 @@ function Login() {
 
   return (
     <div className="Login">
-      <Header/>
       {/* Start content */}
       <div className="rf-container" style={{ backgroundColor: '#2a2a2a', margin: '0px', maxWidth: 'unset' }}>
-        <div className="rf-grid-row rf-grid-row--top rf-grid-row--center rf-mb-6w">
-          <div className="rf-col-1"></div>
+        <div className="rf-grid-row rf-grid-row--gutters rf-py-xs-1w rf-py-md-8w" style={{ marginBottom: 0 }}>
+          <div className="margeLeft"></div>
           {/* Title */}
-          <div className="rf-col-10" style={{ textAlign: 'center' }}>
-            <h1 className="titrage" style={{ margin: '0' }}>Bienvenue sur le Portail<br/>de la communauté des conseillers<br/>numériques France Services</h1>
-          </div>
-          <div className="rf-col-1"></div>
-        </div>
-        <div className="rf-grid-row rf-grid-row--top rf-grid-row--center rf-mb-6w">
-          <div className="rf-col-1"></div>
-          {/* Avatars */}
-          <div className="rf-col-10" style={{ textAlign: 'center' }}>
-            <img src="/avatars/avatar-conseiller.svg" width="125px" alt="Avatar conseiller" className="rf-ml-4w rf-mr-4w avatar avatarConseiller"/>
-            <img src="/avatars/avatar-conseillere.svg" width="125px" alt="Avatar conseillere" className="rf-mr-4w avatar"/>
-            <img src="/avatars/avatar-conseillers.svg" width="125px" alt="Avatar conseillers" className="rf-mr-4w avatar"/>
-            <img src="/avatars/avatar-senior.svg" width="125px" alt="Avatar senior" className="rf-mr-4w avatar"/>
-            <img src="/avatars/avatar-coordinatrice.svg" width="125px" alt="Avatar coordinatrice" className="avatar avatarCoordinatrice"/>
-          </div>
-          <div className="rf-col-1"></div>
-        </div>
-        <div className="rf-grid-row rf-grid-row--top rf-grid-row--center rf-pb-7w">
-          <div className="rf-col-sm-1 rf-col-lg-4"></div>
-          {/* Form */}
-          <div className="rf-col-sm-8 rf-col-lg-4" style={{ textAlign: 'center' }}>
-            <div>
-              {error && <span className="invalid">{error.error}</span>}
+          <div className="rf-col-xs-12 rf-col-sm-12 rf-col-md-5 rf-mt-xs-1w rf-mt-md-8w">
+            <div className="headPart">
+              <img
+                src="/logos/logo-conseiller-numerique-nb.svg"
+                alt="logo Conseiller Numérique France Services"
+                className="logoCnfs"/>
+              <h1 className="titrage rf-mt-xs-3w rf-mt-md-9w rf-mb-6w">Espace Coop</h1>
             </div>
-            <div className="rf-mb-3w">
-              <label className="rf-label">Adresse email</label>
-              <input name="username" value={username} onChange={handleChange} className={(submitted && !username ? ' is-invalid rf-input' : 'rf-input')} />
+            <p className="rf-service__tagline labNetworkCnfs">Le réseau des conseillers numériques France Services.</p>
+            <div className="rf-my-9w personas1">
+              <img src="/logos/personas-hexagones.svg" width="100%" alt="Avatars conseillers"/>
+            </div>
+          </div>
+          <div className="rf-my-4w connexion">
+            <div className="rf-px-2w rf-mb-2w">
+              <label className="rf-label email">E-mail Conseiller numérique France Services</label>
+              <input
+                name="username"
+                value={username}
+                onChange={handleChange}
+                className={`rf-input rf-input-custom ${submitted && !password ? ' is-invalid' : ''}`} />
               {submitted && !username &&
                   <div className="invalid">Identifiant requis</div>
               }
             </div>
-            <div className="rf-mb-5w">
-              <label className="rf-label">Mot de passe</label>
+            <div className="rf-px-2w rf-mb-4w">
+              <label className="rf-label password">Mot de passe</label>
               <input
                 name="password"
                 type="password"
                 value={password}
                 onChange={handleChange}
-                className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')} />
+                className={`rf-input rf-input-custom ${submitted && !password ? ' is-invalid' : ''}`} />
               {submitted && !password &&
                   <div className="invalid">Mot de passe requis</div>
               }
             </div>
             <div>
-              <button className="rf-btn rf-text--bold big-btn" onClick={handleSubmit} style={{ background: 'white' }}>Se connecter</button>
-              <br/>{loggingIn && <span>Connexion en cours...</span>}
+              <button className="rf-btn rf-text--bold big-btn" onClick={handleSubmit} style={{ background: 'white' }}>Connexion</button>
+              <br/>{loggingIn && <span style={{ color: 'black' }}>Connexion en cours...</span>}
+            </div>
+            <div>
+              {error && <span className="invalid">{error.error}</span>}
             </div>
           </div>
-          <div className="rf-col-sm-1 rf-col-lg-4"></div>
+        </div>
+        <div className="rf-grid-row rf-pb-12w personas2" style={{ textAlign: 'center' }}>
+          <div className="rf-col-12">
+            <img src="/logos/personas-hexagones.svg" width="90%" alt="Avatars conseillers"/>
+          </div>
         </div>
       </div>
-      {/* End content */}
-      <div>
-        <Footer/>
-      </div>
+      <Footer/>
     </div>
   );
 }

@@ -1,0 +1,170 @@
+.Login {
+
+  .titrage {
+    font-family: 'MarianneExtraBold', Arial, sans-serif!important;
+  }
+
+  .labNetworkCnfs {
+    font-family: 'MarianneBold', Arial, sans-serif!important;
+    line-height: 24px;
+  }
+
+  .email, .password {
+    color: black;
+    font-size: 16px;
+    font-family: 'MarianneRegular', Arial, sans-serif!important;
+  }
+
+  .email {
+    margin-top: 100px;
+  }
+
+  .connexion {
+    width: 463px;
+    height: 520px;
+    position: relative;
+    text-align: center;
+    padding: 15px;
+    background: no-repeat url(/public/logos/hexagon-login.svg);
+    background-size: 100% 100%;
+  }
+
+  .margeLeft {
+    width: calc(100%/12);
+  }
+
+  .rf-input-custom {
+    box-shadow: inset 0 -2px 0 0 #1e1e1e!important;
+    background-color: #F0F0F0!important;
+    color: #1e1e1e!important;
+    -webkit-text-fill-color: #1e1e1e!important;
+  }
+
+  .big-btn {
+    border: 1px solid black!important;
+    width: 60%;
+    height: 64px;
+    padding: 1rem;
+    font-family: "MarianneBold", Arial, sans-serif!important;
+  }
+
+  .personas1 {
+    display: block;
+  }
+
+  .personas2 {
+    display: none;
+  }
+
+  .logoCnfs {
+    height: 60px;
+  }
+
+  /* custom point de rupture XL du DS */
+  @media (max-width: 1248px) {
+
+    .margeLeft {
+      display: none;
+    }
+
+  }
+
+    /* custom point de rupture LG du DS */
+    @media (max-width: 810px) {
+
+      .connexion {
+        width: 370px;
+        height: 415px;
+      }
+
+      .email {
+        margin-top: 65px;
+      }
+
+    }
+
+  /* custom point de rupture MD du DS */
+  @media (max-width: 767px) {
+
+    .connexion {
+      width: 463px;
+      height: 534px;
+      margin: 0 auto;
+    }
+
+    .personas1 {
+      display: none;
+    }
+
+    .personas2 {
+      display: block;
+    }
+
+    .titrage {
+      display: inline-block;
+      font-size: 20px!important;
+      vertical-align: middle;
+      margin-bottom: 0!important;
+    }
+
+    .logoCnfs {
+      margin-right: 40px;
+    }
+
+    .headPart {
+      display: flex;
+      align-content: center;
+      align-items: center;
+      margin-bottom: 40px;
+      margin-top: 32px;
+    }
+
+    .labNetworkCnfs {
+      text-align: center;
+      font-size: 24px;
+      line-height: 32px;
+      margin-bottom: 0px;
+    }
+
+    .email {
+      margin-top: 98px;
+    }
+
+  }
+
+    /* custom point de rupture SM du DS */
+    @media (max-width: 576px) {
+
+      .connexion {
+        background-size: contain;
+        height: calc(70vw * 1.72);
+        width: 105%;
+        margin-left: -8px;
+        margin-right: -8px;
+      }
+
+      .email {
+        margin-top: 135px;
+      }
+
+    }
+
+    /* custom point de rupture */
+    @media (max-width: 460px) {
+
+      .email {
+        margin-top: 82px;
+      }
+
+    }
+
+    /* custom point de rupture */
+    @media (max-width: 370px) {
+
+      .email {
+        margin-top: 66px;
+      }
+
+    }
+
+}
