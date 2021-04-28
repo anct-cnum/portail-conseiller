@@ -52,7 +52,10 @@ function Header({ linkAccount }) {
                       <li className="rf-shortcuts__item">
                         { linkAccount === 'noConnected' ?
                           <a href="/login" className="rf-link" target="_self">J&rsquo;ai déjà un compte</a> :
-                          <span className="rf-link" style={{ cursor: 'unset' }}> { linkAccount } </span> }
+                          <span className="rf-link" style={{ cursor: 'unset' }}>
+                            <span className="rf-fi-user-line" aria-hidden="true"></span>
+                            { linkAccount }
+                          </span> }
                       </li>
                       { linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
                       <li className="rf-shortcuts__item">
