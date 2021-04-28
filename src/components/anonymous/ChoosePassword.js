@@ -202,7 +202,7 @@ function ChoosePassword({ match }) {
         </div>
       </div>
       {/* End content */}
-      <Footer/>
+      <Footer type="support" titreBouton="Donner mon avis sur cette page"/>
     </div>
   );
 

@@ -92,7 +92,7 @@
     width: 272px;
   }
   .futur-img {
-    height: 221px;
+    height: 249px;
     width: 432px;
   }
   .legende-img {
@@ -105,13 +105,55 @@
     color: #bfbfe3;
     font-weight: 600;
   }
-  .coordonnees-btn {display: inline-block;
+  .coordonnees-btn {
+    text-decoration: underline;
+    display: inline-block;
     text-align: center;
+    box-shadow: none;
   }
   .coordonnees-details {
     text-align: right;
   }
-  .rf-mb-md-15w {
-    margin-bottom: 7.5rem;
+  @media (max-width: 1100px) {
+    .futur-img {
+      width: 290px;
+      height: 147px;
+    }
+  }
+
+  @media (min-width: 767px) {
+    .rf-mb-md-15w {
+      margin-bottom: 7.5rem;
+    }
+  }
+  @media (max-width: 767px) {
+    .titre {
+      line-height: 2.5rem;
+      font-size: 1.75rem;
+      font-weight: 300;
+    }
+    .center-md {
+      text-align: center;
+    }
+  }
+  @media (min-width: 460px) {
+    .br-sm {
+      display: none;
+    }
+  }
+  @media (max-width: 460px) {
+    .align-left-sm {
+      text-align: left;
+    }
+  }
+  @media (max-width: 435px) {
+    .br-hidden {
+      display: none;
+    }
+  }
+  @media (max-width: 330px) {
+    .align-left-xs {
+      text-align: left;
+    }
   }
 }
