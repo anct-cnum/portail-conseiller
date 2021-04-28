@@ -79,7 +79,10 @@ function submitCra(cra) {
     .then(
       cra => {
         dispatch(success(cra));
-        history.push('/accueil'); //TODO replace with /statistiques when it will be ok
+        history.push({
+          pathname: '/accueil', //TODO replace with /statistiques when it will be ok
+          printFlashbag: true
+        });
 
       },
       error => {

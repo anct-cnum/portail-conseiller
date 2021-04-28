@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Footer from '../Footer';
 import { conseillerActions, structureActions } from '../../actions';
 import { userEntityId } from '../../helpers';
+import FlashMessage from 'react-flash-message';
 
 function Welcome() {
   const dispatch = useDispatch();
+  const location = useLocation();
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const structure = useSelector(state => state.structure?.structure);
 
@@ -20,9 +22,24 @@ function Welcome() {
     }
   }, [conseiller]);
 
+  //Forcer affichage en haut de la page pour voir le flashbag
+  if (location?.printFlashbag === true) {
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+  }
+
   return (
     <>
       <div className="welcome">
+        {/* TODO MOVE flash message in statistics page when it will be OK */}
+        { location?.printFlashbag === true &&
+        <FlashMessage duration={5000}>
+          <p className="rf-label flashBag">
+            Votre suivi d&rsquo;activité a bien été enregistré&nbsp;<i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+          </p>
+        </FlashMessage>
+        }
         <div className="rf-container">
           <div className="rf-grid-row rf-grid-row--center">
 
