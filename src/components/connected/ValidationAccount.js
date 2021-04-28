@@ -29,7 +29,7 @@ function ValidationAccount() {
         {/* Bandeau */}
         <div className="rf-grid-row rf-grid-row--center rf-grid-row--middle rf-py-5w rf-mb-9w headBand">
           <p className="customLabel">Félicitations ! Votre adresse mail vient d&rsquo;être créée&nbsp;:<br/>
-            <span className="emailLabel">{user?.name}</span>
+            <span className="emailLabel">jean.dupond@conseiller-numerique.fr {user?.name}</span>
           </p>
         </div>
         {/* Etape suivante */}
