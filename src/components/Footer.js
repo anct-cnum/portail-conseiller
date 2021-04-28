@@ -80,7 +80,7 @@ function Footer({ type, titreBouton }) {
                     <div className="rf-footer__bottom">
                       <ul className="rf-footer__bottom-list">
                         <li className="rf-footer__bottom-item">
-                          <a className="rf-footer__bottom-link rf-pr-1w" href="https://aide.conseiller-numerique.gouv.fr/fr/">FAQ</a>
+                          <a className="rf-footer__bottom-link rf-pr-1w marge-responsive" href="https://aide.conseiller-numerique.gouv.fr/fr/">FAQ</a>
                         </li>
                         <li className="rf-footer__bottom-item">
                           <a className="rf-footer__bottom-link rf-px-1w"
@@ -88,24 +88,24 @@ function Footer({ type, titreBouton }) {
                           </a>
                         </li>
                         <li className="rf-footer__bottom-item">
-                          <a className="rf-footer__bottom-link rf-px-1w"
+                          <a className="rf-footer__bottom-link rf-px-1w marge-mention"
                             href="https://www.conseiller-numerique.gouv.fr/mentions-legales">Mentions légales
                           </a>
                         </li>
-                        <li className="rf-footer__bottom-item">
-                          <a className="rf-footer__bottom-link rf-px-1w"
+                        <li className="rf-footer__bottom-item marge-bar-donnees">
+                          <a className="rf-footer__bottom-link rf-px-1w marge-donnees"
                             href="https://cdn.conseiller-numerique.gouv.fr/CGU-Donn%C3%A9es_personnellesConseiller_Num%C3%A9rique.pdf">
                         Données personnelles
                           </a>
                         </li>
-                        <li className="rf-footer__bottom-item">
-                          <a className="rf-footer__bottom-link rf-px-1w"
+                        <li className="rf-footer__bottom-item marge-bar-cgu">
+                          <a className="rf-footer__bottom-link rf-px-1w marge-cgu"
                             href="https://cdn.conseiller-numerique.gouv.fr/CGU-Donn%C3%A9es_personnellesConseiller_Num%C3%A9rique.pdf">
                         Conditions générales d&rsquo;utilisation
                           </a>
                         </li>
                       </ul>
-                      <div className="rf-footer__bottom-copy">
+                      <div className="rf-footer__bottom-copy marge-responsive">
                         © République Française 2021
                       </div>
                     </div>
