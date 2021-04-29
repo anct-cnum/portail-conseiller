@@ -106,7 +106,7 @@ function Footer({ type, titreBouton }) {
                         </li>
                       </ul>
                       <div className="rf-footer__bottom-copy marge-responsive">
-                        © République Française 2021
+                        <a href="https://github.com/etalab/licence-ouverte/blob/master/LO.md" target="_blank" rel="noreferrer">licence etalab-2.0</a>
                       </div>
                     </div>
                   </div>
