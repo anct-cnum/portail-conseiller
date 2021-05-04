@@ -28,7 +28,10 @@
     background: no-repeat url(/public/logos/hexagon-login.svg);
     background-size: 100% 100%;
   }
-
+  .mot-de-passe-oublie{
+    margin-top: 10em;
+    color: #cecece;
+  }
   .margeLeft {
     width: calc(100%/12);
   }
@@ -76,13 +79,23 @@
         width: 370px;
         height: 415px;
       }
-
       .email {
         margin-top: 65px;
       }
 
     }
 
+  @media (min-width: 767px) and (max-width: 810px) {
+    .mot-de-passe-oublie{
+      margin-top: 5em;
+      color: #cecece;
+    }
+  }
+  @media (min-width: 767px) {
+    .mot-de-passe-oublie-sm{
+      display: none;
+    }
+  }
   /* custom point de rupture MD du DS */
   @media (max-width: 767px) {
 
@@ -91,7 +104,14 @@
       height: 534px;
       margin: 0 auto;
     }
-
+    .mot-de-passe-oublie {
+      display: none;
+    }
+    .mot-de-passe-oublie-sm{
+      margin-bottom: 4em;
+      margin-top: -3em;
+      color: #cecece;
+    }
     .personas1 {
       display: none;
     }
@@ -142,7 +162,6 @@
         margin-left: -8px;
         margin-right: -8px;
       }
-
       .email {
         margin-top: 135px;
       }
@@ -160,11 +179,9 @@
 
     /* custom point de rupture */
     @media (max-width: 370px) {
-
       .email {
         margin-top: 66px;
       }
 
     }
-
 }
