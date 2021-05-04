@@ -4,6 +4,8 @@ import conseillerReducer from './conseillerReducer';
 import structureReducer from './structureReducer';
 import craReducer from './craReducer';
 import menuReducer from './menuReducer';
+import motDePasseOublieReducer from './motDePasseOublieReducer';
+
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
@@ -13,6 +15,7 @@ const rootReducer = combineReducers({
   structure: structureReducer,
   cra: craReducer,
   menu: menuReducer,
+  motDePasseOublie: motDePasseOublieReducer,
 });
 
 export default rootReducer;

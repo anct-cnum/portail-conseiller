@@ -3,6 +3,7 @@ export const userService = {
   logout,
   choosePassword,
   verifyToken,
+  sendForgottenPasswordEmail,
 };
 
 function login(username, password) {
@@ -55,7 +56,7 @@ function handleResponse(response) {
   });
 }
 
-function choosePassword(token, password) {
+function choosePassword(token, password, typeEmail) {
   const apiUrlRoot = process.env.REACT_APP_API;
 
   const requestOptions = {
@@ -64,7 +65,8 @@ function choosePassword(token, password) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      'password': password
+      'password': password,
+      'typeEmail': typeEmail
     })
   };
 
@@ -79,5 +81,22 @@ function verifyToken(token) {
   };
 
   let uri = `${apiUrlRoot}/users/verifyToken/${token}`;
+  return fetch(uri, requestOptions).then(handleResponse);
+}
+
+function sendForgottenPasswordEmail(username) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      'username': username
+    })
+  };
+
+  let uri = `${apiUrlRoot}/users/sendForgottenPasswordEmail`;
   return fetch(uri, requestOptions).then(handleResponse);
 }
