@@ -44,10 +44,7 @@ function Welcome() {
           <div className="rf-grid-row rf-grid-row--center">
 
             <div className="rf-col-12 rf-col-md-10">
-              <h1 className="titre rf-mt-2w rf-mb-1w rf-my-md-5w">Espace Coop <br className="br-sm"/>– version Beta</h1>
-              <h2 className="sous-titre rf-mb-6w rf-mb-md-8w">
-                Bienvenue sur la version temporaire de la Coop <span className="smiley-logo"></span>
-              </h2>
+              <h1 className="titre rf-mt-2w rf-mb-1w rf-mt-md-5w rf-mb-md-8w">Bienvenue sur <br className="br-sm"/>l&#39;Espace Coop</h1>
             </div>
 
             <div className="rf-col-12 rf-col-md-12">
@@ -107,71 +104,31 @@ function Welcome() {
             </div>
 
             <div className="rf-col-12 rf-col-md-10 rf-mb-5w rf-mb-md-6w rf-mt-8w rf-mt-md-9w">
-              <h2 className="sous-titre">Prochainement en ligne votre espace Coop : la visualisation interactive des conseillers<br/>
-              numériques France Services sur les territoires</h2>
+              <h2 className="sous-titre">Prochainement en ligne votre espace Coop : l’accès à Pix</h2>
             </div>
 
-            <div className="rf-col-12 rf-col-md-5 center-md">
-              <img className="futur-img" src="/logos/home-connected/preview-carte.png"/>
-              <p className="legende-img rf-mb-3w align-left-xs">Prototype - premier trimestre 2021</p>
+            <div className="rf-col-12 rf-col-md-5 rf-mb-6w center-md">
+              <img className="futur-img" src="/logos/home-connected/preview-pix.png"/>
             </div>
 
             <div className="rf-col-12 rf-col-md-5 rf-mb-7w rf-mb-md-9w align-left-sm center-md">
               <p className="rf-mb-5w  rf-mb-md-6w rf-ml-md-5w">
-                D’ici quelques semaines, il sera possible de visualiser les Conseillers numériques France Services en poste sur les territoires.
+                D’ici quelques semaines, il vous sera possible d’accéder à Pix, ce service public en ligne est mis à la disposition de tous
+                les Conseillers numériques France Services qui en disposeront afin de leur faciliter les diagnostics et les accompagnement
+                autour de la maîtrise de compétences numériques.
+                <br/><br/>
+                N’hésitez pas à télécharger le kit « Bien démarrer ma mission » pour en apprendre davantage sur ce sujet.
               </p>
               <h2 className="sous-titre-futur rf-mb-3w rf-mb-md-6w rf-ml-md-5w center-md">Les autres fonctionnalités à venir</h2>
-              <p className="rf-ml-md-5w">– Les actualités régulières de la communauté Conseiller numérique France Services<br/>
-                 – Des temps de rencontres dédiés<br/>
-                 – La bibliothèque d’outils d’inclusion numérique.<br/>
-                 – Une messagerie pour échanger avec les autres <br/>Conseillers, et permettant consulter vos e-mails<br/> directement sur l’espace Coop.<br/>
-                 – Forum et ressourcerie participatifs<br/>
+              <p className="rf-ml-md-5w">
+                – Un outil de messagerie en ligne ;<br/>
+                – les actualités régulières de la communauté Conseiller numérique France Services ;<br/>
+                – des temps de rencontres dédiés ; <br/>
+                – la bibliothèque d’outils d’inclusion numérique ; <br/>
+                – un forum et une ressourcerie participatifs.
               </p>
               <p className="rf-ml-md-5w">Consultez régulièrement votre e-mail pour être tenu au <br/>courant des activités et des mises à jour. </p>
             </div>
-
-            <div className="rf-col-12 rf-col-md-10 rf-mb-4w rf-mb-md-8w"><hr/></div>
-
-            <div className="rf-col-12 rf-col-md-10">
-              <h2 className="sous-titre rf-mb-5w rf-mb-md-6w">Mes coordonnées professionnelles</h2>
-            </div>
-
-            <div className="rf-col-12 rf-col-md-5">
-              <p className="coordonnees-details rf-mr-md-5w rf-mb-3w rf-mb-md-6w align-left-sm center-md">
-                Au cas où une erreur se serait glissée dans vos <br className="br-hidden"/>
-                coordonnées, ou si celles-ci ont changé, nous vous <br className="br-hidden"/>
-                donnerons la possibilité de les modifier ultérieurement.
-                {/*en cliquant sur le <br className="br-hidden"/>
-                lien ci-dessous.*/}
-              </p>
-            </div>
-
-            <div className="rf-col-12 rf-col-md-5 rf-mb-md-7w center-md">
-              <p className="coordonnees rf-ml-md-5w rf-mb-8w">
-                {conseiller?.nom} {conseiller?.prenom}<br/>
-                {structure?.insee?.etablissement?.adresse?.l5 &&
-                  <span>{ structure?.insee?.etablissement?.adresse?.l5 }<br/></span>
-                }
-                { structure?.insee?.etablissement?.adresse?.l4 &&
-                  <span>{ structure?.insee?.etablissement?.adresse?.l4 }<br/></span>
-                }
-                { structure?.insee?.etablissement?.adresse?.code_postal &&
-                  <span>{ structure?.insee?.etablissement?.adresse?.code_postal }</span>
-                }
-                { structure?.insee?.etablissement?.adresse?.localite &&
-                  <span>&nbsp;{ structure?.insee?.etablissement?.adresse?.localite }</span>
-                }
-              </p>
-            </div>
-            { /*
-            <div className="rf-col-12 rf-col-md-10 rf-mb-8w rf-mb-md-15w">
-              <div className="centre">
-                <Link className="coordonnees-btn" to="/mon-compte" title="Modifier mes coordonnées professionnelles">
-                  Modifier mes coordonnées professionnelles
-                </Link>
-              </div>
-            </div>
-            */}
           </div>
         </div>
       </div>
