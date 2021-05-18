@@ -1,26 +1,18 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import Footer from '../Footer';
-import { conseillerActions, structureActions } from '../../actions';
+import { conseillerActions } from '../../actions';
 import { userEntityId } from '../../helpers';
 import FlashMessage from 'react-flash-message';
 
 function Welcome() {
   const dispatch = useDispatch();
   const location = useLocation();
-  const conseiller = useSelector(state => state.conseiller?.conseiller);
-  const structure = useSelector(state => state.structure?.structure);
 
   useEffect(() => {
     dispatch(conseillerActions.get(userEntityId()));
   }, []);
-
-  useEffect(() => {
-    if (conseiller !== undefined) {
-      dispatch(structureActions.get(conseiller?.idStructure));
-    }
-  }, [conseiller]);
 
   //Forcer affichage en haut de la page pour voir le flashbag
   if (location?.printFlashbag === true) {
@@ -44,14 +36,14 @@ function Welcome() {
           <div className="rf-grid-row rf-grid-row--center">
 
             <div className="rf-col-12 rf-col-md-10">
-              <h1 className="titre rf-mt-2w rf-mb-1w rf-mt-md-5w rf-mb-md-8w">Bienvenue sur <br className="br-sm"/>l&#39;Espace Coop</h1>
+              <h1 className="titre rf-mt-2w rf-mb-1w rf-mt-md-5w rf-mb-md-8w">Bienvenue sur <br className="br-sm"/>l&rsquo;Espace Coop</h1>
             </div>
 
             <div className="rf-col-12 rf-col-md-12">
               <div className="centre">
-                <Link className="cra-btn rf-mb-3w" to="/compte-rendu-activite" title="Accéder à mon outil de suivi d&#39;activité">
+                <Link className="cra-btn rf-mb-3w" to="/compte-rendu-activite" title="Accéder à mon outil de suivi d&rsquo;activité">
                   <span className="cra-logo-btn"></span>
-                  <span className="cra-texte-btn">Accéder à mon outil <br/> de suivi d&#39;activité</span>
+                  <span className="cra-texte-btn">Accéder à mon outil <br/> de suivi d&rsquo;activité</span>
                 </Link>
               </div>
               <p className="cra-details rf-mb-8w rf-mb-md-12w">
@@ -63,7 +55,7 @@ function Welcome() {
               /*
               <div className="rf-col-12 rf-col-md-5">
                 <div><span>Logo</span><button className="welcome-btn">Accéder à Pix Orga</button></div>
-                <h2>Outil de compte-rendu d’activité de médiation numérique</h2>
+                <h2>Outil de compte-rendu d&rsquo;activité de médiation numérique</h2>
                 <p>Professionally revolutionize high standards in users and global best practices. Distinctively re-engineer innovative
                   processes after market-driven content. Globally synthesize backward-compatible portals without integrated partnerships. Compellingly.
                 </p>
@@ -78,17 +70,17 @@ function Welcome() {
                   <div className="rf-col-12 rf-col-md-10 rf-mt-3w rf-mt-md-6w rf-mb-5w rf-mb-md-8w">
                     <h2 className="sous-titre">
                       Téléchargez le kit « Bien démarrer ma mission » pour en apprendre davantage sur le Suivi <br className="br-hidden"/>
-                      d’activité et l’usage des données, sur l’outil Pix , et bien d’autres sujets.
+                      d&rsquo;activité et l&rsquo;usage des données, sur l&rsquo;outil Pix , et bien d&rsquo;autres sujets.
                     </h2>
                   </div>
 
                   <div className="rf-col-12 rf-col-md-5 rf-mb-md-6w center-md">
-                    <p className="rf-ml-md-1w align-left-sm">Ce document PDF contient tout ce qu’il faut savoir <br className="br-hidden"/>
+                    <p className="rf-ml-md-1w align-left-sm">Ce document PDF contient tout ce qu&rsquo;il faut savoir <br className="br-hidden"/>
                       pour bien commencer votre activité de Conseiller <br className="br-hidden"/>
                       numérique France Services depuis votre inscription <br className="br-hidden"/>
-                      jusqu’à votre entrée en poste : les bons réflexes à avoir, <br className="br-hidden"/>
-                      les outils d’inclusion numérique à connaître, <br className="br-hidden"/>
-                      l’organisation des structures de médiation numérique <br className="br-hidden"/>
+                      jusqu&rsquo;à votre entrée en poste : les bons réflexes à avoir, <br className="br-hidden"/>
+                      les outils d&rsquo;inclusion numérique à connaître, <br className="br-hidden"/>
+                      l&rsquo;organisation des structures de médiation numérique <br className="br-hidden"/>
                       sur les territoires ainsi que leurs contacts.
                     </p>
 
@@ -104,7 +96,7 @@ function Welcome() {
             </div>
 
             <div className="rf-col-12 rf-col-md-10 rf-mb-5w rf-mb-md-6w rf-mt-8w rf-mt-md-9w">
-              <h2 className="sous-titre">Prochainement en ligne votre espace Coop : l’accès à Pix</h2>
+              <h2 className="sous-titre">Prochainement en ligne votre espace Coop : l&rsquo;accès à Pix</h2>
             </div>
 
             <div className="rf-col-12 rf-col-md-5 rf-mb-6w center-md">
@@ -113,18 +105,18 @@ function Welcome() {
 
             <div className="rf-col-12 rf-col-md-5 rf-mb-7w rf-mb-md-9w align-left-sm center-md">
               <p className="rf-mb-5w  rf-mb-md-6w rf-ml-md-5w">
-                D’ici quelques semaines, il vous sera possible d’accéder à Pix, ce service public en ligne est mis à la disposition de tous
+                D&rsquo;ici quelques semaines, il vous sera possible d&rsquo;accéder à Pix, ce service public en ligne est mis à la disposition de tous
                 les Conseillers numériques France Services qui en disposeront afin de leur faciliter les diagnostics et les accompagnement
                 autour de la maîtrise de compétences numériques.
                 <br/><br/>
-                N’hésitez pas à télécharger le kit « Bien démarrer ma mission » pour en apprendre davantage sur ce sujet.
+                N&rsquo;hésitez pas à télécharger le kit « Bien démarrer ma mission » pour en apprendre davantage sur ce sujet.
               </p>
               <h2 className="sous-titre-futur rf-mb-3w rf-mb-md-6w rf-ml-md-5w center-md">Les autres fonctionnalités à venir</h2>
               <p className="rf-ml-md-5w">
                 – Un outil de messagerie en ligne ;<br/>
                 – les actualités régulières de la communauté Conseiller numérique France Services ;<br/>
                 – des temps de rencontres dédiés ; <br/>
-                – la bibliothèque d’outils d’inclusion numérique ; <br/>
+                – la bibliothèque d&rsquo;outils d&rsquo;inclusion numérique ; <br/>
                 – un forum et une ressourcerie participatifs.
               </p>
               <p className="rf-ml-md-5w">Consultez régulièrement votre e-mail pour être tenu au <br/>courant des activités et des mises à jour. </p>
