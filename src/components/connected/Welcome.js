@@ -96,7 +96,7 @@ function Welcome() {
             </div>
 
             <div className="rf-col-12 rf-col-md-10 rf-mb-5w rf-mb-md-6w rf-mt-8w rf-mt-md-9w">
-              <h2 className="sous-titre">Prochainement en ligne votre espace Coop : l&rsquo;accès à Pix</h2>
+              <h2 className="sous-titre">Prochainement en ligne sur votre espace Coop : l&rsquo;accès à Pix</h2>
             </div>
 
             <div className="rf-col-12 rf-col-md-5 rf-mb-6w center-md">
