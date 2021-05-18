@@ -109,7 +109,7 @@ function ForgottenPassword({ match = null }) {
                     </label>
                     {submittedEmail && validEmail &&
                       <div className="rf-mb-2w rf-mt-n2w">
-                        <div className="valid rf-mt-2w">L&#39;e-mail de renouvellement de mot de passe a pu être envoyé sur : {username} !</div>
+                        <div className="valid rf-mt-2w">L&#39;e-mail de renouvellement de mot de passe a pu être envoyé sur : {validEmail.persoEmail} !</div>
                       </div>
                     }
                     {submittedEmail && errorEmail === 'User not found' &&
@@ -157,7 +157,7 @@ function ForgottenPassword({ match = null }) {
                     Celui-ci servira à la fois pour votre connexion au mail, et pour vous identifier sur l’espace Coop, gardez le précieusement !
                   </p>
                   <p className="rf-mb-3w">
-                    Un e-mail de validation sera envoyé à l’adresse {user?.name} lorsque vous cliquerez sur Valider.
+                    Un e-mail de validation sera envoyé à l’adresse {user?.persoEmail} lorsque vous cliquerez sur Valider.
                   </p>
                   <p className="rf-mb-md-3w">
                     Accédez ensuite à cette dernière afin de pouvoir effectuer votre première connexion à l’espace Coop.
