@@ -16,7 +16,7 @@ function Footer({ type, titreBouton }) {
                     { type === undefined &&
                     <div>
                       <div className="rf-footer__brand">
-                        <a className="rf-footer__brand-link" href="/">
+                        <a className="rf-footer__brand-link">
                           <div style={{ display: 'inline-block' }} >
                             <img src="/logos/logo-rf-nb.svg" alt="logo République Française"
                               style={{ height: '80px', marginRight: '28px' }} className="logoFooter"/>
@@ -80,27 +80,28 @@ function Footer({ type, titreBouton }) {
                     <div className="rf-footer__bottom">
                       <ul className="rf-footer__bottom-list">
                         <li className="rf-footer__bottom-item">
-                          <a className="rf-footer__bottom-link rf-pr-1w marge-responsive" href="https://aide.conseiller-numerique.gouv.fr/fr/">FAQ</a>
+                          <a className="rf-footer__bottom-link rf-pr-1w marge-responsive" target="blank"
+                            href="https://aide.conseiller-numerique.gouv.fr/fr/">FAQ</a>
                         </li>
                         <li className="rf-footer__bottom-item">
-                          <a className="rf-footer__bottom-link rf-px-1w"
+                          <a className="rf-footer__bottom-link rf-px-1w" target="blank"
                             href="https://www.conseiller-numerique.gouv.fr/accessibilite">Accessibilité: non conforme
                           </a>
                         </li>
                         <li className="rf-footer__bottom-item">
-                          <a className="rf-footer__bottom-link rf-px-1w marge-mention"
+                          <a className="rf-footer__bottom-link rf-px-1w marge-mention" target="blank"
                             href="https://www.conseiller-numerique.gouv.fr/mentions-legales">Mentions légales
                           </a>
                         </li>
                         <li className="rf-footer__bottom-item marge-bar-donnees">
-                          <a className="rf-footer__bottom-link rf-px-1w marge-donnees"
-                            href="https://cdn.conseiller-numerique.gouv.fr/CGU-Donn%C3%A9es_personnellesConseiller_Num%C3%A9rique.pdf">
+                          <a className="rf-footer__bottom-link rf-px-1w marge-donnees" target="blank"
+                            href="https://cdn.conseiller-numerique.gouv.fr/DonneesPersonnelles-ConseillerNumerique-Coop.pdf">
                         Données personnelles
                           </a>
                         </li>
                         <li className="rf-footer__bottom-item marge-bar-cgu">
-                          <a className="rf-footer__bottom-link rf-px-1w marge-cgu"
-                            href="https://cdn.conseiller-numerique.gouv.fr/CGU-Donn%C3%A9es_personnellesConseiller_Num%C3%A9rique.pdf">
+                          <a className="rf-footer__bottom-link rf-px-1w marge-cgu" target="blank"
+                            href="https://cdn.conseiller-numerique.gouv.fr/CGU-ConseillerNumerique-Coop.pdf">
                         Conditions générales d&rsquo;utilisation
                           </a>
                         </li>
