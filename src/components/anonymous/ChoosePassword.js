@@ -5,7 +5,9 @@ import Footer from '../Footer';
 import PropTypes from 'prop-types';
 import { userActions } from '../../actions';
 
+
 function ChoosePassword({ match }) {
+  const dispatch = useDispatch();
 
   const [inputs, setInputs] = useState({
     username: '',
@@ -15,7 +17,7 @@ function ChoosePassword({ match }) {
   const [submitted, setSubmitted] = useState(false);
   const { passwordConfirm, password } = inputs;
   const error = useSelector(state => state.authentication.error);
-  const dispatch = useDispatch();
+
 
   const token = match.params.token;
   const verifyingToken = useSelector(state => state.createAccount.verifyingToken);
@@ -38,7 +40,7 @@ function ChoosePassword({ match }) {
   function handleSubmit() {
     setSubmitted(true);
     if (password && passwordConfirm === password && checkComplexity(password)) {
-      dispatch(userActions.choosePassword(token, password));
+      dispatch(userActions.choosePassword(token, password, 'bienvenue'));
     }
   }
 
@@ -195,7 +197,7 @@ function ChoosePassword({ match }) {
         </div>
       </div>
       {/* End content */}
-      <Footer/>
+      <Footer type="support" titreBouton="Donner mon avis sur cette page"/>
     </div>
   );
 

@@ -41,15 +41,15 @@ function ValidationButton() {
   return (
     <div className="rf-grid-row rf-grid-row--center rf-pb-12w rf-mb-3w">
       <div className="rf-col-sm-8 rf-col-md-6 submitResponsive" style={{ textAlign: 'center' }}>
-        { cra?.printError &&
-          <span className="labelError" style={{ display: 'block' }}>
-            Toutes les questions obligatoires n&rsquo;ont pas été répondues (marquées par un&nbsp;*)
-          </span>
-        }
         <button className="rf-btn rf-text--bold big-btn submitCra" onClick={sendCra}>Valider</button>
         <br/>
         {saveInProgress &&
           <span>Enregistrement en cours...</span>
+        }
+        { cra?.printError &&
+          <span className="labelError" style={{ display: 'block' }}>
+            Erreur&nbsp;: veuillez remplir tous les champs obligatoires du formulaire.
+          </span>
         }
         {!saveInProgress && error && !cra?.printError &&
           <span className="labelError">{error?.toString()}</span>

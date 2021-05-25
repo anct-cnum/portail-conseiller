@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../Footer';
 
@@ -87,10 +87,17 @@ function Login() {
             <div>
               {error && <span className="invalid">{error.error}</span>}
             </div>
+            <div className="mot-de-passe-oublie">
+              <Link to="/mot-de-passe-oublie" title="Mot de passe oublié ?" >Mot de passe oublié ?</Link>
+            </div>
           </div>
+
         </div>
         <div className="rf-grid-row rf-pb-12w personas2" style={{ textAlign: 'center' }}>
           <div className="rf-col-12">
+            <div className="mot-de-passe-oublie-sm">
+              <Link to="/mot-de-passe-oublie" title="Mot de passe oublié ?">Mot de passe oublié ?</Link>
+            </div>
             <img src="/logos/personas-hexagones.svg" width="90%" alt="Avatars conseillers"/>
           </div>
         </div>

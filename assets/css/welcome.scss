@@ -1,0 +1,163 @@
+.welcome {
+  font-family: Marianne;
+  background-color: #2b2b2b;
+  letter-spacing: 0;
+  .centre, .sous-titre {
+    text-align: center;
+  }
+  .titre {
+    font-family: MarianneThin;
+    text-align: center;
+    font-size: 3.5rem;
+    line-height: 4rem;
+  }
+  .sous-titre, .sous-titre-futur {
+    font-size: 1.25rem;
+    line-height: 2rem;
+    color: #f0f0f0;
+    font-weight: 600;
+  }
+  .smiley-logo {
+    background: url(../../public/logos/home-connected/smiley.svg) no-repeat;
+    font-family: Wingdings;
+    display: inline-block;
+    line-height: 1.688rem;
+    margin-bottom: -12px;
+    margin-left: 2px;
+    font-size: 1.5rem;
+    color: #f0f0f0;
+    height: 27px;
+    width: 21px;
+  }
+  .cra-btn {
+    background-color: #fff;
+    border: 1px solid #fff;
+    display: inline-block;
+    border-radius: 40px;
+    line-height: 1.5rem;
+    text-align: center;
+    color: #1e1e1e;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 287px;
+    height: 64px;
+  }
+  .cra-logo-btn {
+    background: url(../../public/logos/home-connected/logo-demarche-en-ligne.svg) no-repeat;
+    display: inline-block;
+    height: 58px;
+    width: 64px;
+  }
+  .cra-texte-btn{
+    display: inline-block;
+    position: relative;
+    margin-left: 20px;
+    text-align: left;
+    top: -9px;
+  }
+  .cra-details {
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    text-align: center;
+    font-weight: 300;
+    color: #fff;
+  }
+  .bloc-document {
+    background-color: #1e1e1e;
+    border-radius: 20px;
+  }
+  .document-btn {
+    background-color: #1e1e1e;
+    border: 2px solid #fff;
+    display: inline-block;
+    border-radius: 40px;
+    line-height: 1.5rem;
+    text-align: center;
+    padding-top: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #fff;
+    height: 64px;
+    width: 272px;
+  }
+  .document-details {
+    line-height: 1.5rem;
+    color: #f0f0f0;
+    font-size: 1rem;
+  }
+  .document-img {
+    height: 385px;
+    width: 272px;
+  }
+  .futur-img {
+    height: 294px;
+    width: 432px;
+  }
+  .legende-img {
+    line-height: 1.25rem;
+    font-size: 0.75rem;
+    color: #f0f0f0;
+    font-weight: 300;
+  }
+  .coordonnees {
+    color: #bfbfe3;
+    font-weight: 600;
+  }
+  .coordonnees-btn {
+    text-decoration: underline;
+    display: inline-block;
+    text-align: center;
+    box-shadow: none;
+  }
+  .coordonnees-details {
+    text-align: right;
+  }
+  @media (max-width: 1100px) {
+    .futur-img {
+      width: 290px;
+      height: 197px;
+    }
+  }
+
+  @media (min-width: 767px) {
+    .rf-mb-md-15w {
+      margin-bottom: 7.5rem;
+    }
+  }
+  @media (max-width: 767px) {
+    .titre {
+      line-height: 2.5rem;
+      font-size: 1.75rem;
+      font-weight: 300;
+    }
+    .center-md {
+      text-align: center;
+    }
+  }
+  @media (min-width: 460px) {
+    .br-sm {
+      display: none;
+    }
+  }
+  @media (max-width: 460px) {
+    .align-left-sm {
+      text-align: left;
+    }
+  }
+  @media (max-width: 435px) {
+    .br-hidden {
+      display: none;
+    }
+  }
+  @media (max-width: 330px) {
+    .align-left-xs {
+      text-align: left;
+    }
+    .document-img {
+      height: 264px;
+      width: 187px;
+    }
+  }
+}

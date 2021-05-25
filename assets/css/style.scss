@@ -48,6 +48,18 @@
 }
 /** End trick**/
 
+.rf-fi-user-line {
+  color:var(--bf500);
+}
+
+.flashBag {
+  background-color: white;
+  color: #008941;
+  padding: 30px;
+  text-align: center;
+  font-weight: bold;
+}
+
 .linkCustom {
   font-weight: bold;
   box-shadow: none!important;
@@ -122,6 +134,42 @@
   }
 
 }
+ /* Ajustement du footer md*/
+@media  (min-width: 933px) and (max-width: 1059px) {
+  .marge-cgu {
+    padding-left: 0px !important;
+  }
+}
+@media  (min-width: 918px) and (max-width: 947px) {
+  .marge-bar-cgu {
+    margin-left: 0px !important;
+  }
+}
+@media  (min-width: 688px) and (max-width: 825px) {
+  .marge-donnees {
+    padding-left: 0px !important;
+  }
+}
+@media  (min-width: 677px) and (max-width: 687px) {
+  .marge-bar-donnees {
+    padding-left: 0px !important;
+  }
+}
+@media  (min-width: 584px) and (max-width: 616px) {
+  .marge-cgu {
+    padding-left: 0px !important;
+  }
+}
+@media  (min-width: 578px) and (max-width: 588px) {
+  .marge-bar-cgu {
+    margin-left: 0px !important;
+  }
+}
+@media  (min-width: 577px) and (max-width: 626px) {
+  .marge-mention {
+    padding-left: 0px !important;
+  }
+}
 
 /* custom point de rupture XS du DS */
 @media (max-width: 576px) {
@@ -140,4 +188,35 @@
 
   }
 
+  /* Ajustement du footer xs*/
+  @media  (min-width: 576px) {
+    .marge-mention {
+      padding-left: 0px !important;
+    }
+  }
+  @media  (min-width: 529px) and (max-width: 575px) {
+    .marge-cgu {
+      padding-left: 0px !important;
+    }
+  }
+  @media  (min-width: 524px) and (max-width: 532px) {
+    .marge-bar-cgu {
+      margin-left: 0px !important;
+    }
+  }
+  @media  (min-width: 376px) and(max-width: 447px) {
+    .marge-donnees {
+      padding-left: 0px !important;
+    }
+  }
+  @media  (min-width: 371px) and(max-width: 380px) {
+    .marge-bar-donnees {
+      margin-left: 0px !important;
+    }
+  }
+  @media  (min-width: 320px) and (max-width: 328px) {
+    .marge-responsive {
+      padding-left: 9px;
+    }
+  }
 }
