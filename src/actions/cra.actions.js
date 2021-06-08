@@ -15,6 +15,9 @@ export const craActions = {
   updateAccompagnement,
   verifyCra,
   submitCra,
+  getStatsCra,
+  changeDateStatsDebut,
+  changeDateStatsFin,
 };
 
 function getSearchlist() {
@@ -100,4 +103,38 @@ function submitCra(cra) {
   function failure(error) {
     return { type: 'SUBMIT_CRA_FAILURE', error };
   }
+}
+
+function getStatsCra(dateDebut, dateFin) {
+  return dispatch => {
+    dispatch(request(dateDebut, dateFin));
+
+    craService.getStatsCra(dateDebut, dateFin)
+    .then(
+      statsCra => {
+        dispatch(success(statsCra));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'GET_STATS_CRA_REQUEST', dateDebut, dateFin };
+  }
+  function success(statsCra) {
+    return { type: 'GET_STATS_CRA_SUCCESS', statsCra };
+  }
+  function failure(error) {
+    return { type: 'GET_STATS_CRA_FAILURE', error };
+  }
+}
+
+function changeDateStatsDebut(dateDebut) {
+  return { type: 'CHANGE_DATE_DEBUT_STATS', dateDebut };
+}
+
+function changeDateStatsFin(dateFin) {
+  return { type: 'CHANGE_DATE_FIN_STATS', dateFin };
 }

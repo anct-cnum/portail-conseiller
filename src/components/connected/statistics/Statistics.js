@@ -1,5 +1,6 @@
-import React from 'react';
-
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { craActions } from '../../../actions';
 import PeriodStatistics from './StatisticsPeriod';
 import LeftPage from './LeftPage';
 import RightPage from './RightPage';
@@ -8,10 +9,18 @@ import Footer from '../../Footer';
 import StatisticsBanner from './StatisticsBanner';
 
 function Statistics() {
+  const dispatch = useDispatch();
+  let statsDataError = useSelector(state => state.cra?.statsDataError);
+  let dateDebutStats = useSelector(state => state.cra?.dateDebutStats);
+  let dateFinStats = useSelector(state => state.cra?.dateFinStats);
+  let donneesStatistiques2 = useSelector(state => state.cra?.statsData); //TODO à remplacer par donneesStatistiques quand OK
+
+  useEffect(() => {
+    dispatch(craActions.getStatsCra(dateDebutStats, dateFinStats));
+  }, []);
+
   const donneesStatistiques = {
     periodes: [{
-      dateDebut: '04/01/2021',
-      dateFin: '05/02/2021',
       nbAccompagnement: 78,
       nbAteliers: 3,
       nbTotalParticipant: 25,
@@ -78,6 +87,11 @@ function Statistics() {
         <div className="rf-grid-row">
           <div className="rf-col-12">
             <div className="rf-mt-2w rf-mt-md-9w rf-mt-lg-13w"></div>
+            { (statsDataError !== undefined && statsDataError !== false) &&
+              <p className="rf-label flashBag" style={{ color: 'red' }}>
+                {statsDataError?.toString()}
+              </p>
+            }
             <h1 className="title">Mes Statistiques</h1>
             <div className="rf-mb-5w rf-mt-md-4w"></div>
           </div>
@@ -86,7 +100,7 @@ function Statistics() {
         <div className="rf-grid-row">
           <div className="rf-col-xs-3 rf-col-sm-7 rf-col-md-6 rf-col-lg-4">
             <div className="rf-mb-4w rf-mb-md-6w">
-              <PeriodStatistics dateDebut={donneesStatistiques.periodes[0].dateDebut} dateFin={donneesStatistiques.periodes[0].dateFin} />
+              <PeriodStatistics dateDebut={dateDebutStats} dateFin={dateFinStats} />
               <i className="ri-arrow-down-s-line ri-2x chevron"></i>
             </div>
           </div>
@@ -107,7 +121,7 @@ function Statistics() {
 
           <BottomPage donneesStats={donneesStatistiques}/>
 
-          <StatisticsBanner />
+          {/* <StatisticsBanner /> On le cache car fonctionnalités pour + tard */}
 
         </div>
       </div>

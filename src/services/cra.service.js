@@ -3,6 +3,7 @@ import { userService } from './user.service';
 
 export const craService = {
   createCra,
+  getStatsCra,
 };
 
 function createCra(cra) {
@@ -35,4 +36,19 @@ function handleResponse(response) {
 
     return data;
   });
+}
+
+function getStatsCra(dateDebut, dateFin) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+
+  const requestOptions = {
+    method: 'POST',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+    body: JSON.stringify({
+      'dateDebut': dateDebut,
+      'dateFin': dateFin
+    })
+  };
+
+  return fetch(`${apiUrlRoot}/stats/cra`, requestOptions).then(handleResponse);
 }
