@@ -1,24 +1,9 @@
 import { authHeader, history, userEntityId } from '../helpers';
 import { userService } from './user.service';
 
-export const craService = {
-  createCra,
+export const statistiqueService = {
+  getStatsCra,
 };
-
-function createCra(cra) {
-  const apiUrlRoot = process.env.REACT_APP_API;
-
-  const requestOptions = {
-    method: 'POST',
-    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
-    body: JSON.stringify({
-      cra: cra,
-      idConseiller: userEntityId()
-    })
-  };
-
-  return fetch(`${apiUrlRoot}/cras`, requestOptions).then(handleResponse);
-}
 
 function handleResponse(response) {
   return response.text().then(text => {
@@ -35,4 +20,20 @@ function handleResponse(response) {
 
     return data;
   });
+}
+
+function getStatsCra(dateDebut, dateFin) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+
+  const requestOptions = {
+    method: 'POST',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+    body: JSON.stringify({
+      'dateDebut': dateDebut,
+      'dateFin': dateFin,
+      'idConseiller': userEntityId()
+    })
+  };
+
+  return fetch(`${apiUrlRoot}/stats/cra`, requestOptions).then(handleResponse);
 }

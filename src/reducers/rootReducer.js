@@ -5,6 +5,7 @@ import structureReducer from './structureReducer';
 import craReducer from './craReducer';
 import menuReducer from './menuReducer';
 import motDePasseOublieReducer from './motDePasseOublieReducer';
+import statistiqueReducer from './statistiqueReducer';
 
 import { combineReducers } from 'redux';
 
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   cra: craReducer,
   menu: menuReducer,
   motDePasseOublie: motDePasseOublieReducer,
+  statistique: statistiqueReducer,
 });
 
 export default rootReducer;

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { craActions } from '../../../actions';
+import { statistiqueActions } from '../../../actions';
 import PeriodStatistics from './StatisticsPeriod';
 import LeftPage from './LeftPage';
 import RightPage from './RightPage';
@@ -10,13 +10,13 @@ import StatisticsBanner from './StatisticsBanner';
 
 function Statistics() {
   const dispatch = useDispatch();
-  let statsDataError = useSelector(state => state.cra?.statsDataError);
-  let dateDebutStats = useSelector(state => state.cra?.dateDebutStats);
-  let dateFinStats = useSelector(state => state.cra?.dateFinStats);
-  let donneesStatistiques2 = useSelector(state => state.cra?.statsData); //TODO à remplacer par donneesStatistiques quand OK
+  let statsDataError = useSelector(state => state.statistique?.statsDataError);
+  let dateDebutStats = useSelector(state => state.statistique?.dateDebutStats);
+  let dateFinStats = useSelector(state => state.statistique?.dateFinStats);
+  let donneesStatistiques2 = useSelector(state => state.statistique?.statsData); //TODO à remplacer par donneesStatistiques quand OK
 
   useEffect(() => {
-    dispatch(craActions.getStatsCra(dateDebutStats, dateFinStats));
+    dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats));
   }, []);
 
   const donneesStatistiques = {
