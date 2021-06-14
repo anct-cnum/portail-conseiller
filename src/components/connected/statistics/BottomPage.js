@@ -8,8 +8,15 @@ function BottomPage(props) {
   const tabColorAge = ['#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e'];
   const tabColorStatut = ['#a2b4b1', '#ffdbd2', '#a3a6bc', '#ddb094', '#fff480'];
 
-  const periodeTest = props.donneesStats.periodes[0];
-  const { statsEvolutions, statsUsagers, statsAges } = periodeTest;
+  const { statsUsagers, statsAges } = props.donneesStats;
+
+  //TODO TO REPLACE WHEN OK Côté API
+  let statsEvolutions = [
+    { nom: 'Avril', valeur: 25 },
+    { nom: 'Mai', valeur: 85 },
+    { nom: 'Juin', valeur: 45 },
+    { nom: 'Juillet', valeur: 75 },
+  ];
 
   const graphiqueEvolution = {
     graphique: {
