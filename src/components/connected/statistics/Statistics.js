@@ -6,7 +6,7 @@ import LeftPage from './LeftPage';
 import RightPage from './RightPage';
 import BottomPage from './BottomPage';
 import Footer from '../../Footer';
-import StatisticsBanner from './StatisticsBanner';
+//import StatisticsBanner from './StatisticsBanner'; TODO : à decommenter quand les fonctionnalités associées viendront
 
 function Statistics() {
   const dispatch = useDispatch();
@@ -61,7 +61,7 @@ function Statistics() {
 
             <BottomPage donneesStats={donneesStatistiques}/>
 
-            {/* <StatisticsBanner /> On le cache car fonctionnalités pour + tard */}
+            {/* <StatisticsBanner /> TODO : à decommenter quand les fonctionnalités associées viendront */}
 
           </div>
         }

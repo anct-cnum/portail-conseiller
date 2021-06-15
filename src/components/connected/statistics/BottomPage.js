@@ -10,7 +10,7 @@ function BottomPage(props) {
 
   const { statsUsagers, statsAges } = props.donneesStats;
 
-  //TODO TO REPLACE WHEN OK Côté API
+  //TODO à remplacer quand stats OK côté API (mode script)
   let statsEvolutions = [
     { nom: 'Avril', valeur: 25 },
     { nom: 'Mai', valeur: 85 },
