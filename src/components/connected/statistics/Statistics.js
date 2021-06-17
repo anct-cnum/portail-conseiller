@@ -6,10 +6,12 @@ import LeftPage from './LeftPage';
 import RightPage from './RightPage';
 import BottomPage from './BottomPage';
 import Footer from '../../Footer';
+import Spinner from 'react-loader-spinner';
 //import StatisticsBanner from './StatisticsBanner'; TODO : à decommenter quand les fonctionnalités associées viendront
 
 function Statistics() {
   const dispatch = useDispatch();
+  let statsDataLoading = useSelector(state => state.statistique?.statsDataLoading);
   let statsDataError = useSelector(state => state.statistique?.statsDataError);
   let dateDebutStats = useSelector(state => state.statistique?.dateDebutStats);
   let dateFinStats = useSelector(state => state.statistique?.dateFinStats);
@@ -22,6 +24,16 @@ function Statistics() {
   return (
     <div className="Statistics">
       <div className="rf-container">
+
+        <div className="spinnerCustom">
+          <Spinner
+            type="Oval"
+            color="#00BFFF"
+            height={100}
+            width={100}
+            visible={statsDataLoading === true}
+          />
+        </div>
 
         <div className="rf-grid-row">
           <div className="rf-col-12">
