@@ -15,7 +15,7 @@ function Welcome() {
   }, []);
 
   const conseiller = useSelector(state => state.conseiller?.conseiller);
-  const lienPix = `https://pix.fr/abc-pix-cnfs/?control1714940=${conseiller?.prenom}&control1714939=${conseiller?.nom}&control1714941=${conseiller?.email}`;
+  const lienPix = `${process.env.REACT_APP_PIX_URL}?control1714940=${conseiller?.prenom}&control1714939=${conseiller?.nom}&control1714941=${conseiller?.email}`;
 
   //Forcer affichage en haut de la page pour voir le flashbag
   if (location?.printFlashbag === true) {
