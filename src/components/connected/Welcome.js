@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import Footer from '../Footer';
 import { conseillerActions } from '../../actions';
@@ -13,6 +13,9 @@ function Welcome() {
   useEffect(() => {
     dispatch(conseillerActions.get(userEntityId()));
   }, []);
+
+  const conseiller = useSelector(state => state.conseiller?.conseiller);
+  const lienPix = `${process.env.REACT_APP_PIX_URL}?control1714940=${conseiller?.prenom}&control1714939=${conseiller?.nom}&control1714941=${conseiller?.email}`;
 
   //Forcer affichage en haut de la page pour voir le flashbag
   if (location?.printFlashbag === true) {
@@ -39,29 +42,25 @@ function Welcome() {
               <h1 className="titre rf-mt-2w rf-mb-1w rf-mt-md-5w rf-mb-md-8w">Bienvenue sur <br className="br-sm"/>l&rsquo;Espace Coop</h1>
             </div>
 
-            <div className="rf-col-12 rf-col-md-12">
+            <div className="rf-col-12 rf-col-md-5 rf-mb-md-12w">
               <div className="centre">
                 <Link className="cra-btn rf-mb-3w" to="/compte-rendu-activite" title="Accéder à mon outil de suivi d&rsquo;activité">
                   <span className="cra-logo-btn"></span>
                   <span className="cra-texte-btn">Accéder à mon outil <br/> de suivi d&rsquo;activité</span>
                 </Link>
               </div>
-              <p className="cra-details rf-mb-8w rf-mb-md-12w">
-                Renseignez ici votre activité pour chaque accompagnement<br className="br-hidden"/>
-                réalisé (atelier, accompagnement individuel,  etc).
-              </p>
             </div>
-            {
-              /*
-              <div className="rf-col-12 rf-col-md-5">
-                <div><span>Logo</span><button className="welcome-btn">Accéder à Pix Orga</button></div>
-                <h2>Outil de compte-rendu d&rsquo;activité de médiation numérique</h2>
-                <p>Professionally revolutionize high standards in users and global best practices. Distinctively re-engineer innovative
-                  processes after market-driven content. Globally synthesize backward-compatible portals without integrated partnerships. Compellingly.
-                </p>
+
+            <div className="rf-col-12 rf-col-md-5">
+              <div className="centre">
+                <a className="pix-btn rf-mb-3w" href={lienPix}
+                  title="Accéder à Pix">
+                  <span className="pix-logo-btn"></span>
+                  <span className="pix-texte-btn">Accéder à Pix</span>
+                </a>
               </div>
-              */
-            }
+            </div>
+
 
             <div className="rf-col-12 bloc-document">
               <div className="rf-container-fluid">
