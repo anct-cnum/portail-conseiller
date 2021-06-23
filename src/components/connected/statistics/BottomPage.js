@@ -7,16 +7,81 @@ function BottomPage(props) {
 
   const tabColorAge = ['#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e'];
   const tabColorStatut = ['#a2b4b1', '#ffdbd2', '#a3a6bc', '#ddb094', '#fff480'];
-
-  const { statsUsagers, statsAges } = props.donneesStats;
-
-  //TODO à remplacer quand stats OK côté API (mode script)
-  let statsEvolutions = [
-    { nom: 'Avril', valeur: 25 },
-    { nom: 'Mai', valeur: 85 },
-    { nom: 'Juin', valeur: 45 },
-    { nom: 'Juillet', valeur: 75 },
+  const labelsCorrespondanceMois = [
+    { numeroMois: 0, correspondance: 'Janvier' },
+    { numeroMois: 1, correspondance: 'Février' },
+    { numeroMois: 2, correspondance: 'Mars' },
+    { numeroMois: 3, correspondance: 'Avril' },
+    { numeroMois: 4, correspondance: 'Mai' },
+    { numeroMois: 5, correspondance: 'Juin' },
+    { numeroMois: 6, correspondance: 'Juillet' },
+    { numeroMois: 7, correspondance: 'Août' },
+    { numeroMois: 8, correspondance: 'Septembre' },
+    { numeroMois: 9, correspondance: 'Octobre' },
+    { numeroMois: 10, correspondance: 'Novembre' },
+    { numeroMois: 11, correspondance: 'Décembre' },
   ];
+
+  const get4lastMonths = (month, year) => {
+    let monthToPrint = [month];
+    let yearAssociated = [year];
+    let lastInsertedMonth = month;
+    let lastInsertedYear = year;
+    for (let i = 0; i < 3; i++) {
+      lastInsertedYear = lastInsertedMonth - 1 === -1 ? year - 1 : year;
+      lastInsertedMonth = lastInsertedMonth - 1 === -1 ? 11 : lastInsertedMonth - 1; //11 = décembre dans Date
+      monthToPrint.push(lastInsertedMonth);
+      yearAssociated.push(lastInsertedYear.toString());
+    }
+    return [monthToPrint, yearAssociated];
+  };
+
+  const { statsEvolutions, statsUsagers, statsAges } = props.donneesStats;
+
+  //Map des stats evolutions pour ajouter les données nécessaires pour le graph (label mois année, valeur)
+  let statsEvolutionsMapped;
+  for (const [annee, moisListe] of Object.entries(statsEvolutions)) {
+    statsEvolutionsMapped = moisListe.map(mois => {
+      mois.nom = labelsCorrespondanceMois.find(mois2 => mois2.numeroMois === mois.mois)?.correspondance ?? mois.mois;
+      mois.nom = mois.nom?.concat(' ', annee);
+      mois.annee = annee;
+      mois.valeur = mois.totalCras;
+      return mois;
+    });
+  }
+
+  //Filtrage pour ne garder que le mois en cours et les 3 précédents max
+  let monthToPrint = get4lastMonths(new Date().getMonth(), new Date().getUTCFullYear());
+  let statsEvolutionsFiltered = Object.values(statsEvolutionsMapped).filter(mois => {
+    // eslint-disable-next-line max-len
+    return monthToPrint[0].includes(mois.mois) && monthToPrint[1][monthToPrint[0].findIndex(mois2 => mois.mois === mois2)].toString() === mois.annee ? mois : '';
+  });
+
+  //Ajout des mois manquants (donc avec totalCras à 0)
+  monthToPrint[0].forEach((value, index) => {
+    if (statsEvolutionsFiltered.some(mois => mois.mois === value) === false) {
+      let annee = monthToPrint[1][index];
+      let nom = labelsCorrespondanceMois.find(mois2 => mois2.numeroMois === value)?.correspondance ?? value;
+      nom = nom?.concat(' ', annee);
+      statsEvolutionsFiltered.push({ 'mois': value, 'valeur': 0, 'annee': annee.toString(), 'nom': nom });
+    }
+  });
+
+  //Tri par mois/annee croissant
+  const orderMonths = (a, b) => {
+    if (a.annee === b.annee) {
+      if (a.mois < b.mois) {
+        return -1;
+      }
+      if (a.mois > b.mois) {
+        return 1;
+      }
+      return 0;
+    } else {
+      return a.annee < b.annee ? -1 : 1;
+    }
+  };
+  statsEvolutionsFiltered.sort(orderMonths);
 
   const graphiqueEvolution = {
     graphique: {
@@ -90,10 +155,10 @@ function BottomPage(props) {
         <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">
           <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v"><hr/></div>
           <span className="graphique-responsive-md-lg">
-            <ElementHighcharts donneesStats={statsEvolutions} variablesGraphique={graphiqueEvolution} />
+            <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolution} />
           </span>
           <span className="graphique-responsive-sm">
-            <ElementHighcharts donneesStats={statsEvolutions} variablesGraphique={graphiqueEvolutionSM} />
+            <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolutionSM} />
           </span>
         </div>
 
