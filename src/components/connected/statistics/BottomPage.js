@@ -39,15 +39,16 @@ function BottomPage(props) {
   const { statsEvolutions, statsUsagers, statsAges } = props.donneesStats;
 
   //Map des stats evolutions pour ajouter les données nécessaires pour le graph (label mois année, valeur)
-  let statsEvolutionsMapped;
+  let statsEvolutionsMapped = [];
   for (const [annee, moisListe] of Object.entries(statsEvolutions)) {
-    statsEvolutionsMapped = moisListe.map(mois => {
+    let statsEvolutionsMapped2 = moisListe.map(mois => {
       mois.nom = labelsCorrespondanceMois.find(mois2 => mois2.numeroMois === mois.mois)?.correspondance ?? mois.mois;
       mois.nom = mois.nom?.concat(' ', annee);
       mois.annee = annee;
       mois.valeur = mois.totalCras;
       return mois;
     });
+    statsEvolutionsMapped.push(...statsEvolutionsMapped2);
   }
 
   //Filtrage pour ne garder que le mois en cours et les 3 précédents max
