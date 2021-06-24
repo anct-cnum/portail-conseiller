@@ -16,6 +16,7 @@ function Welcome() {
 
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const lienPix = `${process.env.REACT_APP_PIX_URL}?control1714940=${conseiller?.prenom}&control1714939=${conseiller?.nom}&control1714941=${conseiller?.email}`;
+  const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
 
   //Forcer affichage en haut de la page pour voir le flashbag
   if (location?.printFlashbag === true) {
@@ -42,7 +43,7 @@ function Welcome() {
               <h1 className="titre rf-mt-2w rf-mb-1w rf-mt-md-5w rf-mb-md-8w">Bienvenue sur <br className="br-sm"/>l&rsquo;Espace Coop</h1>
             </div>
 
-            <div className="rf-col-12 rf-col-md-5 rf-mb-md-12w">
+            <div className="rf-col-12 rf-col-lg-4 listBoutonsWelcome">
               <div className="centre">
                 <Link className="cra-btn rf-mb-3w" to="/compte-rendu-activite" title="Accéder à mon outil de suivi d&rsquo;activité">
                   <span className="cra-logo-btn"></span>
@@ -51,9 +52,19 @@ function Welcome() {
               </div>
             </div>
 
-            <div className="rf-col-12 rf-col-md-5">
+            <div className="rf-col-12 rf-col-lg-4">
               <div className="centre">
-                <a className="pix-btn rf-mb-3w" href={lienPix}
+                <a className="mattermost-btn rf-mb-3w" href={lienMattermost} target="blank"
+                  title="Accès espace discussion">
+                  <span className="mattermost-logo-btn"></span>
+                  <span className="mattermost-texte-btn">Accéder à l&rsquo;espace <br/> de discussion</span>
+                </a>
+              </div>
+            </div>
+
+            <div className="rf-col-12 rf-col-lg-4">
+              <div className="centre">
+                <a className="pix-btn rf-mb-3w" href={lienPix} target="blank"
                   title="Accéder à Pix">
                   <span className="pix-logo-btn"></span>
                   <span className="pix-texte-btn">Accéder à Pix</span>
