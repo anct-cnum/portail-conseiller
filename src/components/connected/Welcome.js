@@ -15,7 +15,9 @@ function Welcome() {
   }, []);
 
   const conseiller = useSelector(state => state.conseiller?.conseiller);
-  const lienPix = `${process.env.REACT_APP_PIX_URL}?control1714940=${conseiller?.prenom}&control1714939=${conseiller?.nom}&control1714941=${conseiller?.email}`;
+
+  const user = useSelector(state => state.authentication.user.user);
+  const lienPix = `${process.env.REACT_APP_PIX_URL}?control1714940=${conseiller?.prenom}&control1714939=${conseiller?.nom}&control1714941=${user?.name}`;
   const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
 
   //Forcer affichage en haut de la page pour voir le flashbag

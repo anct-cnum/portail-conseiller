@@ -33,6 +33,7 @@ jobs:
         envkey_REACT_APP_WEBMAIL_URL: "http://webmail.coop.fr"
         envkey_REACT_APP_MATTERMOST_URL: "https://discussion.conseiller-numerique.gouv.fr"
         envkey_REACT_APP_API: ${{ secrets.REACT_APP_API_RECETTE }}
+        envkey_REACT_APP_PIX_URL: "https://pix.fr/abc-pix-cnfs/"
         file_name: .env
     - name: Build application
       run: yarn run build
