@@ -29,7 +29,7 @@
     height: 27px;
     width: 21px;
   }
-  .cra-btn, .pix-btn {
+  .cra-btn, .pix-btn, .mattermost-btn {
     background-color: #fff;
     border: 1px solid #fff;
     display: inline-block;
@@ -43,7 +43,7 @@
     width: 342px;
     height: 64px;
   }
-  .cra-logo-btn, .pix-logo-btn {
+  .cra-logo-btn, .pix-logo-btn, .mattermost-logo-btn {
     display: inline-block;
     height: 58px;
     width: 64px;
@@ -56,12 +56,20 @@
     background-size: 56px 42px;
     margin-top: 9px;
   }
-  .cra-texte-btn, .pix-texte-btn {
+  .mattermost-logo-btn {
+    background: url(../../public/logos/home-connected/icone-discussion.svg) no-repeat;
+    background-size: 56px 42px;
+    margin-top: 9px;
+  }
+  .cra-texte-btn, .pix-texte-btn, .mattermost-texte-btn {
     display: inline-block;
     position: relative;
     margin-left: 20px;
     text-align: left;
     top: -9px;
+  }
+  .mattermost-texte-btn {
+    top: -18px;
   }
   .pix-texte-btn {
     top: -32px;
@@ -121,6 +129,12 @@
     .futur-img {
       width: 290px;
       height: 197px;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .listBoutonsWelcome {
+      margin-bottom: 6rem;
     }
   }
 
