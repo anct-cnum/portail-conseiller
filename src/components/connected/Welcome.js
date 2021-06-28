@@ -96,7 +96,10 @@ function Welcome() {
                       sur les territoires ainsi que leurs contacts.
                     </p>
 
-                    <a href="https://cdn.conseiller-numerique.gouv.fr/les-conseils-pour-bien-demarrer.pdf" className="document-btn rf-ml-md-1w rf-mb-5w">
+                    <a href="https://cdn.conseiller-numerique.gouv.fr/les-conseils-pour-bien-demarrer.pdf"
+                      target="blank"
+                      className="document-btn rf-ml-md-1w rf-mb-5w"
+                      title="Kit bien démarrer ma mission">
                       Téléchargez le document
                     </a>
                   </div>
@@ -108,7 +111,11 @@ function Welcome() {
             </div>
 
             <div className="rf-col-12 rf-col-md-10 rf-mb-5w rf-mb-md-6w rf-mt-8w rf-mt-md-9w">
-              <h2 className="sous-titre">Prochainement en ligne sur votre espace Coop : l&rsquo;accès à Pix</h2>
+              <h2 className="sous-titre">Les autres fonctionnalités à venir sur
+                <a href="https://coop.conseiller-numerique.gouv.fr/login" target="blank" title="site coop" style={{ boxShadow: 'none' }}>
+                  &nbsp;coop.conseiller-numerique.gouv.fr
+                </a>
+              </h2>
             </div>
 
             <div className="rf-col-12 rf-col-md-5 rf-mb-6w center-md">
@@ -117,22 +124,50 @@ function Welcome() {
 
             <div className="rf-col-12 rf-col-md-5 rf-mb-7w rf-mb-md-9w align-left-sm center-md">
               <p className="rf-mb-5w  rf-mb-md-6w rf-ml-md-5w">
-                D&rsquo;ici quelques semaines, il vous sera possible d&rsquo;accéder à Pix, ce service public en ligne est mis à la disposition de tous
-                les Conseillers numériques France Services qui en disposeront afin de leur faciliter les diagnostics et les accompagnement
-                autour de la maîtrise de compétences numériques.
-                <br/><br/>
-                N&rsquo;hésitez pas à télécharger le kit « Bien démarrer ma mission » pour en apprendre davantage sur ce sujet.
-              </p>
-              <h2 className="sous-titre-futur rf-mb-3w rf-mb-md-6w rf-ml-md-5w center-md">Les autres fonctionnalités à venir</h2>
-              <p className="rf-ml-md-5w">
-                – Un outil de messagerie en ligne ;<br/>
-                – les actualités régulières de la communauté Conseiller numérique France Services ;<br/>
-                – des temps de rencontres dédiés ; <br/>
-                – la bibliothèque d&rsquo;outils d&rsquo;inclusion numérique ; <br/>
+                – La possibilité de consulter ses mails sur la Coop&nbsp;;<br/>
+                – les actualités régulières de la communauté Conseiller numérique France Services&nbsp;;<br/>
+                – des temps de rencontres dédiés&nbsp;; <br/>
+                – la bibliothèque d&rsquo;outils d&rsquo;inclusion numérique&nbsp;; <br/>
                 – un forum et une ressourcerie participatifs.
               </p>
+
               <p className="rf-ml-md-5w">Consultez régulièrement votre e-mail pour être tenu au <br/>courant des activités et des mises à jour. </p>
             </div>
+
+            <div className="rf-col-12 bloc-document rf-mb-7w rf-mb-md-9w">
+              <div className="rf-container-fluid">
+                <div className="rf-grid-row rf-grid-row--center">
+
+                  <div className="rf-col-12 rf-col-md-10 rf-mt-3w rf-mt-md-6w rf-mb-5w rf-mb-md-8w">
+                    <h2 className="sous-titre">
+                      Le kit de communication Conseiller numérique France Services
+                    </h2>
+                  </div>
+
+                  <div className="rf-col-12 rf-col-md-5 rf-mb-md-6w center-md">
+                    <p className="rf-ml-md-1w align-left-sm">Pour votre communication interne ou externe : papeterie, <br className="br-hidden"/>
+                      réseaux sociaux, signalétiques, etc, un kit de communication est
+                      mis à votre disposition. Il comprend à ce jour, les éléments <br className="br-hidden"/>
+                      suivants :  <br className="br-hidden"/>
+                      – modèle de cartes de visites imprimables&nbsp;; <br className="br-hidden"/>
+                      – supports pour réseaux sociaux et charte graphique&nbsp;; <br className="br-hidden"/>
+                      – logos et illustrations&nbsp;; <br className="br-hidden"/>
+                      – modèle d&rsquo;étiquettes.
+                    </p>
+
+                    <a href="https://www.conseiller-numerique.gouv.fr/kit-communication" title="kit de communication" target="blank"
+                      className="kit-communication-btn rf-ml-md-1w rf-mb-5w">
+                        Accéder au kit de communication
+                    </a>
+                  </div>
+                  <div className="rf-col-12 rf-col-md-5 center-md">
+                    <img className="kit-communication-img rf-mb-6w rf-mb-md-9w rf-ml-md-5w" src="/logos/home-connected/supports-kit-communication.png"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="rf-col-12 rf-mb-md-6w"></div>
           </div>
         </div>
       </div>
