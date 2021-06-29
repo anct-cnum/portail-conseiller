@@ -24,7 +24,6 @@ function Welcome() {
   return (
     <>
       <div className="welcome">
-        {/* TODO flash message à déplacer dans une autre page quand ce sera tranché */}
         { location?.printFlashbag === true &&
         <FlashMessage duration={5000}>
           <p className="rf-label flashBag">

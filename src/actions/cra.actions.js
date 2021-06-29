@@ -80,7 +80,7 @@ function submitCra(cra) {
       cra => {
         dispatch(success(cra));
         history.push({
-          pathname: '/accueil', //TODO à remplacer par une autre page quand ce sera tranché
+          pathname: '/accueil',
           printFlashbag: true
         });
 

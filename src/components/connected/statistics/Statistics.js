@@ -7,7 +7,6 @@ import RightPage from './RightPage';
 import BottomPage from './BottomPage';
 import Footer from '../../Footer';
 import Spinner from 'react-loader-spinner';
-//import StatisticsBanner from './StatisticsBanner'; TODO : à decommenter quand les fonctionnalités associées viendront
 
 function Statistics() {
   const dispatch = useDispatch();
@@ -72,8 +71,6 @@ function Statistics() {
             <RightPage donneesStats={donneesStatistiques}/>
 
             <BottomPage donneesStats={donneesStatistiques}/>
-
-            {/* <StatisticsBanner /> TODO : à decommenter quand les fonctionnalités associées viendront */}
 
           </div>
         }

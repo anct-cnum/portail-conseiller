@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import labelsCorrespondance from '../../../../data/labelsCorrespondance.json';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import roundedCorner from 'highcharts-rounded-corners';
@@ -11,40 +11,6 @@ function ElementHighcharts(props) {
   const { typeGraphique, largeurGraphique, hauteurGraphique,
     margeGaucheGraphique, margeDroiteGraphique, optionResponsive, couleursGraphique } = props.variablesGraphique.graphique;
   const { optionTitre, margeTitre, placementTitre } = props.variablesGraphique.titre;
-
-  const labelsCorrespondance = [
-    { nom: 'equipement informatique', correspondance: 'Équipement informatique' },
-    { nom: 'internet', correspondance: 'Naviguer sur Internet' },
-    { nom: 'courriel', correspondance: 'Courriels' },
-    { nom: 'smartphone', correspondance: 'Applications smartphone' },
-    { nom: 'contenus numeriques', correspondance: 'Gestion de contenus numériques' },
-    { nom: 'vocabulaire', correspondance: 'Env., vocab. numérique' },
-    { nom: 'traitement texte', correspondance: 'Traitement de texte' },
-    { nom: 'echanger', correspondance: 'Échanger avec ses proches' },
-    { nom: 'trouver emploi', correspondance: 'Emploi, formation' },
-    { nom: 'accompagner enfant', correspondance: 'Accompagner son enfant' },
-    { nom: 'tpe/pme', correspondance: 'Numérique et TPE/PME' },
-    { nom: 'demarche en ligne', correspondance: 'Démarche en ligne' },
-    { nom: 'autre', correspondance: 'Autre' },
-    { nom: 'domicile', correspondance: 'À domicile' },
-    { nom: 'distance', correspondance: 'À distance' },
-    { nom: 'rattachement', correspondance: 'Lieu de ratachement' },
-    { nom: 'autre', correspondance: 'Autre lieu' },
-    { nom: '0-30', correspondance: '0 à 30 min.' },
-    { nom: '30-60', correspondance: '30 min. à 1h' },
-    { nom: '60-120', correspondance: '1h à 2h' },
-    { nom: '120+', correspondance: '2h et plus' },
-    { nom: '-12', correspondance: '-12 ans' },
-    { nom: '12-18', correspondance: '12-18 ans' },
-    { nom: '18-35', correspondance: '18-35 ans' },
-    { nom: '35-60', correspondance: '35-60 ans' },
-    { nom: '+60', correspondance: '60 ans et plus' },
-    { nom: 'etudiant', correspondance: 'Etudiant' },
-    { nom: 'sans emploi', correspondance: 'Sans emploi' },
-    { nom: 'en emploi', correspondance: 'En emploi' },
-    { nom: 'retraite', correspondance: 'Retraité' },
-    { nom: 'heterogene', correspondance: 'Non renseigné' }
-  ];
 
   const categoriesStatistiques = setCategoriesStatistiques(props.donneesStats, typeGraphique);
   const chartStatistiques = setStatistiquesGraphique(typeGraphique, largeurGraphique, hauteurGraphique, margeGaucheGraphique, margeDroiteGraphique);

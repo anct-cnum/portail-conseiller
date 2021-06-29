@@ -1,26 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import dayjs from 'dayjs';
+import 'dayjs/locale/fr';
 import ElementHighcharts from './Components/ElementHighcharts';
 
 function BottomPage(props) {
 
   const tabColorAge = ['#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e'];
   const tabColorStatut = ['#a2b4b1', '#ffdbd2', '#a3a6bc', '#ddb094', '#fff480'];
-  const labelsCorrespondanceMois = [
-    { numeroMois: 0, correspondance: 'Janvier' },
-    { numeroMois: 1, correspondance: 'Février' },
-    { numeroMois: 2, correspondance: 'Mars' },
-    { numeroMois: 3, correspondance: 'Avril' },
-    { numeroMois: 4, correspondance: 'Mai' },
-    { numeroMois: 5, correspondance: 'Juin' },
-    { numeroMois: 6, correspondance: 'Juillet' },
-    { numeroMois: 7, correspondance: 'Août' },
-    { numeroMois: 8, correspondance: 'Septembre' },
-    { numeroMois: 9, correspondance: 'Octobre' },
-    { numeroMois: 10, correspondance: 'Novembre' },
-    { numeroMois: 11, correspondance: 'Décembre' },
-  ];
 
   const get4lastMonths = (month, year) => {
     let monthToPrint = [month];
@@ -28,7 +15,7 @@ function BottomPage(props) {
     let lastInsertedMonth = month;
     let lastInsertedYear = year;
     for (let i = 0; i < 3; i++) {
-      lastInsertedYear = lastInsertedMonth - 1 === -1 ? year - 1 : year;
+      lastInsertedYear = lastInsertedMonth - 1 === -1 ? lastInsertedYear - 1 : lastInsertedYear;
       lastInsertedMonth = lastInsertedMonth - 1 === -1 ? 11 : lastInsertedMonth - 1; //11 = décembre dans Date
       monthToPrint.push(lastInsertedMonth);
       yearAssociated.push(lastInsertedYear.toString());
@@ -42,7 +29,7 @@ function BottomPage(props) {
   let statsEvolutionsMapped = [];
   for (const [annee, moisListe] of Object.entries(statsEvolutions)) {
     let statsEvolutionsMapped2 = moisListe.map(mois => {
-      mois.nom = labelsCorrespondanceMois.find(mois2 => mois2.numeroMois === mois.mois)?.correspondance ?? mois.mois;
+      mois.nom = dayjs(`${mois.mois + 1}`, 'M').locale('fr').format('MMMM');
       mois.nom = mois.nom?.concat(' ', annee);
       mois.annee = annee;
       mois.valeur = mois.totalCras;
@@ -62,7 +49,7 @@ function BottomPage(props) {
   monthToPrint[0].forEach((value, index) => {
     if (statsEvolutionsFiltered.some(mois => mois.mois === value) === false) {
       let annee = monthToPrint[1][index];
-      let nom = labelsCorrespondanceMois.find(mois2 => mois2.numeroMois === value)?.correspondance ?? value;
+      let nom = dayjs(`${value + 1}`, 'M').locale('fr').format('MMMM');
       nom = nom?.concat(' ', annee);
       statsEvolutionsFiltered.push({ 'mois': value, 'valeur': 0, 'annee': annee.toString(), 'nom': nom });
     }
