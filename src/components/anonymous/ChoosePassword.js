@@ -4,7 +4,7 @@ import Header from '../Header';
 import Footer from '../Footer';
 import PropTypes from 'prop-types';
 import { userActions } from '../../actions';
-
+import slugify from 'slugify';
 
 function ChoosePassword({ match }) {
   const dispatch = useDispatch();
@@ -80,9 +80,12 @@ function ChoosePassword({ match }) {
                 <div className="rf-col-12 rf-col-md-5 rf-mt-2w rf-mt-md-4w">
                   <h2 className="titre rf-mb-4v">Choisissez un mot de passe <img className="cle" src="/logos/cle.svg"/></h2>
                   <p className="sous-titre rf-mb-3w">
-                    Celui-ci servira à la fois pour votre connexion au mail, et pour vous identifier sur l’espace Coop, gardez le précieusement !
+                    Celui-ci servira à la fois pour votre connexion au mail, et pour vous identifier sur l’espace Coop, gardez-le précieusement !
                   </p>
-                  <p className="rf-mb-3w">Une boîte mail prenom.nom@conseiller-numerique.fr sera automatiquement créée lorsque vous cliquerez sur Valider.</p>
+                  <p className="rf-mb-3w">
+                    Une boîte mail {slugify(`${user?.prenom} ${user?.nom}`, { replacement: '.', lower: true, strict: true })}@conseiller-numerique.fr
+                    sera automatiquement créée lorsque vous cliquerez sur Valider.
+                  </p>
                   <p className="rf-mb-md-3w">Accédez ensuite à cette dernière afin de pouvoir effectuer votre première connexion à l’espace Coop.</p>
                 </div>
 
