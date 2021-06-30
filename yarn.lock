@@ -6826,19 +6826,24 @@ hex-color-regex@^1.1.0:
   resolved "https://registry.yarnpkg.com/hex-color-regex/-/hex-color-regex-1.1.0.tgz#4c06fccb4602fe2602b3c93df82d7e7dbf1a8a8e"
   integrity sha512-l9sfDFsuqtOqKDsQdqrMRk0U85RZc0RtOR9yPI7mRVOa4FsR/BVnZ0shmQRM96Ji99kYZP/7hn1cedc1+ApsTQ==
 
-highcharts-react-official@^3.0.0:
+highcharts-react-official@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/highcharts-react-official/-/highcharts-react-official-3.0.0.tgz#f2e81ed59d299c3473a0dd5ba5df24028875226a"
   integrity sha512-VefJgDY2hkT9gfppsQGrRF2g5u8d9dtfHGcx2/xqiP+PkZXCqalw9xOeKVCRvJKTOh0coiDFwvVjOvB7KaGl4A==
 
-highcharts-rounded-corners@^1.0.6:
+highcharts-rounded-corners@1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/highcharts-rounded-corners/-/highcharts-rounded-corners-1.0.6.tgz#ee42c767db05d8187b14e18c7a6d046dee58170a"
   integrity sha512-N72oVq/Tl/f04rpeKBF8B88l0qhzxPmVRbs/tKdl2MfsTo7+Qh3nIY1c0XBpmZ9pjcx4SwXb1A043pFG/3Djsw==
   dependencies:
     highcharts ">=3.0.0"
 
-highcharts@>=3.0.0, highcharts@^9.0.1:
+highcharts@9.0.1:
+  version "9.0.1"
+  resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-9.0.1.tgz#49ec994a7897a96fc3e0880f49a0eca34adff6a2"
+  integrity sha512-0UmcCz2RmFuqfT/Igu3h5sGnkeSqqZwfuYrTzJ/htptmJAo5SSxH62NFcTjVRk+3WstoBJmoXR0v5FVGQUzK5A==
+
+highcharts@>=3.0.0:
   version "9.1.2"
   resolved "https://registry.yarnpkg.com/highcharts/-/highcharts-9.1.2.tgz#c9b15390a10acb274a941d2aa5bc05c0889646d9"
   integrity sha512-RwCnJnxAUCGG4R/WDG+QP/4VJNtOpkQTkXcuf58DjDvm9ZILplSMdZvrbMRC9Y9ecuJQCjjZsiifvyS5E2IBvQ==
@@ -10953,10 +10958,10 @@ react-error-overlay@^6.0.9:
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-6.0.9.tgz#3c743010c9359608c375ecd6bc76f35d93995b0a"
   integrity sha512-nQTTcUu+ATDbrSD1BZHr5kgSD4oF8OFjxun8uAaL8RwPBacGBNPf/yAuVVdx17N8XNzRDMrZ9XcKZHCjPW+9ew==
 
-react-flash-message@^1.0.5:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/react-flash-message/-/react-flash-message-1.0.7.tgz#3aae30324a81b48910fc4e162e80818662329588"
-  integrity sha512-EwyGkQfEiSAFoQfzGHzVMIkNU3XzgGL6eFiTeWeteDPnE3LfKMARNDGGkwk1ATZ3qBJnOH1IrWJicUzOLE8tIQ==
+react-flash-message@1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/react-flash-message/-/react-flash-message-1.0.5.tgz#1bca3a19597ba6e3c950344cc7fc752df0b653f3"
+  integrity sha512-Xaza4Tub+ByjaPkBlMYFCh34rZsyxSK1A63lpot10a8I+D8hUt9GfW2Sy1GVfUaClRBc2sBT7kYYXg7KGZTW4w==
   dependencies:
     prop-types "^15.6.1"
 
