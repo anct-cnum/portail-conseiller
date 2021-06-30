@@ -105,6 +105,19 @@ function ElementHighcharts(props) {
           borderColor: '#1e1e1e',
           borderWidth: 1,
         });
+      } else if (typeGraphique === 'pie') {
+        //Ne pas afficher la valeur 0 dans le camembert
+        if (element.valeur === 0) {
+          valeurs.push({
+            name: labelsCorrespondance.find(label => label.nom === element.nom)?.correspondance ?? element.nom,
+          });
+        } else {
+          valeurs.push({
+            name: labelsCorrespondance.find(label => label.nom === element.nom)?.correspondance ?? element.nom,
+            y: element.valeur,
+            color: couleursGraphique[i]
+          });
+        }
       } else {
         valeurs.push({
           name: labelsCorrespondance.find(label => label.nom === element.nom)?.correspondance ?? element.nom,
