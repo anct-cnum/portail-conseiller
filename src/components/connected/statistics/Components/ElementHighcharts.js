@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import labelsCorrespondance from '../../../../data/labelsCorrespondance.json';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import roundedCorner from 'highcharts-rounded-corners';
@@ -25,10 +25,11 @@ function ElementHighcharts(props) {
 
     let categories = [];
     donneesStats.forEach(element => {
+      let libelle = labelsCorrespondance.find(label => label.nom === element.nom)?.correspondance ?? element.nom;
       if (typeGraphique === 'bar') {
-        categories.push(element.nom + '&nbsp;&nbsp;&nbsp;&nbsp;<b>' + element.valeur + '</b>');
+        categories.push(libelle + '&nbsp;&nbsp;&nbsp;&nbsp;<b>' + element.valeur + '</b>');
       } else {
-        categories.push(element.nom);
+        categories.push(libelle);
       }
     });
 
@@ -98,7 +99,7 @@ function ElementHighcharts(props) {
         valeursCumul.push(cumul);
       } else if (typeGraphique === 'stacked') {
         valeurs.push({
-          name: element.nom,
+          name: labelsCorrespondance.find(label => label.nom === element.nom)?.correspondance ?? element.nom,
           data: [element.valeur],
           color: couleursGraphique[i],
           borderColor: '#1e1e1e',
@@ -106,7 +107,7 @@ function ElementHighcharts(props) {
         });
       } else {
         valeurs.push({
-          name: element.nom,
+          name: labelsCorrespondance.find(label => label.nom === element.nom)?.correspondance ?? element.nom,
           y: element.valeur,
           color: couleursGraphique[i]
         });
@@ -479,7 +480,7 @@ function ElementHighcharts(props) {
           cursor: 'pointer',
           size: 162,
           dataLabels: {
-            format: '&nbsp;&nbsp;{point.y}',
+            format: '{point.y}',
             color: '#fff',
             distance: '-40%',
             style: {

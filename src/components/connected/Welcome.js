@@ -30,7 +30,6 @@ function Welcome() {
   return (
     <>
       <div className="welcome">
-        {/* TODO MOVE flash message in statistics page when it will be OK */}
         { location?.printFlashbag === true &&
         <FlashMessage duration={5000}>
           <p className="rf-label flashBag">
