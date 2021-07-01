@@ -12,7 +12,7 @@ function StatisticsRenewal(props) {
         <ElementNumber nombre={props.nbUsagersBeneficiantSuivi} classe="numbers"/>
       </div>
       <div className="rf-col-10 rf-col-lg-9">
-        <ElementText texte="usagers ont bénéficié d'un suivi" classe="text"/><br/>
+        <ElementText texte="usagers ont bénéficié d'un accompagnement poursuivi" classe="text"/><br/>
       </div>
       <div className="rf-col-2 rf-col-lg-3">
         <ElementNumber nombre={props.tauxTotalUsagersAccompagnes} caracteresSpeciaux={props.caracteresSpeciaux} classe="many-numbers"/>
