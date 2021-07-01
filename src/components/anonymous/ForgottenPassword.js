@@ -57,11 +57,12 @@ function ForgottenPassword({ match = null }) {
     setInputsPassword(inputsPassword => ({ ...inputsPassword, [name]: value }));
   }
 
-  const checkComplexity = password => password.length >= 6;
+  //Contrainte Mattermost : Must be at least 8 characters long and less than 200, have at least one lower char, one upper char, one digit and one special char
+  const checkComplexity = new RegExp(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,199})/);
 
   function handleSubmitPassword() {
     setSubmittedPassword(true);
-    if (password && confirmPassword === password && checkComplexity(password)) {
+    if (password && confirmPassword === password && checkComplexity.test(password)) {
       dispatch(userActions.choosePassword(token, password, 'renouvellement'));
     }
   }
@@ -186,7 +187,7 @@ function ForgottenPassword({ match = null }) {
 
                       <label className="rf-label">
                         Veuillez choisir votre mot de passe.
-                        <br/>Celui-ci doit contenir au moins six caractères
+                        <br/>Celui-ci doit contenir au moins 8 caractères dont une minuscule, une majuscule, un chiffre et un caractère spécial(!@#$%^&amp;*)
 
                         <input name="password" type="password" value={password}
                           onChange={handleChangePassword} className={(submittedPassword && !password ? ' is-invalid rf-input' : 'rf-input')}
@@ -198,9 +199,9 @@ function ForgottenPassword({ match = null }) {
                         <div className="invalid">Mot de passe requis</div>
                       </div>
                       }
-                      { password && !checkComplexity(password) &&
+                      { password && !checkComplexity.test(password) &&
                         <div className="rf-mt-2w rf-mb-n2w">
-                          <div className="invalid">Le mot de passe doit contenir au moins six caractères.</div>
+                          <div className="invalid">Le mot de passe ne correspond pas aux exigences de sécurité.</div>
                         </div>
                       }
 

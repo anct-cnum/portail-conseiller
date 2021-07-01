@@ -35,7 +35,8 @@ function ChoosePassword({ match }) {
     setInputs(inputs => ({ ...inputs, [name]: value }));
   }
 
-  const checkComplexity = new RegExp(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@*#$%]).{8,199})/);
+  //Contrainte Mattermost : Must be at least 8 characters long and less than 200, have at least one lower char, one upper char, one digit and one special char
+  const checkComplexity = new RegExp(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,199})/);
 
   function handleSubmit() {
     setSubmitted(true);
@@ -111,7 +112,7 @@ function ChoosePassword({ match }) {
 
                     <label className="rf-label">
                       Veuillez choisir votre mot de passe.
-                      <br/>Celui-ci doit contenir au moins 8 caractères dont une minuscule, une majuscule, un chiffre et un caractère spécial(@*#$%)
+                      <br/>Celui-ci doit contenir au moins 8 caractères dont une minuscule, une majuscule, un chiffre et un caractère spécial(!@#$%^&amp;*)
 
                       <input name="password" type="password" value={password}
                         onChange={handleChange} className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')}
