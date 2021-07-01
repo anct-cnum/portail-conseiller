@@ -58,6 +58,7 @@ function ForgottenPassword({ match = null }) {
   }
 
   //Contrainte Mattermost : Must be at least 8 characters long and less than 200, have at least one lower char, one upper char, one digit and one special char
+  //Source Regex : https://stackoverflow.com/questions/23699919/regular-expression-for-password-complexity
   const checkComplexity = new RegExp(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,199})/);
 
   function handleSubmitPassword() {
