@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import dayjs from 'dayjs';
-import 'dayjs/locale/fr';
+import moment from 'moment';
+import 'moment/locale/fr';
 import ElementHighcharts from './Components/ElementHighcharts';
 
 function BottomPage(props) {
@@ -29,7 +29,7 @@ function BottomPage(props) {
   let statsEvolutionsMapped = [];
   for (const [annee, moisListe] of Object.entries(statsEvolutions)) {
     let statsEvolutionsMapped2 = moisListe.map(mois => {
-      mois.nom = dayjs(`${mois.mois + 1}`, 'M').locale('fr').format('MMMM');
+      mois.nom = moment().month(`${mois.mois}`).format('MMMM');
       mois.nom = mois.nom?.concat(' ', annee);
       mois.annee = annee;
       mois.valeur = mois.totalCras;
@@ -49,7 +49,7 @@ function BottomPage(props) {
   monthToPrint[0].forEach((value, index) => {
     if (statsEvolutionsFiltered.some(mois => mois.mois === value) === false) {
       let annee = monthToPrint[1][index];
-      let nom = dayjs(`${value + 1}`, 'M').locale('fr').format('MMMM');
+      let nom = moment().month(`${value}`).format('MMMM');
       nom = nom?.concat(' ', annee);
       statsEvolutionsFiltered.push({ 'mois': value, 'valeur': 0, 'annee': annee.toString(), 'nom': nom });
     }
