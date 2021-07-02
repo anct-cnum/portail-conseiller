@@ -35,11 +35,13 @@ function ChoosePassword({ match }) {
     setInputs(inputs => ({ ...inputs, [name]: value }));
   }
 
-  const checkComplexity = password => password.length >= 6;
+  //Contrainte Mattermost : Must be at least 8 characters long and less than 200, have at least one lower char, one upper char, one digit and one special char
+  //Source Regex : https://stackoverflow.com/questions/23699919/regular-expression-for-password-complexity
+  const checkComplexity = new RegExp(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,199})/);
 
   function handleSubmit() {
     setSubmitted(true);
-    if (password && passwordConfirm === password && checkComplexity(password)) {
+    if (password && passwordConfirm === password && checkComplexity.test(password)) {
       dispatch(userActions.choosePassword(token, password, 'bienvenue'));
     }
   }
@@ -98,7 +100,6 @@ function ChoosePassword({ match }) {
                       </p>
                       <p className="rf-mb-md-3w">Accédez ensuite à cette dernière afin de pouvoir effectuer votre première connexion à l’espace Coop.</p>
                     </div>
-
                     <div className="rf-col-12 rf-col-md-5">
 
                       {verifyingToken || choosingPassword &&
@@ -106,8 +107,8 @@ function ChoosePassword({ match }) {
                           Chargement...
                         </div>
                       }
-
-                      {tokenVerified && !passwordChoosen &&
+                 
+                      { tokenVerified && !passwordChoosen &&
                         <div className="rf-mt-11v">
                           {/* Form */}
                           <div>
@@ -116,7 +117,7 @@ function ChoosePassword({ match }) {
 
                           <label className="rf-label">
                             Veuillez choisir votre mot de passe.
-                            <br />Celui-ci doit contenir au moins six caractères
+                            <br/>Celui-ci doit contenir au moins 8 caractères dont une minuscule, une majuscule, un chiffre et un caractère spécial(!@#$%^&amp;*)
 
                             <input name="password" type="password" value={password}
                               onChange={handleChange} className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')}
@@ -124,13 +125,13 @@ function ChoosePassword({ match }) {
                           </label>
 
                           {submitted && !password &&
-                            <div className="rf-mt-2w rf-mb-n2w">
-                              <div className="invalid">Mot de passe requis</div>
-                            </div>
+                          <div className="rf-mt-2w rf-mb-n2w">
+                            <div className="invalid">Mot de passe requis</div>
+                          </div>
                           }
-                          {password && !checkComplexity(password) &&
+                          { password && !checkComplexity.test(password) &&
                             <div className="rf-mt-2w rf-mb-n2w">
-                              <div className="invalid">Le mot de passe doit contenir au moins six caractères.</div>
+                              <div className="invalid">Le mot de passe ne correspond pas aux exigences de sécurité.</div>
                             </div>
                           }
 
@@ -142,17 +143,15 @@ function ChoosePassword({ match }) {
                             />
                           </label>
                           {submitted && passwordConfirm !== password &&
-                            <div className="rf-mb-2w rf-mt-n2w">
-                              <div className="invalid rf-mt-2w">Les mots de passe ne correspondent pas. </div>
-                            </div>
+                          <div className="rf-mb-2w rf-mt-n2w">
+                            <div className="invalid rf-mt-2w">Les mots de passe ne correspondent pas. </div>
+                          </div>
                           }
 
                           <button className="btn-connexion rf-mb-6w rf-mb-md-7w" onClick={handleSubmit} >Valider le mot de passe</button>
                         </div>
                       }
                     </div>
-                  </>
-                }
               </div>
             </div>
           </div>

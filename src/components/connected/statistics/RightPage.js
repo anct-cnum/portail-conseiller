@@ -9,8 +9,7 @@ function RightPage(props) {
   const tabColorLieux = ['#ffcc9f', '#ff8d7e', '#466964', '#5770be'];
   const tabColorDuree = ['#abcdf5', '#abcdf5', '#abcdf5', '#abcdf5'];
 
-  const periodeTest = props.donneesStats.periodes[0];
-  const { statsThemes, statsDurees, statsLieux } = periodeTest;
+  const { statsThemes, statsDurees, statsLieux } = props.donneesStats;
 
   const barGraphique = {
     graphique: {
