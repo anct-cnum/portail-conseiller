@@ -107,7 +107,7 @@ function ChoosePassword({ match }) {
                           Chargement...
                         </div>
                       }
-                 
+
                       { tokenVerified && !passwordChoosen &&
                         <div className="rf-mt-11v">
                           {/* Form */}
@@ -117,7 +117,8 @@ function ChoosePassword({ match }) {
 
                           <label className="rf-label">
                             Veuillez choisir votre mot de passe.
-                            <br/>Celui-ci doit contenir au moins 8 caractères dont une minuscule, une majuscule, un chiffre et un caractère spécial(!@#$%^&amp;*)
+                            <br />
+                            Celui-ci doit contenir au moins 8 caractères dont une minuscule, une majuscule, un chiffre et un caractère spécial(!@#$%^&amp;*)
 
                             <input name="password" type="password" value={password}
                               onChange={handleChange} className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')}
@@ -152,6 +153,8 @@ function ChoosePassword({ match }) {
                         </div>
                       }
                     </div>
+                  </>
+                }
               </div>
             </div>
           </div>
