@@ -156,7 +156,8 @@ function ForgottenPassword({ match = null }) {
                 <div className="rf-col-12 rf-col-md-5 rf-mt-2w rf-mt-md-4w">
                   <h2 className="titre rf-mb-4v">Renouveler votre mot de passe <img className="cle" src="/logos/cle.svg"/></h2>
                   <p className="sous-titre rf-mb-3w">
-                    Celui-ci servira à la fois pour votre connexion au mail, et pour vous identifier sur l’espace Coop, gardez-le précieusement !
+                    Celui-ci servira à la fois pour votre connexion au mail, pour vous identifier sur l’espace Coop
+                    ainsi que sur le service de discussion en ligne, gardez-le précieusement !
                   </p>
                   <p className="rf-mb-3w">
                     Un e-mail de validation sera envoyé à l’adresse {user?.persoEmail} lorsque vous cliquerez sur Valider.

@@ -18,7 +18,7 @@ function ValidationAccount() {
 
   useEffect(() => {
     if (conseiller !== undefined) {
-      dispatch(structureActions.get(conseiller?.idStructure));
+      dispatch(structureActions.get(conseiller?.structureId));
     }
   }, [conseiller]);
 
