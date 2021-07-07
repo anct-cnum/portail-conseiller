@@ -21,8 +21,8 @@ function StatisticsPeriod(props) {
 }
 
 StatisticsPeriod.propTypes = {
-  dateDebut: PropTypes.string,
-  dateFin: PropTypes.string
+  dateDebut: PropTypes.instanceOf(Date),
+  dateFin: PropTypes.instanceOf(Date),
 };
 
 

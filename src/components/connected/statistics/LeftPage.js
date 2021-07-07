@@ -8,27 +8,29 @@ import StatisticsRenewal from './StatisticsRenewal';
 
 function LeftPage(props) {
 
-  const periode = props.donneesStats.periodes[0];
   return (
     <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">
-      <StatisticsAccompaniment nbAccompagnement={periode.nbAccompagnement} />
+      <StatisticsAccompaniment nbAccompagnement={props.donneesStats?.nbAccompagnement} />
       <div className="rf-m-6w rf-m-xs-to-md-7v"></div>
       <hr/>
       <div className="rf-m-6w rf-m-xs-to-md-7v"></div>
-      <StatisticsWorkshop nbAteliers={periode.nbAteliers} nbTotalParticipant={periode.nbTotalParticipant}/>
+      <StatisticsWorkshop nbAteliers={props.donneesStats?.nbAteliers} nbTotalParticipant={props.donneesStats?.nbTotalParticipant}/>
       <div className="rf-m-6w rf-m-xs-to-md-7v"></div>
       <hr/>
       <div className="rf-m-6w rf-m-xs-to-md-7v"></div>
-      <StatisticsPersonalAccompaniment nbAccompagnementPerso={periode.nbAccompagnementPerso} nbDemandePonctuel={periode.nbDemandePonctuel} />
+      <StatisticsPersonalAccompaniment
+        nbAccompagnementPerso={props.donneesStats?.nbAccompagnementPerso}
+        nbDemandePonctuel={props.donneesStats?.nbDemandePonctuel}
+      />
       <div className="rf-m-6w rf-m-xs-to-md-7v"></div>
       <hr/>
       <div className="rf-m-6w rf-m-xs-to-md-7v"></div>
       <StatisticsRenewal
-        nbUsagersBeneficiantSuivi={periode.nbUsagersBeneficiantSuivi}
-        tauxTotalUsagersAccompagnes={periode.tauxTotalUsagersAccompagnes}
-        nbUsagersAccompagnementIndividuel={periode.nbUsagersAccompagnementIndividuel}
-        nbUsagersAtelierCollectif={periode.nbUsagersAtelierCollectif}
-        nbReconduction={periode.nbReconduction}
+        nbUsagersBeneficiantSuivi={props.donneesStats?.nbUsagersBeneficiantSuivi}
+        tauxTotalUsagersAccompagnes={props.donneesStats?.tauxTotalUsagersAccompagnes}
+        nbUsagersAccompagnementIndividuel={props.donneesStats?.nbUsagersAccompagnementIndividuel}
+        nbUsagersAtelierCollectif={props.donneesStats?.nbUsagersAtelierCollectif}
+        nbReconduction={props.donneesStats?.nbReconduction}
         caracteresSpeciaux="%" />
       <div className="rf-m-xs-to-md-7v"></div>
       <hr className="hr-md-hide" />

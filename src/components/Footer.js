@@ -26,10 +26,6 @@ function Footer({ type, titreBouton }) {
                               style={{ height: '59px', marginRight: '50px' }} className="logoFooter"/>
                           </div>
                           <div style={{ display: 'inline-block' }} >
-                            <img src="/logos/logo-banque-des-territoires-nb.svg" alt="logo Banque Des Territoires"
-                              style={{ height: '35px', marginBottom: '27px', marginRight: '50px' }} className="logoFooter"/>
-                          </div>
-                          <div style={{ display: 'inline-block' }} >
                             <img src="/logos/logo-france-relance-nb.svg" alt="logo France Relance"
                               style={{ height: '70px', marginBottom: '7px' }} className="logoFooter"/>
                           </div>

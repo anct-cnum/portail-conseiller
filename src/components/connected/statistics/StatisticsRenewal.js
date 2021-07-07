@@ -12,13 +12,16 @@ function StatisticsRenewal(props) {
         <ElementNumber nombre={props.nbUsagersBeneficiantSuivi} classe="numbers"/>
       </div>
       <div className="rf-col-10 rf-col-lg-9">
-        <ElementText texte="usagers ont bénéficié d'un suivi" classe="text"/><br/>
+        <ElementText texte="usagers ont bénéficié d'un accompagnement poursuivi" classe="text"/><br/>
       </div>
       <div className="rf-col-2 rf-col-lg-3">
         <ElementNumber nombre={props.tauxTotalUsagersAccompagnes} caracteresSpeciaux={props.caracteresSpeciaux} classe="many-numbers"/>
       </div>
       <div className="rf-col-10 rf-col-lg-9">
         <ElementText texte="du total des usagers accompagnés sur cette période" classe="texts"/><br/>
+      </div>
+      <div className="rf-col-12" style={{ paddingLeft: '2rem' }}>
+        Dont&nbsp;:
       </div>
       <div className="rf-col-2 rf-col-lg-3">
         <ElementNumber nombre={props.nbUsagersAccompagnementIndividuel} classe="many-numbers"/>
