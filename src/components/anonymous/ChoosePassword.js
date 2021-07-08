@@ -202,7 +202,12 @@ function ChoosePassword({ match }) {
                 <div className="rf-col-offset-md-3" ></div>
 
                 <div className="rf-col-offset-md-3" ></div>
-                <div className="rf-col-12 rf-col-md-6 rf-mb-8w rf-mb-md-15w recapitulatif">Votre boite mail <strong>{slugify(`${user?.prenom} ${user?.nom}`, { replacement: '.', lower: true, strict: true })}@conseiller-numerique.fr</strong> sert d’identifiant<br />
+                <div className="rf-col-12 rf-col-md-6 rf-mb-8w rf-mb-md-15w recapitulatif">
+                  Votre boite mail
+                  <strong>
+                    {slugify(`${user?.prenom} ${user?.nom}`, { replacement: '.', lower: true, strict: true })}@conseiller-numerique.fr
+                  </strong>
+                  sert d’identifiant<br />
                   Votre mot de passe de connexion est le même.
                 </div>
                 <div className="rf-col-offset-md-3" ></div>
