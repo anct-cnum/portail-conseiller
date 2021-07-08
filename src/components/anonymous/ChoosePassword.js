@@ -65,10 +65,11 @@ function ChoosePassword({ match }) {
               <div className="rf-grid-row rf-grid-row--center">
                 <div className="rf-col-12 rf-col-md-10">
                   <h1 className="titre rf-my-2w rf-mb-md-5w ">Création de votre boîte mail <br className="br-titre" />et accès à l&#39;Espace coop</h1>
+                  {tokenVerified &&
                   <p className="sous-titre rf-mb-2w rf-mb-md-4w">
                     Bonjour <b>{user?.name}</b>, vous êtes sur le point de finaliser l&#39;accès à vos services en ligne
                     <br />Conseiller numérique France Services
-                  </p>
+                  </p>}
                 </div>
               </div>
             </div>
@@ -83,6 +84,13 @@ function ChoosePassword({ match }) {
                   <div className="rf-mb-10w">
                     <div className="erreur-token">
                       <div className="invalid">Désolé mais le lien est invalide.</div>
+                    </div>
+                  </div>
+                }
+                {(verifyingToken || choosingPassword) &&
+                  <div className="rf-mb-10w">
+                    <div className="erreur-token">
+                      <div className="chargement">Chargement...</div>
                     </div>
                   </div>
                 }
@@ -101,12 +109,6 @@ function ChoosePassword({ match }) {
                       <p className="rf-mb-md-3w">Accédez ensuite à cette dernière afin de pouvoir effectuer votre première connexion à l’espace Coop.</p>
                     </div>
                     <div className="rf-col-12 rf-col-md-5">
-
-                      {verifyingToken || choosingPassword &&
-                        <div className="chargement">
-                          Chargement...
-                        </div>
-                      }
 
                       { tokenVerified && !passwordChoosen &&
                         <div className="rf-mt-11v">
@@ -159,6 +161,7 @@ function ChoosePassword({ match }) {
             </div>
           </div>
 
+          {tokenVerified &&
           <div className="rf-col-12 zone-recapitulatif">
             <div className="rf-container rf-mt-5w rf-mt-md-9w">
               <div className="rf-grid-row rf-grid-row--center">
@@ -170,7 +173,8 @@ function ChoosePassword({ match }) {
 
                 <div className="rf-col-offset-md-3" ></div>
                 <div className="rf-col-12 rf-col-md-6 rf-mb-2w rf-mb-md-3w descriptif">
-                  La création de votre compte mail <br className="br-mail" />prenom.nom@conseiller-numerique.fr
+                  La création de votre compte mail <br className="br-mail" />
+                  {slugify(`${user?.prenom} ${user?.nom}`, { replacement: '.', lower: true, strict: true })}@conseiller-numerique.fr
                 </div>
                 <div className="rf-col-offset-md-3" ></div>
 
@@ -198,7 +202,7 @@ function ChoosePassword({ match }) {
                 <div className="rf-col-offset-md-3" ></div>
 
                 <div className="rf-col-offset-md-3" ></div>
-                <div className="rf-col-12 rf-col-md-6 rf-mb-8w rf-mb-md-15w recapitulatif">Votre boite mail @conseiller-numerique.fr sert d’identifiant<br />
+                <div className="rf-col-12 rf-col-md-6 rf-mb-8w rf-mb-md-15w recapitulatif">Votre boite mail <strong>{slugify(`${user?.prenom} ${user?.nom}`, { replacement: '.', lower: true, strict: true })}@conseiller-numerique.fr</strong> sert d’identifiant<br />
                   Votre mot de passe de connexion est le même.
                 </div>
                 <div className="rf-col-offset-md-3" ></div>
@@ -206,6 +210,7 @@ function ChoosePassword({ match }) {
               </div>
             </div>
           </div>
+          }
         </div>
       </div>
       <Footer type="support" titreBouton="Donner mon avis sur cette page" />
