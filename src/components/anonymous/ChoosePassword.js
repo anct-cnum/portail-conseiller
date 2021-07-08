@@ -66,7 +66,7 @@ function ChoosePassword({ match }) {
                 <div className="rf-col-12 rf-col-md-10">
                   <h1 className="titre rf-my-2w rf-mb-md-5w ">Création de votre boîte mail <br className="br-titre" />et accès à l&#39;Espace coop</h1>
                   <p className="sous-titre rf-mb-2w rf-mb-md-4w">
-                    Bonjour <b>{user?.name}</b>, vous êtes sur le point de finaliser l&#39;accès à vos services en ligne
+                    Bonjour <b>{user?.prenom} {user?.nom}</b>, vous êtes sur le point de finaliser l&#39;accès à vos services en ligne
                     <br />Conseiller numérique France Services
                   </p>
                 </div>

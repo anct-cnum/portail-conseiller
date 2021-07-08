@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Pluralize from 'react-pluralize';
 
 import ElementNumber from './Components/ElementNumber';
 import ElementText from './Components/ElementText';
@@ -12,7 +13,12 @@ function StatisticsRenewal(props) {
         <ElementNumber nombre={props.nbUsagersBeneficiantSuivi} classe="numbers"/>
       </div>
       <div className="rf-col-10 rf-col-lg-9">
-        <ElementText texte="usagers ont bénéficié d'un accompagnement poursuivi" classe="text"/><br/>
+        <Pluralize
+          zero={'usagers n\'ont bénéficié d\'un accompagnement poursuivi'}
+          singular={'usager a bénéficié d\'un accompagnement poursuivi'}
+          plural={'usagers ont bénéficié d\'un accompagnement poursuivi'}
+          count={props.nbUsagersBeneficiantSuivi}
+          showCount={false} className="texts" />
       </div>
       <div className="rf-col-2 rf-col-lg-3">
         <ElementNumber nombre={props.tauxTotalUsagersAccompagnes} caracteresSpeciaux={props.caracteresSpeciaux} classe="many-numbers"/>
