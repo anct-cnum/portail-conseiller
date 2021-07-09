@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Header from '../Header';
 import Statistics from './statistics/Statistics';
@@ -16,6 +16,7 @@ function Connected() {
       <Route path={`/accueil`} component={Welcome} />
       <Route path={`/statistiques`} component={Statistics} />
       <Route path={`/compte-rendu-activite`} component={Cra} />
+      <Redirect from="/" to="/accueil" />
     </>
   );
 }
