@@ -40,7 +40,6 @@ function SelectCP() {
           {codePostal.Code_postal} {codePostal.Nom_commune}
         </div>
       ));
-      options = options.slice(0, 6); // print only 6 elements by default
       setCodePostalList(options);
     } else {
       setCodePostalList([]);
@@ -55,7 +54,6 @@ function SelectCP() {
   //Focus input
   const focusInput = () => {
     document.getElementById('searchCP').focus();
-    document.getElementById('searchCP').select();
   };
 
   return (
@@ -80,7 +78,7 @@ function SelectCP() {
           style={cra?.searchCP === true && codePostalList.length > 0 ? { borderRadius: '20px 20px 0 0' } : {}}
           placeholder="Saisissez au moins 3 caractères"
           onKeyUp={onKeyUp}/>
-        {codePostalList}
+        <div className="scrollOptions">{codePostalList}</div>
       </div>
     </div>
   );
