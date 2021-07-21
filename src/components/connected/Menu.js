@@ -17,7 +17,7 @@ function Menu() {
 
   return (
     <>
-      <div className="Menu">
+      <div id="menu" className="Menu">
         <div className="rf-grid-row rf-grid-row--center">
           <nav className={`rf-nav ${!menu.hiddenMenu && menu.expandNav ? 'rf-header__popin rf-header__popin--expanded' : ''}`}
             id="navigation"
@@ -35,7 +35,7 @@ function Menu() {
               <li className="rf-nav__item">
                 <Link
                   className={`rf-nav__link linkCustom ${location.pathname === '/statistiques' ? 'linkActive' : ''}`}
-                  to="/statistiques" onClick={toggleBurgerMenu}>
+                  to="/statistiques" onClick={toggleBurgerMenu} id="statistiques">
                     Statistiques
                 </Link>
               </li>

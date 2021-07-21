@@ -1,10 +1,12 @@
 import { authHeader, history } from '../helpers';
 import { userService } from './user.service';
+import axios from 'axios';
 
 const apiUrlRoot = process.env.REACT_APP_API;
 
 export const conseillerService = {
   get,
+  getStatistiquesPDF,
 };
 
 function get(id) {
@@ -15,6 +17,15 @@ function get(id) {
 
   return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
 }
+
+function getStatistiquesPDF() {
+
+  return axios(`${apiUrlRoot}/conseillers/statistiquesPDF`, {
+    responseType: 'arraybuffer',
+    headers: Object.assign(authHeader(), { 'Accept': 'application/pdf' })
+  });
+}
+
 
 function handleResponse(response) {
   return response.text().then(text => {

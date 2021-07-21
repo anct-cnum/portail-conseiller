@@ -1,17 +1,41 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { conseillerActions } from '../../../actions';
 
 function StatisticsBanner() {
 
+  const dispatch = useDispatch();
+  function savePDF() {
+    dispatch(conseillerActions.getPDF());
+
+    /*   return getPDF() // API call
+      .then((response) => {
+        const blob = new Blob([response.data], {type: 'application/pdf'})
+        const link = document.createElement('a')
+        link.href = window.URL.createObjectURL(blob)
+        link.download = `your-file-name.pdf`
+        link.click()
+        this.closeModal() // close modal
+      })
+    .catch(err => /** error handling *)
+  */
+  }
+
   return (
     <>
-      <div className="rf-col-12">
+      <div className="rf-col-12 no-print">
         <hr />
         <div className="rf-m-5w rf-m-md-4w rf-m-xs-to-md-7v"></div>
       </div>
       <div className="rf-col-12">
         <div className="rf-container-fluid">
           <div className="rf-grid-row rf-grid-row--center">
-
+            <div className="rf-col-md-1 rf-col-lg-1">
+              <a className="rf-footer__bottom-link" onClick={savePDF}>
+                Exporter au format PDF
+              </a>
+            </div>
+            {/*
             <div className="rf-col-12">
               <div className="rf-m-sm-4w rf-m-1w"></div>
             </div>
@@ -51,6 +75,7 @@ function StatisticsBanner() {
             <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-5 rf-col-lg-3">
               <a className="statistiques_nationales-btn droite-btn">Voir les statistiques nationales</a>
             </div>
+          */}
           </div>
         </div>
       </div>

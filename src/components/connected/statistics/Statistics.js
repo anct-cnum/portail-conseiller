@@ -7,7 +7,7 @@ import RightPage from './RightPage';
 import BottomPage from './BottomPage';
 import Footer from '../../Footer';
 import Spinner from 'react-loader-spinner';
-
+import StatisticsBanner from './StatisticsBanner';
 function Statistics() {
   const dispatch = useDispatch();
   let statsDataLoading = useSelector(state => state.statistique?.statsDataLoading);
@@ -75,6 +75,7 @@ function Statistics() {
           </div>
         }
       </div>
+      <StatisticsBanner />
       <div className="rf-m-5w rf-m-md-9w rf-m-lg-15w"></div>
       <Footer type="support" titreBouton="Donner mon avis sur cette page"/>
     </div>

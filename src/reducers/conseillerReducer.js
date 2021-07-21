@@ -13,6 +13,19 @@ export default function conseiller(state = null, action) {
       return {
         error: action.error
       };
+    case 'GET_STATS_PDF_REQUEST':
+      return {
+        loadingPDF: true
+      };
+    case 'GET_STATS_PDF_SUCCESS':
+      return {
+        ...state,
+        statistiquesPDF: action.pdf
+      };
+    case 'GET_STATS_PDF_FAILURE':
+      return {
+        error: action.error
+      };
     default:
       return state;
   }

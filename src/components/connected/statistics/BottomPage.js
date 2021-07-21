@@ -140,9 +140,9 @@ function BottomPage(props) {
     <div className="rf-col-12">
       <div className="rf-grid-row">
 
-        <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">
-          <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v"><hr/></div>
-          <span className="graphique-responsive-md-lg">
+        <div className="rf-col-12 rf-col-md-5 rf-col-lg-3 evolution-print">
+          <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v no-print"><hr/></div>
+          <span className="graphique-responsive-md-lg ">
             <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolution} />
           </span>
           <span className="graphique-responsive-sm">

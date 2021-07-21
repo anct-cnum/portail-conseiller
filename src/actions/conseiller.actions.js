@@ -2,6 +2,7 @@ import { conseillerService } from '../services/conseiller.service.js';
 
 export const conseillerActions = {
   get,
+  getPDF
 };
 
 function get(id) {
@@ -25,5 +26,30 @@ function get(id) {
   }
   function failure(error) {
     return { type: 'GET_CONSEILLER_FAILURE', error };
+  }
+}
+
+function getPDF() {
+  return dispatch => {
+    dispatch(request({}));
+    conseillerService.getStatistiquesPDF()
+    .then(
+      pdf => {
+        dispatch(success(pdf));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'GET_STATS_PDF_REQUEST' };
+  }
+  function success(pdf) {
+    return { type: 'GET_STATS_PDF_SUCCESS', pdf };
+  }
+  function failure(error) {
+    return { type: 'GET_STATS_PDF_FAILURE', error };
   }
 }

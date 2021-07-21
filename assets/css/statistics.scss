@@ -268,4 +268,24 @@
       left: -122px;
     }
   }
+
+  @media print {
+    #footer {
+      display: none;
+    }
+
+    h1 {
+      margin: 70px 150px;
+    }
+
+    .graphique-responsive-lg {
+      display: block !important;
+    }
+    .theme-print {
+      margin: 150px 0 0 0;
+    }
+    .evolution-print {
+      margin: 100px 0 0 0;
+    }
+  }
 }
