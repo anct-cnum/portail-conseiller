@@ -19,7 +19,6 @@ function get(id) {
 }
 
 function getStatistiquesPDF(dates) {
-  console.log(dates);
   const requestOptions = {
     method: 'POST',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),

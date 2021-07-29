@@ -1,5 +1,6 @@
 import { conseillerService } from '../services/conseiller.service.js';
 import download from 'downloadjs';
+import moment from 'moment';
 
 export const conseillerActions = {
   get,
@@ -36,7 +37,8 @@ function getStatistiquesPDF(dates) {
     conseillerService.getStatistiquesPDF(dates)
     .then(
       data => {
-        dispatch(success(data, download(data, 'Mes_statistiques' + dates.dateDebut + '_' + dates.dateFin + '.pdf')));
+        dispatch(success(data, download(data, 'Mes_statistiques_' + moment(dates.dateDebut).format('DD-MM-YYYY') + '_' +
+        moment(dates.dateFin).format('DD-MM-YYYY') + '.pdf')));
       },
       error => {
         dispatch(failure(error));
