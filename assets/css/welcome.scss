@@ -29,7 +29,10 @@
     height: 27px;
     width: 21px;
   }
-  .cra-btn, .pix-btn, .mattermost-btn {
+  .btn-gauche, .btn-droite {
+    text-align: center;
+  }
+  .cra-btn, .pix-btn, .mattermost-btn, .webmail-btn {
     background-color: #fff;
     border: 1px solid #fff;
     display: inline-block;
@@ -43,7 +46,7 @@
     width: 342px;
     height: 64px;
   }
-  .cra-logo-btn, .pix-logo-btn, .mattermost-logo-btn {
+  .cra-logo-btn, .pix-logo-btn, .mattermost-logo-btn, .webmail-logo-btn {
     display: inline-block;
     height: 58px;
     width: 64px;
@@ -61,7 +64,12 @@
     background-size: 56px 42px;
     margin-top: 9px;
   }
-  .cra-texte-btn, .pix-texte-btn, .mattermost-texte-btn {
+  .webmail-logo-btn {
+    background: url(../../public/logos/home-connected/enveloppe.svg) no-repeat;
+    background-size: 56px 42px;
+    margin-top: 9px;
+  }
+  .cra-texte-btn, .pix-texte-btn, .mattermost-texte-btn, .webmail-texte-btn {
     display: inline-block;
     position: relative;
     margin-left: 20px;
@@ -71,7 +79,7 @@
   .mattermost-texte-btn {
     top: -18px;
   }
-  .pix-texte-btn {
+  .pix-texte-btn, .webmail-texte-btn {
     top: -32px;
   }
   .bloc-document {
@@ -141,7 +149,17 @@
 
   @media (min-width: 992px) {
     .listBoutonsWelcome {
-      margin-bottom: 6rem;
+      margin-bottom: 2.9rem;
+    }
+    .btn-gauche {
+      text-align: right;
+      margin-right: 3em;
+      margin-bottom: 1.5em;
+    }
+    .btn-droite {
+      text-align: left;
+      margin-left: 3em;
+      margin-bottom: 1.5em;
     }
   }
 

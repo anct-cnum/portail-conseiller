@@ -19,6 +19,7 @@ function Welcome() {
   const user = useSelector(state => state.authentication.user.user);
   const lienPix = `${process.env.REACT_APP_PIX_URL}?control1714940=${conseiller?.prenom}&control1714939=${conseiller?.nom}&control1714941=${user?.name}`;
   const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
+  const lienWebmail = process.env.REACT_APP_WEBMAIL_URL;
 
   //Forcer affichage en haut de la page pour voir le flashbag
   if (location?.printFlashbag === true) {
@@ -44,8 +45,8 @@ function Welcome() {
               <h1 className="titre rf-mt-2w rf-mb-1w rf-mt-md-5w rf-mb-md-8w">Bienvenue sur <br className="br-sm"/>l&rsquo;Espace Coop</h1>
             </div>
 
-            <div className="rf-col-12 rf-col-lg-4 listBoutonsWelcome">
-              <div className="centre">
+            <div className="rf-col-12 rf-col-lg-5">
+              <div className="btn-gauche">
                 <Link className="cra-btn rf-mb-3w" to="/compte-rendu-activite" title="Accéder à mon outil de suivi d&rsquo;activité">
                   <span className="cra-logo-btn"></span>
                   <span className="cra-texte-btn">Accéder à mon outil <br/> de suivi d&rsquo;activité</span>
@@ -53,8 +54,8 @@ function Welcome() {
               </div>
             </div>
 
-            <div className="rf-col-12 rf-col-lg-4">
-              <div className="centre">
+            <div className="rf-col-12 rf-col-lg-5">
+              <div className="btn-droite">
                 <a className="mattermost-btn rf-mb-3w" href={lienMattermost} target="blank"
                   title="Accès espace discussion">
                   <span className="mattermost-logo-btn"></span>
@@ -63,12 +64,22 @@ function Welcome() {
               </div>
             </div>
 
-            <div className="rf-col-12 rf-col-lg-4">
-              <div className="centre">
+            <div className="rf-col-12 rf-col-lg-5">
+              <div className="btn-gauche">
                 <a className="pix-btn rf-mb-3w" href={lienPix} target="blank"
                   title="Accéder à Pix">
                   <span className="pix-logo-btn"></span>
                   <span className="pix-texte-btn">Accéder à Pix</span>
+                </a>
+              </div>
+            </div>
+
+            <div className="rf-col-12 rf-col-lg-5 listBoutonsWelcome">
+              <div className="btn-droite">
+                <a className="webmail-btn rf-mb-3w" href={lienWebmail} target="blank"
+                  title="Accéder à ma boîte mail">
+                  <span className="webmail-logo-btn"></span>
+                  <span className="webmail-texte-btn">Accéder au webmail</span>
                 </a>
               </div>
             </div>
