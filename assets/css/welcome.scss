@@ -12,7 +12,7 @@
     line-height: 4rem;
   }
   .sous-titre, .sous-titre-futur {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     line-height: 2rem;
     color: #f0f0f0;
     font-weight: 600;
@@ -140,6 +140,14 @@
   .coordonnees-details {
     text-align: right;
   }
+
+  @media (min-width: 768px) and (max-width: 1180px ) {
+    .kit-communication-img {
+      height: 81%;
+      width: 90%;
+    }
+  }
+
   @media (max-width: 1100px) {
     .futur-img {
       width: 290px;
@@ -168,6 +176,7 @@
       margin-bottom: 7.5rem;
     }
   }
+
   @media (max-width: 767px) {
     .titre {
       line-height: 2.5rem;
@@ -177,18 +186,17 @@
     .center-md {
       text-align: center;
     }
+    .kit-communication-img {
+      height: 386px;
+      width: 384px;
+    }
   }
   @media (min-width: 460px) {
     .br-sm {
       display: none;
     }
   }
-  @media (max-width: 992px) {
-    .kit-communication-img {
-      height: 386px;
-      width: 384px;
-    }
-  }
+
   @media (max-width: 460px) {
     .align-left-sm {
       text-align: left;
