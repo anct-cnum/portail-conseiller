@@ -24,7 +24,6 @@ function handleResponse(response) {
 
 function getStatsCra(dateDebut, dateFin) {
   const apiUrlRoot = process.env.REACT_APP_API;
-
   const requestOptions = {
     method: 'POST',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),

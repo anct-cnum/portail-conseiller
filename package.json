@@ -13,6 +13,7 @@
     "canvas": "^2.5.0",
     "dayjs": "^1.10.5",
     "dotenv": "^8.2.0",
+    "downloadjs": "^1.4.7",
     "highcharts": "9.0.1",
     "highcharts-react-official": "3.0.0",
     "highcharts-rounded-corners": "1.0.6",

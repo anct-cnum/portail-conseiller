@@ -1,8 +1,9 @@
 import { conseillerService } from '../services/conseiller.service.js';
+import download from 'downloadjs';
 
 export const conseillerActions = {
   get,
-  getPDF
+  getStatistiquesPDF
 };
 
 function get(id) {
@@ -29,13 +30,13 @@ function get(id) {
   }
 }
 
-function getPDF() {
+function getStatistiquesPDF(date) {
   return dispatch => {
     dispatch(request({}));
-    conseillerService.getStatistiquesPDF()
+    conseillerService.getStatistiquesPDF(date)
     .then(
-      pdf => {
-        dispatch(success(pdf));
+      data => {
+        dispatch(success(data, download(data, 'Mes_statistiques.pdf')));
       },
       error => {
         dispatch(failure(error));
@@ -46,8 +47,8 @@ function getPDF() {
   function request() {
     return { type: 'GET_STATS_PDF_REQUEST' };
   }
-  function success(pdf) {
-    return { type: 'GET_STATS_PDF_SUCCESS', pdf };
+  function success(data, download) {
+    return { type: 'GET_STATS_PDF_SUCCESS', data, download };
   }
   function failure(error) {
     return { type: 'GET_STATS_PDF_FAILURE', error };

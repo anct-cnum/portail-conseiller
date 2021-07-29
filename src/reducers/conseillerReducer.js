@@ -20,11 +20,18 @@ export default function conseiller(state = null, action) {
     case 'GET_STATS_PDF_SUCCESS':
       return {
         ...state,
-        statistiquesPDF: action.pdf
+        blob: action.data,
+        statistiquesPDF: action.download,
+        loadingPDF: false
       };
     case 'GET_STATS_PDF_FAILURE':
       return {
         error: action.error
+      };
+    case 'RESET_FILE':
+      return {
+        ...state,
+        blob: null,
       };
     default:
       return state;

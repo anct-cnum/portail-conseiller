@@ -8,9 +8,11 @@ import BottomPage from './BottomPage';
 import Footer from '../../Footer';
 import Spinner from 'react-loader-spinner';
 import StatisticsBanner from './StatisticsBanner';
+
 function Statistics() {
   const dispatch = useDispatch();
   let statsDataLoading = useSelector(state => state.statistique?.statsDataLoading);
+  const loadingPDF = useSelector(state => state.conseiller?.loadingPDF);
   let statsDataError = useSelector(state => state.statistique?.statsDataError);
   let dateDebutStats = useSelector(state => state.statistique?.dateDebutStats);
   let dateFinStats = useSelector(state => state.statistique?.dateFinStats);
@@ -18,19 +20,18 @@ function Statistics() {
 
   useEffect(() => {
     dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats));
-  }, []);
+  }, [dateDebutStats, dateFinStats]);
 
   return (
     <div className="Statistics">
       <div className="rf-container">
-
         <div className="spinnerCustom">
           <Spinner
             type="Oval"
             color="#00BFFF"
             height={100}
             width={100}
-            visible={statsDataLoading === true}
+            visible={statsDataLoading === true || loadingPDF === true}
           />
         </div>
 
@@ -75,7 +76,7 @@ function Statistics() {
           </div>
         }
       </div>
-      <StatisticsBanner />
+      <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats}/>
       <div className="rf-m-5w rf-m-md-9w rf-m-lg-15w"></div>
       <Footer type="support" titreBouton="Donner mon avis sur cette page"/>
     </div>

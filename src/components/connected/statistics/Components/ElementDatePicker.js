@@ -16,11 +16,9 @@ function ElementDatePicker(props) {
     if (props.nomDate === 'datePickerDebut') {
       if (date <= dateFin) { //on ne change la date de debut que si elle est <= date de fin
         dispatch(statistiqueActions.changeDateStatsDebut(date));
-        dispatch(statistiqueActions.getStatsCra(date, dateFin));
       }
     } else if (date >= dateDebut) { //on ne change la date de fin que si elle est >= date de début
       dispatch(statistiqueActions.changeDateStatsFin(date));
-      dispatch(statistiqueActions.getStatsCra(dateDebut, date));
     }
   };
 
@@ -29,7 +27,7 @@ function ElementDatePicker(props) {
   const CustomDateInput = forwardRef(
     ({ value, onClick }, ref) => (
       <span className={active ? 'date-btn date-active' : 'date-btn' } onClick={onClick} ref={ref}>
-        <b>{value}</b>
+        <b id="testvalue">{value}</b>
       </span>
     ),
   );

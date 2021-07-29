@@ -170,6 +170,20 @@
   .liste-action {
     padding: 0px;
   }
+  #formPDF {
+    display: none;
+    height: 0px;
+    width: 0px;
+    button, input {
+      background: #1e1e1e;
+      border: none;
+      color: #1e1e1e;
+      cursor:default;
+    }
+  }
+  .rf-footer__bottom-link {
+    cursor:pointer;
+  }
 
   @media (min-width: 991px) {
     .graphique-responsive-md{
@@ -274,6 +288,11 @@
       display: none;
     }
 
+    div {
+      background: #1e1e1e !important;;
+      background-color: #1e1e1e !important;;
+    }
+
     h1 {
       margin: 70px 150px;
     }
@@ -281,9 +300,11 @@
     .graphique-responsive-lg {
       display: block !important;
     }
+
     .theme-print {
       margin: 150px 0 0 0;
     }
+
     .evolution-print {
       margin: 100px 0 0 0;
     }

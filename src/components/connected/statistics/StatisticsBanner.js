@@ -1,25 +1,30 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { conseillerActions } from '../../../actions';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { conseillerActions, statistiqueActions } from '../../../actions';
 
-function StatisticsBanner() {
+function StatisticsBanner(dates) {
 
   const dispatch = useDispatch();
-  function savePDF() {
-    dispatch(conseillerActions.getPDF());
+  const user = useSelector(state => state.authentication.user.user);
 
-    /*   return getPDF() // API call
-      .then((response) => {
-        const blob = new Blob([response.data], {type: 'application/pdf'})
-        const link = document.createElement('a')
-        link.href = window.URL.createObjectURL(blob)
-        link.download = `your-file-name.pdf`
-        link.click()
-        this.closeModal() // close modal
-      })
-    .catch(err => /** error handling *)
-  */
+  function savePDF() {
+    dispatch(conseillerActions.getStatistiquesPDF(dates));
   }
+
+  const [inputsPDF, setInputsPDF] = useState({
+    datePickerDebutPDF: 0,
+    datePickerFinPDF: 0
+  });
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setInputsPDF(inputsPDF => ({ ...inputsPDF, [name]: value }));
+  }
+
+  const chargeStatsPDF = () => {
+    dispatch(statistiqueActions.changeDateStatsDebut(new Date(parseInt(inputsPDF.datePickerDebutPDF))));
+    dispatch(statistiqueActions.changeDateStatsFin(new Date(parseInt(inputsPDF.datePickerFinPDF))));
+  };
 
   return (
     <>
@@ -27,7 +32,7 @@ function StatisticsBanner() {
         <hr />
         <div className="rf-m-5w rf-m-md-4w rf-m-xs-to-md-7v"></div>
       </div>
-      <div className="rf-col-12">
+      <div className="rf-col-12 no-print">
         <div className="rf-container-fluid">
           <div className="rf-grid-row rf-grid-row--center">
             <div className="rf-col-md-1 rf-col-lg-1">
@@ -61,7 +66,7 @@ function StatisticsBanner() {
             <div className="rf-col-md-4 rf-col-lg-4 afficher-export">
               <ul className="rf-footer__bottom-list max-width-list liste-action">
                 <li className="rf-footer__bottom-item">
-                  <a className="rf-footer__bottom-link rf-pr-1w" href="">
+                  <a className="rf-footer__bottom-link" onClick={savePDF}>
                     Exporter au format PDF
                   </a>
                 </li>
@@ -78,6 +83,13 @@ function StatisticsBanner() {
           */}
           </div>
         </div>
+        {user.pdfGenerator &&
+          <div id="">
+            <input type="text" id="datePickerDebutPDF" name="datePickerDebutPDF" onChange={handleChange}/>
+            <input type="text" id="datePickerFinPDF" name="datePickerFinPDF" onChange={handleChange} />
+            <button id="chargePDF" onClick={chargeStatsPDF}>click</button>
+          </div>
+        }
       </div>
     </>
   );
