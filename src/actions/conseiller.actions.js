@@ -30,13 +30,13 @@ function get(id) {
   }
 }
 
-function getStatistiquesPDF(date) {
+function getStatistiquesPDF(dates) {
   return dispatch => {
     dispatch(request({}));
-    conseillerService.getStatistiquesPDF(date)
+    conseillerService.getStatistiquesPDF(dates)
     .then(
       data => {
-        dispatch(success(data, download(data, 'Mes_statistiques.pdf')));
+        dispatch(success(data, download(data, 'Mes_statistiques' + dates.dateDebut + '_' + dates.dateFin + '.pdf')));
       },
       error => {
         dispatch(failure(error));

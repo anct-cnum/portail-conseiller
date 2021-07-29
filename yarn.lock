@@ -6974,13 +6974,6 @@
   "resolved" "https://registry.yarnpkg.com/highcharts-react-official/-/highcharts-react-official-3.0.0.tgz"
   "version" "3.0.0"
 
-"highcharts-rounded-corners@1.0.6":
-  "integrity" "sha512-N72oVq/Tl/f04rpeKBF8B88l0qhzxPmVRbs/tKdl2MfsTo7+Qh3nIY1c0XBpmZ9pjcx4SwXb1A043pFG/3Djsw=="
-  "resolved" "https://registry.yarnpkg.com/highcharts-rounded-corners/-/highcharts-rounded-corners-1.0.6.tgz"
-  "version" "1.0.6"
-  dependencies:
-    "highcharts" ">=3.0.0"
-
 "highcharts@>=3.0.0", "highcharts@9.0.1":
   "integrity" "sha512-0UmcCz2RmFuqfT/Igu3h5sGnkeSqqZwfuYrTzJ/htptmJAo5SSxH62NFcTjVRk+3WstoBJmoXR0v5FVGQUzK5A=="
   "resolved" "https://registry.npmjs.org/highcharts/-/highcharts-9.0.1.tgz"

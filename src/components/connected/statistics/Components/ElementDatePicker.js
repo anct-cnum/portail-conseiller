@@ -27,7 +27,7 @@ function ElementDatePicker(props) {
   const CustomDateInput = forwardRef(
     ({ value, onClick }, ref) => (
       <span className={active ? 'date-btn date-active' : 'date-btn' } onClick={onClick} ref={ref}>
-        <b id="testvalue">{value}</b>
+        <b>{value}</b>
       </span>
     ),
   );

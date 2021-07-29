@@ -17,7 +17,7 @@ function Menu() {
 
   return (
     <>
-      <div id="menu" className="Menu">
+      <div className="Menu">
         <div className="rf-grid-row rf-grid-row--center">
           <nav className={`rf-nav ${!menu.hiddenMenu && menu.expandNav ? 'rf-header__popin rf-header__popin--expanded' : ''}`}
             id="navigation"

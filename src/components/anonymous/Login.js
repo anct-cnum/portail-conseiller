@@ -83,7 +83,7 @@ function Login() {
               }
             </div>
             <div>
-              <button id="submit" className="rf-btn rf-text--bold big-btn" onClick={handleSubmit} style={{ background: 'white' }}>Connexion</button>
+              <button className="rf-btn rf-text--bold big-btn" onClick={handleSubmit} style={{ background: 'white' }}>Connexion</button>
               <br/>{loggingIn && <span style={{ color: 'black' }}>Connexion en cours...</span>}
             </div>
             <div>

@@ -18,16 +18,15 @@ function get(id) {
   return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
 }
 
-function getStatistiquesPDF(date) {
+function getStatistiquesPDF(dates) {
+  console.log(dates);
   const requestOptions = {
     method: 'POST',
-    headers: authHeader()
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+    body: JSON.stringify({ datesRecrutement: dates })
   };
 
-  const dateDebut = new Date(date.dateDebut).getTime();
-  const dateFin = new Date(date.dateFin).getTime();
-
-  return fetch(`${apiUrlRoot}/conseillers/statistiquesPDF/${dateDebut}/${dateFin}`, requestOptions).then(handleFileResponse);
+  return fetch(`${apiUrlRoot}/conseillers/statistiquesPDF`, requestOptions).then(handleFileResponse);
 }
 
 
