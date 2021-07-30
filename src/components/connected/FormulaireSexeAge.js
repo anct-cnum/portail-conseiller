@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import fr from 'date-fns/locale/fr';
 import { useDispatch, useSelector } from 'react-redux';
-import { formulaireSexeAgeActions } from '../../actions/formulaireSexeAge.actions';
+import { formulaireSexeAgeActions, conseillerActions } from '../../actions';
 import FlashMessage from 'react-flash-message';
 import Header from '../Header';
 import Footer from '../Footer';
@@ -15,11 +15,12 @@ function FormulaireSexeAge() {
   const isUpdated = useSelector(state => state.conseiller?.isUpdated);
   const error = useSelector(state => state.conseiller?.error);
   const [inputs, setInputs] = useState({
+    errorInputs: false,
     date: '',
     sexe: '',
   });
 
-  const { date, sexe } = inputs;
+  const { date, sexe, errorInputs } = inputs;
 
   if (isUpdated) {
     setTimeout(function() {
@@ -37,8 +38,13 @@ function FormulaireSexeAge() {
   }
 
   function handleSubmit() {
-    if ($id && sexe && date) {
+    if (date !== '' && date !== null && sexe !== '') {
+      setInputs(inputs => ({ ...inputs, errorInputs: false }));
       dispatch(formulaireSexeAgeActions.updateConseiller({ idEntity: $id, sexe: sexe, dateDeNaissance: date }));
+      dispatch(conseillerActions.get($id));
+    } else {
+      window.scrollTo(0, 0);
+      setInputs(inputs => ({ ...inputs, errorInputs: true }));
     }
   }
 
@@ -54,12 +60,12 @@ function FormulaireSexeAge() {
                 <h1 id="rf-modal-title-modal-sexe-age" className="rf-modal__title">
                   Une dernière étape !
                 </h1>
-                { error &&
+                { (error || errorInputs) &&
                   <div className="rf-mb-3w">
                     <FlashMessage duration={10000} >
                       <div className=" flashBag invalid">
                         <span>
-                          {error}
+                          {error ? error : 'Erreur : veuillez remplir tous les champs obligatoires (*) du formulaire.'}
                         </span>
                       </div>
                     </FlashMessage>
