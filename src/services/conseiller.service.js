@@ -1,6 +1,5 @@
 import { authHeader, history } from '../helpers';
 import { userService } from './user.service';
-//import axios from 'axios';
 
 const apiUrlRoot = process.env.REACT_APP_API;
 
@@ -22,7 +21,7 @@ function getStatistiquesPDF(dates) {
   const requestOptions = {
     method: 'POST',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
-    body: JSON.stringify({ datesRecrutement: dates })
+    body: JSON.stringify({ datesStatsPDF: dates })
   };
 
   return fetch(`${apiUrlRoot}/conseillers/statistiquesPDF`, requestOptions).then(handleFileResponse);

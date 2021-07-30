@@ -35,7 +35,7 @@ function Menu() {
               <li className="rf-nav__item">
                 <Link
                   className={`rf-nav__link linkCustom ${location.pathname === '/statistiques' ? 'linkActive' : ''}`}
-                  to="/statistiques" onClick={toggleBurgerMenu} id="statistiques">
+                  to="/statistiques" onClick={toggleBurgerMenu}>
                     Statistiques
                 </Link>
               </li>
