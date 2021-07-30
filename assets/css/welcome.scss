@@ -12,7 +12,7 @@
     line-height: 4rem;
   }
   .sous-titre, .sous-titre-futur {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     line-height: 2rem;
     color: #f0f0f0;
     font-weight: 600;
@@ -29,7 +29,10 @@
     height: 27px;
     width: 21px;
   }
-  .cra-btn, .pix-btn, .mattermost-btn {
+  .btn-gauche, .btn-droite {
+    text-align: center;
+  }
+  .cra-btn, .pix-btn, .mattermost-btn, .webmail-btn {
     background-color: #fff;
     border: 1px solid #fff;
     display: inline-block;
@@ -43,7 +46,7 @@
     width: 342px;
     height: 64px;
   }
-  .cra-logo-btn, .pix-logo-btn, .mattermost-logo-btn {
+  .cra-logo-btn, .pix-logo-btn, .mattermost-logo-btn, .webmail-logo-btn {
     display: inline-block;
     height: 58px;
     width: 64px;
@@ -61,7 +64,12 @@
     background-size: 56px 42px;
     margin-top: 9px;
   }
-  .cra-texte-btn, .pix-texte-btn, .mattermost-texte-btn {
+  .webmail-logo-btn {
+    background: url(../../public/logos/home-connected/enveloppe.svg) no-repeat;
+    background-size: 56px 42px;
+    margin-top: 9px;
+  }
+  .cra-texte-btn, .pix-texte-btn, .mattermost-texte-btn, .webmail-texte-btn {
     display: inline-block;
     position: relative;
     margin-left: 20px;
@@ -71,7 +79,7 @@
   .mattermost-texte-btn {
     top: -18px;
   }
-  .pix-texte-btn {
+  .pix-texte-btn, .webmail-texte-btn {
     top: -32px;
   }
   .bloc-document {
@@ -132,6 +140,14 @@
   .coordonnees-details {
     text-align: right;
   }
+
+  @media (min-width: 768px) and (max-width: 1180px ) {
+    .kit-communication-img {
+      height: 81%;
+      width: 90%;
+    }
+  }
+
   @media (max-width: 1100px) {
     .futur-img {
       width: 290px;
@@ -141,7 +157,17 @@
 
   @media (min-width: 992px) {
     .listBoutonsWelcome {
-      margin-bottom: 6rem;
+      margin-bottom: 2.9rem;
+    }
+    .btn-gauche {
+      text-align: right;
+      margin-right: 3em;
+      margin-bottom: 1.5em;
+    }
+    .btn-droite {
+      text-align: left;
+      margin-left: 3em;
+      margin-bottom: 1.5em;
     }
   }
 
@@ -150,6 +176,7 @@
       margin-bottom: 7.5rem;
     }
   }
+
   @media (max-width: 767px) {
     .titre {
       line-height: 2.5rem;
@@ -159,18 +186,17 @@
     .center-md {
       text-align: center;
     }
+    .kit-communication-img {
+      height: 386px;
+      width: 384px;
+    }
   }
   @media (min-width: 460px) {
     .br-sm {
       display: none;
     }
   }
-  @media (max-width: 992px) {
-    .kit-communication-img {
-      height: 386px;
-      width: 384px;
-    }
-  }
+
   @media (max-width: 460px) {
     .align-left-sm {
       text-align: left;
