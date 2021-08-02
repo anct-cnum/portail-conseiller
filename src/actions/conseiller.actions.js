@@ -4,7 +4,8 @@ import moment from 'moment';
 
 export const conseillerActions = {
   get,
-  getStatistiquesPDF
+  getStatistiquesPDF,
+  resetStatistiquesPDFFile
 };
 
 function get(id) {
@@ -55,4 +56,8 @@ function getStatistiquesPDF(dates) {
   function failure(error) {
     return { type: 'GET_STATS_PDF_FAILURE', error };
   }
+}
+
+function resetStatistiquesPDFFile() {
+  return { type: 'RESET_FILE' };
 }

@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions, statistiqueActions } from '../../../actions';
 
 function StatisticsBanner(dates) {
 
   const dispatch = useDispatch();
+  const downloadError = useSelector(state => state.conseiller?.downloadError);
   const user = useSelector(state => state.authentication.user.user);
+  const blob = useSelector(state => state.conseiller?.blob);
 
   function savePDF() {
     dispatch(conseillerActions.getStatistiquesPDF(dates));
   }
+
+  useEffect(() => {
+    if (blob !== null && blob !== undefined && (downloadError === undefined || downloadError === false)) {
+      dispatch(conseillerActions.resetStatistiquesPDFFile());
+    }
+  }, [blob, downloadError]);
 
   const [inputsPDF, setInputsPDF] = useState({
     datePickerDebutPDF: 0,

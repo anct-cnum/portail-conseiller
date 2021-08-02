@@ -8,11 +8,13 @@ import BottomPage from './BottomPage';
 import Footer from '../../Footer';
 import Spinner from 'react-loader-spinner';
 import StatisticsBanner from './StatisticsBanner';
+import FlashMessage from 'react-flash-message';
 
 function Statistics() {
   const dispatch = useDispatch();
   let statsDataLoading = useSelector(state => state.statistique?.statsDataLoading);
   const loadingPDF = useSelector(state => state.conseiller?.loadingPDF);
+  const isPDFDownloaded = useSelector(state => state.conseiller?.statistiquesPDF);
   let statsDataError = useSelector(state => state.statistique?.statsDataError);
   let dateDebutStats = useSelector(state => state.statistique?.dateDebutStats);
   let dateFinStats = useSelector(state => state.statistique?.dateFinStats);
@@ -34,6 +36,14 @@ function Statistics() {
             visible={statsDataLoading === true || loadingPDF === true}
           />
         </div>
+
+        {isPDFDownloaded === false &&
+          <FlashMessage duration={5000}>
+            <p className="flashBag invalid">
+              Vos statistiques n&rsquo;ont pas pu être téléchargées, veuillez réessayer !
+            </p>
+          </FlashMessage>
+        }
 
         <div className="rf-grid-row">
           <div className="rf-col-12">
