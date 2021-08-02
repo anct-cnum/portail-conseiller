@@ -40,7 +40,7 @@ function FormulaireSexeAge() {
   function handleSubmit() {
     if (date !== '' && date !== null && sexe !== '') {
       setInputs(inputs => ({ ...inputs, errorInputs: false }));
-      dispatch(formulaireSexeAgeActions.updateConseiller({ idEntity: $id, sexe: sexe, dateDeNaissance: date }));
+      dispatch(formulaireSexeAgeActions.updateConseiller({ idConseiller: $id, sexe: sexe, dateDeNaissance: date }));
       dispatch(conseillerActions.get($id));
     } else {
       window.scrollTo(0, 0);
@@ -76,57 +76,62 @@ function FormulaireSexeAge() {
                     <FlashMessage duration={10000} >
                       <div className=" flashBag">
                         <span>
-                          Vos informations ont bien été ajouté, vous allez être redirigé vers l&apos;accueil !
+                          Vos informations ont bien été ajoutées, vous allez être redirigé vers l&apos;accueil !
                         </span>
                       </div>
                     </FlashMessage>
                   </div>
                 }
-                <div className="element-gauche">
-                  <div className="label" >Vous êtes <span className="important">*</span></div>
-                  <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-4w rf-mb-3w">
-                    <div className="rf-fieldset__content">
-                      <div className="rf-radio-group">
-                        <input type="radio" id="Homme" name="sexe" value="Homme" onClick={handleChange}/>
-                        <label className="fr-label" htmlFor="Homme">un homme</label>
-                      </div>
-                      <div className="rf-radio-group">
-                        <input type="radio" id="Femme" name="sexe" value="Femme" onClick={handleChange} required="required"/>
-                        <label className="fr-label" htmlFor="Femme">une femme</label>
-                      </div>
+                { !isUpdated &&
+                  <>
+                    <div className="element-gauche">
+                      <div className="label" >Vous êtes <span className="important">*</span></div>
+                      <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-4w rf-mb-3w">
+                        <div className="rf-fieldset__content">
+                          <div className="rf-radio-group">
+                            <input type="radio" id="Homme" name="sexe" value="Homme" onClick={handleChange}/>
+                            <label className="fr-label" htmlFor="Homme">un homme</label>
+                          </div>
+                          <div className="rf-radio-group">
+                            <input type="radio" id="Femme" name="sexe" value="Femme" onClick={handleChange} required="required"/>
+                            <label className="fr-label" htmlFor="Femme">une femme</label>
+                          </div>
+                        </div>
+                      </fieldset>
                     </div>
-                  </fieldset>
-                </div>
 
-                <div className="element-droite">
-                  <label className="label" htmlFor="date">Votre date de naissance <span className="important">*</span></label>
-                  <DatePicker
-                    id="date"
-                    name="date"
-                    className="rf-input rf-my-3w"
-                    placeholderText="../../...."
-                    dateFormat="dd/MM/yyyy"
-                    locale="fr"
-                    selected={date}
-                    onChange={handleChange}
-                    peekNextMonth
-                    showMonthDropdown
-                    showYearDropdown
-                    dropdownMode="select"
-                    required="required"
-                  />
-                </div>
-                <p className="rf-mb-6w">L’usage de ces données est strictement réservé aux statistiques internes de l’ANCT et de la Banque des Territoires,
-                    celles-ci ne seront pas publiées.<br/>
-                    Vous pourrez également modifier vos informations de profil par la suite. <br/>
-                <a className="rf-nav__link" target="blank" href="https://cdn.conseiller-numerique.gouv.fr/CGU-ConseillerNumerique-Coop.pdf">
-                  Consulter les CGU pour plus de détails
-                </a>
-                </p>
-                <div className="centre">
-                  <button className="sexe-age-btn" onClick={handleSubmit}>Valider</button>
-                </div>
+                    <div className="element-droite">
+                      <label className="label" htmlFor="date">Votre date de naissance <span className="important">*</span></label>
+                      <DatePicker
+                        id="date"
+                        name="date"
+                        className="rf-input rf-my-3w"
+                        placeholderText="../../...."
+                        dateFormat="dd/MM/yyyy"
+                        locale="fr"
+                        selected={date}
+                        onChange={handleChange}
+                        peekNextMonth
+                        showMonthDropdown
+                        showYearDropdown
+                        dropdownMode="select"
+                        required="required"
+                      />
+                    </div>
+                    <p className="rf-mb-6w">L&rsquo;usage de ces données est strictement réservé aux statistiques internes de l’ANCT et de la
+                        Banque des Territoires, celles-ci ne seront pas publiées.<br/>
+                        Vous pourrez également modifier vos informations de profil par la suite. <br/>
+                    <a className="rf-nav__link" target="blank" href="https://cdn.conseiller-numerique.gouv.fr/CGU-ConseillerNumerique-Coop.pdf">
+                      Consulter les CGU pour plus de détails
+                    </a>
+                    </p>
+                    <div className="centre">
+                      <button className="sexe-age-btn" onClick={handleSubmit}>Valider</button>
+                    </div>
+                  </>
+                }
               </div>
+
             </div>
           </div>
         </div>
@@ -138,7 +143,3 @@ function FormulaireSexeAge() {
 
 export default FormulaireSexeAge;
 
-/*
-
-
-*/
