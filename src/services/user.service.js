@@ -47,7 +47,8 @@ function handleResponse(response) {
     }
 
     //login and verify token data !== conseiller
-    if (data.user?.roles[0] !== 'conseiller' && data.roles[0] !== 'conseiller') {
+
+    if (data.user?.roles[0] !== 'conseiller' && data.user?.roles[0] !== 'admin COOP') {
       logout();
       return Promise.reject({ error: 'Identifiants incorrects' });
     }

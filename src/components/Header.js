@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Menu from './connected/Menu';
@@ -9,6 +9,8 @@ function Header({ linkAccount }) {
 
   const location = useLocation();
   const dispatch = useDispatch();
+
+  const role = useSelector(state => state.authentication?.user?.user?.role);
 
   const toggleBurgerMenu = () => {
     dispatch(menuActions.toggleMenu());
@@ -71,7 +73,11 @@ function Header({ linkAccount }) {
         </div>
       </div>
       { linkAccount !== undefined && linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
-        <Menu/>
+      <>
+        {role !== 'admin COOP' &&
+          <Menu/>
+        }
+      </>
       }
     </header>
   );
