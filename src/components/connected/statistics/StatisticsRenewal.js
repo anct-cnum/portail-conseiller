@@ -13,21 +13,20 @@ function StatisticsRenewal(props) {
         <ElementNumber nombre={props.nbUsagersBeneficiantSuivi} classe="numbers"/>
       </div>
       <div className="rf-col-10 rf-col-lg-9">
-        <Pluralize
-          zero={'usagers n\'ont bénéficié d\'un accompagnement poursuivi'}
-          singular={'usager a bénéficié d\'un accompagnement poursuivi'}
-          plural={'usagers ont bénéficié d\'un accompagnement poursuivi'}
-          count={props.nbUsagersBeneficiantSuivi}
-          showCount={false} className="texts" />
+        <ElementText texte={
+          <Pluralize
+            zero={'usager n\'a bénéficié d\'un accompagnement poursuivi, soit :'}
+            singular={'usager a bénéficié d\'un accompagnement poursuivi, soit :'}
+            plural={'usagers ont bénéficié d\'un accompagnement poursuivi, soit :'}
+            count={props.nbUsagersBeneficiantSuivi}
+            showCount={false} />
+        } classe="text"/><br/>
       </div>
       <div className="rf-col-2 rf-col-lg-3">
         <ElementNumber nombre={props.tauxTotalUsagersAccompagnes} caracteresSpeciaux={props.caracteresSpeciaux} classe="many-numbers"/>
       </div>
       <div className="rf-col-10 rf-col-lg-9">
-        <ElementText texte="du total des usagers accompagnés sur cette période" classe="texts"/><br/>
-      </div>
-      <div className="rf-col-12" style={{ paddingLeft: '2rem' }}>
-        Dont&nbsp;:
+        <ElementText texte="du total des usagers accompagnés sur cette période, dont&nbsp;:" classe="texts"/><br/>
       </div>
       <div className="rf-col-2 rf-col-lg-3">
         <ElementNumber nombre={props.nbUsagersAccompagnementIndividuel} classe="many-numbers"/>
@@ -45,7 +44,12 @@ function StatisticsRenewal(props) {
         <ElementNumber nombre={props.nbReconduction} classe="many-numbers"/>
       </div>
       <div className="rf-col-10 rf-col-lg-9">
-        <ElementText texte="redirections vers une autre structure agréée" classe="texts"/>
+        <ElementText texte={<Pluralize
+          zero={'redirection vers une autre structure agréée'}
+          singular={'redirection vers une autre structure agréée'}
+          plural={'redirections vers une autre structure agréée'}
+          count={props.nbReconduction}
+          showCount={false} />} classe="texts"/>
       </div>
       <div className="rf-col-12">
         <div className="rf-m-lg-6w"></div>

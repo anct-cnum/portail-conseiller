@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Pluralize from 'react-pluralize';
 
 import ElementNumber from './Components/ElementNumber';
 import ElementText from './Components/ElementText';
@@ -9,9 +10,23 @@ function StatisticsPersonalAccompaniment(props) {
   return (
     <div className="rf-grid-row">
       <div className="rf-col-2 rf-col-lg-3"><ElementNumber nombre={props.nbAccompagnementPerso} classe="numbers"/></div>
-      <div className="rf-col-10 rf-col-lg-9"><ElementText texte="accompagnements personnalisés réalisés" classe="text"/><br/></div>
+      <div className="rf-col-10 rf-col-lg-9"><ElementText texte={
+        <Pluralize
+          zero={'accompagnement personnalisé réalisé'}
+          singular={'accompagnement personnalisé réalisé'}
+          plural={'accompagnement personnalisé réalisé'}
+          count={props.nbAccompagnementPerso}
+          showCount={false} />
+      } classe="text"/><br/></div>
       <div className="rf-col-2 rf-col-lg-3"><ElementNumber nombre={props.nbDemandePonctuel} classe="numbers"/></div>
-      <div className="rf-col-10 rf-col-lg-9"><ElementText texte="demandes ponctuelles" classe="text"/></div>
+      <div className="rf-col-10 rf-col-lg-9"><ElementText texte={
+        <Pluralize
+          zero={'demande ponctuelle'}
+          singular={'demande ponctuelle'}
+          plural={'demandes ponctuelles'}
+          count={props.nbDemandePonctuel}
+          showCount={false} />
+      } classe="text"/></div>
     </div>
   );
 }
