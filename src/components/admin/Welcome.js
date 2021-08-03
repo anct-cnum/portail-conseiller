@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import Footer from '../Footer';
 import { conseillerActions } from '../../actions';
 import { userEntityId } from '../../helpers';
@@ -12,13 +12,6 @@ function Welcome() {
   useEffect(() => {
     dispatch(conseillerActions.get(userEntityId()));
   }, []);
-
-  const conseiller = useSelector(state => state.conseiller?.conseiller);
-
-  const user = useSelector(state => state.authentication.user.user);
-  const lienPix = `${process.env.REACT_APP_PIX_URL}?control1714940=${conseiller?.prenom}&control1714939=${conseiller?.nom}&control1714941=${user?.name}`;
-  const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
-  const lienWebmail = process.env.REACT_APP_WEBMAIL_URL;
 
   //Forcer affichage en haut de la page pour voir le flashbag
   if (location?.printFlashbag === true) {

@@ -28,14 +28,24 @@ function Header({ linkAccount }) {
               <a className="rf-header__operator" href="/" style={{ boxShadow: 'none' }}>
                 <img src="/logos/logo-conseiller-numerique-nb.svg" alt="logo Conseiller Numérique France Services" style={{ height: '50px' }}/>
               </a>
-              <div
-                className={`rf-header__navbar ${location.pathname === '/validation' || location.pathname.startsWith('/inscription') ? 'headerCustom' : ''}`}
+              <div className={`rf-header__navbar ${location.pathname === '/validation' || location.pathname.startsWith('/inscription') ? 'headerCustom' : ''}`}
                 style={{ marginBottom: '13px' }}>
                 <div className="rf-service">
-                  <a className="rf-service__title" href="/" title="Coop">
-                    Coop&nbsp;&nbsp;<span style={{ fontSize: 'small' }}>v { process.env.REACT_APP_VERSION }</span>
-                  </a>
-                  <p className="rf-service__tagline">Réseau des conseillers numériques France Services</p>
+                  {role !== 'admin COOP' &&
+                    <>
+                      <a className="rf-service__title" href="/" title="Coop">
+                        Coop&nbsp;&nbsp;<span style={{ fontSize: 'small' }}>v { process.env.REACT_APP_VERSION }</span>
+                      </a>
+                      <p className="rf-service__tagline">Réseau des conseillers numériques France Services</p>
+                    </>
+                  }
+                  {role === 'admin COOP' &&
+                    <>
+                      <a className="rf-service__title" href="/" title="Coop" style={{ fontSize: '24px' }}>
+                      Espace Coop : Administration
+                      </a>
+                    </>
+                  }
                 </div>
                 { linkAccount !== undefined &&
                 <button
