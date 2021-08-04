@@ -118,19 +118,19 @@ function RightPage(props) {
       <div className="rf-col-12 rf-col-md-5 rf-col-lg-7 graphique-responsive-lg">
         <div className="rf-container-fluid">
           <div className="rf-grid-row ">
-            <div className="rf-col-12">
+            <div className="rf-col-12 theme-print">
               <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphique} />
             </div>
 
-            <div className="rf-col-12">
+            <div className="rf-col-12 no-print">
               <div className="rf-my-6w rf-m-xs-to-md-7v"><hr/></div>
             </div>
 
-            <div className="rf-col-12 rf-col-lg-6">
+            <div className="rf-col-12 rf-col-lg-6 no-print">
               <ElementHighcharts donneesStats={statsLieux} variablesGraphique={pieGraphique} />
             </div>
 
-            <div className="rf-col-12 rf-col-lg-6">
+            <div className="rf-col-12 rf-col-lg-6 no-print">
               <div className="rf-ml-md-6w">
                 <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphique} />
               </div>
@@ -139,7 +139,7 @@ function RightPage(props) {
         </div>
       </div>
 
-      <div className="rf-col-12 rf-col-md-5 graphique-responsive-md">
+      <div className="rf-col-12 rf-col-md-5 graphique-responsive-md no-print">
 
         <div className="rf-container-fluid">
           <div className="rf-grid-row ">

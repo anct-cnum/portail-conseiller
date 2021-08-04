@@ -13,10 +13,19 @@ function Connected() {
   return (
     <>
       <Header linkAccount={user?.name}/>
-      <Route path={`/accueil`} component={Welcome} />
-      <Route path={`/statistiques`} component={Statistics} />
-      <Route path={`/compte-rendu-activite`} component={Cra} />
-      <Redirect from="/" to="/accueil" />
+      {!user.pdfGenerator &&
+        <>
+          <Route path={`/accueil`} component={Welcome} />
+          <Route path={`/compte-rendu-activite`} component={Cra} />
+          <Route path={`/statistiques`} component={Statistics} />
+          <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
+        </>
+      }
+      { user.pdfGenerator &&
+        <>
+          <Route path={`/statistiques`} component={Statistics} />
+        </>
+      }
     </>
   );
 }

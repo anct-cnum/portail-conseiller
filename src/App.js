@@ -15,10 +15,10 @@ require('dotenv').config();
 function App() {
 
   let statsDataLoading = useSelector(state => state.statistique?.statsDataLoading);
-  
+  let pdfLoading = useSelector(state => state.conseiller?.loadingPDF);
   return (
     <div className="App">
-      { statsDataLoading === true &&
+      { (statsDataLoading === true || pdfLoading === true) &&
         <div className="wrapperModal"></div>
       }
       <Router history={history}>
