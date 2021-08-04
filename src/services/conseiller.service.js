@@ -6,6 +6,7 @@ const apiUrlRoot = process.env.REACT_APP_API;
 export const conseillerService = {
   get,
   getStatistiquesPDF,
+  createSexeAge
 };
 
 function get(id) {
@@ -27,6 +28,19 @@ function getStatistiquesPDF(dates) {
   return fetch(`${apiUrlRoot}/conseillers/statistiquesPDF`, requestOptions).then(handleFileResponse);
 }
 
+function createSexeAge(user) {
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      user,
+    })
+  };
+
+  return fetch(`${apiUrlRoot}/conseillers/createSexeAge`, requestOptions).then(handleResponse);
+}
 
 function handleResponse(response) {
   return response.text().then(text => {

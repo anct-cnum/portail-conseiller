@@ -4,3 +4,4 @@ export * from './structure.actions';
 export * from './cra.actions';
 export * from './menu.actions';
 export * from './statistique.actions';
+export * from './formulaireSexeAge.actions';

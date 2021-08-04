@@ -89,16 +89,22 @@ $errorDarkMode: #FF3333;
     cursor: pointer;
   }
 
+  div.scrollOptions {
+    overflow: scroll;
+    overflow-x: hidden;
+    max-height: 200px;
+  }
+
   .dropdown-content:hover, .dropdown-content:focus {
     outline: none;
   }
 
-  .dropdown-content div {
+  .dropdown-content div div {
     padding: 8px;
     text-align: center;
   }
 
-  .dropdown-content div:hover {
+  .dropdown-content div div:hover {
     padding: 8px;
     text-align: center;
     background-color: white;
