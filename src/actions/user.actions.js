@@ -15,7 +15,6 @@ function login(username, password, to) {
     userService.login(username, password)
     .then(
       data => {
-        console.log(data);
         data.user = getRole(data.user);
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(data));
