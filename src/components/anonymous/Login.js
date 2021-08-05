@@ -70,8 +70,9 @@ function Login() {
           </div>
           <div className="rf-my-4w connexion">
             <div className="rf-px-2w rf-mb-2w">
-              <label className="rf-label email">E-mail Conseiller numérique France Services</label>
+              <label className="rf-label email" htmlFor="email">E-mail Conseiller numérique France Services</label>
               <input
+                id="email"
                 name="username"
                 value={username}
                 onChange={handleChange}
@@ -81,8 +82,9 @@ function Login() {
               }
             </div>
             <div className="rf-px-2w rf-mb-4w">
-              <label className="rf-label password">Mot de passe</label>
+              <label className="rf-label password" htmlFor="password">Mot de passe</label>
               <input
+                id="password"
                 name="password"
                 type="password"
                 value={password}

@@ -6,7 +6,7 @@ export const userActions = {
   logout,
   choosePassword,
   verifyToken,
-  forgottenPassword,
+  forgottenPassword
 };
 
 function login(username, password, to) {

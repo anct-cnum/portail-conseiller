@@ -3,7 +3,7 @@ export const userService = {
   logout,
   choosePassword,
   verifyToken,
-  sendForgottenPasswordEmail,
+  sendForgottenPasswordEmail
 };
 
 function login(username, password) {

@@ -5,6 +5,8 @@ const apiUrlRoot = process.env.REACT_APP_API;
 
 export const conseillerService = {
   get,
+  getStatistiquesPDF,
+  createSexeAge
 };
 
 function get(id) {
@@ -14,6 +16,29 @@ function get(id) {
   };
 
   return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
+}
+
+function getStatistiquesPDF(dates) {
+  const requestOptions = {
+    method: 'POST',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+    body: JSON.stringify({ datesStatsPDF: dates })
+  };
+
+  return fetch(`${apiUrlRoot}/conseillers/statistiquesPDF`, requestOptions).then(handleFileResponse);
+}
+
+function createSexeAge(user) {
+  const requestOptions = {
+    method: 'POST',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+    body: JSON.stringify({
+      sexe: user.sexe,
+      dateDeNaissance: user.dateDeNaissance
+    })
+  };
+
+  return fetch(`${apiUrlRoot}/conseillers/createSexeAge`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
@@ -30,5 +55,21 @@ function handleResponse(response) {
     }
 
     return data;
+  });
+}
+
+function handleFileResponse(response) {
+  return response.blob().then(blob => {
+    if (!response.ok) {
+      if (response.status === 401) {
+        // auto logout if 401 response returned from api
+        userService.logout();
+        history.push('/');
+      }
+      const error = (blob && blob.message) || response.statusText;
+      return Promise.reject(error);
+    }
+
+    return blob;
   });
 }
