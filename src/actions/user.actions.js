@@ -127,8 +127,8 @@ function forgottenPassword(username) {
 
 function getRole(user) {
   user.role = user.roles[0];
-  if (user.roles.includes('admin COOP')) {
-    user.role = 'admin COOP';
+  if (user.roles.includes('admin_coop')) {
+    user.role = 'admin_coop';
   }
   delete user.roles;
   return user;

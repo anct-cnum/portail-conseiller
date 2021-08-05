@@ -31,7 +31,7 @@ function Header({ linkAccount }) {
               <div className={`rf-header__navbar ${location.pathname === '/validation' || location.pathname.startsWith('/inscription') ? 'headerCustom' : ''}`}
                 style={{ marginBottom: '13px' }}>
                 <div className="rf-service">
-                  {role !== 'admin COOP' &&
+                  {role !== 'admin_coop' &&
                     <>
                       <a className="rf-service__title" href="/" title="Coop">
                         Coop&nbsp;&nbsp;<span style={{ fontSize: 'small' }}>v { process.env.REACT_APP_VERSION }</span>
@@ -39,7 +39,7 @@ function Header({ linkAccount }) {
                       <p className="rf-service__tagline">Réseau des conseillers numériques France Services</p>
                     </>
                   }
-                  {role === 'admin COOP' &&
+                  {role === 'admin_coop' &&
                     <>
                       <a className="rf-service__title" href="/" title="Coop" style={{ fontSize: '24px' }}>
                       Espace Coop : Administration
@@ -71,7 +71,12 @@ function Header({ linkAccount }) {
                       </li>
                       { linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
                       <li className="rf-shortcuts__item">
-                        <Link className="rf-btn rf-btn--sm" to="/login" title="Se déconnecter"><i className="ri-logout-box-r-line"></i></Link>
+                        {role !== 'admin_coop' &&
+                          <Link className="rf-btn rf-btn--sm" to="/login" title="Se déconnecter"><i className="ri-logout-box-r-line"></i></Link>
+                        }
+                        {role === 'admin_coop' &&
+                          <Link className="rf-btn rf-btn--sm" to="/login?role=admin" title="Se déconnecter"><i className="ri-logout-box-r-line"></i></Link>
+                        }
                       </li>
                       }
                     </ul>
@@ -84,7 +89,7 @@ function Header({ linkAccount }) {
       </div>
       { linkAccount !== undefined && linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
       <>
-        {role !== 'admin COOP' &&
+        {role !== 'admin_coop' &&
           <Menu/>
         }
       </>

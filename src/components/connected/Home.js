@@ -11,7 +11,7 @@ function Home() {
 
   return (
     <div className="Home">
-      { user?.role === 'admin COOP' &&
+      { user?.role === 'admin_coop' &&
         <Admin />
       }
       { user?.role === 'conseiller' && (!conseiller || conseiller?.sexe !== undefined) &&
