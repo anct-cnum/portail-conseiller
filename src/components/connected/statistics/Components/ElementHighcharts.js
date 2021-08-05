@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import labelsCorrespondance from '../../../../data/labelsCorrespondance.json';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import roundedCorner from 'highcharts-rounded-corners';
 
 function ElementHighcharts(props) {
-  roundedCorner(Highcharts);
 
   const { typeGraphique, largeurGraphique, hauteurGraphique,
     margeGaucheGraphique, margeDroiteGraphique, optionResponsive, couleursGraphique } = props.variablesGraphique.graphique;

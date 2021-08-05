@@ -14,7 +14,7 @@ function StatisticsPersonalAccompaniment(props) {
         <Pluralize
           zero={'accompagnement personnalisé réalisé'}
           singular={'accompagnement personnalisé réalisé'}
-          plural={'accompagnement personnalisé réalisé'}
+          plural={'accompagnements personnalisés réalisés'}
           count={props.nbAccompagnementPerso}
           showCount={false} />
       } classe="text"/><br/></div>

@@ -170,6 +170,9 @@
   .liste-action {
     padding: 0px;
   }
+  .rf-footer__bottom-link {
+    cursor:pointer;
+  }
 
   @media (min-width: 991px) {
     .graphique-responsive-md{
@@ -266,6 +269,33 @@
     }
     #span-datePickerFin .react-datepicker__tab-loop {
       left: -122px;
+    }
+  }
+
+  @media print {
+    #footer {
+      display: none;
+    }
+
+    div {
+      background: #1e1e1e !important;;
+      background-color: #1e1e1e !important;;
+    }
+
+    h1 {
+      margin: 70px 150px;
+    }
+
+    .graphique-responsive-lg {
+      display: block !important;
+    }
+
+    .theme-print {
+      margin: 150px 0 0 0;
+    }
+
+    .evolution-print {
+      margin: 100px 0 0 0;
     }
   }
 }

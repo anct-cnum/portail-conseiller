@@ -38,7 +38,7 @@ function LeftPage(props) {
         nbReconduction={props.donneesStats?.nbReconduction}
         caracteresSpeciaux="%" />
       <div className="rf-m-xs-to-md-7v"></div>
-      <hr className="hr-md-hide" />
+      <hr className="hr-md-hide no-print" />
       <div className="rf-m-xs-to-md-7v"></div>
     </div>
   );
