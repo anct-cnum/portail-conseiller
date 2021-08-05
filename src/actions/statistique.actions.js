@@ -21,7 +21,7 @@ function getStatsCra(dateDebut, dateFin) {
     );
   };
 
-  function request() {
+  function request(dateDebut, dateFin) {
     return { type: 'GET_STATS_CRA_REQUEST', dateDebut, dateFin };
   }
   function success(statsCra) {
