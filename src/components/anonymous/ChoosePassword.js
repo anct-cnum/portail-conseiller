@@ -59,21 +59,40 @@ function ChoosePassword({ match }) {
 
       <div className="rf-container-fluid">
         <div className="rf-grid-row rf-grid-row--center">
-
-          <div className="rf-col-12 zone-titre">
-            <div className="rf-container">
-              <div className="rf-grid-row rf-grid-row--center">
-                <div className="rf-col-12 rf-col-md-10">
-                  <h1 className="titre rf-my-2w rf-mb-md-5w ">Création de votre boîte mail <br className="br-titre" />et accès à l&#39;Espace coop</h1>
-                  {tokenVerified &&
-                  <p className="sous-titre rf-mb-2w rf-mb-md-4w">
-                    Bonjour <b>{user?.prenom} {user?.nom}</b>, vous êtes sur le point de finaliser l&#39;accès à vos services en ligne
-                    <br />Conseiller numérique France Services
-                  </p>}
+          { user?.role === 'admin COOP' &&
+            <div className="rf-col-12 zone-titre">
+              <div className="rf-container">
+                <div className="rf-grid-row rf-grid-row--center">
+                  <div className="rf-col-12 rf-col-md-12">
+                    <h1 className="titre rf-my-2w rf-mb-md-5w ">
+                      Création de votre compte Mattermost <br className="br-titre" />
+                      et accès à l&#39;Espace backoffice coop</h1>
+                    {tokenVerified &&
+                    <p className="sous-titre rf-mb-2w rf-mb-md-4w">
+                      Bonjour <b>{user?.prenom} {user?.nom}</b>, vous êtes sur le point de finaliser l&#39;accès à votre backoffice
+                      <br />Conseiller numérique France Services
+                    </p>}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          }
+          { user?.role === 'conseiller' &&
+            <div className="rf-col-12 zone-titre">
+              <div className="rf-container">
+                <div className="rf-grid-row rf-grid-row--center">
+                  <div className="rf-col-12 rf-col-md-10">
+                    <h1 className="titre rf-my-2w rf-mb-md-5w ">Création de votre boîte mail <br className="br-titre" />et accès à l&#39;Espace coop</h1>
+                    {tokenVerified &&
+                    <p className="sous-titre rf-mb-2w rf-mb-md-4w">
+                      Bonjour <b>{user?.prenom} {user?.nom}</b>, vous êtes sur le point de finaliser l&#39;accès à vos services en ligne
+                      <br />Conseiller numérique France Services
+                    </p>}
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
 
           <div className="rf-col-12 zone-mot-de-passe">
 
@@ -96,18 +115,31 @@ function ChoosePassword({ match }) {
                 }
                 {tokenVerified &&
                   <>
-                    <div className="rf-col-12 rf-col-md-5 rf-mt-2w rf-mt-md-4w">
-                      <h2 className="titre rf-mb-4v">Choisissez un mot de passe <img className="cle" src="/logos/cle.svg" /></h2>
-                      <p className="sous-titre rf-mb-3w">
-                        Celui-ci servira à la fois pour votre connexion au mail, et pour vous identifier sur l’espace Coop
-                        ainsi que sur le service de discussion en ligne, gardez-le précieusement !
-                      </p>
-                      <p className="rf-mb-3w">
-                        Une boîte mail {slugify(`${user?.prenom} ${user?.nom}`, { replacement: '.', lower: true, strict: true })}@conseiller-numerique.fr
-                        sera automatiquement créée lorsque vous cliquerez sur Valider.
-                      </p>
-                      <p className="rf-mb-md-3w">Accédez ensuite à cette dernière afin de pouvoir effectuer votre première connexion à l’espace Coop.</p>
-                    </div>
+
+                    { user?.role === 'conseiller' &&
+                      <div className="rf-col-12 rf-col-md-5 rf-mt-2w rf-mt-md-4w">
+                        <h2 className="titre rf-mb-4v">Choisissez un mot de passe <img className="cle" src="/logos/cle.svg" /></h2>
+                        <p className="sous-titre rf-mb-3w">
+                          Celui-ci servira à la fois pour votre connexion au mail, et pour vous identifier sur l’espace Coop
+                          ainsi que sur le service de discussion en ligne, gardez-le précieusement !
+                        </p>
+                        <p className="rf-mb-3w">
+                          Une boîte mail {slugify(`${user?.prenom} ${user?.nom}`, { replacement: '.', lower: true, strict: true })}@conseiller-numerique.fr
+                          sera automatiquement créée lorsque vous cliquerez sur Valider.
+                        </p>
+                        <p className="rf-mb-md-3w">Accédez ensuite à cette dernière afin de pouvoir effectuer votre première connexion à l’espace Coop.</p>
+                      </div>
+                    }
+                    { user?.role === 'admin COOP' &&
+                      <div className="rf-col-12 rf-col-md-5 rf-mt-2w rf-mt-md-4w">
+                        <h2 className="titre rf-mb-4v">Changez votre mot de passe <img className="cle" src="/logos/cle.svg" /></h2>
+                        <p className="sous-titre rf-mt-6w">
+                          Celui-ci sert à la fois pour vous identifier sur vos espace Structure et backoffice Coop,
+                          ainsi que sur le service de discussion en ligne, gardez-le précieusement !
+                        </p>
+                      </div>
+                    }
+
                     <div className="rf-col-12 rf-col-md-5">
 
                       { tokenVerified && !passwordChoosen &&
@@ -160,8 +192,7 @@ function ChoosePassword({ match }) {
               </div>
             </div>
           </div>
-
-          {tokenVerified &&
+          { (tokenVerified && user?.role === 'conseiller') &&
           <div className="rf-col-12 zone-recapitulatif">
             <div className="rf-container rf-mt-5w rf-mt-md-9w">
               <div className="rf-grid-row rf-grid-row--center">

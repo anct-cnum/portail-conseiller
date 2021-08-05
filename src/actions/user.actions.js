@@ -15,8 +15,8 @@ function login(username, password, to) {
     userService.login(username, password)
     .then(
       data => {
-        data.user.role = data.user.roles[0];
-        delete data.user.roles;
+        console.log(data);
+        data.user = getRole(data.user);
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(data));
         dispatch(success(data));
@@ -54,8 +54,7 @@ function choosePassword(token, password, typeEmail) {
     userService.choosePassword(token, password, typeEmail)
     .then(
       user => {
-        user.role = user.roles[0];
-        delete user.roles;
+        user = getRole(user);
         dispatch(success(user));
       },
       error => {
@@ -82,8 +81,7 @@ function verifyToken(token) {
     userService.verifyToken(token)
     .then(
       user => {
-        user.role = user.roles[0];
-        delete user.roles;
+        user = getRole(user);
         dispatch(success(user));
       },
       error => {
@@ -126,4 +124,13 @@ function forgottenPassword(username) {
   function failure(error) {
     return { type: 'SEND_EMAIL_FAILURE', error };
   }
+}
+
+function getRole(user) {
+  user.role = user.roles[0];
+  if (user.roles.includes('admin COOP')) {
+    user.role = 'admin COOP';
+  }
+  delete user.roles;
+  return user;
 }
