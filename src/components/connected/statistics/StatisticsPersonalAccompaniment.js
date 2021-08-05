@@ -12,9 +12,9 @@ function StatisticsPersonalAccompaniment(props) {
       <div className="rf-col-2 rf-col-lg-3"><ElementNumber nombre={props.nbAccompagnementPerso} classe="numbers"/></div>
       <div className="rf-col-10 rf-col-lg-9"><ElementText texte={
         <Pluralize
-          zero={'accompagnement personnalisé réalisé'}
-          singular={'accompagnement personnalisé réalisé'}
-          plural={'accompagnements personnalisés réalisés'}
+          zero={'accompagnement individuel'}
+          singular={'accompagnement individuel'}
+          plural={'accompagnements individuels'}
           count={props.nbAccompagnementPerso}
           showCount={false} />
       } classe="text"/><br/></div>
