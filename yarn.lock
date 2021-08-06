@@ -6974,7 +6974,7 @@
   "resolved" "https://registry.yarnpkg.com/highcharts-react-official/-/highcharts-react-official-3.0.0.tgz"
   "version" "3.0.0"
 
-"highcharts@>=3.0.0", "highcharts@9.0.1":
+"highcharts@9.0.1":
   "integrity" "sha512-0UmcCz2RmFuqfT/Igu3h5sGnkeSqqZwfuYrTzJ/htptmJAo5SSxH62NFcTjVRk+3WstoBJmoXR0v5FVGQUzK5A=="
   "resolved" "https://registry.npmjs.org/highcharts/-/highcharts-9.0.1.tgz"
   "version" "9.0.1"

@@ -159,7 +159,7 @@ function ChoosePassword({ match }) {
               </div>
             </div>
           </div>
-          { (tokenVerified && user?.role === 'conseiller') &&
+          { tokenVerified &&
           <div className="rf-col-12 zone-recapitulatif">
             <div className="rf-container rf-mt-5w rf-mt-md-9w">
               <div className="rf-grid-row rf-grid-row--center">

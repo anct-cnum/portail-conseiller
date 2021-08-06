@@ -1,25 +1,7 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import React from 'react';
 import Footer from '../Footer';
-import { conseillerActions } from '../../actions';
-import { userEntityId } from '../../helpers';
 
 function Welcome() {
-  const dispatch = useDispatch();
-  const location = useLocation();
-
-  useEffect(() => {
-    dispatch(conseillerActions.get(userEntityId()));
-  }, []);
-
-  //Forcer affichage en haut de la page pour voir le flashbag
-  if (location?.printFlashbag === true) {
-    useEffect(() => {
-      window.scrollTo(0, 0);
-    }, []);
-  }
-
   return (
     <>
       <div className="welcome">

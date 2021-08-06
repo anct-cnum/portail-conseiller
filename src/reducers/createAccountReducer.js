@@ -30,6 +30,10 @@ export default function authentication(state = {}, action) {
         passwordChoosen: false,
         error: action.error
       };
+    case 'SCREEN_TO_SHOW':
+      return {
+        ecran: action.ecran
+      };
     default:
       return state;
   }
