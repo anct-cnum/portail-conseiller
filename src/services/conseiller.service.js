@@ -29,7 +29,6 @@ function getStatistiquesPDF(dates) {
 }
 
 function createSexeAge(user) {
-  console.log(user);
   const requestOptions = {
     method: 'POST',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
