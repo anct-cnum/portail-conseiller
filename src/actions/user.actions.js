@@ -6,8 +6,7 @@ export const userActions = {
   logout,
   choosePassword,
   verifyToken,
-  forgottenPassword,
-  getEcran
+  forgottenPassword
 };
 
 function login(username, password, to) {
@@ -124,26 +123,6 @@ function forgottenPassword(username) {
   function failure(error) {
     return { type: 'SEND_EMAIL_FAILURE', error };
   }
-}
-
-function getEcran(user, sexe) {
-  let ecran = '';
-
-  switch (user?.role) {
-    case 'admin_coop':
-      ecran = 'admin';
-      break;
-    case 'conseiller':
-      if (sexe === undefined) {
-        ecran = 'formulaire';
-      } else {
-        ecran = 'conseiller';
-      }
-      break;
-    default:
-      break;
-  }
-  return { type: 'SCREEN_TO_SHOW', ecran };
 }
 
 function getRole(user) {
