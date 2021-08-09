@@ -47,7 +47,7 @@ function handleResponse(response) {
     }
 
     //cas mot de passe oublié
-    if (data?.success) {
+    if (data?.successResetPassword) {
       return data;
     }
 
