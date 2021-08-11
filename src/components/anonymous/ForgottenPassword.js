@@ -176,7 +176,7 @@ function ForgottenPassword({ match = null }) {
                   }
                   { tokenVerified === false &&
                     <div className="erreur-token">
-                      <div className="invalid">Désolé mais le lien est invalide.</div>
+                      <div className="invalid">Désolé mais le lien est invalide ou a déjà été utilisé.</div>
                     </div>
                   }
 
