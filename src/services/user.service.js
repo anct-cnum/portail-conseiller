@@ -46,6 +46,11 @@ function handleResponse(response) {
       return Promise.reject(error);
     }
 
+    //cas mot de passe oublié
+    if (data?.successResetPassword) {
+      return data;
+    }
+
     //login and verify token data !== conseiller
     if (data.user?.roles[0] !== 'conseiller' && data.roles[0] !== 'conseiller') {
       logout();
