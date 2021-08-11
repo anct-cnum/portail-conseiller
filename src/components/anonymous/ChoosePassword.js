@@ -83,7 +83,7 @@ function ChoosePassword({ match }) {
                 {tokenVerified === false &&
                   <div className="rf-mb-10w">
                     <div className="erreur-token">
-                      <div className="invalid">Désolé mais le lien est invalide.</div>
+                      <div className="invalid">Désolé mais le lien est invalide ou a déjà été utilisé. Veuillez réinitialiser votre mot de passe si nécessaire.</div>
                     </div>
                   </div>
                 }
