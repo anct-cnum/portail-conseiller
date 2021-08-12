@@ -47,6 +47,11 @@ export default function conseiller(state = null, action) {
         error: action.error,
         isUpdated: false
       };
+    case 'SHOW_FORMULAIRE_SEXE_AGE':
+      return {
+        ...state,
+        showFormular: action.show
+      };
     default:
       return state;
   }

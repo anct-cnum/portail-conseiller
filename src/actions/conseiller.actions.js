@@ -5,7 +5,8 @@ import moment from 'moment';
 export const conseillerActions = {
   get,
   getStatistiquesPDF,
-  resetStatistiquesPDFFile
+  resetStatistiquesPDFFile,
+  isFormulaireChecked
 };
 
 function get(id) {
@@ -60,4 +61,9 @@ function getStatistiquesPDF(dates) {
 
 function resetStatistiquesPDFFile() {
   return { type: 'RESET_FILE' };
+}
+
+function isFormulaireChecked(sexe) {
+  const show = !sexe;
+  return { type: 'SHOW_FORMULAIRE_SEXE_AGE', show };
 }

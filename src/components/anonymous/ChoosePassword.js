@@ -59,7 +59,6 @@ function ChoosePassword({ match }) {
 
       <div className="rf-container-fluid">
         <div className="rf-grid-row rf-grid-row--center">
-
           <div className="rf-col-12 zone-titre">
             <div className="rf-container">
               <div className="rf-grid-row rf-grid-row--center">
@@ -76,7 +75,6 @@ function ChoosePassword({ match }) {
           </div>
 
           <div className="rf-col-12 zone-mot-de-passe">
-
 
             <div className="rf-container">
               <div className="rf-grid-row rf-grid-row--center">
@@ -111,6 +109,7 @@ function ChoosePassword({ match }) {
                       </p>
                       <p className="rf-mb-md-3w">Accédez ensuite à cette dernière afin de pouvoir effectuer votre première connexion à l’espace Coop.</p>
                     </div>
+
                     <div className="rf-col-12 rf-col-md-5">
 
                       { tokenVerified && !passwordChoosen &&
@@ -163,8 +162,7 @@ function ChoosePassword({ match }) {
               </div>
             </div>
           </div>
-
-          {tokenVerified &&
+          { tokenVerified &&
           <div className="rf-col-12 zone-recapitulatif">
             <div className="rf-container rf-mt-5w rf-mt-md-9w">
               <div className="rf-grid-row rf-grid-row--center">

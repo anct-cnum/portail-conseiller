@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Menu from './connected/Menu';
@@ -9,6 +9,8 @@ function Header({ linkAccount }) {
 
   const location = useLocation();
   const dispatch = useDispatch();
+
+  const role = useSelector(state => state.authentication?.user?.user?.role);
 
   const toggleBurgerMenu = () => {
     dispatch(menuActions.toggleMenu());
@@ -26,14 +28,24 @@ function Header({ linkAccount }) {
               <a className="rf-header__operator" href="/" style={{ boxShadow: 'none' }}>
                 <img src="/logos/logo-conseiller-numerique-nb.svg" alt="logo Conseiller Numérique France Services" style={{ height: '50px' }}/>
               </a>
-              <div
-                className={`rf-header__navbar ${location.pathname === '/validation' || location.pathname.startsWith('/inscription') ? 'headerCustom' : ''}`}
+              <div className={`rf-header__navbar ${location.pathname === '/validation' || location.pathname.startsWith('/inscription') ? 'headerCustom' : ''}`}
                 style={{ marginBottom: '13px' }}>
                 <div className="rf-service">
-                  <a className="rf-service__title" href="/" title="Coop">
-                    Coop&nbsp;&nbsp;<span style={{ fontSize: 'small' }}>v { process.env.REACT_APP_VERSION }</span>
-                  </a>
-                  <p className="rf-service__tagline">Réseau des conseillers numériques France Services</p>
+                  {role !== 'admin_coop' &&
+                    <>
+                      <a className="rf-service__title" href="/" title="Coop">
+                        Coop&nbsp;&nbsp;<span style={{ fontSize: 'small' }}>v { process.env.REACT_APP_VERSION }</span>
+                      </a>
+                      <p className="rf-service__tagline">Réseau des conseillers numériques France Services</p>
+                    </>
+                  }
+                  {role === 'admin_coop' &&
+                    <>
+                      <a className="rf-service__title" href="/" title="Coop" style={{ fontSize: '24px' }}>
+                      Espace Coop : Administration
+                      </a>
+                    </>
+                  }
                 </div>
                 { linkAccount !== undefined &&
                 <button
@@ -59,7 +71,12 @@ function Header({ linkAccount }) {
                       </li>
                       { linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
                       <li className="rf-shortcuts__item">
-                        <Link className="rf-btn rf-btn--sm" to="/login" title="Se déconnecter"><i className="ri-logout-box-r-line"></i></Link>
+                        {role !== 'admin_coop' &&
+                          <Link className="rf-btn rf-btn--sm" to="/login" title="Se déconnecter"><i className="ri-logout-box-r-line"></i></Link>
+                        }
+                        {role === 'admin_coop' &&
+                          <Link className="rf-btn rf-btn--sm" to="/login?role=admin" title="Se déconnecter"><i className="ri-logout-box-r-line"></i></Link>
+                        }
                       </li>
                       }
                     </ul>
@@ -71,7 +88,11 @@ function Header({ linkAccount }) {
         </div>
       </div>
       { linkAccount !== undefined && linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
-        <Menu/>
+      <>
+        {role !== 'admin_coop' &&
+          <Menu/>
+        }
+      </>
       }
     </header>
   );

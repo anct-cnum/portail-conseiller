@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 
 import Login from './components/anonymous/Login.js';
 import Home from './components/connected/Home';
+import Admin from './components/admin';
 import ChoosePassword from './components/anonymous/ChoosePassword';
 import ValidationAccount from './components/connected/ValidationAccount';
 import ForgottenPassword from './components/anonymous/ForgottenPassword';
@@ -16,6 +17,8 @@ function App() {
 
   let statsDataLoading = useSelector(state => state.statistique?.statsDataLoading);
   let pdfLoading = useSelector(state => state.conseiller?.loadingPDF);
+  const user = useSelector(state => state?.authentication?.user?.user);
+
   return (
     <div className="App">
       { (statsDataLoading === true || pdfLoading === true) &&
@@ -28,7 +31,12 @@ function App() {
           <Route path="/renouveler-mot-de-passe/:token" component={ForgottenPassword} />
           <Route path="/inscription/:token" component={ChoosePassword} />
           <Route path="/validation" component={ValidationAccount} />
-          <PrivateRoute exact path="*" component={Home} />
+          {user?.role === 'conseiller' &&
+            <PrivateRoute exact path="*" component={Home}/>
+          }
+          {user?.role === 'admin_coop' &&
+            <PrivateRoute exact path="*" component={Admin}/>
+          }
         </Switch>
       </Router>
     </div>

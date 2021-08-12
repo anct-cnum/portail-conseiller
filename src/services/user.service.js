@@ -52,11 +52,18 @@ function handleResponse(response) {
     }
 
     //login and verify token data !== conseiller
-    if (data.user?.roles[0] !== 'conseiller' && data.roles[0] !== 'conseiller') {
+    let roles = [];
+    if (data?.user?.roles) {
+      roles = data?.user?.roles;
+    }
+    if (data?.roles) {
+      roles = data?.roles;
+    }
+
+    if ((!roles.includes('conseiller') && !roles.includes('admin_coop'))) {
       logout();
       return Promise.reject({ error: 'Identifiants incorrects' });
     }
-
     return data;
   });
 }
