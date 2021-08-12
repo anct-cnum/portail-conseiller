@@ -227,7 +227,7 @@ function ForgottenPassword({ match = null }) {
                     </div>
                   }
 
-                  {errorPassword &&
+                  {errorPassword && !tokenVerified && !passwordChoosen &&
                     <div className="rf-mb-12w rf-mt-md-12w sous-titre">
                       <div className="invalid">{errorPassword}</div>
                     </div>
