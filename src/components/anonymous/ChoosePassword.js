@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import Header from '../Header';
 import Footer from '../Footer';
 import PropTypes from 'prop-types';
@@ -83,7 +84,8 @@ function ChoosePassword({ match }) {
                     <div className="erreur-token">
                       <div className="invalid">
                         Désolé mais le lien est invalide ou a déjà été utilisé.
-                        Veuillez réinitialiser votre mot de passe si nécessaire.
+                        Veuillez réinitialiser votre mot de passe si nécessaire
+                        &nbsp;<Link to="/mot-de-passe-oublie" title="Mot de passe oublié" >en cliquant ici</Link>.
                       </div>
                     </div>
                   </div>
