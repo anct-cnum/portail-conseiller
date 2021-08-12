@@ -1,0 +1,52 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Déploiement en production
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.15.3]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install modules
+      run: yarn
+    - name: Override .env
+      uses: SpicyPizza/create-envfile@v1
+      with:
+        envkey_REACT_APP_STRATEGYAUTH: "local"
+        envkey_REACT_APP_VERSION: "1.0"
+        envkey_REACT_APP_WEBMAIL_URL: "http://webmail.conseiller-numerique.fr"
+        envkey_REACT_APP_MATTERMOST_URL: "https://discussion.conseiller-numerique.gouv.fr"
+        envkey_REACT_APP_API: ${{ secrets.REACT_APP_API_PRODUCTION }}
+        envkey_REACT_APP_PIX_URL: "https://pix.fr/abc-pix-cnfs/"
+        file_name: .env
+    - name: Build application
+      run: yarn run build
+    - name: copy .htaccess
+      uses: canastro/copy-file-action@master
+      with:
+        source: ".htaccess"
+        target: "build/.htaccess"
+    - name: Deploy on clever cloud
+      uses: s0/git-publish-subdir-action@develop
+      env:
+        REPO: ${{ secrets.CLEVER_CLOUD_GIT_PORTAIL_CONSEILLER_PRODUCTION }}
+        BRANCH: master
+        FOLDER: build
+        SSH_PRIVATE_KEY: ${{ secrets.CLEVER_CLOUD_DEPLOY_PRIVATE_KEY }}
+        KNOWN_HOSTS_FILE: resources/known_hosts

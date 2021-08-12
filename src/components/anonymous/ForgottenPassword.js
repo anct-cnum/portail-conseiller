@@ -29,7 +29,7 @@ function ForgottenPassword({ match = null }) {
     }
   }
   const errorEmail = useSelector(state => state.motDePasseOublie.error);
-  const validEmail = useSelector(state => state.motDePasseOublie.user);
+  const validEmail = useSelector(state => state.motDePasseOublie.success);
 
   /* Etape 2 */
   const [inputsPassword, setInputsPassword] = useState({
@@ -111,7 +111,7 @@ function ForgottenPassword({ match = null }) {
                     </label>
                     {submittedEmail && validEmail &&
                       <div className="rf-mb-2w rf-mt-n2w">
-                        <div className="valid rf-mt-2w">L&#39;e-mail de renouvellement de mot de passe a pu être envoyé sur : {validEmail.persoEmail} !</div>
+                        <div className="valid rf-mt-2w">L&#39;e-mail de renouvellement de mot de passe a pu être envoyé sur votre adresse personnelle !</div>
                       </div>
                     }
                     {submittedEmail && errorEmail === 'User not found' &&
@@ -176,7 +176,7 @@ function ForgottenPassword({ match = null }) {
                   }
                   { tokenVerified === false &&
                     <div className="erreur-token">
-                      <div className="invalid">Désolé mais le lien est invalide.</div>
+                      <div className="invalid">Désolé mais le lien est invalide ou a déjà été utilisé.</div>
                     </div>
                   }
 

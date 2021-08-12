@@ -105,8 +105,8 @@ function forgottenPassword(username) {
     dispatch(request({ username }));
     userService.sendForgottenPasswordEmail(username)
     .then(
-      user => {
-        dispatch(success(user));
+      response => {
+        dispatch(success(response));
       },
       error => {
         dispatch(failure(error));
@@ -117,8 +117,8 @@ function forgottenPassword(username) {
   function request(user) {
     return { type: 'SEND_EMAIL_REQUEST', user };
   }
-  function success(user) {
-    return { type: 'SEND_EMAIL_SUCCESS', user };
+  function success(response) {
+    return { type: 'SEND_EMAIL_SUCCESS', response };
   }
   function failure(error) {
     return { type: 'SEND_EMAIL_FAILURE', error };
