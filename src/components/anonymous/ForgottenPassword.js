@@ -183,9 +183,6 @@ function ForgottenPassword({ match = null }) {
                   { tokenVerified && !passwordChoosen &&
                     <div className="rf-mt-11v">
                       {/* Form */}
-                      <div>
-                        {errorPassword && <div className="invalid">{errorPassword.error}</div>}
-                      </div>
 
                       <label className="rf-label">
                         Veuillez choisir votre mot de passe.
@@ -227,6 +224,12 @@ function ForgottenPassword({ match = null }) {
                   { passwordChoosen &&
                     <div className="rf-mb-12w rf-mt-md-12w sous-titre">
                       Votre mot de passe a été renouvelé avec succès. <Link to={`/login`}>Vous pouvez vous connecter</Link>.
+                    </div>
+                  }
+
+                  {errorPassword &&
+                    <div className="rf-mb-12w rf-mt-md-12w sous-titre">
+                      <div className="invalid">{errorPassword}</div>
                     </div>
                   }
                 </div>
