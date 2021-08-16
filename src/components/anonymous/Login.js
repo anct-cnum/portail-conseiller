@@ -12,12 +12,15 @@ function Login() {
     password: ''
   });
 
+  const dispatch = useDispatch();
+  const location = useLocation();
+
+  const role = new URLSearchParams(location.search).get('role');
   const [submitted, setSubmitted] = useState(false);
   const { username, password } = inputs;
   const loggingIn = useSelector(state => state.authentication.loggingIn);
   const error = useSelector(state => state.authentication.error);
-  const dispatch = useDispatch();
-  const location = useLocation();
+
 
   useEffect(() => {
     dispatch(userActions.logout());
@@ -49,12 +52,21 @@ function Login() {
                 src="/logos/logo-conseiller-numerique-nb.svg"
                 alt="logo Conseiller Numérique France Services"
                 className="logoCnfs"/>
-              <h1 className="titrage rf-mt-xs-3w rf-mt-md-9w rf-mb-6w">Espace Coop</h1>
+              <h1 className="titrage rf-mt-xs-3w rf-mt-md-9w rf-mb-6w">
+                { role === 'admin' &&
+                  <>Administration<br className="rf-mb-2w"/></>
+                }
+                Espace Coop
+              </h1>
             </div>
-            <p className="rf-service__tagline labNetworkCnfs">Le réseau des conseillers numériques France Services.</p>
-            <div className="rf-my-9w personas1">
-              <img src="/logos/personas-hexagones.svg" width="100%" alt="Avatars conseillers"/>
-            </div>
+            { role !== 'admin' &&
+              <>
+                <p className="rf-service__tagline labNetworkCnfs">Le réseau des conseillers numériques France Services.</p>
+                <div className="rf-my-9w personas1">
+                  <img src="/logos/personas-hexagones.svg" width="100%" alt="Avatars conseillers"/>
+                </div>
+              </>
+            }
           </div>
           <div className="rf-my-4w connexion">
             <div className="rf-px-2w rf-mb-2w">
@@ -89,20 +101,24 @@ function Login() {
             <div>
               {error && <span className="invalid">{error.error}</span>}
             </div>
-            <div className="mot-de-passe-oublie">
-              <Link to="/mot-de-passe-oublie" title="Mot de passe oublié ?" >Mot de passe oublié ?</Link>
-            </div>
+            { role !== 'admin' &&
+              <div className="mot-de-passe-oublie">
+                <Link to="/mot-de-passe-oublie" title="Mot de passe oublié ?" >Mot de passe oublié ?</Link>
+              </div>
+            }
           </div>
 
         </div>
-        <div className="rf-grid-row rf-pb-12w personas2" style={{ textAlign: 'center' }}>
-          <div className="rf-col-12">
-            <div className="mot-de-passe-oublie-sm">
-              <Link to="/mot-de-passe-oublie" title="Mot de passe oublié ?">Mot de passe oublié ?</Link>
+        { role !== 'admin' &&
+          <div className="rf-grid-row rf-pb-12w personas2" style={{ textAlign: 'center' }}>
+            <div className="rf-col-12">
+              <div className="mot-de-passe-oublie-sm">
+                <Link to="/mot-de-passe-oublie" title="Mot de passe oublié ?">Mot de passe oublié ?</Link>
+              </div>
+              <img src="/logos/personas-hexagones.svg" width="90%" alt="Avatars conseillers"/>
             </div>
-            <img src="/logos/personas-hexagones.svg" width="90%" alt="Avatars conseillers"/>
           </div>
-        </div>
+        }
       </div>
       <Footer/>
     </div>
