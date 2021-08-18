@@ -5,6 +5,7 @@ const apiUrlRoot = process.env.REACT_APP_API;
 
 export const conseillerService = {
   get,
+  getAll,
   getStatistiquesPDF,
   createSexeAge
 };
@@ -17,6 +18,17 @@ function get(id) {
 
   return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
 }
+function getAll(page) {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  };
+
+  let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE`;
+
+  return fetch(uri, requestOptions).then(handleResponse);
+}
+
 
 function getStatistiquesPDF(dates) {
   const requestOptions = {

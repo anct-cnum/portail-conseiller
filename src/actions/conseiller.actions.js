@@ -6,7 +6,8 @@ export const conseillerActions = {
   get,
   getStatistiquesPDF,
   resetStatistiquesPDFFile,
-  isFormulaireChecked
+  isFormulaireChecked,
+  getAll,
 };
 
 function get(id) {
@@ -30,6 +31,37 @@ function get(id) {
   }
   function failure(error) {
     return { type: 'GET_CONSEILLER_FAILURE', error };
+  }
+}
+
+function getAll(page) {
+  return dispatch => {
+    dispatch(request());
+
+    let promises = [];
+    let promise = conseillerService.getAll(page);
+    promises.push(promise);
+
+    let conseillers = null;
+    Promise.all(promises).then(items => {
+      conseillers = items[0];
+      if (items.length > 1) {
+        conseillers.data = [...items[0].data, ...items[1].data];
+      }
+      dispatch(success(conseillers));
+    }).catch(error => {
+      dispatch(failure(error));
+    });
+  };
+
+  function request() {
+    return { type: 'GETALL_REQUEST' };
+  }
+  function success(conseillers) {
+    return { type: 'GETALL_SUCCESS', conseillers };
+  }
+  function failure(error) {
+    return { type: 'GETALL_FAILURE', error };
   }
 }
 
