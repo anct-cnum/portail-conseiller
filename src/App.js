@@ -26,9 +26,6 @@ function App() {
       }
       <Router history={history}>
         <Switch>
-          <Route exact path="/">
-            <Redirect to="/login"/>
-          </Route>
           <Route path="/login" component={Login} />
           <Route path="/mot-de-passe-oublie" component={ForgottenPassword} />
           <Route path="/renouveler-mot-de-passe/:token" component={ForgottenPassword} />
@@ -40,6 +37,7 @@ function App() {
           {user?.role === 'admin_coop' &&
             <PrivateRoute exact path="*" component={Admin}/>
           }
+          <Redirect from="/" to="/login"/>
         </Switch>
       </Router>
     </div>
