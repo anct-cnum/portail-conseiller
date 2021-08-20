@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { history } from './helpers';
 import { useSelector } from 'react-redux';
 
@@ -26,6 +26,9 @@ function App() {
       }
       <Router history={history}>
         <Switch>
+          <Route exact path="/">
+            <Redirect to="/login"/>
+          </Route>
           <Route path="/login" component={Login} />
           <Route path="/mot-de-passe-oublie" component={ForgottenPassword} />
           <Route path="/renouveler-mot-de-passe/:token" component={ForgottenPassword} />
