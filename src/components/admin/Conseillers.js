@@ -4,14 +4,17 @@ import { useLocation } from 'react-router-dom';
 import { conseillerActions } from '../../actions';
 import Conseiller from './Conseiller';
 import Pagination from './Pagination';
+import FiltersAndSorts from './FiltersAndSorts';
 import Footer from '../Footer';
 
-function Welcome() {
+function Conseillers() {
 
   const dispatch = useDispatch();
 
   const conseillers = useSelector(state => state.conseiller);
   const pagination = useSelector(state => state.pagination);
+  let dateDebut = useSelector(state => state.statistique?.dateDebutStats);
+  let dateFin = useSelector(state => state.statistique?.dateFinStats);
 
   let location = useLocation();
   let [page, setPage] = (pagination?.resetPage === false && location.currentPage !== undefined) ? useState(location.currentPage) : useState(1);
@@ -20,7 +23,9 @@ function Welcome() {
 
   const navigate = page => {
     setPage(page);
-    dispatch(conseillerActions.getAll(conseillers.items ? (page - 1) * conseillers.items.limit : 0));
+    dispatch(conseillerActions.getAll(conseillers.items ? (page - 1) * conseillers.items.limit : 0,
+      dateDebut,
+      dateFin));
   };
 
   useEffect(() => {
@@ -31,20 +36,15 @@ function Welcome() {
   }, [conseillers]);
 
   useEffect(() => {
-    dispatch(conseillerActions.getAll(page));
+    dispatch(conseillerActions.getAll(page, dateDebut, dateFin));
   }, []);
 
-  console.log(conseillers);
   return (
     <>
-      <div className="welcome">
+      <div className="conseillers">
+        <FiltersAndSorts resetPage={setPage}/>
         <div className="rf-container">
           <div className="rf-grid-row rf-grid-row--center">
-
-            <div className="rf-col-4 rf-mb-md-6w">Derniers utilisateurs enregistrés</div>
-            <div className="rf-col-4 rf-mb-md-6w">Période du 23/09/2021 au 23/10/2021</div>
-            <div className="rf-col-4 rf-mb-md-6w">Afficher tous les profils</div>
-
             <div className="rf-col-12 rf-mb-md-6w">
               <table className="rf-table">
                 <thead>
@@ -77,4 +77,4 @@ function Welcome() {
   );
 }
 
-export default Welcome;
+export default Conseillers;

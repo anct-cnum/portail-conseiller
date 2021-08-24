@@ -34,12 +34,12 @@ function get(id) {
   }
 }
 
-function getAll(page) {
+function getAll(page, dateDebut, dateFin, sortData = 'datePrisePoste', sortOrder = -1) {
   return dispatch => {
     dispatch(request());
 
     let promises = [];
-    let promise = conseillerService.getAll(page);
+    let promise = conseillerService.getAll(page, dateDebut, dateFin, sortData, sortOrder);
     promises.push(promise);
 
     let conseillers = null;

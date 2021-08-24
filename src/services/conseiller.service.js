@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { authHeader, history } from '../helpers';
 import { userService } from './user.service';
 
@@ -18,17 +19,25 @@ function get(id) {
 
   return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
 }
-function getAll(page) {
+
+function getAll(page, dateDebut, dateFin, sortData, sortOrder) {
+
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
   };
 
-  let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE`;
+  const filterDateStart = (dayjs(new Date(dateDebut)).format('DD/MM/YYYY') !== dayjs(new Date()).format('DD/MM/YYYY') && dateDebut !== '') ?
+    `&datePrisePoste[$gt]=${new Date(dateDebut).toISOString()}` : '';
 
+  const filterDateEnd = (dateFin !== '') ? `&datePrisePoste[$lt]=${new Date(dateFin).toISOString()}` : '';
+
+  const filterSort = `&$sort[${sortData}]=${sortOrder}`;
+
+  let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${filterSort}`;
+  //${filterDateStart}${filterDateEnd}${filterSort}
   return fetch(uri, requestOptions).then(handleResponse);
 }
-
 
 function getStatistiquesPDF(dates) {
   const requestOptions = {
