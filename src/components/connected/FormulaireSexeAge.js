@@ -18,13 +18,11 @@ function FormulaireSexeAge() {
     sexe: '',
   });
 
-  const { date, sexe, errorInputs } = inputs;
+  const todayDate = new Date();
+  const maxDate = todayDate.getFullYear() - 18;
+  const minDate = todayDate.getFullYear() - 99;
 
-  if (isUpdated) {
-    setTimeout(function() {
-      window.location.reload();
-    }, 2000);
-  }
+  const { date, sexe, errorInputs } = inputs;
 
   function handleChange(e) {
     if (e.target) {
@@ -46,39 +44,48 @@ function FormulaireSexeAge() {
     }
   }
 
+  function closeModal() {
+    dispatch(conseillerActions.closeFormulaire());
+  }
+
   return (
     <dialog aria-labelledby="rf-modal-sexe-age" role="dialog" id="rf-modal-sexe-age" className="rf-modal modalOpened">
       <div className="rf-container">
         <div className="rf-grid-row rf-grid-row--center">
           <div className="rf-col-7 rf-modal__body modal-sexe-age">
             <div className="rf-modal__content">
-              <h1 id="rf-modal-title-modal-sexe-age" className="rf-modal__title">
-                Une dernière étape !
-              </h1>
-              { (error || errorInputs) &&
-                <div className="rf-mb-3w">
-                  <FlashMessage duration={10000} >
-                    <div className=" flashBag invalid">
-                      <span>
-                        {error ? error : 'Erreur : veuillez remplir tous les champs obligatoires (*) du formulaire.'}
-                      </span>
-                    </div>
-                  </FlashMessage>
-                </div>
-              }
               { isUpdated &&
+              <>
+                <h1 className="rf-modal__title">Merci !</h1>
                 <div className="rf-mb-3w">
-                  <FlashMessage duration={10000} >
-                    <div className=" flashBag">
-                      <span>
-                        Vos informations ont bien été ajoutées, vous allez être redirigé vers l&apos;accueil !
-                      </span>
-                    </div>
-                  </FlashMessage>
+                  <div className="rf-mb-3w">
+                    Votre compte sur l’espace Coop est désormais activé !
+                    Toute l’équipe Conseiller numérique France Services vous souhaite un excellent début de mission.
+                  </div>
+                  <img className="conseiller-course" src="avatars/conseiller-course.png"/>
+                  <img className="conseillere-tablette" src="avatars/conseillere-tablette.svg"/>
                 </div>
+                <div className="centre">
+                  <button className="sexe-age-btn" onClick={closeModal} >Fermer</button>
+                </div>
+              </>
               }
               { !isUpdated &&
                 <>
+                  <h1 id="rf-modal-title-modal-sexe-age" className="rf-modal__title">
+                    Une dernière étape !
+                  </h1>
+                  { (error || errorInputs) &&
+                    <div className="rf-mb-3w">
+                      <FlashMessage duration={10000} >
+                        <div className=" flashBag invalid">
+                          <span>
+                            {error ? error : 'Erreur : veuillez remplir tous les champs obligatoires (*) du formulaire.'}
+                          </span>
+                        </div>
+                      </FlashMessage>
+                    </div>
+                  }
                   <div className="element-gauche">
                     <div className="label" >Vous êtes <span className="important">*</span></div>
                     <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-4w rf-mb-3w">
@@ -109,6 +116,8 @@ function FormulaireSexeAge() {
                       peekNextMonth
                       showMonthDropdown
                       showYearDropdown
+                      maxDate={new Date('12/31/' + maxDate)}
+                      minDate={new Date('01/01/' + minDate)}
                       dropdownMode="select"
                       required="required"
                     />
