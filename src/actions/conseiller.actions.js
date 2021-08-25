@@ -6,7 +6,8 @@ export const conseillerActions = {
   get,
   getStatistiquesPDF,
   resetStatistiquesPDFFile,
-  isFormulaireChecked
+  isFormulaireChecked,
+  closeFormulaire
 };
 
 function get(id) {
@@ -63,7 +64,11 @@ function resetStatistiquesPDFFile() {
   return { type: 'RESET_FILE' };
 }
 
-function isFormulaireChecked(sexe) {
-  const show = !sexe;
+function isFormulaireChecked(sexe, isUpdated) {
+  const show = !sexe || (sexe && isUpdated);
   return { type: 'SHOW_FORMULAIRE_SEXE_AGE', show };
+}
+
+function closeFormulaire() {
+  return { type: 'CLOSE_FORMULAIRE_SEXE_AGE' };
 }
