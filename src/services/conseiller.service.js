@@ -20,7 +20,7 @@ function get(id) {
   return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
 }
 
-function getAll(page, dateDebut, dateFin, sortData, sortOrder) {
+function getAll(page, dateDebut, dateFin, sortData, sortOrder, filterProfil) {
 
   const requestOptions = {
     method: 'GET',
@@ -33,9 +33,11 @@ function getAll(page, dateDebut, dateFin, sortData, sortOrder) {
   const filterDateEnd = (dateFin !== '') ? `&datePrisePoste[$lt]=${new Date(dateFin).toISOString()}` : '';
 
   const filterSort = `&$sort[${sortData}]=${sortOrder}`;
-
+  console.log(filterDateStart);
+  console.log(filterDateEnd);
+  console.log(filterSort);
   let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${filterSort}`;
-  //${filterDateStart}${filterDateEnd}${filterSort}
+
   return fetch(uri, requestOptions).then(handleResponse);
 }
 

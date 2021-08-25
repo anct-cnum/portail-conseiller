@@ -69,7 +69,6 @@ function FiltersAndSorts({ resetPage }) {
     resetPage(1);
   };
 
-  console.log(dateFin);
   return (
     <div className="rf-container">
       <div className="rf-grid-row">
