@@ -59,8 +59,8 @@ function FormulaireSexeAge() {
                 <h1 className="rf-modal__title">Merci !</h1>
                 <div className="rf-mb-3w">
                   <div className="rf-mb-3w">
-                    Votre compte sur l’espace Coop est désormais activé !
-                    Toute l’équipe Conseiller numérique France Services vous souhaite un excellent début de mission.
+                    Votre compte sur l&rsquo;espace Coop est désormais activé !
+                    Toute l&rsquo;équipe Conseiller numérique France Services vous souhaite un excellent début de mission.
                   </div>
                   <img className="conseiller-course" src="avatars/conseiller-course.png"/>
                   <img className="conseillere-tablette" src="avatars/conseillere-tablette.svg"/>
@@ -122,7 +122,7 @@ function FormulaireSexeAge() {
                       required="required"
                     />
                   </div>
-                  <p className="rf-mb-6w">L&rsquo;usage de ces données est strictement réservé aux statistiques internes de l’ANCT et de la
+                  <p className="rf-mb-6w">L&rsquo;usage de ces données est strictement réservé aux statistiques internes de l&rsquo;ANCT et de la
                       Banque des Territoires, celles-ci ne seront pas publiées.<br/>
                       Vous pourrez également modifier vos informations de profil par la suite. <br/>
                   <a className="rf-nav__link" target="blank" href="https://cdn.conseiller-numerique.gouv.fr/CGU-ConseillerNumerique-Coop.pdf">
