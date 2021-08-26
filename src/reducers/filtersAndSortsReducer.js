@@ -1,6 +1,8 @@
 const initialState = {
   dateDebut: new Date(),
   dateFin: new Date(),
+  profil: 'tous',
+  ordre: -1
 };
 
 export default function filtersAndSorts(state = initialState, action) {
@@ -15,6 +17,14 @@ export default function filtersAndSorts(state = initialState, action) {
         ...state,
         dateFin: action.dateFin,
       };
+    case 'CHANGE_ORDRE':
+      return {
+        ...state,
+        ordre: action.dataOrdre };
+    case 'CHANGE_PROFIL':
+      return {
+        ...state,
+        profil: action.dataProfil };
     default:
       return state;
   }

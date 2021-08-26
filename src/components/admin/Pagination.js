@@ -20,7 +20,7 @@ function Pagination({ pageCount, current, navigate }) {
   }
 
   return (
-    <div className="rf-container rf-mt-2w">
+    <div className="rf-container">
       <nav className="rf-pagination rf-grid-row rf-grid-row--center" aria-label="Pagination navigation">
         <ul className="rf-pagination__list rf-col-8">
           <li className={`rf-pagination__item--first rf-pagination__item ${isFirstPage ? 'rf-pagination__item--disabled' : ''}`}>

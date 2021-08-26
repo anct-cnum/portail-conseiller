@@ -20,7 +20,7 @@ function get(id) {
   return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
 }
 
-function getAll(page, dateDebut, dateFin, sortData, sortOrder, filterProfil) {
+function getAll(page, dateDebut, dateFin, sortOrder, profil) {
 
   const requestOptions = {
     method: 'GET',
@@ -32,11 +32,24 @@ function getAll(page, dateDebut, dateFin, sortData, sortOrder, filterProfil) {
 
   const filterDateEnd = (dateFin !== '') ? `&datePrisePoste[$lt]=${new Date(dateFin).toISOString()}` : '';
 
-  const filterSort = `&$sort[${sortData}]=${sortOrder}`;
-  console.log(filterDateStart);
-  console.log(filterDateEnd);
-  console.log(filterSort);
-  let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${filterSort}`;
+  const filterSort = `&$sort[datePrisePoste]=${sortOrder}`;
+
+  let filterProfil = '';
+  switch (profil) {
+    case 'inactifs':
+      filterProfil = `&userCreated=false`;
+      break;
+    case 'actifs':
+      filterProfil = `&userCreated=true`;
+      break;
+    case 'certifies':
+      filterProfil = `&certifie=true`;
+      break;
+    default:
+      break;
+  }
+
+  let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${filterSort}${filterProfil}${filterDateStart}${filterDateEnd}`;
 
   return fetch(uri, requestOptions).then(handleResponse);
 }

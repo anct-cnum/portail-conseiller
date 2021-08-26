@@ -13,8 +13,11 @@ function Conseillers() {
 
   const conseillers = useSelector(state => state.conseiller);
   const pagination = useSelector(state => state.pagination);
-  let dateDebut = useSelector(state => state.statistique?.dateDebutStats);
-  let dateFin = useSelector(state => state.statistique?.dateFinStats);
+
+  let dateDebut = useSelector(state => state.filtersAndSorts?.dateDebut);
+  let dateFin = useSelector(state => state.filtersAndSorts?.dateFin);
+  let filtreOrdre = useSelector(state => state.filtersAndSorts.ordre);
+  let filtreProfil = useSelector(state => state.filtersAndSorts?.profil);
 
   let location = useLocation();
   let [page, setPage] = (pagination?.resetPage === false && location.currentPage !== undefined) ? useState(location.currentPage) : useState(1);
@@ -25,7 +28,9 @@ function Conseillers() {
     setPage(page);
     dispatch(conseillerActions.getAll(conseillers.items ? (page - 1) * conseillers.items.limit : 0,
       dateDebut,
-      dateFin));
+      dateFin,
+      filtreOrdre,
+      filtreProfil));
   };
 
   useEffect(() => {
@@ -36,7 +41,7 @@ function Conseillers() {
   }, [conseillers]);
 
   useEffect(() => {
-    dispatch(conseillerActions.getAll(page, dateDebut, dateFin));
+    dispatch(conseillerActions.getAll(page, dateDebut, dateFin, filtreOrdre, filtreProfil));
   }, []);
 
   return (
@@ -45,10 +50,11 @@ function Conseillers() {
         <FiltersAndSorts resetPage={setPage}/>
         <div className="rf-container">
           <div className="rf-grid-row rf-grid-row--center">
-            <div className="rf-col-12 rf-mb-md-6w">
+            <div className="rf-col-12">
               <table className="rf-table">
                 <thead>
-                  <tr className="admin-table">
+                  <tr><th colSpan="9"><hr className="th-hr-top"/></th></tr>
+                  <tr>
                     <th>Prénom</th>
                     <th>Nom</th>
                     <th>Structure</th>
@@ -59,6 +65,7 @@ function Conseillers() {
                     <th>Activé</th>
                     <th>Afficher</th>
                   </tr>
+                  <tr><th colSpan="9"><hr className="th-hr-bottom" /></th></tr>
                 </thead>
                 <tbody>
                   {!conseillers?.error && !conseillers?.loading && conseillers?.items && conseillers?.items.data.map((conseiller, idx) => {
@@ -68,7 +75,7 @@ function Conseillers() {
                 </tbody>
               </table>
             </div>
-            <Pagination current={page} pageCount={pageCount} navigate={navigate} />
+            <Pagination current={page} pageCount={pageCount} navigate={navigate}/>
           </div>
         </div>
       </div>

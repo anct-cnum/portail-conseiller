@@ -2,6 +2,8 @@ export const filtersAndSortsActions = {
   updateOrder,
   changeDateDebut,
   changeDateFin,
+  changeOrdre,
+  changeProfil
 };
 
 function updateOrder(order) {
@@ -21,4 +23,12 @@ function changeDateDebut(dateDebut) {
 
 function changeDateFin(dateFin) {
   return { type: 'CHANGE_DATE_FIN', dateFin };
+}
+
+function changeOrdre(dataOrdre) {
+  return { type: 'CHANGE_ORDRE', dataOrdre };
+}
+
+function changeProfil(dataProfil) {
+  return { type: 'CHANGE_PROFIL', dataProfil };
 }

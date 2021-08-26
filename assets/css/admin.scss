@@ -47,6 +47,11 @@
     height: 58px;
     width: 64px;
   }
+
+  .conseillers{
+    margin-bottom: 120px;
+  }
+
   .admin-texte-btn {
     display: inline-block;
     position: relative;
@@ -88,7 +93,7 @@
     color: #ffffff;
     font-size: 1rem;
     cursor: pointer;
-    width: 306px;
+    width: 317px;
     height: 48px;
   }
   .admin-select-options {
@@ -116,11 +121,6 @@
       color:#5398FF;
       cursor: pointer;
     }
-  }
-
-  .admin-table {
-    border-bottom: 1px solid #fff;
-    border-top: 1px solid #fff;
   }
 
   .date-active{
@@ -198,12 +198,41 @@
     border-radius: 100%;
     height: 12px;
     width: 12px;
-    margin: 0;
+    margin: auto;
   }
   .circle-true {
     background: #169b62;
   }
   .circle-false {
     background: #ff6f4c;
+  }
+
+  .rf-table {
+    margin-left: -19px;
+    th{
+      border: none !important;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .th-hr-top {
+      margin: 12px 0px -10px;
+      color: #fff;
+    }
+    .th-hr-bottom{
+      margin: -6px 0px 0px;
+      color: #fff;
+    }
+    .conseiller td {
+      padding-top: 0;
+      padding-bottom: 0;
+      font-size: 16px;
+      hr{
+        margin: 16px 0px;
+      }
+    }
+    .structure{
+      font-size: 14px !important;
+      font-weight: 300;
+    }
   }
 }
