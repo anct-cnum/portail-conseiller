@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { history } from './helpers';
 import { useSelector } from 'react-redux';
 
@@ -37,6 +37,7 @@ function App() {
           {user?.role === 'admin_coop' &&
             <PrivateRoute exact path="*" component={Admin}/>
           }
+          <Redirect from="/" to="/login"/>
         </Switch>
       </Router>
     </div>
