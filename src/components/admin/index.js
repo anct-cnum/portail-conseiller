@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import Header from '../Header';
-import AdminHeader from './Header';
+import AdminHeader from './AdminHeader';
 import Conseillers from './Conseillers';
 
 function Admin() {

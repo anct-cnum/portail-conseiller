@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { statistiqueActions } from '../../actions';
 
-function Header() {
+function AdminHeader() {
   const dispatch = useDispatch();
   const statistiques = useSelector(state => state.statistique.statsAdmin);
 
@@ -32,4 +32,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default AdminHeader;

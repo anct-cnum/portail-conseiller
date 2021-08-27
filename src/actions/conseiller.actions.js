@@ -44,9 +44,10 @@ function getAll(page, dateDebut, dateFin, sortOrder = -1, filterProfil = 'tous')
 
     let conseillers = null;
     Promise.all(promises).then(items => {
+      console.log(items);
       conseillers = items[0];
       if (items.length > 1) {
-        conseillers.data = [...items[0].data, ...items[1].data];
+        conseillers.data = [...items[0].data];
       }
       dispatch(success(conseillers));
     }).catch(error => {

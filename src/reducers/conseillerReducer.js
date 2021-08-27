@@ -54,14 +54,18 @@ export default function conseiller(state = null, action) {
       };
     case 'GETALL_REQUEST':
       return {
+        ...state,
         loading: true
       };
     case 'GETALL_SUCCESS':
       return {
+        ...state,
+        loading: false,
         items: action.conseillers
       };
     case 'GETALL_FAILURE':
       return {
+        ...state,
         error: action.error
       };
     default:
