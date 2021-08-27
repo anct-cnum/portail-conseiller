@@ -106,7 +106,7 @@ function ChoosePassword({ match }) {
                         ainsi que sur le service de discussion en ligne, gardez-le précieusement !
                       </p>
                       <p className="rf-mb-3w">
-                        Une boîte mail {slugify(`${user?.prenom} ${user?.nom}`, { replacement: '-', lower: true, strict: true })}@conseiller-numerique.fr
+                        Une boîte mail {slugify(`${user?.prenom}.${user?.nom}`, { replacement: '-', lower: true, strict: false })}@conseiller-numerique.fr
                         sera automatiquement créée lorsque vous cliquerez sur Valider.
                       </p>
                       <p className="rf-mb-md-3w">Accédez ensuite à cette dernière afin de pouvoir effectuer votre première connexion à l’espace Coop.</p>
@@ -177,7 +177,7 @@ function ChoosePassword({ match }) {
                 <div className="rf-col-offset-md-3" ></div>
                 <div className="rf-col-12 rf-col-md-6 rf-mb-2w rf-mb-md-3w descriptif">
                   La création de votre compte mail <br className="br-mail" />
-                  {slugify(`${user?.prenom} ${user?.nom}`, { replacement: '-', lower: true, strict: true })}@conseiller-numerique.fr
+                  {slugify(`${user?.prenom}.${user?.nom}`, { replacement: '-', lower: true, strict: false })}@conseiller-numerique.fr
                 </div>
                 <div className="rf-col-offset-md-3" ></div>
 
@@ -206,10 +206,10 @@ function ChoosePassword({ match }) {
 
                 <div className="rf-col-offset-md-3" ></div>
                 <div className="rf-col-12 rf-col-md-6 rf-mb-8w rf-mb-md-15w recapitulatif">
-                  Votre boite mail
+                  Votre boite mail&nbsp;
                   <strong>
-                    {slugify(`${user?.prenom} ${user?.nom}`, { replacement: '-', lower: true, strict: true })}@conseiller-numerique.fr
-                  </strong>
+                    {slugify(`${user?.prenom}.${user?.nom}`, { replacement: '-', lower: true, strict: false })}@conseiller-numerique.fr
+                  </strong>&nbsp;
                   sert d’identifiant<br />
                   Votre mot de passe de connexion est le même.
                 </div>
