@@ -15,10 +15,11 @@ function Connected() {
   const user = useSelector(state => state.authentication.user.user);
   const conseiller = useSelector(state => state?.conseiller?.conseiller);
   const voirFormulaire = useSelector(state => state?.conseiller?.showFormular);
+  const formulaireIsUpdated = useSelector(state => state?.conseiller?.isUpdated);
 
   useEffect(() => {
     if (conseiller) {
-      dispatch(conseillerActions.isFormulaireChecked(conseiller.sexe));
+      dispatch(conseillerActions.isFormulaireChecked(conseiller.sexe, formulaireIsUpdated));
     } else {
       dispatch(conseillerActions.get(userEntityId()));
     }
