@@ -4,6 +4,7 @@ import moment from 'moment';
 
 export const conseillerActions = {
   get,
+  getAll,
   getStatistiquesPDF,
   resetStatistiquesPDFFile,
   isFormulaireChecked,
@@ -31,6 +32,37 @@ function get(id) {
   }
   function failure(error) {
     return { type: 'GET_CONSEILLER_FAILURE', error };
+  }
+}
+
+function getAll(page, dateDebut, dateFin, sortOrder = -1, filterProfil = 'tous') {
+  return dispatch => {
+    dispatch(request());
+
+    let promises = [];
+    let promise = conseillerService.getAll(page, dateDebut, dateFin, sortOrder, filterProfil);
+    promises.push(promise);
+
+    let conseillers = null;
+    Promise.all(promises).then(items => {
+      conseillers = items[0];
+      if (items.length > 1) {
+        conseillers.data = [...items[0].data];
+      }
+      dispatch(success(conseillers));
+    }).catch(error => {
+      dispatch(failure(error));
+    });
+  };
+
+  function request() {
+    return { type: 'GETALL_REQUEST' };
+  }
+  function success(conseillers) {
+    return { type: 'GETALL_SUCCESS', conseillers };
+  }
+  function failure(error) {
+    return { type: 'GETALL_FAILURE', error };
   }
 }
 

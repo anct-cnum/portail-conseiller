@@ -2,6 +2,7 @@ import { statistiqueService } from '../services/statistique.service.js';
 
 export const statistiqueActions = {
   getStatsCra,
+  getStatsAdmin,
   changeDateStatsDebut,
   changeDateStatsFin,
 };
@@ -38,4 +39,30 @@ function changeDateStatsDebut(dateDebut) {
 
 function changeDateStatsFin(dateFin) {
   return { type: 'CHANGE_DATE_FIN_STATS', dateFin };
+}
+
+function getStatsAdmin() {
+  return dispatch => {
+    dispatch(request());
+
+    statistiqueService.getStatsAdmin()
+    .then(
+      statsAdmin => {
+        dispatch(success(statsAdmin));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'GET_STATS_ADMIN_REQUEST' };
+  }
+  function success(statsAdmin) {
+    return { type: 'GET_STATS_ADMIN_SUCCESS', statsAdmin };
+  }
+  function failure(error) {
+    return { type: 'GET_STATS_ADMIN_FAILURE', error };
+  }
 }

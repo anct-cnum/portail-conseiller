@@ -33,6 +33,20 @@ export default function statistique(state = initialState, action) {
         ...state,
         dateFinStats: action.dateFin,
       };
+    case 'GET_STATS_ADMIN_REQUEST':
+      return {
+        ...state,
+      };
+    case 'GET_STATS_ADMIN_SUCCESS':
+      return {
+        ...state,
+        statsAdmin: action.statsAdmin,
+      };
+    case 'GET_STATS_ADMIN_FAILURE':
+      return {
+        ...state,
+        statsAdminError: action.error,
+      };
     default:
       return state;
   }

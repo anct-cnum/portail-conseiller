@@ -2,7 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import Header from '../Header';
-import Welcome from './Welcome';
+import AdminHeader from './AdminHeader';
+import Conseillers from './Conseillers';
 
 function Admin() {
 
@@ -10,8 +11,11 @@ function Admin() {
   return (
     <>
       <Header linkAccount={user?.name}/>
-      <Route path={`/accueil`} component={Welcome} />
-      <Redirect from="/" to="/accueil" />
+      <div className="admin">
+        <AdminHeader />
+        <Route path={`/accueil`} component={Conseillers} />
+        <Redirect from="/" to="/accueil" />
+      </div>
     </>
   );
 }

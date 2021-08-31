@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { authHeader, history } from '../helpers';
 import { userService } from './user.service';
 
@@ -5,6 +6,7 @@ const apiUrlRoot = process.env.REACT_APP_API;
 
 export const conseillerService = {
   get,
+  getAll,
   getStatistiquesPDF,
   createSexeAge
 };
@@ -16,6 +18,40 @@ function get(id) {
   };
 
   return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
+}
+
+function getAll(page, dateDebut, dateFin, sortOrder, profil) {
+
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  };
+
+  const filterDateStart = (dayjs(new Date(dateDebut)).format('DD/MM/YYYY') !== dayjs(new Date()).format('DD/MM/YYYY') && dateDebut !== '') ?
+    `&datePrisePoste[$gt]=${new Date(dateDebut).toISOString()}` : '';
+
+  const filterDateEnd = (dateFin !== '') ? `&datePrisePoste[$lt]=${new Date(dateFin).toISOString()}` : '';
+
+  const filterSort = `&$sort[datePrisePoste]=${sortOrder}`;
+
+  let filterProfil = '';
+  switch (profil) {
+    case 'inactifs':
+      filterProfil = `&userCreated=false`;
+      break;
+    case 'actifs':
+      filterProfil = `&userCreated=true`;
+      break;
+    case 'certifies':
+      filterProfil = `&certifie=true`;
+      break;
+    default:
+      break;
+  }
+
+  let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${filterSort}${filterProfil}${filterDateStart}${filterDateEnd}`;
+
+  return fetch(uri, requestOptions).then(handleResponse);
 }
 
 function getStatistiquesPDF(dates) {
