@@ -17,7 +17,6 @@ function updateOrder(order) {
 }
 
 function changeDateDebut(dateDebut) {
-  console.log(dateDebut);
   return { type: 'CHANGE_DATE_DEBUT', dateDebut };
 }
 
