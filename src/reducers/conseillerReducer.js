@@ -1,7 +1,12 @@
-export default function conseiller(state = null, action) {
+const initState = {
+  loadingPDF: false
+};
+
+export default function conseiller(state = initState, action) {
   switch (action.type) {
     case 'GET_CONSEILLER_REQUEST':
       return {
+        ...state,
         loading: true
       };
     case 'GET_CONSEILLER_SUCCESS':
