@@ -56,12 +56,11 @@ function getAll(page, dateDebut, dateFin, sortOrder, profil) {
 
 function getStatistiquesPDF(dates) {
   const requestOptions = {
-    method: 'POST',
+    method: 'GET',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
-    body: JSON.stringify({ datesStatsPDF: dates })
   };
 
-  return fetch(`${apiUrlRoot}/conseillers/statistiquesPDF`, requestOptions).then(handleFileResponse);
+  return fetch(`${apiUrlRoot}/conseillers/statistiquesPDF/${dates.dateDebut}/${dates.dateFin}`, requestOptions).then(handleFileResponse);
 }
 
 function createSexeAge(user) {
