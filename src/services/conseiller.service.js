@@ -60,7 +60,7 @@ function getStatistiquesPDF(dates) {
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
   };
 
-  return fetch(`${apiUrlRoot}/conseillers/statistiquesPDF/${dates.dateDebut}/${dates.dateFin}`, requestOptions).then(handleFileResponse);
+  return fetch(`${apiUrlRoot}/conseillers/statistiques.pdf?dateDebut=${dates.dateDebut}&dateFin=${dates.dateFin}`, requestOptions).then(handleFileResponse);
 }
 
 function createSexeAge(user) {
