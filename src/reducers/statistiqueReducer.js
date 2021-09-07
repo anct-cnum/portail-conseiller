@@ -1,8 +1,8 @@
+const anneeEnCours = new Date().getFullYear();
 const initialState = {
-  dateDebutStats: new Date(),
+  dateDebutStats: new Date(anneeEnCours + '/01/01'),
   dateFinStats: new Date(),
 };
-
 export default function statistique(state = initialState, action) {
   switch (action.type) {
     case 'GET_STATS_CRA_REQUEST':

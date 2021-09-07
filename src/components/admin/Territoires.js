@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { conseillerActions } from '../../actions';
-import Conseiller from './Conseiller';
+import { statistiqueActions } from '../../actions';
+import Territoire from './Territoire';
 import Pagination from './Pagination';
 import FiltersAndSorts from './FiltersAndSorts';
 import Footer from '../Footer';
 
-function Conseillers() {
+function Territoires() {
 
   const dispatch = useDispatch();
 
-  const conseillers = useSelector(state => state.conseiller);
+  const territoires = useSelector(state => state.statistique);
   const pagination = useSelector(state => state.pagination);
 
   let dateDebut = useSelector(state => state.filtersAndSorts?.dateDebut);
   let dateFin = useSelector(state => state.filtersAndSorts?.dateFin);
-  let filtreOrdre = useSelector(state => state.filtersAndSorts.ordre);
-  let filtreProfil = useSelector(state => state.filtersAndSorts?.profil);
+  let territoire = useSelector(state => state.filtersAndSorts?.territoire);
 
   let location = useLocation();
   let [page, setPage] = (pagination?.resetPage === false && location.currentPage !== undefined) ? useState(location.currentPage) : useState(1);
@@ -26,22 +25,18 @@ function Conseillers() {
 
   const navigate = page => {
     setPage(page);
-    dispatch(conseillerActions.getAll(conseillers.items ? (page - 1) * conseillers.items.limit : 0,
-      dateDebut,
-      dateFin,
-      filtreOrdre,
-      filtreProfil));
+    dispatch(statistiqueActions.getStatsTerritoires(territoire, dateDebut, dateFin, page));
   };
 
   useEffect(() => {
-    if (conseillers?.items) {
-      const count = Math.floor(conseillers.items.total / conseillers.items.limit);
-      setPageCount(conseillers.items.total % conseillers.items.limit === 0 ? count : count + 1);
+    if (territoires?.items) {
+      const count = Math.floor(territoires.items.total / territoires.items.limit);
+      setPageCount(territoires.items.total % territoires.items.limit === 0 ? count : count + 1);
     }
-  }, [conseillers]);
+  }, [territoires]);
 
   useEffect(() => {
-    dispatch(conseillerActions.getAll(page, dateDebut, dateFin, filtreOrdre, filtreProfil));
+    dispatch(statistiqueActions.getStatsTerritoires(territoire, dateDebut, dateFin, page));
   }, []);
 
   return (
@@ -52,41 +47,38 @@ function Conseillers() {
           <div className="rf-grid-row rf-grid-row--center">
             <div className="rf-col-12">
               <div className="rf-table">
-                <table >
+                <table>
                   <thead>
                     <tr><th colSpan="9" className="th-nopadding"><hr className="th-hr-top"/></th></tr>
                     <tr>
-                      <th>Prénom&nbsp;
+                      <th>Code&nbsp;
                         <i className="ri-arrow-down-s-line chevron"></i>
                       </th>
                       <th>Nom&nbsp;
                         <i className="ri-arrow-down-s-line chevron"></i>
                       </th>
-                      <th>Structure&nbsp;
+                      <th>Personnes accompagnées&nbsp;
                         <i className="ri-arrow-down-s-line chevron"></i>
                       </th>
-                      <th>Code Postal&nbsp;
+                      <th>dotation de conseillers&nbsp;
                         <i className="ri-arrow-down-s-line chevron"></i>
                       </th>
-                      <th>Date de recrutement&nbsp;
+                      <th>CnFS activé sur l&rsquo;espace coop&nbsp;
                         <i className="ri-arrow-down-s-line chevron"></i>
                       </th>
-                      <th>Date de fin de formation&nbsp;
+                      <th>CnFS en attente d&rsquo;activation&nbsp;
                         <i className="ri-arrow-down-s-line chevron"></i>
                       </th>
-                      <th>Certification&nbsp;
+                      <th>Taux d&rsquo;activation&nbsp;
                         <i className="ri-arrow-down-s-line chevron"></i>
                       </th>
-                      <th>Activé&nbsp;
-                        <i className="ri-arrow-down-s-line chevron"></i>
-                      </th>
-                      <th>Détails</th>
+                      <th>Afficher</th>
                     </tr>
                     <tr><th colSpan="9" className="th-nopadding"><hr className="th-hr-bottom" /></th></tr>
                   </thead>
                   <tbody>
-                    {!conseillers?.error && !conseillers?.loading && conseillers?.items && conseillers?.items.data.map((conseiller, idx) => {
-                      return (<Conseiller key={idx} conseiller={conseiller} currentPage={page} trClass ={idx % 2 === 0 ? 'pair' : 'impair'}/>);
+                    {!territoires?.error && !territoires?.loading && territoires?.items && territoires?.items.data.map((territoire, idx) => {
+                      return (<Territoire key={idx} territoire={territoire} currentPage={page} trClass ={idx % 2 === 0 ? 'pair' : 'impair'}/>);
                     })
                     }
                   </tbody>
@@ -102,4 +94,4 @@ function Conseillers() {
   );
 }
 
-export default Conseillers;
+export default Territoires;

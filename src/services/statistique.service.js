@@ -4,9 +4,10 @@ import { userService } from './user.service';
 export const statistiqueService = {
   getStatsCra,
   getStatsAdmin,
+  getStatsTerritoires
 };
 
-function getStatsCra(dateDebut, dateFin) {
+function getStatsCra(dateDebut, dateFin, idUser) {
   const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
     method: 'POST',
@@ -14,7 +15,7 @@ function getStatsCra(dateDebut, dateFin) {
     body: JSON.stringify({
       'dateDebut': dateDebut,
       'dateFin': dateFin,
-      'idConseiller': userEntityId()
+      'idConseiller': idUser ?? userEntityId()
     })
   };
 
@@ -29,6 +30,19 @@ function getStatsAdmin() {
   };
 
   return fetch(`${apiUrlRoot}/stats/admincoop/dashboard`, requestOptions).then(handleResponse);
+}
+
+function getStatsTerritoires(territoire, dateDebut, dateFin, page) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+  const requestOptions = {
+    method: 'GET',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+  };
+
+  return fetch(
+    `${apiUrlRoot}/stats/admincoop/territoires?territoire=${territoire}&dateDebut=${dateDebut}&dateFin=${dateFin}&page=${page}`,
+    requestOptions
+  ).then(handleResponse);
 }
 
 function handleResponse(response) {

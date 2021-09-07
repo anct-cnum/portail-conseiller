@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import FilterDate from './FilterDate';
-import { conseillerActions, filtersAndSortsActions } from '../../actions';
+import { conseillerActions, filtersAndSortsActions, statistiqueActions } from '../../actions';
+import { useLocation } from 'react-router';
 function FiltersAndSorts({ resetPage }) {
-
+  const location = useLocation();
   const dispatch = useDispatch();
   const [filterSort, setFilterSort] = useState(1);
-  const [filterProfil, setFilterProfil] = useState('tous');
-
   let dateDebut = useSelector(state => state.filtersAndSorts?.dateDebut);
   let dateFin = useSelector(state => state.filtersAndSorts?.dateFin);
+  let territoire = useSelector(state => state.filtersAndSorts?.territoire);
 
   const handleSort = e => {
     let ordre = 1;
@@ -19,56 +19,58 @@ function FiltersAndSorts({ resetPage }) {
     }
     setFilterSort(ordre);
     dispatch(filtersAndSortsActions.changeProfil(ordre));
-    dispatch(conseillerActions.getAll(0, dateDebut, dateFin, ordre, filterProfil));
-    resetPage(1);
-  };
-
-  const handleFilterProfil = e => {
-    setFilterProfil(e.target.id);
-    dispatch(filtersAndSortsActions.changeProfil(e.target.id));
-    dispatch(conseillerActions.getAll(0, dateDebut, dateFin, filterSort, e.target.id));
+    dispatch(conseillerActions.getAll(0, dateDebut, dateFin, ordre));
     resetPage(1);
   };
 
   useEffect(() => {
-    dispatch(conseillerActions.getAll(0, dateDebut, dateFin, filterSort, filterProfil));
-    resetPage(1);
+    if (location.pathname === '/accueil') {
+      dispatch(conseillerActions.getAll(0, dateDebut, dateFin, filterSort));
+      resetPage(1);
+    }
+    if (location.pathname === '/territoires') {
+      dispatch(statistiqueActions.getStatsTerritoires(territoire, dateDebut, dateFin, 0));
+      resetPage(1);
+    }
+
   }, [dateDebut, dateFin]);
 
   return (
     <div className="rf-container">
       <div className="rf-grid-row">
-        <div className="rf-col-4">
-          <nav className="rf-nav" id="navigation-sort" role="navigation">
-            <ul className="rf-nav__list">
-              <li className="rf-nav__item">
-                <span className={ filterSort === 1 ? '' : 'hide'}>
-                  <button className="rf-nav__btn admin-select" aria-expanded="false" aria-controls="menu-premier" aria-current="true" >
-                    Derniers utilisateurs enregistrés&nbsp;
-                    <i className="ri-arrow-down-s-line ri-2x chevron"></i>
+        { location.pathname === '/territoires' &&
+          <div className="rf-col-4">
+            <nav className="rf-nav" id="navigation-sort" role="navigation">
+              <ul className="rf-nav__list">
+                <li className="rf-nav__item">
+                  <span className={ filterSort === 1 ? '' : 'hide'}>
+                    <button className="rf-nav__btn admin-select" aria-expanded="false" aria-controls="menu-premier" aria-current="true" >
+                      Affichage par département&nbsp;
+                      <i className="ri-arrow-down-s-line chevron"></i>
+                    </button>
+                    <div className="rf-collapse rf-menu" id="menu-premier">
+                      <ul className="rf-menu__list">
+                        <li> <button id="filtre-premier" className="admin-select-option" onClick={handleSort}>Utilisateurs enregistrés en premier</button></li>
+                      </ul>
+                    </div>
+                  </span>
+                </li>
+                <li className={ filterSort === -1 ? 'rf-nav__item' : 'rf-nav__item hide'}>
+                  <button className="rf-nav__btn admin-select" style={{ 'marginLeft': '-20px' }} aria-expanded="false" aria-controls="menu-dernier"
+                    aria-current="true">
+                    &nbsp;
+                    <i className="ri-arrow-down-s-line chevron"></i>
                   </button>
-                  <div className="rf-collapse rf-menu" id="menu-premier">
+                  <div className="rf-collapse rf-menu" id="menu-dernier">
                     <ul className="rf-menu__list">
-                      <li> <button id="filtre-premier" className="admin-select-option" onClick={handleSort}>Utilisateurs enregistrés en premier</button></li>
+                      <li> <button id="filtre-dernier" className="admin-select-option" onClick={handleSort}>Derniers utilisateurs enregistrés</button></li>
                     </ul>
                   </div>
-                </span>
-              </li>
-              <li className={ filterSort === -1 ? 'rf-nav__item' : 'rf-nav__item hide'}>
-                <button className="rf-nav__btn admin-select" style={{ 'marginLeft': '-20px' }} aria-expanded="false" aria-controls="menu-dernier"
-                  aria-current="true">
-                  Utilisateurs enregistrés en premier&nbsp;
-                  <i className="ri-arrow-down-s-line ri-2x chevron"></i>
-                </button>
-                <div className="rf-collapse rf-menu" id="menu-dernier">
-                  <ul className="rf-menu__list">
-                    <li> <button id="filtre-dernier" className="admin-select-option" onClick={handleSort}>Derniers utilisateurs enregistrés</button></li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
-          </nav>
-        </div>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        }
 
         <div className="rf-col-4">
           <b>
@@ -81,120 +83,8 @@ function FiltersAndSorts({ resetPage }) {
               <FilterDate initDate={dateFin} idDate="datePickerFin" nomDate="datePickerFin"/>
             </span>
             &nbsp;
-            <i className="ri-arrow-down-s-line ri-2x chevron"></i>
+            <i className="ri-arrow-down-s-line chevron"></i>
           </b>
-        </div>
-
-        <div className="rf-col-4">
-          <nav className="rf-nav" id="navigation-filtre" role="navigation">
-            <ul className="rf-nav__list">
-              <li className={ filterProfil === 'tous' ? 'rf-nav__item' : 'rf-nav__item hide' }>
-                <button className="rf-nav__btn admin-select" aria-expanded="false" aria-controls="menu-tous-profils" aria-current="true">
-                  Afficher tous les profils&nbsp;
-                  <i className="ri-arrow-down-s-line ri-2x chevron"></i>
-                </button>
-                <div className="rf-collapse rf-menu" id="menu-tous-profils">
-                  <ul className="rf-menu__list admin-select-options">
-                    <li className="rf-mt-1w rf-mb-2w">
-                      <button id="inactifs" onClick={handleFilterProfil}>
-                        Afficher uniquement les profils non-activés
-                      </button>
-                    </li>
-                    <li className="rf-mb-2w">
-                      <button id="actifs" onClick={handleFilterProfil}>
-                        Afficher uniquement les profils activés
-                      </button>
-                    </li>
-                    <li className="rf-mb-2w">
-                      <button id="certifies" onClick={handleFilterProfil}>
-                        Afficher uniquement les profils certifiés
-                      </button>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-
-              <li className={ filterProfil === 'inactifs' ? 'rf-nav__item' : 'rf-nav__item hide' }>
-                <button className="rf-nav__btn admin-select" aria-expanded="false" aria-controls="menu-profils-inactifs" aria-current="true">
-                  Afficher uniquement les profils non-activés&nbsp;
-                  <i className="ri-arrow-down-s-line ri-2x chevron"></i>
-                </button>
-                <div className="rf-collapse rf-menu" id="menu-profils-inactifs">
-                  <ul className="rf-menu__list admin-select-options">
-                    <li className="rf-mt-1w rf-mb-2w">
-                      <button id="tous" onClick={handleFilterProfil}>
-                        Afficher tous les profils
-                      </button>
-                    </li>
-                    <li className="rf-mb-2w">
-                      <button id="actifs" onClick={handleFilterProfil}>
-                        Afficher uniquement les profils activés
-                      </button>
-                    </li>
-                    <li className="rf-mb-2w">
-                      <button id="certifies" onClick={handleFilterProfil}>
-                        Afficher uniquement les profils certifiés
-                      </button>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-
-              <li className={ filterProfil === 'actifs' ? 'rf-nav__item' : 'rf-nav__item hide'}>
-                <button className="rf-nav__btn admin-select" aria-expanded="false" aria-controls="menu-profils-actifs"
-                  aria-current="true">
-                  Afficher uniquement les profils activés&nbsp;
-                  <i className="ri-arrow-down-s-line ri-2x chevron"></i>
-                </button>
-                <div className="rf-collapse rf-menu" id="menu-profils-actifs">
-                  <ul className="rf-menu__list admin-select-options">
-                    <li className="rf-mt-1w rf-mb-2w">
-                      <button id="tous" onClick={handleFilterProfil}>
-                        Afficher tous les profils
-                      </button>
-                    </li>
-                    <li className="rf-mb-2w">
-                      <button id="inactifs" onClick={handleFilterProfil}>
-                          Afficher uniquement les profils non-activés
-                      </button>
-                    </li>
-                    <li className="rf-mb-2w">
-                      <button id="certifies" onClick={handleFilterProfil}>
-                        Afficher uniquement les profils certifiés
-                      </button>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-
-              <li className={ filterProfil === 'certifies' ? 'rf-nav__item' : 'rf-nav__item hide'}>
-                <button className="rf-nav__btn admin-select" aria-expanded="false" aria-controls="menu-profils-certifies"
-                  aria-current="true">
-                  Afficher uniquement les profils certifiés&nbsp;
-                  <i className="ri-arrow-down-s-line ri-2x chevron"></i>
-                </button>
-                <div className="rf-collapse rf-menu" id="menu-profils-certifies">
-                  <ul className="rf-menu__list admin-select-options">
-                    <li className="rf-mt-1w rf-mb-2w">
-                      <button id="tous" onClick={handleFilterProfil}>
-                        Afficher tous les profils
-                      </button>
-                    </li>
-                    <li className="rf-mb-2w">
-                      <button id="inactifs" onClick={handleFilterProfil}>
-                        Afficher uniquement les profils non-activés
-                      </button>
-                    </li>
-                    <li className="rf-mb-2w">
-                      <button id="actifs" onClick={handleFilterProfil}>
-                        Afficher uniquement les profils activés
-                      </button>
-                    </li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
-          </nav>
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 const initialState = {
-  dateDebut: new Date(),
+  dateDebut: new Date(1605571200000),
   dateFin: new Date(),
   profil: 'tous',
   ordre: -1
