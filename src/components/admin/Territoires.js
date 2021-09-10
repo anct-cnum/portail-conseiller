@@ -12,6 +12,8 @@ function Territoires() {
   const dispatch = useDispatch();
 
   const territoires = useSelector(state => state.statistique.statsTerritoires);
+  const statsTerritoiresLoading = useSelector(state => state.statistique.statsTerritoiresLoading);
+  const statsTerritoiresError = useSelector(state => state.statistique.statsTerritoiresError);
   const pagination = useSelector(state => state.pagination);
 
   let dateDebut = useSelector(state => state.filtersAndSorts?.dateDebut);
@@ -32,7 +34,7 @@ function Territoires() {
 
   useEffect(() => {
     if (territoires?.items) {
-      const count = Math.floor(territoires.items.total / territoires.items.limit);
+      const count = territoires.items.limit ? Math.floor(territoires.items.total / territoires.items.limit) : 0;
       setPageCount(territoires.items.total % territoires.items.limit === 0 ? count : count + 1);
     }
   }, [territoires]);
@@ -144,7 +146,7 @@ function Territoires() {
                     </tr>
                   </thead>
                   <tbody>
-                    {!territoires?.error && !territoires?.loading && territoires?.items && territoires?.items.data.map((territoire, idx) => {
+                    {!statsTerritoiresError && !statsTerritoiresLoading && territoires?.items && territoires?.items.data.map((territoire, idx) => {
                       return (<Territoire key={idx} territoire={territoire} currentPage={page} trClass ={idx % 2 === 0 ? 'pair' : 'impair'}/>);
                     })
                     }

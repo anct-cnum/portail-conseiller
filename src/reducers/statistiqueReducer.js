@@ -41,6 +41,7 @@ export default function statistique(state = initialState, action) {
       return {
         ...state,
         statsAdmin: action.statsAdmin,
+        statsAdminError: false
       };
     case 'GET_STATS_ADMIN_FAILURE':
       return {
@@ -58,6 +59,7 @@ export default function statistique(state = initialState, action) {
         ...state,
         statsTerritoires: action.statsTerritoires,
         statsTerritoiresLoading: false,
+        statsTerritoiresError: false,
       };
     case 'GET_STATS_TERRITOIRES_FAILURE':
       return {
