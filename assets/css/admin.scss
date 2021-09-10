@@ -48,7 +48,7 @@
   .stats-territoires-btn {
     width: 384px;
   }
-  .stats-logo-btn, .discussion-logo-btn, .conseillers-logo-btn {
+  .stats-logo-btn, .discussion-logo-btn {
     display: inline-block;
     height: 21px;
     width:19px;
@@ -63,12 +63,25 @@
   .discussion-logo-btn {
     background: url(../../public/logos/icone-discussion.svg) no-repeat;
   }
+  .conseillers-logo-btn {
+    background: url(../../public/avatars/avatar-conseillers.svg) no-repeat;
+    display: inline-block;
+    border-radius: 20px;
+    margin-left: 5px;
+    margin-top: 5px;
+    height: 40px;
+    width: 40px;
+
+  }
   .stats-texte-btn, .discussion-texte-btn, .conseillers-texte-btn {
     display: inline-block;
     position: relative;
     margin-left: 15px;
     text-align: left;
     top: -4px;
+  }
+  .conseillers-texte-btn {
+    top: -13px;
   }
   .admin-dark-btn {
     background-color: transparent;
@@ -78,7 +91,7 @@
     text-align: center;
     font-size: 16px;
     color: white;
-    padding: 10px;
+    padding: 13px;
     width: 282px;
     height: 56px;
     &:focus, &:hover, &:visited, &:link, &:active {
@@ -251,22 +264,35 @@
       background-color: #2b2b2b !important;
     }
     th {
-      border: none !important;
       font-weight: 600;
       font-size: 16px;
+      border-bottom: 1px solid #9a9aff !important;
+      border-top: 1px solid #fff !important;
+      .filtre-btn {
+        padding-left: 0px;
+        text-align: left;
+        background-color: #2b2b2b !important;
+        color: #fff !important;
+        border: none !important;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        & :hover {
+          color: #9a9aff;
+        }
+
+        .icone {
+          margin: 2px 5px;
+        }
+        .icone-2 {
+          margin: -7px 0 0 15px;
+        }
+        .icone-3 {
+          margin: -7px 0 0 35px;
+        }
+      }
     }
-    .th-hr-top {
-      margin: 12px -16px -10px;
-      color: #fff;
-    }
-    .th-hr-bottom {
-      margin: -3px -15px;
-      color: #9a9aff;
-    }
-    .th-nopadding {
-      padding: 0;
-    }
-    .conseiller td {
+    .conseiller td, .territoire td {
       padding-top: 0;
       padding-bottom: 0;
       font-size: 16px;
@@ -274,6 +300,11 @@
       hr {
         margin: 16px 0px;
       }
+    }
+    .not-found {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
     }
     .structure {
       font-size: 14px !important;

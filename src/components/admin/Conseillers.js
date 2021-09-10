@@ -48,46 +48,82 @@ function Conseillers() {
     <>
       <div className="conseillers">
         <FiltersAndSorts resetPage={setPage}/>
-        <div className="rf-container">
+        <div className="rf-container rf-mt-2w">
           <div className="rf-grid-row rf-grid-row--center">
             <div className="rf-col-12">
               <div className="rf-table">
                 <table >
                   <thead>
-                    <tr><th colSpan="9" className="th-nopadding"><hr className="th-hr-top"/></th></tr>
                     <tr>
-                      <th>Prénom&nbsp;
-                        <i className="ri-arrow-down-s-line chevron"></i>
+                      <th>
+                        <button id="prenom" className="filtre-btn">
+                          <span>
+                            Prénom
+                            <i className="ri-arrow-down-s-line chevron icone"></i>
+                          </span>
+                        </button>
                       </th>
-                      <th>Nom&nbsp;
-                        <i className="ri-arrow-down-s-line chevron"></i>
+                      <th>
+                        <button id="nom" className="filtre-btn">
+                          <span>Nom
+                            <i className="ri-arrow-down-s-line chevron icone"></i>
+                          </span>
+                        </button>
                       </th>
-                      <th>Structure&nbsp;
-                        <i className="ri-arrow-down-s-line chevron"></i>
+                      <th>
+                        <button id="structure" className="filtre-btn">
+                          <span>Structure
+                            <i className="ri-arrow-down-s-line chevron icone"></i>
+                          </span>
+                        </button>
                       </th>
-                      <th>Code Postal&nbsp;
-                        <i className="ri-arrow-down-s-line chevron"></i>
+                      <th>
+                        <button id="codePostal" className="filtre-btn">
+                          <span>Code Postal
+                            <i className="ri-arrow-down-s-line chevron icone-2"></i>
+                          </span>
+                        </button>
                       </th>
-                      <th>Date de recrutement&nbsp;
-                        <i className="ri-arrow-down-s-line chevron"></i>
+                      <th>
+                        <button id="dateDeRecrutement" className="filtre-btn">
+                          <span>Date de recrutement
+                            <i className="ri-arrow-down-s-line chevron icone-2"></i>
+                          </span>
+                        </button>
                       </th>
-                      <th>Date de fin de formation&nbsp;
-                        <i className="ri-arrow-down-s-line chevron"></i>
+                      <th>
+                        <button id="dateFinFormation" className="filtre-btn">
+                          <span>Date de fin de formation
+                            <i className="ri-arrow-down-s-line chevron icone-3"></i>
+                          </span>
+                        </button>
                       </th>
-                      <th>Certification&nbsp;
-                        <i className="ri-arrow-down-s-line chevron"></i>
+                      <th>
+                        <button id="certifie" className="filtre-btn">
+                          <span>Certification
+                            <i className="ri-arrow-down-s-line chevron icone"></i>
+                          </span>
+                        </button>
                       </th>
-                      <th>Activé&nbsp;
-                        <i className="ri-arrow-down-s-line chevron"></i>
+                      <th>
+                        <button id="userActive" className="filtre-btn">
+                          <span>Activé
+                            <i className="ri-arrow-down-s-line chevron icone"></i>
+                          </span>
+                        </button>
                       </th>
                       <th>Détails</th>
                     </tr>
-                    <tr><th colSpan="9" className="th-nopadding"><hr className="th-hr-bottom" /></th></tr>
                   </thead>
                   <tbody>
                     {!conseillers?.error && !conseillers?.loading && conseillers?.items && conseillers?.items.data.map((conseiller, idx) => {
                       return (<Conseiller key={idx} conseiller={conseiller} currentPage={page} trClass ={idx % 2 === 0 ? 'pair' : 'impair'}/>);
                     })
+                    }
+                    {!conseillers?.items &&
+                    <tr>
+                      <td colSpan="9" className="not-found pair">Aucun conseiller trouvé</td>
+                    </tr>
                     }
                   </tbody>
                 </table>

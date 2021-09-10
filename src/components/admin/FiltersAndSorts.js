@@ -48,11 +48,6 @@ function FiltersAndSorts({ resetPage }) {
                       Affichage par département&nbsp;
                       <i className="ri-arrow-down-s-line chevron"></i>
                     </button>
-                    <div className="rf-collapse rf-menu" id="menu-premier">
-                      <ul className="rf-menu__list">
-                        <li> <button id="filtre-premier" className="admin-select-option" onClick={handleSort}>Utilisateurs enregistrés en premier</button></li>
-                      </ul>
-                    </div>
                   </span>
                 </li>
                 <li className={ filterSort === -1 ? 'rf-nav__item' : 'rf-nav__item hide'}>

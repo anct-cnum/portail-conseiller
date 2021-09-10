@@ -32,15 +32,20 @@ function getStatsAdmin() {
   return fetch(`${apiUrlRoot}/stats/admincoop/dashboard`, requestOptions).then(handleResponse);
 }
 
-function getStatsTerritoires(territoire, dateDebut, dateFin, page) {
+function getStatsTerritoires(territoire, dateDebut, dateFin, page, nomOrdre, ordre) {
   const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
     method: 'GET',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
   };
 
+  if (nomOrdre === 'code' || nomOrdre === 'nom') {
+    nomOrdre = nomOrdre + territoire.charAt(0).toUpperCase() + territoire.slice(1);
+  }
+  const ordreColonne = nomOrdre ? '&nomOrdre=' + nomOrdre + '&ordre=' + ordre : '';
+
   return fetch(
-    `${apiUrlRoot}/stats/admincoop/territoires?territoire=${territoire}&dateDebut=${dateDebut}&dateFin=${dateFin}&page=${page}`,
+    `${apiUrlRoot}/stats/admincoop/territoires?territoire=${territoire}&dateDebut=${dateDebut}&dateFin=${dateFin}&page=${page}${ordreColonne}`,
     requestOptions
   ).then(handleResponse);
 }

@@ -10,7 +10,7 @@ import Statistics from '../connected/statistics/Statistics';
 
 function Admin() {
   const location = useLocation();
-  console.log(location);
+
   const user = useSelector(state => state.authentication.user.user);
   return (
     <>

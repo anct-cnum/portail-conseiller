@@ -68,11 +68,11 @@ function getStatsAdmin() {
   }
 }
 
-function getStatsTerritoires(territoire = 'departement', dateDebut, dateFin, page) {
+function getStatsTerritoires(territoire = 'departement', dateDebut, dateFin, page, nomOrdre = null, ordre = -1) {
   return dispatch => {
-    dispatch(request(territoire, dateDebut, dateFin, page));
+    dispatch(request());
 
-    statistiqueService.getStatsTerritoires(territoire, dateDebut, dateFin, page)
+    statistiqueService.getStatsTerritoires(territoire, dateDebut, dateFin, page, nomOrdre, ordre)
     .then(
       statsTerritoires => {
         dispatch(success(statsTerritoires));
@@ -83,13 +83,13 @@ function getStatsTerritoires(territoire = 'departement', dateDebut, dateFin, pag
     );
   };
 
-  function request(territoire, dateDebut, dateFin, page) {
-    return { type: 'GET_STATS_CRA_REQUEST', territoire, dateDebut, dateFin, page };
+  function request() {
+    return { type: 'GET_STATS_TERRITOIRES_REQUEST' };
   }
   function success(statsTerritoires) {
-    return { type: 'GET_STATS_CRA_SUCCESS', statsTerritoires };
+    return { type: 'GET_STATS_TERRITOIRES_SUCCESS', statsTerritoires };
   }
   function failure(error) {
-    return { type: 'GET_STATS_CRA_FAILURE', error };
+    return { type: 'GET_STATS_TERRITOIRES_FAILURE', error };
   }
 }
