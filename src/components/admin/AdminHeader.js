@@ -65,7 +65,7 @@ function AdminHeader() {
 
               <div className="rf-col-2 texte-stats-header">Invitations envoyées</div>
               <div className="rf-col-2 texte-stats-header">Conseillers enregistrés</div>
-              <div className="rf-col-2 texte-stats-header">Taux d’activation des comptes</div>
+              <div className="rf-col-2 texte-stats-header">Taux d&rsquo;activation des comptes</div>
               <div className="rf-col-2 texte-stats-header">Personnes accompagnées</div>
               <div className="rf-col-2 texte-stats-header">Activations Pix Orga</div>
               <div className="rf-col-2 texte-stats-header">Activations RDV solidarités</div>
