@@ -24,8 +24,8 @@ function changeDateFin(dateFin) {
   return { type: 'CHANGE_DATE_FIN', dateFin };
 }
 
-function changeOrdre(dataOrdre) {
-  return { type: 'CHANGE_ORDRE', dataOrdre };
+function changeOrdre(ordreNom) {
+  return { type: 'CHANGE_ORDRE', ordreNom };
 }
 
 function changeProfil(dataProfil) {

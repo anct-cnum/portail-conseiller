@@ -1,8 +1,8 @@
+const anneeEnCours = new Date().getFullYear();
 const initialState = {
-  dateDebutStats: new Date(),
+  dateDebutStats: new Date(anneeEnCours + '/01/01'),
   dateFinStats: new Date(),
 };
-
 export default function statistique(state = initialState, action) {
   switch (action.type) {
     case 'GET_STATS_CRA_REQUEST':
@@ -41,11 +41,31 @@ export default function statistique(state = initialState, action) {
       return {
         ...state,
         statsAdmin: action.statsAdmin,
+        statsAdminError: false
       };
     case 'GET_STATS_ADMIN_FAILURE':
       return {
         ...state,
         statsAdminError: action.error,
+      };
+    case 'GET_STATS_TERRITOIRES_REQUEST':
+      return {
+        ...state,
+        statsTerritoiresLoading: true,
+        statsTerritoiresError: false,
+      };
+    case 'GET_STATS_TERRITOIRES_SUCCESS':
+      return {
+        ...state,
+        statsTerritoires: action.statsTerritoires,
+        statsTerritoiresLoading: false,
+        statsTerritoiresError: false,
+      };
+    case 'GET_STATS_TERRITOIRES_FAILURE':
+      return {
+        ...state,
+        statsTerritoiresError: action.error,
+        statsTerritoiresLoading: false,
       };
     default:
       return state;

@@ -50,6 +50,7 @@ function getAll(page, dateDebut, dateFin, sortOrder, profil) {
   }
 
   let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${filterSort}${filterProfil}${filterDateStart}${filterDateEnd}`;
+  uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE&$sort[nom]=-1`;
 
   return fetch(uri, requestOptions).then(handleResponse);
 }

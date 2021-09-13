@@ -2,7 +2,25 @@
   font-family: Marianne;
   background-color: #2b2b2b;
   letter-spacing: 0;
-
+  /*HEADER*/
+  .band-stats-header {
+    background-color: #1e1e1e;
+    height: 62px;
+    width: 100%;
+  }
+  .nombre-stats-header {
+    text-align: center;
+    line-height: 24px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 8px;
+  }
+  .texte-stats-header {
+    margin-bottom: 12px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+  }
   .admin-btn {
     background-color: #fff;
     border: 1px solid #fff;
@@ -21,37 +39,68 @@
       outline: none;
     }
   }
-  .btn-discussion {
+  .accueil-btn {
+    width: 314px;
+  }
+  .discussion-btn {
     width: 336px;
   }
-  .btn-stats-territoires {
+  .stats-territoires-btn {
     width: 384px;
   }
-  .btn-creation-admin {
-      background-color: transparent;
-      border: 1px solid white;
-      display: inline-block;
-      border-radius: 40px;
-      font-size: 16px;
-      color: white;
-      padding: 10px;
-      width: 280px;
-      height: 48px;
-      &:focus, &:hover, &:visited, &:link, &:active {
-        outline: none;
-      }
-  }
-
-  .stats-logo-btn {
+  .stats-logo-btn, .discussion-logo-btn {
     display: inline-block;
-    height: 58px;
-    width: 64px;
+    height: 21px;
+    width:19px;
+    margin-top: 16px;
+    margin-left:-6px;
   }
+  .stats-logo-btn {
+    background: url(../../public/logos/icone-stats.svg) no-repeat;
+    margin-top: 16px;
+    margin-left:-6px;
+  }
+  .discussion-logo-btn {
+    background: url(../../public/logos/icone-discussion.svg) no-repeat;
+  }
+  .conseillers-logo-btn {
+    background: url(../../public/avatars/avatar-conseillers.svg) no-repeat;
+    display: inline-block;
+    border-radius: 20px;
+    margin-left: 5px;
+    margin-top: 5px;
+    height: 40px;
+    width: 40px;
 
+  }
+  .stats-texte-btn, .discussion-texte-btn, .conseillers-texte-btn {
+    display: inline-block;
+    position: relative;
+    margin-left: 15px;
+    text-align: left;
+    top: -4px;
+  }
+  .conseillers-texte-btn {
+    top: -13px;
+  }
+  .admin-dark-btn {
+    background-color: transparent;
+    border: 1px solid white;
+    display: inline-block;
+    border-radius: 40px;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    padding: 13px;
+    width: 282px;
+    height: 56px;
+    &:focus, &:hover, &:visited, &:link, &:active {
+      outline: none;
+    }
+  }
   .conseillers {
     margin-bottom: 120px;
   }
-
   .admin-texte-btn {
     display: inline-block;
     position: relative;
@@ -60,7 +109,11 @@
     color: #1e1e1e;
     top: 12px;
   }
-
+  .details-btn {
+    background-color: #2b2b2b;
+    border: 1px solid #9a9aff;
+    color: #9a9aff;
+  }
   .hide {
     display: none;
   }
@@ -79,12 +132,12 @@
     cursor: pointer;
     border: none;
     &:hover {
-      color:#5398FF;
+      color:#9a9aff;
     }
   }
   .admin-select-option {
     background-color: #2b2b2b;
-    border: 1px solid #5398FF;
+    border: 1px solid #9a9aff;
     padding-right: 16px;
     border-radius: 20px;
     padding-left: 16px;
@@ -98,7 +151,7 @@
   }
   .admin-select-options {
     background-color: #2b2b2b;
-    border: 1px solid #5398FF;
+    border: 1px solid #9a9aff;
     border-radius: 20px;
     margin-left: -20px;
     margin-top: 18px;
@@ -118,21 +171,19 @@
 
   .date-btn {
     &:hover, &:active {
-      color:#5398FF;
+      color:#9a9aff;
       cursor: pointer;
     }
   }
-
   .date-active {
-    color:#5398ff;
+    color:#9a9aff;
   }
   .react-datepicker {
     font-family: Marianne;
     background-color: #1e1e1e;
-    border: 1px solid #5398ff;
+    border: 1px solid #9a9aff;
     border-radius: 1.3rem;
     color: #fff;
-
     .react-datepicker__triangle {
       display: none;
     }
@@ -193,6 +244,7 @@
     top: 0px;
     left: -93px;
   }
+
   .circle-true, .circle-false {
     display: block;
     border-radius: 100%;
@@ -208,31 +260,65 @@
   }
 
   .rf-table {
-    margin-left: -19px;
+    table {
+      background-color: #2b2b2b !important;
+    }
     th {
-      border: none !important;
-      font-size: 16px;
       font-weight: 600;
+      font-size: 16px;
+      border-bottom: 1px solid #9a9aff !important;
+      border-top: 1px solid #fff !important;
+      .filtre-btn {
+        padding-left: 0px;
+        text-align: left;
+        background-color: #2b2b2b !important;
+        color: #fff !important;
+        border: none !important;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        & :hover {
+          color: #9a9aff;
+        }
+
+        .icone {
+          margin: 2px 5px;
+        }
+        .icone-2 {
+          margin: -7px 0 0 15px;
+        }
+        .icone-3 {
+          margin: -7px 0 0 35px;
+        }
+      }
     }
-    .th-hr-top {
-      margin: 12px 0px -10px;
-      color: #fff;
-    }
-    .th-hr-bottom {
-      margin: -6px 0px 0px;
-      color: #fff;
-    }
-    .conseiller td {
+    .conseiller td, .territoire td {
       padding-top: 0;
       padding-bottom: 0;
       font-size: 16px;
+      border: none;
       hr {
         margin: 16px 0px;
       }
+    }
+    .not-found {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
     }
     .structure {
       font-size: 14px !important;
       font-weight: 300;
     }
+    .pair, .impair {
+      height: 70px;
+      td {
+        border: none;
+      }
+    }
+    .pair {
+      background-color: #1e1e1e;
+    }
   }
+
 }

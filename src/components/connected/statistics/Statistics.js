@@ -9,9 +9,12 @@ import Footer from '../../Footer';
 import Spinner from 'react-loader-spinner';
 import StatisticsBanner from './StatisticsBanner';
 import FlashMessage from 'react-flash-message';
+import { useLocation } from 'react-router';
 
 function Statistics() {
   const dispatch = useDispatch();
+  const location = useLocation();
+
   let statsDataLoading = useSelector(state => state.statistique?.statsDataLoading);
   const loadingPDF = useSelector(state => state.conseiller?.loadingPDF);
   const isPDFDownloaded = useSelector(state => state.conseiller?.statistiquesPDF);
@@ -21,8 +24,8 @@ function Statistics() {
   let donneesStatistiques = useSelector(state => state.statistique?.statsData);
 
   useEffect(() => {
-    dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats));
-  }, [dateDebutStats, dateFinStats]);
+    dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, location?.idUser));
+  }, [dateDebutStats, dateFinStats, location]);
 
   return (
     <div className="Statistics">
