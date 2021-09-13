@@ -25,7 +25,7 @@ function FormulaireSexeAge() {
   const { date, sexe, errorInputs } = inputs;
 
   function handleChange(e) {
-    if (e.target) {
+    if (e?.target) {
       const { name, value } = e.target;
       setInputs(inputs => ({ ...inputs, [name]: value }));
     } else {
