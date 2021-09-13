@@ -13,7 +13,7 @@ function StatisticsRenewal(props) {
         <ElementNumber nombre={props.nbUsagersBeneficiantSuivi} classe="numbers"/>
       </div>
       <div className="rf-col-10 rf-col-lg-9">
-        <ElementText texte={
+        <ElementText textePluralize={
           <Pluralize
             zero={'usager n\'a bénéficié d\'un accompagnement poursuivi, soit :'}
             singular={'usager a bénéficié d\'un accompagnement poursuivi, soit :'}
@@ -44,7 +44,7 @@ function StatisticsRenewal(props) {
         <ElementNumber nombre={props.nbReconduction} classe="many-numbers"/>
       </div>
       <div className="rf-col-10 rf-col-lg-9">
-        <ElementText texte={<Pluralize
+        <ElementText textePluralize={<Pluralize
           zero={'redirection vers une autre structure agréée'}
           singular={'redirection vers une autre structure agréée'}
           plural={'redirections vers une autre structure agréée'}

@@ -10,7 +10,7 @@ function StatisticsAccompaniment(props) {
   return (
     <div className="rf-grid-row">
       <div className="rf-col-2 rf-col-lg-3"><ElementNumber nombre={props.nbAccompagnement} classe="numbers"/></div>
-      <div className="rf-col-9"><ElementText texte={
+      <div className="rf-col-9"><ElementText textePluralize={
         <Pluralize
           zero={'accompagnement enregistré'}
           singular={'accompagnement enregistré'}

@@ -10,20 +10,21 @@ function StatisticsTotalAccompaniments(props) {
   return (
     <div className="rf-grid-row">
       <div className="rf-col-2 rf-col-lg-3"><ElementNumber nombre={props.nbTotalAccompagnements} classe="number"/></div>
-      <div className="rf-col-9"><ElementText texte={
+      <div className="rf-col-9"><ElementText textePluralize={
         <Pluralize
           zero={'personne accompagnée durant cette période'}
           singular={'personne accompagnée durant cette période'}
           plural={'personnes accompagnées durant cette période'}
           count={props.nbTotalAccompagnements}
           showCount={false} />
-      } classe="text"/></div>
+      } classe={`text ${props.nomClasse}`}/></div>
     </div>
   );
 }
 
 StatisticsTotalAccompaniments.propTypes = {
-  nbTotalAccompagnements: PropTypes.number
+  nbTotalAccompagnements: PropTypes.number,
+  nomClasse: PropTypes.string
 };
 
 export default StatisticsTotalAccompaniments;

@@ -18,7 +18,7 @@ function Territoires() {
 
   let dateDebut = useSelector(state => state.filtersAndSorts?.dateDebut);
   let dateFin = useSelector(state => state.filtersAndSorts?.dateFin);
-  let territoire = useSelector(state => state.filtersAndSorts?.territoire);
+  let filtreTerritoire = useSelector(state => state.filtersAndSorts?.territoire);
   let ordre = useSelector(state => state.filtersAndSorts?.ordre);
   let ordreNom = useSelector(state => state.filtersAndSorts?.ordreNom);
 
@@ -29,7 +29,7 @@ function Territoires() {
 
   const navigate = page => {
     setPage(page);
-    dispatch(statistiqueActions.getStatsTerritoires(territoire, dateDebut, dateFin, page));
+    dispatch(statistiqueActions.getStatsTerritoires(filtreTerritoire, dateDebut, dateFin, page));
   };
 
   useEffect(() => {
@@ -40,7 +40,7 @@ function Territoires() {
   }, [territoires]);
 
   useEffect(() => {
-    dispatch(statistiqueActions.getStatsTerritoires(territoire, dateDebut, dateFin, page, ordreNom, ordre ? 1 : -1));
+    dispatch(statistiqueActions.getStatsTerritoires(filtreTerritoire, dateDebut, dateFin, page, ordreNom, ordre ? 1 : -1));
   }, [ordre, ordreNom]);
 
   const ordreColonne = e => {
@@ -147,7 +147,8 @@ function Territoires() {
                   </thead>
                   <tbody>
                     {!statsTerritoiresError && !statsTerritoiresLoading && territoires?.items && territoires?.items.data.map((territoire, idx) => {
-                      return (<Territoire key={idx} territoire={territoire} currentPage={page} trClass ={idx % 2 === 0 ? 'pair' : 'impair'}/>);
+                      return (<Territoire key={idx} territoire={territoire} filtreTerritoire={filtreTerritoire}
+                        currentPage={page} trClass ={idx % 2 === 0 ? 'pair' : 'impair'}/>);
                     })
                     }
                     { !territoires?.items &&

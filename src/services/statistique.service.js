@@ -4,7 +4,8 @@ import { userService } from './user.service';
 export const statistiqueService = {
   getStatsCra,
   getStatsAdmin,
-  getStatsTerritoires
+  getStatsTerritoires,
+  getStatsCraTerritoire
 };
 
 function getStatsCra(dateDebut, dateFin, idUser) {
@@ -48,6 +49,22 @@ function getStatsTerritoires(territoire, dateDebut, dateFin, page, nomOrdre, ord
     `${apiUrlRoot}/stats/admincoop/territoires?territoire=${territoire}&dateDebut=${dateDebut}&dateFin=${dateFin}&page=${page}${ordreColonne}`,
     requestOptions
   ).then(handleResponse);
+}
+
+function getStatsCraTerritoire(dateDebut, dateFin, typeTerritoire, conseillerIds) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+  const requestOptions = {
+    method: 'POST',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+    body: JSON.stringify({
+      'dateDebut': dateDebut,
+      'dateFin': dateFin,
+      'typeTerritoire': typeTerritoire,
+      'conseillerIds': conseillerIds
+    })
+  };
+
+  return fetch(`${apiUrlRoot}/stats/territoire/cra`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

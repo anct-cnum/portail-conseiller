@@ -13,11 +13,12 @@ function LeftPage(props) {
     <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">
       <StatisticsTotalAccompaniments
         nbTotalAccompagnements={props.donneesStats?.nbTotalParticipant + props.donneesStats?.nbAccompagnementPerso + props.donneesStats?.nbDemandePonctuel}
+        nomClasse={'text-territoire'}
       />
       <div className="rf-m-7w rf-mb-5w rf-m-xs-to-md-7v"></div>
       <hr/>
       <div className="rf-m-5w rf-m-xs-to-md-7v"></div>
-      <StatisticsAccompaniment nbAccompagnement={props.donneesStats?.nbAccompagnement} />
+      <StatisticsAccompaniment nbAccompagnement={props.donneesStats?.nbAccompagnement}/>
       <br/>
       <StatisticsWorkshop nbAteliers={props.donneesStats?.nbAteliers} nbTotalParticipant={props.donneesStats?.nbTotalParticipant}/>
       <div className="rf-m-5w rf-m-xs-to-md-7v"></div>

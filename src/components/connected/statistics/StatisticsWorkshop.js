@@ -10,7 +10,7 @@ function StatisticsWorkshop(props) {
   return (
     <div className="rf-grid-row">
       <div className="rf-col-2 rf-col-lg-3"><ElementNumber nombre={props.nbAteliers} classe="numbers"/></div>
-      <div className="rf-col-10 rf-col-lg-9"><ElementText texte={
+      <div className="rf-col-10 rf-col-lg-9"><ElementText textePluralize={
         <Pluralize
           zero={'atelier réalisé, dont :'}
           singular={'atelier réalisé, dont :'}
@@ -19,7 +19,7 @@ function StatisticsWorkshop(props) {
           showCount={false} />
       } classe="text"/><br/></div>
       <div className="rf-col-2 rf-col-lg-3"><ElementNumber nombre={props.nbTotalParticipant} classe="numbers"/></div>
-      <div className="rf-col-10 rf-col-lg-9"><ElementText texte={
+      <div className="rf-col-10 rf-col-lg-9"><ElementText textePluralize={
         <Pluralize
           zero={'participant au total'}
           singular={'participant au total'}

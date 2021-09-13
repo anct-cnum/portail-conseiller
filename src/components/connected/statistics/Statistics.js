@@ -22,9 +22,14 @@ function Statistics() {
   let dateDebutStats = useSelector(state => state.statistique?.dateDebutStats);
   let dateFinStats = useSelector(state => state.statistique?.dateFinStats);
   let donneesStatistiques = useSelector(state => state.statistique?.statsData);
+  let typeTerritoire = useSelector(state => state.filtersAndSorts?.territoire);
 
   useEffect(() => {
-    dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, location?.idUser));
+    if (location?.idUser) {
+      dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, location?.idUser));
+    } else if (location?.conseillerIds) {
+      dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, location?.conseillerIds));
+    }
   }, [dateDebutStats, dateFinStats, location]);
 
   return (
@@ -56,7 +61,7 @@ function Statistics() {
                 {statsDataError?.toString()}
               </p>
             }
-            <h1 className="title">Mes Statistiques</h1>
+            <h1 className="title">Mes Statistiques{location?.nomTerritoire ? ' - ' + location?.nomTerritoire : '' }</h1>
             <div className="rf-mb-5w rf-mt-md-4w"></div>
           </div>
         </div>
@@ -87,6 +92,9 @@ function Statistics() {
             <BottomPage donneesStats={donneesStatistiques}/>
 
           </div>
+        }
+        {!donneesStatistiques &&
+          <h2 className="centrerTexte">Il n&rsquo;y a aucune statistique pour le moment</h2>
         }
       </div>
       <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats}/>
