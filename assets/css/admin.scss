@@ -61,16 +61,18 @@
     margin-left:-6px;
   }
   .discussion-logo-btn {
-    background: url(../../public/logos/icone-discussion.svg) no-repeat;
+    background: url(../../public/logos/icone-bulles.svg) no-repeat;
+    height: 24px;
+    width: 24px;
   }
   .conseillers-logo-btn {
-    background: url(../../public/avatars/avatar-conseillers.svg) no-repeat;
+    background: url(../../public/logos/icone-couple-conseillers.svg) no-repeat;
     display: inline-block;
     border-radius: 20px;
-    margin-left: 5px;
-    margin-top: 5px;
-    height: 40px;
-    width: 40px;
+    margin-left: -6px;
+    margin-top: 4px;
+    height: 45px;
+    width: 45px;
 
   }
   .stats-texte-btn, .discussion-texte-btn, .conseillers-texte-btn {
@@ -80,8 +82,11 @@
     text-align: left;
     top: -4px;
   }
+  .discussion-texte-btn{
+    top: -7px;
+  }
   .conseillers-texte-btn {
-    top: -13px;
+    top: -17px;
   }
   .admin-dark-btn {
     background-color: transparent;
