@@ -53,7 +53,7 @@ function getAll(page, dateDebut, dateFin, filtreProfil, nomOrdre, ordre) {
 */
   //let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${filterSort}${filterProfil}${filterDateStart}${filterDateEnd}`;
   //`${apiUrlRoot}/stats/admincoop/territoires?territoire=${territoire}&dateDebut=${dateDebut}&dateFin=${dateFin}&page=${page}${ordreColonne}`,
-  let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${ordreColonne}`;
+  let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${filterDateStart}${filterDateEnd}${ordreColonne}`;
 
   return fetch(uri, requestOptions).then(handleResponse);
 }

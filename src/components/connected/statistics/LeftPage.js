@@ -7,8 +7,7 @@ import StatisticsPersonalAccompaniment from './StatisticsPersonalAccompaniment';
 import StatisticsRenewal from './StatisticsRenewal';
 import StatisticsTotalAccompaniments from './StatisticsTotalAccompaniments';
 
-function LeftPage(props) {
-  const { donneesStats, type } = props;
+function LeftPage({ donneesStats, type }) {
 
   return (
     <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">

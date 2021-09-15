@@ -5,9 +5,7 @@ import Pluralize from 'react-pluralize';
 import ElementNumber from './Components/ElementNumber';
 import ElementText from './Components/ElementText';
 
-function StatisticsPersonalAccompaniment(props) {
-
-  const { type, nbAccompagnementPerso, nbDemandePonctuel } = props;
+function StatisticsPersonalAccompaniment({ type, nbAccompagnementPerso, nbDemandePonctuel }) {
 
   return (
     <div className="rf-grid-row">

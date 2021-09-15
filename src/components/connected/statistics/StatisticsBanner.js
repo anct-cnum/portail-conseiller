@@ -37,6 +37,15 @@ function StatisticsBanner(dates) {
     dispatch(statistiqueActions.changeDateStatsFin(new Date(parseInt(inputsPDF.datePickerFinPDF))));
   };
 
+  let linkTo = { currentPage: location?.currentPage, origin: '/statistiques' };
+  if (typeTerritoire) {
+    linkTo.pathname = `/territoires`;
+    linkTo.conseillerIds = location?.conseillerIds;
+    linkTo.nomTerritoire = location?.nomDepartement;
+  } else if (location?.idUser) {
+    linkTo.pathname = `/accueil`;
+  }
+
   return (
     <>
       <div className="rf-col-offset-2 rf-col-8 no-print">
@@ -87,35 +96,13 @@ function StatisticsBanner(dates) {
 
           </div>
           }
-          { typeTerritoire &&
+          { (typeTerritoire || location?.idUser) &&
           <div className="rf-grid-row rf-grid-row--center">
             <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-7 rf-col-lg-8 afficher-etapes">
               <ul className="rf-footer__bottom-list liste-action">
                 <li className="rf-footer__bottom-item">
-                  <Link className="rf-footer__bottom-link rf-pr-sm-1w" style={{ boxShadow: 'none' }} to={{
-                    pathname: `/territoires`,
-                    conseillerIds: location?.conseillerIds,
-                    nomTerritoire: location?.nomDepartement,
-                    currentPage: location?.currentPage,
-                    origin: '/statistiques' }}>
-                    <img className="image-banniere" src="/logos/statistics/logo-fleche-gauche.svg" alt="Revenir à l’étape précédente"/>
-                    Revenir à la page précédente
-                  </Link>
-                </li>
-              </ul>
-              <div className="rf-m-5w"></div>
-            </div>
-          </div>
-          }
-          { location?.idUser &&
-          <div className="rf-grid-row rf-grid-row--center">
-            <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-7 rf-col-lg-8 afficher-etapes">
-              <ul className="rf-footer__bottom-list liste-action">
-                <li className="rf-footer__bottom-item">
-                  <Link className="rf-footer__bottom-link rf-pr-sm-1w" style={{ boxShadow: 'none' }} to={{
-                    pathname: `/accueil`,
-                    currentPage: location?.currentPage,
-                    origin: '/statistiques' }}>
+                  <Link className="rf-footer__bottom-link rf-pr-sm-1w" style={{ boxShadow: 'none' }}
+                    to={linkTo}>
                     <img className="image-banniere" src="/logos/statistics/logo-fleche-gauche.svg" alt="Revenir à l’étape précédente"/>
                     Revenir à la page précédente
                   </Link>

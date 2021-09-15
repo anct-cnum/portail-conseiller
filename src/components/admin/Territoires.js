@@ -132,7 +132,7 @@ function Territoires() {
                               <i className="ri-arrow-down-s-line chevron icone-2"></i>
                             }
                             { (ordreNom === 'tauxActivation' && !ordre) &&
-                              <i className="ri-arrow-up-s-line chevron icone-2"></i>
+                              <i classNamegit ="ri-arrow-up-s-line chevron icone-2"></i>
                             }
                           </span>
                         </button>
