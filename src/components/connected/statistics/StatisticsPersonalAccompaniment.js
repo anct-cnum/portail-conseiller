@@ -7,33 +7,36 @@ import ElementText from './Components/ElementText';
 
 function StatisticsPersonalAccompaniment(props) {
 
+  const { type, nbAccompagnementPerso, nbDemandePonctuel } = props;
+
   return (
     <div className="rf-grid-row">
-      <div className="rf-col-2 rf-col-lg-3"><ElementNumber nombre={props.nbAccompagnementPerso} classe="numbers"/></div>
-      <div className="rf-col-10 rf-col-lg-9"><ElementText textePluralize={
+      <div className={ type ? 'rf-col-12' : 'rf-col-2 rf-col-lg-3' }><ElementNumber nombre={nbAccompagnementPerso} classe={`numbers${type}`}/></div>
+      <div className={ type ? 'rf-col-12' : 'rf-col-10 rf-col-lg-9' }><ElementText textePluralize={
         <Pluralize
           zero={'accompagnement individuel'}
           singular={'accompagnement individuel'}
           plural={'accompagnements individuels'}
-          count={props.nbAccompagnementPerso}
+          count={nbAccompagnementPerso}
           showCount={false} />
-      } classe="text"/><br/></div>
-      <div className="rf-col-2 rf-col-lg-3"><ElementNumber nombre={props.nbDemandePonctuel} classe="numbers"/></div>
-      <div className="rf-col-10 rf-col-lg-9"><ElementText textePluralize={
+      } classe={`text${type}`}/><br/></div>
+      <div className={ type ? 'rf-col-12' : 'rf-col-2 rf-col-lg-3' }><ElementNumber nombre={nbDemandePonctuel} classe={`numbers${type}`}/></div>
+      <div className={ type ? 'rf-col-12' : 'rf-col-10 rf-col-lg-9' }><ElementText textePluralize={
         <Pluralize
           zero={'demande ponctuelle'}
           singular={'demande ponctuelle'}
           plural={'demandes ponctuelles'}
-          count={props.nbDemandePonctuel}
+          count={nbDemandePonctuel}
           showCount={false} />
-      } classe="text"/></div>
+      } classe={`text${type}`}/></div>
     </div>
   );
 }
 
 StatisticsPersonalAccompaniment.propTypes = {
   nbAccompagnementPerso: PropTypes.number,
-  nbDemandePonctuel: PropTypes.number
+  nbDemandePonctuel: PropTypes.number,
+  type: PropTypes.string
 };
 
 export default StatisticsPersonalAccompaniment;

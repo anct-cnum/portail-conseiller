@@ -2,8 +2,8 @@ const initialState = {
   dateDebut: new Date(1605571200000),
   dateFin: new Date(),
   profil: 'tous',
-  ordre: false,
-  ordreNom: null,
+  ordre: true,
+  ordreNom: undefined,
   territoire: 'departement',
 };
 

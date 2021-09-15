@@ -3,7 +3,8 @@ export const filtersAndSortsActions = {
   changeDateDebut,
   changeDateFin,
   changeOrdre,
-  changeProfil
+  changeProfil,
+  changeTerritoire
 };
 
 function updateOrder(order) {
@@ -31,3 +32,8 @@ function changeOrdre(ordreNom) {
 function changeProfil(dataProfil) {
   return { type: 'CHANGE_PROFIL', dataProfil };
 }
+
+function changeTerritoire(territoire) {
+  return { type: 'CHANGE_TERRITOIRE', territoire };
+}
+

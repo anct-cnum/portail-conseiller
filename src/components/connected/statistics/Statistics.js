@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { statistiqueActions } from '../../../actions';
+import { paginationActions, statistiqueActions } from '../../../actions';
 import PeriodStatistics from './StatisticsPeriod';
 import LeftPage from './LeftPage';
 import RightPage from './RightPage';
@@ -22,14 +22,17 @@ function Statistics() {
   let dateDebutStats = useSelector(state => state.statistique?.dateDebutStats);
   let dateFinStats = useSelector(state => state.statistique?.dateFinStats);
   let donneesStatistiques = useSelector(state => state.statistique?.statsData);
-  let typeTerritoire = useSelector(state => state.filtersAndSorts?.territoire);
+  let typeTerritoire = location?.conseillerIds ? useSelector(state => state.filtersAndSorts?.territoire) : '';
 
   useEffect(() => {
     if (location?.idUser) {
       dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, location?.idUser));
     } else if (location?.conseillerIds) {
       dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, location?.conseillerIds));
+    } else {
+      dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats));
     }
+    dispatch(paginationActions.resetPage(false));
   }, [dateDebutStats, dateFinStats, location]);
 
   return (
@@ -61,7 +64,19 @@ function Statistics() {
                 {statsDataError?.toString()}
               </p>
             }
-            <h1 className="title">Mes Statistiques{location?.nomTerritoire ? ' - ' + location?.nomTerritoire : '' }</h1>
+            <h1 className="title">
+              {location?.nomTerritoire &&
+              <>
+                Statistiques - {location?.nomTerritoire}
+              </>
+              }
+              {location?.idUser &&
+                <>Statistiques</>
+              }
+              {!location?.nomTerritoire && !location?.idUser &&
+                <>Mes Statistiques</>
+              }
+            </h1>
             <div className="rf-mb-5w rf-mt-md-4w"></div>
           </div>
         </div>
@@ -83,7 +98,7 @@ function Statistics() {
         { donneesStatistiques !== undefined &&
           <div className="rf-grid-row">
 
-            <LeftPage donneesStats={donneesStatistiques}/>
+            <LeftPage donneesStats={donneesStatistiques} type={typeTerritoire}/>
 
             <div className="rf-col-offset-md-1"></div>
 

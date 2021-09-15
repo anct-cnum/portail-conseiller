@@ -69,7 +69,7 @@ function getStatsAdmin() {
   }
 }
 
-function getStatsTerritoires(territoire = 'departement', dateDebut, dateFin, page, nomOrdre = null, ordre = -1) {
+function getStatsTerritoires(territoire = 'departement', dateDebut, dateFin, page, nomOrdre = 'code', ordre = 1) {
   return dispatch => {
     dispatch(request());
 
