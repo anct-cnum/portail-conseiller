@@ -7,8 +7,8 @@ function Territoire({ territoire, currentPage, trClass }) {
   return (
     <>
       <tr className={trClass + ' territoire'}>
-        <td>{territoire?.codeDepartement}</td>
-        <td>{territoire?.nomDepartement}</td>
+        <td>{territoire?.codeDepartement ? territoire?.codeDepartement : territoire?.codeRegion}</td>
+        <td>{territoire?.nomDepartement ? territoire?.nomDepartement : territoire?.nomRegion}</td>
         <td>{territoire?.personnesAccompagnees}</td>
         <td>{territoire?.nombreConseillersCoselec}</td>
         <td>{territoire?.cnfsActives}</td>
@@ -18,7 +18,7 @@ function Territoire({ territoire, currentPage, trClass }) {
           <Link className="rf-btn details-btn" style={{ boxShadow: 'none' }} to={{
             pathname: `/statistiques`,
             conseillerIds: territoire?.conseillerIds,
-            nomTerritoire: territoire?.nomDepartement,
+            nomTerritoire: territoire?.nomDepartement ? territoire?.nomDepartement : territoire?.nomRegion,
             currentPage: currentPage,
             origin: '/territoires' }}>
               Détails
