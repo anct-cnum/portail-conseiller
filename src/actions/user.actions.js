@@ -6,6 +6,7 @@ export const userActions = {
   logout,
   choosePassword,
   verifyToken,
+  checkForgottenPasswordEmail,
   forgottenPassword
 };
 
@@ -97,6 +98,31 @@ function verifyToken(token) {
   }
   function failure(error) {
     return { type: 'VERIFY_TOKEN_FAILURE', error };
+  }
+}
+
+function checkForgottenPasswordEmail(username) {
+  return dispatch => {
+    dispatch(request({ username }));
+    userService.checkForgottenPasswordEmail(username)
+    .then(
+      response => {
+        dispatch(success(response));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request(user) {
+    return { type: 'CHECK_EMAIL_REQUEST', user };
+  }
+  function success(response) {
+    return { type: 'CHECK_EMAIL_SUCCESS', response };
+  }
+  function failure(error) {
+    return { type: 'CHECK_EMAIL_FAILURE', error };
   }
 }
 

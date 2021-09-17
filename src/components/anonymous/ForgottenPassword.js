@@ -17,6 +17,7 @@ function ForgottenPassword({ match = null }) {
     username: ''
   });
   const [submittedEmail, setSubmittedEmail] = useState(false);
+  const [sentEmail, setSentEmail] = useState(false);
   const { username } = inputEmail;
   function handleChangeEmail(e) {
     const { name, value } = e.target;
@@ -25,11 +26,20 @@ function ForgottenPassword({ match = null }) {
   function handleSubmitEmail() {
     setSubmittedEmail(true);
     if (username) {
+      dispatch(userActions.checkForgottenPasswordEmail(username));
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  function handleSendEmail() {
+    setSentEmail(true);
+    if (username) {
       dispatch(userActions.forgottenPassword(username));
     }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-  const errorEmail = useSelector(state => state.motDePasseOublie.error);
-  const validEmail = useSelector(state => state.motDePasseOublie.success);
+  const errorEmail = useSelector(state => state.checkMotDePasseOublie.error);
+  const validEmail = useSelector(state => state.checkMotDePasseOublie.success);
+  const hiddenEmail = useSelector(state => state.checkMotDePasseOublie.hiddenEmail);
 
   /* Etape 2 */
   const [inputsPassword, setInputsPassword] = useState({
@@ -72,8 +82,8 @@ function ForgottenPassword({ match = null }) {
     <div className="forgotten-password">
       <Header/>
       {/* Start content */}
-      {!token &&
-      /* Etape 1 */
+      {!token && !validEmail &&
+      /* Etape 1a */
       <div className="rf-container-fluid">
         <div className="rf-grid-row rf-grid-row--center">
 
@@ -81,10 +91,10 @@ function ForgottenPassword({ match = null }) {
             <div className="rf-container">
               <div className="rf-grid-row rf-grid-row--center">
                 <div className="rf-col-12 rf-col-md-10">
-                  <h1 className="titre rf-my-2w rf-mb-md-5w ">Mot de passe oublié ?</h1>
-                  <p className="sous-titre rf-mb-2w rf-mb-md-4w">
-                    Bonjour, vous êtes sur le point de demander le renouvellement de votre mot de passe
-                    <br/>Conseiller numérique France Services
+                  <h1 className="titre rf-my-2w rf-mb-md-5w ">Récupération de mot de passe</h1>
+                  <p className="sous-titre rf-mb-4w rf-mb-md-4w">
+                    Votre mot de passe a une triple utilité et vous sert à accéder à trois services : l&#39;espace Coop,
+                    <br />l&#39;espace de discussion, ainsi que votre mail professionnel prenom.nom@conseiller-numerique.fr
                   </p>
                 </div>
               </div>
@@ -95,16 +105,10 @@ function ForgottenPassword({ match = null }) {
             <div className="rf-container">
               <div className="rf-grid-row rf-grid-row--center">
 
-                <div className="rf-col-12 rf-col-md-5 rf-mt-2w rf-mt-md-4w">
-                  <h2 className="titre rf-mb-4v">Entrez votre adresse e-mail <img className="cle" src="/logos/cle.svg"/></h2>
-                  <p className="sous-titre rf-mb-3w">
-                    Nous allons vous envoyer un e-mail afin de vous permettre de modifier votre mot de passe.
-                  </p>
-                </div>
-
-                <div className="rf-col-12 rf-col-md-5">
+                <div className="rf-col-6 fr-col-offset-3 fr-col-offset-3--right rf-mt-7w">
                   <div className="rf-mt-11v">
-                    <label className="rf-label rf-my-4w">Adresse email
+                    <p className="titre rf-mb-4v">Entrez votre adresse e-mail prenom.nom@conseiller-numerique.fr</p>
+                    <label className="rf-label rf-mt-4w rf-mb-2w">
                       <input name="username" value={username} onChange={handleChangeEmail}
                         className={(submittedEmail && !username ? ' is-invalid rf-input' : 'rf-input')}
                       />
@@ -116,8 +120,8 @@ function ForgottenPassword({ match = null }) {
                     }
                     {submittedEmail && errorEmail === 'User not found' &&
                       <div className="rf-mb-2w rf-mt-n2w">
-                        <div className="invalid rf-mt-2w">
-                          L&#39;e-mail de renouvellement de mot de passe n&#39;a pas pu être envoyé, vérifiez votre adresse e-mail !
+                        <div className="invalid rf-my-2w">
+                          Cette adresse e-mail n&#39;existe pas dans la base de données.
                         </div>
                       </div>
                     }
@@ -126,10 +130,102 @@ function ForgottenPassword({ match = null }) {
                         <div className="invalid rf-mt-2w">Adresse email requise</div>
                       </div>
                     }
-                    <button className="btn-connexion rf-mb-6w rf-mb-md-7w" onClick={handleSubmitEmail}>Poursuivre</button>
+                    <button className="btn-connexion rf-mb-6w rf-mb-md-7w" onClick={handleSubmitEmail}>Rechercher</button>
                   </div>
                 </div>
 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+      {validEmail && !sentEmail &&
+      /* Etape 1b */
+      <div className="rf-container-fluid">
+        <div className="rf-grid-row rf-grid-row--center">
+
+          <div className="rf-col-12 zone-titre">
+            <div className="rf-container">
+              <div className="rf-grid-row rf-grid-row--center">
+                <div className="rf-col-12 rf-col-md-10">
+                  <h1 className="titre rf-my-2w rf-mb-md-5w ">Récupération de mot de passe</h1>
+                  <p className="sous-titre rf-mb-4w rf-mb-md-4w">
+                    Votre mot de passe a une triple utilité et vous sert à accéder à trois services : l&#39;espace Coop,
+                    <br />l&#39;espace de discussion, ainsi que votre mail professionnel prenom.nom@conseiller-numerique.fr
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="rf-col-12 zone-mot-de-passe">
+            <div className="rf-container">
+              <div className="rf-grid-row rf-grid-row--center">
+
+                <div className="rf-col-8 fr-col-offset-2 fr-col-offset-2--right rf-mt-7w">
+                  <div className="zone-etape1b">
+                    <h2 className="titre rf-mb-4v">Réinitialiser le mot de passe <img className="cle" src="/logos/cle.svg"/></h2>
+                    <p className="rf-mb-3w">
+                      Votre adresse {username} est bien renseignée dans la base de données.
+                    </p>
+                    <p className="rf-mb-3w">
+                      En cliquant sur &laquo;&nbsp;Envoyer le lien&nbsp;&raquo;, vous allez recevoir un message sur votre adresse e-mail personnelle
+                      (celle qui vous a servi à candidater au dispositif Conseiller numérique) qui vous permettra de réinitialiser votre mot de passe.
+                    </p>
+                    <p className="rf-mb-md-3w"><b>Votre adresse e-mail personnelle :</b>
+                      <br /><b>{hiddenEmail}</b>
+                    </p>
+
+                    <button className="btn-connexion rf-mb-6w rf-mb-md-7w" onClick={handleSendEmail}>Envoyer le lien</button>
+
+                    <p>Si vous avez toujours un problème, si cette adresse n&#39;est pas la votre, cliquez sur contacter le support en bas de page.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+      {sentEmail &&
+      /* Etape 1c */
+      <div className="rf-container-fluid">
+        <div className="rf-grid-row rf-grid-row--center">
+
+          <div className="rf-col-12 zone-titre">
+            <div className="rf-container">
+              <div className="rf-grid-row rf-grid-row--center">
+                <div className="rf-col-12 rf-col-md-10">
+                  <h1 className="titre rf-my-2w rf-mb-md-5w ">Récupération de mot de passe</h1>
+                  <p className="sous-titre rf-mb-4w rf-mb-md-4w">
+                    Votre mot de passe a une triple utilité et vous sert à accéder à trois services : l&#39;espace Coop,
+                    <br />l&#39;espace de discussion, ainsi que votre mail professionnel prenom.nom@conseiller-numerique.fr
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="rf-col-12 zone-mot-de-passe">
+            <div className="rf-container">
+              <div className="rf-grid-row rf-grid-row--center">
+
+                <div className="rf-col-8 fr-col-offset-2 fr-col-offset-2--right rf-mt-7w">
+                  <div className="zone-etape1c">
+                    <h2 className="titre rf-mb-4v">Un e-mail vient d&rsquo;être envoyé à votre adresse
+                      <br />{hiddenEmail}
+                    </h2>
+                    <p>Votre mot de passe est unique et servira à la fois pour votre connexion au mail
+                      <br />@conseiller-numerique.fr, pour vous identifier sur l&rsquo;espace Coop et de discussion.
+                    </p>
+
+                    <p><img className="cle" src="/logos/cle-precieuse.svg"/></p>
+
+                    <p className="rf-mb-3w">Notez-le en lieu sûr et gardez-le précieusement&nbsp;!</p>
+
+                    <p className="rf-mb-3w">Si vous avez toujours un problème, si cette adresse n&#39;est pas la votre,
+                      cliquez sur contacter le support en bas de page.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
