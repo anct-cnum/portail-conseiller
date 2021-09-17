@@ -10,7 +10,7 @@ import Footer from '../Footer';
 function Territoires() {
 
   const dispatch = useDispatch();
-
+  const location = useLocation();
   const territoires = useSelector(state => state.statistique.statsTerritoires);
   const statsTerritoiresLoading = useSelector(state => state.statistique.statsTerritoiresLoading);
   const statsTerritoiresError = useSelector(state => state.statistique.statsTerritoiresError);
@@ -18,18 +18,16 @@ function Territoires() {
 
   let dateDebut = useSelector(state => state.filtersAndSorts?.dateDebut);
   let dateFin = useSelector(state => state.filtersAndSorts?.dateFin);
-  let territoire = useSelector(state => state.filtersAndSorts?.territoire);
+  let filtreTerritoire = useSelector(state => state.filtersAndSorts?.territoire);
   let ordre = useSelector(state => state.filtersAndSorts?.ordre);
   let ordreNom = useSelector(state => state.filtersAndSorts?.ordreNom);
 
-  let location = useLocation();
   let [page, setPage] = (pagination?.resetPage === false && location.currentPage !== undefined) ? useState(location.currentPage) : useState(1);
-
   const [pageCount, setPageCount] = useState(0);
 
   const navigate = page => {
     setPage(page);
-    dispatch(statistiqueActions.getStatsTerritoires(territoire, dateDebut, dateFin, page));
+    dispatch(statistiqueActions.getStatsTerritoires(filtreTerritoire, dateDebut, dateFin, page, ordreNom, ordre ? 1 : -1));
   };
 
   useEffect(() => {
@@ -40,7 +38,10 @@ function Territoires() {
   }, [territoires]);
 
   useEffect(() => {
-    dispatch(statistiqueActions.getStatsTerritoires(territoire, dateDebut, dateFin, page, ordreNom, ordre ? 1 : -1));
+
+    const page = (pagination?.resetPage === false && location.currentPage !== undefined) ? location.currentPage : 1;
+    dispatch(statistiqueActions.getStatsTerritoires(filtreTerritoire, dateDebut, dateFin, page, ordreNom, ordre ? 1 : -1));
+
   }, [ordre, ordreNom]);
 
   const ordreColonne = e => {
@@ -83,14 +84,8 @@ function Territoires() {
                         </button>
                       </th>
                       <th>
-                        <button className="filtre-btn" onClick={ordreColonne}>
+                        <button className="filtre-btn">
                           <span id="personnesAccompagnees">Personnes accompagnées
-                            { (ordreNom !== 'personnesAccompagnees' || ordreNom === 'personnesAccompagnees' && ordre) &&
-                              <i className="ri-arrow-down-s-line chevron icone-2"></i>
-                            }
-                            { (ordreNom === 'personnesAccompagnees' && !ordre) &&
-                              <i className="ri-arrow-up-s-line chevron icone-2"></i>
-                            }
                           </span>
                         </button>
                       </th>
@@ -146,13 +141,16 @@ function Territoires() {
                     </tr>
                   </thead>
                   <tbody>
-                    {!statsTerritoiresError && !statsTerritoiresLoading && territoires?.items && territoires?.items.data.map((territoire, idx) => {
-                      return (<Territoire key={idx} territoire={territoire} currentPage={page} trClass ={idx % 2 === 0 ? 'pair' : 'impair'}/>);
+                    {!statsTerritoiresError && !statsTerritoiresLoading && territoires?.items?.data && territoires?.items.data.map((territoire, idx) => {
+                      return (<Territoire key={idx} territoire={territoire} filtreTerritoire={filtreTerritoire}
+                        currentPage={page} trClass ={idx % 2 === 0 ? 'pair' : 'impair'}/>);
                     })
                     }
-                    { !territoires?.items &&
+                    { (!territoires?.items || !territoires?.items?.data) &&
                       <tr>
-                        <td colSpan="9" className="not-found pair">Aucun territoire trouvé</td>
+                        <td colSpan="9" className="not-found pair">
+                          {filtreTerritoire === 'departement' ? 'Aucun département trouvé' : 'Aucune région trouvée' }
+                        </td>
                       </tr>
                     }
                   </tbody>

@@ -5,25 +5,26 @@ import Pluralize from 'react-pluralize';
 import ElementNumber from './Components/ElementNumber';
 import ElementText from './Components/ElementText';
 
-function StatisticsAccompaniment(props) {
+function StatisticsAccompaniment({ type, nbAccompagnement }) {
 
   return (
     <div className="rf-grid-row">
-      <div className="rf-col-2 rf-col-lg-3"><ElementNumber nombre={props.nbAccompagnement} classe="numbers"/></div>
-      <div className="rf-col-9"><ElementText texte={
+      <div className={ type ? 'rf-col-12' : 'rf-col-2 rf-col-lg-3' }><ElementNumber nombre={nbAccompagnement} classe={`numbers${type}`}/></div>
+      <div className={ type ? 'rf-col-12' : 'rf-col-9' }><ElementText textePluralize={
         <Pluralize
           zero={'accompagnement enregistré'}
           singular={'accompagnement enregistré'}
           plural={'accompagnements enregistrés'}
-          count={props.nbAccompagnement}
+          count={nbAccompagnement}
           showCount={false} />
-      } classe="text"/></div>
+      } classe={`text${type}`}/></div>
     </div>
   );
 }
 
 StatisticsAccompaniment.propTypes = {
-  nbAccompagnement: PropTypes.number
+  nbAccompagnement: PropTypes.number,
+  type: PropTypes.string,
 };
 
 export default StatisticsAccompaniment;

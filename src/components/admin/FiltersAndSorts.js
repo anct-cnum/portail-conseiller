@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import FilterDate from './FilterDate';
@@ -7,33 +7,30 @@ import { useLocation } from 'react-router';
 function FiltersAndSorts({ resetPage }) {
   const location = useLocation();
   const dispatch = useDispatch();
-  const [filterSort, setFilterSort] = useState(1);
+
   let dateDebut = useSelector(state => state.filtersAndSorts?.dateDebut);
   let dateFin = useSelector(state => state.filtersAndSorts?.dateFin);
   let territoire = useSelector(state => state.filtersAndSorts?.territoire);
-
-  const handleSort = e => {
-    let ordre = 1;
-    if (e.target.id === 'filtre-premier') {
-      ordre = -1;
-    }
-    setFilterSort(ordre);
-    dispatch(filtersAndSortsActions.changeProfil(ordre));
-    dispatch(conseillerActions.getAll(0, dateDebut, dateFin, ordre));
-    resetPage(1);
-  };
+  let ordre = useSelector(state => state.filtersAndSorts?.ordre);
+  let ordreNom = useSelector(state => state.filtersAndSorts?.ordreNom);
+  let filtreProfil = useSelector(state => state.filtersAndSorts?.profil);
+  const pagination = useSelector(state => state.pagination);
 
   useEffect(() => {
     if (location.pathname === '/accueil') {
-      dispatch(conseillerActions.getAll(0, dateDebut, dateFin, filterSort));
+      dispatch(conseillerActions.getAll(0, dateDebut, dateFin, filtreProfil, ordreNom, ordre ? 1 : -1));
       resetPage(1);
     }
     if (location.pathname === '/territoires') {
-      dispatch(statistiqueActions.getStatsTerritoires(territoire, dateDebut, dateFin, 0));
-      resetPage(1);
+      const page = (pagination?.resetPage === false && location.currentPage !== undefined) ? location.currentPage : 1;
+      dispatch(statistiqueActions.getStatsTerritoires(territoire, dateDebut, dateFin, page, ordreNom, ordre ? 1 : -1));
+      resetPage(page);
     }
 
-  }, [dateDebut, dateFin]);
+  }, [dateDebut, dateFin, territoire]);
+  const handleTerritoire = e => {
+    dispatch(filtersAndSortsActions.changeTerritoire(e.target.id));
+  };
 
   return (
     <div className="rf-container">
@@ -43,22 +40,17 @@ function FiltersAndSorts({ resetPage }) {
             <nav className="rf-nav" id="navigation-sort" role="navigation">
               <ul className="rf-nav__list">
                 <li className="rf-nav__item">
-                  <span className={ filterSort === 1 ? '' : 'hide'}>
-                    <button className="rf-nav__btn admin-select" aria-expanded="false" aria-controls="menu-premier" aria-current="true" >
-                      Affichage par département&nbsp;
-                      <i className="ri-arrow-down-s-line chevron"></i>
-                    </button>
-                  </span>
-                </li>
-                <li className={ filterSort === -1 ? 'rf-nav__item' : 'rf-nav__item hide'}>
-                  <button className="rf-nav__btn admin-select" style={{ 'marginLeft': '-20px' }} aria-expanded="false" aria-controls="menu-dernier"
-                    aria-current="true">
-                    &nbsp;
+                  <button className="rf-nav__btn admin-select" aria-expanded="false" aria-controls="menu-territoire" aria-current="true" >
+                    { territoire === 'departement' ? 'Affichage par département' : 'Affichage par région'} &nbsp;
                     <i className="ri-arrow-down-s-line chevron"></i>
                   </button>
-                  <div className="rf-collapse rf-menu" id="menu-dernier">
+                  <div className="rf-collapse rf-menu" id="menu-territoire">
                     <ul className="rf-menu__list">
-                      <li> <button id="filtre-dernier" className="admin-select-option" onClick={handleSort}>Derniers utilisateurs enregistrés</button></li>
+                      <li>
+                        <button id={ territoire === 'departement' ? 'region' : 'departement'}
+                          className="admin-select-option" onClick={handleTerritoire}>
+                          { territoire === 'departement' ? 'Affichage par région' : 'Affichage par département' }
+                        </button></li>
                     </ul>
                   </div>
                 </li>

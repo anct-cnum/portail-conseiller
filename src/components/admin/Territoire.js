@@ -1,5 +1,4 @@
 import React from 'react';
-
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
@@ -17,9 +16,11 @@ function Territoire({ territoire, currentPage, trClass }) {
         <td>{territoire?.tauxActivation} %</td>
         <td>
           <Link className="rf-btn details-btn" style={{ boxShadow: 'none' }} to={{
-            pathname: `/statistiques/territoire/${territoire?.code}`,
+            pathname: `/statistiques`,
+            conseillerIds: territoire?.conseillerIds,
+            nomTerritoire: territoire?.nomDepartement,
             currentPage: currentPage,
-            origin: '/candidats' }}>
+            origin: '/territoires' }}>
               Détails
           </Link>
         </td>
@@ -31,7 +32,7 @@ function Territoire({ territoire, currentPage, trClass }) {
 Territoire.propTypes = {
   territoire: PropTypes.object,
   currentPage: PropTypes.number,
-  trClass: PropTypes.string
+  trClass: PropTypes.string,
 };
 
 export default Territoire;

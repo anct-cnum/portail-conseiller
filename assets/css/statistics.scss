@@ -116,6 +116,20 @@
     text-align: right;
     margin-right: 1rem;
   }
+  .numberdepartement {
+    font-weight: 600;
+    text-align: left;
+    font-size: 32px;
+    line-height: 32px;
+    letter-spacing: 0;
+  }
+  .numbersdepartement {
+    font-size: 24px;
+    font-weight: 600;
+    text-align: left;
+    line-height: 22px;
+    letter-spacing: 0;
+  }
   .text {
     font-size: 16px;
     letter-spacing: 0;
@@ -126,6 +140,12 @@
     font-size: 12px;
     letter-spacing: 0;
     line-height: 20px;
+  }
+  .textdepartement {
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 20px;
+    font-weight: 500;
   }
   .titre-legende,.titre-legende-bis, .valeur-legende {
     display:inline-block;
@@ -176,6 +196,9 @@
   }
   .rf-footer__bottom-link {
     cursor:pointer;
+  }
+  .afficher-etapes {
+    margin-left: 77px;
   }
 
   @media (min-width: 991px) {

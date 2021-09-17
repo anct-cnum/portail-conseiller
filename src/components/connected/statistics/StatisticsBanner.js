@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 import { conseillerActions, statistiqueActions } from '../../../actions';
 
 function StatisticsBanner(dates) {
-
+  const location = useLocation();
   const dispatch = useDispatch();
   const downloadError = useSelector(state => state.conseiller?.downloadError);
   const user = useSelector(state => state.authentication.user.user);
   const blob = useSelector(state => state.conseiller?.blob);
+  let typeTerritoire = location?.conseillerIds ? useSelector(state => state.filtersAndSorts?.territoire) : '';
 
   function savePDF() {
     dispatch(conseillerActions.getStatistiquesPDF(dates));
@@ -34,6 +37,15 @@ function StatisticsBanner(dates) {
     dispatch(statistiqueActions.changeDateStatsFin(new Date(parseInt(inputsPDF.datePickerFinPDF))));
   };
 
+  let linkTo = { currentPage: location?.currentPage, origin: '/statistiques' };
+  if (typeTerritoire) {
+    linkTo.pathname = `/territoires`;
+    linkTo.conseillerIds = location?.conseillerIds;
+    linkTo.nomTerritoire = location?.nomDepartement;
+  } else if (location?.idUser) {
+    linkTo.pathname = `/accueil`;
+  }
+
   return (
     <>
       <div className="rf-col-offset-2 rf-col-8 no-print">
@@ -42,12 +54,8 @@ function StatisticsBanner(dates) {
       </div>
       <div className="rf-col-12 no-print">
         <div className="rf-container-fluid">
+          { (!typeTerritoire && !location?.idUser) &&
           <div className="rf-grid-row rf-grid-row--center">
-
-
-            <div className="rf-col-12">
-              <div className="rf-m-sm-4w rf-m-1w"></div>
-            </div>
             {/*
             <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-7 rf-col-lg-5 afficher-etapes">
               <ul className="rf-footer__bottom-list liste-action">
@@ -87,6 +95,23 @@ function StatisticsBanner(dates) {
             </div>
 
           </div>
+          }
+          { (typeTerritoire || location?.idUser) &&
+          <div className="rf-grid-row rf-grid-row--center">
+            <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-7 rf-col-lg-8 afficher-etapes">
+              <ul className="rf-footer__bottom-list liste-action">
+                <li className="rf-footer__bottom-item">
+                  <Link className="rf-footer__bottom-link rf-pr-sm-1w" style={{ boxShadow: 'none' }}
+                    to={linkTo}>
+                    <img className="image-banniere" src="/logos/statistics/logo-fleche-gauche.svg" alt="Revenir à l’étape précédente"/>
+                    Revenir à la page précédente
+                  </Link>
+                </li>
+              </ul>
+              <div className="rf-m-5w"></div>
+            </div>
+          </div>
+          }
         </div>
         {user.pdfGenerator &&
           <div id="">

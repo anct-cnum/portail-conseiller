@@ -2,8 +2,9 @@ const initialState = {
   dateDebut: new Date(1605571200000),
   dateFin: new Date(),
   profil: 'tous',
-  ordre: false,
-  ordreNom: null,
+  ordre: true,
+  ordreNom: undefined,
+  territoire: 'departement',
 };
 
 export default function filtersAndSorts(state = initialState, action) {
@@ -28,6 +29,11 @@ export default function filtersAndSorts(state = initialState, action) {
       return {
         ...state,
         profil: action.dataProfil
+      };
+    case 'CHANGE_TERRITOIRE':
+      return {
+        ...state,
+        territoire: action.territoire
       };
     default:
       return state;
