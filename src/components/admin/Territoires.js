@@ -126,16 +126,23 @@ function Territoires() {
                         </button>
                       </th>
                       <th>
-                        <button className="filtre-btn" onClick={ordreColonne}>
-                          <span id="tauxActivation">Taux d&rsquo;activation
-                            { (ordreNom !== 'tauxActivation' || ordreNom === 'tauxActivation' && ordre) &&
-                              <i className="ri-arrow-down-s-line chevron icone-2"></i>
-                            }
-                            { (ordreNom === 'tauxActivation' && !ordre) &&
-                              <i className="ri-arrow-up-s-line chevron icone-2"></i>
-                            }
-                          </span>
-                        </button>
+                        { filtreTerritoire === 'region' &&
+                          <button className="filtre-btn">
+                            <span id="personnesAccompagnees">Taux d&rsquo;activation</span>
+                          </button>
+                        }
+                        { filtreTerritoire === 'departement' &&
+                          <button className="filtre-btn" onClick={ordreColonne}>
+                            <span id="tauxActivation">Taux d&rsquo;activation
+                              { (ordreNom !== 'tauxActivation' || ordreNom === 'tauxActivation' && ordre) &&
+                                <i className="ri-arrow-down-s-line chevron icone-2"></i>
+                              }
+                              { (ordreNom === 'tauxActivation' && !ordre) &&
+                                <i className="ri-arrow-up-s-line chevron icone-2"></i>
+                              }
+                            </span>
+                          </button>
+                        }
                       </th>
                       <th>Afficher</th>
                     </tr>
