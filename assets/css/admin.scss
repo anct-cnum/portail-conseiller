@@ -140,14 +140,18 @@
       color:#9a9aff;
     }
   }
-  #menu-territoire ul.rf-menu__list,
-  #menu-userActive ul.rf-menu__list {
+  #menu-territoire ul.rf-menu__list {
     border: 1px solid #9a9aff;
     margin-top: 10px;
   }
-  #menu-userActive ul.rf-menu__list {
-    margin-top: 23px;
+  #menu-userActive.rf-menu, #menu-userCertife.rf-menu {
+    width: 230px !important;
+    border: 1px solid #9a9aff;
+    margin: 23px 0px 0px;
+    background: #2b2b2b;
+    padding: 0;
   }
+
   .admin-select-option {
     background-color: #2b2b2b;
     text-align: left;
@@ -156,7 +160,6 @@
     cursor: pointer;
     height: 47px;
     border: none;
-    width: 241px;
   }
   .admin-select-option, .admin-select-hr {
     margin: 0 17px;
