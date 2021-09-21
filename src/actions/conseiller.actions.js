@@ -35,12 +35,11 @@ function get(id) {
   }
 }
 
-function getAll(page, dateDebut, dateFin, sortOrder = -1, filterProfil = 'tous') {
+function getAll(page, dateDebut, dateFin, filtreProfil, nomOrdre = 'prenom', ordre = 1) {
   return dispatch => {
     dispatch(request());
-
     let promises = [];
-    let promise = conseillerService.getAll(page, dateDebut, dateFin, sortOrder, filterProfil);
+    let promise = conseillerService.getAll(page, dateDebut, dateFin, filtreProfil, nomOrdre, ordre);
     promises.push(promise);
 
     let conseillers = null;

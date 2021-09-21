@@ -3,6 +3,7 @@ export const userService = {
   logout,
   choosePassword,
   verifyToken,
+  checkForgottenPasswordEmail,
   sendForgottenPasswordEmail
 };
 
@@ -46,6 +47,11 @@ function handleResponse(response) {
       return Promise.reject(error);
     }
 
+    //cas vérification email pour
+    //mot de passe oublié
+    if (data?.successCheckEmail) {
+      return data;
+    }
     //cas mot de passe oublié
     if (data?.successResetPassword) {
       return data;
@@ -93,6 +99,23 @@ function verifyToken(token) {
   };
 
   let uri = `${apiUrlRoot}/users/verifyToken/${token}`;
+  return fetch(uri, requestOptions).then(handleResponse);
+}
+
+function checkForgottenPasswordEmail(username) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      'username': username
+    })
+  };
+
+  let uri = `${apiUrlRoot}/users/checkForgottenPasswordEmail`;
   return fetch(uri, requestOptions).then(handleResponse);
 }
 

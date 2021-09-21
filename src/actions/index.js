@@ -6,3 +6,4 @@ export * from './menu.actions';
 export * from './statistique.actions';
 export * from './formulaireSexeAge.actions';
 export * from './filtersAndSorts.actions';
+export * from './pagination.actions';

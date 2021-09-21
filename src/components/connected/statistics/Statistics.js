@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { statistiqueActions } from '../../../actions';
+import { paginationActions, statistiqueActions } from '../../../actions';
 import PeriodStatistics from './StatisticsPeriod';
 import LeftPage from './LeftPage';
 import RightPage from './RightPage';
@@ -9,9 +9,12 @@ import Footer from '../../Footer';
 import Spinner from 'react-loader-spinner';
 import StatisticsBanner from './StatisticsBanner';
 import FlashMessage from 'react-flash-message';
+import { useLocation } from 'react-router';
 
 function Statistics() {
   const dispatch = useDispatch();
+  const location = useLocation();
+
   let statsDataLoading = useSelector(state => state.statistique?.statsDataLoading);
   const loadingPDF = useSelector(state => state.conseiller?.loadingPDF);
   const isPDFDownloaded = useSelector(state => state.conseiller?.statistiquesPDF);
@@ -19,10 +22,18 @@ function Statistics() {
   let dateDebutStats = useSelector(state => state.statistique?.dateDebutStats);
   let dateFinStats = useSelector(state => state.statistique?.dateFinStats);
   let donneesStatistiques = useSelector(state => state.statistique?.statsData);
+  let typeTerritoire = location?.conseillerIds ? useSelector(state => state.filtersAndSorts?.territoire) : '';
 
   useEffect(() => {
-    dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats));
-  }, [dateDebutStats, dateFinStats]);
+    if (location?.idUser) {
+      dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, location?.idUser));
+    } else if (location?.conseillerIds) {
+      dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, location?.conseillerIds));
+    } else {
+      dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats));
+    }
+    dispatch(paginationActions.resetPage(false));
+  }, [dateDebutStats, dateFinStats, location]);
 
   return (
     <div className="Statistics">
@@ -53,7 +64,19 @@ function Statistics() {
                 {statsDataError?.toString()}
               </p>
             }
-            <h1 className="title">Mes Statistiques</h1>
+            <h1 className="title">
+              {location?.nomTerritoire &&
+              <>
+                Statistiques - {location?.nomTerritoire}
+              </>
+              }
+              {location?.idUser &&
+                <>Statistiques</>
+              }
+              {!location?.nomTerritoire && !location?.idUser &&
+                <>Mes Statistiques</>
+              }
+            </h1>
             <div className="rf-mb-5w rf-mt-md-4w"></div>
           </div>
         </div>
@@ -75,7 +98,7 @@ function Statistics() {
         { donneesStatistiques !== undefined &&
           <div className="rf-grid-row">
 
-            <LeftPage donneesStats={donneesStatistiques}/>
+            <LeftPage donneesStats={donneesStatistiques} type={typeTerritoire}/>
 
             <div className="rf-col-offset-md-1"></div>
 
@@ -84,6 +107,9 @@ function Statistics() {
             <BottomPage donneesStats={donneesStatistiques}/>
 
           </div>
+        }
+        {!donneesStatistiques &&
+          <h2 className="centrerTexte">Il n&rsquo;y a aucune statistique pour le moment</h2>
         }
       </div>
       <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats}/>

@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Pagination({ pageCount, current, navigate }) {
+
   let previousPage = current - 1;
   let nextPage = current + 1;
   let lastPage = pageCount;

@@ -20,18 +20,20 @@ function get(id) {
   return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
 }
 
-function getAll(page, dateDebut, dateFin, sortOrder, profil) {
+function getAll(page, dateDebut, dateFin, filtreProfil, nomOrdre, ordre) {
 
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
   };
 
+  const ordreColonne = nomOrdre ? '&$sort[' + nomOrdre + ']=' + ordre : '';
   const filterDateStart = (dayjs(new Date(dateDebut)).format('DD/MM/YYYY') !== dayjs(new Date()).format('DD/MM/YYYY') && dateDebut !== '') ?
     `&datePrisePoste[$gt]=${new Date(dateDebut).toISOString()}` : '';
 
   const filterDateEnd = (dateFin !== '') ? `&datePrisePoste[$lt]=${new Date(dateFin).toISOString()}` : '';
 
+  /*
   const filterSort = `&$sort[datePrisePoste]=${sortOrder}`;
 
   let filterProfil = '';
@@ -48,8 +50,10 @@ function getAll(page, dateDebut, dateFin, sortOrder, profil) {
     default:
       break;
   }
-
-  let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${filterSort}${filterProfil}${filterDateStart}${filterDateEnd}`;
+*/
+  //let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${filterSort}${filterProfil}${filterDateStart}${filterDateEnd}`;
+  //`${apiUrlRoot}/stats/admincoop/territoires?territoire=${territoire}&dateDebut=${dateDebut}&dateFin=${dateFin}&page=${page}${ordreColonne}`,
+  let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${filterDateStart}${filterDateEnd}${ordreColonne}`;
 
   return fetch(uri, requestOptions).then(handleResponse);
 }

@@ -7,36 +7,38 @@ import StatisticsPersonalAccompaniment from './StatisticsPersonalAccompaniment';
 import StatisticsRenewal from './StatisticsRenewal';
 import StatisticsTotalAccompaniments from './StatisticsTotalAccompaniments';
 
-function LeftPage(props) {
+function LeftPage({ donneesStats, type }) {
 
   return (
     <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">
       <StatisticsTotalAccompaniments
-        nbTotalAccompagnements={props.donneesStats?.nbTotalParticipant + props.donneesStats?.nbAccompagnementPerso + props.donneesStats?.nbDemandePonctuel}
+        nbTotalAccompagnements={donneesStats?.nbTotalParticipant + donneesStats?.nbAccompagnementPerso + donneesStats?.nbDemandePonctuel} type={type}
       />
-      <div className="rf-m-7w rf-mb-5w rf-m-xs-to-md-7v"></div>
+      <div className={type ? 'rf-mb-3w' : 'rf-m-7w rf-mb-5w rf-m-xs-to-md-7v' }></div>
       <hr/>
-      <div className="rf-m-5w rf-m-xs-to-md-7v"></div>
-      <StatisticsAccompaniment nbAccompagnement={props.donneesStats?.nbAccompagnement} />
+      <div className={type ? 'rf-mb-2w' : 'rf-m-5w rf-m-xs-to-md-7v' }></div>
+      <StatisticsAccompaniment nbAccompagnement={donneesStats?.nbAccompagnement} type={type}/>
       <br/>
-      <StatisticsWorkshop nbAteliers={props.donneesStats?.nbAteliers} nbTotalParticipant={props.donneesStats?.nbTotalParticipant}/>
-      <div className="rf-m-5w rf-m-xs-to-md-7v"></div>
+      <StatisticsWorkshop nbAteliers={donneesStats?.nbAteliers} nbTotalParticipant={donneesStats?.nbTotalParticipant} type={type}/>
+      <div className={type ? 'rf-mb-5v' : 'rf-m-5w rf-m-xs-to-md-7v' }></div>
       <hr/>
-      <div className="rf-m-5w rf-m-xs-to-md-7v"></div>
+      <div className={type ? 'rf-mb-2w' : 'rf-m-5w rf-m-xs-to-md-7v' }></div>
       <StatisticsPersonalAccompaniment
-        nbAccompagnementPerso={props.donneesStats?.nbAccompagnementPerso}
-        nbDemandePonctuel={props.donneesStats?.nbDemandePonctuel}
+        nbAccompagnementPerso={donneesStats?.nbAccompagnementPerso}
+        nbDemandePonctuel={donneesStats?.nbDemandePonctuel}
+        type={type}
       />
-      <div className="rf-m-5w rf-m-xs-to-md-7v"></div>
+      <div className={type ? 'rf-mb-5v' : 'rf-m-5w rf-m-xs-to-md-7v' }></div>
       <hr/>
       <div className="rf-m-5w rf-m-xs-to-md-7v"></div>
       <StatisticsRenewal
-        nbUsagersBeneficiantSuivi={props.donneesStats?.nbUsagersBeneficiantSuivi}
-        tauxTotalUsagersAccompagnes={props.donneesStats?.tauxTotalUsagersAccompagnes}
-        nbUsagersAccompagnementIndividuel={props.donneesStats?.nbUsagersAccompagnementIndividuel}
-        nbUsagersAtelierCollectif={props.donneesStats?.nbUsagersAtelierCollectif}
-        nbReconduction={props.donneesStats?.nbReconduction}
-        caracteresSpeciaux="%" />
+        nbUsagersBeneficiantSuivi={donneesStats?.nbUsagersBeneficiantSuivi}
+        tauxTotalUsagersAccompagnes={donneesStats?.tauxTotalUsagersAccompagnes}
+        nbUsagersAccompagnementIndividuel={donneesStats?.nbUsagersAccompagnementIndividuel}
+        nbUsagersAtelierCollectif={donneesStats?.nbUsagersAtelierCollectif}
+        nbReconduction={donneesStats?.nbReconduction}
+        caracteresSpeciaux="%"
+      />
       <div className="rf-m-xs-to-md-7v"></div>
       <hr className="hr-md-hide no-print" />
       <div className="rf-m-xs-to-md-7v"></div>
@@ -46,6 +48,7 @@ function LeftPage(props) {
 
 LeftPage.propTypes = {
   donneesStats: PropTypes.object,
+  type: PropTypes.string,
 };
 
 export default LeftPage;
