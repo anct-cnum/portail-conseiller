@@ -19,9 +19,8 @@ function Conseiller({ conseiller, currentPage, trClass }) {
         <td><div className={conseiller?.userCreated ? 'circle-true' : 'circle-false'}></div></td>
         <td>
           <Link className="rf-btn details-btn" style={{ boxShadow: 'none' }} to={{
-            pathname: `/statistiques`,
+            pathname: `/conseiller/${conseiller?._id}`,
             currentPage: currentPage,
-            idUser: conseiller?._id,
             origin: '/accueil' }}>
               Afficher
           </Link>

@@ -1,0 +1,43 @@
+.conseillerDetails {
+
+  .titre {
+    font-size: 56px;
+    line-height: 72px;
+    margin: 0;
+    font-family: 'MarianneThin', Arial, sans-serif;
+  }
+
+  .circle-true, .circle-false {
+    display: inline-block;
+    margin-right: 21px;
+  }
+
+  .statistiques-btn {
+    display: block;
+    background-color: transparent;
+    border: 1px solid #fff;
+    line-height: 1.25rem;
+    border-radius: 40px;
+    text-align:center;
+    box-shadow: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #fff;
+    padding: 21px;
+  }
+
+  @media (max-width: 992px) {
+    .recrutementCol {
+      margin-right: 16px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .titreCol {
+      flex: 0 0 calc(1200%/12);
+      width: calc(1200%/12);
+      max-width: calc(1200%/12);
+    }
+  }
+
+}

@@ -43,7 +43,7 @@ function Conseillers() {
   }, [conseillers]);
 
   useEffect(() => {
-    dispatch(conseillerActions.getAll(page, dateDebut, dateFin, filtreProfil, ordreNom, ordre ? 1 : -1));
+    dispatch(conseillerActions.getAll(page - 1, dateDebut, dateFin, filtreProfil, ordreNom, ordre ? 1 : -1));
   }, [ordre, ordreNom]);
 
   const ordreColonne = e => {
