@@ -61,7 +61,7 @@ function ConseillerDetails({ location }) {
           </div>
           <div className="rf-pb-12w rf-mb-3w">
             <strong>Date de naissance</strong><br/>
-            <span>{conseiller?.dateDeNaissance ?? 'non renseignée'}</span>
+            <span>{conseiller?.dateDeNaissance ? dayjs(conseiller?.dateDeNaissance).format('DD/MM/YYYY') : 'non renseignée'}</span>
           </div>
         </div>
         <div className="rf-col-5">
