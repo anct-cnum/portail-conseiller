@@ -30,6 +30,11 @@ export default function filtersAndSorts(state = initialState, action) {
         ...state,
         profil: action.dataProfil
       };
+    case 'CHANGE_CERTIFIE':
+      return {
+        ...state,
+        certifie: action.dataCertifie
+      };
     case 'CHANGE_TERRITOIRE':
       return {
         ...state,
