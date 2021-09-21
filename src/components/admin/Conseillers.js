@@ -47,7 +47,6 @@ function Conseillers() {
   }, [conseillers]);
 
   useEffect(() => {
-    console.log(page);
     dispatch(conseillerActions.getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, ordreNom, ordre ? 1 : -1));
   }, [ordre, ordreNom, filtreProfil, filtreCertifie]);
 
