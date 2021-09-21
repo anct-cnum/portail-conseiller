@@ -43,7 +43,8 @@ function StatisticsBanner(dates) {
     linkTo.conseillerIds = location?.conseillerIds;
     linkTo.nomTerritoire = location?.nomDepartement;
   } else if (location?.idUser) {
-    linkTo.pathname = `/accueil`;
+    linkTo.pathname = `/conseiller/${location?.idUser}`;
+    linkTo.currentPage = location?.currentPage;
   }
 
   return (

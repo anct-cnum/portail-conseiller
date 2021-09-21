@@ -7,6 +7,7 @@ import AdminHeader from './AdminHeader';
 import Conseillers from './Conseillers';
 import Territoires from './Territoires';
 import Statistics from '../connected/statistics/Statistics';
+import conseillerDetails from './ConseillerDetails';
 
 function Admin() {
   const location = useLocation();
@@ -16,12 +17,13 @@ function Admin() {
     <>
       <Header linkAccount={user?.name}/>
       <div className="admin">
-        { !location.pathname.startsWith('/statistiques') &&
+        { !location.pathname.startsWith('/statistiques') && !location.pathname.startsWith('/conseiller') &&
           <AdminHeader />
         }
         <Route path={`/accueil`} component={Conseillers} />
         <Route path={`/territoires`} component={Territoires} />
         <Route path={`/statistiques`} component={Statistics} />
+        <Route path={`/conseiller/:id`} component={conseillerDetails} />
         <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
       </div>
     </>
