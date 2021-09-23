@@ -204,7 +204,10 @@
       border: none;
     }
   }
-
+  .selected button{
+    color:#9a9aff !important;
+    font-weight: 600;
+  }
   .date-btn {
     &:hover, &:active {
       color:#9a9aff;
@@ -304,7 +307,6 @@
       font-size: 16px;
       border-bottom: 1px solid #9a9aff !important;
       border-top: 1px solid #fff !important;
-      width: 85px;
       .filtre-btn {
         padding-left: 0px;
         text-align: left;
@@ -327,6 +329,11 @@
         .icone-3 {
           margin: -7px 0 0 35px;
         }
+      }
+    }
+    .conseillers-thead {
+      th {
+        width: 70px;
       }
     }
     .conseiller td, .territoire td {
