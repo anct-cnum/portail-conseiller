@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions } from '../../actions';
 import { userEntityId } from '../../helpers';
 import FormulaireSexeAge from './FormulaireSexeAge';
+import Ressourcerie from './Ressourcerie';
 
 function Connected() {
 
@@ -36,6 +37,7 @@ function Connected() {
           <Route path={`/accueil`} component={Welcome} />
           <Route path={`/compte-rendu-activite`} component={Cra} />
           <Route path={`/statistiques`} component={Statistics} />
+          <Route path={`/ressourcerie`} component={Ressourcerie} />
           <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
         </>
       }
