@@ -166,7 +166,7 @@ function Conseillers() {
                       <th>
                         <nav className="rf-nav" id="navigation-sort-certifie" role="navigation">
                           <ul className="rf-nav__list">
-                            <li className="rf-nav__item">
+                            <li className={conseillers?.items?.data.length === 0 ? 'no-result rf-nav__item' : 'rf-nav__item'}>
                               <span >
                                 <button className="rf-nav__btn admin-select" aria-expanded={basculerFiltreCertifie}
                                   aria-controls="menu-userCertife" aria-current="true" id="certifier" onClick={filtreClick}>
@@ -180,15 +180,15 @@ function Conseillers() {
                                 </button>
                                 <div className={ basculerFiltreCertifie === true ? 'rf-collapse--expanded rf-menu' : 'rf-collapse rf-nav--expanded rf-menu'}
                                   id="menu-userCertife">
-                                  <ul className="rf-menu__list">
+                                  <ul className={conseillers?.items?.data.length === 0 ? 'no-result rf-menu__list' : 'rf-menu__list'}>
                                     <li>
-                                      <button id="tous" className="admin-select-option" onClick={handleSortCertifie}>
+                                      <button id="tous" className="admin-select-option border-no-result" onClick={handleSortCertifie}>
                                         Afficher tout
                                       </button>
                                       <hr className="admin-select-hr"/>
                                     </li>
                                     <li>
-                                      <button id="active" className="admin-select-option" onClick={handleSortCertifie}>
+                                      <button id="active" className="admin-select-option border-no-result" onClick={handleSortCertifie}>
                                         Profils certifiés uniquement
                                       </button>
                                       <hr className="admin-select-hr"/>
@@ -208,7 +208,7 @@ function Conseillers() {
                       <th>
                         <nav className="rf-nav" id="navigation-sort-profil" role="navigation">
                           <ul className="rf-nav__list">
-                            <li className="rf-nav__item">
+                            <li className={conseillers?.items?.data.length === 0 ? 'no-result rf-nav__item' : 'rf-nav__item'}>
                               <span >
                                 <button className="rf-nav__btn admin-select" aria-expanded={basculerFiltreProfil}
                                   aria-controls="menu-userActive" aria-current="true" id="activer" onClick={filtreClick}>
@@ -224,13 +224,13 @@ function Conseillers() {
                                   id="menu-userActive">
                                   <ul className="rf-menu__list">
                                     <li>
-                                      <button id="tous" className="admin-select-option" onClick={handleSortProfil}>
+                                      <button id="tous" className="admin-select-option border-no-result" onClick={handleSortProfil}>
                                         Afficher tout
                                       </button>
                                       <hr className="admin-select-hr"/>
                                     </li>
                                     <li>
-                                      <button id="active" className="admin-select-option" onClick={handleSortProfil}>
+                                      <button id="active" className="admin-select-option border-no-result" onClick={handleSortProfil}>
                                         Profils activés uniquement
                                       </button>
                                       <hr className="admin-select-hr"/>
