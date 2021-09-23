@@ -21,9 +21,6 @@ function Conseillers() {
   let ordre = useSelector(state => state.filtersAndSorts?.ordre);
   let ordreNom = useSelector(state => state.filtersAndSorts?.ordreNom);
 
-  console.log(filtreCertifie);
-  console.log(filtreProfil);
-
   let location = useLocation();
   let [page, setPage] = (pagination?.resetPage === false && location.currentPage !== undefined) ? useState(location.currentPage) : useState(1);
   const [basculerFiltreProfil, setBasculerFiltreProfil] = useState(false);
