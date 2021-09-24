@@ -18,57 +18,68 @@ function AdminHeader() {
   return (
     <>
       <div className="rf-container">
-        <div className="rf-grid-row rf-grid-row--top">
-          {location.pathname === '/territoires' &&
-          <>
-            <div className="rf-col-4 rf-mt-3w">
-              <a className="admin-dark-btn" href="accueil">
-                Voir les statistiques nationales
-              </a>
-            </div>
-            <div className="rf-col-4 rf-mt-3w">
-              <a className="admin-btn accueil-btn" href="accueil">
-                <span className="conseillers-logo-btn"></span>
-                <span className="conseillers-texte-btn">Afficher la liste des conseillers</span>
-              </a>
-            </div>
-          </>
-          }
-          {location.pathname === '/accueil' &&
-            <div className="rf-col-offset-4 rf-col-4 rf-mt-3w">
-              <a className="admin-btn stats-territoires-btn" href="territoires">
-                <span className="stats-logo-btn"></span>
-                <span className="stats-texte-btn">Afficher les statistiques par territoire</span>
-              </a>
-            </div>
-          }
-
-          <div className="rf-col-4 rf-mt-3w">
-            <a className="admin-btn discussion-btn">
+        <div className="rf-grid-row rf-grid-row--right">
+          <div className="rf-col-offset-4 rf-col-8">
+            {location.pathname === '/territoires' &&
+            <a className="header-btn" href="accueil">
+              <span className="conseillers-logo-btn"></span>
+              <span className="conseillers-texte-btn">Liste des conseillers</span>
+            </a>
+            }
+            {location.pathname === '/accueil' &&
+            <a className="header-btn" href="territoires">
+              <span className="stats-logo-btn"></span>
+              <span className="stats-texte-btn">Statistiques par territoire</span>
+            </a>
+            }
+            <a className="header-btn" title="Prochainement disponible !">
+              <span className="ressourcerie-logo-btn"></span>
+              <span className="ressourcerie-texte-btn">Ressourcerie</span>
+            </a>
+            <a className="header-btn" title="Prochainement disponible !">
               <span className="discussion-logo-btn"></span>
-              <span className="discussion-texte-btn">Accéder à l&rsquo;espace de discussion</span>
+              <span className="discussion-texte-btn">Espace de discussion</span>
             </a>
           </div>
         </div>
       </div>
-      <div className="band-stats-header rf-mt-3w rf-mb-6w">
+      <div className="band-stats-header rf-mt-5w rf-mb-6w">
         <div className="rf-container ">
           <div className="rf-grid-row rf-grid-row--top">
             {!statsTerritoiresError &&
             <>
-              <div className="rf-col-2 nombre-stats-header">{statistiques?.invitationsEnvoyees ?? 0}</div>
-              <div className="rf-col-2 nombre-stats-header">{statistiques?.conseillersEnregistres ?? 0}</div>
-              <div className="rf-col-2 nombre-stats-header">{statistiques?.tauxActivationComptes ?? 0} %</div>
-              <div className="rf-col-2 nombre-stats-header">{statistiques?.totalAccompagnements ?? 0}</div>
-              <div className="rf-col-2 nombre-stats-header">?</div>
-              <div className="rf-col-2 nombre-stats-header">?</div>
+              <ul className="dashboard">
+                <li>
+                  <span className="nombre-stats-header">{statistiques?.invitationsEnvoyees ?? 0}</span><br/>
+                  <span className="texte-stats-header">Invitations envoyées</span>
+                </li>
+                <li>
+                  <span className="nombre-stats-header">{statistiques?.conseillersEnregistres ?? 0}</span><br/>
+                  <span className="texte-stats-header">Conseillers enregistrés</span>
+                </li>
+                <li>
+                  <span className="nombre-stats-header">{statistiques?.tauxActivationComptes ?? 0} %</span><br/>
+                  <span className="texte-stats-header">Taux de comptes activés</span>
+                </li>
+                <li>
+                  <span className="nombre-stats-header">{statistiques?.nbCras ?? 0}</span><br/>
+                  <span className="texte-stats-header">CRAs saisis</span>
+                </li>
+                <li>
+                  <span className="nombre-stats-header">{statistiques?.totalAccompagnements ?? 0}</span><br/>
+                  <span className="texte-stats-header">Personnes accompagnées</span>
+                </li>
+                <li>
+                  <span className="nombre-stats-header">?</span><br/>
+                  <span className="texte-stats-header">Comptes Pix activés</span>
+                </li>
+                <li>
+                  <span className="nombre-stats-header">?</span><br/>
+                  <span className="texte-stats-header">Comptes RDV solidarités</span>
+                </li>
+              </ul>
 
-              <div className="rf-col-2 texte-stats-header">Invitations envoyées</div>
-              <div className="rf-col-2 texte-stats-header">Conseillers enregistrés</div>
-              <div className="rf-col-2 texte-stats-header">Taux d&rsquo;activation des comptes</div>
-              <div className="rf-col-2 texte-stats-header">Personnes accompagnées</div>
-              <div className="rf-col-2 texte-stats-header">Activations Pix Orga</div>
-              <div className="rf-col-2 texte-stats-header">Activations RDV solidarités</div>
+
             </>
             }
             {statsTerritoiresError &&
