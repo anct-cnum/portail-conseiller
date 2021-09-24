@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions } from '../../actions';
 import { userEntityId } from '../../helpers';
 import FormulaireSexeAge from './FormulaireSexeAge';
-import Ressourcerie from './Ressourcerie';
+import Ressourcerie from './ressourcerie/Ressourcerie';
 
 function Connected() {
 
