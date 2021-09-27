@@ -4,6 +4,7 @@ export const filtersAndSortsActions = {
   changeDateFin,
   changeOrdre,
   changeProfil,
+  changeCertifie,
   changeTerritoire
 };
 
@@ -31,6 +32,10 @@ function changeOrdre(ordreNom) {
 
 function changeProfil(dataProfil) {
   return { type: 'CHANGE_PROFIL', dataProfil };
+}
+
+function changeCertifie(dataCertifie) {
+  return { type: 'CHANGE_CERTIFIE', dataCertifie };
 }
 
 function changeTerritoire(territoire) {

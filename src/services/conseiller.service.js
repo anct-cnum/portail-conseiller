@@ -20,7 +20,7 @@ function get(id) {
   return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
 }
 
-function getAll(page, dateDebut, dateFin, filtreProfil, nomOrdre, ordre) {
+function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre, ordre) {
 
   const requestOptions = {
     method: 'GET',
@@ -30,30 +30,38 @@ function getAll(page, dateDebut, dateFin, filtreProfil, nomOrdre, ordre) {
   const ordreColonne = nomOrdre ? '&$sort[' + nomOrdre + ']=' + ordre : '';
   const filterDateStart = (dayjs(new Date(dateDebut)).format('DD/MM/YYYY') !== dayjs(new Date()).format('DD/MM/YYYY') && dateDebut !== '') ?
     `&datePrisePoste[$gt]=${new Date(dateDebut).toISOString()}` : '';
-
   const filterDateEnd = (dateFin !== '') ? `&datePrisePoste[$lt]=${new Date(dateFin).toISOString()}` : '';
 
-  /*
-  const filterSort = `&$sort[datePrisePoste]=${sortOrder}`;
-
-  let filterProfil = '';
-  switch (profil) {
-    case 'inactifs':
-      filterProfil = `&userCreated=false`;
+  let profil = '';
+  switch (filtreProfil) {
+    case 'tous':
+      profil = '';
       break;
-    case 'actifs':
-      filterProfil = `&userCreated=true`;
+    case 'active':
+      profil = `&userCreated=true`;
       break;
-    case 'certifies':
-      filterProfil = `&certifie=true`;
+    case 'inactive':
+      profil = `&userCreated=false`;
       break;
     default:
       break;
   }
-*/
-  //let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${filterSort}${filterProfil}${filterDateStart}${filterDateEnd}`;
-  //`${apiUrlRoot}/stats/admincoop/territoires?territoire=${territoire}&dateDebut=${dateDebut}&dateFin=${dateFin}&page=${page}${ordreColonne}`,
-  let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${filterDateStart}${filterDateEnd}${ordreColonne}`;
+  let certifie = '';
+  switch (filtreCertifie) {
+    case 'tous':
+      certifie = '';
+      break;
+    case 'active':
+      certifie = `&certifie=true`;
+      break;
+    case 'inactive':
+      certifie = `&certifie=false`;
+      break;
+    default:
+      break;
+  }
+
+  let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${profil}${certifie}${filterDateStart}${filterDateEnd}${ordreColonne}`;
 
   return fetch(uri, requestOptions).then(handleResponse);
 }

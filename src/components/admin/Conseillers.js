@@ -17,20 +17,24 @@ function Conseillers() {
   let dateDebut = useSelector(state => state.filtersAndSorts?.dateDebut);
   let dateFin = useSelector(state => state.filtersAndSorts?.dateFin);
   let filtreProfil = useSelector(state => state.filtersAndSorts?.profil);
+  let filtreCertifie = useSelector(state => state.filtersAndSorts?.certifie);
   let ordre = useSelector(state => state.filtersAndSorts?.ordre);
   let ordreNom = useSelector(state => state.filtersAndSorts?.ordreNom);
 
   let location = useLocation();
   let [page, setPage] = (pagination?.resetPage === false && location.currentPage !== undefined) ? useState(location.currentPage) : useState(1);
+  const [basculerFiltreProfil, setBasculerFiltreProfil] = useState(false);
+  const [basculerFiltreCertifie, setBasculerFiltreCertifie] = useState(false);
 
   const [pageCount, setPageCount] = useState(0);
 
   const navigate = page => {
     setPage(page);
-    dispatch(conseillerActions.getAll(conseillers.items ? (page - 1) * conseillers.items.limit : 0,
+    dispatch(conseillerActions.getAll(page,
       dateDebut,
       dateFin,
       filtreProfil,
+      filtreCertifie,
       ordreNom,
       ordre ? 1 : -1));
   };
@@ -43,17 +47,31 @@ function Conseillers() {
   }, [conseillers]);
 
   useEffect(() => {
-    dispatch(conseillerActions.getAll(page - 1, dateDebut, dateFin, filtreProfil, ordreNom, ordre ? 1 : -1));
-  }, [ordre, ordreNom]);
+    dispatch(conseillerActions.getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, ordreNom, ordre ? 1 : -1));
+  }, [ordre, ordreNom, filtreProfil, filtreCertifie]);
+
+  const filtreClick = e => {
+    if (e.target.id === 'activer') {
+      setBasculerFiltreProfil(!basculerFiltreProfil);
+      setBasculerFiltreCertifie(false);
+    } else {
+      setBasculerFiltreCertifie(!basculerFiltreCertifie);
+      setBasculerFiltreProfil(false);
+    }
+  };
 
   const ordreColonne = e => {
     dispatch(filtersAndSortsActions.changeOrdre(e.target.id));
   };
 
-  const handleSort = e => {
-    console.log(e.target.id);
-    dispatch(filtersAndSortsActions.changeProfil(ordre));
-    dispatch(conseillerActions.getAll(0, dateDebut, dateFin, ordreNom, ordre ? 1 : -1));
+  const handleSortProfil = e => {
+    dispatch(filtersAndSortsActions.changeProfil(e.target.id));
+    setBasculerFiltreProfil(false);
+  };
+
+  const handleSortCertifie = e => {
+    dispatch(filtersAndSortsActions.changeCertifie(e.target.id));
+    setBasculerFiltreCertifie(false);
   };
 
   return (
@@ -65,7 +83,7 @@ function Conseillers() {
             <div className="rf-col-12">
               <div className="rf-table">
                 <table >
-                  <thead>
+                  <thead className="conseillers-thead">
                     <tr>
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
@@ -109,7 +127,7 @@ function Conseillers() {
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
                           <span id="codePostal">
-                            Code Postal
+                            Code <br/>Postal
                             { (ordreNom !== 'codePostal' || ordreNom === 'codePostal' && ordre) &&
                               <i className="ri-arrow-down-s-line chevron icone-2"></i>
                             }
@@ -122,7 +140,7 @@ function Conseillers() {
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
                           <span id="datePrisePoste">
-                            Date de recrutement
+                            Date de <br/>recrutement
                             { (ordreNom !== 'datePrisePoste' || ordreNom === 'datePrisePoste' && ordre) &&
                               <i className="ri-arrow-down-s-line chevron icone-2"></i>
                             }
@@ -135,55 +153,91 @@ function Conseillers() {
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
                           <span id="dateFinFormation">
-                            Date de fin de formation
+                            Date de fin <br/> de formation
                             { (ordreNom !== 'dateFinFormation' || ordreNom === 'dateFinFormation' && ordre) &&
-                              <i className="ri-arrow-down-s-line chevron icone-3"></i>
+                              <i className="ri-arrow-down-s-line chevron icone-2"></i>
                             }
                             { (ordreNom === 'dateFinFormation' && !ordre) &&
-                              <i className="ri-arrow-up-s-line chevron icone-3"></i>
+                              <i className="ri-arrow-up-s-line chevron icone-2"></i>
                             }
                           </span>
                         </button>
                       </th>
                       <th>
-                        <button className="filtre-btn">
-                          <span id="certifie" onClick={ordreColonne}>
-                            Certification
-                            { (ordreNom !== 'certifie' || ordreNom === 'certifie' && ordre) &&
-                              <i className="ri-arrow-down-s-line chevron icone"></i>
-                            }
-                            { (ordreNom === 'certifie' && !ordre) &&
-                              <i className="ri-arrow-up-s-line chevron icone"></i>
-                            }
-                          </span>
-                        </button>
-                      </th>
-                      <th>
-                        <nav className="rf-nav" id="navigation-sort" role="navigation">
+                        <nav className="rf-nav" id="navigation-sort-certifie" role="navigation">
                           <ul className="rf-nav__list">
-                            <li className="rf-nav__item">
+                            <li className={conseillers?.items?.data.length <= 2 ? 'no-result rf-nav__item' : 'rf-nav__item'}>
                               <span >
-                                <button className="rf-nav__btn admin-select" aria-expanded="false" aria-controls="menu-userActive" aria-current="true" >
-                                  Activé
-                                  <i className="ri-arrow-down-s-line chevron"></i>
+                                <button className="rf-nav__btn admin-select" aria-expanded={basculerFiltreCertifie}
+                                  aria-controls="menu-userCertife" aria-current="true" id="certifier" onClick={filtreClick}>
+                                  Certification
+                                  {basculerFiltreCertifie &&
+                                    <i className="ri-arrow-up-s-line chevron icone"></i>
+                                  }
+                                  { !basculerFiltreCertifie &&
+                                    <i className="ri-arrow-down-s-line chevron icone"></i>
+                                  }
                                 </button>
-                                <div className="rf-collapse rf-menu" id="menu-userActive">
+                                <div className={ basculerFiltreCertifie === true ? 'rf-collapse--expanded rf-menu' : 'rf-collapse rf-nav--expanded rf-menu'}
+                                  id="menu-userCertife">
                                   <ul className="rf-menu__list">
-                                    <li>
-                                      <button id="all" className="admin-select-option" onClick={handleSort}>
+                                    <li className={filtreCertifie === 'tous' ? 'selected' : '' } >
+                                      <button id="tous" className="admin-select-option border-no-result" onClick={handleSortCertifie}>
                                         Afficher tout
                                       </button>
                                       <hr className="admin-select-hr"/>
                                     </li>
-                                    <li>
-                                      <button id="active" className="admin-select-option" onClick={handleSort}>
-                                        Profil activé uniquement
+                                    <li className={filtreCertifie === 'active' ? 'selected' : '' }>
+                                      <button id="active" className="admin-select-option border-no-result" onClick={handleSortCertifie}>
+                                        Profils certifiés uniquement
                                       </button>
                                       <hr className="admin-select-hr"/>
                                     </li>
-                                    <li>
-                                      <button id="inactive" className="admin-select-option" onClick={handleSort}>
-                                        Profil non-activé uniquement
+                                    <li className={filtreCertifie === 'inactive' ? 'selected' : '' }>
+                                      <button id="inactive" className="admin-select-option" onClick={handleSortCertifie}>
+                                        Profils non-certifiés uniquement
+                                      </button>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </span>
+                            </li>
+                          </ul>
+                        </nav>
+                      </th>
+                      <th>
+                        <nav className="rf-nav" id="navigation-sort-profil" role="navigation">
+                          <ul className="rf-nav__list">
+                            <li className={conseillers?.items?.data.length <= 2 ? 'no-result rf-nav__item' : 'rf-nav__item'}>
+                              <span >
+                                <button className="rf-nav__btn admin-select" aria-expanded={basculerFiltreProfil}
+                                  aria-controls="menu-userActive" aria-current="true" id="activer" onClick={filtreClick}>
+                                  Activé
+                                  {basculerFiltreProfil &&
+                                    <i className="ri-arrow-up-s-line chevron icone"></i>
+                                  }
+                                  { !basculerFiltreProfil &&
+                                    <i className="ri-arrow-down-s-line chevron icone"></i>
+                                  }
+                                </button>
+                                <div className={ basculerFiltreProfil === true ? 'rf-collapse--expanded rf-menu' : 'rf-collapse rf-nav--expanded rf-menu'}
+                                  id="menu-userActive">
+                                  <ul className="rf-menu__list">
+                                    <li className={filtreProfil === 'tous' ? 'selected' : '' }>
+                                      <button id="tous" className="admin-select-option border-no-result" onClick={handleSortProfil}>
+                                        Afficher tout
+                                      </button>
+                                      <hr className="admin-select-hr"/>
+                                    </li>
+                                    <li className={filtreProfil === 'active' ? 'selected' : '' }>
+                                      <button id="active" className="admin-select-option border-no-result" onClick={handleSortProfil}>
+                                        Profils activés uniquement
+                                      </button>
+                                      <hr className="admin-select-hr"/>
+                                    </li>
+                                    <li className={filtreProfil === 'inactive' ? 'selected' : '' }>
+                                      <button id="inactive" className="admin-select-option" onClick={handleSortProfil}>
+                                        Profils non-activés uniquement
                                       </button>
                                     </li>
                                   </ul>
@@ -201,7 +255,7 @@ function Conseillers() {
                       return (<Conseiller key={idx} conseiller={conseiller} currentPage={page} trClass ={idx % 2 === 0 ? 'pair' : 'impair'}/>);
                     })
                     }
-                    {!conseillers?.items &&
+                    { (conseillers?.items?.data.length === 0 || !conseillers?.items) &&
                     <tr>
                       <td colSpan="9" className="not-found pair">Aucun conseiller trouvé</td>
                     </tr>

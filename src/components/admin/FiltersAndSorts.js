@@ -14,11 +14,12 @@ function FiltersAndSorts({ resetPage }) {
   let ordre = useSelector(state => state.filtersAndSorts?.ordre);
   let ordreNom = useSelector(state => state.filtersAndSorts?.ordreNom);
   let filtreProfil = useSelector(state => state.filtersAndSorts?.profil);
+  let filtreCertifie = useSelector(state => state.filtersAndSorts?.certifie);
   const pagination = useSelector(state => state.pagination);
 
   useEffect(() => {
     if (location.pathname === '/accueil') {
-      dispatch(conseillerActions.getAll(0, dateDebut, dateFin, filtreProfil, ordreNom, ordre ? 1 : -1));
+      dispatch(conseillerActions.getAll(0, dateDebut, dateFin, filtreProfil, filtreCertifie, ordreNom, ordre ? 1 : -1));
       resetPage(1);
     }
     if (location.pathname === '/territoires') {
@@ -28,6 +29,7 @@ function FiltersAndSorts({ resetPage }) {
     }
 
   }, [dateDebut, dateFin, territoire]);
+
   const handleTerritoire = e => {
     dispatch(filtersAndSortsActions.changeTerritoire(e.target.id));
   };
