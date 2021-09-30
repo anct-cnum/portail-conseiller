@@ -1,35 +1,91 @@
 import React from 'react';
-import DerniersAjouts from './DerniersAjouts';
 
 function Thematiques() {
 
   return (
     <div className="thematiques">
-      <h2 className="rf-mb-3w">Thématiques</h2>
+      <h2 className="rf-mb-3w sous-titre">Thématiques</h2>
       <div className="rf-container rf-container--fluid">
         <div className="rf-grid-row">
           <div className="rf-col-6">
             <ul className="liste-thematiques">
-              <li className="rf-mb-3w">Courriel</li>
-              <li className="rf-mb-3w">Échanger avec ses proches</li>
-              <li className="rf-mb-3w">Emploi</li>
-              <li className="rf-mb-3w">Démarches en ligne</li>
-              <li className="rf-mb-3w">Traitement de texte</li>
-              <li className="rf-mb-3w">Smartphone, applications mobile</li>
+              <li className="rf-mb-3w">
+                <a href="#mail" className="lien-thematique">
+                  <img className="image-thematique" src="/logos/cra/logo-courriel.svg" alt="Mail" />
+                  Courriel
+                </a>
+              </li>
+              <li className="rf-mb-3w">
+                <a href="#echange" className="lien-thematique">
+                  <img className="image-thematique" src="/logos/cra/logo-echanger-proches.svg" alt="Échanger avec ses proches" />
+                  Échanger avec ses proches
+                </a>
+              </li>
+              <li className="rf-mb-3w">
+                <a href="#emploi" className="lien-thematique">
+                  <img className="image-thematique" src="/logos/cra/logo-trouver-emploi.svg" alt="Emploi" />
+                  Emploi
+                </a>
+              </li>
+              <li className="rf-mb-3w">
+                <a href="#demarches" className="lien-thematique">
+                  <img className="image-thematique" src="/logos/cra/logo-demarche-en-ligne.svg" alt="Démarches en ligne" />
+                  Démarches en ligne
+                </a>
+              </li>
+              <li className="rf-mb-3w">
+                <a href="#traitement" className="lien-thematique">
+                  <img className="image-thematique" src="/logos/cra/logo-traitement-texte.svg" alt="Apprendre les bases du traitement de texte" />
+                  Traitement de texte
+                </a>
+              </li>
+              <li className="rf-mb-3w">
+                <a href="#smartphone" className="lien-thematique">
+                  <img className="image-thematique" src="/logos/cra/logo-telephone-portable.svg" alt="Utiliser des applications utiles sur son smartphone"
+                    style={{ height: '23px', marginRight: '8px' }}/>
+                  Smartphone, applications mobile
+                </a>
+              </li>
             </ul>
           </div>
           <div className="rf-col-6 rf-mb-3w">
             <ul className="liste-thematiques">
-              <li className="rf-mb-3w">Créer et gérer ses contenus numériques</li>
-              <li className="rf-mb-3w">Accompagner son enfant</li>
-              <li className="rf-mb-3w">Prendre en main un équipement informatique</li>
-              <li className="rf-mb-3w">Fiches CNIL</li>
+              <li className="rf-mb-3w">
+                <a href="#contenus" className="lien-thematique">
+                  <div className="image-lien">
+                    <img className="image-thematique" src="/logos/cra/logo-contenus-numeriques.svg" alt="Créer et gérer ses contenus numériques"
+                      style={{ height: '23px', marginBottom: '0px' }}/>
+                  </div>
+                  <div className="texte-lien">Créer et gérer ses contenus numériques</div>
+                </a>
+              </li>
+              <li className="rf-mb-3w">
+                <a href="#accompagnement" className="lien-thematique">
+                  <img className="image-thematique" src="/logos/cra/logo-accompagner-enfant.svg" alt="Accompagner son enfant"
+                    style={{ height: '24px' }}/>
+                  Accompagner son enfant
+                </a>
+              </li>
+              <li className="rf-mb-3w">
+                <a href="#equipement" className="lien-thematique">
+                  <div className="image-lien">
+                    <img className="image-thematique" src="/logos/cra/logo-equip-info.svg" alt="Prendre en main un équipement informatique"
+                      style={{ height: '25px' }}/>
+                  </div>
+                  <div className="texte-lien">Prendre en main un équipement informatique</div>
+                </a>
+              </li>
+              <li className="rf-mb-3w">
+                <a href="#cnil" className="lien-thematique">
+                  <img className="image-thematique" src="/logos/logo-cnil.svg" alt="CNIL" style={{ height: '8px', marginBottom: '0px' }}/>
+                  Fiches CNIL
+                </a>
+              </li>
             </ul>
           </div>
         </div>
       </div>
-      <br className="rf-mt-3w rf-mb-4w" />
-      <DerniersAjouts />
+      <hr className="rf-mt-5v rf-mb-4w" />
     </div>
   );
 }

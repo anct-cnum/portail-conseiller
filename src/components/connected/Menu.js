@@ -50,7 +50,7 @@ function Menu() {
                 <Link
                   className={`rf-nav__link linkCustom ${location.pathname === '/ressourcerie' ? 'linkActive' : ''}`}
                   to="/ressourcerie" onClick={toggleBurgerMenu}>
-                    Ressourcerie V1
+                    Ressourcerie
                 </Link>
               </li>
               {!menu.hiddenMenu && menu.expandNav &&

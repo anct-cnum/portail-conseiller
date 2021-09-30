@@ -9,6 +9,7 @@ import motDePasseOublieReducer from './motDePasseOublieReducer';
 import statistiqueReducer from './statistiqueReducer';
 import filtersAndSortsReducer from './filtersAndSortsReducer';
 import pagination from './paginationReducer';
+import ressources from './ressourcesReducer';
 
 import { combineReducers } from 'redux';
 
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   statistique: statistiqueReducer,
   filtersAndSorts: filtersAndSortsReducer,
   pagination: pagination,
+  ressources: ressources
 });
 
 export default rootReducer;
