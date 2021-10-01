@@ -38,8 +38,7 @@ function getRessources() {
     ressourcesService.getRessources()
     .then(
       results => {
-        const ressources = results?.data;
-        dispatch(success(ressources));
+        dispatch(success(results?.data));
       },
       error => {
         dispatch(failure(error));

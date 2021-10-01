@@ -12,13 +12,13 @@ function Ressources({ ressources }) {
   const [cacherInstaller, setCacherInstaller] = useState(false);
   const [cacherContenus, setCacherContenus] = useState(false);
 
-  const tabMail = ressources.filter(ressource => ressource.categorie === 'Mail');
-  const tabEchanger = ressources.filter(ressource => ressource.categorie === 'Échanger avec ses proches');
-  const tabEmploi = ressources.filter(ressource => ressource.categorie === 'Emploi');
-  const tabDemarches = ressources.filter(ressource => ressource.categorie === 'Démarches en ligne');
-  const tabNaviguer = ressources.filter(ressource => ressource.categorie === 'Naviguer sur internet');
-  const tabInstaller = ressources.filter(ressource => ressource.categorie === 'Installer et utiliser des applications utiles sur son smartphone');
-  const tabContenus = ressources.filter(ressource => ressource.categorie === 'Créer et gérer ses contenus numériques');
+  const tabMail = ressources?.filter(ressource => ressource.categorie === 'Mail');
+  const tabEchanger = ressources?.filter(ressource => ressource.categorie === 'Échanger avec ses proches');
+  const tabEmploi = ressources?.filter(ressource => ressource.categorie === 'Emploi');
+  const tabDemarches = ressources?.filter(ressource => ressource.categorie === 'Démarches en ligne');
+  const tabNaviguer = ressources?.filter(ressource => ressource.categorie === 'Naviguer sur internet');
+  const tabInstaller = ressources?.filter(ressource => ressource.categorie === 'Installer et utiliser des applications utiles sur son smartphone');
+  const tabContenus = ressources?.filter(ressource => ressource.categorie === 'Créer et gérer ses contenus numériques');
 
   return (
     <>
