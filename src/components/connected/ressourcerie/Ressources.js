@@ -12,37 +12,13 @@ function Ressources({ ressources }) {
   const [cacherInstaller, setCacherInstaller] = useState(false);
   const [cacherContenus, setCacherContenus] = useState(false);
 
-  const tabMail = [];
-  const tabEchanger = [];
-  const tabEmploi = [];
-  const tabDemarches = [];
-  const tabNaviguer = [];
-  const tabInstaller = [];
-  const tabContenus = [];
-
-  ressources?.forEach(ressource => {
-    if (ressource.categorie === 'Mail') {
-      tabMail.push(ressource);
-    }
-    if (ressource.categorie === 'Échanger avec ses proches') {
-      tabEchanger.push(ressource);
-    }
-    if (ressource.categorie === 'Emploi') {
-      tabEmploi.push(ressource);
-    }
-    if (ressource.categorie === 'Démarches en ligne') {
-      tabDemarches.push(ressource);
-    }
-    if (ressource.categorie === 'Naviguer sur internet') {
-      tabNaviguer.push(ressource);
-    }
-    if (ressource.categorie === 'Installer et utiliser des applications utiles sur son smartphone') {
-      tabInstaller.push(ressource);
-    }
-    if (ressource.categorie === 'Créer et gérer ses contenus numériques') {
-      tabContenus.push(ressource);
-    }
-  });
+  const tabMail = ressources.filter(ressource => ressource.categorie === 'Mail');
+  const tabEchanger = ressources.filter(ressource => ressource.categorie === 'Échanger avec ses proches');
+  const tabEmploi = ressources.filter(ressource => ressource.categorie === 'Emploi');
+  const tabDemarches = ressources.filter(ressource => ressource.categorie === 'Démarches en ligne');
+  const tabNaviguer = ressources.filter(ressource => ressource.categorie === 'Naviguer sur internet');
+  const tabInstaller = ressources.filter(ressource => ressource.categorie === 'Installer et utiliser des applications utiles sur son smartphone');
+  const tabContenus = ressources.filter(ressource => ressource.categorie === 'Créer et gérer ses contenus numériques');
 
   return (
     <>
@@ -63,8 +39,8 @@ function Ressources({ ressources }) {
         <div className={cacherEchanger ? 'aggrandir rf-mt-2w rf-mb-2w' : 'reduire rf-mt-2w rf-mb-2w'} onClick={() => setCacherEchanger(!cacherEchanger)}></div>
       </div>
       <h2 className="rf-col-12 titre-thematique rf-mb-9w" id="echange">
-        <img className="image-thematique" src="/logos/cra/logo-echanger-proches.svg" alt="Échanger avec ses proches" />
-        Échanger avec ses proches
+        <img className="image-thematique" src="/logos/cra/logo-echanger-proches.svg" alt="&Eacute;changer avec ses proches" />
+        &Eacute;changer avec ses proches
       </h2>
       {!cacherEchanger && tabEchanger?.map((ressource, idx) => {
         return (<Ressource key={idx} ressource={ressource}/>);
@@ -88,8 +64,8 @@ function Ressources({ ressources }) {
           onClick={() => setCacherDemarches(!cacherDemarches)}></div>
       </div>
       <h2 className="rf-col-12 titre-thematique rf-mb-9w" id="demarches">
-        <img className="image-thematique" src="/logos/cra/logo-demarche-en-ligne.svg" alt="Démarches en ligne" />
-        Démarches en ligne
+        <img className="image-thematique" src="/logos/cra/logo-demarche-en-ligne.svg" alt="D&eacute;marches en ligne" />
+        D&eacute;marches en ligne
       </h2>
       {!cacherDemarches && tabDemarches?.map((ressource, idx) => {
         return (<Ressource key={idx} ressource={ressource}/>);
@@ -124,8 +100,8 @@ function Ressources({ ressources }) {
         <div className={cacherContenus ? 'aggrandir rf-mt-2w rf-mb-2w' : 'reduire rf-mt-2w rf-mb-2w'} onClick={() => setCacherContenus(!cacherContenus)}></div>
       </div>
       <h2 className="rf-col-12 titre-thematique rf-mb-9w" id="contenus">
-        <img className="image-thematique" src="/logos/cra/logo-contenus-numeriques.svg" alt="Créer et gérer ses contenus numériques" />
-        Créer et gérer ses contenus numériques</h2>
+        <img className="image-thematique" src="/logos/cra/logo-contenus-numeriques.svg" alt="Cr&eacute;er et g&eacute;rer ses contenus num&eacute;riques" />
+        Cr&eacute;er et g&eacute;rer ses contenus num&eacute;riques</h2>
       {!cacherContenus && tabContenus?.map((ressource, idx) => {
         return (<Ressource key={idx} ressource={ressource}/>);
       })}

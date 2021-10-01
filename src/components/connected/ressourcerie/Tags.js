@@ -15,8 +15,8 @@ function Tags() {
     dispatch(ressourcesActions.getTags());
   }, []);
 
-  const rechercheParTag = e => {
-    console.log(e);
+  const rechercheParTag = () => {
+
   };
 
   return (
@@ -28,13 +28,13 @@ function Tags() {
         })
         }
         {tagsListError &&
-          <div> Une erreur c&rsquo;est produite lors du chargement des tags, veuillez recharger la page.</div>
+          <div> Une erreur s&rsquo;est produite lors du chargement des tags, veuillez recharger la page.</div>
         }
       </div>
       <div className="rf-mt-5v rf-mb-11w tout-tags" onClick={() => {
         setSeeAlltags(true);
       }} >
-        Afficher tout les tags
+        Afficher tous les tags
       </div>
       {seeAllTags &&
         <dialog aria-labelledby="rf-modal-confirm-siret" role="dialog" id="rf-modal-confirm-siret" className="rf-modal modalOpened">
@@ -51,12 +51,12 @@ function Tags() {
                     </button>
                   </div>
                   <div className="rf-modal__content">
-                    <h2 className="rf-mb-5v sous-titre">Liste de tout les tags</h2>
+                    <h2 className="rf-mb-5v sous-titre">Liste de tous les tags</h2>
                     {!tagsListError && !tagsListLoading && tagsList?.map((tag, idx) => {
                       return <div key={idx} className="tag" onClick={rechercheParTag}>{tag.nom}</div>;
                     })}
                     {tagsListError &&
-                      <div> Une erreur c&rsquo;est produite lors du chargement des tags, veuillez recharger la page.</div>
+                      <div> Une erreur s&rsquo;est produite lors du chargement des tags, veuillez recharger la page.</div>
                     }
                   </div>
                 </div>
@@ -76,13 +76,13 @@ function Tags() {
       <div className="rf-mt-9w rf-mb-6w">
         <a className="tous-documents" title="Prochainement disponible">
           <i className="ri-file-zip-line" style={{ marginRight: '18px' }}></i>
-          Télécharger tous les documents de la ressourcerie.
+          T&eacute;l&eacute;charger tous les documents de la ressourcerie.
         </a>
       </div>
       <hr/>
       <div className="rf-my-4w ">
         <span className="bulle-discussion"></span><span className="canal"> Canal #ressources</span><br/>
-        <span className="texte-canal">Une question ? un élément à partager ? Rendez-vous sur votre espace de discussion pour partager.</span>
+        <span className="texte-canal">Une question ? un &eacute;l&eacute;ment à partager ? Rendez-vous sur votre espace de discussion pour partager.</span>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ function Thematiques() {
 
   return (
     <div className="thematiques">
-      <h2 className="rf-mb-3w sous-titre">Thématiques</h2>
+      <h2 className="rf-mb-3w sous-titre">Th&eacute;matiques</h2>
       <div className="rf-container rf-container--fluid">
         <div className="rf-grid-row">
           <div className="rf-col-6">
@@ -17,8 +17,8 @@ function Thematiques() {
               </li>
               <li className="rf-mb-3w">
                 <a href="#echange" className="lien-thematique">
-                  <img className="image-thematique" src="/logos/cra/logo-echanger-proches.svg" alt="Échanger avec ses proches" />
-                  Échanger avec ses proches
+                  <img className="image-thematique" src="/logos/cra/logo-echanger-proches.svg" alt="&Eacute;changer avec ses proches" />
+                  &Eacute;changer avec ses proches
                 </a>
               </li>
               <li className="rf-mb-3w">
@@ -29,8 +29,8 @@ function Thematiques() {
               </li>
               <li className="rf-mb-3w">
                 <a href="#demarches" className="lien-thematique">
-                  <img className="image-thematique" src="/logos/cra/logo-demarche-en-ligne.svg" alt="Démarches en ligne" />
-                  Démarches en ligne
+                  <img className="image-thematique" src="/logos/cra/logo-demarche-en-ligne.svg" alt="D&eacute;marches en ligne" />
+                  D&eacute;marches en ligne
                 </a>
               </li>
               <li className="rf-mb-3w">
@@ -53,10 +53,10 @@ function Thematiques() {
               <li className="rf-mb-3w">
                 <a href="#contenus" className="lien-thematique">
                   <div className="image-lien">
-                    <img className="image-thematique" src="/logos/cra/logo-contenus-numeriques.svg" alt="Créer et gérer ses contenus numériques"
-                      style={{ height: '23px', marginBottom: '0px' }}/>
+                    <img className="image-thematique" src="/logos/cra/logo-contenus-numeriques.svg"
+                      alt="Cr&eacute;er et g&eacute;rer ses contenus num&eacute;riques" style={{ height: '23px', marginBottom: '0px' }}/>
                   </div>
-                  <div className="texte-lien">Créer et gérer ses contenus numériques</div>
+                  <div className="texte-lien">Cr&eacute;er et g&eacute;rer ses contenus num&eacute;riques</div>
                 </a>
               </li>
               <li className="rf-mb-3w">
@@ -69,10 +69,10 @@ function Thematiques() {
               <li className="rf-mb-3w">
                 <a href="#equipement" className="lien-thematique">
                   <div className="image-lien">
-                    <img className="image-thematique" src="/logos/cra/logo-equip-info.svg" alt="Prendre en main un équipement informatique"
+                    <img className="image-thematique" src="/logos/cra/logo-equip-info.svg" alt="Prendre en main un &eacute;quipement informatique"
                       style={{ height: '25px' }}/>
                   </div>
-                  <div className="texte-lien">Prendre en main un équipement informatique</div>
+                  <div className="texte-lien">Prendre en main un &eacute;quipement informatique</div>
                 </a>
               </li>
               <li className="rf-mb-3w">

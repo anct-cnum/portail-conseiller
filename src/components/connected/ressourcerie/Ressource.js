@@ -8,7 +8,7 @@ function Ressource({ ressource }) {
   const [lienCopie, setLienCopie] = useState(false);
 
   const copierLien = () => {
-    navigator.clipboard.writeText(process.env.REACT_APP_RESSOURCERIE_URL + ressource?.lien);
+    navigator.clipboard.writeText(process.env.REACT_APP_RESSOURCERIE_URL + '/' + ressource?.lien);
     setLienCopie(true);
     setTimeout(() => {
       setLienCopie(false);
@@ -22,7 +22,7 @@ function Ressource({ ressource }) {
       })}</div>
       <div className="description">{ressource.description}</div>
       <div className="telechargement">
-        <a className="pdf-btn" href={process.env.REACT_APP_RESSOURCERIE_URL + ressource?.lien}>
+        <a className="pdf-btn" href={process.env.REACT_APP_RESSOURCERIE_URL + '/' + ressource?.lien}>
           <img className="pdf-image" src="/logos/bouton-fichier.svg" />
           <span className="pdf-texte">PDF</span>
         </a>
@@ -34,7 +34,7 @@ function Ressource({ ressource }) {
         {lienCopie &&
         <FlashMessage duration={3000} >
           <span className="succes-lien-copie">
-            Lien copié !
+            Lien copi&eacute; !
           </span>
         </FlashMessage>
         }
