@@ -1,0 +1,186 @@
+.ressourcerie {
+  font-family: 'Marianne', Arial, sans-serif;
+  .sans-marge {
+    margin: 0;
+  }
+  .titre {
+    font-family: 'MarianneThin', Arial, sans-serif;
+    font-size: 56px;
+    line-height: 72px;
+    margin: 0;
+  }
+  .sous-titre {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .liste-thematiques {
+    margin: 0 0 0 -1.5rem;
+    list-style: none;
+    padding: 0;
+    .lien-thematique {
+      font-size: 14px;
+      box-shadow: none;
+      &:focus, &:hover, &:visited, &:link, &:active {
+        outline: none;
+      }
+      .image-lien {
+        display: inline-block;
+        position: relative;
+        margin-right: 0px;
+        top: -17px;
+      }
+      .texte-lien {
+        display: inline-block;
+        line-height: 24px;
+        width: 250px;
+      }
+    }
+    .image-thematique {
+      margin: 0 12px -4px 0px;
+      height: 19px;
+    }
+  }
+  .tag {
+    background-color: #9a9aff;
+    display: inline-block;
+    padding: 0.25rem 1rem;
+    border-radius: 1rem;
+    line-height: 1.5rem;
+    font-size: 0.875rem;
+    min-height: 2rem;
+    cursor: pointer;
+    color:#000091;
+    margin: 6px;
+    &:hover {
+      background-color: #7171ff;
+      color:#000091;
+    }
+  }
+  .tout-tags {
+    cursor: pointer;
+  }
+  .date {
+    font-size: 14px;
+    font-weight: 400;
+    color: #9c9c9c;
+    hr {
+      display: inline-block;
+      margin: 0px 8px 4px 0px;
+      width: 16px;
+    }
+  }
+  .tous-documents {
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: none;
+  }
+  .bulle-discussion {
+    background: url(../../public/logos/bulle-ressourcerie.svg) no-repeat;
+    display: inline-block;
+    width: 52px;
+    height: 44px;
+  }
+  .canal {
+    position: relative;
+    font-weight: 600;
+    bottom: 25px;
+    left: 16px;
+  }
+  .texte-canal {
+    display: inline-block;
+    position: relative;
+    font-size: 12px;
+    width: 410px;
+    bottom: 25px;
+    left: 72px;
+  }
+  .ressources {
+    background-color: #2a2a2a;
+  }
+  .titre-thematique {
+    font-family: 'MarianneThin', Arial, sans-serif;
+    font-size: 32px;
+    line-height: 40px;
+    margin: 0;
+    .image-thematique {
+      margin: 0 23px -10px 0px;
+      height: 42px;
+    }
+  }
+  .description {
+    font-weight: 400;
+    font-size: 16px;
+    margin-bottom: 24px;
+    margin-top: 24px;
+    height: 73px;
+    width: 282px;
+
+  }
+  .ressource-tag {
+    display: inline-block;
+    margin-right: 8px;
+    line-height: 24px;
+    font-weight: 600;
+  }
+  .reduire, .aggrandir {
+    background: url(../../public/logos/bouton-moins.svg) no-repeat;
+    position: relative;
+    cursor: pointer;
+    height: 32px;
+    width: 32px;
+    left: 97.5%;
+  }
+  .aggrandir {
+    background: url(../../public/logos/bouton-plus.svg) no-repeat;
+  }
+  .telechargement {
+    .pdf-btn, .lien-btn, .date  {
+      display: inline-block;
+    }
+    .pdf-btn {
+      border: 1px solid #fff;
+      border-radius: 8px;
+      margin-right: 24px;
+      box-shadow: none;
+      font-size: 14px;
+      cursor: pointer;
+      height: 36px;
+      width: 78px;
+      padding:8px;
+      .pdf-image {
+        display: inline-block;
+        margin-right: 8px;
+        margin-left: 5px;
+      }
+      .pdf-texte {
+        display: inline-block;
+        position: relative;
+        bottom: 4px;
+      }
+    }
+    .lien-btn {
+      margin-right: 24px;
+      font-size: 14px;
+      cursor: pointer;
+      .lien-image {
+        margin-right: 8px;
+      }
+      .lien-texte {
+        display: inline-block;
+        position: relative;
+        box-shadow: none;
+        bottom: 4px;
+      }
+    }
+    .succes-lien-copie {
+      margin-left: 130px;
+      font-size: 14px;
+      color: #008941;
+    }
+    .date {
+      position: relative;
+      bottom: 4px;
+    }
+  }
+
+}
