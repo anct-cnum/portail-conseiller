@@ -17,10 +17,12 @@ function Ressource({ ressource }) {
 
   return (
     <div className="rf-col-3 rf-mb-9w">
-      <div>{ressource?.tags?.map((tag, idx) => {
-        return <div className="ressource-tag" key={idx}>#{tag.toUpperCase()}</div>;
-      })}</div>
-      <div className="description">{ressource.description}</div>
+      <div className="hauteur-texte">
+        {ressource?.tags?.map((tag, idx) => {
+          return <div className="ressource-tag" key={idx}>#{tag.toUpperCase()}</div>;
+        })}
+        <div className="description">{ressource.description}</div>
+      </div>
       <div className="telechargement">
         <a className="pdf-btn" href={process.env.REACT_APP_RESSOURCERIE_URL + '/' + ressource?.lien}>
           <img className="pdf-image" src="/logos/bouton-fichier.svg" />
