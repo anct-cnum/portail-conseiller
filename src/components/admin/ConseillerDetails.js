@@ -143,7 +143,7 @@ function ConseillerDetails({ location }) {
           </Link>
         </div>
       </div>
-      <Footer type="support"/>
+      <Footer/>
     </div>
   );
 

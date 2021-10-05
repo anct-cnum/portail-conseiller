@@ -6,6 +6,7 @@ import { statistiqueActions } from '../../actions';
 function AdminHeader() {
   const location = useLocation();
   const dispatch = useDispatch();
+  const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
   let statsTerritoiresError = useSelector(state => state.statistique.statsTerritoiresError);
   const statistiques = useSelector(state => state.statistique.statsAdmin);
 
@@ -19,24 +20,26 @@ function AdminHeader() {
     <>
       <div className="rf-container">
         <div className="rf-grid-row rf-grid-row--right">
-          <div className="rf-col-offset-4 rf-col-8">
-            {location.pathname === '/territoires' &&
+          <div className={location.pathname !== '/ressourcerie' ? 'rf-col-offset-4 rf-col-8' : 'rf-col-offset-4 rf-col-9'}>
+            {(location.pathname === '/territoires' || location.pathname === '/ressourcerie') &&
             <a className="header-btn" href="accueil">
               <span className="conseillers-logo-btn"></span>
               <span className="conseillers-texte-btn">Liste des conseillers</span>
             </a>
             }
-            {location.pathname === '/accueil' &&
+            {(location.pathname === '/accueil' || location.pathname === '/ressourcerie') &&
             <a className="header-btn" href="territoires">
               <span className="stats-logo-btn"></span>
               <span className="stats-texte-btn">Statistiques par territoire</span>
             </a>
             }
-            <a className="header-btn" title="Prochainement disponible !">
+            {location.pathname !== '/ressourcerie' &&
+            <a className="header-btn" href="ressourcerie">
               <span className="ressourcerie-logo-btn"></span>
               <span className="ressourcerie-texte-btn">Ressourcerie</span>
             </a>
-            <a className="header-btn" title="Prochainement disponible !">
+            }
+            <a className="header-btn" href={lienMattermost}>
               <span className="discussion-logo-btn"></span>
               <span className="discussion-texte-btn">Espace de discussion</span>
             </a>

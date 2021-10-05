@@ -151,7 +151,7 @@ function Conseillers() {
                         </button>
                       </th>
                       <th>
-                        <button className="filtre-btn" onClick={ordreColonne}>
+                        <button className="filtre-btn" onClick={ordreColonne} style={{ width: '104px' }}>
                           <span id="dateFinFormation">
                             Date de fin <br/> de formation
                             { (ordreNom !== 'dateFinFormation' || ordreNom === 'dateFinFormation' && ordre) &&
@@ -268,7 +268,7 @@ function Conseillers() {
           </div>
         </div>
       </div>
-      <Footer type="support"/>
+      <Footer/>
     </>
   );
 }
