@@ -4,7 +4,6 @@ import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Menu from './connected/Menu';
 import { menuActions } from '../actions';
-import { convertToObject } from 'typescript';
 
 function Header({ linkAccount }) {
 
