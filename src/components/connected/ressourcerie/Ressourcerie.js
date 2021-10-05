@@ -6,7 +6,7 @@ import DerniersAjouts from './DerniersAjouts';
 import Footer from '../../Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import { ressourcesActions } from '../../../actions/ressources.actions';
-
+import ReactTooltip from 'react-tooltip';
 
 function Ressourcerie() {
 
@@ -41,9 +41,13 @@ function Ressourcerie() {
               <Thematiques />
               <DerniersAjouts ressources={dernierAjout}/>
             </div>
-            <div className="rf-col-6">
+            <div className="rf-col-6 prochainement" data-tip="
+              <img class='infobulle-image' src='/logos/abeille-roue.png'/>
+              <div><b>En travaux !</b></div>
+              <div>Cette fonctionnalité sera disponible prochainement.</div>">
               <Tags />
             </div>
+            <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
           </>
           }
         </div>
