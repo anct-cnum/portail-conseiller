@@ -146,6 +146,86 @@
   background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.4);
 }
+
+/* Custom menu header */
+.rf-nav__list {
+  margin: -24px -1rem;
+  padding: 0 0 7px;
+}
+.rf-nav__btn[aria-expanded="true"] {
+  background-color: #9A9AFF;
+  color: #000092 !important;
+}
+.rf-custom-link {
+  padding: 2.2rem 1rem !important;
+  background-color: #2a2a2a;
+  font-size: 1rem !important;
+  color: #fff !important;
+  height: 98px !important;
+  line-height: 1.5rem;
+  cursor: pointer;
+  border: none;
+  &:hover{
+    background-color: #9A9AFF;
+    color: #000092 !important;
+  }
+}
+.rf-menu::after {
+  box-shadow: none;
+  background: #1e1e1e;
+}
+.link-actif {
+  background-color: #9A9AFF;
+  color: #000092 !important;
+}
+.logo-discussion {
+  position: relative;
+  width: 34px;
+  top: 6px;
+}
+.texte-aide {
+  position: relative;
+  margin-left: 10px;
+  bottom: 4px;
+}
+.rf-menu__list {
+  background-color: #1e1e1e;
+}
+.lien-aide {
+  box-shadow: none !important;
+  outline: none !important;
+}
+.sous-titre-lien {
+  font-size: 12px;
+  line-height: 24px;
+  color: #fff;
+}
+#menu-liens-aide {
+  background-color: #1e1e1e;
+  text-align: left;
+  padding: 15px;
+  left: 32px;
+}
+.aide-coop {
+  padding-bottom: 12px;
+}
+.aide-metier {
+  border-top: 1px solid #bfbfe3;
+  padding-top: 12px;
+}
+/*Footer support */
+.lien-footer {
+  box-shadow: none !important;
+  margin-right: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+  img {
+    margin-right: 12px;
+  }
+}
+
 /* Modal Gestion */
 .modalOpened {
   opacity: 1;

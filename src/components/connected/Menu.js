@@ -23,7 +23,7 @@ function Menu() {
             id="navigation"
             role="navigation"
             aria-label="Menu principal"
-            style={{ boxShadow: 'none' }}>
+            style={{ boxShadow: 'none', zIndex: 1 }}>
             <ul className="rf-nav__list" style={{ paddingBottom: '15px' }}>
               <li className="rf-nav__item">
                 <Link
