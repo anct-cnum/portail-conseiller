@@ -168,7 +168,7 @@ function Territoires() {
           </div>
         </div>
       </div>
-      <Footer type="support"/>
+      <Footer/>
     </>
   );
 }

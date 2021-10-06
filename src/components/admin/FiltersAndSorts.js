@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import FilterDate from './FilterDate';
@@ -16,6 +16,12 @@ function FiltersAndSorts({ resetPage }) {
   let filtreProfil = useSelector(state => state.filtersAndSorts?.profil);
   let filtreCertifie = useSelector(state => state.filtersAndSorts?.certifie);
   const pagination = useSelector(state => state.pagination);
+
+  const [toggleFiltre, setToggleFiltre] = useState(false);
+
+  const filtreClick = () => {
+    setToggleFiltre(!toggleFiltre);
+  };
 
   useEffect(() => {
     if (location.pathname === '/accueil') {
@@ -42,17 +48,25 @@ function FiltersAndSorts({ resetPage }) {
             <nav className="rf-nav" id="navigation-sort" role="navigation">
               <ul className="rf-nav__list">
                 <li className="rf-nav__item">
-                  <button className="rf-nav__btn admin-select" aria-expanded="false" aria-controls="menu-territoire" aria-current="true" >
+                  <button className="rf-nav__btn admin-select" aria-expanded={toggleFiltre}
+                    aria-controls="menu-territoire" aria-current="true" onClick={filtreClick} >
                     { territoire === 'departement' ? 'Affichage par département' : 'Affichage par région'} &nbsp;
-                    <i className="ri-arrow-down-s-line chevron"></i>
+                    { !toggleFiltre &&
+                      <i className="ri-arrow-down-s-line chevron icone-2"></i>
+                    }
+                    { toggleFiltre &&
+                      <i className="ri-arrow-up-s-line chevron icone-2"></i>
+                    }
                   </button>
-                  <div className="rf-collapse rf-menu" id="menu-territoire">
+                  <div className={ toggleFiltre === true ? 'rf-collapse--expanded rf-menu' : 'rf-collapse rf-nav--expanded rf-menu'}
+                    id="menu-territoire">
                     <ul className="rf-menu__list">
                       <li>
                         <button id={ territoire === 'departement' ? 'region' : 'departement'}
                           className="admin-select-option" onClick={handleTerritoire}>
                           { territoire === 'departement' ? 'Affichage par région' : 'Affichage par département' }
                         </button></li>
+
                     </ul>
                   </div>
                 </li>
