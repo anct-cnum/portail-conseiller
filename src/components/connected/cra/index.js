@@ -28,7 +28,7 @@ function Cra() {
         <Accompagnement/>
         <ValidationButton/>
       </div>
-      <Footer type="support" titreBouton="Donner mon avis sur cette page"/>
+      <Footer type="support"/>
     </>
   );
 }

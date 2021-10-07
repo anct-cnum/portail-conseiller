@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Footer({ type, titreBouton }) {
+function Footer({ type }) {
+
+  const aideCoop = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide_espace_coop';
+  const aideMetier = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide-metier';
 
   return (
     <footer className="rf-footer" role="contentinfo" id="footer">
@@ -57,17 +60,20 @@ function Footer({ type, titreBouton }) {
                     <div>
                       <div className="rf-container" style={{ padding: 0 }}>
                         <div className="rf-grid-row">
-                          <div className="rf-col-xs-12 rf-col-sm-6">
-                            <p style={{ fontSize: '16px', lineHeight: '24px', marginBottom: '2.5rem' }}>
-                              L&rsquo;équipe de conception de la plateforme Conseiller numérique France Services travaille en amélioration continue.
-                              Vous avez une idée, une réclamation, vous souhaitez exprimer un avis ? N&rsquo;hésitez pas à nous contacter en cliquant
-                              sur le bouton ci-contre
-                            </p>
-                          </div>
-                          <div className="rf-col-xs-12 rf-col-sm-6 footerButton" style={{ textAlign: 'center', marginTop: '0.8rem' }}>
-                            <a className="rf-btn support-btn" target="blank" href="https://aide.conseiller-numerique.gouv.fr/fr/">
-                              {titreBouton === undefined ? 'Contacter le support' : titreBouton}
+                          <div className="rf-col-12 rf-mb-2w">
+                            <a className="lien-footer" href={aideCoop} target="blank" rel="noreferrer">
+                              <img className="logo-discussion" src="logos/bulle-ressourcerie.svg"/> Aide espace Coop
                             </a>
+                            <a className="lien-footer" href={aideMetier} target="blank" rel="noreferrer">
+                              <img className="logo-discussion" src="logos/bulle-ressourcerie.svg"/> Aide métier
+                            </a>
+                          </div>
+                          <div className="rf-col-12">
+                            <p style={{ fontSize: '14px', lineHeight: '24px', marginBottom: '2.5rem' }}>
+                              L&rsquo;&eacute;quipe Conseiller num&eacute;rique France Services travaille en am&eacute;lioration continue.
+                              Vous rencontrez un problème, vous souhaitez exprimer un avis ? Rendez-vous sur les canaux d&rsquo;aide de votre espace de
+                              discussion en cliquant sur les boutons ci-dessus.
+                            </p>
                           </div>
                         </div>
                       </div>
@@ -76,27 +82,23 @@ function Footer({ type, titreBouton }) {
                     <div className="rf-footer__bottom">
                       <ul className="rf-footer__bottom-list">
                         <li className="rf-footer__bottom-item">
-                          <a className="rf-footer__bottom-link rf-pr-1w marge-responsive" target="blank"
-                            href="https://aide.conseiller-numerique.gouv.fr/fr/">FAQ</a>
-                        </li>
-                        <li className="rf-footer__bottom-item">
-                          <a className="rf-footer__bottom-link rf-px-1w" target="blank"
+                          <a className="rf-footer__bottom-link" target="blank" rel="noreferrer"
                             href="https://www.conseiller-numerique.gouv.fr/accessibilite">Accessibilité: non conforme
                           </a>
                         </li>
                         <li className="rf-footer__bottom-item">
-                          <a className="rf-footer__bottom-link rf-px-1w marge-mention" target="blank"
+                          <a className="rf-footer__bottom-link rf-px-1w marge-mention" target="blank" rel="noreferrer"
                             href="https://www.conseiller-numerique.gouv.fr/mentions-legales">Mentions légales
                           </a>
                         </li>
                         <li className="rf-footer__bottom-item marge-bar-donnees">
-                          <a className="rf-footer__bottom-link rf-px-1w marge-donnees" target="blank"
+                          <a className="rf-footer__bottom-link rf-px-1w marge-donnees" target="blank" rel="noreferrer"
                             href="https://cdn.conseiller-numerique.gouv.fr/DonneesPersonnelles-ConseillerNumerique-Coop.pdf">
                         Données personnelles
                           </a>
                         </li>
                         <li className="rf-footer__bottom-item marge-bar-cgu">
-                          <a className="rf-footer__bottom-link rf-px-1w marge-cgu" target="blank"
+                          <a className="rf-footer__bottom-link rf-px-1w marge-cgu" target="blank" rel="noreferrer"
                             href="https://cdn.conseiller-numerique.gouv.fr/CGU-ConseillerNumerique-Coop.pdf">
                         Conditions générales d&rsquo;utilisation
                           </a>
@@ -119,8 +121,7 @@ function Footer({ type, titreBouton }) {
 }
 
 Footer.propTypes = {
-  type: PropTypes.string,
-  titreBouton: PropTypes.string,
+  type: PropTypes.string
 };
 
 export default Footer;
