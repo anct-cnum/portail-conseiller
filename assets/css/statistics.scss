@@ -10,6 +10,12 @@
   .periode-xs {
     display: none;
   }
+  .chevron-stats {
+    margin: 0px 2px 0px 4px;
+    position: relative;
+    font-size: 1.3rem;
+    top: 4px;
+  }
   .chevron {
     position: absolute;
   }
@@ -29,7 +35,7 @@
     font-family: Marianne;
     background-color: #1e1e1e;
     border: 1px solid #5398ff;
-    border-radius: 1.3rem;
+    border-radius: 1.4rem;
     color: #fff;
 
     .react-datepicker__triangle {

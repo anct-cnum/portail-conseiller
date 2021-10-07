@@ -20,7 +20,8 @@ function AdminHeader() {
     <>
       <div className="rf-container">
         <div className="rf-grid-row rf-grid-row--right">
-          <div className={location.pathname !== '/ressourcerie' ? 'rf-col-offset-4 rf-col-8' : 'rf-col-offset-4 rf-col-9'}>
+          <div className={location.pathname !== '/ressourcerie' ? 'rf-col-offset-4 rf-col-8' : 'rf-col-offset-4 rf-col-9'} style={
+            location.pathname !== '/ressourcerie' ? { textAlign: 'right' } : {}}>
             {(location.pathname === '/territoires' || location.pathname === '/ressourcerie') &&
             <a className="header-btn" href="accueil">
               <span className="conseillers-logo-btn"></span>
@@ -66,7 +67,7 @@ function AdminHeader() {
                 </li>
                 <li>
                   <span className="nombre-stats-header">{statistiques?.nbCras ?? 0}</span><br/>
-                  <span className="texte-stats-header">CRAs saisis</span>
+                  <span className="texte-stats-header">CRA saisis</span>
                 </li>
                 <li>
                   <span className="nombre-stats-header">{statistiques?.totalAccompagnements ?? 0}</span><br/>

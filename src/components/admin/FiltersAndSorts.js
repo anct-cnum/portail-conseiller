@@ -85,8 +85,6 @@ function FiltersAndSorts({ resetPage }) {
               &nbsp;au&nbsp;
               <FilterDate initDate={dateFin} idDate="datePickerFin" nomDate="datePickerFin"/>
             </span>
-            &nbsp;
-            <i className="ri-arrow-down-s-line chevron"></i>
           </b>
         </div>
       </div>

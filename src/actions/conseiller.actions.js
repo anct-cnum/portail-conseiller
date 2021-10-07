@@ -6,6 +6,7 @@ export const conseillerActions = {
   get,
   getAll,
   getStatistiquesPDF,
+  getStatistiquesAdminCoopPDF,
   resetStatistiquesPDFFile,
   isFormulaireChecked,
   closeFormulaire
@@ -88,6 +89,32 @@ function getStatistiquesPDF(dates) {
   }
   function failure(error) {
     return { type: 'GET_STATS_PDF_FAILURE', error };
+  }
+}
+
+function getStatistiquesAdminCoopPDF(dates, type) {
+  return dispatch => {
+    dispatch(request({}));
+    conseillerService.getStatistiquesPDF(dates, type)
+    .then(
+      data => {
+        dispatch(success(data, download(data, 'Statistiques_' + type + '_' + moment(dates.dateDebut).format('DD-MM-YYYY') + '_' +
+        moment(dates.dateFin).format('DD-MM-YYYY') + '.pdf')));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'GET_STATS_ADMINCOOP_PDF_REQUEST' };
+  }
+  function success(data, download) {
+    return { type: 'GET_STATS_ADMINCOOP_PDF_SUCCESS', data, download };
+  }
+  function failure(error) {
+    return { type: 'GET_STATS_ADMINCOOP_PDF_FAILURE', error };
   }
 }
 

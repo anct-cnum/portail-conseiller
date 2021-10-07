@@ -14,6 +14,9 @@ function StatisticsBanner(dates) {
 
   function savePDF() {
     dispatch(conseillerActions.getStatistiquesPDF(dates));
+    if (location?.conseillerIds) {
+      dispatch(conseillerActions.getStatistiquesAdminCoopPDF(dates));
+    }
   }
 
   useEffect(() => {
@@ -55,7 +58,6 @@ function StatisticsBanner(dates) {
       </div>
       <div className="rf-col-12 no-print">
         <div className="rf-container-fluid">
-          { (!typeTerritoire && !location?.idUser) &&
           <div className="rf-grid-row rf-grid-row--center">
             {/*
             <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-7 rf-col-lg-5 afficher-etapes">
@@ -96,7 +98,7 @@ function StatisticsBanner(dates) {
             </div>
 
           </div>
-          }
+
           { (typeTerritoire || location?.idUser) &&
           <div className="rf-grid-row rf-grid-row--center">
             <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-7 rf-col-lg-8 afficher-etapes">

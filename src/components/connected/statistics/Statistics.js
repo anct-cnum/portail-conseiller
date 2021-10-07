@@ -85,12 +85,11 @@ function Statistics() {
           <div className="rf-col-xs-3 rf-col-sm-7 rf-col-md-6 rf-col-lg-4">
             <div className="rf-mb-4w rf-mb-md-6w">
               <PeriodStatistics dateDebut={dateDebutStats} dateFin={dateFinStats} />
-              <i className="ri-arrow-down-s-line ri-2x chevron"></i>
             </div>
           </div>
 
           <div className="rf-col-md-6 rf-col-lg-8">
-            <hr className="hr-sm-hide"/>
+            <hr className="hr-sm-hide rf-mt-2w"/>
             <div className="rf-m-6w rf-m-xs-to-md-7v"></div>
           </div>
         </div>
