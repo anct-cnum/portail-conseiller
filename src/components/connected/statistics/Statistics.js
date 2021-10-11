@@ -114,7 +114,7 @@ function Statistics() {
       </div>
       <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats}/>
       <div className="rf-m-5w rf-m-md-9w rf-m-lg-15w"></div>
-      <Footer type="support" titreBouton="Donner mon avis sur cette page"/>
+      <Footer type="support"/>
     </div>
   );
 }

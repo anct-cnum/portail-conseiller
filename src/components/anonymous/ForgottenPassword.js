@@ -336,7 +336,7 @@ function ForgottenPassword({ match = null }) {
       </div>
       }
       {/* End content */}
-      <Footer type="support" titreBouton="Donner mon avis sur cette page"/>
+      <Footer type="support"/>
     </div>
   );
 

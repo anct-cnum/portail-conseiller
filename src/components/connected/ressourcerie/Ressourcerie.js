@@ -61,7 +61,7 @@ function Ressourcerie() {
           </div>
         </div>
       }
-      <Footer type="support" titreBouton="Donner mon avis sur cette page" />
+      <Footer type="support"/>
     </div>
   );
 }
