@@ -8,6 +8,7 @@ export const conseillerService = {
   get,
   getAll,
   getStatistiquesPDF,
+  getStatistiquesAdminCoopPDF,
   createSexeAge
 };
 
@@ -73,6 +74,16 @@ function getStatistiquesPDF(dates) {
   };
 
   return fetch(`${apiUrlRoot}/conseillers/statistiques.pdf?dateDebut=${dates.dateDebut}&dateFin=${dates.dateFin}`, requestOptions).then(handleFileResponse);
+}
+
+function getStatistiquesAdminCoopPDF(dates, type, conseillerIds, idUser) {
+  const requestOptions = {
+    method: 'GET',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+  };
+
+  return fetch(`${apiUrlRoot}/stats/admincoop/statistiques.pdf?dateDebut=${dates.dateDebut}&dateFin=${dates.dateFin}
+    &type=${type}&conseillerIds=${conseillerIds}&idUser=${idUser}`, requestOptions).then(handleFileResponse);
 }
 
 function createSexeAge(user) {

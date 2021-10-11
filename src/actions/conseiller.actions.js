@@ -92,10 +92,10 @@ function getStatistiquesPDF(dates) {
   }
 }
 
-function getStatistiquesAdminCoopPDF(dates, type) {
+function getStatistiquesAdminCoopPDF(dates, type, conseillerIds, idUser) {
   return dispatch => {
     dispatch(request({}));
-    conseillerService.getStatistiquesPDF(dates, type)
+    conseillerService.getStatistiquesAdminCoopPDF(dates, type, conseillerIds, idUser)
     .then(
       data => {
         dispatch(success(data, download(data, 'Statistiques_' + type + '_' + moment(dates.dateDebut).format('DD-MM-YYYY') + '_' +

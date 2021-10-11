@@ -6,6 +6,7 @@ import LeftPage from '../connected/statistics/LeftPage';
 import RightPage from '../connected/statistics/RightPage';
 import BottomPage from '../connected/statistics/BottomPage';
 import { statistiqueActions } from '../../actions';
+import Header from '../Header';
 
 function EnregistrerStatistiquesPdf({ match }) {
 
@@ -27,9 +28,8 @@ function EnregistrerStatistiquesPdf({ match }) {
   useEffect(() => {
     if (type === 'user') {
       dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, id));
-      console.log(id);
     } else {
-      dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, location?.conseillerIds));
+      dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, id));
     }
   }, [dateDebutStats, dateFinStats]);
 
@@ -46,6 +46,7 @@ function EnregistrerStatistiquesPdf({ match }) {
   return (
 
     <div className="Statistics">
+      <Header/>
       { donneesStatistiques !== undefined &&
         <div className="rf-container">
           <div className="rf-grid-row">
@@ -69,7 +70,6 @@ function EnregistrerStatistiquesPdf({ match }) {
             <div className="rf-col-xs-3 rf-col-sm-7 rf-col-md-6 rf-col-lg-4">
               <div className="rf-mb-4w rf-mb-md-6w">
                 <StatisticsPeriod dateDebut={dateDebutStats} dateFin={dateFinStats} />
-                <i className="ri-arrow-down-s-line ri-2x chevron"></i>
               </div>
             </div>
 
