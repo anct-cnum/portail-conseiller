@@ -64,7 +64,7 @@ function Header({ linkAccount }) {
                 <div className="rf-header__tools" style={{ marginBottom: '33px' }}>
                   <div className="rf-shortcuts">
                     <ul className="rf-shortcuts__list">
-                      <li className="rf-shortcuts__item">
+                      <li className="rf-shortcuts__item header-aide">
                         <div className="" role="navigation" aria-label="aide">
                           <ul className="rf-nav__list">
                             <li className="rf-nav__item">
