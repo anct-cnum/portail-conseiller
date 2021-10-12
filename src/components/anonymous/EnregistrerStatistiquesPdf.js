@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import StatisticsPeriod from '../connected/statistics/StatisticsPeriod';
@@ -14,48 +14,44 @@ function EnregistrerStatistiquesPdf({ match }) {
 
   const type = match.params.type;
   const id = match.params.id;
-
-  const [inputsPDF, setInputsPDF] = useState({
-    datePickerDebutPDF: 0,
-    datePickerFinPDF: 0
-  });
+  const dateDebut = new Date(match.params.dateDebut);
+  const dateFin = new Date(match.params.dateFin);
 
   let dateDebutStats = useSelector(state => state.statistique?.dateDebutStats);
   let dateFinStats = useSelector(state => state.statistique?.dateFinStats);
   let donneesStatistiques = useSelector(state => state.statistique?.statsData);
+  let territoire = useSelector(state => state.statistique?.territoire);
   let typeTerritoire = type !== 'user' ? type : '';
 
   useEffect(() => {
+    if (type !== 'user' && territoire === undefined) {
+      dispatch(statistiqueActions.getTerritoire(type, id, dateFin));
+    }
+  });
+
+  useEffect(() => {
+    dispatch(statistiqueActions.changeDateStatsDebut(dateDebut));
+    dispatch(statistiqueActions.changeDateStatsFin(dateFin));
     if (type === 'user') {
       dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, id));
     } else {
-      dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, id));
+      dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, territoire));
     }
-  }, [dateDebutStats, dateFinStats]);
-
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setInputsPDF(inputsPDF => ({ ...inputsPDF, [name]: value }));
-  };
-
-  const chargeStatsPDF = () => {
-    dispatch(statistiqueActions.changeDateStatsDebut(new Date(parseInt(inputsPDF.datePickerDebutPDF))));
-    dispatch(statistiqueActions.changeDateStatsFin(new Date(parseInt(inputsPDF.datePickerFinPDF))));
-  };
+  }, [territoire]);
 
   return (
 
     <div className="Statistics">
       <Header/>
-      { donneesStatistiques !== undefined &&
+      { donneesStatistiques?.nbAccompagnement &&
         <div className="rf-container">
           <div className="rf-grid-row">
             <div className="rf-col-12">
               <div className="rf-mt-2w rf-mt-md-9w rf-mt-lg-13w"></div>
-              <h1 className="title">
+              <h1 className={type !== 'user' ? 'title title-print-territoire' : 'title'}>
                 {type !== 'user' &&
                 <>
-                  Statistiques - {location?.nomTerritoire}
+                  Statistiques - {type === 'region' ? territoire?.nomRegion : territoire?.nomDepartement }
                 </>
                 }
                 {type === 'user' &&
@@ -80,20 +76,14 @@ function EnregistrerStatistiquesPdf({ match }) {
           </div>
 
           <div className="rf-grid-row">
-            <LeftPage donneesStats={donneesStatistiques} type={typeTerritoire}/>
+            <LeftPage donneesStats={donneesStatistiques} type={typeTerritoire} />
             <div className="rf-col-offset-md-1"></div>
-            <RightPage donneesStats={donneesStatistiques}/>
+            <RightPage donneesStats={donneesStatistiques} type={typeTerritoire}/>
             <BottomPage donneesStats={donneesStatistiques}/>
-            <div className="no-print">
-              <input type="text" id="datePickerDebutPDF" name="datePickerDebutPDF" onChange={handleChange}/>
-              <input type="text" id="datePickerFinPDF" name="datePickerFinPDF" onChange={handleChange} />
-              <button id="chargePDF" onClick={chargeStatsPDF}>click</button>
-            </div>
           </div>
         </div>
       }
     </div>
-
   );
 }
 

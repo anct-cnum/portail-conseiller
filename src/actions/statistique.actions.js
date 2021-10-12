@@ -5,6 +5,7 @@ export const statistiqueActions = {
   getStatsAdmin,
   changeDateStatsDebut,
   changeDateStatsFin,
+  getTerritoire,
   getStatsTerritoires,
   getStatsCraTerritoire,
 };
@@ -94,12 +95,35 @@ function getStatsTerritoires(territoire = 'departement', dateDebut, dateFin, pag
     return { type: 'GET_STATS_TERRITOIRES_FAILURE', error };
   }
 }
-
-function getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, conseillerIds) {
+function getTerritoire(typeTerritoire, idTerritoire, date) {
   return dispatch => {
     dispatch(request());
 
-    statistiqueService.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, conseillerIds)
+    statistiqueService.getTerritoire(typeTerritoire, idTerritoire, date)
+    .then(
+      territoire => dispatch(success(territoire)),
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'GET_TERRITOIRE_REQUEST' };
+  }
+  function success(territoire) {
+    return { type: 'GET_TERRITOIRE_SUCCESS', territoire };
+  }
+  function failure(error) {
+    return { type: 'GET_TERRITOIRE_FAILURE', error };
+  }
+}
+
+function getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, territoire) {
+  return dispatch => {
+    dispatch(request());
+
+    statistiqueService.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, territoire)
     .then(
       statsTerritoire => {
         dispatch(success(statsTerritoire));

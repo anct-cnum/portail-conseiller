@@ -4,6 +4,7 @@ import { userService } from './user.service';
 export const statistiqueService = {
   getStatsCra,
   getStatsAdmin,
+  getTerritoire,
   getStatsTerritoires,
   getStatsCraTerritoire
 };
@@ -33,6 +34,18 @@ function getStatsAdmin() {
   return fetch(`${apiUrlRoot}/stats/admincoop/dashboard`, requestOptions).then(handleResponse);
 }
 
+function getTerritoire(typeTerritoire, idTerritoire, date) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+  const requestOptions = {
+    method: 'GET',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+  };
+  return fetch(
+    `${apiUrlRoot}/stats/admincoop/territoire?typeTerritoire=${typeTerritoire}&idTerritoire=${idTerritoire}&dateFin=${date}`,
+    requestOptions
+  ).then(handleResponse);
+}
+
 function getStatsTerritoires(territoire, dateDebut, dateFin, page, nomOrdre, ordre) {
   const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
@@ -51,7 +64,7 @@ function getStatsTerritoires(territoire, dateDebut, dateFin, page, nomOrdre, ord
   ).then(handleResponse);
 }
 
-function getStatsCraTerritoire(dateDebut, dateFin, typeTerritoire, conseillerIds) {
+function getStatsCraTerritoire(dateDebut, dateFin, typeTerritoire, territoire) {
   const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
     method: 'POST',
@@ -60,7 +73,7 @@ function getStatsCraTerritoire(dateDebut, dateFin, typeTerritoire, conseillerIds
       'dateDebut': dateDebut,
       'dateFin': dateFin,
       'typeTerritoire': typeTerritoire,
-      'conseillerIds': conseillerIds
+      'territoire': territoire
     })
   };
 

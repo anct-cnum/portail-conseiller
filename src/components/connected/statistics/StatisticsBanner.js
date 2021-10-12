@@ -2,22 +2,26 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { conseillerActions, statistiqueActions } from '../../../actions';
 
-function StatisticsBanner(dates) {
+function StatisticsBanner({ dateDebut, dateFin, idTerritoire }) {
+
   const location = useLocation();
   const dispatch = useDispatch();
   const downloadError = useSelector(state => state.conseiller?.downloadError);
   const user = useSelector(state => state.authentication.user.user);
   const blob = useSelector(state => state.conseiller?.blob);
-  let typeTerritoire = location?.conseillerIds ? useSelector(state => state.filtersAndSorts?.territoire) : '';
+
+  const territoire = location?.territoire;
+  let typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : '';
 
   function savePDF() {
     if (user?.role === 'admin_coop') {
       const type = typeTerritoire ? typeTerritoire : 'user';
-      dispatch(conseillerActions.getStatistiquesAdminCoopPDF(dates, type, location?.conseillerIds, location?.idUser));
+      dispatch(conseillerActions.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser));
     } else {
-      dispatch(conseillerActions.getStatistiquesPDF(dates));
+      dispatch(conseillerActions.getStatistiquesPDF(dateDebut, dateFin));
     }
   }
 
@@ -129,5 +133,11 @@ function StatisticsBanner(dates) {
     </>
   );
 }
+
+StatisticsBanner.propTypes = {
+  dateDebut: PropTypes.instanceOf(Date),
+  dateFin: PropTypes.instanceOf(Date),
+  idTerritoire: PropTypes.string
+};
 
 export default StatisticsBanner;

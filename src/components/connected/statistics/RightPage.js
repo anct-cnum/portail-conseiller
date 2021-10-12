@@ -118,7 +118,8 @@ function RightPage(props) {
       <div className="rf-col-12 rf-col-md-5 rf-col-lg-7 graphique-responsive-lg">
         <div className="rf-container-fluid">
           <div className="rf-grid-row ">
-            <div className="rf-col-12 theme-print">
+            <div className={(props?.type === 'region' || props?.type === 'departement') ?
+              'rf-col-12 theme-territoire-print' : 'rf-col-12 theme-print'}>
               <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphique} />
             </div>
 
@@ -184,6 +185,7 @@ function RightPage(props) {
 
 RightPage.propTypes = {
   donneesStats: PropTypes.object,
+  type: PropTypes.string,
 };
 
 export default RightPage;

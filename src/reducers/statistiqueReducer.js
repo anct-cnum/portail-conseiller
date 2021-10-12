@@ -67,6 +67,25 @@ export default function statistique(state = initialState, action) {
         statsTerritoiresError: action.error,
         statsTerritoiresLoading: false,
       };
+    case 'GET_TERRITOIRE_REQUEST':
+      return {
+        ...state,
+        territoireLoading: true,
+        territoireError: false,
+      };
+    case 'GET_TERRITOIRE_SUCCESS':
+      return {
+        ...state,
+        territoire: action.territoire,
+        territoireLoading: false,
+        territoireError: false,
+      };
+    case 'GET_TERRITOIRE_FAILURE':
+      return {
+        ...state,
+        territoireError: action.error,
+        territoireLoading: false,
+      };
     case 'GET_STATS_CRA_TERRITOIRE_REQUEST':
       return {
         ...state,

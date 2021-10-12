@@ -32,7 +32,7 @@ function App() {
           <Route path="/renouveler-mot-de-passe/:token" component={ForgottenPassword} />
           <Route path="/inscription/:token" component={ChoosePassword} />
           <Route path="/validation" component={ValidationAccount} />
-          <Route path="/statistiques/:type/:id" component={EnregistrerStatistiquesPdf} />
+          <Route path="/statistiques/:type/:id/:dateDebut/:dateFin" component={EnregistrerStatistiquesPdf} />
           {user?.role === 'conseiller' &&
             <PrivateRoute exact path="*" component={Home}/>
           }

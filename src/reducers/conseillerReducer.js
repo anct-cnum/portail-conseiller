@@ -33,6 +33,24 @@ export default function conseiller(state = initState, action) {
       return {
         error: action.error
       };
+    case 'GET_STATS_ADMINCOOP_PDF_REQUEST':
+      return {
+        loadingPDF: true,
+        error: false
+      };
+    case 'GET_STATS_ADMINCOOP_PDF_SUCCESS':
+      return {
+        ...state,
+        blob: action.data,
+        statistiquesPDF: action.download,
+        loadingPDF: false,
+        error: false
+      };
+    case 'GET_STATS_ADMINCOOP_PDF_FAILURE':
+      return {
+        error: action.error,
+        loadingPDF: false
+      };
     case 'RESET_FILE':
       return {
         ...state,
