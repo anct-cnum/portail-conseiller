@@ -21,7 +21,8 @@ function getRessources() {
     method: 'GET',
     headers: authHeader()
   };
-  return fetch(`${apiUrlRoot}/ressources?$limit=50`, requestOptions).then(handleResponse);
+
+  return fetch(`${apiUrlRoot}/ressources?$limit=100`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
