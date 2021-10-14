@@ -118,7 +118,7 @@ function RightPage(props) {
       <div className="rf-col-12 rf-col-md-5 rf-col-lg-7 graphique-responsive-lg">
         <div className="rf-container-fluid">
           <div className="rf-grid-row ">
-            <div className={(props?.type === 'region' || props?.type === 'departement') ?
+            <div className={(props?.type === 'codeRegion' || props?.type === 'codeDepartement') ?
               'rf-col-12 theme-territoire-print' : 'rf-col-12 theme-print'}>
               <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphique} />
             </div>

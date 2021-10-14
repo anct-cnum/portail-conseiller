@@ -14,11 +14,11 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire }) {
   const blob = useSelector(state => state.conseiller?.blob);
 
   const territoire = location?.territoire;
-  let typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : '';
+  let typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : null;
 
   function savePDF() {
     if (user?.role === 'admin_coop') {
-      const type = typeTerritoire ? typeTerritoire : 'user';
+      const type = typeTerritoire ?? 'user';
       dispatch(conseillerActions.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser));
     } else {
       dispatch(conseillerActions.getStatistiquesPDF(dateDebut, dateFin));

@@ -122,20 +122,6 @@
     text-align: right;
     margin-right: 1rem;
   }
-  .number-departement, .number-region {
-    font-weight: 600;
-    text-align: left;
-    font-size: 32px;
-    line-height: 32px;
-    letter-spacing: 0;
-  }
-  .numbers-departement, .numbers-region {
-    font-size: 24px;
-    font-weight: 600;
-    text-align: left;
-    line-height: 22px;
-    letter-spacing: 0;
-  }
   .text {
     font-size: 16px;
     letter-spacing: 0;
@@ -147,7 +133,21 @@
     letter-spacing: 0;
     line-height: 20px;
   }
-  .text-departement, .text-region {
+  .number-codeDepartement, .number-departement, .number-codeRegion, .number-region {
+    font-weight: 600;
+    text-align: left;
+    font-size: 32px;
+    line-height: 32px;
+    letter-spacing: 0;
+  }
+  .numbers-codeDepartement, .numbers-departement .numbers-codeRegion, .numbers-region {
+    font-size: 24px;
+    font-weight: 600;
+    text-align: left;
+    line-height: 22px;
+    letter-spacing: 0;
+  }
+  .text-codeDepartement, .text-departement, .text-codeRegion .text-region {
     font-size: 16px;
     letter-spacing: 0;
     line-height: 20px;

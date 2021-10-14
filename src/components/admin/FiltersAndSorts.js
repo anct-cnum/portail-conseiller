@@ -50,7 +50,7 @@ function FiltersAndSorts({ resetPage }) {
                 <li className="rf-nav__item">
                   <button className="rf-nav__btn admin-select" aria-expanded={toggleFiltre}
                     aria-controls="menu-territoire" aria-current="true" onClick={filtreClick} >
-                    { territoire === 'departement' ? 'Affichage par département' : 'Affichage par région'} &nbsp;
+                    { territoire === 'codeDepartement' ? 'Affichage par département' : 'Affichage par région'} &nbsp;
                     { !toggleFiltre &&
                       <i className="ri-arrow-down-s-line chevron icone-2"></i>
                     }
@@ -62,9 +62,9 @@ function FiltersAndSorts({ resetPage }) {
                     id="menu-territoire">
                     <ul className="rf-menu__list">
                       <li>
-                        <button id={ territoire === 'departement' ? 'region' : 'departement'}
+                        <button id={ territoire === 'codeDepartement' ? 'codeRegion' : 'codeDepartement'}
                           className="admin-select-option" onClick={handleTerritoire}>
-                          { territoire === 'departement' ? 'Affichage par région' : 'Affichage par département' }
+                          { territoire === 'codeDepartement' ? 'Affichage par région' : 'Affichage par département' }
                         </button></li>
 
                     </ul>

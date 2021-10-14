@@ -69,7 +69,7 @@ function Statistics() {
             <h1 className="title">
               {territoire &&
               <>
-                Statistiques - {typeTerritoire === 'region' ? territoire?.nomRegion : territoire?.nomDepartement }
+                Statistiques - { territoire?.nomDepartement ?? territoire?.nomRegion }
               </>
               }
               {location?.idUser &&
@@ -114,7 +114,7 @@ function Statistics() {
         }
       </div>
       <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats}
-        idTerritoire={typeTerritoire === 'region' ? territoire?.codeRegion : territoire?.codeDepartement } />
+        idTerritoire={territoire?.[typeTerritoire]} />
       <div className="rf-m-5w rf-m-md-9w rf-m-lg-15w"></div>
       <Footer type="support" titreBouton="Donner mon avis sur cette page"/>
     </div>

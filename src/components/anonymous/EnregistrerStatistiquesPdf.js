@@ -51,7 +51,7 @@ function EnregistrerStatistiquesPdf({ match }) {
             <h1 className={type !== 'user' ? 'title title-print-territoire' : 'title'}>
               {type !== 'user' &&
               <>
-                Statistiques - {type === 'region' ? territoire?.nomRegion : territoire?.nomDepartement }
+                Statistiques - { territoire?.nomDepartement ?? territoire?.nomRegion }
               </>
               }
               {type === 'user' &&

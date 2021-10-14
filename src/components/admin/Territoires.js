@@ -126,12 +126,12 @@ function Territoires() {
                         </button>
                       </th>
                       <th>
-                        { filtreTerritoire === 'region' &&
+                        { filtreTerritoire === 'codeRegion' &&
                           <button className="filtre-btn">
                             <span id="personnesAccompagnees">Taux d&rsquo;activation</span>
                           </button>
                         }
-                        { filtreTerritoire === 'departement' &&
+                        { filtreTerritoire === 'codeDepartement' &&
                           <button className="filtre-btn" onClick={ordreColonne}>
                             <span id="tauxActivation">Taux d&rsquo;activation
                               { (ordreNom !== 'tauxActivation' || ordreNom === 'tauxActivation' && ordre) &&
@@ -156,7 +156,7 @@ function Territoires() {
                     { (!territoires?.items || !territoires?.items?.data) &&
                       <tr>
                         <td colSpan="9" className="not-found pair">
-                          {filtreTerritoire === 'departement' ? 'Aucun département trouvé' : 'Aucune région trouvée' }
+                          {filtreTerritoire === 'codeDepartement' ? 'Aucun département trouvé' : 'Aucune région trouvée' }
                         </td>
                       </tr>
                     }
