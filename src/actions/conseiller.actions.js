@@ -1,6 +1,6 @@
 import { conseillerService } from '../services/conseiller.service.js';
 import download from 'downloadjs';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 export const conseillerActions = {
   get,
@@ -66,14 +66,14 @@ function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre
   }
 }
 
-function getStatistiquesPDF(dates) {
+function getStatistiquesPDF(dateDebut, dateFin) {
   return dispatch => {
-    dispatch(request({}));
-    conseillerService.getStatistiquesPDF(dates)
+    dispatch(request());
+    conseillerService.getStatistiquesPDF(dateDebut, dateFin)
     .then(
       data => {
-        dispatch(success(data, download(data, 'Mes_statistiques_' + moment(dates.dateDebut).format('DD-MM-YYYY') + '_' +
-        moment(dates.dateFin).format('DD-MM-YYYY') + '.pdf')));
+        dispatch(success(data, download(data, 'Mes_statistiques_' + dayjs(dateDebut).format('DD-MM-YYYY') + '_' +
+        dayjs(dateFin).format('DD-MM-YYYY') + '.pdf')));
       },
       error => {
         dispatch(failure(error));
@@ -94,12 +94,12 @@ function getStatistiquesPDF(dates) {
 
 function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType) {
   return dispatch => {
-    dispatch(request({}));
+    dispatch(request());
     conseillerService.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType)
     .then(
       data => {
-        dispatch(success(data, download(data, 'Statistiques_' + type + '_' + moment(dateDebut).format('DD-MM-YYYY') + '_' +
-        moment(dateFin).format('DD-MM-YYYY') + '.pdf')));
+        dispatch(success(data, download(data, 'Statistiques_' + type + '_' + dayjs(dateDebut).format('DD-MM-YYYY') + '_' +
+        dayjs(dateFin).format('DD-MM-YYYY') + '.pdf')));
       },
       error => {
         dispatch(failure(error));

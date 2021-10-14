@@ -64,20 +64,15 @@ function getStatsTerritoires(territoire, dateDebut, dateFin, page, nomOrdre, ord
   ).then(handleResponse);
 }
 
-function getStatsCraTerritoire(dateDebut, dateFin, typeTerritoire, territoire) {
+function getStatsCraTerritoire(dateDebut, dateFin, typeTerritoire, conseillerIds) {
   const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
-    method: 'POST',
+    method: 'GET',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
-    body: JSON.stringify({
-      'dateDebut': dateDebut,
-      'dateFin': dateFin,
-      'typeTerritoire': typeTerritoire,
-      'territoire': territoire
-    })
   };
-
-  return fetch(`${apiUrlRoot}/stats/territoire/cra`, requestOptions).then(handleResponse);
+  conseillerIds = JSON.stringify(conseillerIds);
+  return fetch(`${apiUrlRoot}/stats/territoire/cra?dateDebut=${dateDebut}&dateFin=${dateFin}&typeTerritoire=${typeTerritoire}&conseillerIds=${conseillerIds}`,
+    requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

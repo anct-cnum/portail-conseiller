@@ -20,6 +20,7 @@ export default function conseiller(state = initState, action) {
       };
     case 'GET_STATS_PDF_REQUEST':
       return {
+        ...state,
         loadingPDF: true
       };
     case 'GET_STATS_PDF_SUCCESS':
@@ -31,10 +32,12 @@ export default function conseiller(state = initState, action) {
       };
     case 'GET_STATS_PDF_FAILURE':
       return {
+        ...state,
         error: action.error
       };
     case 'GET_STATS_ADMINCOOP_PDF_REQUEST':
       return {
+        ...state,
         loadingPDF: true,
         error: false
       };
@@ -44,10 +47,10 @@ export default function conseiller(state = initState, action) {
         blob: action.data,
         statistiquesPDF: action.download,
         loadingPDF: false,
-        error: false
       };
     case 'GET_STATS_ADMINCOOP_PDF_FAILURE':
       return {
+        ...state,
         error: action.error,
         loadingPDF: false
       };

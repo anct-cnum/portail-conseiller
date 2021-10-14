@@ -59,7 +59,6 @@ export default function statistique(state = initialState, action) {
         ...state,
         statsTerritoires: action.statsTerritoires,
         statsTerritoiresLoading: false,
-        statsTerritoiresError: false,
       };
     case 'GET_STATS_TERRITOIRES_FAILURE':
       return {
@@ -78,7 +77,6 @@ export default function statistique(state = initialState, action) {
         ...state,
         territoire: action.territoire,
         territoireLoading: false,
-        territoireError: false,
       };
     case 'GET_TERRITOIRE_FAILURE':
       return {

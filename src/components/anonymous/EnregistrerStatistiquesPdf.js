@@ -34,8 +34,8 @@ function EnregistrerStatistiquesPdf({ match }) {
     dispatch(statistiqueActions.changeDateStatsFin(dateFin));
     if (type === 'user') {
       dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, id));
-    } else {
-      dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, territoire));
+    } else if (type !== 'user' && territoire?.conseillerIds) {
+      dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, territoire?.conseillerIds));
     }
   }, [territoire]);
 
@@ -43,46 +43,54 @@ function EnregistrerStatistiquesPdf({ match }) {
 
     <div className="Statistics">
       <Header/>
-      { donneesStatistiques?.nbAccompagnement &&
-        <div className="rf-container">
-          <div className="rf-grid-row">
-            <div className="rf-col-12">
-              <div className="rf-mt-2w rf-mt-md-9w rf-mt-lg-13w"></div>
-              <h1 className={type !== 'user' ? 'title title-print-territoire' : 'title'}>
-                {type !== 'user' &&
-                <>
-                  Statistiques - {type === 'region' ? territoire?.nomRegion : territoire?.nomDepartement }
-                </>
-                }
-                {type === 'user' &&
-                  <>Statistiques</>
-                }
-              </h1>
-              <div className="rf-mb-5w rf-mt-md-4w"></div>
+      <div className="rf-container">
+
+        <div className="rf-grid-row">
+          <div className="rf-col-12">
+            <div className="rf-mt-2w rf-mt-md-9w rf-mt-lg-13w"></div>
+            <h1 className={type !== 'user' ? 'title title-print-territoire' : 'title'}>
+              {type !== 'user' &&
+              <>
+                Statistiques - {type === 'region' ? territoire?.nomRegion : territoire?.nomDepartement }
+              </>
+              }
+              {type === 'user' &&
+                <>Statistiques</>
+              }
+            </h1>
+            <div className="rf-mb-5w rf-mt-md-4w"></div>
+          </div>
+        </div>
+
+        <div className="rf-grid-row">
+          <div className="rf-col-xs-3 rf-col-sm-7 rf-col-md-6 rf-col-lg-4">
+            <div className="rf-mb-4w rf-mb-md-6w">
+              <StatisticsPeriod dateDebut={dateDebutStats} dateFin={dateFinStats} />
             </div>
           </div>
 
-          <div className="rf-grid-row">
-            <div className="rf-col-xs-3 rf-col-sm-7 rf-col-md-6 rf-col-lg-4">
-              <div className="rf-mb-4w rf-mb-md-6w">
-                <StatisticsPeriod dateDebut={dateDebutStats} dateFin={dateFinStats} />
-              </div>
-            </div>
-
-            <div className="rf-col-md-6 rf-col-lg-8">
-              <hr className="hr-sm-hide"/>
-              <div className="rf-m-6w rf-m-xs-to-md-7v"></div>
-            </div>
+          <div className="rf-col-md-6 rf-col-lg-8">
+            <hr className="hr-sm-hide"/>
+            <div className="rf-m-6w rf-m-xs-to-md-7v"></div>
           </div>
-
+        </div>
+        { donneesStatistiques &&
           <div className="rf-grid-row">
             <LeftPage donneesStats={donneesStatistiques} type={typeTerritoire} />
             <div className="rf-col-offset-md-1"></div>
             <RightPage donneesStats={donneesStatistiques} type={typeTerritoire}/>
             <BottomPage donneesStats={donneesStatistiques}/>
           </div>
-        </div>
-      }
+        }
+        { !donneesStatistiques &&
+          <div className="rf-grid-row">
+            <div className="rf-col-12">
+              <p>Aucunes statistiques n&rsquo;ont &eacute;t&eacute; trouv&eacute;s pour la p&eacute;riode donn&eacute;e</p>
+            </div>
+          </div>
+        }
+
+      </div>
     </div>
   );
 }

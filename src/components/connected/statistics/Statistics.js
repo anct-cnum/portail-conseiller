@@ -30,7 +30,7 @@ function Statistics() {
     if (location?.idUser) {
       dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, location?.idUser));
     } else if (territoire) {
-      dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, territoire));
+      dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, territoire.conseillerIds));
     } else {
       dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats));
     }
