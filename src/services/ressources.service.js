@@ -22,7 +22,7 @@ function getRessources() {
     headers: authHeader()
   };
 
-  return fetch(`${apiUrlRoot}/ressources?$limit=100`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/ressources`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
