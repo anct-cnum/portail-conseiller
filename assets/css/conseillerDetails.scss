@@ -9,7 +9,7 @@
 
   .circle-true, .circle-false {
     display: inline-block;
-    margin-right: 21px;
+    margin-right: 16px;
   }
 
   .statistiques-btn {
@@ -25,7 +25,10 @@
     color: #fff;
     padding: 21px;
   }
-
+  .email {
+    color: #9a9aff;
+    box-shadow: none;
+  }
   @media (max-width: 992px) {
     .recrutementCol {
       margin-right: 16px;

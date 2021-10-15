@@ -9,7 +9,8 @@ function StatisticsWorkshop({ type, nbAteliers, nbTotalParticipant }) {
 
   return (
     <div className="rf-grid-row">
-      <div className={ type ? 'rf-col-12' : 'rf-col-2 rf-col-lg-3' }><ElementNumber nombre={nbAteliers} classe={`numbers${type}`}/></div>
+      <div className={ type ? 'rf-col-12' : 'rf-col-2 rf-col-lg-3' }><ElementNumber nombre={nbAteliers}
+        classe={type ? 'numbers-' + type : 'numbers'}/></div>
       <div className={ type ? 'rf-col-12' : 'rf-col-10 rf-col-lg-9' }><ElementText textePluralize={
         <Pluralize
           zero={'atelier réalisé, dont :'}
@@ -18,7 +19,8 @@ function StatisticsWorkshop({ type, nbAteliers, nbTotalParticipant }) {
           count={nbAteliers}
           showCount={false} />
       } classe="text"/><br/></div>
-      <div className={ type ? 'rf-col-12' : 'rf-col-2 rf-col-lg-3' }><ElementNumber nombre={nbTotalParticipant} classe={`numbers${type}`}/></div>
+      <div className={ type ? 'rf-col-12' : 'rf-col-2 rf-col-lg-3' }><ElementNumber nombre={nbTotalParticipant}
+        classe={type ? 'numbers-' + type : 'numbers'}/></div>
       <div className={ type ? 'rf-col-12' : 'rf-col-10 rf-col-lg-9' }><ElementText textePluralize={
         <Pluralize
           zero={'participant au total'}
@@ -26,7 +28,7 @@ function StatisticsWorkshop({ type, nbAteliers, nbTotalParticipant }) {
           plural={'participants au total'}
           count={nbTotalParticipant}
           showCount={false} />
-      } classe={`text${type}`}/></div>
+      } classe={type ? 'text-' + type : 'text'}/></div>
     </div>
   );
 }

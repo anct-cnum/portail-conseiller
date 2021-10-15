@@ -30,14 +30,14 @@ function ConseillerDetails({ location }) {
         <div className="rf-col-3 titreCol">
           <h1 className="titre">Profil</h1>
         </div>
-        <div className="rf-col-xs-6 rf-col-lg-3 recrutementCol">
+        <div className="rf-col-xs-6 rf-col-lg-3 recrutementCol rf-mb-1w">
           <strong>Recrutement</strong>&nbsp;&nbsp;
           { conseiller?.datePrisePoste ? dayjs(conseiller?.datePrisePoste).format('DD/MM/YYYY') : 'non renseigné'}
           <br/>
           <strong>Fin de formation</strong>&nbsp;&nbsp;
           { conseiller?.dateFinFormation ? dayjs(conseiller?.dateFinFormation).format('DD/MM/YYYY') : 'non renseignée'}
         </div>
-        <div className="rf-col-xs-6 rf-col-lg-2">
+        <div className="rf-col-xs-6 rf-col-lg-2 rf-mb-1w">
           <img src={conseiller?.certifie ? '/logos/icone-check.svg' : '/logos/icone-croix.svg'} style={{ marginRight: '16px' }}/>
           Certification
           <br/>
@@ -72,11 +72,18 @@ function ConseillerDetails({ location }) {
           </div>
           <div className="rf-mb-3w">
             <strong>Adresse mail CnFS</strong><br/>
-            <span>{conseiller?.emailCN?.address ?? 'non renseigné'}</span>
+            {conseiller?.emailCN?.address &&
+              <a className="email"href={'mailto:' + conseiller?.emailCN?.address}>
+                {conseiller?.emailCN?.address}
+              </a>
+            }
+            {!conseiller?.emailCN?.address &&
+              <span>non renseigné</span>
+            }
           </div>
           <div className="rf-mb-3w">
             <strong>Adresse mail personelle</strong><br/>
-            <span>{conseiller?.email}</span>
+            <a className="email"href={'mailto:' + conseiller?.email}>{conseiller?.email}</a>
           </div>
           <div className="rf-mb-3w">
             <strong>Téléphone personnel</strong><br/>
@@ -100,7 +107,9 @@ function ConseillerDetails({ location }) {
           </div>
           <div className="rf-mb-3w">
             <strong>Adresse mail de la structure</strong><br/>
-            <span>{structure?.contact?.email}</span>
+            <a className="email"href={'mailto:' + structure?.contact?.email}>
+              {structure?.contact?.email}
+            </a>
           </div>
           <div className="rf-mb-3w">
             <strong>Téléphone de la structure</strong><br/>
@@ -133,7 +142,7 @@ function ConseillerDetails({ location }) {
             </li>
           </ul>
         </div>
-        <div className="rf-col-xs-12 rf-col-md-4 rf-mt-5w">
+        <div className="rf-col-xs-12 rf-col-md-4 rf-mt-2w">
           <Link className="statistiques-btn" style={{ boxShadow: 'none' }} to={{
             pathname: `/statistiques`,
             currentPage: location?.currentPage,

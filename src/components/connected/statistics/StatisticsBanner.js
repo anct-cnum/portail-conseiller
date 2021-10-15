@@ -2,18 +2,27 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { conseillerActions, statistiqueActions } from '../../../actions';
 
-function StatisticsBanner(dates) {
+function StatisticsBanner({ dateDebut, dateFin, idTerritoire }) {
+
   const location = useLocation();
   const dispatch = useDispatch();
   const downloadError = useSelector(state => state.conseiller?.downloadError);
   const user = useSelector(state => state.authentication.user.user);
   const blob = useSelector(state => state.conseiller?.blob);
-  let typeTerritoire = location?.conseillerIds ? useSelector(state => state.filtersAndSorts?.territoire) : '';
+
+  const territoire = location?.territoire;
+  let typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : null;
 
   function savePDF() {
-    dispatch(conseillerActions.getStatistiquesPDF(dates));
+    if (user?.role === 'admin_coop') {
+      const type = typeTerritoire ?? 'user';
+      dispatch(conseillerActions.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser));
+    } else {
+      dispatch(conseillerActions.getStatistiquesPDF(dateDebut, dateFin));
+    }
   }
 
   useEffect(() => {
@@ -55,7 +64,6 @@ function StatisticsBanner(dates) {
       </div>
       <div className="rf-col-12 no-print">
         <div className="rf-container-fluid">
-          { (!typeTerritoire && !location?.idUser) &&
           <div className="rf-grid-row rf-grid-row--center">
             {/*
             <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-7 rf-col-lg-5 afficher-etapes">
@@ -96,7 +104,7 @@ function StatisticsBanner(dates) {
             </div>
 
           </div>
-          }
+
           { (typeTerritoire || location?.idUser) &&
           <div className="rf-grid-row rf-grid-row--center">
             <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-7 rf-col-lg-8 afficher-etapes">
@@ -125,5 +133,11 @@ function StatisticsBanner(dates) {
     </>
   );
 }
+
+StatisticsBanner.propTypes = {
+  dateDebut: PropTypes.instanceOf(Date),
+  dateFin: PropTypes.instanceOf(Date),
+  idTerritoire: PropTypes.string
+};
 
 export default StatisticsBanner;

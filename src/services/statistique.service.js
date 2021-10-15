@@ -4,6 +4,7 @@ import { userService } from './user.service';
 export const statistiqueService = {
   getStatsCra,
   getStatsAdmin,
+  getTerritoire,
   getStatsTerritoires,
   getStatsCraTerritoire
 };
@@ -33,6 +34,18 @@ function getStatsAdmin() {
   return fetch(`${apiUrlRoot}/stats/admincoop/dashboard`, requestOptions).then(handleResponse);
 }
 
+function getTerritoire(typeTerritoire, idTerritoire, date) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+  const requestOptions = {
+    method: 'GET',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+  };
+  return fetch(
+    `${apiUrlRoot}/stats/admincoop/territoire?typeTerritoire=${typeTerritoire}&idTerritoire=${idTerritoire}&dateFin=${date}`,
+    requestOptions
+  ).then(handleResponse);
+}
+
 function getStatsTerritoires(territoire, dateDebut, dateFin, page, nomOrdre, ordre) {
   const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
@@ -54,17 +67,12 @@ function getStatsTerritoires(territoire, dateDebut, dateFin, page, nomOrdre, ord
 function getStatsCraTerritoire(dateDebut, dateFin, typeTerritoire, conseillerIds) {
   const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
-    method: 'POST',
+    method: 'GET',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
-    body: JSON.stringify({
-      'dateDebut': dateDebut,
-      'dateFin': dateFin,
-      'typeTerritoire': typeTerritoire,
-      'conseillerIds': conseillerIds
-    })
   };
-
-  return fetch(`${apiUrlRoot}/stats/territoire/cra`, requestOptions).then(handleResponse);
+  conseillerIds = JSON.stringify(conseillerIds);
+  return fetch(`${apiUrlRoot}/stats/territoire/cra?dateDebut=${dateDebut}&dateFin=${dateFin}&typeTerritoire=${typeTerritoire}&conseillerIds=${conseillerIds}`,
+    requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

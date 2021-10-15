@@ -17,8 +17,7 @@ function Territoire({ territoire, currentPage, trClass }) {
         <td>
           <Link className="rf-btn details-btn" style={{ boxShadow: 'none' }} to={{
             pathname: `/statistiques`,
-            conseillerIds: territoire?.conseillerIds,
-            nomTerritoire: territoire?.nomDepartement ? territoire?.nomDepartement : territoire?.nomRegion,
+            territoire: territoire,
             currentPage: currentPage,
             origin: '/territoires' }}>
               Détails

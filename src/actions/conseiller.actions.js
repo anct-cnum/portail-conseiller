@@ -1,11 +1,12 @@
 import { conseillerService } from '../services/conseiller.service.js';
 import download from 'downloadjs';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 export const conseillerActions = {
   get,
   getAll,
   getStatistiquesPDF,
+  getStatistiquesAdminCoopPDF,
   resetStatistiquesPDFFile,
   isFormulaireChecked,
   closeFormulaire
@@ -65,14 +66,14 @@ function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre
   }
 }
 
-function getStatistiquesPDF(dates) {
+function getStatistiquesPDF(dateDebut, dateFin) {
   return dispatch => {
-    dispatch(request({}));
-    conseillerService.getStatistiquesPDF(dates)
+    dispatch(request());
+    conseillerService.getStatistiquesPDF(dateDebut, dateFin)
     .then(
       data => {
-        dispatch(success(data, download(data, 'Mes_statistiques_' + moment(dates.dateDebut).format('DD-MM-YYYY') + '_' +
-        moment(dates.dateFin).format('DD-MM-YYYY') + '.pdf')));
+        dispatch(success(data, download(data, 'Mes_statistiques_' + dayjs(dateDebut).format('DD-MM-YYYY') + '_' +
+        dayjs(dateFin).format('DD-MM-YYYY') + '.pdf')));
       },
       error => {
         dispatch(failure(error));
@@ -88,6 +89,32 @@ function getStatistiquesPDF(dates) {
   }
   function failure(error) {
     return { type: 'GET_STATS_PDF_FAILURE', error };
+  }
+}
+
+function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType) {
+  return dispatch => {
+    dispatch(request());
+    conseillerService.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType)
+    .then(
+      data => {
+        dispatch(success(data, download(data, 'Statistiques_' + type.substring(4) + '_' + dayjs(dateDebut).format('DD-MM-YYYY') + '_' +
+        dayjs(dateFin).format('DD-MM-YYYY') + '.pdf')));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'GET_STATS_ADMINCOOP_PDF_REQUEST' };
+  }
+  function success(data, download) {
+    return { type: 'GET_STATS_ADMINCOOP_PDF_SUCCESS', data, download };
+  }
+  function failure(error) {
+    return { type: 'GET_STATS_ADMINCOOP_PDF_FAILURE', error };
   }
 }
 

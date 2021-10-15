@@ -4,7 +4,7 @@ const initialState = {
   profil: 'tous',
   ordre: true,
   ordreNom: undefined,
-  territoire: 'departement',
+  territoire: 'codeDepartement',
 };
 
 export default function filtersAndSorts(state = initialState, action) {
