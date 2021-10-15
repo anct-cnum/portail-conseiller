@@ -15,16 +15,7 @@ function Ressources({ ressources }) {
   const [cacherEquipement, setCacherEquipement] = useState(false);
   const [cacherCNIL, setCacherCNIL] = useState(false);
 
-  const tabMail = ressources?.filter(ressource => ressource.categorie === 'Courriel');
-  const tabEchanger = ressources?.filter(ressource => ressource.categorie === 'Échanger avec ses proches');
-  const tabEmploi = ressources?.filter(ressource => ressource.categorie === 'Emploi');
-  const tabDemarches = ressources?.filter(ressource => ressource.categorie === 'Démarches en ligne');
-  const tabTraitement = ressources?.filter(ressource => ressource.categorie === 'Traitement de texte');
-  const tabSmartphone = ressources?.filter(ressource => ressource.categorie === 'Smartphone, applications mobile');
-  const tabContenus = ressources?.filter(ressource => ressource.categorie === 'Créer et gérer ses contenus numériques');
-  const tabAccompagner = ressources?.filter(ressource => ressource.categorie === 'Accompagner son enfant');
-  const tabEquipement = ressources?.filter(ressource => ressource.categorie === 'Prendre en main un équipement informatique');
-  const tabCNIL = ressources?.filter(ressource => ressource.categorie === 'Fiches CNIL');
+  const ressourcesFiltredByCategory = (category => ressources?.filter(ressource => ressource.categorie === category));
 
   return (
     <>
@@ -36,7 +27,7 @@ function Ressources({ ressources }) {
         <img className="image-thematique" src="/logos/cra/logo-courriel.svg" alt="Courriel" />
         Courriel
       </h2>
-      {!cacherMail && tabMail?.map((ressource, idx) => {
+      {!cacherMail && ressourcesFiltredByCategory('Courriel')?.map((ressource, idx) => {
         return (<Ressource key={idx} ressource={ressource}/>);
       })}
 
@@ -48,7 +39,7 @@ function Ressources({ ressources }) {
         <img className="image-thematique" src="/logos/cra/logo-echanger-proches.svg" alt="&Eacute;changer avec ses proches" />
         &Eacute;changer avec ses proches
       </h2>
-      {!cacherEchanger && tabEchanger?.map((ressource, idx) => {
+      {!cacherEchanger && ressourcesFiltredByCategory('Échanger avec ses proches')?.map((ressource, idx) => {
         return (<Ressource key={idx} ressource={ressource}/>);
       })}
 
@@ -60,7 +51,7 @@ function Ressources({ ressources }) {
         <img className="image-thematique" src="/logos/cra/logo-trouver-emploi.svg" alt="Emploi" />
         Emploi
       </h2>
-      {!cacherEmploi && tabEmploi?.map((ressource, idx) => {
+      {!cacherEmploi && ressourcesFiltredByCategory('Emploi')?.map((ressource, idx) => {
         return (<Ressource key={idx} ressource={ressource}/>);
       })}
 
@@ -73,7 +64,7 @@ function Ressources({ ressources }) {
         <img className="image-thematique" src="/logos/cra/logo-demarche-en-ligne.svg" alt="D&eacute;marches en ligne" />
         D&eacute;marches en ligne
       </h2>
-      {!cacherDemarches && tabDemarches?.map((ressource, idx) => {
+      {!cacherDemarches && ressourcesFiltredByCategory('Démarches en ligne')?.map((ressource, idx) => {
         return (<Ressource key={idx} ressource={ressource}/>);
       })}
 
@@ -86,7 +77,7 @@ function Ressources({ ressources }) {
         <img className="image-thematique" src="/logos/cra/logo-traitement-texte.svg" alt="Apprendre les bases du traitement de texte" />
         Traitement de texte
       </h2>
-      {!cacherTraitement && tabTraitement?.map((ressource, idx) => {
+      {!cacherTraitement && ressourcesFiltredByCategory('Traitement de texte')?.map((ressource, idx) => {
         return (<Ressource key={idx} ressource={ressource}/>);
       })}
 
@@ -99,7 +90,7 @@ function Ressources({ ressources }) {
         <img className="image-thematique" src="/logos/cra/logo-telephone-portable.svg" alt="Installer et utiliser des applications sur son smartphone" />
         Smartphone, applications mobile
       </h2>
-      {!cacherSmartphone && tabSmartphone?.map((ressource, idx) => {
+      {!cacherSmartphone && ressourcesFiltredByCategory('Smartphone, applications mobile')?.map((ressource, idx) => {
         return (<Ressource key={idx} ressource={ressource}/>);
       })}
 
@@ -110,7 +101,7 @@ function Ressources({ ressources }) {
       <h2 className="rf-col-12 titre-thematique rf-mb-9w" id="contenus">
         <img className="image-thematique" src="/logos/cra/logo-contenus-numeriques.svg" alt="Cr&eacute;er et g&eacute;rer ses contenus num&eacute;riques" />
         Cr&eacute;er et g&eacute;rer ses contenus num&eacute;riques</h2>
-      {!cacherContenus && tabContenus?.map((ressource, idx) => {
+      {!cacherContenus && ressourcesFiltredByCategory('Créer et gérer ses contenus numériques')?.map((ressource, idx) => {
         return (<Ressource key={idx} ressource={ressource}/>);
       })}
 
@@ -123,7 +114,7 @@ function Ressources({ ressources }) {
         <img className="image-thematique" src="/logos/cra/logo-accompagner-enfant.svg" alt="Accompagner son enfant"/>
         Accompagner son enfant
       </h2>
-      {!cacherAccompagner && tabAccompagner?.map((ressource, idx) => {
+      {!cacherAccompagner && ressourcesFiltredByCategory('Accompagner son enfant')?.map((ressource, idx) => {
         return (<Ressource key={idx} ressource={ressource}/>);
       })}
 
@@ -136,7 +127,7 @@ function Ressources({ ressources }) {
         <img className="image-thematique" src="/logos/cra/logo-equip-info.svg" alt="Prendre en main un &eacute;quipement informatique"/>
         Prendre en main un &eacute;quipement informatique
       </h2>
-      {!cacherEquipement && tabEquipement?.map((ressource, idx) => {
+      {!cacherEquipement && ressourcesFiltredByCategory('Prendre en main un équipement informatique')?.map((ressource, idx) => {
         return (<Ressource key={idx} ressource={ressource}/>);
       })}
 
@@ -149,7 +140,7 @@ function Ressources({ ressources }) {
         <img className="image-thematique" src="/logos/logo-cnil.svg" alt="CNIL" style={{ height: '14px', marginBottom: '0px' }}/>
         Fiches CNIL
       </h2>
-      {!cacherCNIL && tabCNIL?.map((ressource, idx) => {
+      {!cacherCNIL && ressourcesFiltredByCategory('Fiches CNIL')?.map((ressource, idx) => {
         return (<Ressource key={idx} ressource={ressource}/>);
       })}
     </>
