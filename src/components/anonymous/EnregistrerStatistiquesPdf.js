@@ -21,10 +21,10 @@ function EnregistrerStatistiquesPdf({ match }) {
   let dateFinStats = useSelector(state => state.statistique?.dateFinStats);
   let donneesStatistiques = useSelector(state => state.statistique?.statsData);
   let territoire = useSelector(state => state.statistique?.territoire);
-  let typeTerritoire = type !== 'user' ? type : '';
+  let typeTerritoire = (type !== 'user' && type !== 'conseiller') ? type : '';
 
   useEffect(() => {
-    if (type !== 'user' && territoire === undefined) {
+    if ((type !== 'user' && type !== 'conseiller') && territoire === undefined) {
       dispatch(statistiqueActions.getTerritoire(type, id, dateFin));
     }
   });
@@ -32,9 +32,9 @@ function EnregistrerStatistiquesPdf({ match }) {
   useEffect(() => {
     dispatch(statistiqueActions.changeDateStatsDebut(dateDebut));
     dispatch(statistiqueActions.changeDateStatsFin(dateFin));
-    if (type === 'user') {
+    if (type === 'user' || type === 'conseiller') {
       dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, id));
-    } else if (type !== 'user' && territoire?.conseillerIds) {
+    } else if ((type !== 'user' && type !== 'conseiller') && territoire?.conseillerIds) {
       dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, territoire?.conseillerIds));
     }
   }, [territoire]);
@@ -48,14 +48,17 @@ function EnregistrerStatistiquesPdf({ match }) {
         <div className="rf-grid-row">
           <div className="rf-col-12">
             <div className="rf-mt-2w rf-mt-md-9w rf-mt-lg-13w"></div>
-            <h1 className={type !== 'user' ? 'title title-print-territoire' : 'title'}>
-              {type !== 'user' &&
+            <h1 className={(type !== 'user' && type !== 'conseiller') ? 'title title-print-territoire' : 'title'}>
+              {(type !== 'user' && type !== 'conseiller') &&
               <>
                 Statistiques - { territoire?.nomDepartement ?? territoire?.nomRegion }
               </>
               }
               {type === 'user' &&
                 <>Statistiques</>
+              }
+              {type === 'conseiller' &&
+                <>Mes Statistiques</>
               }
             </h1>
             <div className="rf-mb-5w rf-mt-md-4w"></div>
