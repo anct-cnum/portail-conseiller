@@ -20,7 +20,10 @@ function AdminHeader() {
     <>
       <div className="rf-container">
         <div className="rf-grid-row rf-grid-row--right">
-          <div className={location.pathname !== '/ressourcerie' ? 'rf-col-offset-4 rf-col-8' : 'rf-col-offset-4 rf-col-9'} style={
+          <div className="rf-col-4">
+            <a className="statistiques_nationales-btn" href="statistiques-nationales">Statistiques Nationales</a>
+          </div>
+          <div className={location.pathname !== '/ressourcerie' ? 'rf-col-8' : 'rf-col-9'} style={
             location.pathname !== '/ressourcerie' ? { textAlign: 'right' } : {}}>
             {(location.pathname === '/territoires' || location.pathname === '/ressourcerie') &&
             <a className="header-btn" href="accueil">

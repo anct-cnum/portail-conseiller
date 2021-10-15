@@ -99,7 +99,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire }) {
               </ul>
             </div>
             */}
-            <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-5 rf-col-lg-3 rf-mt-5w centrerTexte">
+            <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-5 rf-col-lg-4 rf-mt-5w centrerTexte">
               <a className="statistiques_nationales-btn" onClick={savePDF}>Exporter cette page au format PDF</a>
             </div>
 
