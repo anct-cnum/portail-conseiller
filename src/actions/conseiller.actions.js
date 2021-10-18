@@ -98,7 +98,8 @@ function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType) {
     conseillerService.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType)
     .then(
       data => {
-        dispatch(success(data, download(data, 'Statistiques_' + type.substring(4) + '_' + dayjs(dateDebut).format('DD-MM-YYYY') + '_' +
+        dispatch(success(data, download(data, 'Statistiques_' + (type !== 'nationales' ? type.substring(4) : type) + '_' +
+        dayjs(dateDebut).format('DD-MM-YYYY') + '_' +
         dayjs(dateFin).format('DD-MM-YYYY') + '.pdf')));
       },
       error => {

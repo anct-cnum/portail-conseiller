@@ -6,7 +6,8 @@ export const statistiqueService = {
   getStatsAdmin,
   getTerritoire,
   getStatsTerritoires,
-  getStatsCraTerritoire
+  getStatsCraTerritoire,
+  getStatsCraNationale,
 };
 
 function getStatsCra(dateDebut, dateFin, idUser) {
@@ -74,6 +75,16 @@ function getStatsCraTerritoire(dateDebut, dateFin, typeTerritoire, conseillerIds
   return fetch(`${apiUrlRoot}/stats/territoire/cra?dateDebut=${dateDebut}&dateFin=${dateFin}&typeTerritoire=${typeTerritoire}&conseillerIds=${conseillerIds}`,
     requestOptions).then(handleResponse);
 }
+function getStatsCraNationale(dateDebut, dateFin) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader(),
+  };
+
+  return fetch(`${apiUrlRoot}/stats/nationales/cra?dateDebut=${dateDebut}&dateFin=${dateFin}`,
+    requestOptions).then(handleResponse);
+}
 
 function handleResponse(response) {
   return response.text().then(text => {
@@ -91,3 +102,4 @@ function handleResponse(response) {
     return data;
   });
 }
+

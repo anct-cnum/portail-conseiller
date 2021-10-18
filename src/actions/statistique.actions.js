@@ -8,6 +8,7 @@ export const statistiqueActions = {
   getTerritoire,
   getStatsTerritoires,
   getStatsCraTerritoire,
+  getStatsCraNationale,
 };
 
 function getStatsCra(dateDebut, dateFin, idUser = null) {
@@ -142,5 +143,31 @@ function getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, con
   }
   function failure(error) {
     return { type: 'GET_STATS_CRA_TERRITOIRE_FAILURE', error };
+  }
+}
+
+function getStatsCraNationale(dateDebutStats, dateFinStats) {
+  return dispatch => {
+    dispatch(request());
+
+    statistiqueService.getStatsCraNationale(dateDebutStats, dateFinStats)
+    .then(
+      statsNationales => {
+        dispatch(success(statsNationales));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'GET_STATS_CRA_NATIONALES_REQUEST' };
+  }
+  function success(statsNationales) {
+    return { type: 'GET_STATS_CRA_NATIONALES_SUCCESS', statsNationales };
+  }
+  function failure(error) {
+    return { type: 'GET_STATS_CRA_NATIONALES_FAILURE', error };
   }
 }

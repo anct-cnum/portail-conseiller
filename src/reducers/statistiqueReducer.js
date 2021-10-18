@@ -102,6 +102,24 @@ export default function statistique(state = initialState, action) {
         statsDataError: action.error,
         statsDataLoading: false,
       };
+    case 'GET_STATS_CRA_NATIONALES_REQUEST':
+      return {
+        ...state,
+        statsDataLoading: true,
+        statsDataError: false,
+      };
+    case 'GET_STATS_CRA_NATIONALES_SUCCESS':
+      return {
+        ...state,
+        statsData: action.statsNationales,
+        statsDataLoading: false,
+      };
+    case 'GET_STATS_CRA_NATIONALES_FAILURE':
+      return {
+        ...state,
+        statsDataError: action.error,
+        statsDataLoading: false,
+      };
     default:
       return state;
   }

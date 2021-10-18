@@ -32,10 +32,13 @@ function EnregistrerStatistiquesPdf({ match }) {
   useEffect(() => {
     dispatch(statistiqueActions.changeDateStatsDebut(dateDebut));
     dispatch(statistiqueActions.changeDateStatsFin(dateFin));
-    if (type === 'user' || type === 'conseiller') {
+
+    if ((type === 'user' || type === 'conseiller') && type !== 'nationales') {
       dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, id));
-    } else if ((type !== 'user' && type !== 'conseiller') && territoire?.conseillerIds) {
+    } else if (((type !== 'user' && type !== 'conseiller') && type !== 'nationales') && territoire?.conseillerIds) {
       dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, territoire?.conseillerIds));
+    } else if (type === 'nationales') {
+      dispatch(statistiqueActions.getStatsCraNationale(dateDebutStats, dateFinStats));
     }
   }, [territoire]);
 
@@ -53,6 +56,9 @@ function EnregistrerStatistiquesPdf({ match }) {
               <>
                 Statistiques - { territoire?.nomDepartement ?? territoire?.nomRegion }
               </>
+              }
+              {type === 'nationales' &&
+                <>Nationales</>
               }
               {type === 'user' &&
                 <>Statistiques</>

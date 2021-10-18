@@ -123,6 +123,7 @@ function handleFileResponse(response) {
         userService.logout();
         history.push('/');
       }
+
       const error = (blob && blob.message) || response.statusText;
       return Promise.reject(error);
     }

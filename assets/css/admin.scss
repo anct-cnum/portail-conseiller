@@ -17,6 +17,20 @@
       color: #9a9aff;
     }
   }
+  .statistiques_nationales-btn {
+    background-color: transparent;
+    border: 1px solid #fff;
+    line-height: 1.25rem;
+    border-radius: 25px;
+    text-align: center;
+    position: relative;
+    box-shadow: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #fff;
+    padding: 12px;
+    top: 15px;
+  }
   .stats-logo-btn, .discussion-logo-btn, .conseillers-logo-btn, .ressourcerie-logo-btn {
     display: inline-block;
   }
@@ -40,7 +54,7 @@
     background: url(../../public/logos/icones-ressourcerie.svg) no-repeat;
     width: 48px;
     height: 40px;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
   }
   .stats-texte-btn, .discussion-texte-btn, .conseillers-texte-btn, .ressourcerie-texte-btn {
     margin: 0px 48px 0px 16px;
