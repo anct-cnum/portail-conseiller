@@ -23,15 +23,14 @@ function AdminHeader() {
           <div className="rf-col-4">
             <a className="statistiques_nationales-btn" href="statistiques-nationales">Statistiques Nationales</a>
           </div>
-          <div className={location.pathname !== '/ressourcerie' ? 'rf-col-8' : 'rf-col-9'} style={
-            location.pathname !== '/ressourcerie' ? { textAlign: 'right' } : {}}>
+          <div className="rf-col-8" style={{ textAlign: 'right' }}>
             {(location.pathname === '/territoires' || location.pathname === '/ressourcerie') &&
             <a className="header-btn" href="accueil">
               <span className="conseillers-logo-btn"></span>
               <span className="conseillers-texte-btn">Liste des conseillers</span>
             </a>
             }
-            {(location.pathname === '/accueil' || location.pathname === '/ressourcerie') &&
+            {location.pathname !== '/territoires' &&
             <a className="header-btn" href="territoires">
               <span className="stats-logo-btn"></span>
               <span className="stats-texte-btn">Statistiques par territoire</span>

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { conseillerActions, statistiqueActions } from '../../../actions';
 
-function StatisticsBanner({ dateDebut, dateFin, idTerritoire }) {
+function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false }) {
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -18,7 +18,8 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire }) {
 
   function savePDF() {
     if (user?.role === 'admin_coop') {
-      const type = typeTerritoire ?? 'user';
+      const type = nationales === false ? typeTerritoire ?? 'user' : 'nationales';
+
       dispatch(conseillerActions.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser));
     } else {
       dispatch(conseillerActions.getStatistiquesPDF(dateDebut, dateFin));
@@ -137,7 +138,8 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire }) {
 StatisticsBanner.propTypes = {
   dateDebut: PropTypes.instanceOf(Date),
   dateFin: PropTypes.instanceOf(Date),
-  idTerritoire: PropTypes.string
+  idTerritoire: PropTypes.string,
+  nationales: PropTypes.bool,
 };
 
 export default StatisticsBanner;

@@ -102,6 +102,7 @@ function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType) {
         dayjs(dateFin).format('DD-MM-YYYY') + '.pdf')));
       },
       error => {
+        console.log(error);
         dispatch(failure(error));
       }
     );
