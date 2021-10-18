@@ -33,9 +33,9 @@ function EnregistrerStatistiquesPdf({ match }) {
     dispatch(statistiqueActions.changeDateStatsDebut(dateDebut));
     dispatch(statistiqueActions.changeDateStatsFin(dateFin));
 
-    if (type === 'user' || type === 'conseiller' && type !== 'nationales') {
+    if ((type === 'user' || type === 'conseiller') && type !== 'nationales') {
       dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, id));
-    } else if ((type !== 'user' && type !== 'conseiller' && type !== 'nationales') && territoire?.conseillerIds) {
+    } else if (((type !== 'user' && type !== 'conseiller') && type !== 'nationales') && territoire?.conseillerIds) {
       dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, territoire?.conseillerIds));
     } else if (type === 'nationales') {
       dispatch(statistiqueActions.getStatsCraNationale(dateDebutStats, dateFinStats));
@@ -58,7 +58,7 @@ function EnregistrerStatistiquesPdf({ match }) {
               </>
               }
               {type === 'nationales' &&
-                <> Nationales</>
+                <>Nationales</>
               }
               {type === 'user' &&
                 <>Statistiques</>
