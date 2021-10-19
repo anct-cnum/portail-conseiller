@@ -37,6 +37,24 @@ export default function ressources(state = null, action) {
         ressourcesError: action.error,
         ressourcesLoading: false,
       };
+    case 'GET_RESSOURCES_BY_TAG_REQUEST':
+      return {
+        ...state,
+        ressourcesLoading: true,
+        ressourcesError: false,
+      };
+    case 'GET_RESSOURCES_BY_TAG_SUCCESS':
+      return {
+        ...state,
+        ressources: action.ressources,
+        ressourcesLoading: false,
+      };
+    case 'GET_RESSOURCES_BY_TAG_FAILURE':
+      return {
+        ...state,
+        ressourcesError: action.error,
+        ressourcesLoading: false,
+      };
     default:
       return state;
   }

@@ -2,7 +2,7 @@ import { ressourcesService } from '../services/ressources.service';
 
 export const ressourcesActions = {
   getTags,
-  getRessources
+  getRessources,
 };
 
 function getTags() {
@@ -31,11 +31,10 @@ function getTags() {
   }
 }
 
-function getRessources() {
+function getRessources(tags) {
   return dispatch => {
     dispatch(request());
-
-    ressourcesService.getRessources()
+    ressourcesService.getRessources(tags)
     .then(
       results => {
         dispatch(success(results?.data));

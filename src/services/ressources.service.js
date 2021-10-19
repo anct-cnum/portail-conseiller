@@ -5,7 +5,7 @@ const apiUrlRoot = process.env.REACT_APP_API;
 
 export const ressourcesService = {
   getTags,
-  getRessources
+  getRessources,
 };
 
 function getTags() {
@@ -16,13 +16,19 @@ function getTags() {
 
   return fetch(`${apiUrlRoot}/ressources/tags`, requestOptions).then(handleResponse);
 }
-function getRessources() {
+function getRessources(tags) {
+
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
   };
 
-  return fetch(`${apiUrlRoot}/ressources`, requestOptions).then(handleResponse);
+  let tagsIn = '';
+  if (tags?.length > 0) {
+    tagsIn = '?tags[$in][]=' + tags.join('&tags[$in][]=');
+  }
+
+  return fetch(`${apiUrlRoot}/ressources${tagsIn}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
