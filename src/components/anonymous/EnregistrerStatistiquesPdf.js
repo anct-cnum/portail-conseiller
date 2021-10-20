@@ -24,7 +24,7 @@ function EnregistrerStatistiquesPdf({ match }) {
   let typeTerritoire = (type !== 'user' && type !== 'conseiller') ? type : '';
 
   useEffect(() => {
-    if ((type !== 'user' && type !== 'conseiller') && territoire === undefined) {
+    if ((type !== 'user' && type !== 'conseiller' && type !== 'nationales') && territoire === undefined) {
       dispatch(statistiqueActions.getTerritoire(type, id, dateFin));
     }
   });
