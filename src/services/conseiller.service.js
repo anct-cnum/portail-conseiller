@@ -81,8 +81,9 @@ function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType) {
     method: 'GET',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
   };
-  return fetch(`${apiUrlRoot}/stats/admincoop/statistiques.pdf?dateDebut=${dateDebut}&dateFin=${dateFin}
-    &type=${type}&idType=${idType}`, requestOptions).then(handleFileResponse);
+
+  return fetch(`${apiUrlRoot}/stats/admincoop/statistiques.pdf?dateDebut=${dateDebut}&dateFin=${dateFin}&type=${type}&idType=${idType}`,
+    requestOptions).then(handleFileResponse);
 }
 
 function createSexeAge(user) {
