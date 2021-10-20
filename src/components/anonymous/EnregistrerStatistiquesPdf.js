@@ -12,10 +12,10 @@ function EnregistrerStatistiquesPdf({ match }) {
 
   const dispatch = useDispatch();
 
-  const type = match.params.type;
-  const id = match.params.id;
-  const dateDebut = new Date(match.params.dateDebut);
-  const dateFin = new Date(match.params.dateFin);
+  const type = match.params?.type;
+  const id = match.params?.id;
+  const dateDebut = new Date(match.params?.dateDebut);
+  const dateFin = new Date(match.params?.dateFin);
 
   let dateDebutStats = useSelector(state => state.statistique?.dateDebutStats);
   let dateFinStats = useSelector(state => state.statistique?.dateFinStats);
@@ -24,7 +24,7 @@ function EnregistrerStatistiquesPdf({ match }) {
   let typeTerritoire = (type !== 'user' && type !== 'conseiller') ? type : '';
 
   useEffect(() => {
-    if ((type !== 'user' && type !== 'conseiller') && territoire === undefined) {
+    if ((type !== 'user' && type !== 'conseiller' && type !== 'nationales') && territoire === undefined) {
       dispatch(statistiqueActions.getTerritoire(type, id, dateFin));
     }
   });

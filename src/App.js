@@ -35,6 +35,7 @@ function App() {
           <Route path="/validation" component={ValidationAccount} />
           <Route path="/statistiques-nationales" component={StatistiquesNationales} />
           <Route path="/statistiques/:type/:id/:dateDebut/:dateFin" component={EnregistrerStatistiquesPdf} />
+          <Route path="/statistiques/:type/:dateDebut/:dateFin" component={EnregistrerStatistiquesPdf} />
           {user?.role === 'conseiller' &&
             <PrivateRoute exact path="*" component={Home}/>
           }
