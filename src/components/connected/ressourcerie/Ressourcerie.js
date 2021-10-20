@@ -5,8 +5,7 @@ import Ressources from './Ressources';
 import DerniersAjouts from './DerniersAjouts';
 import Footer from '../../Footer';
 import { useDispatch, useSelector } from 'react-redux';
-import { ressourcesActions } from '../../../actions/ressources.actions';
-import { ressourcesFiltresActions } from '../../../actions/ressourcesFiltres.actions';
+import { ressourcesFiltresActions, ressourcesActions } from '../../../actions';
 
 function Ressourcerie() {
 
