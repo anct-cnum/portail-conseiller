@@ -22,13 +22,15 @@ function Statistics() {
   let dateDebutStats = useSelector(state => state.statistique?.dateDebutStats);
   let dateFinStats = useSelector(state => state.statistique?.dateFinStats);
   let donneesStatistiques = useSelector(state => state.statistique?.statsData);
-  let typeTerritoire = location?.conseillerIds ? useSelector(state => state.filtersAndSorts?.territoire) : '';
+
+  const territoire = location?.territoire;
+  let typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : '';
 
   useEffect(() => {
     if (location?.idUser) {
       dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, location?.idUser));
-    } else if (location?.conseillerIds) {
-      dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, location?.conseillerIds));
+    } else if (territoire) {
+      dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, territoire.conseillerIds));
     } else {
       dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats));
     }
@@ -65,15 +67,15 @@ function Statistics() {
               </p>
             }
             <h1 className="title">
-              {location?.nomTerritoire &&
+              {territoire &&
               <>
-                Statistiques - {location?.nomTerritoire}
+                Statistiques - { territoire?.nomDepartement ?? territoire?.nomRegion }
               </>
               }
               {location?.idUser &&
                 <>Statistiques</>
               }
-              {!location?.nomTerritoire && !location?.idUser &&
+              {!territoire && !location?.idUser &&
                 <>Mes Statistiques</>
               }
             </h1>
@@ -85,12 +87,11 @@ function Statistics() {
           <div className="rf-col-xs-3 rf-col-sm-7 rf-col-md-6 rf-col-lg-4">
             <div className="rf-mb-4w rf-mb-md-6w">
               <PeriodStatistics dateDebut={dateDebutStats} dateFin={dateFinStats} />
-              <i className="ri-arrow-down-s-line ri-2x chevron"></i>
             </div>
           </div>
 
           <div className="rf-col-md-6 rf-col-lg-8">
-            <hr className="hr-sm-hide"/>
+            <hr className="hr-sm-hide rf-mt-2w"/>
             <div className="rf-m-6w rf-m-xs-to-md-7v"></div>
           </div>
         </div>
@@ -112,7 +113,8 @@ function Statistics() {
           <h2 className="centrerTexte">Il n&rsquo;y a aucune statistique pour le moment</h2>
         }
       </div>
-      <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats}/>
+      <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats}
+        idTerritoire={territoire?.[typeTerritoire]} />
       <div className="rf-m-5w rf-m-md-9w rf-m-lg-15w"></div>
       <Footer type="support"/>
     </div>

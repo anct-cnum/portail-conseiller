@@ -10,6 +10,12 @@
   .periode-xs {
     display: none;
   }
+  .chevron-stats {
+    margin: 0px 2px 0px 4px;
+    position: relative;
+    font-size: 1.3rem;
+    top: 4px;
+  }
   .chevron {
     position: absolute;
   }
@@ -29,7 +35,7 @@
     font-family: Marianne;
     background-color: #1e1e1e;
     border: 1px solid #5398ff;
-    border-radius: 1.3rem;
+    border-radius: 1.4rem;
     color: #fff;
 
     .react-datepicker__triangle {
@@ -116,20 +122,6 @@
     text-align: right;
     margin-right: 1rem;
   }
-  .numberdepartement {
-    font-weight: 600;
-    text-align: left;
-    font-size: 32px;
-    line-height: 32px;
-    letter-spacing: 0;
-  }
-  .numbersdepartement {
-    font-size: 24px;
-    font-weight: 600;
-    text-align: left;
-    line-height: 22px;
-    letter-spacing: 0;
-  }
   .text {
     font-size: 16px;
     letter-spacing: 0;
@@ -141,7 +133,21 @@
     letter-spacing: 0;
     line-height: 20px;
   }
-  .textdepartement {
+  .number-codeDepartement, .number-departement, .number-codeRegion, .number-region, .number-nationales {
+    font-weight: 600;
+    text-align: left;
+    font-size: 32px;
+    line-height: 32px;
+    letter-spacing: 0;
+  }
+  .numbers-codeDepartement, .numbers-departement .numbers-codeRegion, .numbers-region, .numbers-nationales {
+    font-size: 24px;
+    font-weight: 600;
+    text-align: left;
+    line-height: 22px;
+    letter-spacing: 0;
+  }
+  .text-codeDepartement, .text-departement, .text-codeRegion .text-region, .text-nationales {
     font-size: 16px;
     letter-spacing: 0;
     line-height: 20px;
@@ -310,7 +316,14 @@
     }
 
     h1 {
-      margin: 70px 150px;
+      margin: 70px 0;
+    }
+
+    .title-print-territoire {
+      margin: 70px 0 45px 0;
+      font-weight: 100;
+      font-size: 40px;
+      text-align: left;
     }
 
     .graphique-responsive-lg {
@@ -320,7 +333,9 @@
     .theme-print {
       margin: 150px 0 0 0;
     }
-
+    .theme-territoire-print {
+      margin: 60px 0 0 0;
+    }
     .evolution-print {
       margin: 100px 0 0 0;
     }

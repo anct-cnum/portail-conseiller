@@ -13,8 +13,8 @@ function Conseiller({ conseiller, currentPage, trClass }) {
         <td>{conseiller?.nom}</td>
         <td className="structure">{conseiller?.nomStructure?.toUpperCase()}</td>
         <td>{conseiller?.codePostal}</td>
-        <td>{dayjs(conseiller?.datePrisePoste).format('DD/MM/YYYY')}</td>
-        <td>{dayjs(conseiller?.dateFinFormation).format('DD/MM/YYYY')}</td>
+        <td>{conseiller?.datePrisePoste ? dayjs(conseiller?.datePrisePoste).format('DD/MM/YYYY') : 'Non renseignée'}</td>
+        <td>{conseiller?.dateFinFormation ? dayjs(conseiller?.dateFinFormation).format('DD/MM/YYYY') : 'Non renseignée'}</td>
         <td>{conseiller?.certifie ? <img src="logos/icone-check.svg"/> : <img src="logos/icone-croix.svg" /> }</td>
         <td><div className={conseiller?.userCreated ? 'circle-true' : 'circle-false'}></div></td>
         <td>

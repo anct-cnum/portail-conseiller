@@ -98,6 +98,10 @@ function FormulaireSexeAge() {
                           <input type="radio" id="Femme" name="sexe" value="Femme" onClick={handleChange} required="required"/>
                           <label className="fr-label" htmlFor="Femme">une femme</label>
                         </div>
+                        <div className="rf-radio-group">
+                          <input type="radio" id="Autre" name="sexe" value="Autre" onClick={handleChange} required="required"/>
+                          <label className="fr-label" htmlFor="Autre">autre</label>
+                        </div>
                       </div>
                     </fieldset>
                   </div>

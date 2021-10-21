@@ -9,6 +9,8 @@ import Admin from './components/admin';
 import ChoosePassword from './components/anonymous/ChoosePassword';
 import ValidationAccount from './components/connected/ValidationAccount';
 import ForgottenPassword from './components/anonymous/ForgottenPassword';
+import EnregistrerStatistiquesPdf from './components/anonymous/EnregistrerStatistiquesPdf';
+import StatistiquesNationales from './components/anonymous/StatistiquesNationales';
 import PrivateRoute from './components/connected/PrivateRoute';
 
 require('dotenv').config();
@@ -31,6 +33,9 @@ function App() {
           <Route path="/renouveler-mot-de-passe/:token" component={ForgottenPassword} />
           <Route path="/inscription/:token" component={ChoosePassword} />
           <Route path="/validation" component={ValidationAccount} />
+          <Route path="/statistiques-nationales" component={StatistiquesNationales} />
+          <Route path="/statistiques/:type/:id/:dateDebut/:dateFin" component={EnregistrerStatistiquesPdf} />
+          <Route path="/statistiques/:type/:dateDebut/:dateFin" component={EnregistrerStatistiquesPdf} />
           {user?.role === 'conseiller' &&
             <PrivateRoute exact path="*" component={Home}/>
           }

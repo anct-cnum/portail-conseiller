@@ -10,7 +10,7 @@ function StatisticsTotalAccompaniments({ type, nbTotalAccompagnements }) {
   return (
     <div className="rf-grid-row">
       <div className={ type ? 'rf-col-12' : 'rf-col-2 rf-col-lg-3' }>
-        <ElementNumber nombre={nbTotalAccompagnements} classe={`number${type}`}/>
+        <ElementNumber nombre={nbTotalAccompagnements} classe={type ? 'number-' + type : 'number'}/>
       </div>
       <div className={ type ? 'rf-col-12' : 'rf-col-9' }>
         <ElementText textePluralize={
@@ -20,7 +20,7 @@ function StatisticsTotalAccompaniments({ type, nbTotalAccompagnements }) {
             plural={'personnes accompagnées durant cette période'}
             count={nbTotalAccompagnements}
             showCount={false} />
-        } classe={`text${type}`}/>
+        } classe={type ? 'text-' + type : 'text'}/>
       </div>
     </div>
   );

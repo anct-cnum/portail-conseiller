@@ -30,7 +30,7 @@ function Footer({ type }) {
                           </div>
                           <div style={{ display: 'inline-block' }} >
                             <img src="/logos/logo-france-relance-nb.svg" alt="logo France Relance"
-                              style={{ height: '70px', marginBottom: '7px' }} className="logoFooter"/>
+                              style={{ height: '70px', marginBottom: '-10px' }} className="logoFooter"/>
                           </div>
                         </a>
                       </div>

@@ -9,7 +9,8 @@ function StatisticsPersonalAccompaniment({ type, nbAccompagnementPerso, nbDemand
 
   return (
     <div className="rf-grid-row">
-      <div className={ type ? 'rf-col-12' : 'rf-col-2 rf-col-lg-3' }><ElementNumber nombre={nbAccompagnementPerso} classe={`numbers${type}`}/></div>
+      <div className={ type ? 'rf-col-12' : 'rf-col-2 rf-col-lg-3' }><ElementNumber nombre={nbAccompagnementPerso}
+        classe={type ? 'numbers-' + type : 'numbers'}/></div>
       <div className={ type ? 'rf-col-12' : 'rf-col-10 rf-col-lg-9' }><ElementText textePluralize={
         <Pluralize
           zero={'accompagnement individuel'}
@@ -17,8 +18,9 @@ function StatisticsPersonalAccompaniment({ type, nbAccompagnementPerso, nbDemand
           plural={'accompagnements individuels'}
           count={nbAccompagnementPerso}
           showCount={false} />
-      } classe={`text${type}`}/><br/></div>
-      <div className={ type ? 'rf-col-12' : 'rf-col-2 rf-col-lg-3' }><ElementNumber nombre={nbDemandePonctuel} classe={`numbers${type}`}/></div>
+      } classe={type ? 'text-' + type : 'text'}/><br/></div>
+      <div className={ type ? 'rf-col-12' : 'rf-col-2 rf-col-lg-3' }><ElementNumber nombre={nbDemandePonctuel}
+        classe={type ? 'numbers-' + type : 'numbers'}/></div>
       <div className={ type ? 'rf-col-12' : 'rf-col-10 rf-col-lg-9' }><ElementText textePluralize={
         <Pluralize
           zero={'demande ponctuelle'}
@@ -26,7 +28,7 @@ function StatisticsPersonalAccompaniment({ type, nbAccompagnementPerso, nbDemand
           plural={'demandes ponctuelles'}
           count={nbDemandePonctuel}
           showCount={false} />
-      } classe={`text${type}`}/></div>
+      } classe={type ? 'text-' + type : 'text'}/></div>
     </div>
   );
 }

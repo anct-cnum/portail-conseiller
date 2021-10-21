@@ -4,8 +4,10 @@ import { userService } from './user.service';
 export const statistiqueService = {
   getStatsCra,
   getStatsAdmin,
+  getTerritoire,
   getStatsTerritoires,
-  getStatsCraTerritoire
+  getStatsCraTerritoire,
+  getStatsCraNationale,
 };
 
 function getStatsCra(dateDebut, dateFin, idUser) {
@@ -33,6 +35,18 @@ function getStatsAdmin() {
   return fetch(`${apiUrlRoot}/stats/admincoop/dashboard`, requestOptions).then(handleResponse);
 }
 
+function getTerritoire(typeTerritoire, idTerritoire, date) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+  const requestOptions = {
+    method: 'GET',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+  };
+  return fetch(
+    `${apiUrlRoot}/stats/admincoop/territoire?typeTerritoire=${typeTerritoire}&idTerritoire=${idTerritoire}&dateFin=${date}`,
+    requestOptions
+  ).then(handleResponse);
+}
+
 function getStatsTerritoires(territoire, dateDebut, dateFin, page, nomOrdre, ordre) {
   const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
@@ -54,17 +68,22 @@ function getStatsTerritoires(territoire, dateDebut, dateFin, page, nomOrdre, ord
 function getStatsCraTerritoire(dateDebut, dateFin, typeTerritoire, conseillerIds) {
   const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
-    method: 'POST',
+    method: 'GET',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
-    body: JSON.stringify({
-      'dateDebut': dateDebut,
-      'dateFin': dateFin,
-      'typeTerritoire': typeTerritoire,
-      'conseillerIds': conseillerIds
-    })
+  };
+  conseillerIds = JSON.stringify(conseillerIds);
+  return fetch(`${apiUrlRoot}/stats/territoire/cra?dateDebut=${dateDebut}&dateFin=${dateFin}&typeTerritoire=${typeTerritoire}&conseillerIds=${conseillerIds}`,
+    requestOptions).then(handleResponse);
+}
+function getStatsCraNationale(dateDebut, dateFin) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader(),
   };
 
-  return fetch(`${apiUrlRoot}/stats/territoire/cra`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/stats/nationales/cra?dateDebut=${dateDebut}&dateFin=${dateFin}`,
+    requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
@@ -83,3 +102,4 @@ function handleResponse(response) {
     return data;
   });
 }
+

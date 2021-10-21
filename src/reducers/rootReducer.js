@@ -10,6 +10,7 @@ import statistiqueReducer from './statistiqueReducer';
 import filtersAndSortsReducer from './filtersAndSortsReducer';
 import pagination from './paginationReducer';
 import ressources from './ressourcesReducer';
+import ressourcesFiltres from './ressourcesFiltresReducer';
 
 import { combineReducers } from 'redux';
 
@@ -25,7 +26,8 @@ const rootReducer = combineReducers({
   statistique: statistiqueReducer,
   filtersAndSorts: filtersAndSortsReducer,
   pagination: pagination,
-  ressources: ressources
+  ressources: ressources,
+  ressourcesFiltres: ressourcesFiltres,
 });
 
 export default rootReducer;
