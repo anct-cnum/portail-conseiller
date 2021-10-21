@@ -46,7 +46,6 @@ function Menu() {
                     Enregistrer un nouvel accompagnement
                 </Link>
               </li>
-              {/*
               <li className="rf-nav__item">
                 <Link
                   className={`rf-nav__link linkCustom ${location.pathname === '/ressourcerie' ? 'linkActive' : ''}`}
@@ -54,7 +53,6 @@ function Menu() {
                     Ressourcerie
                 </Link>
               </li>
-              */}
               {!menu.hiddenMenu && menu.expandNav &&
               <li className="rf-shortcuts__item">
                 <Link className="rf-btn rf-btn--sm" to="/login" title="Se déconnecter" onClick={toggleBurgerMenu}>
