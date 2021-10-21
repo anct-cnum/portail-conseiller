@@ -100,14 +100,8 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false
               </ul>
             </div>
           */}
-            {user?.role === 'admin_coop' &&
-              <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-5 rf-col-lg-12 rf-mt-5w centrerTexte">
-                <a className="statistiques_nationales-btn" onClick={savePDF}>Exporter cette page au format PDF</a>
-              </div>
-            }
-
             <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-5 rf-col-lg-4 rf-mt-5w centrerTexte">
-              <p>L&rsquo;export de vos statistiques est en maintenance...</p>
+              <a className="statistiques_nationales-btn" onClick={savePDF}>Exporter cette page au format PDF</a>
             </div>
           </div>
 
