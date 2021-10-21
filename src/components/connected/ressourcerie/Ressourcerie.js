@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Thematiques from './Thematiques';
 import Tags from './Tags';
 import Ressources from './Ressources';
 import DerniersAjouts from './DerniersAjouts';
 import Footer from '../../Footer';
 import { useDispatch, useSelector } from 'react-redux';
-import { ressourcesActions } from '../../../actions/ressources.actions';
-import ReactTooltip from 'react-tooltip';
+import { ressourcesFiltresActions, ressourcesActions } from '../../../actions';
 
 function Ressourcerie() {
 
@@ -15,12 +14,27 @@ function Ressourcerie() {
   const ressources = useSelector(state => state.ressources?.ressources);
   const ressourcesLoading = useSelector(state => state.ressources?.ressourcesLoading);
   const ressourcesError = useSelector(state => state.ressources?.ressourcesError);
+  const tagsListSelected = useSelector(state => state.ressourcesFiltres?.tagsListSelected);
 
   const dernierAjout = ressources?.slice(-4);
 
+  const [tagsSelected, setTagsSelected] = useState([]);
+  const rechercheParTag = nom => {
+    if (tagsSelected?.includes(nom)) {
+      setTagsSelected([...tagsSelected.filter(item => item !== nom)]);
+    } else {
+      setTagsSelected([...tagsSelected, nom]);
+    }
+  };
   useEffect(() => {
-    dispatch(ressourcesActions.getRessources());
-  }, []);
+    if (tagsListSelected !== undefined) {
+      dispatch(ressourcesActions.getRessources(tagsListSelected));
+    }
+  }, [tagsListSelected]);
+
+  useEffect(() => {
+    dispatch(ressourcesFiltresActions.getTagSelectionnes(tagsSelected));
+  }, [tagsSelected]);
 
   return (
     <div className="ressourcerie">
@@ -41,13 +55,9 @@ function Ressourcerie() {
               <Thematiques />
               <DerniersAjouts ressources={dernierAjout}/>
             </div>
-            <div className="rf-col-6 prochainement" data-tip="
-              <img class='infobulle-image' src='/logos/abeille-roue.png'/>
-              <div><b>En travaux !</b></div>
-              <div>Cette fonctionnalité sera disponible prochainement.</div>">
-              <Tags />
+            <div className="rf-col-6">
+              <Tags rechercheParTag={rechercheParTag}/>
             </div>
-            <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
           </>
           }
         </div>
