@@ -31,10 +31,10 @@ function getTags() {
   }
 }
 
-function getRessources(tags) {
+function getRessources(tags, search) {
   return dispatch => {
     dispatch(request());
-    ressourcesService.getRessources(tags)
+    ressourcesService.getRessources(tags, search)
     .then(
       results => {
         dispatch(success(results?.data));
