@@ -16,7 +16,7 @@ function getTags() {
 
   return fetch(`${apiUrlRoot}/ressources/tags`, requestOptions).then(handleResponse);
 }
-function getRessources(tags) {
+function getRessources(tags, search) {
 
   const requestOptions = {
     method: 'GET',
@@ -28,7 +28,13 @@ function getRessources(tags) {
     tagsIn = '?tags[$in][]=' + tags.join('&tags[$in][]=');
   }
 
-  return fetch(`${apiUrlRoot}/ressources${tagsIn}`, requestOptions).then(handleResponse);
+  let searchText = '';
+  if (search) {
+    searchText += tags?.length > 0 ? '&' : '?';
+    searchText += `$search=${search}`;
+  }
+
+  return fetch(`${apiUrlRoot}/ressources${tagsIn}${searchText}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

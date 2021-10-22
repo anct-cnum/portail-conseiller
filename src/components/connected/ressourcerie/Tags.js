@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { ressourcesActions } from '../../../actions/ressources.actions';
 import ReactTooltip from 'react-tooltip';
 
-function Tags({ rechercheParTag }) {
+function Tags({ rechercheParTag, rechercheParTexte }) {
   const dispatch = useDispatch();
 
   const tagsList = useSelector(state => state.ressources?.tagsList);
@@ -54,7 +54,7 @@ function Tags({ rechercheParTag }) {
                   <div className="rf-modal__content">
                     <h2 className="rf-mb-5v sous-titre">Liste de tous les tags</h2>
                     {!tagsListError && !tagsListLoading && tagsList?.map((tag, idx) => {
-                      return <div key={idx} className="tag" onClick={() => {
+                      return <div key={idx} className={tagsListSelected?.includes(tag.nom) ? 'tag actif' : 'tag'} onClick={() => {
                         rechercheParTag(tag.nom);
                       }}>{tag.nom}</div>;
                     })}
@@ -69,12 +69,9 @@ function Tags({ rechercheParTag }) {
         </dialog>
       }
 
-      <div className="rf-search-bar rf-search-bar--lg prochainement" id="search" role="search" data-tip="
-              <img class='infobulle-image' src='/logos/abeille-roue.png'/>
-              <div><b>En travaux !</b></div>
-              <div>Cette fonctionnalité sera disponible prochainement.</div>">
-        <input className="rf-input" placeholder="Rechercher un tag" type="search" id="search-input" name="search-input" disabled/>
-        <button className="rf-btn" onClick={rechercheParTag} title="Prochainement disponible">
+      <div className="rf-search-bar rf-search-bar--lg" id="search" role="search" >
+        <input className="rf-input" placeholder="Rechercher un document" type="search" id="search-input" name="search-input" />
+        <button className="rf-btn" onClick={rechercheParTexte} title="Rechercher un document">
             Rechercher
         </button>
       </div>
@@ -103,6 +100,7 @@ function Tags({ rechercheParTag }) {
 
 Tags.propTypes = {
   rechercheParTag: PropTypes.func,
+  rechercheParTexte: PropTypes.func,
 };
 
 export default Tags;
