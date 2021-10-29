@@ -9,6 +9,8 @@ export const statistiqueActions = {
   getStatsTerritoires,
   getStatsCraTerritoire,
   getStatsCraNationale,
+  exportDonneesTerritoire,
+  resetExportDonneesTerritoire,
 };
 
 function getStatsCra(dateDebut, dateFin, idUser = null) {
@@ -96,6 +98,7 @@ function getStatsTerritoires(territoire = 'departement', dateDebut, dateFin, pag
     return { type: 'GET_STATS_TERRITOIRES_FAILURE', error };
   }
 }
+
 function getTerritoire(typeTerritoire, idTerritoire, date) {
   return dispatch => {
     dispatch(request());
@@ -170,4 +173,30 @@ function getStatsCraNationale(dateDebutStats, dateFinStats) {
   function failure(error) {
     return { type: 'GET_STATS_CRA_NATIONALES_FAILURE', error };
   }
+}
+
+function exportDonneesTerritoire(territoire = 'departement', dateDebut, dateFin, page, nomOrdre = 'code', ordre = 1) {
+  return dispatch => {
+    dispatch(request());
+
+    statistiqueService.getExportDonneesTerritoire(territoire, dateDebut, dateFin, page, nomOrdre, ordre)
+    .then(
+      exportTerritoireFileBlob => dispatch(success(exportTerritoireFileBlob)),
+      exportTerritoireFileError => dispatch(failure(exportTerritoireFileError))
+    );
+  };
+
+  function request() {
+    return { type: 'GET_EXPORT_DONNEES_TERRITOIRE_REQUEST' };
+  }
+  function success(exportTerritoireFileBlob) {
+    return { type: 'GET_EXPORT_DONNEES_TERRITOIRE_SUCCESS', exportTerritoireFileBlob };
+  }
+  function failure(exportTerritoireFileError) {
+    return { type: 'GET_EXPORT_DONNEES_TERRITOIRE_FAILURE', exportTerritoireFileError };
+  }
+}
+
+function resetExportDonneesTerritoire() {
+  return { type: 'EXPORT_DONNEES_TERRITOIRE_RESET' };
 }
