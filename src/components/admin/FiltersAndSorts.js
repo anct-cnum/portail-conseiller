@@ -5,6 +5,7 @@ import FilterDate from './FilterDate';
 import { conseillerActions, filtersAndSortsActions, statistiqueActions } from '../../actions';
 import { useLocation } from 'react-router';
 import download from 'downloadjs';
+import Spinner from 'react-loader-spinner';
 
 function currentPage(pagination, location) {
   return pagination?.resetPage === false && location.currentPage !== undefined ? location.currentPage : 1;
@@ -24,7 +25,7 @@ function FiltersAndSorts({ resetPage }) {
   const pagination = useSelector(state => state.pagination);
   const exportTerritoireFileBlob = useSelector(state => state.statistique?.exportTerritoireFileBlob);
   const exportTerritoireFileError = useSelector(state => state.statistique?.exportTerritoireFileError);
-
+  const downloading = useSelector(state => state.statistique?.downloading);
 
   const [toggleFiltre, setToggleFiltre] = useState(false);
 
@@ -43,8 +44,6 @@ function FiltersAndSorts({ resetPage }) {
     const exportTerritoireFileName = 'export-territoires.csv';
     download(exportTerritoireFileBlob, exportTerritoireFileName);
     dispatch(statistiqueActions.resetExportDonneesTerritoire());
-
-    // TODO: Loading ?
   });
 
   useEffect(() => {
@@ -122,6 +121,15 @@ function FiltersAndSorts({ resetPage }) {
         { (exportTerritoireFileError !== undefined && exportTerritoireFileError !== false) &&
           <span className="labelError">Une erreur est survenue : {exportTerritoireFileError?.toString()}</span>
         }
+      </div>
+      <div className="spinnerCustom">
+        <Spinner
+          type="Oval"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          visible={downloading === true}
+        />
       </div>
     </div>
   );

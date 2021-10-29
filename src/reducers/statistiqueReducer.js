@@ -124,13 +124,11 @@ export default function statistique(state = initialState, action) {
       return {
         ...state,
         downloading: true,
-        isDownloaded: false
       };
     case 'GET_EXPORT_DONNEES_TERRITOIRE_SUCCESS':
       return {
         ...state,
         exportTerritoireFileBlob: action.exportTerritoireFileBlob,
-        isDownloaded: action.download,
         downloading: false,
       };
     case 'GET_EXPORT_DONNEES_TERRITOIRE_FAILURE':
@@ -138,7 +136,6 @@ export default function statistique(state = initialState, action) {
         ...state,
         exportTerritoireFileError: action.error,
         downloading: false,
-        isDownloaded: false
       };
     case 'EXPORT_DONNEES_TERRITOIRE_RESET': {
       const { exportTerritoireFileBlob: _, ...nextState } = state;
