@@ -87,12 +87,14 @@ function ChoosePassword({ match }) {
                     <div className="erreur-token">
                       <div className="invalid">
                         Désolé mais le lien est invalide ou a déjà été utilisé.
-                        Vous pouvez vous connecter
-                        &nbsp;<Link to="/login" title="Se Connecter" >ici</Link>
-                        &nbsp;ou réinitialiser votre mot de passe
-                        &nbsp;<Link to="/mot-de-passe-oublie" title="Mot de passe oublié" >ici</Link>.
+                        <div>
+                        Vous pouvez vous connecter sur&nbsp;<Link to="/login" title="Se Connecter" >vous connecter</Link>
+                        &nbsp;ou réinitialiser votre mot de passe sur
+                        &nbsp;<Link to="/mot-de-passe-oublie" title="Mot de passe oublié" >réinitialiser votre mot de passe</Link>.
+                        </div>
                       </div>
                     </div>
+
                   </div>
                 }
                 {(verifyingToken || choosingPassword) &&
