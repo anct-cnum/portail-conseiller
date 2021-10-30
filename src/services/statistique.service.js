@@ -16,8 +16,9 @@ function territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin, 
     nomOrdre = nomOrdre + territoire.charAt(0).toUpperCase() + territoire.slice(1);
   }
   const ordreColonne = nomOrdre ? '&nomOrdre=' + nomOrdre + '&ordre=' + ordre : '';
+  const pageIfDefined = page ? '&page=' + page : '';
 
-  return `?territoire=${territoire}&dateDebut=${dateDebut}&dateFin=${dateFin}&page=${page}${ordreColonne}`;
+  return `?territoire=${territoire}&dateDebut=${dateDebut}&dateFin=${dateFin}${pageIfDefined}${ordreColonne}`;
 }
 
 function getStatsCra(dateDebut, dateFin, idUser) {
@@ -92,7 +93,7 @@ function getStatsCraNationale(dateDebut, dateFin) {
     requestOptions).then(handleResponse);
 }
 
-function getExportDonneesTerritoire(territoire, dateDebut, dateFin, page, nomOrdre, ordre) {
+function getExportDonneesTerritoire(territoire, dateDebut, dateFin, nomOrdre, ordre) {
   const requestOptions = {
     method: 'GET',
     headers: Object.assign(
@@ -105,7 +106,7 @@ function getExportDonneesTerritoire(territoire, dateDebut, dateFin, page, nomOrd
   const apiUrlRoot = process.env.REACT_APP_API;
   const exportTerritoiresRoute = '/exports/territoires.csv/';
 
-  return fetch(`${apiUrlRoot}${exportTerritoiresRoute}${territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin, page)}`,
+  return fetch(`${apiUrlRoot}${exportTerritoiresRoute}${territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin)}`,
     requestOptions
   ).then(handleFileResponse);
 }

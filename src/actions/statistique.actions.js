@@ -175,12 +175,11 @@ function getStatsCraNationale(dateDebutStats, dateFinStats) {
   }
 }
 
-function exportDonneesTerritoire(territoire = 'departement', dateDebut, dateFin, page, nomOrdre = 'code', ordre = 1) {
+function exportDonneesTerritoire(territoire = 'departement', dateDebut, dateFin, nomOrdre = 'code', ordre = 1) {
   return dispatch => {
     dispatch(request());
 
-    statistiqueService.getExportDonneesTerritoire(territoire, dateDebut, dateFin, page, nomOrdre, ordre)
-    .then(
+    statistiqueService.getExportDonneesTerritoire(territoire, dateDebut, dateFin, nomOrdre, ordre).then(
       exportTerritoireFileBlob => dispatch(success(exportTerritoireFileBlob)),
       exportTerritoireFileError => dispatch(failure(exportTerritoireFileError))
     );

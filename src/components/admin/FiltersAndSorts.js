@@ -64,7 +64,7 @@ function FiltersAndSorts({ resetPage }) {
   };
 
   const exportDonneesTerritoire = () => {
-    dispatch(statistiqueActions.exportDonneesTerritoire(territoire, dateDebut, dateFin, currentPage(pagination, location), ordreNom, ordre ? 1 : -1));
+    dispatch(statistiqueActions.exportDonneesTerritoire(territoire, dateDebut, dateFin, ordreNom, ordre ? 1 : -1));
   };
 
   return (
