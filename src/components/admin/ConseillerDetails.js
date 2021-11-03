@@ -41,7 +41,7 @@ function ConseillerDetails({ location }) {
           <img src={conseiller?.certifie ? '/logos/icone-check.svg' : '/logos/icone-croix.svg'} style={{ marginRight: '16px' }}/>
           Certification
           <br/>
-          <span className={conseiller?.userCreated ? 'circle-true' : 'circle-false'}/>
+          <span className={conseiller?.emailCNError !== undefined ? 'circle-true' : 'circle-false'}/>
           {conseiller?.userCreated ? 'Activé' : 'Non activé'}
         </div>
       </div>

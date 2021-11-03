@@ -39,10 +39,10 @@ function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre
       profil = '';
       break;
     case 'active':
-      profil = `&userCreated=true`;
+      profil = `&emailCNError[$ne]=null&mattermost[$ne]=null`;
       break;
     case 'inactive':
-      profil = `&userCreated=false`;
+      profil = `&emailCNError=null&mattermost=null`;
       break;
     default:
       break;
