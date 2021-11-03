@@ -45,7 +45,7 @@ function Conseillers() {
       setPageCount(conseillers.items.total % conseillers.items.limit === 0 ? count : count + 1);
     }
   }, [conseillers]);
-  console.log(filtreProfil);
+
   useEffect(() => {
     dispatch(conseillerActions.getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, ordreNom, ordre ? 1 : -1));
   }, [ordre, ordreNom, filtreProfil, filtreCertifie]);

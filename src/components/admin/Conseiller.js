@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 function Conseiller({ conseiller, currentPage, trClass }) {
-console.log(conseiller?.emailCNError);
   return (
     <>
       <tr className={trClass + ' conseiller'}>
