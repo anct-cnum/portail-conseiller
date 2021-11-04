@@ -39,10 +39,10 @@ function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre
       profil = '';
       break;
     case 'active':
-      profil = `&userCreated=true`;
+      profil = `&isUserActif=true`;
       break;
     case 'inactive':
-      profil = `&userCreated=false`;
+      profil = `&isUserActif=false`;
       break;
     default:
       break;

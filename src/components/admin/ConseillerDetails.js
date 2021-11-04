@@ -12,6 +12,7 @@ function ConseillerDetails({ location }) {
   let { id } = useParams();
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const structure = useSelector(state => state.structure?.structure);
+  const isUserActif = useSelector(state => state.conseiller?.isUserActif);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -21,6 +22,7 @@ function ConseillerDetails({ location }) {
   useEffect(() => {
     if (conseiller !== undefined) {
       dispatch(structureActions.get(conseiller?.structureId));
+      dispatch(conseillerActions.isUserActif(conseiller));
     }
   }, [conseiller]);
 
@@ -41,8 +43,8 @@ function ConseillerDetails({ location }) {
           <img src={conseiller?.certifie ? '/logos/icone-check.svg' : '/logos/icone-croix.svg'} style={{ marginRight: '16px' }}/>
           Certification
           <br/>
-          <span className={conseiller?.userCreated ? 'circle-true' : 'circle-false'}/>
-          {conseiller?.userCreated ? 'Activé' : 'Non activé'}
+          <span className={isUserActif ? 'circle-true' : 'circle-false'}/>
+          {isUserActif ? 'Activé' : 'Non activé'}
         </div>
       </div>
       <div className="rf-grid-row">
