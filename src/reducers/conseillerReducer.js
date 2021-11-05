@@ -99,6 +99,11 @@ export default function conseiller(state = initState, action) {
         showFormular: false,
         isUpdated: false
       };
+    case 'IS_USER_ACTIF':
+      return {
+        ...state,
+        isUserActif: action.isUserActif,
+      };
     default:
       return state;
   }

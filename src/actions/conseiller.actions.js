@@ -9,7 +9,8 @@ export const conseillerActions = {
   getStatistiquesAdminCoopPDF,
   resetStatistiquesPDFFile,
   isFormulaireChecked,
-  closeFormulaire
+  closeFormulaire,
+  isUserActif
 };
 
 function get(id) {
@@ -130,4 +131,9 @@ function isFormulaireChecked(sexe, isUpdated) {
 
 function closeFormulaire() {
   return { type: 'CLOSE_FORMULAIRE_SEXE_AGE' };
+}
+
+function isUserActif(conseiller) {
+  const isUserActif = conseiller?.emailCNError !== undefined;
+  return { type: 'IS_USER_CREATED', isUserActif };
 }
