@@ -36,9 +36,9 @@ function Header({ linkAccount }) {
                   {role !== 'admin_coop' &&
                     <>
                       <a className="rf-service__title" href="/" title="Coop">
-                        Coop&nbsp;&nbsp;<span style={{ fontSize: 'small' }}>v { process.env.REACT_APP_VERSION }</span>
+                        Coop&nbsp;&nbsp;<span style={{ fontSize: '20px', fontWeight: '300' }}>v { process.env.REACT_APP_VERSION }</span>
                       </a>
-                      <p className="rf-service__tagline">Réseau des conseillers numériques France Services</p>
+                      <p className="rf-service__tagline">Bienvenue sur le réseau <br/>des conseillers numériques France Services</p>
                     </>
                   }
                   {role === 'admin_coop' &&
