@@ -40,10 +40,75 @@ function Welcome() {
         }
         <div className="rf-container">
           <div className="rf-grid-row rf-grid-row--center">
-
-            <div className="rf-col-12 rf-col-md-10">
-              <h1 className="titre rf-mt-2w rf-mb-1w rf-mt-md-5w rf-mb-md-8w">Bienvenue sur <br className="br-sm"/>l&rsquo;Espace Coop</h1>
+            <div className="rf-col-12">
+              <h2 className="titre">
+                <img src="/logos/home-connected/hexagone-1.svg" className="hexagone"/>
+                Mes services
+              </h2>
             </div>
+
+            <div className="rf-col-6 rf-col-md-4 menu-btn">Suivi d&rsquo;activit&eacute;</div>
+            <div className="rf-col-6 rf-col-md-4 menu-btn">Espace de discussion</div>
+            <div className="rf-col-6 rf-col-md-4 menu-btn">Ressourcerie</div>
+            <div className="rf-col-6 rf-col-md-4 menu-btn">Pix</div>
+            <div className="rf-col-6 rf-col-md-4 menu-btn">Acc&eacute;der au web mail</div>
+
+            <div className="rf-col-12">
+              <h2 className="titre">
+                <img src="/logos/home-connected/hexagone-2.svg" className="hexagone"/>
+                Mes Supports
+              </h2>
+            </div>
+            <div className="rf-col-6">
+              <img src="/logos/home-connected/pres-guide-bien-demarrer-ma-mission.png" style={{ width: '588px' }}/>
+              <a href="https://cdn.conseiller-numerique.gouv.fr/les-conseils-pour-bien-demarrer.pdf"
+                target="blank"
+                className="document-btn rf-ml-md-1w rf-mb-5w"
+                title="Kit bien démarrer ma mission">
+                Téléchargez le kit « Bien démarrer ma mission »
+              </a>
+              <p>
+                Ce document contient tout ce qu’il faut savoir pour bien commencer votre activité de Conseiller
+                numérique France Services depuis votre inscription jusqu’à votre entrée en poste : les bons réflexes
+                à avoir, les outils d’inclusion numérique à connaître,
+                l’organisation des structures de médiation numérique sur les territoires ainsi que leurs contacts.
+              </p>
+            </div>
+            <div className="rf-col-6">
+              <img src="/logos/home-connected/pres-kit-communication.png" style={{ width: '586px' }}/>
+              <a href="https://www.conseiller-numerique.gouv.fr/kit-communication" title="kit de communication" target="blank"
+                className="kit-communication-btn rf-ml-md-1w rf-mb-5w">
+                  Accéder au kit de communication
+              </a>
+              <p>
+                Pour votre communication interne ou externe : papeterie, réseaux sociaux, signalétiques, etc, un kit
+                de communication est mis à votre disposition. Cette seconde version comprend notamment la mise à jour de ces éléments :
+                illustrations, signature mail, cartes de visites imprimables, charte graphique, supports pour les réseaux sociaux, etc.
+              </p>
+            </div>
+
+
+            <div className="rf-col-12">
+              <h2 className="titre">
+                <img src="/logos/home-connected/hexagone-3.svg" className="hexagone"/>
+                Les fonctionnalités à venir sur l’espace Coop
+              </h2>
+            </div>
+            <div className="rf-col-6">
+              – les actualités régulières de la communauté Conseiller numérique France Services ;<br/>
+              – des temps de rencontres dédiés ;<br/>
+              – un fil d’actualités.<br/>
+              – une fonction de prise de rendez-vous ;<br/>
+              – une visualisation nationale des lieux de médiation numérique accessible<br/>
+              via le site vitrine des conseillers numériques France Services.<br/>
+              <br/>
+              <p>Consultez régulièrement votre e-mail pour être tenu au courant des activités et des mises à jour.</p>
+            </div>
+            <div className="rf-col-6">
+              <img src="/logos/home-connected/illustration-bas-de-page.svg" style={{ width: '586px' }}/>
+            </div>
+
+            {/*
 
             <div className="rf-col-12 rf-col-lg-5">
               <div className="btn-gauche">
@@ -180,6 +245,7 @@ function Welcome() {
             </div>
 
             <div className="rf-col-12 rf-mb-md-6w"></div>
+            */}
           </div>
         </div>
       </div>

@@ -2,20 +2,21 @@
   font-family: Marianne;
   background-color: #2b2b2b;
   letter-spacing: 0;
-  .centre, .sous-titre {
+  .centre {
     text-align: center;
   }
   .titre {
-    font-family: MarianneThin;
-    text-align: center;
-    font-size: 3.5rem;
-    line-height: 4rem;
+    font-size: 1.25em;
+    line-height: 2em;
+    font-weight: 400;
+    color: #fff;
   }
-  .sous-titre, .sous-titre-futur {
-    font-size: 1.5rem;
-    line-height: 2rem;
-    color: #f0f0f0;
-    font-weight: 600;
+  .hexagone {
+    margin-right: 16px;
+    position: relative;
+    height: 32px;
+    width: 28px;
+    top: 9px;
   }
   .smiley-logo {
     background: url(../../public/logos/home-connected/smiley.svg) no-repeat;
@@ -31,6 +32,15 @@
   }
   .btn-gauche, .btn-droite {
     text-align: center;
+  }
+  .menu-btn {
+    line-height: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #fff;
+
   }
   .cra-btn, .pix-btn, .mattermost-btn, .webmail-btn {
     background-color: #fff;
@@ -87,7 +97,7 @@
     border-radius: 20px;
   }
   .document-btn, .kit-communication-btn {
-    background-color: #1e1e1e;
+    background-color: transparent;
     border: 2px solid #fff;
     display: inline-block;
     border-radius: 40px;
@@ -99,7 +109,7 @@
     font-size: 1rem;
     color: #fff;
     height: 64px;
-    width: 272px;
+    width: 429px;
   }
   .kit-communication-btn{
     width: 326px;

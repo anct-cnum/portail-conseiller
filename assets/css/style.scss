@@ -49,11 +49,16 @@
 /** End trick**/
 
 /** Header **/
-.rf-header .rf-service__tagline {
+.rf-service__tagline {
   font-size: 0.75em;
   line-height: 1.25em;
 }
-
+.rf-header .feuillet {
+  background-image: url(/public/logos/feuillets-couleurs.svg);
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: top;
+}
 .rf-fi-user-line {
   color:var(--bf500);
 }

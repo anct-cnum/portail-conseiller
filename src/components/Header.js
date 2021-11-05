@@ -34,12 +34,15 @@ function Header({ linkAccount }) {
                 style={{ marginBottom: '13px' }}>
                 <div className="rf-service">
                   {role !== 'admin_coop' &&
-                    <>
+                    <div className="feuillet">
                       <a className="rf-service__title" href="/" title="Coop">
                         Coop&nbsp;&nbsp;<span style={{ fontSize: '20px', fontWeight: '300' }}>v { process.env.REACT_APP_VERSION }</span>
                       </a>
-                      <p className="rf-service__tagline">Bienvenue sur le réseau <br/>des conseillers numériques France Services</p>
-                    </>
+                      <p className="rf-service__tagline">
+                        Bienvenue sur le réseau
+                        <br/>des conseillers numériques France Services
+                      </p>
+                    </div>
                   }
                   {role === 'admin_coop' &&
                     <>
@@ -73,7 +76,6 @@ function Header({ linkAccount }) {
                                 onClick={() => {
                                   setMenuAideShow(!menuAideShow);
                                 }}>
-                                <img className="logo-discussion" src="logos/bulle-ressourcerie.svg"/>
                                 <span className="texte-aide">Aide&nbsp;
                                   {!menuAideShow &&
                                     <i className="ri-arrow-down-s-line"></i>
