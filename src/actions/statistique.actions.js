@@ -176,13 +176,12 @@ function getStatsCraNationale(dateDebutStats, dateFinStats) {
 }
 
 function exportDonneesTerritoire(territoire = 'departement', dateDebut, dateFin, nomOrdre = 'code', ordre = 1) {
-  return dispatch => {
+  return async dispatch => {
     dispatch(request());
 
-    statistiqueService.getExportDonneesTerritoire(territoire, dateDebut, dateFin, nomOrdre, ordre).then(
-      exportTerritoireFileBlob => dispatch(success(exportTerritoireFileBlob)),
-      exportTerritoireFileError => dispatch(failure(exportTerritoireFileError))
-    );
+    await statistiqueService.getExportDonneesTerritoire(territoire, dateDebut, dateFin, nomOrdre, ordre)
+    .then(exportTerritoireFileBlob => dispatch(success(exportTerritoireFileBlob)))
+    .catch(exportTerritoireFileError => dispatch(failure(exportTerritoireFileError)));
   };
 
   function request() {

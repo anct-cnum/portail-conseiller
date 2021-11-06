@@ -33,10 +33,10 @@ function FiltersAndSorts({ resetPage }) {
     setToggleFiltre(!toggleFiltre);
   };
 
-  const hasExportTerritoireFileBlob = () => exportTerritoireFileBlob !== null && exportTerritoireFileBlob !== undefined;
-  const hasExportTerritoireFileError = () => exportTerritoireFileError !== undefined && exportTerritoireFileError !== false;
-
   useEffect(() => {
+    const hasExportTerritoireFileBlob = () => exportTerritoireFileBlob !== null && exportTerritoireFileBlob !== undefined;
+    const hasExportTerritoireFileError = () => exportTerritoireFileError !== undefined && exportTerritoireFileError !== false;
+
     if (!hasExportTerritoireFileBlob() || hasExportTerritoireFileError()) {
       return;
     }
@@ -44,7 +44,7 @@ function FiltersAndSorts({ resetPage }) {
     const exportTerritoireFileName = 'export-territoires.csv';
     download(exportTerritoireFileBlob, exportTerritoireFileName);
     dispatch(statistiqueActions.resetExportDonneesTerritoire());
-  });
+  }, [exportTerritoireFileBlob, exportTerritoireFileError]);
 
   useEffect(() => {
     if (location.pathname === '/accueil') {
@@ -119,7 +119,7 @@ function FiltersAndSorts({ resetPage }) {
           </div>
         }
         { (exportTerritoireFileError !== undefined && exportTerritoireFileError !== false) &&
-          <span className="labelError">Une erreur est survenue : {exportTerritoireFileError?.toString()}</span>
+          <span className="labelError">Une erreur est survenue : {exportTerritoireFileError}</span>
         }
       </div>
       <div className="spinnerCustom">

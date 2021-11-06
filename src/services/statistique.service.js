@@ -93,7 +93,7 @@ function getStatsCraNationale(dateDebut, dateFin) {
     requestOptions).then(handleResponse);
 }
 
-function getExportDonneesTerritoire(territoire, dateDebut, dateFin, nomOrdre, ordre) {
+async function getExportDonneesTerritoire(territoire, dateDebut, dateFin, nomOrdre, ordre) {
   const requestOptions = {
     method: 'GET',
     headers: Object.assign(
@@ -106,9 +106,9 @@ function getExportDonneesTerritoire(territoire, dateDebut, dateFin, nomOrdre, or
   const apiUrlRoot = process.env.REACT_APP_API;
   const exportTerritoiresRoute = '/exports/territoires.csv/';
 
-  return fetch(`${apiUrlRoot}${exportTerritoiresRoute}${territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin)}`,
-    requestOptions
-  ).then(handleFileResponse);
+  return handleFileResponse(
+    await fetch(`${apiUrlRoot}${exportTerritoiresRoute}${territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin)}`, requestOptions)
+  );
 }
 
 function handleResponse(response) {
