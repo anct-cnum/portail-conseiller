@@ -5,6 +5,7 @@ import Footer from '../Footer';
 import { conseillerActions } from '../../actions';
 import { userEntityId } from '../../helpers';
 import FlashMessage from 'react-flash-message';
+import ReactTooltip from 'react-tooltip';
 
 function Welcome() {
   const dispatch = useDispatch();
@@ -38,214 +39,166 @@ function Welcome() {
           </p>
         </FlashMessage>
         }
-        <div className="rf-container">
-          <div className="rf-grid-row rf-grid-row--center">
+        <div className="rf-container-fluid">
+          <div className="rf-grid-row">
             <div className="rf-col-12">
-              <h2 className="titre">
-                <img src="/logos/home-connected/hexagone-1.svg" className="hexagone"/>
-                Mes services
-              </h2>
-            </div>
-
-            <div className="rf-col-6 rf-col-md-4 menu-btn">Suivi d&rsquo;activit&eacute;</div>
-            <div className="rf-col-6 rf-col-md-4 menu-btn">Espace de discussion</div>
-            <div className="rf-col-6 rf-col-md-4 menu-btn">Ressourcerie</div>
-            <div className="rf-col-6 rf-col-md-4 menu-btn">Pix</div>
-            <div className="rf-col-6 rf-col-md-4 menu-btn">Acc&eacute;der au web mail</div>
-
-            <div className="rf-col-12">
-              <h2 className="titre">
-                <img src="/logos/home-connected/hexagone-2.svg" className="hexagone"/>
-                Mes Supports
-              </h2>
-            </div>
-            <div className="rf-col-6">
-              <img src="/logos/home-connected/pres-guide-bien-demarrer-ma-mission.png" style={{ width: '588px' }}/>
-              <a href="https://cdn.conseiller-numerique.gouv.fr/les-conseils-pour-bien-demarrer.pdf"
-                target="blank"
-                className="document-btn rf-ml-md-1w rf-mb-5w"
-                title="Kit bien démarrer ma mission">
-                Téléchargez le kit « Bien démarrer ma mission »
-              </a>
-              <p>
-                Ce document contient tout ce qu’il faut savoir pour bien commencer votre activité de Conseiller
-                numérique France Services depuis votre inscription jusqu’à votre entrée en poste : les bons réflexes
-                à avoir, les outils d’inclusion numérique à connaître,
-                l’organisation des structures de médiation numérique sur les territoires ainsi que leurs contacts.
-              </p>
-            </div>
-            <div className="rf-col-6">
-              <img src="/logos/home-connected/pres-kit-communication.png" style={{ width: '586px' }}/>
-              <a href="https://www.conseiller-numerique.gouv.fr/kit-communication" title="kit de communication" target="blank"
-                className="kit-communication-btn rf-ml-md-1w rf-mb-5w">
-                  Accéder au kit de communication
-              </a>
-              <p>
-                Pour votre communication interne ou externe : papeterie, réseaux sociaux, signalétiques, etc, un kit
-                de communication est mis à votre disposition. Cette seconde version comprend notamment la mise à jour de ces éléments :
-                illustrations, signature mail, cartes de visites imprimables, charte graphique, supports pour les réseaux sociaux, etc.
-              </p>
-            </div>
-
-
-            <div className="rf-col-12">
-              <h2 className="titre">
-                <img src="/logos/home-connected/hexagone-3.svg" className="hexagone"/>
-                Les fonctionnalités à venir sur l’espace Coop
-              </h2>
-            </div>
-            <div className="rf-col-6">
-              – les actualités régulières de la communauté Conseiller numérique France Services ;<br/>
-              – des temps de rencontres dédiés ;<br/>
-              – un fil d’actualités.<br/>
-              – une fonction de prise de rendez-vous ;<br/>
-              – une visualisation nationale des lieux de médiation numérique accessible<br/>
-              via le site vitrine des conseillers numériques France Services.<br/>
-              <br/>
-              <p>Consultez régulièrement votre e-mail pour être tenu au courant des activités et des mises à jour.</p>
-            </div>
-            <div className="rf-col-6">
-              <img src="/logos/home-connected/illustration-bas-de-page.svg" style={{ width: '586px' }}/>
-            </div>
-
-            {/*
-
-            <div className="rf-col-12 rf-col-lg-5">
-              <div className="btn-gauche">
-                <Link className="cra-btn rf-mb-3w" to="/compte-rendu-activite" title="Accéder à mon outil de suivi d&rsquo;activité">
-                  <span className="cra-logo-btn"></span>
-                  <span className="cra-texte-btn">Accéder à mon outil <br/> de suivi d&rsquo;activité</span>
-                </Link>
-              </div>
-            </div>
-
-            <div className="rf-col-12 rf-col-lg-5">
-              <div className="btn-droite">
-                <a className="mattermost-btn rf-mb-3w" href={lienMattermost} target="blank"
-                  title="Accès espace discussion">
-                  <span className="mattermost-logo-btn"></span>
-                  <span className="mattermost-texte-btn">Accéder à l&rsquo;espace <br/> de discussion</span>
-                </a>
-              </div>
-            </div>
-
-            <div className="rf-col-12 rf-col-lg-5">
-              <div className="btn-gauche">
-                <a className="pix-btn rf-mb-3w" href={lienPix} target="blank"
-                  title="Accéder à Pix">
-                  <span className="pix-logo-btn"></span>
-                  <span className="pix-texte-btn">Accéder à Pix</span>
-                </a>
-              </div>
-            </div>
-
-            <div className="rf-col-12 rf-col-lg-5 listBoutonsWelcome">
-              <div className="btn-droite">
-                <a className="webmail-btn rf-mb-3w" href={lienWebmail} target="blank"
-                  title="Accéder à ma boîte mail">
-                  <span className="webmail-logo-btn"></span>
-                  <span className="webmail-texte-btn">Accéder au webmail</span>
-                </a>
-              </div>
-            </div>
-
-
-            <div className="rf-col-12 bloc-document">
-              <div className="rf-container-fluid">
+              <div className="rf-container">
                 <div className="rf-grid-row rf-grid-row--center">
-
-                  <div className="rf-col-12 rf-col-md-10 rf-mt-3w rf-mt-md-6w rf-mb-5w rf-mb-md-8w">
-                    <h2 className="sous-titre">
-                      Téléchargez le kit « Bien démarrer ma mission » pour en apprendre davantage sur <br className="br-hidden"/>
-                      le Suivi d&rsquo;activité et l&rsquo;usage des données, sur l&rsquo;outil Pix , et bien d&rsquo;autres sujets.
+                  <div className="rf-col-12 rf-mt-12w rf-mb-3w">
+                    <h2 className="titre">
+                      <img src="/logos/home-connected/hexagone-1.svg" className="hexagone"/>
+                      Mes services
                     </h2>
                   </div>
+                </div>
+              </div>
+            </div>
 
-                  <div className="rf-col-12 rf-col-md-5 rf-mb-md-6w center-md">
-                    <p className="rf-ml-md-1w align-left-sm">Ce document PDF contient tout ce qu&rsquo;il faut savoir <br className="br-hidden"/>
-                      pour bien commencer votre activité de Conseiller <br className="br-hidden"/>
-                      numérique France Services depuis votre inscription <br className="br-hidden"/>
-                      jusqu&rsquo;à votre entrée en poste : les bons réflexes à avoir, <br className="br-hidden"/>
-                      les outils d&rsquo;inclusion numérique à connaître, <br className="br-hidden"/>
-                      l&rsquo;organisation des structures de médiation numérique <br className="br-hidden"/>
-                      sur les territoires ainsi que leurs contacts.
-                    </p>
-
-                    <a href="https://cdn.conseiller-numerique.gouv.fr/les-conseils-pour-bien-demarrer.pdf"
-                      target="blank"
-                      className="document-btn rf-ml-md-1w rf-mb-5w"
-                      title="Kit bien démarrer ma mission">
-                      Téléchargez le document
+            <div className="rf-col-12 fond-sombre">
+              <div className="rf-container">
+                <div className="rf-grid-row rf-grid-row--center">
+                  <div className="rf-col-md-1"> </div>
+                  <div className="rf-col-6 rf-col-md-3 rf-my-8w menu-btn">
+                    <Link to="/compte-rendu-activite" title="Accéder à mon outil de suivi d&rsquo;activité">
+                      <img src="/logos/home-connected/icone-cra.svg" className="icone-btn rf-mb-3v"/>
+                      Suivi d&rsquo;activit&eacute;
+                    </Link>
+                  </div>
+                  <div className="rf-col-6 rf-col-md-3 rf-my-8w menu-btn">
+                    <a href={lienMattermost} target="blank" title="Accès espace discussion">
+                      <img src="/logos/home-connected/icone-discussion.svg" className="icone-btn rf-mb-3v"/>
+                      Espace de discussion
+                      <span data-tip="
+                        <div><b>Astuce :</b> l’espace de discussion fonctionne via le logiciel libre Mattermost.
+                        Si vous le souhaitez, il est possible de l’installer sur votre ordinateur ou votre téléphone
+                        afin de pouvoir y accéder directement.</div>
+                        <br/>
+                        <div>Pour le télécharger : www.mattermost.com/download/ </div>
+                        <br/>
+                        <div>Pour le paramétrer : </div>
+                        <div>serveur : https://discussion.conseiller-numerique.gouv.fr </div>
+                        <div>identifiants : votre mail et votre mot de passe Conseiller numérique. </div>
+                        <div>Cette fonctionnalité sera disponible prochainement.</div>">
+                        <i className="ri-information-line information"></i>
+                      </span>
                     </a>
                   </div>
-                  <div className="rf-col-12 rf-col-md-5 center-md">
-                    <img className="document-img rf-mb-6w rf-mb-md-9w rf-ml-md-1w" src="/logos/home-connected/bien-démarrer-ma-mission.png"/>
+                  <div className="rf-col-6 rf-col-md-3 rf-my-8w menu-btn">
+                    <Link to="/ressourcerie" title="Accéder à la ressourcerie">
+                      <img src="/logos/home-connected/icone-ressourcerie.svg" className="icone-btn rf-mb-3v"/>
+                      Ressourcerie
+                    </Link>
                   </div>
+                  <div className="rf-col-md-1"> </div>
+                  <div className="rf-col-6 rf-col-md-3 rf-my-8w menu-btn">
+                    <a href={lienPix} target="blank" title="Accéder à Pix">
+                      <img src="/logos/home-connected/icone-pix.svg" className="icone-btn rf-mb-3v"/>
+                      Pix
+                    </a>
+                  </div>
+                  <div className="rf-col-6 rf-col-md-3 rf-my-8w menu-btn">
+                    <a href={lienWebmail} target="blank" title="Accéder à ma boîte mail">
+                      <img src="/logos/home-connected/icone-courriel.svg" className="icone-btn rf-mb-3v"/>
+                      Acc&eacute;der au web mail
+                      <span data-tip="
+                        <div><b>Astuce:</b> pour configurer votre adresse prenom.nom@conseiller-numerique.com sur votre client
+                        mail (Outlook, Thinderbird, etc.), voici les paramètres IMAP:</div>
+                       <ul>
+                        <li>Serveur de courrier entrant : mail.gandi.net</li>
+                        <li>Port : 993</li>
+                        <li>Méthode de chiffrement : SSL/TLS</li>
+                        <li>Serveur de courrier sortant : mail.gandi.net</li>
+                        <li>Port : 465</li>
+                        <li>Ne pas activer l'authentification SPA.</li>
+                       </ul>">
+                        <i className="ri-information-line information"></i>
+                      </span>
+                    </a>
+                  </div>
+                  <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
                 </div>
               </div>
             </div>
 
-            <div className="rf-col-12 rf-col-md-10 rf-mt-3w rf-mt-md-6w rf-mb-5w rf-mb-md-8w">
-              <h2 className="sous-titre">
-                Le kit de communication Conseiller numérique France Services
-              </h2>
-            </div>
-
-            <div className="rf-col-12 rf-col-md-5 center-md">
-              <img className="kit-communication-img rf-mb-6w rf-mb-md-9w rf-ml-md-1w" src="/logos/home-connected/supports-kit-communication.png"/>
-            </div>
-
-            <div className="rf-col-12 rf-col-md-5 rf-mb-md-6w center-md">
-              <p className="rf-ml-md-1w align-left-sm">Pour votre communication interne ou externe : papeterie, <br className="br-hidden"/>
-                réseaux sociaux, signalétiques, etc, un kit de communication est
-                mis à votre disposition. Il comprend à ce jour, les éléments <br className="br-hidden"/>
-                suivants :  <br className="br-hidden"/>
-                – modèle de cartes de visites imprimables&nbsp;; <br className="br-hidden"/>
-                – supports pour réseaux sociaux et charte graphique&nbsp;; <br className="br-hidden"/>
-                – logos et illustrations&nbsp;; <br className="br-hidden"/>
-                – modèle d&rsquo;étiquettes.
-              </p>
-
-              <a href="https://www.conseiller-numerique.gouv.fr/kit-communication" title="kit de communication" target="blank"
-                className="kit-communication-btn rf-ml-md-1w rf-mb-5w">
-                  Accéder au kit de communication
-              </a>
-            </div>
-
-            <div className="rf-col-12 bloc-document rf-mb-7w rf-mb-md-9w">
-              <div className="rf-container-fluid">
+            <div className="rf-col-12">
+              <div className="rf-container">
                 <div className="rf-grid-row rf-grid-row--center">
-
-                  <div className="rf-col-12 rf-col-md-10 rf-mb-5w rf-mb-md-6w rf-mt-8w rf-mt-md-9w">
-                    <h2 className="sous-titre">Les autres fonctionnalités à venir sur
-                      <a href="https://coop.conseiller-numerique.gouv.fr/login" target="blank" title="site coop" style={{ boxShadow: 'none' }}>
-                        &nbsp;coop.conseiller-numerique.gouv.fr
-                      </a>
+                  <div className="rf-col-12 rf-mt-9w rf-mb-3w">
+                    <h2 className="titre">
+                      <img src="/logos/home-connected/hexagone-2.svg" className="hexagone"/>
+                      Mes Supports
                     </h2>
                   </div>
-
-                  <div className="rf-col-12 rf-col-md-5 rf-mb-7w rf-mb-md-9w align-left-sm center-md">
-                    <p className="rf-mb-5w  rf-mb-md-6w rf-ml-md-1w">
-                      – La possibilité de consulter ses mails sur la Coop&nbsp;;<br/>
-                      – les actualités régulières de la communauté Conseiller numérique France Services&nbsp;;<br/>
-                      – des temps de rencontres dédiés&nbsp;; <br/>
-                      – la bibliothèque d&rsquo;outils d&rsquo;inclusion numérique&nbsp;; <br/>
-                      – un forum et une ressourcerie participatifs.
-                    </p>
-
-                    <p className="rf-ml-md-1w">Consultez régulièrement votre e-mail pour être tenu au <br/>courant des activités et des mises à jour. </p>
-                  </div>
-
-                  <div className="rf-col-12 rf-col-md-5 rf-mb-6w center-md">
-                    <img className="futur-img rf-ml-md-1w" src="/logos/home-connected/preview-pix.png"/>
-                  </div>
-
                 </div>
               </div>
             </div>
 
-            <div className="rf-col-12 rf-mb-md-6w"></div>
-            */}
+            <div className="rf-col-12 fond-sombre">
+              <div className="rf-container">
+                <div className="rf-grid-row rf-grid-row--center">
+                  <div className="rf-col-12 rf-col-md-6 rf-mt-7w">
+                    <img src="/logos/home-connected/pres-guide-bien-demarrer-ma-mission.png" className="rf-mr-md-1w img-home"/>
+                    <a href="https://cdn.conseiller-numerique.gouv.fr/les-conseils-pour-bien-demarrer.pdf" target="blank"
+                      className="document-btn rf-mt-5w rf-mb-4w" title="Kit bien démarrer ma mission">
+                      Téléchargez le kit « Bien démarrer ma mission »
+                    </a>
+                    <p className="rf-mb-8w rf-mr-md-1w">
+                      Ce document contient tout ce qu’il faut savoir pour bien commencer votre activité de Conseiller
+                      numérique France Services depuis votre inscription jusqu’à votre entrée en poste : les bons réflexes
+                      à avoir, les outils d’inclusion numérique à connaître,
+                      l’organisation des structures de médiation numérique sur les territoires ainsi que leurs contacts.
+                    </p>
+                  </div>
+                  <div className="rf-col-12 rf-col-md-6 rf-mt-7w">
+                    <img src="/logos/home-connected/pres-kit-communication.png" className="rf-ml-md-1w img-home"/>
+                    <a href="https://www.conseiller-numerique.gouv.fr/kit-communication" title="kit de communication" target="blank"
+                      className="kit-communication-btn rf-ml-md-1w rf-mt-5w rf-mb-4w">
+                        Accéder au kit de communication
+                    </a>
+                    <p className="rf-mb-8w rf-ml-md-1w">
+                      Pour votre communication interne ou externe : papeterie, réseaux sociaux, signalétiques, etc, un kit
+                      de communication est mis à votre disposition. Cette seconde version comprend notamment la mise à jour de ces éléments :
+                      illustrations, signature mail, cartes de visites imprimables, charte graphique, supports pour les réseaux sociaux, etc.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="rf-col-12">
+              <div className="rf-container">
+                <div className="rf-grid-row rf-grid-row--center">
+                  <div className="rf-col-12 rf-mt-9w rf-mb-3w">
+                    <h2 className="titre">
+                      <img src="/logos/home-connected/hexagone-3.svg" className="hexagone"/>
+                      Les fonctionnalités à venir sur l’espace Coop
+                    </h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="rf-col-12 fond-sombre">
+              <div className="rf-container">
+                <div className="rf-grid-row rf-grid-row--center">
+                  <div className="rf-col-12 rf-col-md-6 rf-mt-7w rf-mb-3w">
+                    – les actualités régulières de la communauté Conseiller numérique France Services ;<br/>
+                    – des temps de rencontres dédiés ;<br/>
+                    – un fil d’actualités.<br/>
+                    – une fonction de prise de rendez-vous ;<br/>
+                    – une visualisation nationale des lieux de médiation numérique accessible<br/>
+                    via le site vitrine des conseillers numériques France Services.<br/>
+                    <br/>
+                    <p>Consultez régulièrement votre e-mail pour être tenu au courant des activités et des mises à jour.</p>
+                  </div>
+                  <div className="rf-col-12 rf-col-md-6">
+                    <img src="/logos/home-connected/illustration-bas-de-page.svg" className="rf-ml-md-1w img-home"/>
+                  </div>
+                </div>
+                <div className="rf-col-12 rf-mb-12w"></div>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>

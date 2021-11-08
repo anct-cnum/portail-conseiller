@@ -76,6 +76,7 @@ function Header({ linkAccount }) {
                                 onClick={() => {
                                   setMenuAideShow(!menuAideShow);
                                 }}>
+                                <img className="logo-discussion" src="logos/bulle-ressourcerie.svg"/>
                                 <span className="texte-aide">Aide&nbsp;
                                   {!menuAideShow &&
                                     <i className="ri-arrow-down-s-line"></i>
