@@ -185,16 +185,16 @@ function exportDonneesTerritoire(territoire = 'departement', dateDebut, dateFin,
   };
 
   function request() {
-    return { type: 'GET_EXPORT_DONNEES_TERRITOIRE_REQUEST' };
+    return { type: 'GET_EXPORT_TERRITOIRE_REQUEST' };
   }
   function success(exportTerritoireFileBlob) {
-    return { type: 'GET_EXPORT_DONNEES_TERRITOIRE_SUCCESS', exportTerritoireFileBlob };
+    return { type: 'GET_EXPORT_TERRITOIRE_SUCCESS', exportTerritoireFileBlob };
   }
   function failure(exportTerritoireFileError) {
-    return { type: 'GET_EXPORT_DONNEES_TERRITOIRE_FAILURE', exportTerritoireFileError };
+    return { type: 'GET_EXPORT_TERRITOIRE_FAILURE', exportTerritoireFileError };
   }
 }
 
 function resetExportDonneesTerritoire() {
-  return { type: 'EXPORT_DONNEES_TERRITOIRE_RESET' };
+  return { type: 'EXPORT_TERRITOIRE_RESET' };
 }
