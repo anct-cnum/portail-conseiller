@@ -9,7 +9,8 @@ export const conseillerService = {
   getAll,
   getStatistiquesPDF,
   getStatistiquesAdminCoopPDF,
-  createSexeAge
+  createSexeAge,
+  getExportDonneesCnfs
 };
 
 function get(id) {
@@ -21,13 +22,7 @@ function get(id) {
   return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
 }
 
-function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre, ordre) {
-
-  const requestOptions = {
-    method: 'GET',
-    headers: authHeader()
-  };
-
+function cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreCertifie) {
   const ordreColonne = nomOrdre ? '&$sort[' + nomOrdre + ']=' + ordre : '';
   const filterDateStart = (dayjs(new Date(dateDebut)).format('DD/MM/YYYY') !== dayjs(new Date()).format('DD/MM/YYYY') && dateDebut !== '') ?
     `&datePrisePoste[$gt]=${new Date(dateDebut).toISOString()}` : '';
@@ -61,6 +56,22 @@ function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre
     default:
       break;
   }
+  return { ordreColonne, filterDateStart, filterDateEnd, profil, certifie };
+}
+
+function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre, ordre) {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  };
+
+  let {
+    ordreColonne,
+    filterDateStart,
+    filterDateEnd,
+    profil,
+    certifie
+  } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreCertifie);
 
   let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${profil}${certifie}${filterDateStart}${filterDateEnd}${ordreColonne}`;
 
@@ -97,6 +108,31 @@ function createSexeAge(user) {
   };
 
   return fetch(`${apiUrlRoot}/conseillers/createSexeAge`, requestOptions).then(handleResponse);
+}
+
+function getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre, ordre) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      ...authHeader(),
+      'Accept': 'text/plain',
+      'Content-Type': 'text/plain'
+    }
+  };
+
+  let {
+    ordreColonne,
+    filterDateStart,
+    filterDateEnd,
+    profil,
+    certifie
+  } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreCertifie);
+
+  const exportCnfsRoute = '/exports/cnfs.csv';
+
+  return fetch(`${apiUrlRoot}${exportCnfsRoute}?statut=RECRUTE${profil}${certifie}${filterDateStart}${filterDateEnd}${ordreColonne}`,
+    requestOptions
+  ).then(handleFileResponse);
 }
 
 function handleResponse(response) {

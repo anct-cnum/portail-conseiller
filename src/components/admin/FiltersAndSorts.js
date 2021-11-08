@@ -25,6 +25,8 @@ function FiltersAndSorts({ resetPage }) {
   const pagination = useSelector(state => state.pagination);
   const exportTerritoireFileBlob = useSelector(state => state.statistique?.exportTerritoireFileBlob);
   const exportTerritoireFileError = useSelector(state => state.statistique?.exportTerritoireFileError);
+  const exportCnfsFileBlob = useSelector(state => state.conseiller?.exportCnfsFileBlob);
+  const exportCnfsFileError = useSelector(state => state.conseiller?.exportCnfsFileError);
   const downloading = useSelector(state => state.statistique?.downloading);
 
   const [toggleFiltre, setToggleFiltre] = useState(false);
@@ -33,18 +35,25 @@ function FiltersAndSorts({ resetPage }) {
     setToggleFiltre(!toggleFiltre);
   };
 
-  useEffect(() => {
-    const hasExportTerritoireFileBlob = () => exportTerritoireFileBlob !== null && exportTerritoireFileBlob !== undefined;
-    const hasExportTerritoireFileError = () => exportTerritoireFileError !== undefined && exportTerritoireFileError !== false;
+  const has = value => value !== null && value !== undefined;
 
-    if (!hasExportTerritoireFileBlob() || hasExportTerritoireFileError()) {
+  useEffect(() => {
+    if (!has(exportTerritoireFileBlob) || has(exportTerritoireFileError)) {
       return;
     }
 
-    const exportTerritoireFileName = 'export-territoires.csv';
-    download(exportTerritoireFileBlob, exportTerritoireFileName);
+    download(exportTerritoireFileBlob, 'export-territoires.csv');
     dispatch(statistiqueActions.resetExportDonneesTerritoire());
   }, [exportTerritoireFileBlob, exportTerritoireFileError]);
+
+  useEffect(() => {
+    if (!has(exportCnfsFileBlob) || has(exportCnfsFileError)) {
+      return;
+    }
+
+    download(exportCnfsFileBlob, 'export-cnfs.csv');
+    dispatch(conseillerActions.resetExportDonneesCnfs());
+  }, [exportCnfsFileBlob, exportCnfsFileError]);
 
   useEffect(() => {
     if (location.pathname === '/accueil') {
@@ -65,6 +74,10 @@ function FiltersAndSorts({ resetPage }) {
 
   const exportDonneesTerritoire = () => {
     dispatch(statistiqueActions.exportDonneesTerritoire(territoire, dateDebut, dateFin, ordreNom, ordre ? 1 : -1));
+  };
+
+  const exportDonneesCnfs = () => {
+    dispatch(conseillerActions.exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, ordreNom, ordre ? 1 : -1));
   };
 
   return (
@@ -113,6 +126,11 @@ function FiltersAndSorts({ resetPage }) {
             </span>
           </b>
         </div>
+        { location.pathname === '/accueil' &&
+        <div className="rf-ml-auto">
+          <button className="rf-btn rf-btn--secondary" onClick={exportDonneesCnfs}>Exporter les données</button>
+        </div>
+        }
         { location.pathname === '/territoires' &&
           <div className="rf-ml-auto">
             <button className="rf-btn rf-btn--secondary" onClick={exportDonneesTerritoire}>Exporter les données</button>
