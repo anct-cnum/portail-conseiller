@@ -4,6 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import FilterDate from './FilterDate';
 import { conseillerActions, filtersAndSortsActions, statistiqueActions } from '../../actions';
 import { useLocation } from 'react-router';
+import download from 'downloadjs';
+import Spinner from 'react-loader-spinner';
+
+function currentPage(pagination, location) {
+  return pagination?.resetPage === false && location.currentPage !== undefined ? location.currentPage : 1;
+}
+
 function FiltersAndSorts({ resetPage }) {
   const location = useLocation();
   const dispatch = useDispatch();
@@ -16,6 +23,9 @@ function FiltersAndSorts({ resetPage }) {
   let filtreProfil = useSelector(state => state.filtersAndSorts?.profil);
   let filtreCertifie = useSelector(state => state.filtersAndSorts?.certifie);
   const pagination = useSelector(state => state.pagination);
+  const exportTerritoireFileBlob = useSelector(state => state.statistique?.exportTerritoireFileBlob);
+  const exportTerritoireFileError = useSelector(state => state.statistique?.exportTerritoireFileError);
+  const downloading = useSelector(state => state.statistique?.downloading);
 
   const [toggleFiltre, setToggleFiltre] = useState(false);
 
@@ -24,12 +34,25 @@ function FiltersAndSorts({ resetPage }) {
   };
 
   useEffect(() => {
+    const hasExportTerritoireFileBlob = () => exportTerritoireFileBlob !== null && exportTerritoireFileBlob !== undefined;
+    const hasExportTerritoireFileError = () => exportTerritoireFileError !== undefined && exportTerritoireFileError !== false;
+
+    if (!hasExportTerritoireFileBlob() || hasExportTerritoireFileError()) {
+      return;
+    }
+
+    const exportTerritoireFileName = 'export-territoires.csv';
+    download(exportTerritoireFileBlob, exportTerritoireFileName);
+    dispatch(statistiqueActions.resetExportDonneesTerritoire());
+  }, [exportTerritoireFileBlob, exportTerritoireFileError]);
+
+  useEffect(() => {
     if (location.pathname === '/accueil') {
       dispatch(conseillerActions.getAll(0, dateDebut, dateFin, filtreProfil, filtreCertifie, ordreNom, ordre ? 1 : -1));
       resetPage(1);
     }
     if (location.pathname === '/territoires') {
-      const page = (pagination?.resetPage === false && location.currentPage !== undefined) ? location.currentPage : 1;
+      const page = currentPage(pagination, location);
       dispatch(statistiqueActions.getStatsTerritoires(territoire, dateDebut, dateFin, page, ordreNom, ordre ? 1 : -1));
       resetPage(page);
     }
@@ -40,9 +63,13 @@ function FiltersAndSorts({ resetPage }) {
     dispatch(filtersAndSortsActions.changeTerritoire(e.target.id));
   };
 
+  const exportDonneesTerritoire = () => {
+    dispatch(statistiqueActions.exportDonneesTerritoire(territoire, dateDebut, dateFin, ordreNom, ordre ? 1 : -1));
+  };
+
   return (
     <div className="rf-container">
-      <div className="rf-grid-row">
+      <div className="rf-grid-row rf-grid-row--end">
         { location.pathname === '/territoires' &&
           <div className="rf-col-4">
             <nav className="rf-nav" id="navigation-sort" role="navigation">
@@ -66,7 +93,6 @@ function FiltersAndSorts({ resetPage }) {
                           className="admin-select-option" onClick={handleTerritoire}>
                           { territoire === 'codeDepartement' ? 'Affichage par région' : 'Affichage par département' }
                         </button></li>
-
                     </ul>
                   </div>
                 </li>
@@ -87,6 +113,23 @@ function FiltersAndSorts({ resetPage }) {
             </span>
           </b>
         </div>
+        { location.pathname === '/territoires' &&
+          <div className="rf-ml-auto">
+            <button className="rf-btn rf-btn--secondary" onClick={exportDonneesTerritoire}>Exporter les données</button>
+          </div>
+        }
+        { (exportTerritoireFileError !== undefined && exportTerritoireFileError !== false) &&
+          <span className="labelError">Une erreur est survenue : {exportTerritoireFileError}</span>
+        }
+      </div>
+      <div className="spinnerCustom">
+        <Spinner
+          type="Oval"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          visible={downloading === true}
+        />
       </div>
     </div>
   );

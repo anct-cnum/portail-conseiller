@@ -120,6 +120,28 @@ export default function statistique(state = initialState, action) {
         statsDataError: action.error,
         statsDataLoading: false,
       };
+    case 'GET_EXPORT_DONNEES_TERRITOIRE_REQUEST':
+      return {
+        ...state,
+        downloading: true,
+      };
+    case 'GET_EXPORT_DONNEES_TERRITOIRE_SUCCESS':
+      return {
+        ...state,
+        exportTerritoireFileBlob: action.exportTerritoireFileBlob,
+        downloading: false,
+      };
+    case 'GET_EXPORT_DONNEES_TERRITOIRE_FAILURE':
+      return {
+        ...state,
+        exportTerritoireFileError: action.error,
+        downloading: false,
+      };
+    case 'EXPORT_DONNEES_TERRITOIRE_RESET': {
+      const { exportTerritoireFileBlob: _, ...nextState } = state;
+
+      return nextState;
+    }
     default:
       return state;
   }
