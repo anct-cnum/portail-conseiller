@@ -94,6 +94,28 @@ export default function conseiller(state = initState, action) {
         ...state,
         error: action.error
       };
+    case 'GET_EXPORT_CNFS_REQUEST':
+      return {
+        ...state,
+        downloading: true,
+      };
+    case 'GET_EXPORT_CNFS_SUCCESS':
+      return {
+        ...state,
+        exportCnfsFileBlob: action.exportCnfsFileBlob,
+        downloading: false,
+      };
+    case 'GET_EXPORT_CNFS_FAILURE':
+      return {
+        ...state,
+        exporCnfsFileError: action.error,
+        downloading: false,
+      };
+    case 'EXPORT_CNFS_RESET': {
+      const { exportCnfsFileBlob: _, ...nextState } = state;
+
+      return nextState;
+    }
     case 'CLOSE_FORMULAIRE_SEXE_AGE':
       return {
         showFormular: false,

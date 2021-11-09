@@ -8,7 +8,18 @@ export const statistiqueService = {
   getStatsTerritoires,
   getStatsCraTerritoire,
   getStatsCraNationale,
+  getExportDonneesTerritoire,
 };
+
+function territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin, page) {
+  if (nomOrdre === 'code' || nomOrdre === 'nom') {
+    nomOrdre = nomOrdre + territoire.charAt(0).toUpperCase() + territoire.slice(1);
+  }
+  const ordreColonne = nomOrdre ? '&nomOrdre=' + nomOrdre + '&ordre=' + ordre : '';
+  const pageIfDefined = page ? '&page=' + page : '';
+
+  return `?territoire=${territoire}&dateDebut=${dateDebut}&dateFin=${dateFin}${pageIfDefined}${ordreColonne}`;
+}
 
 function getStatsCra(dateDebut, dateFin, idUser) {
   const apiUrlRoot = process.env.REACT_APP_API;
@@ -54,13 +65,8 @@ function getStatsTerritoires(territoire, dateDebut, dateFin, page, nomOrdre, ord
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
   };
 
-  if (nomOrdre === 'code' || nomOrdre === 'nom') {
-    nomOrdre = nomOrdre + territoire.charAt(0).toUpperCase() + territoire.slice(1);
-  }
-  const ordreColonne = nomOrdre ? '&nomOrdre=' + nomOrdre + '&ordre=' + ordre : '';
-
   return fetch(
-    `${apiUrlRoot}/stats/admincoop/territoires?territoire=${territoire}&dateDebut=${dateDebut}&dateFin=${dateFin}&page=${page}${ordreColonne}`,
+    `${apiUrlRoot}/stats/admincoop/territoires${territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin, page)}`,
     requestOptions
   ).then(handleResponse);
 }
@@ -75,6 +81,7 @@ function getStatsCraTerritoire(dateDebut, dateFin, typeTerritoire, conseillerIds
   return fetch(`${apiUrlRoot}/stats/territoire/cra?dateDebut=${dateDebut}&dateFin=${dateFin}&typeTerritoire=${typeTerritoire}&conseillerIds=${conseillerIds}`,
     requestOptions).then(handleResponse);
 }
+
 function getStatsCraNationale(dateDebut, dateFin) {
   const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
@@ -84,6 +91,24 @@ function getStatsCraNationale(dateDebut, dateFin) {
 
   return fetch(`${apiUrlRoot}/stats/nationales/cra?dateDebut=${dateDebut}&dateFin=${dateFin}`,
     requestOptions).then(handleResponse);
+}
+
+async function getExportDonneesTerritoire(territoire, dateDebut, dateFin, nomOrdre, ordre) {
+  const requestOptions = {
+    method: 'GET',
+    headers: Object.assign(
+      authHeader(), {
+        'Accept': 'text/plain',
+        'Content-Type': 'text/plain'
+      })
+  };
+
+  const apiUrlRoot = process.env.REACT_APP_API;
+  const exportTerritoiresRoute = '/exports/territoires.csv/';
+
+  return handleFileResponse(
+    await fetch(`${apiUrlRoot}${exportTerritoiresRoute}${territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin)}`, requestOptions)
+  );
 }
 
 function handleResponse(response) {
@@ -103,3 +128,17 @@ function handleResponse(response) {
   });
 }
 
+function handleFileResponse(response) {
+  return response.blob().then(blob => {
+    if (!response.ok) {
+      if (response.status === 401) {
+        // auto logout if 401 response returned from api
+        userService.logout();
+        history.push('/');
+      }
+      const error = (blob && blob.message) || response.statusText;
+      return Promise.reject(error);
+    }
+    return blob;
+  });
+}

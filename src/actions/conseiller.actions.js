@@ -8,6 +8,8 @@ export const conseillerActions = {
   getStatistiquesPDF,
   getStatistiquesAdminCoopPDF,
   resetStatistiquesPDFFile,
+  exportDonneesCnfs,
+  resetExportDonneesCnfs,
   isFormulaireChecked,
   closeFormulaire,
   isUserActif
@@ -118,6 +120,31 @@ function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType) {
   function failure(error) {
     return { type: 'GET_STATS_ADMINCOOP_PDF_FAILURE', error };
   }
+}
+
+function exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre = 'prenom', ordre = 1) {
+  return dispatch => {
+    dispatch(request());
+
+    conseillerService.getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre, ordre).then(
+      exportCnfsFileBlob => dispatch(success(exportCnfsFileBlob)),
+      exportCnfsFileError => dispatch(failure(exportCnfsFileError))
+    );
+  };
+
+  function request() {
+    return { type: 'GET_EXPORT_CNFS_REQUEST' };
+  }
+  function success(exportCnfsFileBlob) {
+    return { type: 'GET_EXPORT_CNFS_SUCCESS', exportCnfsFileBlob };
+  }
+  function failure(exportCnfsFileError) {
+    return { type: 'GET_EXPORT_CNFS_FAILURE', exportCnfsFileError };
+  }
+}
+
+function resetExportDonneesCnfs() {
+  return { type: 'EXPORT_CNFS_RESET' };
 }
 
 function resetStatistiquesPDFFile() {
