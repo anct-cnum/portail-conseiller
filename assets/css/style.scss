@@ -330,6 +330,16 @@
   }
 }
 
+ /* Ajustement du header */
+ @media  (max-width: 1135px) {
+  .cacher-baseline {
+    display: none;
+  }
+  .feuillet {
+    width: 155px;
+    height: 45px;
+  }
+}
 /* custom point de rupture md du DS */
 @media (max-width: 768px) {
 

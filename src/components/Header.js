@@ -38,7 +38,7 @@ function Header({ linkAccount }) {
                       <a className="rf-service__title" href="/" title="Coop">
                         Coop&nbsp;&nbsp;<span style={{ fontSize: '20px', fontWeight: '300' }}>v { process.env.REACT_APP_VERSION }</span>
                       </a>
-                      <p className="rf-service__tagline">
+                      <p className="rf-service__tagline cacher-baseline">
                         Bienvenue sur le réseau
                         <br/>des conseillers numériques France Services
                       </p>
