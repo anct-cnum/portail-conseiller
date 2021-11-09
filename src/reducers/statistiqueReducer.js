@@ -138,7 +138,11 @@ export default function statistique(state = initialState, action) {
         downloading: false,
       };
     case 'EXPORT_TERRITOIRE_RESET': {
-      const { exportTerritoireFileBlob: _, ...nextState } = state;
+      const {
+        exportTerritoireFileBlob: _file,
+        exportTerritoireFileError: _error,
+        ...nextState
+      } = state;
 
       return nextState;
     }

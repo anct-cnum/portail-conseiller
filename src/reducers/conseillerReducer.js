@@ -112,7 +112,11 @@ export default function conseiller(state = initState, action) {
         downloading: false,
       };
     case 'EXPORT_CNFS_RESET': {
-      const { exportCnfsFileBlob: _, ...nextState } = state;
+      const {
+        exportCnfsFileBlob: _file,
+        exporCnfsFileError: _error,
+        ...nextState
+      } = state;
 
       return nextState;
     }
