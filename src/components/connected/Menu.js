@@ -58,7 +58,7 @@ function Menu() {
                 {!menu.hiddenMenu && menu.expandNav &&
                 <li className="rf-shortcuts__item">
                   <Link className="rf-btn rf-btn--sm" to="/login" title="Se déconnecter" onClick={toggleBurgerMenu}>
-                    Se deconnecter
+                    Se d&eacute;connecter
                   </Link>
                 </li>
                 }
