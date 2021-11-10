@@ -48,6 +48,17 @@
 }
 /** End trick**/
 
+/** Header **/
+.rf-service__tagline {
+  font-size: 0.75em;
+  line-height: 1.25em;
+}
+.rf-header .feuillet {
+  background-image: url(/public/logos/feuillets-couleurs.svg);
+  background-repeat: no-repeat;
+  background-position-x: right;
+  background-position-y: top;
+}
 .rf-fi-user-line {
   color:var(--bf500);
 }
@@ -148,18 +159,21 @@
 }
 
 /* Custom menu header */
+.rf-header {
+  background-color: #2e2e2e;
+}
 .header-aide {
   .rf-nav__list {
     margin: -24px -1rem;
     padding: 0 0 7px;
   }
   .rf-nav__btn[aria-expanded="true"] {
-    background-color: #9A9AFF;
-    color: #000092 !important;
+    background-color: #ae5dff;
+    color: #420095 !important;
   }
   .rf-custom-link {
     padding: 2.2rem 1rem !important;
-    background-color: #2a2a2a;
+    background-color: #2e2e2e;
     font-size: 1rem !important;
     color: #fff !important;
     height: 98px !important;
@@ -167,8 +181,11 @@
     cursor: pointer;
     border: none;
     &:hover{
-      background-color: #9A9AFF;
-      color: #000092 !important;
+      background-color: #ae5dff;
+      color: #420095 !important;
+    }
+    &:focus {
+      outline-color: transparent;
     }
   }
   .rf-menu::after {
@@ -313,6 +330,16 @@
   }
 }
 
+ /* Ajustement du header */
+ @media  (max-width: 1135px) {
+  .cacher-baseline {
+    display: none;
+  }
+  .feuillet {
+    width: 155px;
+    height: 45px;
+  }
+}
 /* custom point de rupture md du DS */
 @media (max-width: 768px) {
 
