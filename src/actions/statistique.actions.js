@@ -76,7 +76,6 @@ function getStatsAdmin() {
 function getStatsTerritoires(territoire = 'departement', dateDebut, dateFin, page, nomOrdre = 'code', ordre = 1) {
   return dispatch => {
     dispatch(request());
-
     statistiqueService.getStatsTerritoires(territoire, dateDebut, dateFin, page, nomOrdre, ordre)
     .then(
       statsTerritoires => {

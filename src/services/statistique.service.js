@@ -12,8 +12,10 @@ export const statistiqueService = {
 };
 
 function territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin, page) {
-  if (nomOrdre === 'code' || nomOrdre === 'nom') {
-    nomOrdre = nomOrdre + territoire.charAt(0).toUpperCase() + territoire.slice(1);
+  if (nomOrdre === 'code') {
+    nomOrdre = territoire;
+  } else if (nomOrdre === 'nom') {
+    nomOrdre += territoire.slice(4);
   }
   const ordreColonne = nomOrdre ? '&nomOrdre=' + nomOrdre + '&ordre=' + ordre : '';
   const pageIfDefined = page ? '&page=' + page : '';
