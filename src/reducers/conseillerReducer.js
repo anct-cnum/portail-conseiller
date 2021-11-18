@@ -54,6 +54,42 @@ export default function conseiller(state = initState, action) {
         error: action.error,
         loadingPDF: false
       };
+    case 'GET_STATS_CSV_REQUEST':
+      return {
+        ...state,
+        loadingCSV: true
+      };
+    case 'GET_STATS_CSV_SUCCESS':
+      return {
+        ...state,
+        blob: action.data,
+        statistiquesCSV: action.download,
+        loadingCSV: false
+      };
+    case 'GET_STATS_CSV_FAILURE':
+      return {
+        ...state,
+        error: action.error
+      };
+    case 'GET_STATS_ADMINCOOP_CSV_REQUEST':
+      return {
+        ...state,
+        loadingCSV: true,
+        error: false
+      };
+    case 'GET_STATS_ADMINCOOP_CSV_SUCCESS':
+      return {
+        ...state,
+        blob: action.data,
+        statistiquesCSV: action.download,
+        loadingCSV: false,
+      };
+    case 'GET_STATS_ADMINCOOP_CSV_FAILURE':
+      return {
+        ...state,
+        error: action.error,
+        loadingCSV: false
+      };
     case 'RESET_FILE':
       return {
         ...state,

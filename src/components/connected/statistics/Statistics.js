@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { paginationActions, statistiqueActions } from '../../../actions';
-import PeriodStatistics from './StatisticsPeriod';
+import StatisticsPeriod from './StatisticsPeriod';
 import LeftPage from './LeftPage';
 import RightPage from './RightPage';
 import BottomPage from './BottomPage';
@@ -86,7 +86,7 @@ function Statistics() {
         <div className="rf-grid-row">
           <div className="rf-col-xs-3 rf-col-sm-7 rf-col-md-6 rf-col-lg-4">
             <div className="rf-mb-4w rf-mb-md-6w">
-              <PeriodStatistics dateDebut={dateDebutStats} dateFin={dateFinStats} />
+              <StatisticsPeriod dateDebut={dateDebutStats} dateFin={dateFinStats} />
             </div>
           </div>
 
