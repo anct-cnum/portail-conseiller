@@ -1,4 +1,5 @@
 import { statistiqueService } from '../services/statistique.service.js';
+import dayjs from 'dayjs';
 
 export const statistiqueActions = {
   getStatsCra,
@@ -13,11 +14,15 @@ export const statistiqueActions = {
   resetExportDonneesTerritoire,
 };
 
+const formatDate = date => {
+  return dayjs(date).format('YYYY-MM-DD');
+};
+
 function getStatsCra(dateDebut, dateFin, idUser = null) {
   return dispatch => {
     dispatch(request(dateDebut, dateFin, idUser));
 
-    statistiqueService.getStatsCra(dateDebut, dateFin, idUser)
+    statistiqueService.getStatsCra(formatDate(dateDebut), formatDate(dateFin), idUser)
     .then(
       statsCra => {
         dispatch(success(statsCra));
@@ -77,7 +82,7 @@ function getStatsTerritoires(territoire = 'departement', dateDebut, dateFin, pag
   return dispatch => {
     dispatch(request());
 
-    statistiqueService.getStatsTerritoires(territoire, dateDebut, dateFin, page, nomOrdre, ordre)
+    statistiqueService.getStatsTerritoires(territoire, formatDate(dateDebut), formatDate(dateFin), page, nomOrdre, ordre)
     .then(
       statsTerritoires => {
         dispatch(success(statsTerritoires));
@@ -127,7 +132,7 @@ function getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, con
   return dispatch => {
     dispatch(request());
 
-    statistiqueService.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, conseillerIds)
+    statistiqueService.getStatsCraTerritoire(formatDate(dateDebutStats), formatDate(dateFinStats), typeTerritoire, conseillerIds)
     .then(
       statsTerritoire => {
         dispatch(success(statsTerritoire));
@@ -153,7 +158,7 @@ function getStatsCraNationale(dateDebutStats, dateFinStats) {
   return dispatch => {
     dispatch(request());
 
-    statistiqueService.getStatsCraNationale(dateDebutStats, dateFinStats)
+    statistiqueService.getStatsCraNationale(formatDate(dateDebutStats), formatDate(dateFinStats))
     .then(
       statsNationales => {
         dispatch(success(statsNationales));
@@ -179,7 +184,7 @@ function exportDonneesTerritoire(territoire = 'departement', dateDebut, dateFin,
   return async dispatch => {
     dispatch(request());
 
-    await statistiqueService.getExportDonneesTerritoire(territoire, dateDebut, dateFin, nomOrdre, ordre)
+    await statistiqueService.getExportDonneesTerritoire(territoire, formatDate(dateDebut), formatDate(dateFin), nomOrdre, ordre)
     .then(exportTerritoireFileBlob => dispatch(success(exportTerritoireFileBlob)))
     .catch(exportTerritoireFileError => dispatch(failure(exportTerritoireFileError)));
   };
