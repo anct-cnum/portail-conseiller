@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { ressourcesActions } from '../../../actions/ressources.actions';
-import ReactTooltip from 'react-tooltip';
 
 function Tags({ rechercheParTag, rechercheParTexte }) {
   const dispatch = useDispatch();
@@ -91,7 +90,6 @@ function Tags({ rechercheParTag, rechercheParTexte }) {
         <span className="canal"><a href={aideRessourcerie} className="lien-aide"> Canal #ressourcerie-provisoire</a></span><br/>
         <span className="texte-canal">Une question ? un &eacute;l&eacute;ment à partager ? Rendez-vous sur votre espace de discussion pour partager.</span>
       </div>
-      <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
     </div>
   );
 }
