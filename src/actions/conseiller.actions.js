@@ -118,6 +118,7 @@ function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType) {
     return { type: 'GET_STATS_ADMINCOOP_PDF_SUCCESS', data, download };
   }
   function failure(error) {
+
     return { type: 'GET_STATS_ADMINCOOP_PDF_FAILURE', error };
   }
 }

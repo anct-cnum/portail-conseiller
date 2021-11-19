@@ -26,7 +26,6 @@ function Statistics() {
 
   const territoire = location?.territoire;
   let typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : '';
-
   useEffect(() => {
     if (location?.idUser) {
       dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, location?.idUser));
@@ -61,7 +60,7 @@ function Statistics() {
         {errorPDF &&
           <FlashMessage duration={5000}>
             <p className="flashBag invalid">
-              Vos statistiques n&rsquo;ont pas pu être téléchargées, veuillez réessayer !
+              {errorPDF}
             </p>
           </FlashMessage>
         }

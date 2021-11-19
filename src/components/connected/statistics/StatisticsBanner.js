@@ -17,6 +17,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false
   let typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : null;
 
   function savePDF() {
+    window.scrollTo(0, 0);
     if (user?.role === 'admin_coop') {
       const type = nationales === false ? typeTerritoire ?? 'user' : 'nationales';
 

@@ -44,7 +44,7 @@ export default function conseiller(state = initState, action) {
       return {
         ...state,
         loadingPDF: true,
-        error: false
+        errorPDF: false
       };
     case 'GET_STATS_ADMINCOOP_PDF_SUCCESS':
       return {
@@ -52,11 +52,12 @@ export default function conseiller(state = initState, action) {
         blob: action.data,
         statistiquesPDF: action.download,
         loadingPDF: false,
+        errorPDF: false
       };
     case 'GET_STATS_ADMINCOOP_PDF_FAILURE':
       return {
         ...state,
-        error: action.error,
+        errorPDF: action.error,
         loadingPDF: false
       };
     case 'RESET_FILE':

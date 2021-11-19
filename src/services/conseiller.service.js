@@ -85,7 +85,7 @@ function getStatistiquesPDF(idConseiller, dateDebut, dateFin) {
   };
 
   return fetch(`${apiUrlRoot}/conseillers/${idConseiller}/statistiques.pdf?dateDebut=${dateDebut}&dateFin=${dateFin}`, requestOptions).then(
-    response => response.status === 500 ? handleResponse(response) : handleFileResponse(response));
+    response => !response.ok ? handleResponse(response) : handleFileResponse(response));
 }
 
 function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType) {
@@ -95,7 +95,7 @@ function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType) {
   };
 
   return fetch(`${apiUrlRoot}/stats/admincoop/statistiques.pdf?dateDebut=${dateDebut}&dateFin=${dateFin}&type=${type}&idType=${idType}`,
-    requestOptions).then(handleFileResponse);
+    requestOptions).then(response => !response.ok ? handleResponse(response) : handleFileResponse(response));
 }
 
 function createSexeAge(user) {
