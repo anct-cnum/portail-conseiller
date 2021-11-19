@@ -23,9 +23,9 @@ const statistiquesCnfsFileName = (dateDebut, dateFin) =>
   `Mes_statistiques_${formatDate(dateDebut)}_${formatDate(dateFin)}`;
 
 const removeCodePrefix = type =>
-  type !== 'nationales' ? type.substring('Code'.length) : type;
+  type.startsWith('code') ? type.substring('code'.length) : type;
 
-const statistiquesAdminFileName = (type, dateDebut, dateFin) =>
+const statistiquesAdminFileName = (dateDebut, dateFin, type) =>
   `Statistiques_${removeCodePrefix(type)}_${formatDate(dateDebut)}_${formatDate(dateFin)}`;
 
 function get(id) {
@@ -112,7 +112,7 @@ function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType) {
     dispatch(request());
     conseillerService.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType)
     .then(
-      data => dispatch(success(data, download(data, `${statistiquesAdminFileName(type, dateDebut, dateFin)}.pdf`))),
+      data => dispatch(success(data, download(data, `${statistiquesAdminFileName(dateDebut, dateFin, type)}.pdf`))),
       error => dispatch(failure(error))
     );
   };
@@ -154,7 +154,7 @@ function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType) {
     dispatch(request());
     conseillerService.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType)
     .then(
-      data => dispatch(success(data, download(data, `${statistiquesAdminFileName(type, dateDebut, dateFin)}.csv`))),
+      data => dispatch(success(data, download(data, `${statistiquesAdminFileName(dateDebut, dateFin, type)}.csv`))),
       error => dispatch(failure(error))
     );
   };
