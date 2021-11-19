@@ -78,13 +78,14 @@ function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre
   return fetch(uri, requestOptions).then(handleResponse);
 }
 
-function getStatistiquesPDF(dateDebut, dateFin) {
+function getStatistiquesPDF(idConseiller, dateDebut, dateFin) {
   const requestOptions = {
     method: 'GET',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
   };
 
-  return fetch(`${apiUrlRoot}/conseillers/statistiques.pdf?dateDebut=${dateDebut}&dateFin=${dateFin}`, requestOptions).then(handleFileResponse);
+  return fetch(`${apiUrlRoot}/conseillers/${idConseiller}/statistiques.pdf?dateDebut=${dateDebut}&dateFin=${dateFin}`, requestOptions).then(
+    response => response.status === 500 ? handleResponse(response) : handleFileResponse(response));
 }
 
 function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType) {

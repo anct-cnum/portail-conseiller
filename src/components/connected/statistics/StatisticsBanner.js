@@ -22,7 +22,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false
 
       dispatch(conseillerActions.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser));
     } else {
-      dispatch(conseillerActions.getStatistiquesPDF(dateDebut, dateFin));
+      dispatch(conseillerActions.getStatistiquesPDF(user.entity.$id, dateDebut, dateFin));
     }
   }
 

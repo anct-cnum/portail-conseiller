@@ -69,10 +69,10 @@ function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre
   }
 }
 
-function getStatistiquesPDF(dateDebut, dateFin) {
+function getStatistiquesPDF(idConseiller, dateDebut, dateFin) {
   return dispatch => {
     dispatch(request());
-    conseillerService.getStatistiquesPDF(dateDebut, dateFin)
+    conseillerService.getStatistiquesPDF(idConseiller, dateDebut, dateFin)
     .then(
       data => {
         dispatch(success(data, download(data, 'Mes_statistiques_' + dayjs(dateDebut).format('DD-MM-YYYY') + '_' +

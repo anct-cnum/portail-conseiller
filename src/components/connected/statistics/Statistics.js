@@ -17,6 +17,7 @@ function Statistics() {
 
   let statsDataLoading = useSelector(state => state.statistique?.statsDataLoading);
   const loadingPDF = useSelector(state => state.conseiller?.loadingPDF);
+  const errorPDF = useSelector(state => state.conseiller?.errorPDF);
   const isPDFDownloaded = useSelector(state => state.conseiller?.statistiquesPDF);
   let statsDataError = useSelector(state => state.statistique?.statsDataError);
   let dateDebutStats = useSelector(state => state.statistique?.dateDebutStats);
@@ -57,7 +58,13 @@ function Statistics() {
             </p>
           </FlashMessage>
         }
-
+        {errorPDF &&
+          <FlashMessage duration={5000}>
+            <p className="flashBag invalid">
+              Vos statistiques n&rsquo;ont pas pu être téléchargées, veuillez réessayer !
+            </p>
+          </FlashMessage>
+        }
         <div className="rf-grid-row">
           <div className="rf-col-12">
             <div className="rf-mt-2w rf-mt-md-9w rf-mt-lg-13w"></div>

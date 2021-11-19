@@ -1,5 +1,6 @@
 const initState = {
-  loadingPDF: false
+  loadingPDF: false,
+  errorPDF: false
 };
 
 export default function conseiller(state = initState, action) {
@@ -21,19 +22,22 @@ export default function conseiller(state = initState, action) {
     case 'GET_STATS_PDF_REQUEST':
       return {
         ...state,
-        loadingPDF: true
+        loadingPDF: true,
+        errorPDF: false
       };
     case 'GET_STATS_PDF_SUCCESS':
       return {
         ...state,
         blob: action.data,
         statistiquesPDF: action.download,
-        loadingPDF: false
+        loadingPDF: false,
+        errorPDF: false
       };
     case 'GET_STATS_PDF_FAILURE':
       return {
         ...state,
-        error: action.error
+        loadingPDF: false,
+        errorPDF: action.error
       };
     case 'GET_STATS_ADMINCOOP_PDF_REQUEST':
       return {
