@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { conseillerActions, statistiqueActions } from '../../../actions';
 import ReactTooltip from 'react-tooltip';
 
-function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false }) {
+function StatisticsBanner(/*{ dateDebut, dateFin, idTerritoire, nationales = false }*/) {
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -16,7 +16,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false
 
   const territoire = location?.territoire;
   let typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : null;
-
+  /*
   function savePDF() {
     if (user?.role === 'admin_coop') {
       const type = nationales === false ? typeTerritoire ?? 'user' : 'nationales';
@@ -26,7 +26,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false
       dispatch(conseillerActions.getStatistiquesPDF(dateDebut, dateFin));
     }
   }
-
+  */
   useEffect(() => {
     if (blob !== null && blob !== undefined && (downloadError === undefined || downloadError === false)) {
       dispatch(conseillerActions.resetStatistiquesPDFFile());
