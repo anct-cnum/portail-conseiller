@@ -1,5 +1,18 @@
 .Statistics {
   background-color: #1e1e1e;
+  .infobulle-image {
+    width:64px;
+  }
+  .infobulle {
+    background-color: #fff;
+    border-radius: 8px;
+    text-align: center;
+    line-height: 20px;
+    color: #1e1e1e;
+    font-size: 14px;
+    height: 150px;
+    width: 280px;
+  }
   .title {
     font-weight: 100;
     font-size: 56px;
