@@ -4,6 +4,7 @@ import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { conseillerActions, statistiqueActions } from '../../../actions';
+import ReactTooltip from 'react-tooltip';
 
 function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false }) {
 
@@ -101,7 +102,11 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false
             </div>
           */}
             <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-5 rf-col-lg-4 rf-mt-5w centrerTexte">
-              <a className="statistiques_nationales-btn" onClick={savePDF}>Exporter cette page au format PDF</a>
+              <a className="statistiques_nationales-btn" data-tip="
+              <img class='infobulle-image' src='/logos/abeille-roue.png'/>
+              <div><b>En maintenance !</b></div>
+              <div>Cette fonctionnalité sera de nouveau disponible prochainement.</div>">Exporter cette page au format PDF</a>
+              <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
             </div>
           </div>
 
