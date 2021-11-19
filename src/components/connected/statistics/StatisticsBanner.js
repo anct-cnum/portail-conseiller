@@ -17,12 +17,13 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false
   let typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : null;
 
   function savePDF() {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     if (user?.role === 'admin_coop') {
       const type = nationales === false ? typeTerritoire ?? 'user' : 'nationales';
 
       dispatch(conseillerActions.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser));
     } else {
-      dispatch(conseillerActions.getStatistiquesPDF(dateDebut, dateFin));
+      dispatch(conseillerActions.getStatistiquesPDF(user.entity.$id, dateDebut, dateFin));
     }
   }
 

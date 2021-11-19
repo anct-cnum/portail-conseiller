@@ -78,13 +78,14 @@ function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre
   return fetch(uri, requestOptions).then(handleResponse);
 }
 
-function getStatistiquesPDF(dateDebut, dateFin) {
+function getStatistiquesPDF(idConseiller, dateDebut, dateFin) {
   const requestOptions = {
     method: 'GET',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
   };
 
-  return fetch(`${apiUrlRoot}/conseillers/statistiques.pdf?dateDebut=${dateDebut}&dateFin=${dateFin}`, requestOptions).then(handleFileResponse);
+  return fetch(`${apiUrlRoot}/conseillers/${idConseiller}/statistiques.pdf?dateDebut=${dateDebut}&dateFin=${dateFin}`, requestOptions).then(
+    response => !response.ok ? handleResponse(response) : handleFileResponse(response));
 }
 
 function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType) {
@@ -94,7 +95,7 @@ function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType) {
   };
 
   return fetch(`${apiUrlRoot}/stats/admincoop/statistiques.pdf?dateDebut=${dateDebut}&dateFin=${dateFin}&type=${type}&idType=${idType}`,
-    requestOptions).then(handleFileResponse);
+    requestOptions).then(response => !response.ok ? handleResponse(response) : handleFileResponse(response));
 }
 
 function createSexeAge(user) {
