@@ -15,6 +15,7 @@ function territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin, 
   if (nomOrdre === 'code') {
     nomOrdre = territoire;
   } else if (nomOrdre === 'nom') {
+    //Afin d'obtenir nomDepartemement ou nomRegion
     nomOrdre += territoire.slice(4);
   }
   const ordreColonne = nomOrdre ? '&nomOrdre=' + nomOrdre + '&ordre=' + ordre : '';
