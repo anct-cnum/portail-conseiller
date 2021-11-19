@@ -76,15 +76,14 @@ function Tags({ rechercheParTag, rechercheParTexte }) {
         </button>
       </div>
 
-      <div className="rf-mt-9w rf-mb-6w prochainement" data-tip="
-              <img class='infobulle-image' src='/logos/abeille-roue.png'/>
-              <div><b>En travaux !</b></div>
-              <div>Cette fonctionnalité sera disponible prochainement.</div>">
-        <a className="tous-documents" title="Prochainement disponible">
+      <div className="rf-mt-9w rf-mb-6w">
+        <a className="tous-documents" title="Zip de tous les documents de la ressourcerie" target="blank" rel="noreferrer"
+          href="https://ressourcerie.conseiller-numerique.gouv.fr/ressourcerie.zip">
           <i className="ri-file-zip-line" style={{ marginRight: '18px' }}></i>
           T&eacute;l&eacute;charger tous les documents de la ressourcerie.
         </a>
       </div>
+
       <hr/>
       <div className="rf-my-4w prochainement" data-tip="
               <img class='infobulle-image' src='/logos/abeille-roue.png'/>
