@@ -36,6 +36,7 @@ export default function conseiller(state = initState, action) {
     case 'GET_STATS_PDF_FAILURE':
       return {
         ...state,
+        blob: null,
         loadingPDF: false,
         errorPDF: action.error
       };
