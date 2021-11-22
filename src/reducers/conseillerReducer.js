@@ -57,7 +57,8 @@ export default function conseiller(state = initState, action) {
     case 'GET_STATS_CSV_REQUEST':
       return {
         ...state,
-        loadingCSV: true
+        loadingCSV: true,
+        error: false
       };
     case 'GET_STATS_CSV_SUCCESS':
       return {
