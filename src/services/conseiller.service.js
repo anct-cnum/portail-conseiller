@@ -9,6 +9,8 @@ export const conseillerService = {
   getAll,
   getStatistiquesPDF,
   getStatistiquesAdminCoopPDF,
+  getStatistiquesCSV,
+  getStatistiquesAdminCoopCSV,
   createSexeAge,
   getExportDonneesCnfs
 };
@@ -96,6 +98,25 @@ function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType) {
 
   return fetch(`${apiUrlRoot}/stats/admincoop/statistiques.pdf?dateDebut=${dateDebut}&dateFin=${dateFin}&type=${type}&idType=${idType}`,
     requestOptions).then(response => !response.ok ? handleResponse(response) : handleFileResponse(response));
+}
+
+function getStatistiquesCSV(dateDebut, dateFin) {
+  const requestOptions = {
+    method: 'GET',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+  };
+
+  return fetch(`${apiUrlRoot}/conseillers/statistiques.csv?dateDebut=${dateDebut}&dateFin=${dateFin}`, requestOptions).then(handleFileResponse);
+}
+
+function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType) {
+  const requestOptions = {
+    method: 'GET',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+  };
+
+  return fetch(`${apiUrlRoot}/stats/admincoop/statistiques.csv?dateDebut=${dateDebut}&dateFin=${dateFin}&type=${type}&idType=${idType}`,
+    requestOptions).then(handleFileResponse);
 }
 
 function createSexeAge(user) {

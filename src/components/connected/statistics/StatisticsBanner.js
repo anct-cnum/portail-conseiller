@@ -27,6 +27,16 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false
     }
   }
 
+  function saveCSV() {
+    if (user?.role === 'admin_coop') {
+      const type = nationales === false ? typeTerritoire ?? 'user' : 'nationales';
+
+      dispatch(conseillerActions.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser));
+    } else {
+      dispatch(conseillerActions.getStatistiquesCSV(dateDebut, dateFin));
+    }
+  }
+
   useEffect(() => {
     if (blob !== null && blob !== undefined && (downloadError === undefined || downloadError === false)) {
       dispatch(conseillerActions.resetStatistiquesPDFFile());
@@ -102,7 +112,10 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false
             </div>
           */}
             <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-5 rf-col-lg-4 rf-mt-5w centrerTexte">
-              <a className="statistiques_nationales-btn" onClick={savePDF}>Exporter cette page au format PDF</a>
+              <div className="rf-mb-2v">Exporter cette page</div>
+              <button className="statistiques_nationales-btn" onClick={savePDF}>Format PDF</button>
+              &ensp;
+              <button className="statistiques_nationales-btn" onClick={saveCSV}>Format CSV</button>
             </div>
           </div>
 
