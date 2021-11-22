@@ -12,8 +12,11 @@ export const statistiqueService = {
 };
 
 function territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin, page) {
-  if (nomOrdre === 'code' || nomOrdre === 'nom') {
-    nomOrdre = nomOrdre + territoire.charAt(0).toUpperCase() + territoire.slice(1);
+  if (nomOrdre === 'code') {
+    nomOrdre = territoire;
+  } else if (nomOrdre === 'nom') {
+    //Afin d'obtenir nomDepartemement ou nomRegion
+    nomOrdre += territoire.slice(4);
   }
   const ordreColonne = nomOrdre ? '&nomOrdre=' + nomOrdre + '&ordre=' + ordre : '';
   const pageIfDefined = page ? '&page=' + page : '';
@@ -130,6 +133,7 @@ function handleResponse(response) {
 
 function handleFileResponse(response) {
   return response.blob().then(blob => {
+
     if (!response.ok) {
       if (response.status === 401) {
         // auto logout if 401 response returned from api

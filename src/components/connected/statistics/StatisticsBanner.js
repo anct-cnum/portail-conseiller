@@ -18,12 +18,23 @@ function StatisticsBanner(/*{ dateDebut, dateFin, idTerritoire, nationales = fal
   let typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : null;
   /*
   function savePDF() {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     if (user?.role === 'admin_coop') {
       const type = nationales === false ? typeTerritoire ?? 'user' : 'nationales';
 
       dispatch(conseillerActions.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser));
     } else {
-      dispatch(conseillerActions.getStatistiquesPDF(dateDebut, dateFin));
+      dispatch(conseillerActions.getStatistiquesPDF(user.entity.$id, dateDebut, dateFin));
+    }
+  }
+
+  function saveCSV() {
+    if (user?.role === 'admin_coop') {
+      const type = nationales === false ? typeTerritoire ?? 'user' : 'nationales';
+
+      dispatch(conseillerActions.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser));
+    } else {
+      dispatch(conseillerActions.getStatistiquesCSV(dateDebut, dateFin));
     }
   }
   */
@@ -102,11 +113,18 @@ function StatisticsBanner(/*{ dateDebut, dateFin, idTerritoire, nationales = fal
             </div>
           */}
             <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-5 rf-col-lg-4 rf-mt-5w centrerTexte">
+
               <a className="statistiques_nationales-btn" data-tip="
               <img class='infobulle-image' src='/logos/abeille-roue.png'/>
               <div><b>En maintenance !</b></div>
               <div>Cette fonctionnalité sera de nouveau disponible prochainement.</div>">Exporter cette page au format PDF</a>
               <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
+          {/*
+              <div className="rf-mb-2v">Exporter cette page</div>
+              <button className="statistiques_nationales-btn" onClick={savePDF}>Format PDF</button>
+              &ensp;
+              <button className="statistiques_nationales-btn" onClick={saveCSV}>Format CSV</button>
+          */}
             </div>
           </div>
 
