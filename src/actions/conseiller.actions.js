@@ -7,6 +7,8 @@ export const conseillerActions = {
   getAll,
   getStatistiquesPDF,
   getStatistiquesAdminCoopPDF,
+  getStatistiquesCSV,
+  getStatistiquesAdminCoopCSV,
   resetStatistiquesPDFFile,
   exportDonneesCnfs,
   resetExportDonneesCnfs,
@@ -14,6 +16,17 @@ export const conseillerActions = {
   closeFormulaire,
   isUserActif
 };
+
+const formatDate = date => dayjs(date).format('DD-MM-YYYY');
+
+const statistiquesCnfsFileName = (dateDebut, dateFin) =>
+  `Mes_statistiques_${formatDate(dateDebut)}_${formatDate(dateFin)}`;
+
+const removeCodePrefix = type =>
+  type.startsWith('code') ? type.substring('code'.length) : type;
+
+const statistiquesAdminFileName = (dateDebut, dateFin, type) =>
+  `Statistiques_${removeCodePrefix(type)}_${formatDate(dateDebut)}_${formatDate(dateFin)}`;
 
 function get(id) {
   return dispatch => {
@@ -69,14 +82,13 @@ function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre
   }
 }
 
-function getStatistiquesPDF(dateDebut, dateFin) {
+function getStatistiquesPDF(idConseiller, dateDebut, dateFin) {
   return dispatch => {
     dispatch(request());
-    conseillerService.getStatistiquesPDF(dateDebut, dateFin)
+    conseillerService.getStatistiquesPDF(idConseiller, dateDebut, dateFin)
     .then(
       data => {
-        dispatch(success(data, download(data, 'Mes_statistiques_' + dayjs(dateDebut).format('DD-MM-YYYY') + '_' +
-        dayjs(dateFin).format('DD-MM-YYYY') + '.pdf')));
+        dispatch(success(data, download(data, `${statistiquesCnfsFileName(dateDebut, dateFin)}.pdf`)));
       },
       error => {
         dispatch(failure(error));
@@ -100,14 +112,8 @@ function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType) {
     dispatch(request());
     conseillerService.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType)
     .then(
-      data => {
-        dispatch(success(data, download(data, 'Statistiques_' + (type !== 'nationales' ? type.substring(4) : type) + '_' +
-        dayjs(dateDebut).format('DD-MM-YYYY') + '_' +
-        dayjs(dateFin).format('DD-MM-YYYY') + '.pdf')));
-      },
-      error => {
-        dispatch(failure(error));
-      }
+      data => dispatch(success(data, download(data, `${statistiquesAdminFileName(dateDebut, dateFin, type)}.pdf`))),
+      error => dispatch(failure(error))
     );
   };
 
@@ -118,9 +124,53 @@ function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType) {
     return { type: 'GET_STATS_ADMINCOOP_PDF_SUCCESS', data, download };
   }
   function failure(error) {
+
     return { type: 'GET_STATS_ADMINCOOP_PDF_FAILURE', error };
   }
 }
+
+function getStatistiquesCSV(dateDebut, dateFin) {
+  return dispatch => {
+    dispatch(request());
+    conseillerService.getStatistiquesCSV(dateDebut, dateFin)
+    .then(
+      data => dispatch(success(data, download(data, `${statistiquesCnfsFileName(dateDebut, dateFin)}.csv`))),
+      error => dispatch(failure(error))
+    );
+  };
+
+  function request() {
+    return { type: 'GET_STATS_CSV_REQUEST' };
+  }
+  function success(data, download) {
+    return { type: 'GET_STATS_CSV_SUCCESS', data, download };
+  }
+  function failure(error) {
+    return { type: 'GET_STATS_CSV_FAILURE', error };
+  }
+}
+
+function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType) {
+  return dispatch => {
+    dispatch(request());
+    conseillerService.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType)
+    .then(
+      data => dispatch(success(data, download(data, `${statistiquesAdminFileName(dateDebut, dateFin, type)}.csv`))),
+      error => dispatch(failure(error))
+    );
+  };
+
+  function request() {
+    return { type: 'GET_STATS_ADMINCOOP_CSV_REQUEST' };
+  }
+  function success(data, download) {
+    return { type: 'GET_STATS_ADMINCOOP_CSV_SUCCESS', data, download };
+  }
+  function failure(error) {
+    return { type: 'GET_STATS_ADMINCOOP_CSV_FAILURE', error };
+  }
+}
+
 
 function exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre = 'prenom', ordre = 1) {
   return dispatch => {

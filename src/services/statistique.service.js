@@ -15,6 +15,7 @@ function territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin, 
   if (nomOrdre === 'code') {
     nomOrdre = territoire;
   } else if (nomOrdre === 'nom') {
+    //Afin d'obtenir nomDepartemement ou nomRegion
     nomOrdre += territoire.slice(4);
   }
   const ordreColonne = nomOrdre ? '&nomOrdre=' + nomOrdre + '&ordre=' + ordre : '';
@@ -132,6 +133,7 @@ function handleResponse(response) {
 
 function handleFileResponse(response) {
   return response.blob().then(blob => {
+
     if (!response.ok) {
       if (response.status === 401) {
         // auto logout if 401 response returned from api

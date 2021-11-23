@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { paginationActions, statistiqueActions } from '../../../actions';
-import PeriodStatistics from './StatisticsPeriod';
+import StatisticsPeriod from './StatisticsPeriod';
 import LeftPage from './LeftPage';
 import RightPage from './RightPage';
 import BottomPage from './BottomPage';
@@ -17,6 +17,7 @@ function Statistics() {
 
   let statsDataLoading = useSelector(state => state.statistique?.statsDataLoading);
   const loadingPDF = useSelector(state => state.conseiller?.loadingPDF);
+  const errorPDF = useSelector(state => state.conseiller?.errorPDF);
   const isPDFDownloaded = useSelector(state => state.conseiller?.statistiquesPDF);
   let statsDataError = useSelector(state => state.statistique?.statsDataError);
   let dateDebutStats = useSelector(state => state.statistique?.dateDebutStats);
@@ -25,7 +26,6 @@ function Statistics() {
 
   const territoire = location?.territoire;
   let typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : '';
-
   useEffect(() => {
     if (location?.idUser) {
       dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, location?.idUser));
@@ -57,7 +57,13 @@ function Statistics() {
             </p>
           </FlashMessage>
         }
-
+        {errorPDF &&
+          <FlashMessage duration={5000}>
+            <p className="flashBag invalid">
+              {errorPDF}
+            </p>
+          </FlashMessage>
+        }
         <div className="rf-grid-row">
           <div className="rf-col-12">
             <div className="rf-mt-2w rf-mt-md-9w rf-mt-lg-13w"></div>
@@ -86,7 +92,7 @@ function Statistics() {
         <div className="rf-grid-row">
           <div className="rf-col-xs-3 rf-col-sm-7 rf-col-md-6 rf-col-lg-4">
             <div className="rf-mb-4w rf-mb-md-6w">
-              <PeriodStatistics dateDebut={dateDebutStats} dateFin={dateFinStats} />
+              <StatisticsPeriod dateDebut={dateDebutStats} dateFin={dateFinStats} />
             </div>
           </div>
 
@@ -113,8 +119,7 @@ function Statistics() {
           <h2 className="centrerTexte">Il n&rsquo;y a aucune statistique pour le moment</h2>
         }
       </div>
-      <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats}
-        idTerritoire={territoire?.[typeTerritoire]} />
+      <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats} idTerritoire={territoire?.[typeTerritoire]} />
       <div className="rf-m-5w rf-m-md-9w rf-m-lg-15w"></div>
       <Footer type="support"/>
     </div>

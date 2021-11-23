@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { ressourcesActions } from '../../../actions/ressources.actions';
-import ReactTooltip from 'react-tooltip';
 
 function Tags({ rechercheParTag, rechercheParTexte }) {
   const dispatch = useDispatch();
@@ -11,6 +10,7 @@ function Tags({ rechercheParTag, rechercheParTexte }) {
   const tagsListLoading = useSelector(state => state.ressources?.tagsListLoading);
   const tagsListError = useSelector(state => state.ressources?.tagsListError);
   const tagsListSelected = useSelector(state => state.ressourcesFiltres?.tagsListSelected);
+  const aideRessourcerie = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/ressourcerie-provisoire';
 
   const [seeAllTags, setSeeAlltags] = useState(false);
 
@@ -76,24 +76,20 @@ function Tags({ rechercheParTag, rechercheParTexte }) {
         </button>
       </div>
 
-      <div className="rf-mt-9w rf-mb-6w prochainement" data-tip="
-              <img class='infobulle-image' src='/logos/abeille-roue.png'/>
-              <div><b>En travaux !</b></div>
-              <div>Cette fonctionnalité sera disponible prochainement.</div>">
-        <a className="tous-documents" title="Prochainement disponible">
+      <div className="rf-mt-9w rf-mb-6w">
+        <a className="tous-documents" title="Zip de tous les documents de la ressourcerie" target="blank" rel="noreferrer"
+          href="https://ressourcerie.conseiller-numerique.gouv.fr/ressourcerie.zip">
           <i className="ri-file-zip-line" style={{ marginRight: '18px' }}></i>
           T&eacute;l&eacute;charger tous les documents de la ressourcerie.
         </a>
       </div>
+
       <hr/>
-      <div className="rf-my-4w prochainement" data-tip="
-              <img class='infobulle-image' src='/logos/abeille-roue.png'/>
-              <div><b>En travaux !</b></div>
-              <div>Cette fonctionnalité sera disponible prochainement.</div>">
-        <span className="bulle-discussion"></span><span className="canal"> Canal #ressources</span><br/>
+      <div className="rf-my-4w">
+        <span className="bulle-discussion"></span>
+        <span className="canal"><a href={aideRessourcerie} className="lien-aide"> Canal #ressourcerie-provisoire</a></span><br/>
         <span className="texte-canal">Une question ? un &eacute;l&eacute;ment à partager ? Rendez-vous sur votre espace de discussion pour partager.</span>
       </div>
-      <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
     </div>
   );
 }
