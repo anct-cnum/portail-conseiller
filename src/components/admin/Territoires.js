@@ -84,10 +84,10 @@ function Territoires() {
                         </button>
                       </th>
                       <th>
-                        <button className="filtre-btn">
-                          <span id="personnesAccompagnees">Personnes accompagnées
-                          </span>
-                        </button>
+                        <span id="personnesAccompagnees">CRA enregistr&eacute;s</span>
+                      </th>
+                      <th>
+                        <span id="personnesAccompagnees">Personnes accompagn&eacute;es</span>
                       </th>
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
@@ -103,7 +103,7 @@ function Territoires() {
                       </th>
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
-                          <span id="cnfsActives">CnFS activé sur l&rsquo;espace coop
+                          <span id="cnfsActives">CnFS activ&eacute;s
                             { (ordreNom !== 'cnfsActives' || ordreNom === 'cnfsActives' && ordre) &&
                               <i className="ri-arrow-down-s-line chevron icone-2"></i>
                             }
