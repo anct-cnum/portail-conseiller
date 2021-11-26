@@ -7,7 +7,7 @@ function Thematiques() {
       <h2 className="rf-mb-3w sous-titre">Th&eacute;matiques</h2>
       <div className="rf-container rf-container--fluid">
         <div className="rf-grid-row">
-          <div className="rf-col-6">
+          <div className="rf-col-12 rf-col-sm-6">
             <ul className="liste-thematiques">
               <li className="rf-mb-3w">
                 <a href="#mail" className="lien-thematique">
@@ -35,8 +35,8 @@ function Thematiques() {
               </li>
               <li className="rf-mb-3w">
                 <a href="#traitement" className="lien-thematique">
-                  <img className="image-thematique" src="/logos/cra/logo-traitement-texte.svg" alt="Apprendre les bases du traitement de texte" />
-                  Traitement de texte
+                  <img className="image-thematique" src="/logos/cra/logo-traitement-texte.svg" alt="Apprendre les bases de la bureautique" />
+                  Bureautique
                 </a>
               </li>
               <li className="rf-mb-3w">
@@ -48,7 +48,7 @@ function Thematiques() {
               </li>
             </ul>
           </div>
-          <div className="rf-col-6 rf-mb-3w">
+          <div className="rf-col-12 rf-col-sm-6 rf-mb-3w">
             <ul className="liste-thematiques">
               <li className="rf-mb-3w">
                 <a href="#contenus" className="lien-thematique">

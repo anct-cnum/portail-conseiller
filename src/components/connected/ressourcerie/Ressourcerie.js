@@ -49,14 +49,22 @@ function Ressourcerie() {
           <div className="rf-col-12 rf-col-md-10">
             <h1 className="titre rf-mt-2w rf-mb-1w rf-mt-md-5w rf-mb-md-6w">Ressourcerie</h1>
           </div>
-          <div className="rf-col-6">
+          <div className="rf-col-12 rf-col-md-6">
             <Thematiques />
             {(!ressourcesLoading && !ressourcesError) &&
-              <DerniersAjouts ressources={dernierAjout}/>
+              <span className="hide-md">
+                <DerniersAjouts ressources={dernierAjout} />
+              </span>
             }
           </div>
-          <div className="rf-col-6">
+          <div className="rf-col-12 rf-col-md-6">
             <Tags rechercheParTag={rechercheParTag} rechercheParTexte={rechercheParTexte} />
+            {(!ressourcesLoading && !ressourcesError) &&
+              <span className="show-md">
+                <hr className="rf-mt-5v rf-mb-4w" />
+                <DerniersAjouts ressources={dernierAjout} />
+              </span>
+            }
           </div>
           {ressourcesLoading &&
             <div className="rf-col-12 rf-mb-5w rf-mt-5w"> <h2>Chargement de la ressourcerie ...</h2></div>
