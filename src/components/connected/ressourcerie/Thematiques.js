@@ -48,7 +48,7 @@ function Thematiques() {
               </li>
             </ul>
           </div>
-          <div className="rf-col-6 rf-mb-3w">
+          <div className="rf-col-12 rf-col-sm-6 rf-mb-3w">
             <ul className="liste-thematiques">
               <li className="rf-mb-3w">
                 <a href="#contenus" className="lien-thematique">
