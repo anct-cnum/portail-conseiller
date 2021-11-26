@@ -16,10 +16,13 @@ function Ressource({ ressource }) {
   };
 
   return (
-    <div className="rf-col-3 rf-mb-9w">
+    <div className="rf-col-12 rf-col-sm-6 rf-col-lg-3 rf-mb-9w">
       <div className="hauteur-texte">
         {ressource?.tags?.map((tag, idx) => {
-          return <div className="ressource-tag" key={idx}>#{tag.toUpperCase()}</div>;
+          return <div key={idx} className="tags" style={{ display: 'inline' }}>
+            <span className="hashtag">#</span>
+            <span className="ressource-tag">{tag.toUpperCase()}</span>
+          </div>;
         })}
         <div className="description">{ressource.description}</div>
       </div>

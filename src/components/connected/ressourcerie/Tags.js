@@ -19,8 +19,8 @@ function Tags({ rechercheParTag, rechercheParTexte }) {
   }, []);
 
   return (
-    <div className="tags rf-ml-10w">
-      <h2 className="rf-mb-5v sous-titre">Liste de tags</h2>
+    <div className="tags rf-ml-md-10w">
+      <h2 className="rf-mb-md-5v sous-titre">Liste de tags</h2>
       <div>
         {!tagsListError && !tagsListLoading && tagsList?.slice(0, 12)?.map((tag, idx) => {
           return <div key={idx} className={tagsListSelected?.includes(tag.nom) ? 'tag actif' : 'tag'} onClick={() => {
@@ -32,7 +32,7 @@ function Tags({ rechercheParTag, rechercheParTexte }) {
           <div> Une erreur s&rsquo;est produite lors du chargement des tags, veuillez recharger la page.</div>
         }
       </div>
-      <div className="rf-mt-5v rf-mb-11w tout-tags" onClick={() => {
+      <div className="rf-my-5v rf-mb-md-11w tout-tags" onClick={() => {
         setSeeAlltags(true);
       }} >
         Afficher tous les tags
@@ -52,7 +52,7 @@ function Tags({ rechercheParTag, rechercheParTexte }) {
                     </button>
                   </div>
                   <div className="rf-modal__content">
-                    <h2 className="rf-mb-5v sous-titre">Liste de tous les tags</h2>
+                    <h2 className="rf-mb-md-5v sous-titre">Liste de tous les tags</h2>
                     {!tagsListError && !tagsListLoading && tagsList?.map((tag, idx) => {
                       return <div key={idx} className={tagsListSelected?.includes(tag.nom) ? 'tag actif' : 'tag'} onClick={() => {
                         rechercheParTag(tag.nom);
@@ -76,7 +76,7 @@ function Tags({ rechercheParTag, rechercheParTexte }) {
         </button>
       </div>
 
-      <div className="rf-mt-9w rf-mb-6w">
+      <div className="rf-my-5w rf-mt-md-9w rf-mb-md-6w">
         <a className="tous-documents" title="Zip de tous les documents de la ressourcerie" target="blank" rel="noreferrer"
           href="https://ressourcerie.conseiller-numerique.gouv.fr/ressourcerie.zip">
           <i className="ri-file-zip-line" style={{ marginRight: '18px' }}></i>
@@ -85,7 +85,7 @@ function Tags({ rechercheParTag, rechercheParTexte }) {
       </div>
 
       <hr/>
-      <div className="rf-my-4w">
+      <div className="rf-my-md-4w">
         <span className="bulle-discussion"></span>
         <span className="canal"><a href={aideRessourcerie} className="lien-aide"> Canal #ressourcerie-provisoire</a></span><br/>
         <span className="texte-canal">Une question ? un &eacute;l&eacute;ment à partager ? Rendez-vous sur votre espace de discussion pour partager.</span>

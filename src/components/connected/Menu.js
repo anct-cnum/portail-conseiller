@@ -18,7 +18,7 @@ function Menu() {
 
   return (
     <>
-      {location.pathname !== '/accueil' &&
+      {(location.pathname !== '/accueil' && location.pathname !== '/ressourcerie') &&
         <div className="Menu">
           <div className="rf-grid-row rf-grid-row--center">
             <nav className={`rf-nav ${!menu.hiddenMenu && menu.expandNav ? 'rf-header__popin rf-header__popin--expanded' : ''}`}
