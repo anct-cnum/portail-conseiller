@@ -9,6 +9,7 @@ export const statistiqueService = {
   getStatsCraTerritoire,
   getStatsCraNationale,
   getExportDonneesTerritoire,
+  getCodesPostauxCrasConseiller,
 };
 
 function territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin, page) {
@@ -112,6 +113,16 @@ async function getExportDonneesTerritoire(territoire, dateDebut, dateFin, nomOrd
   return handleFileResponse(
     await fetch(`${apiUrlRoot}${exportTerritoiresRoute}${territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin)}`, requestOptions)
   );
+}
+
+function getCodesPostauxCrasConseiller(idConseiller) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader(),
+  };
+
+  return fetch(`${apiUrlRoot}/stats/cra/${idConseiller}/codePostal`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
