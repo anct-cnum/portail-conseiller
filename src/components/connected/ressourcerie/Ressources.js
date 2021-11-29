@@ -85,7 +85,7 @@ function Ressources({ ressources }) {
       </>
       }
 
-      { ressourcesFiltredByCategory('Traitement de texte')?.length > 0 &&
+      { ressourcesFiltredByCategory('Bureautique')?.length > 0 &&
       <>
         <div className="rf-col-12">
           <hr className="sans-marge rf-mt-3w"/>
@@ -93,10 +93,10 @@ function Ressources({ ressources }) {
             onClick={() => setCacherTraitement(!cacherTraitement)}></div>
         </div>
         <h2 className="rf-col-12 titre-thematique rf-mb-9w" id="traitement">
-          <img className="image-thematique" src="/logos/cra/logo-traitement-texte.svg" alt="Apprendre les bases du traitement de texte" />
-          Traitement de texte
+          <img className="image-thematique" src="/logos/cra/logo-traitement-texte.svg" alt="Apprendre les bases de la bureautique" />
+          Bureautique
         </h2>
-        {!cacherTraitement && ressourcesFiltredByCategory('Traitement de texte')?.map((ressource, idx) => {
+        {!cacherTraitement && ressourcesFiltredByCategory('Bureautique')?.map((ressource, idx) => {
           return (<Ressource key={idx} ressource={ressource}/>);
         })}
       </>

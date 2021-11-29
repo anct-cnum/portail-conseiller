@@ -62,10 +62,12 @@ function Footer({ type }) {
                         <div className="rf-grid-row">
                           <div className="rf-col-12 rf-mb-2w">
                             <a className="lien-footer" href={aideCoop} target="blank" rel="noreferrer">
-                              <img className="logo-discussion" src="logos/bulle-ressourcerie.svg"/> Aide espace Coop
+                              <img src="logos/bulle-ressourcerie.svg"/>
+                              <span >Aide espace Coop</span>
                             </a>
                             <a className="lien-footer" href={aideMetier} target="blank" rel="noreferrer">
-                              <img className="logo-discussion" src="logos/bulle-ressourcerie.svg"/> Aide métier
+                              <img src="logos/bulle-ressourcerie.svg"/>
+                              <span>Aide métier</span>
                             </a>
                           </div>
                           <div className="rf-col-12">

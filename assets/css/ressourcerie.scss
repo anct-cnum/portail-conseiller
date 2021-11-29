@@ -98,7 +98,7 @@
     display: inline-block;
     position: relative;
     font-size: 12px;
-    width: 410px;
+    width: 80%;
     bottom: 25px;
     left: 72px;
   }
@@ -117,21 +117,27 @@
   }
   .hauteur-texte {
     height: 170px;
-  }
-  .description {
-    font-weight: 400;
-    font-size: 16px;
-    margin-bottom: 24px;
-    margin-top: 24px;
-    height: 73px;
-    width: 282px;
+    .tags {
+      display: inline;
+      .hashtag {
+        font-weight: 300;
+      }
+      .ressource-tag {
+        display: inline-block;
+        margin-right: 8px;
+        line-height: 24px;
+        font-weight: 900;
+      }
+    }
+    .description {
+      font-weight: 400;
+      font-size: 16px;
+      margin-bottom: 24px;
+      margin-top: 24px;
+      height: 73px;
+      width: 282px;
 
-  }
-  .ressource-tag {
-    display: inline-block;
-    margin-right: 8px;
-    line-height: 24px;
-    font-weight: 600;
+    }
   }
   .reduire, .aggrandir {
     background: url(../../public/logos/bouton-moins.svg) no-repeat;
@@ -231,5 +237,48 @@
     top: -7px !important;
     left: 47% !important;
     border-bottom-width: 8px !important;
+  }
+  @media (min-width: 992px) and (max-width: 1170px) {
+    .hauteur-texte .description {
+      width: 230px;
+    }
+  }
+  @media (max-width: 991px) {
+    .liste-thematiques {
+      margin: 0;
+    }
+  }
+  @media (min-width: 767px) {
+    .show-md {
+      display: none;
+    }
+  }
+  @media (max-width: 767px) {
+    .reduire, .aggrandir {
+      left: 95.5%;
+    }
+    .hide-md {
+      display: none;
+    }
+  }
+  @media (max-width: 575px) {
+    .titre {
+      font-size: 45px;
+    }
+    .reduire, .aggrandir {
+      left: 94%;
+    }
+    .hauteur-texte{
+      height: 140px;
+      .description {
+        width: 100%;
+      }
+    }
+  }
+
+  @media (max-width: 340px) {
+    .hauteur-texte{
+      height: 155px;
+    }
   }
 }
