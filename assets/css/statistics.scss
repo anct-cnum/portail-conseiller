@@ -38,6 +38,12 @@
       cursor: pointer;
     }
   }
+  .code-postal-select {
+    max-width: 344px;
+    &:focus, &:hover, &:visited, &:link, &:active {
+      outline: none;
+    }
+  }
   .centrerTexte {
     text-align: center;
   }

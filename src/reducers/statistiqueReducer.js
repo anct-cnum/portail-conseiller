@@ -2,6 +2,7 @@ const anneeEnCours = new Date().getFullYear();
 const initialState = {
   dateDebutStats: new Date(anneeEnCours + '/01/01'),
   dateFinStats: new Date(),
+  codePostalStats: '',
 };
 export default function statistique(state = initialState, action) {
   switch (action.type) {
@@ -32,6 +33,29 @@ export default function statistique(state = initialState, action) {
       return {
         ...state,
         dateFinStats: action.dateFin,
+      };
+    case 'CHANGE_CODE_POSTAL_STATS':
+      return {
+        ...state,
+        codePostalStats: action.codePostal,
+      };
+    case 'GET_CODE_POSTAUX_CRA_REQUEST':
+      return {
+        ...state,
+        codesPostauxLoading: true,
+        codesPostauxError: false,
+      };
+    case 'GET_CODE_POSTAUX_CRA_SUCCESS':
+      return {
+        ...state,
+        listeCodesPostaux: action.listeCodesPostaux,
+        codesPostauxLoading: false,
+      };
+    case 'GET_CODE_POSTAUX_CRA_FAILURE':
+      return {
+        ...state,
+        codesPostauxLoading: false,
+        codesPostauxError: true,
       };
     case 'GET_STATS_ADMIN_REQUEST':
       return {

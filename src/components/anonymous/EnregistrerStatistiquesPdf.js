@@ -16,12 +16,14 @@ function EnregistrerStatistiquesPdf({ match }) {
   const id = match.params?.id;
   const dateDebut = new Date(match.params?.dateDebut);
   const dateFin = new Date(match.params?.dateFin);
+  const codePostal = match.params?.codePostal;
 
-  let dateDebutStats = useSelector(state => state.statistique?.dateDebutStats);
-  let dateFinStats = useSelector(state => state.statistique?.dateFinStats);
-  let donneesStatistiques = useSelector(state => state.statistique?.statsData);
-  let territoire = useSelector(state => state.statistique?.territoire);
-  let typeTerritoire = (type !== 'user' && type !== 'conseiller') ? type : '';
+  const dateDebutStats = useSelector(state => state.statistique?.dateDebutStats);
+  const dateFinStats = useSelector(state => state.statistique?.dateFinStats);
+  const codePostalStats = useSelector(state => state.statistique?.codePostalStats);
+  const donneesStatistiques = useSelector(state => state.statistique?.statsData);
+  const territoire = useSelector(state => state.statistique?.territoire);
+  const typeTerritoire = (type !== 'user' && type !== 'conseiller') ? type : '';
 
   useEffect(() => {
     if ((type !== 'user' && type !== 'conseiller' && type !== 'nationales') && territoire === undefined) {
@@ -32,15 +34,16 @@ function EnregistrerStatistiquesPdf({ match }) {
   useEffect(() => {
     dispatch(statistiqueActions.changeDateStatsDebut(dateDebut));
     dispatch(statistiqueActions.changeDateStatsFin(dateFin));
+    dispatch(statistiqueActions.changeCodePostalStats(codePostal));
 
     if ((type === 'user' || type === 'conseiller') && type !== 'nationales') {
-      dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, id));
+      dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, id, codePostal));
     } else if (((type !== 'user' && type !== 'conseiller') && type !== 'nationales') && territoire?.conseillerIds) {
       dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, territoire?.conseillerIds));
     } else if (type === 'nationales') {
       dispatch(statistiqueActions.getStatsCraNationale(dateDebutStats, dateFinStats));
     }
-  }, [territoire]);
+  }, [territoire, codePostalStats]);
 
   return (
 
@@ -75,6 +78,11 @@ function EnregistrerStatistiquesPdf({ match }) {
           <div className="rf-col-xs-3 rf-col-sm-7 rf-col-md-6 rf-col-lg-4">
             <div className="rf-mb-4w rf-mb-md-6w">
               <StatisticsPeriod dateDebut={dateDebutStats} dateFin={dateFinStats} />
+              {type === 'conseiller' &&
+                <select className="rf-select code-postal-select rf-my-2w">
+                  <option value="">{codePostal !== 'null' ? codePostal : 'Tous codes postaux' }</option>
+                </select>
+              }
             </div>
           </div>
 

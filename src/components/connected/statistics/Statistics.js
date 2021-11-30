@@ -10,32 +10,35 @@ import Spinner from 'react-loader-spinner';
 import StatisticsBanner from './StatisticsBanner';
 import FlashMessage from 'react-flash-message';
 import { useLocation } from 'react-router';
+import ElementCodePostal from './Components/ElementCodePostal';
 
 function Statistics() {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  let statsDataLoading = useSelector(state => state.statistique?.statsDataLoading);
+  const statsDataLoading = useSelector(state => state.statistique?.statsDataLoading);
   const loadingPDF = useSelector(state => state.conseiller?.loadingPDF);
   const errorPDF = useSelector(state => state.conseiller?.errorPDF);
   const isPDFDownloaded = useSelector(state => state.conseiller?.statistiquesPDF);
-  let statsDataError = useSelector(state => state.statistique?.statsDataError);
-  let dateDebutStats = useSelector(state => state.statistique?.dateDebutStats);
-  let dateFinStats = useSelector(state => state.statistique?.dateFinStats);
-  let donneesStatistiques = useSelector(state => state.statistique?.statsData);
+  const statsDataError = useSelector(state => state.statistique?.statsDataError);
+  const dateDebutStats = useSelector(state => state.statistique?.dateDebutStats);
+  const dateFinStats = useSelector(state => state.statistique?.dateFinStats);
+  const codePostalStats = useSelector(state => state.statistique?.codePostalStats);
+  const donneesStatistiques = useSelector(state => state.statistique?.statsData);
+  const user = useSelector(state => state?.authentication?.user?.user);
 
   const territoire = location?.territoire;
-  let typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : '';
+  const typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : '';
   useEffect(() => {
     if (location?.idUser) {
       dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, location?.idUser));
     } else if (territoire) {
       dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, territoire.conseillerIds));
     } else {
-      dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats));
+      dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, null, codePostalStats));
     }
     dispatch(paginationActions.resetPage(false));
-  }, [dateDebutStats, dateFinStats, location]);
+  }, [dateDebutStats, dateFinStats, location, codePostalStats]);
 
   return (
     <div className="Statistics">
@@ -93,6 +96,9 @@ function Statistics() {
           <div className="rf-col-xs-3 rf-col-sm-7 rf-col-md-6 rf-col-lg-4">
             <div className="rf-mb-4w rf-mb-md-6w">
               <StatisticsPeriod dateDebut={dateDebutStats} dateFin={dateFinStats} />
+              {user?.role.includes('conseiller') &&
+                <ElementCodePostal />
+              }
             </div>
           </div>
 
@@ -119,7 +125,7 @@ function Statistics() {
           <h2 className="centrerTexte">Il n&rsquo;y a aucune statistique pour le moment</h2>
         }
       </div>
-      <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats} idTerritoire={territoire?.[typeTerritoire]} />
+      <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats} idTerritoire={territoire?.[typeTerritoire]} codePostal={codePostalStats}/>
       <div className="rf-m-5w rf-m-md-9w rf-m-lg-15w"></div>
       <Footer type="support"/>
     </div>
