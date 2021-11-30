@@ -25,19 +25,17 @@ function territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin, 
   return `?territoire=${territoire}&dateDebut=${dateDebut}&dateFin=${dateFin}${pageIfDefined}${ordreColonne}`;
 }
 
-function getStatsCra(dateDebut, dateFin, idUser) {
+function getStatsCra(dateDebut, dateFin, idUser, codePostal) {
   const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
-    method: 'POST',
-    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
-    body: JSON.stringify({
-      'dateDebut': dateDebut,
-      'dateFin': dateFin,
-      'idConseiller': idUser ?? userEntityId()
-    })
+    method: 'GET',
+    headers: authHeader(),
   };
 
-  return fetch(`${apiUrlRoot}/stats/cra`, requestOptions).then(handleResponse);
+  const idConseiller = idUser ?? userEntityId();
+
+  return fetch(`${apiUrlRoot}/stats/cra?dateDebut=${dateDebut}&dateFin=${dateFin}&idConseiller=${idConseiller}&codePostal=${codePostal}`,
+    requestOptions).then(handleResponse);
 }
 
 function getStatsAdmin() {
@@ -115,14 +113,14 @@ async function getExportDonneesTerritoire(territoire, dateDebut, dateFin, nomOrd
   );
 }
 
-function getCodesPostauxCrasConseiller(idConseiller) {
+function getCodesPostauxCrasConseiller() {
   const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
     method: 'GET',
     headers: authHeader(),
   };
 
-  return fetch(`${apiUrlRoot}/stats/cra/${idConseiller}/codePostal`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/stats/cra/codesPostaux/conseiller/${userEntityId()}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
@@ -144,7 +142,6 @@ function handleResponse(response) {
 
 function handleFileResponse(response) {
   return response.blob().then(blob => {
-
     if (!response.ok) {
       if (response.status === 401) {
         // auto logout if 401 response returned from api

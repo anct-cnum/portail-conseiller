@@ -80,14 +80,15 @@ function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre
   return fetch(uri, requestOptions).then(handleResponse);
 }
 
-function getStatistiquesPDF(idConseiller, dateDebut, dateFin) {
+function getStatistiquesPDF(idConseiller, dateDebut, dateFin, codePostal) {
   const requestOptions = {
     method: 'GET',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
   };
 
-  return fetch(`${apiUrlRoot}/conseillers/${idConseiller}/statistiques.pdf?dateDebut=${dateDebut}&dateFin=${dateFin}`, requestOptions).then(
-    response => !response.ok ? handleResponse(response) : handleFileResponse(response));
+  return fetch(
+    `${apiUrlRoot}/conseillers/${idConseiller}/statistiques.pdf?dateDebut=${dateDebut}&dateFin=${dateFin}&codePostal=${codePostal}`,
+    requestOptions).then(response => !response.ok ? handleResponse(response) : handleFileResponse(response));
 }
 
 function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType) {
@@ -100,13 +101,14 @@ function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType) {
     requestOptions).then(response => !response.ok ? handleResponse(response) : handleFileResponse(response));
 }
 
-function getStatistiquesCSV(dateDebut, dateFin) {
+function getStatistiquesCSV(dateDebut, dateFin, codePostal) {
   const requestOptions = {
     method: 'GET',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
   };
 
-  return fetch(`${apiUrlRoot}/conseillers/statistiques.csv?dateDebut=${dateDebut}&dateFin=${dateFin}`, requestOptions).then(handleFileResponse);
+  return fetch(`${apiUrlRoot}/conseillers/statistiques.csv?dateDebut=${dateDebut}&dateFin=${dateFin}&codePostal=${codePostal}`,
+    requestOptions).then(handleFileResponse);
 }
 
 function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType) {

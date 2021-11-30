@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 function Conseiller({ conseiller, currentPage, trClass }) {
 
-  const isUserActif = conseiller?.emailCNError !== undefined;
+  const isUserActif = conseiller?.emailCNError !== undefined && conseiller?.mattermost !== undefined;
 
   return (
     <>

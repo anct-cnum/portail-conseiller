@@ -1,34 +1,30 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { statistiqueActions } from '../../../../actions';
-import PropTypes from 'prop-types';
 
-function ElementCodePostal(props) {
+function ElementCodePostal() {
 
   const dispatch = useDispatch();
+  const listeCodesPostaux = useSelector(state => state.statistique?.listeCodesPostaux);
 
-  const [departement, setDepartement] = useState(null);
+  const setCodePostal = e => {
+    dispatch(statistiqueActions.changeCodePostalStats(e.target.value));
+  };
 
-  function selectDepartement(event) {
-    setDepartement(event.target.value !== '' ? event.target.value : null);
-  }
-
-  function getDepartementsCras() {
-    return;
-  }
+  useEffect(() => {
+    if (!listeCodesPostaux) {
+      dispatch(statistiqueActions.getCodesPostauxCrasConseiller());
+    }
+  });
 
   return (
-    <select className="rf-select rf-mb-2w" value={departement === null ? '' : departement} onChange={selectDepartement}>
-      <option value="">Tout département</option>
-      {getDepartementsCras().map(idx =>
-        <option key={idx} value={num_dep}>{num_dep} - {dep_name}</option>
-      )}
+    <select className="rf-select code-postal-select rf-my-2w" onChange={setCodePostal}>
+      <option value="">Tous codes postaux</option>
+      {listeCodesPostaux && listeCodesPostaux?.map((codePostal, idx) => {
+        return (<option key={idx} value={codePostal}>{codePostal}</option>);
+      })}
     </select>
   );
 }
-
-ElementCodePostal.propTypes = {
-  codePostal: PropTypes.string,
-};
 
 export default ElementCodePostal;

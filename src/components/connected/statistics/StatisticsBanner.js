@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { conseillerActions, statistiqueActions } from '../../../actions';
+import { conseillerActions } from '../../../actions';
 
-function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false }) {
+function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false, codePostal = null }) {
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false
 
       dispatch(conseillerActions.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser));
     } else {
-      dispatch(conseillerActions.getStatistiquesPDF(user.entity.$id, dateDebut, dateFin));
+      dispatch(conseillerActions.getStatistiquesPDF(user.entity.$id, dateDebut, dateFin, codePostal));
     }
   }
 
@@ -33,7 +33,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false
 
       dispatch(conseillerActions.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser));
     } else {
-      dispatch(conseillerActions.getStatistiquesCSV(dateDebut, dateFin));
+      dispatch(conseillerActions.getStatistiquesCSV(dateDebut, dateFin, codePostal));
     }
   }
 
@@ -42,21 +42,6 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false
       dispatch(conseillerActions.resetStatistiquesPDFFile());
     }
   }, [blob, downloadError]);
-
-  const [inputsPDF, setInputsPDF] = useState({
-    datePickerDebutPDF: 0,
-    datePickerFinPDF: 0
-  });
-
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setInputsPDF(inputsPDF => ({ ...inputsPDF, [name]: value }));
-  }
-
-  const chargeStatsPDF = () => {
-    dispatch(statistiqueActions.changeDateStatsDebut(new Date(parseInt(inputsPDF.datePickerDebutPDF))));
-    dispatch(statistiqueActions.changeDateStatsFin(new Date(parseInt(inputsPDF.datePickerFinPDF))));
-  };
 
   let linkTo = { currentPage: location?.currentPage, origin: '/statistiques' };
   if (typeTerritoire) {
@@ -77,40 +62,6 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false
       <div className="rf-col-12 no-print">
         <div className="rf-container-fluid">
           <div className="rf-grid-row rf-grid-row--center">
-            {/*
-            <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-7 rf-col-lg-5 afficher-etapes">
-              <ul className="rf-footer__bottom-list liste-action">
-                <li className="rf-footer__bottom-item">
-                  <a className="rf-footer__bottom-link rf-pr-sm-1w" href="">
-                    <img className="image-banniere" src="/logos/statistics/logo-fleche-gauche.svg" alt="Revenir à l’étape précédente"/>
-                    Revenir à l’étape précédente
-                  </a>
-                </li>
-                <li className="rf-footer__bottom-item">
-                  <a className="rf-footer__bottom-link rf-pl-sm-1w " href="">
-                    <img className="image-banniere" src="/logos/statistics/logo-croix.svg" alt="Annuler la dernière saisie"/>
-                    Annuler la dernière saisie
-                  </a>
-                </li>
-              </ul>
-              <div className="rf-m-5w"></div>
-            </div>
-
-            <div className="rf-col-md-4 rf-col-lg-4 afficher-export">
-              <ul className="rf-footer__bottom-list max-width-list liste-action">
-                <li className="rf-footer__bottom-item">
-                  <a className="rf-footer__bottom-link" onClick={savePDF}>
-                    Exporter au format PDF
-                  </a>
-                </li>
-                <li className="rf-footer__bottom-item">
-                  <a className="rf-footer__bottom-link rf-pl-1w" href="">
-                    Exporter au format CSV
-                  </a>
-                </li>
-              </ul>
-            </div>
-          */}
             <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-5 rf-col-lg-4 rf-mt-5w centrerTexte">
               <div className="rf-mb-2v">Exporter cette page</div>
               <button className="statistiques_nationales-btn" onClick={savePDF}>Format PDF</button>
@@ -136,13 +87,6 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false
           </div>
           }
         </div>
-        {user.pdfGenerator &&
-          <div id="">
-            <input type="text" id="datePickerDebutPDF" name="datePickerDebutPDF" onChange={handleChange}/>
-            <input type="text" id="datePickerFinPDF" name="datePickerFinPDF" onChange={handleChange} />
-            <button id="chargePDF" onClick={chargeStatsPDF}>click</button>
-          </div>
-        }
       </div>
     </>
   );
@@ -153,6 +97,7 @@ StatisticsBanner.propTypes = {
   dateFin: PropTypes.instanceOf(Date),
   idTerritoire: PropTypes.string,
   nationales: PropTypes.bool,
+  codePostal: PropTypes.string,
 };
 
 export default StatisticsBanner;

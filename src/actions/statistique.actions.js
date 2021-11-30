@@ -6,23 +6,25 @@ export const statistiqueActions = {
   getStatsAdmin,
   changeDateStatsDebut,
   changeDateStatsFin,
+  changeCodePostalStats,
   getTerritoire,
   getStatsTerritoires,
   getStatsCraTerritoire,
   getStatsCraNationale,
   exportDonneesTerritoire,
   resetExportDonneesTerritoire,
+  getCodesPostauxCrasConseiller,
 };
 
 const formatDate = date => {
   return dayjs(date).format('YYYY-MM-DD');
 };
 
-function getStatsCra(dateDebut, dateFin, idUser = null) {
+function getStatsCra(dateDebut, dateFin, idUser = null, codePostal = null) {
   return dispatch => {
-    dispatch(request(dateDebut, dateFin, idUser));
+    dispatch(request(dateDebut, dateFin, idUser, codePostal));
 
-    statistiqueService.getStatsCra(formatDate(dateDebut), formatDate(dateFin), idUser)
+    statistiqueService.getStatsCra(formatDate(dateDebut), formatDate(dateFin), idUser, codePostal)
     .then(
       statsCra => {
         dispatch(success(statsCra));
@@ -33,8 +35,8 @@ function getStatsCra(dateDebut, dateFin, idUser = null) {
     );
   };
 
-  function request(dateDebut, dateFin, idUser) {
-    return { type: 'GET_STATS_CRA_REQUEST', dateDebut, dateFin, idUser };
+  function request(dateDebut, dateFin, idUser, codePostal) {
+    return { type: 'GET_STATS_CRA_REQUEST', dateDebut, dateFin, idUser, codePostal };
   }
   function success(statsCra) {
     return { type: 'GET_STATS_CRA_SUCCESS', statsCra };
@@ -50,6 +52,10 @@ function changeDateStatsDebut(dateDebut) {
 
 function changeDateStatsFin(dateFin) {
   return { type: 'CHANGE_DATE_FIN_STATS', dateFin };
+}
+
+function changeCodePostalStats(codePostal) {
+  return { type: 'CHANGE_CODE_POSTAL_STATS', codePostal };
 }
 
 function getStatsAdmin() {
@@ -201,4 +207,31 @@ function exportDonneesTerritoire(territoire = 'departement', dateDebut, dateFin,
 
 function resetExportDonneesTerritoire() {
   return { type: 'EXPORT_TERRITOIRE_RESET' };
+}
+
+function getCodesPostauxCrasConseiller() {
+
+  return dispatch => {
+    dispatch(request());
+
+    statistiqueService.getCodesPostauxCrasConseiller()
+    .then(
+      listeCodesPostaux => {
+        dispatch(success(listeCodesPostaux));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'GET_CODE_POSTAUX_CRA_REQUEST' };
+  }
+  function success(listeCodesPostaux) {
+    return { type: 'GET_CODE_POSTAUX_CRA_SUCCESS', listeCodesPostaux };
+  }
+  function failure(error) {
+    return { type: 'GET_CODE_POSTAUX_CRA_FAILURE', error };
+  }
 }
