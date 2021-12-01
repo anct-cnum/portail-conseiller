@@ -82,10 +82,10 @@ function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre
   }
 }
 
-function getStatistiquesPDF(idConseiller, dateDebut, dateFin) {
+function getStatistiquesPDF(idConseiller, dateDebut, dateFin, codePostal) {
   return dispatch => {
     dispatch(request());
-    conseillerService.getStatistiquesPDF(idConseiller, dateDebut, dateFin)
+    conseillerService.getStatistiquesPDF(idConseiller, dateDebut, dateFin, codePostal)
     .then(
       data => {
         dispatch(success(data, download(data, `${statistiquesCnfsFileName(dateDebut, dateFin)}.pdf`)));
@@ -129,10 +129,10 @@ function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType) {
   }
 }
 
-function getStatistiquesCSV(dateDebut, dateFin) {
+function getStatistiquesCSV(dateDebut, dateFin, codePostal) {
   return dispatch => {
     dispatch(request());
-    conseillerService.getStatistiquesCSV(dateDebut, dateFin)
+    conseillerService.getStatistiquesCSV(dateDebut, dateFin, codePostal)
     .then(
       data => dispatch(success(data, download(data, `${statistiquesCnfsFileName(dateDebut, dateFin)}.csv`))),
       error => dispatch(failure(error))
@@ -211,6 +211,6 @@ function closeFormulaire() {
 }
 
 function isUserActif(conseiller) {
-  const isUserActif = conseiller?.emailCNError !== undefined;
-  return { type: 'IS_USER_CREATED', isUserActif };
+  const isUserActif = conseiller?.emailCNError !== undefined && conseiller?.mattermost !== undefined;
+  return { type: 'IS_USER_ACTIF', isUserActif };
 }
