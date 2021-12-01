@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Footer from '../Footer';
 import { conseillerActions } from '../../actions';
 import { userEntityId } from '../../helpers';
-import FlashMessage from 'react-flash-message';
 import ReactTooltip from 'react-tooltip';
 
 function Welcome() {
   const dispatch = useDispatch();
-  const location = useLocation();
 
   useEffect(() => {
     dispatch(conseillerActions.get(userEntityId()));
@@ -22,23 +20,9 @@ function Welcome() {
   const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
   const lienWebmail = process.env.REACT_APP_WEBMAIL_URL;
 
-  //Forcer affichage en haut de la page pour voir le flashbag
-  if (location?.printFlashbag === true) {
-    useEffect(() => {
-      window.scrollTo(0, 0);
-    }, []);
-  }
-
   return (
     <>
       <div className="welcome">
-        { location?.printFlashbag === true &&
-        <FlashMessage duration={5000}>
-          <p className="rf-label flashBag">
-            Votre suivi d&rsquo;activité a bien été enregistré&nbsp;<i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
-          </p>
-        </FlashMessage>
-        }
         <div className="rf-container-fluid">
           <div className="rf-grid-row">
             <div className="rf-col-12">
