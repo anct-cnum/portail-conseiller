@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CodePostal from './CodePostal';
 import Canal from './Canal';
 import Activite from './Activite';
@@ -9,11 +9,28 @@ import Duree from './Duree';
 import Accompagnement from './Accompagnement';
 import ValidationButton from './Components/ValidationButton';
 import Footer from '../../Footer';
+import FlashMessage from 'react-flash-message';
+import { useLocation } from 'react-router';
 
 function Cra() {
 
+  const location = useLocation();
+  //Forcer affichage en haut de la page pour voir le flashbag
+  if (location?.printFlashbag === true) {
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+  }
+
   return (
     <>
+      { location?.printFlashbag === true &&
+        <FlashMessage duration={5000}>
+          <p className="rf-label flashBag">
+            Votre suivi d&rsquo;activité a bien été enregistré&nbsp;<i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+          </p>
+        </FlashMessage>
+      }
       <div className="rf-container cra">
         <div className="rf-grid-row rf-grid-row--center rf-my-md-12w rf-pt-1w rf-pb-3w">
           <h1 className="titre">Mon suivi d&rsquo;activité</h1>

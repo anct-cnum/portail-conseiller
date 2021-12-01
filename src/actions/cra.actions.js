@@ -80,7 +80,7 @@ function submitCra(cra) {
       cra => {
         dispatch(success(cra));
         history.push({
-          pathname: '/accueil',
+          pathname: '/compte-rendu-activite',
           printFlashbag: true
         });
 
