@@ -14,6 +14,7 @@ function Ressources({ ressources }) {
   const [cacherAccompagner, setCacherAccompagner] = useState(false);
   const [cacherEquipement, setCacherEquipement] = useState(false);
   const [cacherCNIL, setCacherCNIL] = useState(false);
+  const [cacherEspaceConseiller, setCacherEspaceConseiller] = useState(false);
 
   const ressourcesFiltredByCategory = (category => ressources?.filter(ressource => ressource.categorie === category));
 
@@ -181,6 +182,23 @@ function Ressources({ ressources }) {
           Fiches CNIL
         </h2>
         {!cacherCNIL && ressourcesFiltredByCategory('Fiches CNIL')?.map((ressource, idx) => {
+          return (<Ressource key={idx} ressource={ressource}/>);
+        })}
+      </>
+      }
+
+      { ressourcesFiltredByCategory('Espace Conseiller')?.length > 0 &&
+      <>
+        <div className="rf-col-12">
+          <hr className="sans-marge rf-mt-3w"/>
+          <div className={cacherEspaceConseiller ? 'aggrandir rf-mt-2w rf-mb-2w' : 'reduire rf-mt-2w rf-mb-2w'}
+            onClick={() => setCacherEspaceConseiller(!cacherEspaceConseiller)}></div>
+        </div>
+        <h2 className="rf-col-12 titre-thematique rf-mb-9w" id="espaceConseiller">
+          <img className="image-thematique" src="" alt="Conseiller" style={{ height: '14px', marginBottom: '0px' }}/>
+          Espace Conseiller
+        </h2>
+        {!cacherCNIL && ressourcesFiltredByCategory('Espace Conseiller')?.map((ressource, idx) => {
           return (<Ressource key={idx} ressource={ressource}/>);
         })}
       </>

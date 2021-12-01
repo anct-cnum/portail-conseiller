@@ -81,6 +81,12 @@ function Thematiques() {
                   Fiches CNIL
                 </a>
               </li>
+              <li className="rf-mb-3w">
+                <a href="#espaceConseiller" className="lien-thematique">
+                  <img className="image-thematique" src="" alt="Conseiller" style={{ height: '8px', marginBottom: '0px' }}/>
+                  Espace Conseiller
+                </a>
+              </li>
             </ul>
           </div>
         </div>
