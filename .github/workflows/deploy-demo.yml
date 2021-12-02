@@ -1,0 +1,89 @@
+name: Déploiement sur l'espace demo
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+env:
+  branch:
+jobs:
+  dependencies:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+      - name: Retrieve cached dependencies
+        id: retrieve-dependencies
+        uses: actions/cache@v2
+        with:
+          key: node_modules-${{ hashFiles('yarn.lock') }}
+          path: node_modules
+      - name: Install dependencies
+        if: steps.retrieve-dependencies.outputs.cache-hit == false
+        run: yarn --frozen-lockfile
+      - name: Cache dependencies if not present
+        if: steps.retrieve-dependencies.outputs.cache-hit == false
+        uses: actions/cache@v2
+        with:
+          key: node_modules.-${{ hashFiles('yarn.lock') }}
+          path: node_modules
+
+  build:
+    needs: dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Retrieve cached dependencies
+        uses: actions/cache@v2
+        with:
+          key: node_modules-${{ hashFiles('yarn.lock') }}
+          path: node_modules
+      - name: Override .env
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_REACT_APP_STRATEGYAUTH: "local"
+          envkey_REACT_APP_VERSION: "1.1"
+          envkey_REACT_APP_WEBMAIL_URL: "http://webmail.conseiller-numerique.fr"
+          envkey_REACT_APP_MATTERMOST_URL: "https://discussion.conseiller-numerique.gouv.fr"
+          envkey_REACT_APP_API: ${{ secrets.REACT_APP_API_DEMO }}
+          envkey_REACT_APP_PIX_URL: "https://pix.fr/abc-pix-cnfs/"
+          envkey_REACT_APP_RESSOURCERIE_URL: "https://ressourcerie.conseiller-numerique.gouv.fr"
+          file_name: .env
+      - name: Build application
+        run: yarn run build
+      - name: copy .htaccess
+        uses: canastro/copy-file-action@master
+        with:
+          source: ".htaccess"
+          target: "build/.htaccess"
+      - name: Upload release bundle as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: bundle
+          path: build/*
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Retrieve bundle React
+        uses: actions/download-artifact@v2
+        with:
+          name: bundle
+          path: build
+      - name: Deploy on clever cloud
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: ${{ secrets.CLEVER_CLOUD_GIT_PORTAIL_CONSEILLER_DEMO }}
+          BRANCH: master
+          FOLDER: build
+          SSH_PRIVATE_KEY: ${{ secrets.CLEVER_CLOUD_DEPLOY_PRIVATE_KEY }}
+          KNOWN_HOSTS_FILE: resources/known_hosts
