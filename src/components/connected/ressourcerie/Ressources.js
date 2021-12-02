@@ -112,7 +112,7 @@ function Ressources({ ressources }) {
         </div>
         <h2 className="rf-col-12 titre-thematique rf-mb-9w" id="smartphone">
           <img className="image-thematique" src="/logos/cra/logo-telephone-portable.svg" alt="Installer et utiliser des applications sur son smartphone" />
-          Smartphone, applications mobile
+          Mobile
         </h2>
         {!cacherSmartphone && ressourcesFiltredByCategory('Smartphone, applications mobile')?.map((ressource, idx) => {
           return (<Ressource key={idx} ressource={ressource}/>);

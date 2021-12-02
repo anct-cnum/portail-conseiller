@@ -43,7 +43,7 @@ function Thematiques() {
                 <a href="#smartphone" className="lien-thematique">
                   <img className="image-thematique" src="/logos/cra/logo-telephone-portable.svg" alt="Utiliser des applications utiles sur son smartphone"
                     style={{ height: '23px', marginRight: '8px' }}/>
-                  Smartphone, applications mobile
+                  Mobile
                 </a>
               </li>
             </ul>
