@@ -195,7 +195,7 @@ function Ressources({ ressources }) {
             onClick={() => setCacherEspaceConseiller(!cacherEspaceConseiller)}></div>
         </div>
         <h2 className="rf-col-12 titre-thematique rf-mb-9w" id="espaceConseiller">
-          <img className="image-thematique" src="" alt="Conseiller" style={{ height: '14px', marginBottom: '0px' }}/>
+          <img className="image-thematique" src="/logos/picto-espace-conseiller.svg" alt="Conseiller" style={{ height: '42px', marginBottom: '0px' }}/>
           Espace Conseiller
         </h2>
         {!cacherCNIL && ressourcesFiltredByCategory('Espace Conseiller')?.map((ressource, idx) => {
