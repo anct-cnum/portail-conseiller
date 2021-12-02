@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>PICTO-SANTE</title>
+    <g id="PICTO-SANTE" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M7.131,0 L4.14779322e-13,4.118 L4.14779322e-13,12.352 L6.75,24 L7.512,24 L14.263,12.352 L14.263,4.118 L7.131,0 Z M2.39,10.973 L2.39,5.497 L7.131,2.759 L11.873,5.497 L11.873,7.058 L9.17,7.058 L7.131,5.88 L5.092,7.058 L5.092,9.412 L7.131,10.589 L9.17,9.412 L11.873,9.412 L11.873,10.973 L7.131,13.711 L2.39,10.973 Z" id="Fill-1-Copy-2" fill="#FFFFFF"></path>
+        <polygon id="Fill-1" fill="#FFFFFF" points="5.33333333 0 5.33333333 5.33333333 0 5.33333333 0 10.6666667 5.33333333 10.6666667 5.33333333 16 10.6666667 16 10.6666667 10.6666667 16 10.6666667 16 5.33333333 10.6666667 5.33333333 10.6666667 0"></polygon>
+    </g>
+</svg>
