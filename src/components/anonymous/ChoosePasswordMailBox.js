@@ -95,6 +95,9 @@ function choosePasswordMailBox({ match }) {
                   { loadingChangeMailbox === true &&
                 <p className="rf-mt-10w">Veuillez patientez quelques secondes, cette action peut prendre un certain temps</p>
                   }
+                  { changeMailboxError &&
+                  <h2 style={{ color: 'red' }}>{changeMailboxError}</h2>
+                  }
                   <Spinner
                     className="rf-mt-10w rf-mb-10w"
                     type="Oval"
@@ -104,14 +107,14 @@ function choosePasswordMailBox({ match }) {
                     visible={loadingChangeMailbox === true}
                   />
 
-                  {changeMailbox &&
+                  {changeMailbox && !changeMailboxError &&
                   <div className="rf-my-5w" style={{ textAlign: 'center' }}>
                     <h2><b>Félicitations ! Votre nouvelle adresse mail vient d&apos;être créée&nbsp;:&nbsp;<br/>{user.support_cnfs.nouveauEmail}</b></h2>
                     <p style={{ color: '#4F4840' }}>Votre ancienne adresse {user.name} a été supprimée</p>
                     <Link to="/login" title="Se connecter" >Se connecter</Link>
                   </div>
                   }
-                  { loadingChangeMailbox !== true && !changeMailbox &&
+                  { loadingChangeMailbox !== true && !changeMailbox && !changeMailboxError &&
                   <>
                     <div className="rf-col-12 rf-col-md-5 rf-mt-2w rf-mt-md-4w">
                       <h2 className="titre rf-mb-4v">Saisissez un mot de passe <img className="cle" src="/logos/cle.svg" /></h2>
