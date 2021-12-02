@@ -7,7 +7,8 @@ export const userActions = {
   choosePassword,
   verifyToken,
   checkForgottenPasswordEmail,
-  forgottenPassword
+  forgottenPassword,
+  choosePasswordMailBox
 };
 
 function login(username, password, to) {
@@ -158,4 +159,29 @@ function getRole(user) {
   }
   delete user.roles;
   return user;
+}
+
+function choosePasswordMailBox(token, password) {
+  return dispatch => {
+    dispatch(request(token));
+    userService.choosePasswordMailBox(token, password)
+    .then(
+      user => {
+        dispatch(success(user));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request(token) {
+    return { type: 'CHOOSE_PASSWORD_MAILBOX_REQUEST', token };
+  }
+  function success(user) {
+    return { type: 'CHOOSE_PASSWORD_MAILBOX_SUCCESS', user };
+  }
+  function failure(error) {
+    return { type: 'CHOOSE_PASSWORD_MAILBOX_FAILURE', error };
+  }
 }

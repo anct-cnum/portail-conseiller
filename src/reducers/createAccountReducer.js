@@ -30,6 +30,23 @@ export default function authentication(state = {}, action) {
         passwordChoosen: false,
         error: action.error
       };
+    case 'CHOOSE_PASSWORD_MAILBOX_REQUEST':
+      return {
+        ...state,
+        loadingChangeMailbox: true
+      };
+    case 'CHOOSE_PASSWORD_MAILBOX_SUCCESS':
+      return {
+        ...state,
+        changeMailbox: action.user,
+        loadingChangeMailbox: false
+      };
+    case 'CHOOSE_PASSWORD_MAILBOX_FAILURE':
+      return {
+        ...state,
+        changeMailboxError: action.error,
+        loadingChangeMailbox: false
+      };
     default:
       return state;
   }

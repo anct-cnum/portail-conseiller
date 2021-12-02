@@ -4,7 +4,8 @@ export const userService = {
   choosePassword,
   verifyToken,
   checkForgottenPasswordEmail,
-  sendForgottenPasswordEmail
+  sendForgottenPasswordEmail,
+  choosePasswordMailBox
 };
 
 function login(username, password) {
@@ -134,4 +135,35 @@ function sendForgottenPasswordEmail(username) {
 
   let uri = `${apiUrlRoot}/users/sendForgottenPasswordEmail`;
   return fetch(uri, requestOptions).then(handleResponse);
+}
+
+function choosePasswordMailBox(token, password) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+
+  const requestOptions = {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ 'password': password })
+  };
+
+  let uri = `${apiUrlRoot}/users/changement-email-pro/${token}`;
+  return fetch(uri, requestOptions).then(handleResponseChangeMailbox);
+}
+
+function handleResponseChangeMailbox(response) {
+  return response.text().then(text => {
+    const data = text && JSON.parse(text);
+    if (!response.ok) {
+      if (response.status === 401) {
+        logout();
+        return Promise.reject({ error: 'Identifiants incorrects' });
+      }
+      const error = (data && data.message) || response.statusText;
+      return Promise.reject(error);
+    }
+
+    return data;
+  });
 }
