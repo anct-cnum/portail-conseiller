@@ -5,8 +5,9 @@ import Footer from '../Footer';
 import { userActions } from '../../actions';
 import Spinner from 'react-loader-spinner';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-function choosePasswordMailBox({ match }) {
+function ChoosePasswordMailBox({ match }) {
   const dispatch = useDispatch();
 
   const [inputs, setInputs] = useState({
@@ -246,4 +247,8 @@ function choosePasswordMailBox({ match }) {
   );
 }
 
-export default choosePasswordMailBox;
+ChoosePasswordMailBox.propTypes = {
+  match: PropTypes.object
+};
+
+export default ChoosePasswordMailBox;
