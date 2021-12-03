@@ -33,7 +33,7 @@ function App() {
           <Route path="/mot-de-passe-oublie" component={ForgottenPassword} />
           <Route path="/renouveler-mot-de-passe/:token" component={ForgottenPassword} />
           <Route path="/inscription/:token" component={ChoosePassword} />
-          <Route path="/changement-email-cnfs/:token" component={ChoosePasswordMailBox} />
+          <Route path="/changer-email/:token" component={ChoosePasswordMailBox} />
           <Route path="/validation" component={ValidationAccount} />
           <Route path="/statistiques-nationales" component={StatistiquesNationales} />
           <Route path="/statistiques/:type/:id/:dateDebut/:dateFin/:codePostal" component={EnregistrerStatistiquesPdf} />

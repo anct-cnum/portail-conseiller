@@ -23,10 +23,7 @@ function choosePasswordMailBox({ match }) {
   const verifyingToken = useSelector(state => state.createAccount.verifyingToken);
   const tokenVerified = useSelector(state => state.createAccount.tokenVerified);
   const user = useSelector(state => state.createAccount.user);
-  // const passwordChoosen = useSelector(state => state.createAccount.passwordChoosen);
   const { loadingChangeMailbox, changeMailbox, changeMailboxError } = useSelector(state => state.createAccount);
-  console.log('loadingChangeMailbox:', loadingChangeMailbox);
-  console.log('changeMailbox:', changeMailbox);
 
   useEffect(() => {
     dispatch(userActions.verifyToken(token));
@@ -58,12 +55,13 @@ function choosePasswordMailBox({ match }) {
             <div className="rf-container">
               <div className="rf-grid-row rf-grid-row--center">
                 <div className="rf-col-12 rf-col-md-10">
-                  <h1 className="titre rf-my-2w rf-mb-md-5w ">Création de votre boîte mail <br className="br-titre" />et accès à l&#39;Espace coop</h1>
+                  <h1 className="titre rf-my-2w rf-mb-md-5w ">Création de votre boîte mail<br className="br-titre" />et accès à l&rsquo;Espace coop</h1>
                   {tokenVerified && !changeMailbox &&
-                <p className="sous-titre rf-mb-2w rf-mb-md-4w">
-                  Bonjour <b>{user?.prenom} {user?.nom}</b>, vous êtes sur le point de créer un nouvel accès à vos services en ligne
-                  <br />Conseiller numérique France Services : <b>{user.support_cnfs.nouveauEmail}</b>
-                </p>}
+                    <p className="sous-titre rf-mb-2w rf-mb-md-4w">
+                      Bonjour <b>{user?.prenom} {user?.nom}</b>, vous êtes sur le point de créer un nouvel accès à vos services en ligne
+                      <br />Conseiller numérique France Services : <b>{user.support_cnfs.nouveauEmail}</b>
+                    </p>
+                  }
                 </div>
               </div>
             </div>
@@ -129,7 +127,7 @@ function choosePasswordMailBox({ match }) {
                       Une boîte mail {user.support_cnfs.nouveauEmail}&nbsp;
                       sera automatiquement créée lorsque vous cliquerez sur Supprimer mon adresse actuelle et créer ma nouvelle adresse
                       </p>
-                      <p className="rf-mb-md-3w">Accédez ensuite à cette dernière afin de pouvoir effectuer votre première connexion à l’espace Coop.</p>
+                      <p className="rf-mb-md-3w">Accédez ensuite à cette dernière afin de pouvoir effectuer votre première connexion à l&rsquo;espace Coop.</p>
                     </div>
 
                     <div className="rf-col-12 rf-col-md-5">
@@ -207,7 +205,7 @@ function choosePasswordMailBox({ match }) {
                 <div className="rf-col-offset-md-3" ></div>
                 <div className="rf-col-12 rf-col-md-6 rf-mb-5w rf-mb-md-9w recapitulatif">
                   Celui-ci vous permettra de recevoir et d’envoyer les courriels en lien <br className="br-mail" />
-                  avec votre activité. Il vous servira également d’identifiant  pour la <br />connexion à l’espace Coop.
+                  avec votre activité. Il vous servira également d’identifiant  pour la<br />connexion à l&rsquo;espace Coop.
                 </div>
                 <div className="rf-col-offset-md-3" ></div>
 
@@ -229,10 +227,10 @@ function choosePasswordMailBox({ match }) {
 
                 <div className="rf-col-offset-md-3" ></div>
                 <div className="rf-col-12 rf-col-md-6 rf-mb-8w rf-mb-md-15w recapitulatif">
-                  Votre boite mail&nbsp;
+                  Votre boîte mail&nbsp;
                   <strong>
                   </strong>&nbsp;
-                  sert d’identifiant<br />
+                  sert d&rsquo;identifiant<br />
                   Votre mot de passe de connexion est le même.
                 </div>
                 <div className="rf-col-offset-md-3" ></div>

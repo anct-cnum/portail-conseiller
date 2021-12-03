@@ -166,8 +166,8 @@ function choosePasswordMailBox(token, password) {
     dispatch(request(token));
     userService.choosePasswordMailBox(token, password)
     .then(
-      user => {
-        dispatch(success(user));
+      message => {
+        dispatch(success(message));
       },
       error => {
         dispatch(failure(error));
@@ -175,11 +175,11 @@ function choosePasswordMailBox(token, password) {
     );
   };
 
-  function request(token) {
-    return { type: 'CHOOSE_PASSWORD_MAILBOX_REQUEST', token };
+  function request() {
+    return { type: 'CHOOSE_PASSWORD_MAILBOX_REQUEST' };
   }
-  function success(user) {
-    return { type: 'CHOOSE_PASSWORD_MAILBOX_SUCCESS', user };
+  function success(message) {
+    return { type: 'CHOOSE_PASSWORD_MAILBOX_SUCCESS', message };
   }
   function failure(error) {
     return { type: 'CHOOSE_PASSWORD_MAILBOX_FAILURE', error };
