@@ -66,7 +66,7 @@ function handleResponse(response) {
       roles = data?.roles;
     }
 
-    if ((!roles.includes('conseiller') && !roles.includes('admin_coop'))) {
+    if ((!roles.includes('conseiller') && !roles.includes('admin_coop') && !roles.includes('structure_coop'))) {
       logout();
       return Promise.reject({ error: 'Identifiants incorrects' });
     }

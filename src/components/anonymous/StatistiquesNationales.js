@@ -112,7 +112,7 @@ function StatistiquesNationales() {
         </div>
         <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats} nationales={true}/>
         <div className="rf-m-5w rf-m-md-9w rf-m-lg-15w"></div>
-        <Footer type="support"/>
+        <Footer type="support" role={user.role}/>
       </div>
     </div>
   );

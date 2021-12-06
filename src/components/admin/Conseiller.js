@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-function Conseiller({ conseiller, currentPage, trClass }) {
+function Conseiller({ conseiller, currentPage, trClass, role }) {
 
   const isUserActif = conseiller?.emailCNError !== undefined && conseiller?.mattermost !== undefined;
 
@@ -13,7 +13,9 @@ function Conseiller({ conseiller, currentPage, trClass }) {
       <tr className={trClass + ' conseiller'}>
         <td>{conseiller?.prenom}</td>
         <td>{conseiller?.nom}</td>
-        <td className="structure">{conseiller?.nomStructure?.toUpperCase()}</td>
+        { role === 'admin_coop' &&
+          <td className="structure">{conseiller?.nomStructure?.toUpperCase()}</td>
+        }
         <td>{conseiller?.codePostal}</td>
         <td>{conseiller?.datePrisePoste ? dayjs(conseiller?.datePrisePoste).format('DD/MM/YYYY') : 'Non renseignée'}</td>
         <td>{conseiller?.dateFinFormation ? dayjs(conseiller?.dateFinFormation).format('DD/MM/YYYY') : 'Non renseignée'}</td>
@@ -35,7 +37,8 @@ function Conseiller({ conseiller, currentPage, trClass }) {
 Conseiller.propTypes = {
   conseiller: PropTypes.object,
   currentPage: PropTypes.number,
-  trClass: PropTypes.string
+  trClass: PropTypes.string,
+  role: PropTypes.string
 };
 
 export default Conseiller;
