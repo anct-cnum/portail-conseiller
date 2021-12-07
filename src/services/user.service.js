@@ -58,7 +58,7 @@ function handleResponse(response) {
       return data;
     }
     // dans le cas où le conseiller recréer son email @conseiller-numerque.fr
-    if (data?.message) {
+    if (data?.messageCreationMail) {
       return data;
     }
     //login and verify token data !== conseiller
