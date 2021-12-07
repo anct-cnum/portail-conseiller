@@ -24,7 +24,7 @@ function ChoosePasswordMailBox({ match }) {
   const verifyingToken = useSelector(state => state.createAccount.verifyingToken);
   const tokenVerified = useSelector(state => state.createAccount.tokenVerified);
   const user = useSelector(state => state.createAccount.user);
-  const { loadingChangeMailbox, changeMailbox, changeMailboxError } = useSelector(state => state.createAccount);
+  const { loadingChangeMailbox, changeMailboxMessage, changeMailboxMessageError } = useSelector(state => state.createAccount);
 
   useEffect(() => {
     dispatch(userActions.verifyToken(token));
@@ -57,7 +57,7 @@ function ChoosePasswordMailBox({ match }) {
               <div className="rf-grid-row rf-grid-row--center">
                 <div className="rf-col-12 rf-col-md-10">
                   <h1 className="titre rf-my-2w rf-mb-md-5w ">Création de votre boîte mail<br className="br-titre" />et accès à l&rsquo;Espace coop</h1>
-                  {tokenVerified && !changeMailbox &&
+                  {tokenVerified && !changeMailboxMessage &&
                     <p className="sous-titre rf-mb-2w rf-mb-md-4w">
                       Bonjour <b>{user?.prenom} {user?.nom}</b>, vous êtes sur le point de créer un nouvel accès à vos services en ligne
                       <br />Conseiller numérique France Services : <b>{user.support_cnfs.nouveauEmail}</b>
@@ -94,8 +94,8 @@ function ChoosePasswordMailBox({ match }) {
                   { loadingChangeMailbox === true &&
                 <p className="rf-mt-10w">Veuillez patientez quelques secondes, cette action peut prendre un certain temps</p>
                   }
-                  { changeMailboxError &&
-                  <h2 style={{ color: 'red' }}>{changeMailboxError}</h2>
+                  { changeMailboxMessageError &&
+                  <h2 style={{ color: 'red' }}>{changeMailboxMessageError}</h2>
                   }
                   <Spinner
                     className="rf-mt-10w rf-mb-10w"
@@ -106,14 +106,14 @@ function ChoosePasswordMailBox({ match }) {
                     visible={loadingChangeMailbox === true}
                   />
 
-                  {changeMailbox && !changeMailboxError &&
+                  {changeMailboxMessage && !changeMailboxMessageError &&
                   <div className="rf-my-5w" style={{ textAlign: 'center' }}>
                     <h2><b>Félicitations ! Votre nouvelle adresse mail vient d&apos;être créée&nbsp;:&nbsp;<br/>{user.support_cnfs.nouveauEmail}</b></h2>
                     <p style={{ color: '#4F4840' }}>Votre ancienne adresse {user.name} a été supprimée</p>
                     <Link to="/login" title="Se connecter" >Se connecter</Link>
                   </div>
                   }
-                  { loadingChangeMailbox !== true && !changeMailbox && !changeMailboxError &&
+                  { loadingChangeMailbox !== true && !changeMailboxMessage && !changeMailboxMessageError &&
                   <>
                     <div className="rf-col-12 rf-col-md-5 rf-mt-2w rf-mt-md-4w">
                       <h2 className="titre rf-mb-4v">Saisissez un mot de passe <img className="cle" src="/logos/cle.svg" /></h2>
@@ -121,7 +121,7 @@ function ChoosePasswordMailBox({ match }) {
                       Vous pouvez garder votre ancien mot de passe ou en choisir un nouveau.
                       </p>
                       <p className="sous-titre rf-mb-3w">
-                      Celui-ci servira à la fois pour votre connexion au mail, et pour vous identifier sur l’espace Coop
+                      Celui-ci servira à la fois pour votre connexion au mail, et pour vous identifier sur l&rsquo;espace Coop
                       ainsi que sur le service de discussion en ligne, gardez-le précieusement !
                       </p>
                       <p className="rf-mb-3w">
@@ -191,7 +191,7 @@ function ChoosePasswordMailBox({ match }) {
             <div className="rf-container rf-mt-5w rf-mt-md-9w">
               <div className="rf-grid-row rf-grid-row--center">
                 <div className="rf-col-offset-md-3" ></div>
-                <div className="rf-col-12 rf-col-md-6 rf-mb-2w etape">Étape 1 :
+                <div className="rf-col-12 rf-col-md-6 rf-mb-2w etape">&Eacute;tape 1 :
                   <img src="/logos/mail-conseiller-numerique.svg" alt="Avatar conseiller" className="rf-ml-4v enveloppe" />
                 </div>
                 <div className="rf-col-offset-md-3" ></div>
@@ -205,13 +205,13 @@ function ChoosePasswordMailBox({ match }) {
 
                 <div className="rf-col-offset-md-3" ></div>
                 <div className="rf-col-12 rf-col-md-6 rf-mb-5w rf-mb-md-9w recapitulatif">
-                  Celui-ci vous permettra de recevoir et d’envoyer les courriels en lien <br className="br-mail" />
+                  Celui-ci vous permettra de recevoir et d&rsquo;envoyer les courriels en lien <br className="br-mail" />
                   avec votre activité. Il vous servira également d’identifiant  pour la<br />connexion à l&rsquo;espace Coop.
                 </div>
                 <div className="rf-col-offset-md-3" ></div>
 
                 <div className="rf-col-offset-md-3" ></div>
-                <div className="rf-col-12 rf-col-md-6 rf-mb-2w etape">Étape 2 :
+                <div className="rf-col-12 rf-col-md-6 rf-mb-2w etape">&Eacute;tape 2 :
                   <img src="/avatars/avatar-conseiller.svg" alt="Avatar conseiller" className="avatar-pwd rf-ml-5v" />
                   <img src="/avatars/avatar-conseillere.svg" alt="Avatar conseillere" className="avatar-pwd" />
                   <img src="/avatars/avatar-conseillers.svg" alt="Avatar conseillers" className="avatar-pwd" />

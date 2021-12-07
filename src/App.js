@@ -12,7 +12,7 @@ import ForgottenPassword from './components/anonymous/ForgottenPassword';
 import EnregistrerStatistiquesPdf from './components/anonymous/EnregistrerStatistiquesPdf';
 import StatistiquesNationales from './components/anonymous/StatistiquesNationales';
 import PrivateRoute from './components/connected/PrivateRoute';
-import ChoosePasswordMailBox from './components/anonymous/ChoosePasswordMailBox';
+import choosePasswordChangeMailbox from './components/anonymous/choosePasswordChangeMailbox';
 
 require('dotenv').config();
 
@@ -33,7 +33,7 @@ function App() {
           <Route path="/mot-de-passe-oublie" component={ForgottenPassword} />
           <Route path="/renouveler-mot-de-passe/:token" component={ForgottenPassword} />
           <Route path="/inscription/:token" component={ChoosePassword} />
-          <Route path="/changer-email/:token" component={ChoosePasswordMailBox} />
+          <Route path="/changer-email/:token" component={choosePasswordChangeMailbox} />
           <Route path="/validation" component={ValidationAccount} />
           <Route path="/statistiques-nationales" component={StatistiquesNationales} />
           <Route path="/statistiques/:type/:id/:dateDebut/:dateFin/:codePostal" component={EnregistrerStatistiquesPdf} />

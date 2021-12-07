@@ -39,13 +39,13 @@ export default function authentication(state = {}, action) {
     case 'CHOOSE_PASSWORD_MAILBOX_SUCCESS':
       return {
         ...state,
-        changeMailbox: action.message,
+        changeMailboxMessage: action.message,
         loadingChangeMailbox: false
       };
     case 'CHOOSE_PASSWORD_MAILBOX_FAILURE':
       return {
         ...state,
-        changeMailboxError: action.error,
+        changeMailboxMessageError: action.error,
         loadingChangeMailbox: false
       };
     default:

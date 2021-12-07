@@ -57,7 +57,10 @@ function handleResponse(response) {
     if (data?.successResetPassword) {
       return data;
     }
-
+    // dans le cas où le conseiller recréer son email @conseiller-numerque.fr
+    if (data?.message) {
+      return data;
+    }
     //login and verify token data !== conseiller
     let roles = [];
     if (data?.user?.roles) {
@@ -149,21 +152,5 @@ function choosePasswordMailBox(token, password) {
   };
 
   let uri = `${apiUrlRoot}/users/changement-email-pro/${token}`;
-  return fetch(uri, requestOptions).then(handleResponseChangeMailbox);
-}
-
-function handleResponseChangeMailbox(response) {
-  return response.text().then(text => {
-    const data = text && JSON.parse(text);
-    if (!response.ok) {
-      if (response.status === 401) {
-        logout();
-        return Promise.reject({ error: 'Identifiants incorrects' });
-      }
-      const error = (data && data.message) || response.statusText;
-      return Promise.reject(error);
-    }
-
-    return data;
-  });
+  return fetch(uri, requestOptions).then(handleResponse);
 }
