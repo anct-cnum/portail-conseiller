@@ -4,7 +4,7 @@ import { useLocation } from 'react-router';
 import { statistiqueActions } from '../../actions';
 import PropTypes from 'prop-types';
 
-function AdminHeader({role}) {
+function AdminHeader({ role }) {
   const location = useLocation();
   const dispatch = useDispatch();
   const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
