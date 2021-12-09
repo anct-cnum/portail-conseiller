@@ -24,12 +24,12 @@ function get(id) {
   return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
 }
 
-function cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreCertifie) {
+function cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreCertifie, idStructure) {
   const ordreColonne = nomOrdre ? '&$sort[' + nomOrdre + ']=' + ordre : '';
   const filterDateStart = (dayjs(new Date(dateDebut)).format('DD/MM/YYYY') !== dayjs(new Date()).format('DD/MM/YYYY') && dateDebut !== '') ?
     `&datePrisePoste[$gt]=${new Date(dateDebut).toISOString()}` : '';
   const filterDateEnd = (dateFin !== '') ? `&datePrisePoste[$lt]=${new Date(dateFin).toISOString()}` : '';
-
+  const filterStructureId = idStructure ? `&structureId=${idStructure}` : '';
   let profil = '';
   switch (filtreProfil) {
     case 'tous':
@@ -58,10 +58,10 @@ function cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtrePr
     default:
       break;
   }
-  return { ordreColonne, filterDateStart, filterDateEnd, profil, certifie };
+  return { ordreColonne, filterDateStart, filterDateEnd, filterStructureId, profil, certifie };
 }
 
-function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre, ordre) {
+function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre, ordre, idStructure = null) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
@@ -72,10 +72,11 @@ function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre
     filterDateStart,
     filterDateEnd,
     profil,
-    certifie
-  } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreCertifie);
+    certifie,
+    filterStructureId
+  } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreCertifie, idStructure);
 
-  let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${profil}${certifie}${filterDateStart}${filterDateEnd}${ordreColonne}`;
+  let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${profil}${certifie}${filterDateStart}${filterDateEnd}${filterStructureId}${ordreColonne}`;
 
   return fetch(uri, requestOptions).then(handleResponse);
 }
@@ -134,7 +135,7 @@ function createSexeAge(user) {
   return fetch(`${apiUrlRoot}/conseillers/createSexeAge`, requestOptions).then(handleResponse);
 }
 
-function getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre, ordre) {
+function getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre, ordre, idStructure = null) {
   const requestOptions = {
     method: 'GET',
     headers: {
@@ -149,12 +150,13 @@ function getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, 
     filterDateStart,
     filterDateEnd,
     profil,
-    certifie
-  } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreCertifie);
+    certifie,
+    filterStructureId
+  } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreCertifie, idStructure);
 
   const exportCnfsRoute = '/exports/cnfs.csv';
 
-  return fetch(`${apiUrlRoot}${exportCnfsRoute}?statut=RECRUTE${profil}${certifie}${filterDateStart}${filterDateEnd}${ordreColonne}`,
+  return fetch(`${apiUrlRoot}${exportCnfsRoute}?statut=RECRUTE${profil}${certifie}${filterDateStart}${filterDateEnd}${filterStructureId}${ordreColonne}`,
     requestOptions
   ).then(handleFileResponse);
 }

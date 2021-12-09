@@ -39,7 +39,7 @@ function App() {
           {user?.role === 'conseiller' &&
             <PrivateRoute exact path="*" component={Home}/>
           }
-          {user?.role === 'admin_coop' &&
+          {(user?.role === 'admin_coop' || user?.role === 'structure_coop') &&
             <PrivateRoute exact path="*" component={Admin}/>
           }
           <Redirect from="/" to="/login"/>

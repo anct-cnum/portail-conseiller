@@ -52,11 +52,11 @@ function get(id) {
   }
 }
 
-function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre = 'prenom', ordre = 1) {
+function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre = 'prenom', ordre = 1, idStructure = null) {
   return dispatch => {
     dispatch(request());
     let promises = [];
-    let promise = conseillerService.getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre, ordre);
+    let promise = conseillerService.getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre, ordre, idStructure);
     promises.push(promise);
 
     let conseillers = null;
@@ -172,11 +172,11 @@ function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType) {
 }
 
 
-function exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre = 'prenom', ordre = 1) {
+function exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre = 'prenom', ordre = 1, idStructure = null) {
   return dispatch => {
     dispatch(request());
 
-    conseillerService.getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre, ordre).then(
+    conseillerService.getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre, ordre, idStructure).then(
       exportCnfsFileBlob => dispatch(success(exportCnfsFileBlob)),
       exportCnfsFileError => dispatch(failure(exportCnfsFileError))
     );

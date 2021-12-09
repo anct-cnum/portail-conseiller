@@ -18,6 +18,7 @@ function Header({ linkAccount }) {
   };
   const aideCoop = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide_espace_coop';
   const aideMetier = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide-metier';
+  const aideStructure = process.env.REACT_APP_AIDE_URL;
 
   return (
     <header className="rf-header" role="banner">
@@ -88,18 +89,30 @@ function Header({ linkAccount }) {
                               </button>
                               <div className={!menuAideShow ? 'rf-collapse rf-menu' : 'rf-collapse rf-menu rf-collapse--expanded'} id="menu-liens-aide">
                                 <ul className="rf-menu__list">
-                                  <li className="aide-coop">
-                                    <a className="rf-nav__link lien-aide" href={aideCoop} target="blank" rel="noreferrer">
-                                      Aide espace Coop<br/>
-                                      <span className="sous-titre-lien">Suivi d&rsquo;activité, Pix, mail, etc.</span>
-                                    </a>
-                                  </li>
-                                  <li className="aide-metier">
-                                    <a className="rf-nav__link lien-aide" href={aideMetier} target="blank" rel="noreferrer">
-                                      Aide m&eacute;tier<br/>
-                                      <span className="sous-titre-lien">Missions et cadre de travail.</span>
-                                    </a>
-                                  </li>
+                                  {role !== 'structure_coop' &&
+                                  <>
+                                    <li className="aide-coop">
+                                      <a className="rf-nav__link lien-aide" href={aideCoop} target="blank" rel="noreferrer">
+                                        Aide espace Coop<br/>
+                                        <span className="sous-titre-lien">Suivi d&rsquo;activité, Pix, mail, etc.</span>
+                                      </a>
+                                    </li>
+                                    <li className="aide-metier">
+                                      <a className="rf-nav__link lien-aide" href={aideMetier} target="blank" rel="noreferrer">
+                                        Aide m&eacute;tier<br/>
+                                        <span className="sous-titre-lien">Missions et cadre de travail.</span>
+                                      </a>
+                                    </li>
+                                  </>
+                                  }
+                                  {role === 'structure_coop' &&
+                                    <li className="aide-coop">
+                                      <a className="rf-nav__link lien-aide" href={aideStructure} target="blank" rel="noreferrer">
+                                        Aide espace Coop<br/>
+                                        <span className="sous-titre-lien">Consulter la Foire aux Questions.</span>
+                                      </a>
+                                    </li>
+                                  }
                                 </ul>
                               </div>
                             </li>
@@ -117,12 +130,12 @@ function Header({ linkAccount }) {
                       </li>
                       { linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
                       <li className="rf-shortcuts__item">
-                        {role !== 'admin_coop' &&
+                        {role === 'conseiller' &&
                           <Link className="rf-btn rf-btn--sm" to="/login" title="Se déconnecter" >
                             <i className="ri-logout-box-r-line"></i>
                           </Link>
                         }
-                        {role === 'admin_coop' &&
+                        {role !== 'conseiller' &&
                           <Link className="rf-btn rf-btn--sm" to="/login?role=admin" title="Se déconnecter"><i className="ri-logout-box-r-line"></i></Link>
                         }
                       </li>
@@ -138,7 +151,7 @@ function Header({ linkAccount }) {
       </div>
       { linkAccount !== undefined && linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
       <>
-        {role !== 'admin_coop' &&
+        {role === 'conseiller' &&
           <Menu/>
         }
       </>

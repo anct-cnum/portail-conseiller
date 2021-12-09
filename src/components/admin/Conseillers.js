@@ -20,6 +20,7 @@ function Conseillers() {
   let filtreCertifie = useSelector(state => state.filtersAndSorts?.certifie);
   let ordre = useSelector(state => state.filtersAndSorts?.ordre);
   let ordreNom = useSelector(state => state.filtersAndSorts?.ordreNom);
+  const user = useSelector(state => state?.authentication?.user?.user);
 
   let location = useLocation();
   let [page, setPage] = (pagination?.resetPage === false && location.currentPage !== undefined) ? useState(location.currentPage) : useState(1);
@@ -36,7 +37,9 @@ function Conseillers() {
       filtreProfil,
       filtreCertifie,
       ordreNom,
-      ordre ? 1 : -1));
+      ordre ? 1 : -1,
+      user.role === 'structure_coop' ? user.entity.$id : null
+    ));
   };
 
   useEffect(() => {
@@ -47,7 +50,8 @@ function Conseillers() {
   }, [conseillers]);
 
   useEffect(() => {
-    dispatch(conseillerActions.getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, ordreNom, ordre ? 1 : -1));
+    dispatch(conseillerActions.getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, ordreNom,
+      ordre ? 1 : -1, user.role === 'structure_coop' ? user.entity.$id : null));
   }, [ordre, ordreNom, filtreProfil, filtreCertifie]);
 
   const filtreClick = e => {
@@ -77,7 +81,7 @@ function Conseillers() {
   return (
     <>
       <div className="conseillers">
-        <FiltersAndSorts resetPage={setPage}/>
+        <FiltersAndSorts resetPage={setPage} user={user}/>
         <div className="rf-container rf-mt-2w">
           <div className="rf-grid-row rf-grid-row--center">
             <div className="rf-col-12">
@@ -111,6 +115,7 @@ function Conseillers() {
                           </span>
                         </button>
                       </th>
+                      {user.role === 'admin_coop' &&
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
                           <span id="nomStructure">
@@ -124,6 +129,7 @@ function Conseillers() {
                           </span>
                         </button>
                       </th>
+                      }
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
                           <span id="codePostal">
@@ -252,7 +258,7 @@ function Conseillers() {
                   </thead>
                   <tbody>
                     {!conseillers?.error && !conseillers?.loading && conseillers?.items && conseillers?.items.data.map((conseiller, idx) => {
-                      return (<Conseiller key={idx} conseiller={conseiller} currentPage={page} trClass ={idx % 2 === 0 ? 'pair' : 'impair'}/>);
+                      return (<Conseiller key={idx} conseiller={conseiller} currentPage={page} trClass ={idx % 2 === 0 ? 'pair' : 'impair'} role={user.role}/>);
                     })
                     }
                     { (conseillers?.items?.data.length === 0 || !conseillers?.items) &&

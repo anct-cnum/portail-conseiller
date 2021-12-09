@@ -156,6 +156,9 @@ function getRole(user) {
   if (user.roles.includes('admin_coop')) {
     user.role = 'admin_coop';
   }
+  if (user.roles.includes('structure_coop')) {
+    user.role = 'structure_coop';
+  }
   delete user.roles;
   return user;
 }

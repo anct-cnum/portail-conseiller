@@ -11,7 +11,7 @@ function currentPage(pagination, location) {
   return pagination?.resetPage === false && location.currentPage !== undefined ? location.currentPage : 1;
 }
 
-function FiltersAndSorts({ resetPage }) {
+function FiltersAndSorts({ resetPage, user }) {
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -57,12 +57,14 @@ function FiltersAndSorts({ resetPage }) {
 
   useEffect(() => {
     if (location.pathname === '/accueil') {
-      dispatch(conseillerActions.getAll(0, dateDebut, dateFin, filtreProfil, filtreCertifie, ordreNom, ordre ? 1 : -1));
+      dispatch(conseillerActions.getAll(0, dateDebut, dateFin, filtreProfil, filtreCertifie,
+        ordreNom, ordre ? 1 : -1, user?.role === 'structure_coop' ? user?.entity.$id : null));
       resetPage(1);
     }
     if (location.pathname === '/territoires') {
       const page = currentPage(pagination, location);
-      dispatch(statistiqueActions.getStatsTerritoires(territoire, dateDebut, dateFin, page, ordreNom, ordre ? 1 : -1));
+      dispatch(statistiqueActions.getStatsTerritoires(territoire, dateDebut, dateFin, page, ordreNom,
+        ordre ? 1 : -1, user?.role === 'structure_coop' ? user?.entity.$id : null));
       resetPage(page);
     }
 
@@ -77,7 +79,8 @@ function FiltersAndSorts({ resetPage }) {
   };
 
   const exportDonneesCnfs = () => {
-    dispatch(conseillerActions.exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, ordreNom, ordre ? 1 : -1));
+    dispatch(conseillerActions.exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie,
+      ordreNom, ordre ? 1 : -1, user?.role === 'structure_coop' ? user?.entity.$id : null));
   };
 
   return (
@@ -154,7 +157,8 @@ function FiltersAndSorts({ resetPage }) {
 }
 
 FiltersAndSorts.propTypes = {
-  resetPage: PropTypes.func
+  resetPage: PropTypes.func,
+  user: PropTypes.object
 };
 
 export default FiltersAndSorts;
