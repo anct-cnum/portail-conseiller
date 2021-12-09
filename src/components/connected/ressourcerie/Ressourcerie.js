@@ -15,6 +15,7 @@ function Ressourcerie() {
   const ressourcesLoading = useSelector(state => state.ressources?.ressourcesLoading);
   const ressourcesError = useSelector(state => state.ressources?.ressourcesError);
   const tagsListSelected = useSelector(state => state.ressourcesFiltres?.tagsListSelected);
+  const user = useSelector(state => state?.authentication?.user?.user);
 
   const dernierAjout = ressources?.slice(-4);
 
@@ -87,7 +88,7 @@ function Ressourcerie() {
           </div>
         </div>
       }
-      <Footer type="support"/>
+      <Footer type="support" role={user.role}/>
     </div>
   );
 }
