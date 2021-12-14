@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Footer({ type }) {
+function Footer({ type, role }) {
 
   const aideCoop = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide_espace_coop';
   const aideMetier = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide-metier';
+  const aideStructure = process.env.REACT_APP_AIDE_URL;
 
   return (
     <footer className="rf-footer" role="contentinfo" id="footer">
@@ -61,14 +62,24 @@ function Footer({ type }) {
                       <div className="rf-container" style={{ padding: 0 }}>
                         <div className="rf-grid-row">
                           <div className="rf-col-12 rf-mb-2w">
-                            <a className="lien-footer" href={aideCoop} target="blank" rel="noreferrer">
-                              <img src="logos/bulle-ressourcerie.svg"/>
-                              <span >Aide espace Coop</span>
-                            </a>
-                            <a className="lien-footer" href={aideMetier} target="blank" rel="noreferrer">
-                              <img src="logos/bulle-ressourcerie.svg"/>
-                              <span>Aide métier</span>
-                            </a>
+                            {role === 'structure_coop' &&
+                              <a className="lien-footer" href={aideStructure} target="blank" rel="noreferrer">
+                                <img src="logos/bulle-ressourcerie.svg"/>
+                                <span >Aide espace Coop</span>
+                              </a>
+                            }
+                            {role !== 'structure_coop' &&
+                            <>
+                              <a className="lien-footer" href={aideCoop} target="blank" rel="noreferrer">
+                                <img src="logos/bulle-ressourcerie.svg"/>
+                                <span >Aide espace Coop</span>
+                              </a>
+                              <a className="lien-footer" href={aideMetier} target="blank" rel="noreferrer">
+                                <img src="logos/bulle-ressourcerie.svg"/>
+                                <span>Aide métier</span>
+                              </a>
+                            </>
+                            }
                           </div>
                           <div className="rf-col-12">
                             <p style={{ fontSize: '14px', lineHeight: '24px', marginBottom: '2.5rem' }}>
@@ -123,7 +134,8 @@ function Footer({ type }) {
 }
 
 Footer.propTypes = {
-  type: PropTypes.string
+  type: PropTypes.string,
+  role: PropTypes.string
 };
 
 export default Footer;

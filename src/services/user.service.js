@@ -4,7 +4,8 @@ export const userService = {
   choosePassword,
   verifyToken,
   checkForgottenPasswordEmail,
-  sendForgottenPasswordEmail
+  sendForgottenPasswordEmail,
+  choosePasswordMailBox
 };
 
 function login(username, password) {
@@ -56,7 +57,10 @@ function handleResponse(response) {
     if (data?.successResetPassword) {
       return data;
     }
-
+    // dans le cas où le conseiller recréer son email @conseiller-numerque.fr
+    if (data?.messageCreationMail) {
+      return data;
+    }
     //login and verify token data !== conseiller
     let roles = [];
     if (data?.user?.roles) {
@@ -65,8 +69,8 @@ function handleResponse(response) {
     if (data?.roles) {
       roles = data?.roles;
     }
-
-    if ((!roles.includes('conseiller') && !roles.includes('admin_coop'))) {
+    const rolesAllowed = ['conseiller', 'admin_coop', 'structure_coop'];
+    if (rolesAllowed.filter(role => roles.includes(role)).length === 0) {
       logout();
       return Promise.reject({ error: 'Identifiants incorrects' });
     }
@@ -133,5 +137,20 @@ function sendForgottenPasswordEmail(username) {
   };
 
   let uri = `${apiUrlRoot}/users/sendForgottenPasswordEmail`;
+  return fetch(uri, requestOptions).then(handleResponse);
+}
+
+function choosePasswordMailBox(token, password) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+
+  const requestOptions = {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ 'password': password })
+  };
+
+  let uri = `${apiUrlRoot}/users/changement-email-pro/${token}`;
   return fetch(uri, requestOptions).then(handleResponse);
 }

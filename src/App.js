@@ -12,6 +12,7 @@ import ForgottenPassword from './components/anonymous/ForgottenPassword';
 import EnregistrerStatistiquesPdf from './components/anonymous/EnregistrerStatistiquesPdf';
 import StatistiquesNationales from './components/anonymous/StatistiquesNationales';
 import PrivateRoute from './components/connected/PrivateRoute';
+import choosePasswordChangeMailbox from './components/anonymous/choosePasswordChangeMailbox';
 
 require('dotenv').config();
 
@@ -32,6 +33,7 @@ function App() {
           <Route path="/mot-de-passe-oublie" component={ForgottenPassword} />
           <Route path="/renouveler-mot-de-passe/:token" component={ForgottenPassword} />
           <Route path="/inscription/:token" component={ChoosePassword} />
+          <Route path="/changer-email/:token" component={choosePasswordChangeMailbox} />
           <Route path="/validation" component={ValidationAccount} />
           <Route path="/statistiques-nationales" component={StatistiquesNationales} />
           <Route path="/statistiques/:type/:id/:dateDebut/:dateFin/:codePostal" component={EnregistrerStatistiquesPdf} />
@@ -39,7 +41,7 @@ function App() {
           {user?.role === 'conseiller' &&
             <PrivateRoute exact path="*" component={Home}/>
           }
-          {user?.role === 'admin_coop' &&
+          {(user?.role === 'admin_coop' || user?.role === 'structure_coop') &&
             <PrivateRoute exact path="*" component={Admin}/>
           }
           <Redirect from="/" to="/login"/>
