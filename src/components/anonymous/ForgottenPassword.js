@@ -118,10 +118,10 @@ function ForgottenPassword({ match = null }) {
                         <div className="valid rf-mt-2w">L&#39;e-mail de renouvellement de mot de passe a pu être envoyé sur votre adresse personnelle !</div>
                       </div>
                     }
-                    {submittedEmail && errorEmail === 'User not found' &&
+                    {submittedEmail && errorEmail &&
                       <div className="rf-mb-2w rf-mt-n2w">
                         <div className="invalid rf-my-2w">
-                          Cette adresse e-mail n&#39;existe pas dans la base de données.
+                          {errorEmail === 'User not found' ? <>Cette adresse e-mail n&#39;existe pas dans la base de données.</> : errorEmail}
                         </div>
                       </div>
                     }
