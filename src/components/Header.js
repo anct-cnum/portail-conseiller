@@ -15,6 +15,7 @@ function Header({ linkAccount }) {
   const toggleBurgerMenu = () => {
     dispatch(menuActions.toggleMenu());
     dispatch(menuActions.toggleNav());
+    console.log('hey ho !');
   };
   const aideCoop = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide_espace_coop';
   const aideMetier = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide-metier';
@@ -29,15 +30,14 @@ function Header({ linkAccount }) {
           <div className="rf-col-xs-10 rf-col-sm-10 rf-col-md-10 rf-col-xl-12">
             <div className="rf-header__body">
               <a className="rf-header__operator" href="/" style={{ boxShadow: 'none' }}>
-                <img src="/logos/logo-conseiller-numerique-nb.svg" alt="logo Conseiller Numérique France Services" style={{ height: '50px' }}/>
+                <img src="/logos/logo-conseiller-numerique-nb.svg" alt="logo Conseiller Numérique France Services" style={{ height: '48px' }}/>
               </a>
-              <div className={`rf-header__navbar ${location.pathname === '/validation' || location.pathname.startsWith('/inscription') ? 'headerCustom' : ''}`}
-                style={{ marginBottom: '13px' }}>
+              <div className={`rf-header__navbar ${location.pathname === '/validation' || location.pathname.startsWith('/inscription') ? 'headerCustom' : ''}`}>
                 <div className="rf-service">
                   {role !== 'admin_coop' &&
-                    <div className="feuillet">
+                    <div className="feuillet" >
                       <a className="rf-service__title" href="/" title="Coop">
-                        Coop&nbsp;&nbsp;<span style={{ fontSize: '20px', fontWeight: '300' }}>v { process.env.REACT_APP_VERSION }</span>
+                        Coop&nbsp;<span style={{ fontSize: '20px', fontWeight: '300' }}>v { process.env.REACT_APP_VERSION }</span>
                       </a>
                       <p className="rf-service__tagline cacher-baseline">
                         Bienvenue sur le réseau
@@ -65,9 +65,18 @@ function Header({ linkAccount }) {
               </div>
               {linkAccount !== undefined &&
               <>
-                <div className="rf-header__tools" style={{ marginBottom: '33px' }}>
+                <div className="rf-header__tools headerCustom">
                   <div className="rf-shortcuts">
                     <ul className="rf-shortcuts__list">
+                      <li className="rf-shortcuts__item header-propos">
+                        <ul className="rf-nav__list">
+                          <li className="rf-nav__item">
+                            <Link className="rf-nav__btn rf-custom-link" to="/a-propos" title="À propos de votre espace Coop" >
+                              <i className="ri-compasses-2-fill"></i>À propos
+                            </Link>
+                          </li>
+                        </ul>
+                      </li>
                       <li className="rf-shortcuts__item header-aide">
                         <div className="" role="navigation" aria-label="aide">
                           <ul className="rf-nav__list">
@@ -129,7 +138,7 @@ function Header({ linkAccount }) {
                           </span> }
                       </li>
                       { linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
-                      <li className="rf-shortcuts__item">
+                      <li className="rf-shortcuts__item header-logout">
                         {role === 'conseiller' &&
                           <Link className="rf-btn rf-btn--sm" to="/login" title="Se déconnecter" >
                             <i className="ri-logout-box-r-line"></i>

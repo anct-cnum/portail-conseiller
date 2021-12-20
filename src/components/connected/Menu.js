@@ -19,6 +19,8 @@ function Menu() {
     }
   };
 
+  const exclusionPage = ['/ressourcerie', '/a-propos'];
+
   return (
     <>
       {location.pathname !== '/accueil' &&
@@ -30,7 +32,7 @@ function Menu() {
               aria-label="Menu principal"
               style={{ boxShadow: 'none', zIndex: 1 }}>
               <ul className="rf-nav__list" style={{ paddingBottom: '15px' }}>
-                { location.pathname !== '/ressourcerie' &&
+                { !exclusionPage.includes(location.pathname) &&
                 <>
                   <li className="rf-nav__item">
                     <Link
@@ -64,6 +66,11 @@ function Menu() {
                 }
                 {!menu.hiddenMenu && menu.expandNav &&
                 <>
+                  <li className="rf-shortcuts__item">
+                    <Link className="rf-btn rf-btn--sm" to="/a-propos" title="À propos du site" onClick={toggleBurgerMenu}>
+                    À propos
+                    </Link>
+                  </li>
                   <li className="rf-shortcuts__item">
                     <a className="rf-nav__link" href={aideCoop} target="blank" rel="noreferrer">
                       Aide espace Coop
