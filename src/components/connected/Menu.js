@@ -19,7 +19,7 @@ function Menu() {
     }
   };
 
-  const exclusionPage = ['/ressourcerie', '/a-propos'];
+  const exclusionPages = ['/ressourcerie', '/a-propos'];
 
   return (
     <>
@@ -32,7 +32,7 @@ function Menu() {
               aria-label="Menu principal"
               style={{ boxShadow: 'none', zIndex: 1 }}>
               <ul className="rf-nav__list" style={{ paddingBottom: '15px' }}>
-                { !exclusionPage.includes(location.pathname) &&
+                { !exclusionPages.includes(location.pathname) &&
                 <>
                   <li className="rf-nav__item">
                     <Link
@@ -68,7 +68,7 @@ function Menu() {
                 <>
                   <li className="rf-shortcuts__item">
                     <Link className="rf-btn rf-btn--sm" to="/a-propos" title="À propos du site" onClick={toggleBurgerMenu}>
-                    À propos
+                      À propos
                     </Link>
                   </li>
                   <li className="rf-shortcuts__item">

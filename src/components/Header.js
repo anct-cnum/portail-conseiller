@@ -35,7 +35,7 @@ function Header({ linkAccount }) {
               <div className={`rf-header__navbar ${location.pathname === '/validation' || location.pathname.startsWith('/inscription') ? 'headerCustom' : ''}`}>
                 <div className="rf-service">
                   {role !== 'admin_coop' &&
-                    <div className="feuillet" >
+                    <div className="feuillet">
                       <a className="rf-service__title" href="/" title="Coop">
                         Coop&nbsp;<span style={{ fontSize: '20px', fontWeight: '300' }}>v { process.env.REACT_APP_VERSION }</span>
                       </a>

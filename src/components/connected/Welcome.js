@@ -125,10 +125,10 @@ function Welcome() {
                       Téléchargez le kit « Bien démarrer ma mission »
                     </a>
                     <p className="rf-mb-8w rf-mr-md-1w">
-                      Ce document contient tout ce qu’il faut savoir pour bien commencer votre activité de Conseiller
-                      numérique France Services depuis votre inscription jusqu’à votre entrée en poste : les bons réflexes
-                      à avoir, les outils d’inclusion numérique à connaître,
-                      l’organisation des structures de médiation numérique sur les territoires ainsi que leurs contacts.
+                      Ce document contient tout ce qu&rsquo;il faut savoir pour bien commencer votre activité de Conseiller
+                      numérique France Services depuis votre inscription jusqu&rsquo;à votre entrée en poste : les bons réflexes
+                      à avoir, les outils d&rsquo;inclusion numérique à connaître,
+                      l&rsquo;organisation des structures de médiation numérique sur les territoires ainsi que leurs contacts.
                     </p>
                   </div>
                   <div className="rf-col-12 rf-col-md-6 rf-mt-7w">
@@ -157,14 +157,14 @@ function Welcome() {
                   <div className="rf-col-12 rf-col-lg-6">
                     <h2 className="titre rf-my-7w">
                       <img src="/logos/home-connected/hexagone-3.svg" className="hexagone"/>
-                      À venir sur l’espace Coop
+                      À venir sur l&rsquo;espace Coop
                     </h2>
 
                     <p>
-                      – Une mise à jour de l’outil de suivi d’activité (version 2).<br/>
-                      – Une mise à jour du kit de communication (troisième version), comprenant  en premier lieu la fourniture d’un
+                      – Une mise à jour de l&rsquo;outil de suivi d&rsquo;activité (version 2).<br/>
+                      – Une mise à jour du kit de communication (troisième version), comprenant  en premier lieu la fourniture d&rsquo;un
                       dépliant décrivant le dispositif CnFS, adaptable en fonction de votre cadre de travail (structure et coordonnées).<br/>
-                      – un fil d’actualités régulières de la communauté Conseiller numérique France Services ;<br/>
+                      – un fil d&rsquo;actualités régulières de la communauté Conseiller numérique France Services ;<br/>
                       – des temps de rencontres dédiés ;<br/>
                       – une fonction de prise de rendez-vous ;<br/>
                       – une visualisation nationale des lieux de médiation numérique accessible via le site vitrine des conseillers
