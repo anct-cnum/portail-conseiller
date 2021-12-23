@@ -60,7 +60,8 @@ function ChoosePasswordMailBox({ match }) {
                   et acc&egrave;s &agrave; l&rsquo;Espace coop</h1>
                   {tokenVerified && !changeMailboxMessage &&
                     <p className="sous-titre rf-mb-2w rf-mb-md-4w">
-                      Bonjour <b>{user?.prenom} {user?.nom}</b>, vous &ecirc;tes sur le point de cr&eacute;er un nouvel acc&egrave;s &agrave; vos services en ligne
+                      Bonjour <b>{user?.prenom} {user?.nom}</b>, vous &ecirc;tes sur le point de cr&eacute;er un nouvel acc&egrave;s &agrave; vos services en
+                      ligne
                       <br />Conseiller num&eacute;rique France Services : <b>{user.support_cnfs.nouveauEmail}</b>
                     </p>
                   }

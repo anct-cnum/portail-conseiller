@@ -34,17 +34,17 @@ function ConseillerDetails({ location }) {
         </div>
         <div className="rf-col-xs-6 rf-col-lg-3 recrutementCol rf-mb-1w">
           <strong>Recrutement</strong>&nbsp;&nbsp;
-          { conseiller?.datePrisePoste ? dayjs(conseiller?.datePrisePoste).format('DD/MM/YYYY') : 'non renseign&eacute;'}
+          { conseiller?.datePrisePoste ? dayjs(conseiller?.datePrisePoste).format('DD/MM/YYYY') : <>non renseign&eacute;e</>}
           <br/>
           <strong>Fin de formation</strong>&nbsp;&nbsp;
-          { conseiller?.dateFinFormation ? dayjs(conseiller?.dateFinFormation).format('DD/MM/YYYY') : 'non renseign&eacute;e'}
+          { conseiller?.dateFinFormation ? dayjs(conseiller?.dateFinFormation).format('DD/MM/YYYY') : <>non renseign&eacute;e</>}
         </div>
         <div className="rf-col-xs-6 rf-col-lg-2 rf-mb-1w">
           <img src={conseiller?.certifie ? '/logos/icone-check.svg' : '/logos/icone-croix.svg'} style={{ marginRight: '16px' }}/>
           Certification
           <br/>
           <span className={isUserActif ? 'circle-true' : 'circle-false'}/>
-          {isUserActif ? 'Activ&eacute;' : 'Non activ&eacute;'}
+          {isUserActif ? <>Activ&eacute;</> : <>Non activ&eacute;</>}
         </div>
       </div>
       <div className="rf-grid-row">
@@ -59,11 +59,11 @@ function ConseillerDetails({ location }) {
           </div>
           <div className="rf-mb-3w">
             <strong>Sexe</strong><br/>
-            <span>{conseiller?.sexe ?? 'non renseign&eacute;'}</span>
+            <span>{conseiller?.sexe ?? <>non renseign&eacute;</>}</span>
           </div>
           <div className="rf-pb-12w rf-mb-3w">
             <strong>Date de naissance</strong><br/>
-            <span>{conseiller?.dateDeNaissance ? dayjs(conseiller?.dateDeNaissance).format('DD/MM/YYYY') : 'non renseign&eacute;e'}</span>
+            <span>{conseiller?.dateDeNaissance ? dayjs(conseiller?.dateDeNaissance).format('DD/MM/YYYY') : <>non renseign&eacute;e</>}</span>
           </div>
         </div>
         <div className="rf-col-5">
@@ -89,7 +89,8 @@ function ConseillerDetails({ location }) {
           </div>
           <div className="rf-mb-3w">
             <strong>T&eacute;l&eacute;phone personnel</strong><br/>
-            <span>{conseiller?.telephone ? conseiller?.telephone.replace(/(.{2})(?=.)/g, '$1 ') : 'non renseign&eacute;'}</span> {/* espace tous les 2 chiffres */}
+            <span>{conseiller?.telephone ? conseiller?.telephone.replace(/(.{2})(?=.)/g, '$1 ') : <>non renseign&eacute;</>}</span>
+            {/* espace tous les 2 chiffres */}
           </div>
         </div>
         <div className="rf-col-xs-12 rf-col-xl-4">
@@ -104,7 +105,7 @@ function ConseillerDetails({ location }) {
             </div>
             <div className="rf-col-4">
               <strong>Siret</strong><br/>
-              <span>{structure?.siret ?? 'non renseign&eacute;'}</span>
+              <span>{structure?.siret ?? <>non renseign&eacute;</>}</span>
             </div>
           </div>
           <div className="rf-mb-3w">
@@ -115,7 +116,7 @@ function ConseillerDetails({ location }) {
           </div>
           <div className="rf-mb-3w">
             <strong>T&eacute;l&eacute;phone de la structure</strong><br/>
-            <span>{structure?.contact?.telephone ? structure?.contact?.telephone.replace(/(.{2})(?=.)/g, '$1 ') : 'non renseign&eacute;'}</span>
+            <span>{structure?.contact?.telephone ? structure?.contact?.telephone.replace(/(.{2})(?=.)/g, '$1 ') : <>non renseign&eacute;</>}</span>
           </div>
         </div>
       </div>
