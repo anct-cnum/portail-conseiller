@@ -8,7 +8,7 @@ function Accompagnement() {
     <>
       <div className="rf-grid-row rf-grid-row--gutters rf-grid-row--middle rf-mb-7w">
         <div className="rf-col-xs-11 rf-col-sm-11 rf-col-md-2 questionResponsive">
-          <span className="question">L&rsquo;accompagnement va-t-il être poursuivi&nbsp;? (Optionnel)</span>
+          <span className="question">L&rsquo;accompagnement va-t-il &ecirc;tre poursuivi&nbsp;? (Optionnel)</span>
         </div>
         <div className="responsiveRadioActivity1">
           <BigRadioButton
@@ -33,7 +33,7 @@ function Accompagnement() {
         <div className="responsiveRadioActivity3Big">
           <BigRadioButton
             type="accompagnement"
-            label="Redirection vers un établissement agréé"
+            label="Redirection vers un &eacute;tablissement agr&eacute;&eacute;"
             value="redirection"
             image="/logos/cra/logo-redirection-structure.svg"
             imageSelected="/logos/cra/logo-redirection-structure-n.svg"
@@ -43,7 +43,7 @@ function Accompagnement() {
         <div className="responsiveRadioActivity3Small">
           <SmallRadioButton
             type="accompagnement"
-            label="Redirection vers un établissement agréé"
+            label="Redirection vers un &eacute;tablissement agr&eacute;&eacute;"
             value="redirection"
             image="/logos/cra/logo-redirection-structure.svg"
             imageSelected="/logos/cra/logo-redirection-structure-n.svg"

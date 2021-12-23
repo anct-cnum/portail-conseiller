@@ -77,8 +77,8 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false
                 <li className="rf-footer__bottom-item">
                   <Link className="rf-footer__bottom-link rf-pr-sm-1w" style={{ boxShadow: 'none' }}
                     to={linkTo}>
-                    <img className="image-banniere" src="/logos/statistics/logo-fleche-gauche.svg" alt="Revenir à l’étape précédente"/>
-                    Revenir à la page précédente
+                    <img className="image-banniere" src="/logos/statistics/logo-fleche-gauche.svg" alt="Revenir &agrave; l’&eacute;tape pr&eacute;c&eacute;dente"/>
+                    Revenir &agrave; la page pr&eacute;c&eacute;dente
                   </Link>
                 </li>
               </ul>

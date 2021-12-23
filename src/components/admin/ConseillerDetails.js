@@ -34,17 +34,17 @@ function ConseillerDetails({ location }) {
         </div>
         <div className="rf-col-xs-6 rf-col-lg-3 recrutementCol rf-mb-1w">
           <strong>Recrutement</strong>&nbsp;&nbsp;
-          { conseiller?.datePrisePoste ? dayjs(conseiller?.datePrisePoste).format('DD/MM/YYYY') : 'non renseigné'}
+          { conseiller?.datePrisePoste ? dayjs(conseiller?.datePrisePoste).format('DD/MM/YYYY') : 'non renseign&eacute;'}
           <br/>
           <strong>Fin de formation</strong>&nbsp;&nbsp;
-          { conseiller?.dateFinFormation ? dayjs(conseiller?.dateFinFormation).format('DD/MM/YYYY') : 'non renseignée'}
+          { conseiller?.dateFinFormation ? dayjs(conseiller?.dateFinFormation).format('DD/MM/YYYY') : 'non renseign&eacute;e'}
         </div>
         <div className="rf-col-xs-6 rf-col-lg-2 rf-mb-1w">
           <img src={conseiller?.certifie ? '/logos/icone-check.svg' : '/logos/icone-croix.svg'} style={{ marginRight: '16px' }}/>
           Certification
           <br/>
           <span className={isUserActif ? 'circle-true' : 'circle-false'}/>
-          {isUserActif ? 'Activé' : 'Non activé'}
+          {isUserActif ? 'Activ&eacute;' : 'Non activ&eacute;'}
         </div>
       </div>
       <div className="rf-grid-row">
@@ -54,16 +54,16 @@ function ConseillerDetails({ location }) {
             <span>{conseiller?.nom}</span>
           </div>
           <div className="rf-mb-3w">
-            <strong>Prénom</strong><br/>
+            <strong>Pr&eacute;nom</strong><br/>
             <span>{conseiller?.prenom}</span>
           </div>
           <div className="rf-mb-3w">
             <strong>Sexe</strong><br/>
-            <span>{conseiller?.sexe ?? 'non renseigné'}</span>
+            <span>{conseiller?.sexe ?? 'non renseign&eacute;'}</span>
           </div>
           <div className="rf-pb-12w rf-mb-3w">
             <strong>Date de naissance</strong><br/>
-            <span>{conseiller?.dateDeNaissance ? dayjs(conseiller?.dateDeNaissance).format('DD/MM/YYYY') : 'non renseignée'}</span>
+            <span>{conseiller?.dateDeNaissance ? dayjs(conseiller?.dateDeNaissance).format('DD/MM/YYYY') : 'non renseign&eacute;e'}</span>
           </div>
         </div>
         <div className="rf-col-5">
@@ -80,7 +80,7 @@ function ConseillerDetails({ location }) {
               </a>
             }
             {!conseiller?.emailCN?.address &&
-              <span>non renseigné</span>
+              <span>non renseign&eacute;</span>
             }
           </div>
           <div className="rf-mb-3w">
@@ -88,8 +88,8 @@ function ConseillerDetails({ location }) {
             <a className="email"href={'mailto:' + conseiller?.email}>{conseiller?.email}</a>
           </div>
           <div className="rf-mb-3w">
-            <strong>Téléphone personnel</strong><br/>
-            <span>{conseiller?.telephone ? conseiller?.telephone.replace(/(.{2})(?=.)/g, '$1 ') : 'non renseigné'}</span> {/* espace tous les 2 chiffres */}
+            <strong>T&eacute;l&eacute;phone personnel</strong><br/>
+            <span>{conseiller?.telephone ? conseiller?.telephone.replace(/(.{2})(?=.)/g, '$1 ') : 'non renseign&eacute;'}</span> {/* espace tous les 2 chiffres */}
           </div>
         </div>
         <div className="rf-col-xs-12 rf-col-xl-4">
@@ -104,7 +104,7 @@ function ConseillerDetails({ location }) {
             </div>
             <div className="rf-col-4">
               <strong>Siret</strong><br/>
-              <span>{structure?.siret ?? 'non renseigné'}</span>
+              <span>{structure?.siret ?? 'non renseign&eacute;'}</span>
             </div>
           </div>
           <div className="rf-mb-3w">
@@ -114,8 +114,8 @@ function ConseillerDetails({ location }) {
             </a>
           </div>
           <div className="rf-mb-3w">
-            <strong>Téléphone de la structure</strong><br/>
-            <span>{structure?.contact?.telephone ? structure?.contact?.telephone.replace(/(.{2})(?=.)/g, '$1 ') : 'non renseigné'}</span>
+            <strong>T&eacute;l&eacute;phone de la structure</strong><br/>
+            <span>{structure?.contact?.telephone ? structure?.contact?.telephone.replace(/(.{2})(?=.)/g, '$1 ') : 'non renseign&eacute;'}</span>
           </div>
         </div>
       </div>
@@ -137,9 +137,9 @@ function ConseillerDetails({ location }) {
                 <img
                   className="image-banniere"
                   src="/logos/statistics/logo-fleche-gauche.svg"
-                  alt="Revenir à l’étape précédente"
+                  alt="Revenir &agrave; l’&eacute;tape pr&eacute;c&eacute;dente"
                   style={{ verticalAlign: 'middle' }} />
-                <span style={{ paddingLeft: '16px' }}>Revenir à la page précédente</span>
+                <span style={{ paddingLeft: '16px' }}>Revenir &agrave; la page pr&eacute;c&eacute;dente</span>
               </Link>
             </li>
           </ul>

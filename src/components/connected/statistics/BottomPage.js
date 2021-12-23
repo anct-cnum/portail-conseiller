@@ -16,7 +16,7 @@ function BottomPage(props) {
     let lastInsertedYear = year;
     for (let i = 0; i < 3; i++) {
       lastInsertedYear = lastInsertedMonth - 1 === -1 ? lastInsertedYear - 1 : lastInsertedYear;
-      lastInsertedMonth = lastInsertedMonth - 1 === -1 ? 11 : lastInsertedMonth - 1; //11 = décembre dans Date
+      lastInsertedMonth = lastInsertedMonth - 1 === -1 ? 11 : lastInsertedMonth - 1; //11 = d&eacute;cembre dans Date
       monthToPrint.push(lastInsertedMonth);
       yearAssociated.push(lastInsertedYear.toString());
     }
@@ -25,7 +25,7 @@ function BottomPage(props) {
 
   const { statsEvolutions, statsUsagers, statsAges } = props.donneesStats;
 
-  //Map des stats evolutions pour ajouter les données nécessaires pour le graph (label mois année, valeur)
+  //Map des stats evolutions pour ajouter les donn&eacute;es n&eacute;cessaires pour le graph (label mois ann&eacute;e, valeur)
   let statsEvolutionsMapped = [];
   for (const [annee, moisListe] of Object.entries(statsEvolutions)) {
     let statsEvolutionsMapped2 = moisListe.map(mois => {
@@ -38,7 +38,7 @@ function BottomPage(props) {
     statsEvolutionsMapped.push(...statsEvolutionsMapped2);
   }
 
-  //Filtrage pour ne garder que le mois en cours et les 3 précédents max
+  //Filtrage pour ne garder que le mois en cours et les 3 pr&eacute;c&eacute;dents max
   let monthToPrint = get4lastMonths(new Date().getMonth(), new Date().getUTCFullYear());
   let statsEvolutionsFiltered = Object.values(statsEvolutionsMapped).filter(mois => {
     // eslint-disable-next-line max-len
@@ -82,7 +82,7 @@ function BottomPage(props) {
       couleursGraphique: tabColorAge
     },
     titre: {
-      optionTitre: 'Évolution des accompagnements',
+      optionTitre: '&eacute;volution des accompagnements',
       margeTitre: 48,
     }
   };
@@ -98,7 +98,7 @@ function BottomPage(props) {
       couleursGraphique: tabColorAge
     },
     titre: {
-      optionTitre: 'Évolution des accompagnements',
+      optionTitre: '&eacute;volution des accompagnements',
       margeTitre: 48,
       placementTitre: 10,
     }

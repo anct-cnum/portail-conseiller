@@ -17,7 +17,7 @@ function ElementDatePicker(props) {
       if (date <= dateFin) { //on ne change la date de debut que si elle est <= date de fin
         dispatch(statistiqueActions.changeDateStatsDebut(date));
       }
-    } else if (date >= dateDebut) { //on ne change la date de fin que si elle est >= date de début
+    } else if (date >= dateDebut) { //on ne change la date de fin que si elle est >= date de d&eacute;but
       dispatch(statistiqueActions.changeDateStatsFin(date));
     }
   };

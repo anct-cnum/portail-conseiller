@@ -22,7 +22,7 @@ function RightPage(props) {
       couleursGraphique: tabColorTheme
     },
     titre: {
-      optionTitre: 'Thèmes des accompagnements',
+      optionTitre: 'Th&egrave;mes des accompagnements',
       margeTitre: 38,
       placementTitre: 0
     }
@@ -39,7 +39,7 @@ function RightPage(props) {
       couleursGraphique: tabColorTheme
     },
     titre: {
-      optionTitre: 'Thèmes des accompagnements',
+      optionTitre: 'Th&egrave;mes des accompagnements',
       margeTitre: 28,
       placementTitre: 0
     }
@@ -90,7 +90,7 @@ function RightPage(props) {
       couleursGraphique: tabColorDuree
     },
     titre: {
-      optionTitre: 'Durée des accompagnements',
+      optionTitre: 'Dur&eacute;e des accompagnements',
       margeTitre: 48,
       placementTitre: 0
     }
@@ -107,7 +107,7 @@ function RightPage(props) {
       couleursGraphique: tabColorDuree
     },
     titre: {
-      optionTitre: 'Durée des accompagnements',
+      optionTitre: 'Dur&eacute;e des accompagnements',
       margeTitre: 48,
       placementTitre: 0
     }

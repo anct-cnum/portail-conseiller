@@ -59,8 +59,8 @@ function FormulaireSexeAge() {
                 <h1 className="rf-modal__title">Merci !</h1>
                 <div className="rf-mb-3w">
                   <div className="rf-mb-3w">
-                    Votre compte sur l&rsquo;espace Coop est désormais activé !
-                    Toute l&rsquo;équipe Conseiller numérique France Services vous souhaite un excellent début de mission.
+                    Votre compte sur l&rsquo;espace Coop est d&eacute;sormais activ&eacute; !
+                    Toute l&rsquo;&eacute;quipe Conseiller num&eacute;rique France Services vous souhaite un excellent d&eacute;but de mission.
                   </div>
                   <img className="conseiller-course" src="avatars/conseiller-course.png"/>
                   <img className="conseillere-tablette" src="avatars/conseillere-tablette.svg"/>
@@ -73,7 +73,7 @@ function FormulaireSexeAge() {
               { !isUpdated &&
                 <>
                   <h1 id="rf-modal-title-modal-sexe-age" className="rf-modal__title">
-                    Une dernière étape !
+                    Une derni&egrave;re &eacute;tape !
                   </h1>
                   { (error || errorInputs) &&
                     <div className="rf-mb-3w">
@@ -87,7 +87,7 @@ function FormulaireSexeAge() {
                     </div>
                   }
                   <div className="element-gauche">
-                    <div className="label" >Vous êtes <span className="important">*</span></div>
+                    <div className="label" >Vous &ecirc;tes <span className="important">*</span></div>
                     <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-4w rf-mb-3w">
                       <div className="rf-fieldset__content">
                         <div className="rf-radio-group">
@@ -126,11 +126,11 @@ function FormulaireSexeAge() {
                       required="required"
                     />
                   </div>
-                  <p className="rf-mb-6w">L&rsquo;usage de ces données est strictement réservé aux statistiques internes de l&rsquo;ANCT et de la
-                      Banque des Territoires, celles-ci ne seront pas publiées.<br/>
-                      Vous pourrez également modifier vos informations de profil par la suite. <br/>
+                  <p className="rf-mb-6w">L&rsquo;usage de ces donn&eacute;es est strictement r&eacute;serv&eacute; aux statistiques internes de l&rsquo;ANCT et de la
+                      Banque des Territoires, celles-ci ne seront pas publi&eacute;es.<br/>
+                      Vous pourrez &eacute;galement modifier vos informations de profil par la suite. <br/>
                   <a className="rf-nav__link" target="blank" href="https://cdn.conseiller-numerique.gouv.fr/CGU-ConseillerNumerique-Coop.pdf">
-                    Consulter les CGU pour plus de détails
+                    Consulter les CGU pour plus de d&eacute;tails
                   </a>
                   </p>
                   <div className="centre">

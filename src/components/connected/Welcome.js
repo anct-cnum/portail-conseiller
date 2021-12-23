@@ -42,53 +42,53 @@ function Welcome() {
               <div className="rf-container">
                 <div className="rf-grid-row">
                   <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
-                    <Link to="/compte-rendu-activite" title="Accéder à mon outil de suivi d&rsquo;activité">
+                    <Link to="/compte-rendu-activite" title="Acc&eacute;der &agrave; mon outil de suivi d&rsquo;activit&eacute;">
                       <img src="/logos/home-connected/icone-cra.svg" className="icone-btn icone-cra"/>
                       Suivi d&rsquo;activit&eacute;
                     </Link>
                   </div>
                   <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
-                    <a href={lienMattermost} target="blank" title="Accès espace discussion">
+                    <a href={lienMattermost} target="blank" title="Acc&egrave;s espace discussion">
                       <img src="/logos/home-connected/icone-discussion.svg" className="icone-btn icone-mattermost"/>
                       Espace de discussion
                       <span data-tip="
                         <div><b>Astuce :</b> l’espace de discussion fonctionne via le logiciel libre Mattermost.
-                        Si vous le souhaitez, il est possible de l’installer sur votre ordinateur ou votre téléphone
-                        afin de pouvoir y accéder directement.</div>
+                        Si vous le souhaitez, il est possible de l’installer sur votre ordinateur ou votre t&eacute;l&eacute;phone
+                        afin de pouvoir y acc&eacute;der directement.</div>
                         <br/>
-                        <div>Pour le télécharger : www.mattermost.com/download/ </div>
+                        <div>Pour le t&eacute;l&eacute;charger : www.mattermost.com/download/ </div>
                         <br/>
-                        <div>Pour le paramétrer : </div>
+                        <div>Pour le param&eacute;trer : </div>
                         <div>serveur : https://discussion.conseiller-numerique.gouv.fr </div>
-                        <div>identifiants : votre mail et votre mot de passe Conseiller numérique. </div>
-                        <div>Cette fonctionnalité sera disponible prochainement.</div>">
+                        <div>identifiants : votre mail et votre mot de passe Conseiller num&eacute;rique. </div>
+                        <div>Cette fonctionnalit&eacute; sera disponible prochainement.</div>">
                         <i className="ri-information-line information"></i>
                       </span>
                     </a>
                   </div>
                   <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
-                    <Link to="/ressourcerie" title="Accéder à la ressourcerie">
+                    <Link to="/ressourcerie" title="Acc&eacute;der &agrave; la ressourcerie">
                       <img src="/logos/home-connected/icone-ressourcerie.svg" className="icone-btn icone-ressourcerie"/>
                       Ressourcerie
                     </Link>
                   </div>
                   <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
-                    <a href={lienPix} target="blank" title="Accéder à Pix">
+                    <a href={lienPix} target="blank" title="Acc&eacute;der &agrave; Pix">
                       <img src="/logos/home-connected/icone-pix.svg" className="icone-btn icone-pix"/>
                       Pix
                     </a>
                   </div>
                   <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
-                    <a href={lienWebmail} target="blank" title="Accéder à ma boîte mail">
+                    <a href={lienWebmail} target="blank" title="Acc&eacute;der &agrave; ma boîte mail">
                       <img src="/logos/home-connected/icone-courriel.svg" className="icone-btn icone-mail"/>
                       Acc&eacute;der au web mail
                       <span data-tip="
                         <div><b>Astuce:</b> pour configurer votre adresse prenom.nom@conseiller-numerique.com sur votre client
-                        mail (Outlook, Thinderbird, etc.), voici les paramètres IMAP:</div>
+                        mail (Outlook, Thinderbird, etc.), voici les param&egrave;tres IMAP:</div>
                        <ul>
                         <li>Serveur de courrier entrant : mail.gandi.net</li>
                         <li>Port : 993</li>
-                        <li>Méthode de chiffrement : SSL/TLS</li>
+                        <li>M&eacute;thode de chiffrement : SSL/TLS</li>
                         <li>Serveur de courrier sortant : mail.gandi.net</li>
                         <li>Port : 465</li>
                         <li>Ne pas activer l'authentification SPA.</li>
@@ -121,26 +121,27 @@ function Welcome() {
                   <div className="rf-col-12 rf-col-md-6 rf-mt-7w">
                     <img src="/logos/home-connected/pres-guide-bien-demarrer-ma-mission.png" className="rf-mr-md-1w img-home"/>
                     <a href="https://cdn.conseiller-numerique.gouv.fr/les-conseils-pour-bien-demarrer.pdf" target="blank"
-                      className="document-btn rf-mt-5w rf-mb-4w" title="Kit bien démarrer ma mission">
-                      Téléchargez le kit « Bien démarrer ma mission »
+                      className="document-btn rf-mt-5w rf-mb-4w" title="Kit bien d&eacute;marrer ma mission">
+                      T&eacute;l&eacute;chargez le kit « Bien d&eacute;marrer ma mission »
                     </a>
                     <p className="rf-mb-8w rf-mr-md-1w">
-                      Ce document contient tout ce qu&rsquo;il faut savoir pour bien commencer votre activité de Conseiller
-                      numérique France Services depuis votre inscription jusqu&rsquo;à votre entrée en poste : les bons réflexes
-                      à avoir, les outils d&rsquo;inclusion numérique à connaître,
-                      l&rsquo;organisation des structures de médiation numérique sur les territoires ainsi que leurs contacts.
+                      Ce document contient tout ce qu&rsquo;il faut savoir pour bien commencer votre activit&eacute; de Conseiller
+                      num&eacute;rique France Services depuis votre inscription jusqu&rsquo;&agrave; votre entr&eacute;e en poste : les bons r&eacute;flexes
+                      &agrave; avoir, les outils d&rsquo;inclusion num&eacute;rique &agrave; connaître,
+                      l&rsquo;organisation des structures de m&eacute;diation num&eacute;rique sur les territoires ainsi que leurs contacts.
                     </p>
                   </div>
                   <div className="rf-col-12 rf-col-md-6 rf-mt-7w">
                     <img src="/logos/home-connected/pres-kit-communication.png" className="rf-ml-md-3v img-home"/>
                     <a href="https://www.conseiller-numerique.gouv.fr/kit-communication" title="kit de communication" target="blank"
                       className="kit-communication-btn rf-ml-md-3v rf-mt-5w rf-mb-4w">
-                        Accéder au kit de communication
+                        Acc&eacute;der au kit de communication
                     </a>
                     <p className="rf-mb-8w rf-ml-md-3v">
-                      Pour votre communication interne ou externe : papeterie, réseaux sociaux, signalétiques, etc, un kit
-                      de communication est mis à votre disposition. Cette seconde version comprend notamment la mise à jour de ces éléments :
-                      illustrations, signature mail, cartes de visites imprimables, charte graphique, supports pour les réseaux sociaux, etc.
+                      Pour votre communication interne ou externe : papeterie, r&eacute;seaux sociaux, signal&eacute;tiques, etc, un kit
+                      de communication est mis &agrave; votre disposition. Cette seconde version comprend notamment la mise &agrave; jour de ces
+                      &eacute;l&eacute;ments :
+                      illustrations, signature mail, cartes de visites imprimables, charte graphique, supports pour les r&eacute;seaux sociaux, etc.
                     </p>
                   </div>
                 </div>
@@ -157,21 +158,22 @@ function Welcome() {
                   <div className="rf-col-12 rf-col-lg-6">
                     <h2 className="titre rf-my-7w">
                       <img src="/logos/home-connected/hexagone-3.svg" className="hexagone"/>
-                      À venir sur l&rsquo;espace Coop
+                      &Agrave; venir sur l&rsquo;espace Coop
                     </h2>
 
                     <p>
-                      – Une mise à jour de l&rsquo;outil de suivi d&rsquo;activité (version 2).<br/>
-                      – Une mise à jour du kit de communication (troisième version), comprenant  en premier lieu la fourniture d&rsquo;un
-                      dépliant décrivant le dispositif CnFS, adaptable en fonction de votre cadre de travail (structure et coordonnées).<br/>
-                      – un fil d&rsquo;actualités régulières de la communauté Conseiller numérique France Services ;<br/>
-                      – des temps de rencontres dédiés ;<br/>
+                      – Une mise &agrave; jour de l&rsquo;outil de suivi d&rsquo;activit&eacute; (version 2).<br/>
+                      – Une mise &agrave; jour du kit de communication (troisi&egrave;me version), comprenant  en premier lieu la fourniture d&rsquo;un
+                      d&eacute;pliant d&eacute;crivant le dispositif CnFS, adaptable en fonction de votre cadre de travail (structure et
+                      coordonn&eacute;es).<br/>
+                      – un fil d&rsquo;actualit&eacute;s r&eacute;guli&egrave;res de la communaut&eacute; Conseiller num&eacute;rique France Services ;<br/>
+                      – des temps de rencontres d&eacute;di&eacute;s ;<br/>
                       – une fonction de prise de rendez-vous ;<br/>
-                      – une visualisation nationale des lieux de médiation numérique accessible via le site vitrine des conseillers
-                      numériques France Services.<br/>
+                      – une visualisation nationale des lieux de m&eacute;diation num&eacute;rique accessible via le site vitrine des conseillers
+                      num&eacute;riques France Services.<br/>
                       <br/>
-                      <Link to="/a-propos" title="Accéder à la page à propos" className="propos-btn">
-                        À propos des services en ligne des conseillers numériques
+                      <Link to="/a-propos" title="Acc&eacute;der &agrave; la page &agrave; propos" className="propos-btn">
+                        &Agrave; propos des services en ligne des conseillers num&eacute;riques
                       </Link>
                       <a></a>
                     </p>

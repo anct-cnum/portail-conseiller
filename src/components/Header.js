@@ -30,7 +30,7 @@ function Header({ linkAccount }) {
           <div className="rf-col-xs-10 rf-col-sm-10 rf-col-md-10 rf-col-xl-12">
             <div className="rf-header__body">
               <a className="rf-header__operator" href="/" style={{ boxShadow: 'none' }}>
-                <img src="/logos/logo-conseiller-numerique-nb.svg" alt="logo Conseiller Numérique France Services" style={{ height: '48px' }}/>
+                <img src="/logos/logo-conseiller-numerique-nb.svg" alt="logo Conseiller Num&eacute;rique France Services" style={{ height: '48px' }}/>
               </a>
               <div className={`rf-header__navbar ${location.pathname === '/validation' || location.pathname.startsWith('/inscription') ? 'headerCustom' : ''}`}>
                 <div className="rf-service">
@@ -40,8 +40,8 @@ function Header({ linkAccount }) {
                         Coop&nbsp;<span style={{ fontSize: '20px', fontWeight: '300' }}>v { process.env.REACT_APP_VERSION }</span>
                       </a>
                       <p className="rf-service__tagline cacher-baseline">
-                        Bienvenue sur le réseau
-                        <br/>des conseillers numériques France Services
+                        Bienvenue sur le r&eacute;seau
+                        <br/>des conseillers num&eacute;riques France Services
                       </p>
                     </div>
                   }
@@ -71,8 +71,8 @@ function Header({ linkAccount }) {
                       <li className="rf-shortcuts__item header-propos">
                         <ul className="rf-nav__list">
                           <li className="rf-nav__item">
-                            <Link className="rf-nav__btn rf-custom-link" to="/a-propos" title="À propos de votre espace Coop" >
-                              <i className="ri-compasses-2-fill"></i>À propos
+                            <Link className="rf-nav__btn rf-custom-link" to="/a-propos" title="&Agrave; propos de votre espace Coop" >
+                              <i className="ri-compasses-2-fill"></i>&Agrave; propos
                             </Link>
                           </li>
                         </ul>
@@ -103,7 +103,7 @@ function Header({ linkAccount }) {
                                     <li className="aide-coop">
                                       <a className="rf-nav__link lien-aide" href={aideCoop} target="blank" rel="noreferrer">
                                         Aide espace Coop<br/>
-                                        <span className="sous-titre-lien">Suivi d&rsquo;activité, Pix, mail, etc.</span>
+                                        <span className="sous-titre-lien">Suivi d&rsquo;activit&eacute;, Pix, mail, etc.</span>
                                       </a>
                                     </li>
                                     <li className="aide-metier">
@@ -131,7 +131,7 @@ function Header({ linkAccount }) {
                       <li className="rf-shortcuts__item">
 
                         { linkAccount === 'noConnected' ?
-                          <a href="/login" className="rf-link" target="_self">J&rsquo;ai déjà un compte</a> :
+                          <a href="/login" className="rf-link" target="_self">J&rsquo;ai d&eacute;j&Agrave; un compte</a> :
                           <span className="rf-link" style={{ cursor: 'unset' }}>
                             <span className="rf-fi-user-line" aria-hidden="true"></span>
                             { linkAccount }
@@ -140,12 +140,14 @@ function Header({ linkAccount }) {
                       { linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
                       <li className="rf-shortcuts__item header-logout">
                         {role === 'conseiller' &&
-                          <Link className="rf-btn rf-btn--sm" to="/login" title="Se déconnecter" >
+                          <Link className="rf-btn rf-btn--sm" to="/login" title="Se d&eacute;connecter" >
                             <i className="ri-logout-box-r-line"></i>
                           </Link>
                         }
                         {role !== 'conseiller' &&
-                          <Link className="rf-btn rf-btn--sm" to="/login?role=admin" title="Se déconnecter"><i className="ri-logout-box-r-line"></i></Link>
+                          <Link className="rf-btn rf-btn--sm" to="/login?role=admin" title="Se d&eacute;connecter">
+                            <i className="ri-logout-box-r-line"></i>
+                          </Link>
                         }
                       </li>
                       }

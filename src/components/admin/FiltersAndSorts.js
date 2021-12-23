@@ -131,12 +131,12 @@ function FiltersAndSorts({ resetPage, user }) {
         </div>
         { location.pathname === '/accueil' &&
         <div className="rf-ml-auto">
-          <button className="rf-btn rf-btn--secondary" onClick={exportDonneesCnfs}>Exporter les données</button>
+          <button className="rf-btn rf-btn--secondary" onClick={exportDonneesCnfs}>Exporter les donn&eacute;es</button>
         </div>
         }
         { location.pathname === '/territoires' &&
           <div className="rf-ml-auto">
-            <button className="rf-btn rf-btn--secondary" onClick={exportDonneesTerritoire}>Exporter les données</button>
+            <button className="rf-btn rf-btn--secondary" onClick={exportDonneesTerritoire}>Exporter les donn&eacute;es</button>
           </div>
         }
         { (exportTerritoireFileError !== undefined && exportTerritoireFileError !== false) &&

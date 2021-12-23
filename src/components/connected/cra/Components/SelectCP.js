@@ -76,7 +76,7 @@ function SelectCP() {
           name="searchCP"
           className={`searchCP ${cra?.searchInput === true ? 'dropdown-expanded' : ''}`}
           style={cra?.searchCP === true && codePostalList.length > 0 ? { borderRadius: '20px 20px 0 0' } : {}}
-          placeholder="Saisissez au moins 3 caractères"
+          placeholder="Saisissez au moins 3 caract&egrave;res"
           onKeyUp={onKeyUp}/>
         <div className="scrollOptions">{codePostalList}</div>
       </div>

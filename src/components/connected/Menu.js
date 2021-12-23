@@ -67,8 +67,8 @@ function Menu() {
                 {!menu.hiddenMenu && menu.expandNav &&
                 <>
                   <li className="rf-shortcuts__item">
-                    <Link className="rf-btn rf-btn--sm" to="/a-propos" title="À propos du site" onClick={toggleBurgerMenu}>
-                      À propos
+                    <Link className="rf-btn rf-btn--sm" to="/a-propos" title="&Agrave; propos du site" onClick={toggleBurgerMenu}>
+                      &Agrave; propos
                     </Link>
                   </li>
                   <li className="rf-shortcuts__item">
@@ -82,7 +82,7 @@ function Menu() {
                     </a>
                   </li>
                   <li className="rf-shortcuts__item">
-                    <Link className="rf-btn rf-btn--sm" to="/login" title="Se déconnecter" onClick={toggleBurgerMenu}>
+                    <Link className="rf-btn rf-btn--sm" to="/login" title="Se d&eacute;connecter" onClick={toggleBurgerMenu}>
                       Se d&eacute;connecter
                     </Link>
                   </li>
