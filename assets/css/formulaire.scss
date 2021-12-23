@@ -1,0 +1,68 @@
+#formulaire-horaires-adresse {
+  letter-spacing: 0;
+  line-height: 24px;
+  .titre {
+    line-height: 64px;
+    font-weight: 100;
+    font-size: 56px;
+  }
+  .sous-titre {
+    line-height: 40px;
+    font-weight: 600;
+    font-size: 32px;
+  }
+  .derniere-modification {
+    line-height: 20px;
+    font-weight: 300;
+    color: #929292;
+    font-size: 12px;
+  }
+  .libelle-adresse, .info-adresse {
+    display: inline-block;
+  }
+  .libelle-adresse {
+    width: 97px;
+  }
+  .question {
+    font-weight: 600;
+  }
+  .obligatoire {
+    font-weight: 600;
+    color: #fc5D00;
+  }
+  .ri-info {
+    top: 5px;
+    position: relative;
+  }
+  .validation-btn {
+    background-color: #FFFFFF;
+    padding: 13px 35px 19px;
+    border-radius: 28px;
+    text-align: center;
+    color: #161616;
+    height: 56px;
+    width: 282px;
+  }
+  .jour {
+    font-weight: 600;
+    width: 78px;
+  }
+  .horaires-debut, .horaires-fin {
+    border: 1px solid #FFFFFF;
+    background-color: #1e1e1e;
+    box-sizing: border-box;
+    text-align: center;
+    color: #ffffff;
+    font-size: 16px;
+    height: 56px;
+    width: 90px;
+  }
+  .horaires-debut {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+  .horaires-fin {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+}

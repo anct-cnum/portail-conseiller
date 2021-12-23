@@ -301,7 +301,7 @@
     font-size: 1em;
     color: #1e1e1e;
     height: 64px;
-    width: 220px;
+    width: 318px;
   }
 }
 .contenu-vide{
@@ -411,7 +411,6 @@
     .support-btn {
       width: 90%;
     }
-
   }
 
   /* Ajustement du footer xs*/
@@ -444,5 +443,10 @@
     .marge-responsive {
       padding-left: 9px;
     }
+  }
+}
+@media (max-width: 400px) {
+  .sexe-age-btn {
+    width: 235px !important;
   }
 }

@@ -52,7 +52,7 @@ function FormulaireSexeAge() {
     <dialog aria-labelledby="rf-modal-sexe-age" role="dialog" id="rf-modal-sexe-age" className="rf-modal modalOpened">
       <div className="rf-container">
         <div className="rf-grid-row rf-grid-row--center">
-          <div className="rf-col-7 rf-modal__body modal-sexe-age">
+          <div className="rf-col-12 rf-col-sm-10 rf-col-md-7 rf-modal__body modal-sexe-age">
             <div className="rf-modal__content">
               { isUpdated &&
               <>
@@ -134,7 +134,7 @@ function FormulaireSexeAge() {
                   </a>
                   </p>
                   <div className="centre">
-                    <button className="sexe-age-btn" onClick={handleSubmit}>Valider</button>
+                    <button className="sexe-age-btn" onClick={handleSubmit}>Valider et passer à la dernière étape</button>
                   </div>
                 </>
               }

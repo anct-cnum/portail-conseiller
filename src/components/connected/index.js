@@ -5,10 +5,11 @@ import Statistics from './statistics/Statistics';
 import Cra from './cra';
 import Welcome from './Welcome';
 import { useDispatch, useSelector } from 'react-redux';
-import { conseillerActions } from '../../actions';
+import { conseillerActions, structureActions } from '../../actions';
 import { userEntityId } from '../../helpers';
 import FormulaireSexeAge from './FormulaireSexeAge';
 import Ressourcerie from './ressourcerie/Ressourcerie';
+import FormulaireHorairesAdresse from './FormulaireHorairesAdresse';
 
 function Connected() {
 
@@ -18,13 +19,25 @@ function Connected() {
   const voirFormulaire = useSelector(state => state?.conseiller?.showFormular);
   const formulaireIsUpdated = useSelector(state => state?.conseiller?.isUpdated);
 
+  const structure = useSelector(state => state?.structure?.structure);
+  const formulaireHorairesAdresseIsUpdated = useSelector(state => state?.structure?.isUpdated);
+  const voirFormulaireHorairesAdresse = useSelector(state => state?.structure?.showFormularHorairesAdresse);
+
   useEffect(() => {
     if (conseiller) {
       dispatch(conseillerActions.isFormulaireChecked(conseiller.sexe, formulaireIsUpdated));
+      if (!structure) {
+        dispatch(structureActions.get(conseiller.structureId));
+      }
     } else {
       dispatch(conseillerActions.get(userEntityId()));
     }
   }, [conseiller]);
+
+  useEffect(() => {
+    dispatch(structureActions.isFormulaireHorairesAdresseChecked(structure?.carthographie, formulaireHorairesAdresseIsUpdated));
+  }, [structure]);
+
 
   return (
     <>
@@ -33,13 +46,24 @@ function Connected() {
         <FormulaireSexeAge/>
       }
       {!user.pdfGenerator &&
+      <>
+        {!voirFormulaireHorairesAdresse &&
+          <>
+            <Route path={`/accueil`} component={Welcome} />
+            <Route path={`/compte-rendu-activite`} component={Cra} />
+            <Route path={`/statistiques`} component={Statistics} />
+            <Route path={`/ressourcerie`} component={Ressourcerie} />
+            <Route path={`/mes-informations`} component={FormulaireHorairesAdresse} />
+            <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
+          </>
+        }
+        {voirFormulaireHorairesAdresse &&
         <>
-          <Route path={`/accueil`} component={Welcome} />
-          <Route path={`/compte-rendu-activite`} component={Cra} />
-          <Route path={`/statistiques`} component={Statistics} />
-          <Route path={`/ressourcerie`} component={Ressourcerie} />
-          <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
+          <Route path={`/accueil`} component={FormulaireHorairesAdresse} />
+          <Route path="/" render={() => (<Redirect to="/accueil" />)} />
         </>
+        }
+      </>
       }
       { user.pdfGenerator &&
         <>
