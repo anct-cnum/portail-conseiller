@@ -1,4 +1,10 @@
 #formulaire-horaires-adresse {
+  a {
+    box-shadow: none;
+    &:hover {
+      color: #8989cb;
+    }
+  }
   letter-spacing: 0;
   line-height: 24px;
   .titre {
@@ -51,6 +57,7 @@
     border: 1px solid #FFFFFF;
     background-color: #1e1e1e;
     box-sizing: border-box;
+    padding-left: 16px;
     text-align: center;
     color: #ffffff;
     font-size: 16px;
@@ -65,4 +72,28 @@
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
   }
+  @media (max-width: 767px) {
+    .titre {
+      font-size: 48px;
+    }
+  }
+  @media (max-width: 576px) {
+    .titre {
+      font-size: 42px;
+    }
+  }
+  @media (max-width: 516px) {
+    .horaires-debut {
+      border-top-right-radius: 8px;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 0px;
+
+    }
+    .horaires-fin {
+      border-bottom-right-radius: 8px;
+      border-bottom-left-radius: 8px;
+      border-top-right-radius: 0px;
+    }
+  }
+
 }

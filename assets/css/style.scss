@@ -37,7 +37,11 @@
   font-family: MarianneRegular;
   src: url(/public/fontsAddons/Marianne-Regular.woff2);
 }
-
+.rf-container--fluid {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: none;
+}
 /** Trick to fix DS problem with burger menu with react**/
 #burgerMenu {
   display: none;
