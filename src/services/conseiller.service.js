@@ -13,6 +13,7 @@ export const conseillerService = {
   getStatistiquesAdminCoopCSV,
   createSexeAge,
   getExportDonneesCnfs,
+  createHorairesAdresse,
 };
 
 function get(id) {
@@ -159,6 +160,18 @@ function getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, 
   return fetch(`${apiUrlRoot}${exportCnfsRoute}?statut=RECRUTE${profil}${certifie}${filterDateStart}${filterDateEnd}${filterStructureId}${ordreColonne}`,
     requestOptions
   ).then(handleFileResponse);
+}
+
+function createHorairesAdresse(userId, infoCartographie) {
+  const requestOptions = {
+    method: 'POST',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+    body: JSON.stringify({
+      userId: userId,
+      infoCartographie: infoCartographie
+    })
+  };
+  return fetch(`${apiUrlRoot}/conseillers/horaires-adresse`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

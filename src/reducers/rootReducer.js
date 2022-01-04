@@ -11,6 +11,7 @@ import filtersAndSortsReducer from './filtersAndSortsReducer';
 import pagination from './paginationReducer';
 import ressources from './ressourcesReducer';
 import ressourcesFiltres from './ressourcesFiltresReducer';
+import formulaireHorairesAdresse from './formulaireHorairesAdresseReducer';
 
 import { combineReducers } from 'redux';
 
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   pagination: pagination,
   ressources: ressources,
   ressourcesFiltres: ressourcesFiltres,
+  horairesAdresse: formulaireHorairesAdresse,
 });
 
 export default rootReducer;
