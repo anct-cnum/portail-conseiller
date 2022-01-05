@@ -28,8 +28,8 @@ function FormulaireHorairesAdresse() {
   const [inputs, setInputs] = useState({
     errorInputs: false,
     lieuActivite: '', siret: structure?.insee.entreprise.siret_siege_social, numeroTelephone: '', email: '', siteWeb: '',
-    numeroVoie: adresseStructure.numero_voie, rueVoie: adresseStructure.type_voie + ' ' + adresseStructure?.nom_voie,
-    codePostal: adresseStructure.code_postal, ville: adresseStructure.localite,
+    numeroVoie: adresseStructure?.numero_voie, rueVoie: adresseStructure?.type_voie + ' ' + adresseStructure?.nom_voie,
+    codePostal: adresseStructure?.code_postal, ville: adresseStructure?.localite,
     lundiMatinDebut: '', lundiMatinFin: '', lundiApresMidiDebut: '', lundiApresMidiFin: '',
     mardiMatinDebut: '', mardiMatinFin: '', mardiApresMidiDebut: '', mardiApresMidiFin: '',
     mercrediMatinDebut: '', mercrediMatinFin: '', mercrediApresMidiDebut: '', mercrediApresMidiFin: '',
