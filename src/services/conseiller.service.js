@@ -162,12 +162,12 @@ function getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, 
   ).then(handleFileResponse);
 }
 
-function createHorairesAdresse(userId, infoCartographie) {
+function createHorairesAdresse(conseillerId, infoCartographie) {
   const requestOptions = {
     method: 'POST',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
     body: JSON.stringify({
-      userId: userId,
+      conseillerId: conseillerId,
       infoCartographie: infoCartographie
     })
   };

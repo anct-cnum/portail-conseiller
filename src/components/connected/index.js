@@ -9,7 +9,7 @@ import { conseillerActions, structureActions } from '../../actions';
 import { userEntityId } from '../../helpers';
 import FormulaireSexeAge from './FormulaireSexeAge';
 import Ressourcerie from './ressourcerie/Ressourcerie';
-import FormulaireHorairesAdresse from './FormulaireHorairesAdresse';
+import FormulaireHorairesAdresse from './formulaireHorairesAdresse/index';
 
 function Connected() {
 
@@ -47,7 +47,7 @@ function Connected() {
       }
       {!user.pdfGenerator &&
       <>
-        {!voirFormulaireHorairesAdresse &&
+        {/*!voirFormulaireHorairesAdresse &&*/ }
           <>
             <Route path={`/accueil`} component={Welcome} />
             <Route path={`/compte-rendu-activite`} component={Cra} />
@@ -56,13 +56,13 @@ function Connected() {
             <Route path={`/mes-informations`} component={FormulaireHorairesAdresse} />
             <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
           </>
-        }
-        {voirFormulaireHorairesAdresse &&
+
+        {/*voirFormulaireHorairesAdresse &&
         <>
-          <Route path={`/accueil`} component={FormulaireHorairesAdresse} />
-          <Route path="/" render={() => (<Redirect to="/accueil" />)} />
+          <Route path={`/mes-informations`} component={FormulaireHorairesAdresse} />
+          <Route path="/" render={() => (<Redirect to="/mes-informations" />)} />
         </>
-        }
+        */}
       </>
       }
       { user.pdfGenerator &&
