@@ -27,7 +27,8 @@ function Cra() {
       { location?.printFlashbag === true &&
         <FlashMessage duration={5000}>
           <p className="rf-label flashBag">
-            Votre suivi d&rsquo;activit&eacute; a bien &eacute;t&eacute; enregistr&eacute;&nbsp;<i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+            Votre suivi d&rsquo;activit&eacute; a bien &eacute;t&eacute; enregistr&eacute;&nbsp;
+            <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
           </p>
         </FlashMessage>
       }

@@ -88,7 +88,8 @@ function Tags({ rechercheParTag, rechercheParTexte }) {
       <div className="rf-my-md-4w">
         <span className="bulle-discussion"></span>
         <span className="canal"><a href={aideRessourcerie} className="lien-aide"> Canal #ressourcerie-provisoire</a></span><br/>
-        <span className="texte-canal">Une question ? un &eacute;l&eacute;ment &agrave; partager ? Rendez-vous sur votre espace de discussion pour partager.</span>
+        <span className="texte-canal">Une question ? un &eacute;l&eacute;ment &agrave; partager ? Rendez-vous sur votre espace de
+        discussion pour partager.</span>
       </div>
     </div>
   );

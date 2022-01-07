@@ -126,8 +126,8 @@ function FormulaireSexeAge() {
                       required="required"
                     />
                   </div>
-                  <p className="rf-mb-6w">L&rsquo;usage de ces donn&eacute;es est strictement r&eacute;serv&eacute; aux statistiques internes de l&rsquo;ANCT et de la
-                      Banque des Territoires, celles-ci ne seront pas publi&eacute;es.<br/>
+                  <p className="rf-mb-6w">L&rsquo;usage de ces donn&eacute;es est strictement r&eacute;serv&eacute; aux statistiques internes de
+                      l&rsquo;ANCT et de la Banque des Territoires, celles-ci ne seront pas publi&eacute;es.<br/>
                       Vous pourrez &eacute;galement modifier vos informations de profil par la suite. <br/>
                   <a className="rf-nav__link" target="blank" href="https://cdn.conseiller-numerique.gouv.fr/CGU-ConseillerNumerique-Coop.pdf">
                     Consulter les CGU pour plus de d&eacute;tails
