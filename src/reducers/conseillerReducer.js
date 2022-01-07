@@ -173,6 +173,16 @@ export default function conseiller(state = initState, action) {
         ...state,
         isUserActif: action.isUserActif,
       };
+    case 'SHOW_FORMULAIRE_HORAIRES_ADRESSE':
+      return {
+        ...state,
+        showFormularHorairesAdresse: action.show
+      };
+    case 'CLOSE_FORMULAIRE_HORAIRES_ADRESSE':
+      return {
+        showFormularHorairesAdresse: false,
+        isUpdated: false
+      };
     default:
       return state;
   }

@@ -55,6 +55,8 @@ function Validation({ conseillerId }) {
         dimancheApresMidiFin: form.dimancheApresMidiFin,
         itinerant: form.itinerance
       }));
+    } else {
+      window.scrollTo(0, 0);
     }
   }, [errorsForm]);
 

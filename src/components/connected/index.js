@@ -20,12 +20,13 @@ function Connected() {
   const formulaireIsUpdated = useSelector(state => state?.conseiller?.isUpdated);
 
   const structure = useSelector(state => state?.structure?.structure);
-  const formulaireHorairesAdresseIsUpdated = useSelector(state => state?.structure?.isUpdated);
-  const voirFormulaireHorairesAdresse = useSelector(state => state?.structure?.showFormularHorairesAdresse);
+  const formulaireHorairesAdresseIsUpdated = useSelector(state => state?.formulaireHorairesAdresse?.isUpdated);
+  const voirFormulaireHorairesAdresse = useSelector(state => state?.conseiller?.showFormularHorairesAdresse);
 
   useEffect(() => {
     if (conseiller) {
       dispatch(conseillerActions.isFormulaireChecked(conseiller.sexe, formulaireIsUpdated));
+      dispatch(conseillerActions.isFormulaireHorairesAdresseChecked(conseiller?.informationsCartographie, formulaireHorairesAdresseIsUpdated));
       if (!structure) {
         dispatch(structureActions.get(conseiller.structureId));
       }
@@ -33,11 +34,6 @@ function Connected() {
       dispatch(conseillerActions.get(userEntityId()));
     }
   }, [conseiller]);
-
-  useEffect(() => {
-    dispatch(conseillerActions.isFormulaireHorairesAdresseChecked(conseiller?.informationsCartographie, formulaireHorairesAdresseIsUpdated));
-  }, [structure]);
-
 
   return (
     <>

@@ -17,6 +17,7 @@ export default function formulaireHorairesAdresse(state = initialState, action) 
     case 'POST_HORAIRES_ADRESSE_SUCCESS':
       return {
         ...state,
+        isUpdated: action.isUpdated
       };
     case 'POST_HORAIRES_ADRESSE_FAILURE':
       return {

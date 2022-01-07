@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { formulaireHorairesAdresseActions } from '../../../actions/formulaireHorairesAdresse.actions';
@@ -26,8 +26,13 @@ function Informations({ structure, adresseStructure }) {
   let indicatif = structure?.codeDepartement.length === 3 ?
     telephoneHorsMetropole?.find(item => item.codeDepartement === structure?.codeDepartement).indicatif : '+33';
 
+  const [inputs, setInputs] = useState({});
+
+  const { lieuActivite, siret, numeroTelephone, email, siteWeb } = inputs;
+
   function handleChange(e) {
     const { name, value } = e.target;
+    setInputs({ name: value });
     dispatch(formulaireHorairesAdresseActions.updateField(name, value));
   }
 
@@ -68,7 +73,7 @@ function Informations({ structure, adresseStructure }) {
         <label className={erreurLieuActivite ? 'rf-label invalid' : 'rf-label' } htmlFor="lieu-activite">
           Nom de mon lieu principal d&rsquo;activit&eacute; <span className="obligatoire">*</span>
           <input className={erreurLieuActivite ? 'rf-input rf-mt-2v input-error' : 'rf-input rf-mt-2v'}
-            type="text" id="lieu-activite" name="lieuActivite"
+            type="text" id="lieu-activite" name="lieuActivite" value={lieuActivite}
             required="required" onChange={handleChange}/>
         </label>
         { erreurLieuActivite &&
@@ -85,7 +90,7 @@ function Informations({ structure, adresseStructure }) {
                 <i className="rf-ml-1w ri-information-line ri-xl ri-info"></i>
               </a>
               <input className={erreurSiret ? 'rf-input rf-mt-2v input-error' : 'rf-input rf-mt-2v'}
-                type="number" id="siret" name="siret" onChange={handleChange} />
+                type="number" id="siret" name="siret" value={siret} onChange={handleChange} />
             </label>
             { erreurSiret &&
             <p className="text-error rf-mb-n3w">{erreurSiret.error}</p>
@@ -102,7 +107,8 @@ function Informations({ structure, adresseStructure }) {
         <label className={erreurNumeroTelephone ? 'rf-label invalid' : 'rf-label' } htmlFor="numero-telephone">
           Num&eacute;ro de t&eacute;l&eacute;phone (accueil) <span className="obligatoire">*</span>
           <input className={erreurNumeroTelephone ? 'rf-input rf-mt-2v input-error' : 'rf-input rf-mt-2v'} type="tel"
-            id="numero-telephone" name="numeroTelephone" required="required" placeholder={indicatif + ' XXX XXX XXX'} onChange={handleChange}/>
+            id="numero-telephone" name="numeroTelephone" required="required" placeholder={indicatif + ' XXX XXX XXX'}
+            value={numeroTelephone} onChange={handleChange}/>
         </label>
         { erreurNumeroTelephone &&
           <p className="text-error rf-mb-n3w">{erreurNumeroTelephone.error}</p>
@@ -115,7 +121,7 @@ function Informations({ structure, adresseStructure }) {
         <label className={erreurEmail ? 'rf-label invalid' : 'rf-label' } htmlFor="email">
           Mail <span className="obligatoire">*</span>
           <input className={erreurEmail ? 'rf-input rf-mt-2v input-error' : 'rf-input rf-mt-2v'} type="text"
-            id="email" name="email" required="required" onChange={handleChange}/>
+            id="email" name="email" required="required" value={email} onChange={handleChange}/>
         </label>
         { erreurEmail &&
           <p className="text-error rf-mb-n3w">{erreurEmail.error}</p>
@@ -128,7 +134,7 @@ function Informations({ structure, adresseStructure }) {
         <label className={erreurSiteWeb ? 'rf-label invalid' : 'rf-label' } htmlFor="site-web">
           Site web (optionnel)
           <input className={erreurSiteWeb ? 'rf-input rf-mt-2v input-error' : 'rf-input rf-mt-2v'} type="url"
-            id="site-web" name="siteWeb" onChange={handleChange}/>
+            id="site-web" name="siteWeb" value={siteWeb} onChange={handleChange}/>
         </label>
         { erreurSiteWeb &&
           <p className="text-error rf-mb-n3w">{erreurSiteWeb.error}</p>
@@ -140,7 +146,8 @@ function Informations({ structure, adresseStructure }) {
 
 Informations.propTypes = {
   structure: PropTypes.object,
-  adresseStructure: PropTypes.object
+  adresseStructure: PropTypes.object,
+  informationsCartographie: PropTypes.object,
 };
 
 export default Informations;

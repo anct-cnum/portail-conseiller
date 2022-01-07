@@ -28,13 +28,13 @@ function FormulaireHorairesAdresse() {
             <Recapitulatif structure={structure} adresseStructure={adresseStructure}/>
             <div className="rf-container rf-container--fluid">
               <div className="rf-grid-row rf-grid-row--gutters">
-                <Informations structure={structure} adresseStructure={adresseStructure}/>
+                <Informations structure={structure} adresseStructure={adresseStructure} informationsCartographie={conseiller?.informationsCartographie}/>
 
                 {!isAdresseCachee &&
-                <Adresse adresseStructure={adresseStructure} isAdresseCachee={isAdresseCachee}/>
+                <Adresse adresseStructure={adresseStructure} isAdresseCachee={isAdresseCachee} conseiller={conseiller}/>
                 }
-                <Horaires />
-                <Itinerance />
+                <Horaires conseiller={conseiller} />
+                <Itinerance conseiller={conseiller} />
                 <Validation conseillerId={conseiller?._id}/>
               </div>
             </div>

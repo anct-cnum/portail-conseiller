@@ -27,16 +27,6 @@ export default function structure(state = null, action) {
         error: action.error,
         isUpdated: false
       };
-    case 'SHOW_FORMULAIRE_HORAIRES_ADRESSE':
-      return {
-        ...state,
-        showFormularHorairesAdresse: action.show
-      };
-    case 'CLOSE_FORMULAIRE_HORAIRES_ADRESSE':
-      return {
-        showFormularHorairesAdresse: false,
-        isUpdated: false
-      };
     default:
       return state;
   }
