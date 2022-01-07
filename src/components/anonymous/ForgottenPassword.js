@@ -93,8 +93,8 @@ function ForgottenPassword({ match = null }) {
                 <div className="rf-col-12 rf-col-md-10">
                   <h1 className="titre rf-my-2w rf-mb-md-5w ">R&eacute;cup&eacute;ration de mot de passe</h1>
                   <p className="sous-titre rf-mb-4w rf-mb-md-4w">
-                    Votre mot de passe a une triple utilit&eacute; et vous sert &agrave; acc&eacute;der &agrave; trois services : l&#39;espace Coop,
-                    <br />l&#39;espace de discussion, ainsi que votre mail professionnel prenom.nom@conseiller-numerique.fr
+                    Votre mot de passe a une triple utilit&eacute; et vous sert &agrave; acc&eacute;der &agrave; trois services : l&rsquo;espace Coop,
+                    <br />l&rsquo;espace de discussion, ainsi que votre mail professionnel prenom.nom@conseiller-numerique.fr
                   </p>
                 </div>
               </div>
@@ -115,14 +115,13 @@ function ForgottenPassword({ match = null }) {
                     </label>
                     {submittedEmail && validEmail &&
                       <div className="rf-mb-2w rf-mt-n2w">
-                        <div className="valid rf-mt-2w">L&#39;e-mail de renouvellement de mot de passe a pu &ecirc;tre envoy&eacute; sur votre adresse
-                        personnelle !</div>
+                        <div className="valid rf-mt-2w">L&rsquo;e-mail de renouvellement de mot de passe a pu &ecirc;tre envoy&eacute; sur votre adresse personnelle !</div>
                       </div>
                     }
-                    {submittedEmail && errorEmail === 'User not found' &&
+                    {submittedEmail && errorEmail &&
                       <div className="rf-mb-2w rf-mt-n2w">
                         <div className="invalid rf-my-2w">
-                          Cette adresse e-mail n&#39;existe pas dans la base de donn&eacute;es.
+                          {errorEmail === 'User not found' ? <>Cette adresse e-mail n&rsquo;existe pas dans la base de donn&eacute;es.</> : errorEmail}
                         </div>
                       </div>
                     }
