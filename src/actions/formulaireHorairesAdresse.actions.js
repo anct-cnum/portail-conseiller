@@ -9,81 +9,86 @@ export const formulaireHorairesAdresseActions = {
   updateItinerance,
 };
 
-function verifyFormulaire(form) {
+function verifyFormulaire(conseillerId, form) {
   let errors = [];
 
   /*required*/
+  if (!form?.adresseExact) {
+    errors.push({ name: 'adresseExact', error: 'La correspondance des informations doit obligatoirement être saisie' });
+  }
   if (!form?.lieuActivite) {
-    errors.push({ name: 'lieuActivite', error: 'Le lieu d\'activité doit être obligatoirement saisi' });
+    errors.push({ name: 'lieuActivite', error: 'Le lieu d\'activité doit obligatoirement être saisi' });
   }
   if (!form?.numeroTelephone) {
-    errors.push({ name: 'numeroTelephone', error: 'Le numéro de téléphone doit être obligatoirement saisi' });
+    errors.push({ name: 'numeroTelephone', error: 'Le numéro de téléphone doit obligatoirement être saisi' });
   }
   if (!form?.email) {
-    errors.push({ name: 'email', error: 'L\'email doit être obligatoirement saisi' });
+    errors.push({ name: 'email', error: 'L\'email doit obligatoirement être saisi' });
   }
   if (!form?.numeroVoie) {
-    errors.push({ name: 'numeroVoie', error: 'Le numéro de voie doit être obligatoirement saisi' });
+    errors.push({ name: 'numeroVoie', error: 'Le numéro de voie doit obligatoirement être saisi' });
   }
   if (!form?.rueVoie) {
-    errors.push({ name: 'rueVoie', error: 'La rue doit être obligatoirement saisie' });
+    errors.push({ name: 'rueVoie', error: 'La rue doit obligatoirement être saisie' });
   }
   if (!form?.codePostal) {
-    errors.push({ name: 'codePostal', error: 'Le code postal doit être obligatoirement saisi' });
+    errors.push({ name: 'codePostal', error: 'Le code postal doit obligatoirement être saisi' });
   }
   if (!form?.ville) {
-    errors.push({ name: 'ville', error: 'La ville doit être obligatoirement saisie' });
+    errors.push({ name: 'ville', error: 'La ville doit obligatoirement être saisie' });
+  }
+  if (!form?.itinerance) {
+    errors.push({ name: 'itinerance', error: 'L\'itinerance doit obligatoirement être saisie' });
   }
 
   if (!form?.lundiMatinDebut || !form?.lundiMatinFin || !form?.lundiApresMidiDebut || !form?.lundiApresMidiFin) {
-    errors.push({ name: 'lundi', error: 'L\'heure doit être obligatoirement saisie' });
+    errors.push({ name: 'lundi', error: 'L\'heure doit obligatoirement être saisie' });
   }
   if (!form?.mardiMatinDebut || !form?.mardiMatinFin || !form?.mardiApresMidiDebut || !form?.mardiApresMidiFin) {
-    errors.push({ name: 'mardi', error: 'L\'heure doit être obligatoirement saisie' });
+    errors.push({ name: 'mardi', error: 'L\'heure doit obligatoirement être saisie' });
   }
   if (!form?.mercrediMatinDebut || !form?.mercrediMatinFin || !form?.mercrediApresMidiDebut || !form?.mercrediApresMidiFin) {
-    errors.push({ name: 'mercredi', error: 'L\'heure doit être obligatoirement saisie' });
+    errors.push({ name: 'mercredi', error: 'L\'heure doit obligatoirement être saisie' });
   }
   if (!form?.jeudiMatinDebut || !form?.jeudiMatinFin || !form?.jeudiApresMidiDebut || !form?.jeudiApresMidiFin) {
-    errors.push({ name: 'jeudi', error: 'L\'heure doit être obligatoirement saisie' });
+    errors.push({ name: 'jeudi', error: 'L\'heure doit obligatoirement être saisie' });
   }
   if (!form?.vendrediMatinDebut || !form?.vendrediMatinFin || !form?.vendrediApresMidiDebut || !form?.vendrediApresMidiFin) {
-    errors.push({ name: 'vendredi', error: 'L\'heure doit être obligatoirement saisie' });
+    errors.push({ name: 'vendredi', error: 'L\'heure doit obligatoirement être saisie' });
   }
   if (!form?.samediMatinDebut || !form?.samediMatinFin || !form?.samediApresMidiDebut || !form?.samediApresMidiFin) {
-    errors.push({ name: 'samedi', error: 'L\'heure doit être obligatoirement saisie' });
+    errors.push({ name: 'samedi', error: 'L\'heure doit obligatoirement être saisie' });
   }
   if (!form?.dimancheMatinDebut || !form?.dimancheMatinFin || !form?.dimancheApresMidiDebut || !form?.dimancheApresMidiFin) {
-    errors.push({ name: 'dimanche', error: 'L\'heure doit être obligatoirement saisie' });
+    errors.push({ name: 'dimanche', error: 'L\'heure doit obligatoirement être saisie' });
   }
 
 
   /*champ spécifiques*/
   if (form?.siret && (form?.siret?.length !== 14 || Number.isInteger(form?.siret))) {
-    errors.push({ name: 'siret', error: 'Le siret saisie n\'est pas valide, il doit comporter 14 chiffres' });
+    errors.push({ name: 'siret', error: 'Le siret saisie est invalide, il doit comporter 14 chiffres' });
   }
   if (form?.numeroTelephone) {
-    const matchTelephone = form.numeroTelephone.match(/^(?:(?:\+)(590|596|594|262|269))(?:[\s.-]*\d{2}){3,4}$/gi);
+    const matchTelephone = form.numeroTelephone.match(/^(?:(?:\+)(33|590|596|594|262|269))(?:[\s.-]*\d{3}){3,4}$/gi);
     if (matchTelephone?.length !== 1 || matchTelephone === null) {
       errors.push({ name: 'numeroTelephone',
-        error: 'Le numéro de téléphone saisie n\'est pas valide (mettre votre indicatif international suivi des 9 chiffres)'
+        error: 'Le numéro de téléphone saisie est invalide (mettre votre indicatif international suivi des 9 chiffres)'
       });
     }
   }
   if (form?.email) {
     //eslint-disable-next-line max-len
     const matchEmail = form.email.match(/^(([^<>()[\]\\.,;:\s@\\"]+(\.[^<>()[\]\\.,;:\s@\\"]+)*)|(\\".+\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-    if (matchEmail?.length !== 1 || matchEmail === null) {
-      errors.push({ name: 'email', error: 'L\'adresse email saisie n\'est pas valide' });
+    if (matchEmail?.length < 1 || matchEmail === null) {
+      errors.push({ name: 'email', error: 'L\'adresse email saisie est invalide' });
     }
   }
   if (form?.siteWeb) {
     const matchUrl = form.siteWeb.match(/(https?):\/\/[a-z0-9\\/:%_+.,#?!@&=-]+/gi);
-    if (matchUrl?.length !== 1 || matchUrl === null) {
-      errors.push({ name: 'siteWeb', error: 'L\'URL saisie n\'est pas valide (exemple de format valide https://www.mon-site.fr)' });
+    if (matchUrl?.length < 1 || matchUrl === null) {
+      errors.push({ name: 'siteWeb', error: 'L\'URL saisie est invalide (exemple de format valide https://www.mon-site.fr)' });
     }
   }
-
 
   /* Cohérence des horaires */
   if (form?.lundiMatinDebut > form?.lundiMatinFin || form?.lundiApresMidiDebut > form?.lundiApresMidiFin ||

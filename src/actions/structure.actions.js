@@ -3,8 +3,6 @@ import { structureService } from '../services/structure.service.js';
 export const structureActions = {
   get,
   update,
-  isFormulaireHorairesAdresseChecked,
-  closeFormulaireHorairesAdresse,
 };
 
 function get(id) {
@@ -53,13 +51,4 @@ function update(structure) {
   function failure(error) {
     return { type: 'UPDATE_STRUCTURE_FAILURE', error };
   }
-}
-
-function isFormulaireHorairesAdresseChecked(info, isHorairesAdresseUpdated) {
-  const show = !info || (info && isHorairesAdresseUpdated);
-  return { type: 'SHOW_FORMULAIRE_HORAIRES_ADRESSE', show };
-}
-
-function closeFormulaireHorairesAdresse() {
-  return { type: 'CLOSE_FORMULAIRE_HORAIRES_ADRESSE' };
 }

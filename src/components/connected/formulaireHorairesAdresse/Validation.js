@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { formulaireHorairesAdresseActions } from '../../../actions/formulaireHorairesAdresse.actions';
@@ -8,17 +8,55 @@ function Validation({ conseillerId }) {
   const dispatch = useDispatch();
   const form = useSelector(state => state.horairesAdresse);
   const errorsForm = useSelector(state => state.horairesAdresse?.errorsFormulaire);
-  console.log(errorsForm);
 
   function handleSubmit() {
-    const hasErrors = true;
-    dispatch(formulaireHorairesAdresseActions.verifyFormulaire(form));
-    if (hasErrors) {
-
-    } else {
-      dispatch(formulaireHorairesAdresseActions.createHorairesAdresse(conseillerId, { }));
-    }
+    dispatch(formulaireHorairesAdresseActions.verifyFormulaire(conseillerId, form));
   }
+
+  useEffect(() => {
+    if (errorsForm?.length === 0) {
+      dispatch(formulaireHorairesAdresseActions.createHorairesAdresse(conseillerId, {
+        nomEnseigne: form.lieuActivite,
+        numeroTelephone: form.numeroTelephone,
+        email: form.email,
+        siteWeb: form.siteWeb,
+        siret: form.siret,
+        numeroRue: form.numeroVoie,
+        rue: form.rueVoie,
+        codePostal: form.codePostal,
+        ville: form.ville,
+        lundiMatinDebut: form.lundiMatinDebut,
+        lundiMatinFin: form.lundiMatinFin,
+        lundiApresMidiDebut: form.lundiApresMidiDebut,
+        lundiApresMidiFin: form.lundiApresMidiFin,
+        mardiMatinDebut: form.mardiMatinDebut,
+        mardiMatinFin: form.mardiMatinFin,
+        mardiApresMidiDebut: form.mardiApresMidiDebut,
+        mardiApresMidiFin: form.mardiApresMidiFin,
+        mercrediMatinDebut: form.mercrediMatinDebut,
+        mercrediMatinFin: form.mercrediMatinFin,
+        mercrediApresMidiDebut: form.mercrediApresMidiDebut,
+        mercrediApresMidiFin: form.mercrediApresMidiFin,
+        jeudiMatinDebut: form.jeudiMatinDebut,
+        jeudiMatinFin: form.jeudiMatinFin,
+        jeudiApresMidiDebut: form.jeudiApresMidiDebut,
+        jeudiApresMidiFin: form.jeudiApresMidiFin,
+        vendrediMatinDebut: form.vendrediMatinDebut,
+        vendrediMatinFin: form.vendrediMatinFin,
+        vendrediApresMidiDebut: form.vendrediApresMidiDebut,
+        vendrediApresMidiFin: form.vendrediApresMidiFin,
+        samediMatinDebut: form.samediMatinDebut,
+        samediMatinFin: form.samediMatinFin,
+        samediApresMidiDebut: form.samediApresMidiDebut,
+        samediApresMidiFin: form.samediApresMidiFin,
+        dimancheMatinDebut: form.dimancheMatinDebut,
+        dimancheMatinFin: form.dimancheMatinFin,
+        dimancheApresMidiDebut: form.dimancheApresMidiDebut,
+        dimancheApresMidiFin: form.dimancheApresMidiFin,
+        itinerant: form.itinerance
+      }));
+    }
+  }, [errorsForm]);
 
   return (
     <div className="rf-col-4">

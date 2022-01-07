@@ -35,7 +35,7 @@ function Connected() {
   }, [conseiller]);
 
   useEffect(() => {
-    dispatch(structureActions.isFormulaireHorairesAdresseChecked(structure?.carthographie, formulaireHorairesAdresseIsUpdated));
+    dispatch(conseillerActions.isFormulaireHorairesAdresseChecked(conseiller?.informationsCartographie, formulaireHorairesAdresseIsUpdated));
   }, [structure]);
 
 
@@ -47,7 +47,7 @@ function Connected() {
       }
       {!user.pdfGenerator &&
       <>
-        {/*!voirFormulaireHorairesAdresse &&*/ }
+        {!voirFormulaireHorairesAdresse &&
           <>
             <Route path={`/accueil`} component={Welcome} />
             <Route path={`/compte-rendu-activite`} component={Cra} />
@@ -56,13 +56,13 @@ function Connected() {
             <Route path={`/mes-informations`} component={FormulaireHorairesAdresse} />
             <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
           </>
-
-        {/*voirFormulaireHorairesAdresse &&
+        }
+        {voirFormulaireHorairesAdresse &&
         <>
-          <Route path={`/mes-informations`} component={FormulaireHorairesAdresse} />
-          <Route path="/" render={() => (<Redirect to="/mes-informations" />)} />
+          <Route path={`/accueil`} component={FormulaireHorairesAdresse} />
+          <Route path="/" render={() => (<Redirect to="/accueil" />)} />
         </>
-        */}
+        }
       </>
       }
       { user.pdfGenerator &&

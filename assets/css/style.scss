@@ -109,9 +109,16 @@
 }
 
 .invalid {
-  color: #FF3333;
+  color: #FF3333 !important;
 }
-
+.input-error {
+  color: #ff3333 !important;
+  box-shadow: inset 0 -2px 0 0 #ff3333 !important;
+}
+.text-error {
+  color: #FF3333 !important;
+  font-size: 0.8rem !important;
+}
 .important {
   color: #e10600;
 }

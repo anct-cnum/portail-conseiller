@@ -1,7 +1,8 @@
 
 const initialState = {
-  isAdresseCachee: true
+  isAdresseCachee: true,
 };
+
 export default function formulaireHorairesAdresse(state = initialState, action) {
   switch (action.type) {
     case 'VERIFY_FORMULAIRE':
@@ -9,11 +10,26 @@ export default function formulaireHorairesAdresse(state = initialState, action) 
         ...state,
         errorsFormulaire: action.errors
       };
+    case 'POST_HORAIRES_ADRESSE_REQUEST':
+      return {
+        ...state,
+      };
+    case 'POST_HORAIRES_ADRESSE_SUCCESS':
+      return {
+        ...state,
+      };
+    case 'POST_HORAIRES_ADRESSE_FAILURE':
+      return {
+        ...state,
+        error: action.error
+      };
     /* Partie Informations */
     case 'CACHER_ADRESSE':
       return {
         ...state,
         isAdresseCachee: action.input,
+        adresseExact: true,
+        errorsFormulaire: state?.errorsFormulaire?.filter(erreur => erreur.name !== 'adresseExact')
       };
     case 'MONTRER_ADRESSE':
       return {
@@ -23,7 +39,9 @@ export default function formulaireHorairesAdresse(state = initialState, action) 
         rueVoie: '',
         codePostal: '',
         ville: '',
-        siret: ''
+        siret: '',
+        adresseExact: true,
+        errorsFormulaire: state?.errorsFormulaire?.filter(erreur => erreur.name !== 'adresseExact')
       };
     case 'INIT_ADRESSE':
       return {
@@ -37,55 +55,66 @@ export default function formulaireHorairesAdresse(state = initialState, action) 
     case 'UPDATE_LIEUACTIVITE':
       return {
         ...state,
-        lieuActivite: action.value
+        lieuActivite: action.value,
+        errorsFormulaire: state?.errorsFormulaire?.filter(erreur => erreur.name !== 'lieuActivite')
       };
     case 'UPDATE_SIRET':
       return {
         ...state,
-        siret: action.value
+        siret: action.value,
+        errorsFormulaire: state?.errorsFormulaire?.filter(erreur => erreur.name !== 'siret')
       };
     case 'UPDATE_NUMEROTELEPHONE':
       return {
         ...state,
-        numeroTelephone: action.value
+        numeroTelephone: action.value,
+        errorsFormulaire: state?.errorsFormulaire?.filter(erreur => erreur.name !== 'numeroTelephone')
       };
     case 'UPDATE_EMAIL':
       return {
         ...state,
-        email: action.value
+        email: action.value,
+        errorsFormulaire: state?.errorsFormulaire?.filter(erreur => erreur.name !== 'email')
       };
     case 'UPDATE_SITEWEB':
       return {
         ...state,
-        siteWeb: action.value
+        siteWeb: action.value,
+        errorsFormulaire: state?.errorsFormulaire?.filter(erreur => erreur.name !== 'siteWeb')
       };
 
     /* Partie Adresse */
     case 'UPDATE_NUMEROVOIE':
       return {
         ...state,
-        numeroVoie: action.value
+        numeroVoie: action.value,
+        errorsFormulaire: state?.errorsFormulaire?.filter(erreur => erreur.name !== 'numeroVoie')
       };
     case 'UPDATE_RUEVOIE':
       return {
         ...state,
-        rueVoie: action.value
+        rueVoie: action.value,
+        errorsFormulaire: state?.errorsFormulaire?.filter(erreur => erreur.name !== 'rueVoie')
       };
     case 'UPDATE_CODEPOSTAL':
       return {
         ...state,
-        codePostal: action.value
+        codePostal: action.value,
+        errorsFormulaire: state?.errorsFormulaire?.filter(erreur => erreur.name !== 'codePostal')
       };
     case 'UPDATE_VILLE':
       return {
         ...state,
-        ville: action.value
+        ville: action.value,
+        errorsFormulaire: state?.errorsFormulaire?.filter(erreur => erreur.name !== 'ville')
       };
     /* Partie Itinerance */
     case 'UPDATE_ITINERANCE':
+
       return {
         ...state,
-        itinerance: action.itinerance === 'true'
+        itinerance: action.itinerance,
+        errorsFormulaire: state?.errorsFormulaire?.filter(erreur => erreur.name !== 'itinerance')
       };
     /* Partie Horaires */
     case 'UPDATE_LUNDIMATINDEBUT':

@@ -5,10 +5,6 @@ import { formulaireHorairesAdresseActions } from '../../../actions/formulaireHor
 function Horaires() {
   const dispatch = useDispatch();
   const erreursFormulaire = useSelector(state => state.horairesAdresse.errorsFormulaire);
-  function handleChange(e) {
-    const { name, value } = e.target;
-    dispatch(formulaireHorairesAdresseActions.updateField(name, value));
-  }
 
   const erreurLundi = erreursFormulaire?.filter(erreur => erreur.name === 'lundi')[0];
   const erreurMardi = erreursFormulaire?.filter(erreur => erreur.name === 'mardi')[0];
@@ -18,6 +14,10 @@ function Horaires() {
   const erreurSamedi = erreursFormulaire?.filter(erreur => erreur.name === 'samedi')[0];
   const erreurDimanche = erreursFormulaire?.filter(erreur => erreur.name === 'dimanche')[0];
 
+  function handleChange(e) {
+    const { name, value } = e.target;
+    dispatch(formulaireHorairesAdresseActions.updateField(name, value));
+  }
 
   return (
     <>
@@ -52,7 +52,7 @@ function Horaires() {
             { erreurLundi &&
             <tr>
               <td></td>
-              <td colSpan="2"><p className="invalid rf-mb-1w">{erreurLundi.error}</p></td>
+              <td colSpan="2"><p className="text-error rf-mb-1w">{erreurLundi.error}</p></td>
             </tr>
             }
             <tr>
@@ -73,7 +73,7 @@ function Horaires() {
             { erreurMardi &&
             <tr>
               <td></td>
-              <td colSpan="2"><p className="invalid rf-mb-1w">{erreurMardi.error}</p></td>
+              <td colSpan="2"><p className="text-error rf-mb-1w">{erreurMardi.error}</p></td>
             </tr>
             }
             <tr>
@@ -94,7 +94,7 @@ function Horaires() {
             { erreurMercredi &&
             <tr>
               <td></td>
-              <td colSpan="2"><p className="invalid rf-mb-1w">{erreurMercredi.error}</p></td>
+              <td colSpan="2"><p className="text-error rf-mb-1w">{erreurMercredi.error}</p></td>
             </tr>
             }
             <tr>
@@ -115,7 +115,7 @@ function Horaires() {
             { erreurJeudi &&
             <tr>
               <td></td>
-              <td colSpan="2"><p className="invalid rf-mb-1w">{erreurJeudi.error}</p></td>
+              <td colSpan="2"><p className="text-error rf-mb-1w">{erreurJeudi.error}</p></td>
             </tr>
             }
             <tr>
@@ -136,7 +136,7 @@ function Horaires() {
             { erreurVendredi &&
             <tr>
               <td></td>
-              <td colSpan="2"><p className="invalid rf-mb-1w">{erreurVendredi.error}</p></td>
+              <td colSpan="2"><p className="text-error rf-mb-1w">{erreurVendredi.error}</p></td>
             </tr>
             }
             <tr>
@@ -157,7 +157,7 @@ function Horaires() {
             { erreurSamedi &&
             <tr>
               <td></td>
-              <td colSpan="2"><p className="invalid rf-mb-1w">{erreurSamedi.error}</p></td>
+              <td colSpan="2"><p className="text-error rf-mb-1w">{erreurSamedi.error}</p></td>
             </tr>
             }
             <tr>
@@ -178,7 +178,7 @@ function Horaires() {
             { erreurDimanche &&
             <tr>
               <td></td>
-              <td colSpan="2"><p className="invalid rf-mb-1w">{erreurDimanche.error}</p></td>
+              <td colSpan="2"><p className="text-error rf-mb-1w">{erreurDimanche.error}</p></td>
             </tr>
             }
           </tbody>

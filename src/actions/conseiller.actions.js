@@ -14,7 +14,9 @@ export const conseillerActions = {
   resetExportDonneesCnfs,
   isFormulaireChecked,
   closeFormulaire,
-  isUserActif
+  isUserActif,
+  isFormulaireHorairesAdresseChecked,
+  closeFormulaireHorairesAdresse,
 };
 
 const formatDate = date => dayjs(date).format('DD-MM-YYYY');
@@ -213,4 +215,13 @@ function closeFormulaire() {
 function isUserActif(conseiller) {
   const isUserActif = conseiller?.emailCNError !== undefined && conseiller?.mattermost !== undefined;
   return { type: 'IS_USER_ACTIF', isUserActif };
+}
+
+function isFormulaireHorairesAdresseChecked(info, isHorairesAdresseUpdated) {
+  const show = !info || (info && isHorairesAdresseUpdated);
+  return { type: 'SHOW_FORMULAIRE_HORAIRES_ADRESSE', show };
+}
+
+function closeFormulaireHorairesAdresse() {
+  return { type: 'CLOSE_FORMULAIRE_HORAIRES_ADRESSE' };
 }
