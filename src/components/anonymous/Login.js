@@ -50,7 +50,7 @@ function Login() {
             <div className="headPart">
               <img
                 src="/logos/logo-conseiller-numerique-nb.svg"
-                alt="logo Conseiller Numérique France Services"
+                alt="logo Conseiller Num&eacute;rique France Services"
                 className="logoCnfs"/>
               <h1 className="titrage rf-mt-xs-3w rf-mt-md-9w rf-mb-6w">
                 { role === 'admin' &&
@@ -61,7 +61,7 @@ function Login() {
             </div>
             { role !== 'admin' &&
               <>
-                <p className="rf-service__tagline labNetworkCnfs">Le réseau des conseillers numériques France Services.</p>
+                <p className="rf-service__tagline labNetworkCnfs">Le r&eacute;seau des conseillers num&eacute;riques France Services.</p>
                 <div className="rf-my-9w personas1">
                   <img src="/logos/personas-hexagones.svg" width="100%" alt="Avatars conseillers"/>
                 </div>
@@ -70,7 +70,7 @@ function Login() {
           </div>
           <div className="rf-my-4w connexion">
             <div className="rf-px-2w rf-mb-2w">
-              <label className="rf-label email" htmlFor="email">E-mail Conseiller numérique France Services</label>
+              <label className="rf-label email" htmlFor="email">E-mail Conseiller num&eacute;rique France Services</label>
               <input
                 id="email"
                 name="username"
@@ -103,7 +103,7 @@ function Login() {
             </div>
             { role !== 'admin' &&
               <div className="mot-de-passe-oublie">
-                <Link to="/mot-de-passe-oublie" title="Mot de passe oublié ?" >Mot de passe oublié ?</Link>
+                <Link to="/mot-de-passe-oublie" title="Mot de passe oubli&eacute; ?" >Mot de passe oubli&eacute; ?</Link>
               </div>
             }
           </div>
@@ -113,7 +113,7 @@ function Login() {
           <div className="rf-grid-row rf-pb-12w personas2" style={{ textAlign: 'center' }}>
             <div className="rf-col-12">
               <div className="mot-de-passe-oublie-sm">
-                <Link to="/mot-de-passe-oublie" title="Mot de passe oublié ?">Mot de passe oublié ?</Link>
+                <Link to="/mot-de-passe-oublie" title="Mot de passe oubli&eacute; ?">Mot de passe oubli&eacute; ?</Link>
               </div>
               <img src="/logos/personas-hexagones.svg" width="90%" alt="Avatars conseillers"/>
             </div>

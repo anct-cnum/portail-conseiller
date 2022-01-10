@@ -21,7 +21,7 @@ function Territoire({ territoire, currentPage, trClass }) {
             territoire: territoire,
             currentPage: currentPage,
             origin: '/territoires' }}>
-              Détails
+              D&eacute;tails
           </Link>
         </td>
       </tr>

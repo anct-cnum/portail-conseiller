@@ -13,6 +13,7 @@ import EnregistrerStatistiquesPdf from './components/anonymous/EnregistrerStatis
 import StatistiquesNationales from './components/anonymous/StatistiquesNationales';
 import PrivateRoute from './components/connected/PrivateRoute';
 import choosePasswordChangeMailbox from './components/anonymous/choosePasswordChangeMailbox';
+import Propos from './components/anonymous/Propos';
 
 require('dotenv').config();
 
@@ -35,6 +36,7 @@ function App() {
           <Route path="/inscription/:token" component={ChoosePassword} />
           <Route path="/changer-email/:token" component={choosePasswordChangeMailbox} />
           <Route path="/validation" component={ValidationAccount} />
+          <Route path="/a-propos" component={Propos}/>
           <Route path="/statistiques-nationales" component={StatistiquesNationales} />
           <Route path="/statistiques/:type/:id/:dateDebut/:dateFin/:codePostal" component={EnregistrerStatistiquesPdf} />
           <Route path="/statistiques/:type/:dateDebut/:dateFin" component={EnregistrerStatistiquesPdf} />

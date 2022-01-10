@@ -17,8 +17,8 @@ function Conseiller({ conseiller, currentPage, trClass, role }) {
           <td className="structure">{conseiller?.nomStructure?.toUpperCase()}</td>
         }
         <td>{conseiller?.codePostal}</td>
-        <td>{conseiller?.datePrisePoste ? dayjs(conseiller?.datePrisePoste).format('DD/MM/YYYY') : 'Non renseignée'}</td>
-        <td>{conseiller?.dateFinFormation ? dayjs(conseiller?.dateFinFormation).format('DD/MM/YYYY') : 'Non renseignée'}</td>
+        <td>{conseiller?.datePrisePoste ? dayjs(conseiller?.datePrisePoste).format('DD/MM/YYYY') : 'Non renseign&eacute;e'}</td>
+        <td>{conseiller?.dateFinFormation ? dayjs(conseiller?.dateFinFormation).format('DD/MM/YYYY') : 'Non renseign&eacute;e'}</td>
         <td>{conseiller?.certifie ? <img src="logos/icone-check.svg"/> : <img src="logos/icone-croix.svg" /> }</td>
         <td><div className={isUserActif ? 'circle-true' : 'circle-false'}></div></td>
         <td>

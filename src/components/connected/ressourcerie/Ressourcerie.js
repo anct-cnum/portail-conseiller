@@ -71,10 +71,10 @@ function Ressourcerie() {
             <div className="rf-col-12 rf-mb-5w rf-mt-5w"> <h2>Chargement de la ressourcerie ...</h2></div>
           }
           {ressourcesError &&
-            <div className="rf-col-12 rf-mb-5w rf-mt-5w"><h2>Erreur lors du chargement de la ressourcerie, veuillez réessayer.</h2></div>
+            <div className="rf-col-12 rf-mb-5w rf-mt-5w"><h2>Erreur lors du chargement de la ressourcerie, veuillez r&eacute;essayer.</h2></div>
           }
           {ressources?.length === 0 &&
-            <div className="rf-col-12 rf-mb-5w rf-mt-5w"><h2>Il n&rsquo;y a pas de résultats pour votre recherche.</h2></div>
+            <div className="rf-col-12 rf-mb-5w rf-mt-5w"><h2>Il n&rsquo;y a pas de r&eacute;sultats pour votre recherche.</h2></div>
           }
         </div>
       </div>

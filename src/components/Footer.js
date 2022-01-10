@@ -22,11 +22,11 @@ function Footer({ type, role }) {
                       <div className="rf-footer__brand">
                         <a className="rf-footer__brand-link">
                           <div style={{ display: 'inline-block' }} >
-                            <img src="/logos/logo-rf-nb.svg" alt="logo République Française"
+                            <img src="/logos/logo-rf-nb.svg" alt="logo R&eacute;publique Française"
                               style={{ height: '80px', marginRight: '28px' }} className="logoFooter"/>
                           </div>
                           <div style={{ display: 'inline-block' }} >
-                            <img src="/logos/logo-anct-nb.svg" alt="logo Agence Nationale De La Cohésion Des Territoires"
+                            <img src="/logos/logo-anct-nb.svg" alt="logo Agence Nationale De La Coh&eacute;sion Des Territoires"
                               style={{ height: '59px', marginRight: '50px' }} className="logoFooter"/>
                           </div>
                           <div style={{ display: 'inline-block' }} >
@@ -37,8 +37,8 @@ function Footer({ type, role }) {
                       </div>
                       <div className="rf-footer__content rf-mt-3w">
                         <p className="rf-footer__content-desc">
-                        Conseiller numérique France Services est un dispositif financé par l&rsquo;&Eacute;tat dans le cadre de France Relance.
-                        Il est piloté par l&rsquo;Agence nationale de la cohésion des territoires avec l&rsquo;appui de la Banque des Territoires.
+                        Conseiller num&eacute;rique France Services est un dispositif financ&eacute; par l&rsquo;&Eacute;tat dans le cadre de France Relance.
+                        Il est pilot&eacute; par l&rsquo;Agence nationale de la coh&eacute;sion des territoires avec l&rsquo;appui de la Banque des Territoires.
                         </p>
                       </div>
                       <div>
@@ -64,19 +64,19 @@ function Footer({ type, role }) {
                           <div className="rf-col-12 rf-mb-2w">
                             {role === 'structure_coop' &&
                               <a className="lien-footer" href={aideStructure} target="blank" rel="noreferrer">
-                                <img src="logos/bulle-ressourcerie.svg"/>
+                                <img src="logos/bulle-ressourcerie.svg" className="bulle-ressourcerie" alt="liens aide vers Mattermost"/>
                                 <span >Aide espace Coop</span>
                               </a>
                             }
                             {role !== 'structure_coop' &&
                             <>
                               <a className="lien-footer" href={aideCoop} target="blank" rel="noreferrer">
-                                <img src="logos/bulle-ressourcerie.svg"/>
+                                <img src="logos/bulle-ressourcerie.svg" className="bulle-ressourcerie" alt="liens aide vers Mattermost"/>
                                 <span >Aide espace Coop</span>
                               </a>
                               <a className="lien-footer" href={aideMetier} target="blank" rel="noreferrer">
-                                <img src="logos/bulle-ressourcerie.svg"/>
-                                <span>Aide métier</span>
+                                <img src="logos/bulle-ressourcerie.svg" className="bulle-ressourcerie" alt="liens aide vers Mattermost"/>
+                                <span>Aide m&eacute;tier</span>
                               </a>
                             </>
                             }
@@ -84,7 +84,7 @@ function Footer({ type, role }) {
                           <div className="rf-col-12">
                             <p style={{ fontSize: '14px', lineHeight: '24px', marginBottom: '2.5rem' }}>
                               L&rsquo;&eacute;quipe Conseiller num&eacute;rique France Services travaille en am&eacute;lioration continue.
-                              Vous rencontrez un problème, vous souhaitez exprimer un avis ? Rendez-vous sur les canaux d&rsquo;aide de votre espace de
+                              Vous rencontrez un probl&egrave;me, vous souhaitez exprimer un avis ? Rendez-vous sur les canaux d&rsquo;aide de votre espace de
                               discussion en cliquant sur les boutons ci-dessus.
                             </p>
                           </div>
@@ -96,24 +96,24 @@ function Footer({ type, role }) {
                       <ul className="rf-footer__bottom-list">
                         <li className="rf-footer__bottom-item">
                           <a className="rf-footer__bottom-link" target="blank" rel="noreferrer"
-                            href="https://www.conseiller-numerique.gouv.fr/accessibilite">Accessibilité: non conforme
+                            href="https://www.conseiller-numerique.gouv.fr/accessibilite">Accessibilit&eacute;: non conforme
                           </a>
                         </li>
                         <li className="rf-footer__bottom-item">
                           <a className="rf-footer__bottom-link rf-px-1w marge-mention" target="blank" rel="noreferrer"
-                            href="https://www.conseiller-numerique.gouv.fr/mentions-legales">Mentions légales
+                            href="https://www.conseiller-numerique.gouv.fr/mentions-legales">Mentions l&eacute;gales
                           </a>
                         </li>
                         <li className="rf-footer__bottom-item marge-bar-donnees">
                           <a className="rf-footer__bottom-link rf-px-1w marge-donnees" target="blank" rel="noreferrer"
                             href="https://cdn.conseiller-numerique.gouv.fr/DonneesPersonnelles-ConseillerNumerique-Coop.pdf">
-                        Données personnelles
+                        Donn&eacute;es personnelles
                           </a>
                         </li>
                         <li className="rf-footer__bottom-item marge-bar-cgu">
                           <a className="rf-footer__bottom-link rf-px-1w marge-cgu" target="blank" rel="noreferrer"
                             href="https://cdn.conseiller-numerique.gouv.fr/CGU-ConseillerNumerique-Coop.pdf">
-                        Conditions générales d&rsquo;utilisation
+                        Conditions g&eacute;n&eacute;rales d&rsquo;utilisation
                           </a>
                         </li>
                       </ul>

@@ -11,7 +11,7 @@ function Age() {
       <div className="rf-grid-row rf-grid-row--gutters rf-grid-row--middle rf-mb-7w">
         <div className="rf-col-xs-11 rf-col-sm-11 rf-col-md-2 questionResponsive">
           <span className={`question ${cra?.printError && cra?.errorsRequired?.age ? 'questionRequired' : ''}`}>
-            Catégorie d&rsquo;âge ou âge moyen du groupe
+            Cat&eacute;gorie d&rsquo;âge ou âge moyen du groupe
           </span>
         </div>
         <div className="responsiveSquare1">
