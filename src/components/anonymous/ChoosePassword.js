@@ -67,11 +67,12 @@ function ChoosePassword({ match }) {
             <div className="rf-container">
               <div className="rf-grid-row rf-grid-row--center">
                 <div className="rf-col-12 rf-col-md-10">
-                  <h1 className="titre rf-my-2w rf-mb-md-5w ">Création de votre boîte mail <br className="br-titre" />et accès à l&#39;Espace coop</h1>
+                  <h1 className="titre rf-my-2w rf-mb-md-5w ">Cr&eacute;ation de votre boîte mail <br className="br-titre" />
+                  et acc&egrave;s &agrave; l&#39;Espace coop</h1>
                   {tokenVerified &&
                   <p className="sous-titre rf-mb-2w rf-mb-md-4w">
-                    Bonjour <b>{user?.prenom} {user?.nom}</b>, vous êtes sur le point de finaliser l&#39;accès à vos services en ligne
-                    <br />Conseiller numérique France Services
+                    Bonjour <b>{user?.prenom} {user?.nom}</b>, vous &ecirc;tes sur le point de finaliser l&#39;acc&egrave;s &agrave; vos services en ligne
+                    <br />Conseiller num&eacute;rique France Services
                   </p>}
                 </div>
               </div>
@@ -86,9 +87,9 @@ function ChoosePassword({ match }) {
                   <div className="rf-mb-10w">
                     <div className="erreur-token">
                       <div className="invalid">
-                        Désolé mais le lien est invalide ou a déjà été utilisé.
+                        D&eacute;sol&eacute; mais le lien est invalide ou a d&eacute;j&agrave; &eacute;t&eacute; utilis&eacute;.
                         &nbsp;Vous pouvez &nbsp;<Link to="/login" title="Se connecter" >vous connecter</Link>
-                        &nbsp;ou &nbsp;<Link to="/mot-de-passe-oublie" title="Mot de passe oublié" >réinitialiser votre mot de passe</Link>.
+                        &nbsp;ou &nbsp;<Link to="/mot-de-passe-oublie" title="Mot de passe oubli&eacute;" >r&eacute;initialiser votre mot de passe</Link>.
                       </div>
                     </div>
                   </div>
@@ -105,14 +106,16 @@ function ChoosePassword({ match }) {
                     <div className="rf-col-12 rf-col-md-5 rf-mt-2w rf-mt-md-4w">
                       <h2 className="titre rf-mb-4v">Choisissez un mot de passe <img className="cle" src="/logos/cle.svg" /></h2>
                       <p className="sous-titre rf-mb-3w">
-                        Celui-ci servira à la fois pour votre connexion au mail, et pour vous identifier sur l’espace Coop
-                        ainsi que sur le service de discussion en ligne, gardez-le précieusement !
+                        Celui-ci servira &agrave; la fois pour votre connexion au mail, et pour vous identifier sur l’espace Coop
+                        ainsi que sur le service de discussion en ligne, gardez-le pr&eacute;cieusement !
                       </p>
                       <p className="rf-mb-3w">
                         Une boîte mail {emailCnfs}
-                        sera automatiquement créée lorsque vous cliquerez sur Valider.
+                        sera automatiquement cr&eacute;&eacute;e lorsque vous cliquerez sur Valider.
                       </p>
-                      <p className="rf-mb-md-3w">Accédez ensuite à cette dernière afin de pouvoir effectuer votre première connexion à l’espace Coop.</p>
+                      <p className="rf-mb-md-3w">Acc&eacute;dez ensuite &agrave; cette derni&egrave;re afin de pouvoir effectuer votre
+                        premi&egrave;re connexion &agrave; l’espace Coop.
+                      </p>
                     </div>
 
                     <div className="rf-col-12 rf-col-md-5">
@@ -127,7 +130,8 @@ function ChoosePassword({ match }) {
                           <label className="rf-label">
                             Veuillez choisir votre mot de passe.
                             <br />
-                            Celui-ci doit contenir au moins 8 caractères dont une minuscule, une majuscule, un chiffre et un caractère spécial(!@#$%^&amp;*)
+                            Celui-ci doit contenir au moins 8 caract&egrave;res dont une minuscule, une majuscule, un chiffre et un caract&egrave;re
+                            sp&eacute;cial(!@#$%^&amp;*)
 
                             <input name="password" type="password" value={password}
                               onChange={handleChange} className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')}
@@ -141,7 +145,7 @@ function ChoosePassword({ match }) {
                           }
                           { password && !checkComplexity.test(password) &&
                             <div className="rf-mt-2w rf-mb-n2w">
-                              <div className="invalid">Le mot de passe ne correspond pas aux exigences de sécurité.</div>
+                              <div className="invalid">Le mot de passe ne correspond pas aux exigences de s&eacute;curit&eacute;.</div>
                             </div>
                           }
 
@@ -172,14 +176,14 @@ function ChoosePassword({ match }) {
             <div className="rf-container rf-mt-5w rf-mt-md-9w">
               <div className="rf-grid-row rf-grid-row--center">
                 <div className="rf-col-offset-md-3" ></div>
-                <div className="rf-col-12 rf-col-md-6 rf-mb-2w etape">Étape 1 :
+                <div className="rf-col-12 rf-col-md-6 rf-mb-2w etape">&eacute;tape 1 :
                   <img src="/logos/mail-conseiller-numerique.svg" alt="Avatar conseiller" className="rf-ml-4v enveloppe" />
                 </div>
                 <div className="rf-col-offset-md-3" ></div>
 
                 <div className="rf-col-offset-md-3" ></div>
                 <div className="rf-col-12 rf-col-md-6 rf-mb-2w rf-mb-md-3w descriptif">
-                  La création de votre compte mail <br className="br-mail" />
+                  La cr&eacute;ation de votre compte mail <br className="br-mail" />
                   {emailCnfs}
                 </div>
                 <div className="rf-col-offset-md-3" ></div>
@@ -187,12 +191,12 @@ function ChoosePassword({ match }) {
                 <div className="rf-col-offset-md-3" ></div>
                 <div className="rf-col-12 rf-col-md-6 rf-mb-5w rf-mb-md-9w recapitulatif">
                   Celui-ci vous permettra de recevoir et d’envoyer les courriels en lien <br className="br-mail" />
-                  avec votre activité. Il vous servira également d’identifiant  pour la <br />connexion à l’espace Coop.
+                  avec votre activit&eacute;. Il vous servira &eacute;galement d’identifiant  pour la <br />connexion &agrave; l’espace Coop.
                 </div>
                 <div className="rf-col-offset-md-3" ></div>
 
                 <div className="rf-col-offset-md-3" ></div>
-                <div className="rf-col-12 rf-col-md-6 rf-mb-2w etape">Étape 2 :
+                <div className="rf-col-12 rf-col-md-6 rf-mb-2w etape">&eacute;tape 2 :
                   <img src="/avatars/avatar-conseiller.svg" alt="Avatar conseiller" className="avatar-pwd rf-ml-5v" />
                   <img src="/avatars/avatar-conseillere.svg" alt="Avatar conseillere" className="avatar-pwd" />
                   <img src="/avatars/avatar-conseillers.svg" alt="Avatar conseillers" className="avatar-pwd" />
@@ -203,7 +207,7 @@ function ChoosePassword({ match }) {
 
                 <div className="rf-col-offset-md-3" ></div>
                 <div className="rf-col-12 rf-col-md-6 rf-mb-2w rf-mb-md-3w descriptif">
-                  Votre première connexion à votre espace personnel sur coop.conseillernumerique.fr
+                  Votre premi&egrave;re connexion &agrave; votre espace personnel sur coop.conseillernumerique.fr
                 </div>
                 <div className="rf-col-offset-md-3" ></div>
 
@@ -214,7 +218,7 @@ function ChoosePassword({ match }) {
                     {emailCnfs}
                   </strong>&nbsp;
                   sert d’identifiant<br />
-                  Votre mot de passe de connexion est le même.
+                  Votre mot de passe de connexion est le m&ecirc;me.
                 </div>
                 <div className="rf-col-offset-md-3" ></div>
 

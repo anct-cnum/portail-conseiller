@@ -36,13 +36,13 @@ function Statut() {
           <SquareButton
             type="statut"
             value="retraite"
-            label="Retraité"/>
+            label="Retrait&eacute;"/>
         </div>
         <div className="responsiveSquare5">
           <SquareButton
             type="statut"
             value="heterogene"
-            label="Non renseigné ou hétérogène"/>
+            label="Non renseign&eacute; ou h&eacute;t&eacute;rog&egrave;ne"/>
         </div>
       </div>
     </>

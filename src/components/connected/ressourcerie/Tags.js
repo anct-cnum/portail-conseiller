@@ -44,7 +44,7 @@ function Tags({ rechercheParTag, rechercheParTexte }) {
               <div className="rf-col-12">
                 <div className="rf-modal__body">
                   <div className="rf-modal__header">
-                    <button id="modal-annuler-close" className="rf-link--close rf-link" title="Fermer la fenêtre modale"
+                    <button id="modal-annuler-close" className="rf-link--close rf-link" title="Fermer la fen&ecirc;tre modale"
                       aria-controls="rf-modal-1" target="_self" onClick={() => {
                         setSeeAlltags(false);
                       }}>
@@ -88,7 +88,8 @@ function Tags({ rechercheParTag, rechercheParTexte }) {
       <div className="rf-my-md-4w">
         <span className="bulle-discussion"></span>
         <span className="canal"><a href={aideRessourcerie} className="lien-aide"> Canal #ressourcerie-provisoire</a></span><br/>
-        <span className="texte-canal">Une question ? un &eacute;l&eacute;ment à partager ? Rendez-vous sur votre espace de discussion pour partager.</span>
+        <span className="texte-canal">Une question ? un &eacute;l&eacute;ment &agrave; partager ? Rendez-vous sur votre espace de
+        discussion pour partager.</span>
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ function Activite() {
         <div className="rf-col-xs-11 rf-col-sm-11 rf-col-md-2 questionResponsive">
           <span
             className={`question ${cra?.printError && cra?.errorsRequired?.activite ? 'questionRequired' : ''}`}>
-              Quel type d&rsquo;activité venez-vous de réaliser&nbsp;?
+              Quel type d&rsquo;activit&eacute; venez-vous de r&eacute;aliser&nbsp;?
           </span>
         </div>
         {cra?.activite !== 'collectif' &&

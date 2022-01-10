@@ -93,7 +93,7 @@ function FiltersAndSorts({ resetPage, user }) {
                 <li className="rf-nav__item">
                   <button className="rf-nav__btn admin-select" aria-expanded={toggleFiltre}
                     aria-controls="menu-territoire" aria-current="true" onClick={filtreClick} >
-                    { territoire === 'codeDepartement' ? 'Affichage par département' : 'Affichage par région'} &nbsp;
+                    { territoire === 'codeDepartement' ? <>Affichage par d&eacute;partement</> : <>Affichage par r&eacute;gion</>} &nbsp;
                     { !toggleFiltre &&
                       <i className="ri-arrow-down-s-line chevron icone-2"></i>
                     }
@@ -107,7 +107,7 @@ function FiltersAndSorts({ resetPage, user }) {
                       <li>
                         <button id={ territoire === 'codeDepartement' ? 'codeRegion' : 'codeDepartement'}
                           className="admin-select-option" onClick={handleTerritoire}>
-                          { territoire === 'codeDepartement' ? 'Affichage par région' : 'Affichage par département' }
+                          { territoire === 'codeDepartement' ? <>Affichage par r&eacute;gion</> : <>Affichage par d&eacute;partement</> }
                         </button></li>
                     </ul>
                   </div>
@@ -119,7 +119,7 @@ function FiltersAndSorts({ resetPage, user }) {
 
         <div className="rf-col-4">
           <b>
-            <span>Période du &nbsp;</span>
+            <span>P&eacute;riode du &nbsp;</span>
             <span id="span-datePickerDebut" >
               <FilterDate initDate={dateDebut} idDate="datePickerDebut" nomDate="datePickerDebut"/>
             </span>
@@ -131,12 +131,12 @@ function FiltersAndSorts({ resetPage, user }) {
         </div>
         { location.pathname === '/accueil' &&
         <div className="rf-ml-auto">
-          <button className="rf-btn rf-btn--secondary" onClick={exportDonneesCnfs}>Exporter les données</button>
+          <button className="rf-btn rf-btn--secondary" onClick={exportDonneesCnfs}>Exporter les donn&eacute;es</button>
         </div>
         }
         { location.pathname === '/territoires' &&
           <div className="rf-ml-auto">
-            <button className="rf-btn rf-btn--secondary" onClick={exportDonneesTerritoire}>Exporter les données</button>
+            <button className="rf-btn rf-btn--secondary" onClick={exportDonneesTerritoire}>Exporter les donn&eacute;es</button>
           </div>
         }
         { (exportTerritoireFileError !== undefined && exportTerritoireFileError !== false) &&

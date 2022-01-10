@@ -61,15 +61,15 @@ function AdminHeader({ role }) {
                 <ul className="dashboard">
                   <li>
                     <span className="nombre-stats-header">{statistiques?.invitationsEnvoyees ?? 0}</span><br/>
-                    <span className="texte-stats-header">Invitations envoyées</span>
+                    <span className="texte-stats-header">Invitations envoy&eacute;es</span>
                   </li>
                   <li>
                     <span className="nombre-stats-header">{statistiques?.conseillersEnregistres ?? 0}</span><br/>
-                    <span className="texte-stats-header">Conseillers enregistrés</span>
+                    <span className="texte-stats-header">Conseillers enregistr&eacute;s</span>
                   </li>
                   <li>
                     <span className="nombre-stats-header">{statistiques?.tauxActivationComptes ?? 0} %</span><br/>
-                    <span className="texte-stats-header">Taux de comptes activés</span>
+                    <span className="texte-stats-header">Taux de comptes activ&eacute;s</span>
                   </li>
                   <li>
                     <span className="nombre-stats-header">{statistiques?.nbCras ?? 0}</span><br/>
@@ -77,15 +77,15 @@ function AdminHeader({ role }) {
                   </li>
                   <li>
                     <span className="nombre-stats-header">{statistiques?.totalAccompagnements ?? 0}</span><br/>
-                    <span className="texte-stats-header">Personnes accompagnées</span>
+                    <span className="texte-stats-header">Personnes accompagn&eacute;es</span>
                   </li>
                   <li>
                     <span className="nombre-stats-header">?</span><br/>
-                    <span className="texte-stats-header">Comptes Pix activés</span>
+                    <span className="texte-stats-header">Comptes Pix activ&eacute;s</span>
                   </li>
                   <li>
                     <span className="nombre-stats-header">?</span><br/>
-                    <span className="texte-stats-header">Comptes RDV solidarités</span>
+                    <span className="texte-stats-header">Comptes RDV solidarit&eacute;s</span>
                   </li>
                 </ul>
               </>

@@ -92,7 +92,7 @@ function Conseillers() {
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
                           <span id="prenom">
-                            Prénom
+                            Pr&eacute;nom
                             { (ordreNom !== 'prenom' || ordreNom === 'prenom' && ordre) &&
                               <i className="ri-arrow-down-s-line chevron icone"></i>
                             }
@@ -195,13 +195,13 @@ function Conseillers() {
                                     </li>
                                     <li className={filtreCertifie === 'active' ? 'selected' : '' }>
                                       <button id="active" className="admin-select-option border-no-result" onClick={handleSortCertifie}>
-                                        Profils certifiés uniquement
+                                        Profils certifi&eacute;s uniquement
                                       </button>
                                       <hr className="admin-select-hr"/>
                                     </li>
                                     <li className={filtreCertifie === 'inactive' ? 'selected' : '' }>
                                       <button id="inactive" className="admin-select-option" onClick={handleSortCertifie}>
-                                        Profils non-certifiés uniquement
+                                        Profils non-certifi&eacute;s uniquement
                                       </button>
                                     </li>
                                   </ul>
@@ -218,7 +218,7 @@ function Conseillers() {
                               <span >
                                 <button className="rf-nav__btn admin-select" aria-expanded={basculerFiltreProfil}
                                   aria-controls="menu-userActive" aria-current="true" id="activer" onClick={filtreClick}>
-                                  Activé
+                                  Activ&eacute;
                                   {basculerFiltreProfil &&
                                     <i className="ri-arrow-up-s-line chevron icone"></i>
                                   }
@@ -237,13 +237,13 @@ function Conseillers() {
                                     </li>
                                     <li className={filtreProfil === 'active' ? 'selected' : '' }>
                                       <button id="active" className="admin-select-option border-no-result" onClick={handleSortProfil}>
-                                        Profils activés uniquement
+                                        Profils activ&eacute;s uniquement
                                       </button>
                                       <hr className="admin-select-hr"/>
                                     </li>
                                     <li className={filtreProfil === 'inactive' ? 'selected' : '' }>
                                       <button id="inactive" className="admin-select-option" onClick={handleSortProfil}>
-                                        Profils non-activés uniquement
+                                        Profils non-activ&eacute;s uniquement
                                       </button>
                                     </li>
                                   </ul>
@@ -253,7 +253,7 @@ function Conseillers() {
                           </ul>
                         </nav>
                       </th>
-                      <th>Détails</th>
+                      <th>D&eacute;tails</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -263,7 +263,7 @@ function Conseillers() {
                     }
                     { (conseillers?.items?.data.length === 0 || !conseillers?.items) &&
                     <tr>
-                      <td colSpan="9" className="not-found pair">Aucun conseiller trouvé</td>
+                      <td colSpan="9" className="not-found pair">Aucun conseiller trouv&eacute;</td>
                     </tr>
                     }
                   </tbody>
