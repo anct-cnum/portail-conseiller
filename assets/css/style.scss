@@ -71,6 +71,10 @@
 .rf-fi-user-line {
   color:var(--bf500);
 }
+.information-link {
+  background-color: #2e2e2e;
+  border: none;
+}
 
 .flashBag {
   background-color: white;
@@ -189,9 +193,9 @@
 .rf-mt-15w {
   margin-top: 7.5rem !important;
 }
-.header-aide, .header-propos {
+.header-aide, .header-propos, .header-informations {
   .rf-nav__list {
-    margin: -24px -1rem;
+    margin: -28px -1rem;
     padding: 0 0 7px;
     a {
       box-shadow: none;
@@ -231,7 +235,7 @@
     width: 34px;
     top: 6px;
   }
-  .texte-aide {
+  .texte-aide, .texte-informations {
     position: relative;
     margin-left: 10px;
     bottom: 4px;
@@ -240,7 +244,10 @@
       position: relative;
     }
   }
-  .lien-aide {
+  .texte-informations {
+    bottom: -4px;
+  }
+  .lien-aide, .lien-informations {
     box-shadow: none !important;
     outline: none !important;
   }
@@ -249,7 +256,7 @@
     line-height: 24px;
     color: #fff;
   }
-  #menu-liens-aide {
+  #menu-liens-aide, #menu-informations {
     background-color: #1e1e1e;
     max-height: none;
     text-align: left;
@@ -267,6 +274,7 @@
     padding-top: 12px;
   }
 }
+
 .header-propos {
   font-size: 0.88rem;
   .rf-custom-link {
