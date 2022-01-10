@@ -103,7 +103,7 @@ export default function cra(state = initialState, action) {
       };
     case 'SUBMIT_CRA_SUCCESS':
       return {
-        errorsRequired: initialState.errorsRequired //retour à l'&eacute;tat initial
+        errorsRequired: initialState.errorsRequired //retour à l'état initial
       };
     case 'SUBMIT_CRA_FAILURE':
       return {

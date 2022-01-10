@@ -55,7 +55,7 @@ function Propos() {
               <h3 className="rf-mt-3w titre3">Quelques exemples concrets&nbsp;:</h3>
               <p className="rf-mb-7w">– Pour d&eacute;finir de mani&egrave;re pertinente ce que devait &ecirc;tre l&rsquo;espace Coop, un recueil a
                 d&rsquo;abord &eacute;t&eacute; effectu&eacute; aupr&egrave;s d&rsquo;une douzaine de m&eacute;diateurs num&eacute;riques et
-                r&eacute;f&eacute;rents territoriaux au d&eacute;but de l&rsquo;ann&eacute;e 2021. Cette enqu&ecirc;te a permis recenser les besoins
+                r&eacute;f&eacute;rents territoriaux au d&eacute;but de l&rsquo;ann&eacute;e 2021. Cette enqu&ecirc;te a permis de recenser les besoins
                 en termes de partage, de r&eacute;seau, de synergies, et ainsi d&rsquo;&eacute;laborer des tous premiers plans du site.<br/><br/>
                 – Avant sa mise en ligne, l&rsquo;outil de suivi d&rsquo;activit&eacute; a &eacute;t&eacute; test&eacute; deux fois aupr&egrave;s
                 d&rsquo;une dixaine de m&eacute;diateurs et coordinateurs territoriaux qui ont tour &agrave; tour pr&eacute;conis&eacute; leurs
@@ -67,14 +67,13 @@ function Propos() {
               </p>
 
               <h2 className="rf-mt-6w titre2">Vous aussi, vous pouvez contribuer si vous le souhaitez</h2>
-              <p className="rf-mb-3w">Pour cela, rejoignez les canaux correspondants sur votre espace de discussion :</p>
+              <p className="rf-mb-3w">Pour cela, rejoignez les canaux correspondants sur votre espace de discussion&nbsp;:</p>
               <p className="rf-mb-3w">
                 <a className="lien-footer" href={aideMetier} target="blank" rel="noreferrer">
                   <img src="logos/bulle-ressourcerie.svg" className="bulle-ressourcerie"/>
                   <div className="lien-a-propos" >
                     Vous souhaitez manifester votre int&eacute;r&ecirc;t pour participer &agrave; une future am&eacute;lioration d&rsquo;outil :
-                    rejoignez le canal
-                    Atelier NEC.
+                    rejoignez le canal Atelier NEC.
                   </div>
                 </a>
               </p>

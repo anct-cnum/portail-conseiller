@@ -42,7 +42,7 @@ function ValidationAccount() {
           </div>
           <div className="rf-col-3"></div>
         </div>
-        {/* Proc&eacute;dure */}
+        {/* Procédure */}
         <div className="rf-grid-row rf-grid-row--center rf-grid-row--middle rf-mb-4w process">
           <div className="rf-col-3"></div>
           <div className="rf-col-sm-10 rf-col-md-6 processText">
@@ -65,7 +65,7 @@ function ValidationAccount() {
           </div>
           <div className="rf-col-1"></div>
         </div>
-        {/* Titre Coordonnees Pro */}
+        {/* Titre Coordonnées Pro */}
         <div className="rf-grid-row rf-grid-row--center rf-grid-row--middle rf-mb-6w coordonnees">
           <p style={{ textAlign: 'center' }}>
             <strong style={{ fontSize: '24px' }}>Vos coordonn&eacute;es professionnelles</strong>
@@ -108,7 +108,7 @@ function ValidationAccount() {
           </div>
           <div className="rf-col-3"></div>
         </div>
-        {/* Proc&eacute;dure */}
+        {/* Procédure */}
         <div className="rf-grid-row rf-grid-row--center rf-grid-row--middle rf-pb-12w modifCoordonnees">
           <p style={{ textAlign: 'center' }}>
             Vous pourrez modifier vos coordonn&eacute;es professionnelles plus tard.

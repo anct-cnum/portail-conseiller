@@ -115,7 +115,8 @@ function ForgottenPassword({ match = null }) {
                     </label>
                     {submittedEmail && validEmail &&
                       <div className="rf-mb-2w rf-mt-n2w">
-                        <div className="valid rf-mt-2w">L&rsquo;e-mail de renouvellement de mot de passe a pu &ecirc;tre envoy&eacute; sur votre adresse personnelle !</div>
+                        <div className="valid rf-mt-2w">L&rsquo;e-mail de renouvellement de mot de passe a pu &ecirc;tre envoy&eacute;
+                        sur votre adresse personnelle !</div>
                       </div>
                     }
                     {submittedEmail && errorEmail &&
