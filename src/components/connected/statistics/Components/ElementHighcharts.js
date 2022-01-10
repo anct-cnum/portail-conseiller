@@ -142,7 +142,7 @@ function ElementHighcharts(props) {
         data: valeurs,
         color: '#169b62',
       }, {
-        name: 'Accompagnement cumulés',
+        name: 'Accompagnement cumul&eacute;s',
         data: valeursCumul,
         lineWidth: 5,
         color: '#f7a35c',

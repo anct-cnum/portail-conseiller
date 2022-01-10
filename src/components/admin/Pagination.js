@@ -28,16 +28,16 @@ function Pagination({ pageCount, current, navigate }) {
             <a className="rf-pagination__link"
               href="#"
               onClick={e => !isFirstPage ? onClick(e, 1) : () => { }}
-              aria-label="Première page"
-              title="Première page">
+              aria-label="Premi&egrave;re page"
+              title="Premi&egrave;re page">
             </a>
           </li>
           <li className={`rf-pagination__item--prev rf-pagination__item ${isFirstPage ? 'rf-pagination__item--disabled' : ''}`}>
             <a className="rf-pagination__link" onClick={e => !isFirstPage ? onClick(e, previousPage) : () => { }}
               href="#"
-              aria-label="Page précédente"
-              title="Page précédente">
-              <span className="rf-pagination__label">Page précédente</span>
+              aria-label="Page pr&eacute;c&eacute;dente"
+              title="Page pr&eacute;c&eacute;dente">
+              <span className="rf-pagination__label">Page pr&eacute;c&eacute;dente</span>
             </a>
           </li>
           <li className={`rf-pagination__item ${isFirstPage ? 'rf-pagination__item--active' : ''}`}>
@@ -96,8 +96,8 @@ function Pagination({ pageCount, current, navigate }) {
           <li className={`rf-pagination__item--last rf-pagination__item ${isLastPage ? 'rf-pagination__item--disabled' : ''}`}>
             <a className="rf-pagination__link"
               href="#" onClick={e => !isLastPage ? onClick(e, lastPage) : () => { }}
-              aria-label="Dernière page"
-              title="Dernière page">
+              aria-label="Derni&egrave;re page"
+              title="Derni&egrave;re page">
             </a>
           </li>
         </ul>

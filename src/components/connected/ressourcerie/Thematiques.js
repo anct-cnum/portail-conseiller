@@ -5,7 +5,7 @@ function Thematiques() {
   return (
     <div className="thematiques">
       <h2 className="rf-mb-3w sous-titre">Th&eacute;matiques</h2>
-      <div className="rf-container rf-container--fluid">
+      <div className="rf-container">
         <div className="rf-grid-row">
           <div className="rf-col-12 rf-col-sm-6">
             <ul className="liste-thematiques">

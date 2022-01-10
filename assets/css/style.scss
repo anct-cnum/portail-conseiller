@@ -38,6 +38,12 @@
   src: url(/public/fontsAddons/Marianne-Regular.woff2);
 }
 
+.rf-container--fluid {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: none;
+}
+
 /** Trick to fix DS problem with burger menu with react**/
 #burgerMenu {
   display: none;
@@ -46,12 +52,15 @@
 .rf-header__navbar button:not(#burgerMenu) {
   display: none;
 }
+.rf-header__navbar {
+  margin-left: 40px;
+}
 /** End trick**/
 
 /** Header **/
 .rf-service__tagline {
-  font-size: 0.75em;
-  line-height: 1.25em;
+  font-size: 0.75rem !important;
+  line-height: 1.25rem !important;
 }
 .rf-header .feuillet {
   background-image: url(/public/logos/feuillets-couleurs.svg);
@@ -161,22 +170,36 @@
 /* Custom menu header */
 .rf-header {
   background-color: #2e2e2e;
+  height: 110px;
 }
-.header-aide {
+.ri-compasses-2-fill {
+  font-size: 16px;
+
+}
+.rf-header .rf-shortcuts__item.header-aide {
+  border: none;
+}
+.rf-mt-15w {
+  margin-top: 7.5rem !important;
+}
+.header-aide, .header-propos {
   .rf-nav__list {
     margin: -24px -1rem;
     padding: 0 0 7px;
+    a {
+      box-shadow: none;
+    }
   }
   .rf-nav__btn[aria-expanded="true"] {
     background-color: #ae5dff;
     color: #420095 !important;
   }
   .rf-custom-link {
-    padding: 2.2rem 1rem !important;
+    padding: 2.5rem 1rem !important;
     background-color: #2e2e2e;
-    font-size: 1rem !important;
+    font-size: 0.88rem !important;
     color: #fff !important;
-    height: 98px !important;
+    height: 110px !important;
     line-height: 1.5rem;
     cursor: pointer;
     border: none;
@@ -205,6 +228,10 @@
     position: relative;
     margin-left: 10px;
     bottom: 4px;
+    .ri-arrow-down-s-line {
+      top: 3px;
+      position: relative;
+    }
   }
   .lien-aide {
     box-shadow: none !important;
@@ -233,6 +260,20 @@
     padding-top: 12px;
   }
 }
+.header-propos {
+  font-size: 0.88rem;
+  .rf-custom-link {
+    padding: 2.8rem 1.5rem 2.8rem 0.3rem !important;
+    .ri-compasses-2-fill {
+      margin: 10px;
+    }
+  }
+}
+.header-logout {
+  height: 32px;
+  margin-top: 20px !important;
+  margin-right: 13px !important;
+}
 /*Footer support */
 .lien-footer {
   box-shadow: none !important;
@@ -246,7 +287,7 @@
   }
   span {
     position: relative;
-    bottom: 18px;
+    bottom: 10px;
   }
 }
 
@@ -318,6 +359,33 @@
   height: 132px;
   width: 57px;
 }
+#propos {
+  .titre1 {
+    font-size: 2rem;
+  }
+  .titre2 {
+    font-size: 1.5rem;
+  }
+  .titre3 {
+    font-size: 1.25rem;
+  }
+  .lien-a-propos{
+    display: inline-block;
+    position: relative;
+    width: 84%;
+  }
+  .fresque-text {
+    height: 100px;
+    width: 180px;
+    color: #929292;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: 20px;
+  }
+}
+.bulle-ressourcerie {
+  height: 29px;
+}
 
 @media (max-width: 988px) {
   .modal-sexe-age {
@@ -335,6 +403,14 @@
 }
 
  /* Ajustement du header */
+ @media  (max-width: 1180px) {
+  .header-logout {
+    margin-right: 0px !important;
+  }
+  .rf-header__navbar {
+    margin-left: 0px;
+  }
+ }
  @media  (max-width: 1135px) {
   .cacher-baseline {
     display: none;
@@ -345,20 +421,21 @@
   }
 }
 /* custom point de rupture md du DS */
-@media (max-width: 768px) {
-
+@media (max-width: 767px) {
   .headerRow {
     justify-content: left;
   }
-
   .headerCustom {
     display: none;
   }
-
   #burgerMenu {
     display: block;
   }
-
+}
+@media (max-width: 767px) {
+  .rf-header {
+    height: auto;
+  }
 }
  /* Ajustement du footer md*/
 @media  (min-width: 933px) and (max-width: 1059px) {

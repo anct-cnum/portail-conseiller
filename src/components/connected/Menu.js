@@ -19,6 +19,8 @@ function Menu() {
     }
   };
 
+  const exclusionPages = ['/ressourcerie', '/a-propos'];
+
   return (
     <>
       {location.pathname !== '/accueil' &&
@@ -30,7 +32,7 @@ function Menu() {
               aria-label="Menu principal"
               style={{ boxShadow: 'none', zIndex: 1 }}>
               <ul className="rf-nav__list" style={{ paddingBottom: '15px' }}>
-                { location.pathname !== '/ressourcerie' &&
+                { !exclusionPages.includes(location.pathname) &&
                 <>
                   <li className="rf-nav__item">
                     <Link
@@ -65,6 +67,11 @@ function Menu() {
                 {!menu.hiddenMenu && menu.expandNav &&
                 <>
                   <li className="rf-shortcuts__item">
+                    <Link className="rf-btn rf-btn--sm" to="/a-propos" title="&Agrave; propos du site" onClick={toggleBurgerMenu}>
+                      &Agrave; propos
+                    </Link>
+                  </li>
+                  <li className="rf-shortcuts__item">
                     <a className="rf-nav__link" href={aideCoop} target="blank" rel="noreferrer">
                       Aide espace Coop
                     </a>
@@ -75,7 +82,7 @@ function Menu() {
                     </a>
                   </li>
                   <li className="rf-shortcuts__item">
-                    <Link className="rf-btn rf-btn--sm" to="/login" title="Se déconnecter" onClick={toggleBurgerMenu}>
+                    <Link className="rf-btn rf-btn--sm" to="/login" title="Se d&eacute;connecter" onClick={toggleBurgerMenu}>
                       Se d&eacute;connecter
                     </Link>
                   </li>

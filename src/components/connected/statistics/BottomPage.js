@@ -82,7 +82,7 @@ function BottomPage(props) {
       couleursGraphique: tabColorAge
     },
     titre: {
-      optionTitre: 'Évolution des accompagnements',
+      optionTitre: '&eacute;volution des accompagnements',
       margeTitre: 48,
     }
   };
@@ -98,7 +98,7 @@ function BottomPage(props) {
       couleursGraphique: tabColorAge
     },
     titre: {
-      optionTitre: 'Évolution des accompagnements',
+      optionTitre: '&eacute;volution des accompagnements',
       margeTitre: 48,
       placementTitre: 10,
     }
