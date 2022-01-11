@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import { conseillerService } from '../services/conseiller.service';
 
 export const formulaireHorairesAdresseActions = {
@@ -12,7 +13,7 @@ export const formulaireHorairesAdresseActions = {
 
 function verifyFormulaire(conseillerId, form) {
   let errors = [];
-
+  
   /*required*/
   if (!form?.adresseExact) {
     errors.push({ name: 'adresseExact', error: 'La correspondance des informations doit obligatoirement être saisie' });
@@ -64,7 +65,6 @@ function verifyFormulaire(conseillerId, form) {
     errors.push({ name: 'dimanche', error: 'L\'heure doit obligatoirement être saisie' });
   }
 
-
   /*champ spécifiques*/
   if (form?.siret && (String(form?.siret)?.length !== 14 || !Number.isInteger(form?.siret))) {
     errors.push({ name: 'siret', error: 'Le siret saisie est invalide, il doit comporter 14 chiffres' });
@@ -93,31 +93,31 @@ function verifyFormulaire(conseillerId, form) {
 
   /* Cohérence des horaires */
   if (form?.lundiMatinDebut > form?.lundiMatinFin || form?.lundiApresMidiDebut > form?.lundiApresMidiFin ||
-    form?.lundiApresMidiDebut < form?.lundiMatinFin) {
+    (form?.lundiApresMidiDebut !== 'Fermé' && form?.lundiMatinFin !== 'Fermé' && form?.lundiApresMidiDebut < form?.lundiMatinFin)) {
     errors.push({ name: 'lundi', error: 'Il y a une incohérence sur les heures saisies' });
   }
   if (form?.mardiMatinDebut > form?.mardiMatinFin || form?.mardiApresMidiDebut > form?.mardiApresMidiFin ||
-    form?.mardiApresMidiDebut < form?.mardiMatinFin) {
+    (form?.mardiApresMidiDebut !== 'Fermé' && form?.mardiMatinFin !== 'Fermé' && form?.mardiApresMidiDebut < form?.mardiMatinFin)) {
     errors.push({ name: 'mardi', error: 'Il y a une incohérence sur les heures saisies' });
   }
   if (form?.mercrediMatinDebut > form?.mercrediMatinFin || form?.mercrediApresMidiDebut > form?.mercrediApresMidiFin ||
-    form?.mercrediApresMidiDebut < form?.mercrediMatinFin) {
+    (form?.mercrediApresMidiDebut !== 'Fermé' && form?.mercrediMatinFin !== 'Fermé' && form?.mercrediApresMidiDebut < form?.mercrediMatinFin)) {
     errors.push({ name: 'mercredi', error: 'Il y a une incohérence sur les heures saisies' });
   }
   if (form?.jeudiMatinDebut > form?.jeudiMatinFin || form?.jeudiApresMidiDebut > form?.jeudiApresMidiFin ||
-    form?.jeudiApresMidiDebut < form?.jeudiMatinFin) {
+    (form?.jeudiApresMidiDebut !== 'Fermé' && form?.jeudiMatinFin !== 'Fermé' && form?.jeudiApresMidiDebut < form?.jeudiMatinFin)) {
     errors.push({ name: 'jeudi', error: 'Il y a une incohérence sur les heures saisies' });
   }
   if (form?.vendrediMatinDebut > form?.vendrediMatinFin || form?.vendrediApresMidiDebut > form?.vendrediApresMidiFin ||
-    form?.vendrediApresMidiDebut < form?.vendrediMatinFin) {
+    (form?.vendrediApresMidiDebut !== 'Fermé' && form?.vendrediMatinFin !== 'Fermé' && form?.vendrediApresMidiDebut < form?.vendrediMatinFin)) {
     errors.push({ name: 'vendredi', error: 'Il y a une incohérence sur les heures saisies' });
   }
   if (form?.samediMatinDebut > form?.samediMatinFin || form?.samediApresMidiDebut > form?.samediApresMidiFin ||
-    form?.samediApresMidiDebut < form?.samediMatinFin) {
+    (form?.samediApresMidiDebut !== 'Fermé' && form?.samediMatinFin !== 'Fermé' && form?.samediApresMidiDebut < form?.samediMatinFin)) {
     errors.push({ name: 'samedi', error: 'Il y a une incohérence sur les heures saisies' });
   }
   if (form?.dimancheMatinDebut > form?.dimancheMatinFin || form?.dimancheApresMidiDebut > form?.dimancheApresMidiFin ||
-    form?.dimancheApresMidiDebut < form?.dimancheMatinFin) {
+    (form?.dimancheApresMidiDebut !== 'Fermé' && form?.dimancheMatinFin !== 'Fermé' && form?.dimancheApresMidiDebut < form?.dimancheMatinFin)) {
     errors.push({ name: 'dimanche', error: 'Il y a une incohérence sur les heures saisies' });
   }
 
