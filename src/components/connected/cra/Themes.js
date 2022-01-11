@@ -12,13 +12,13 @@ function Themes() {
       <div className="rf-grid-row rf-grid-row--gutters rf-grid-row--middle rf-mb-7w">
         <div className="rf-col-xs-11 rf-col-sm-11 rf-col-md-2 questionCheckboxResponsive">
           <span className={`question ${cra?.printError && cra?.errorsRequired?.themes ? 'questionRequired' : ''}`}>
-            Quelle a / ont été la / les thématique(s) de l&rsquo;accompagnement&nbsp;? (choix multiple)
+            Quelle a / ont &eacute;t&eacute; la / les th&eacute;matique(s) de l&rsquo;accompagnement&nbsp;? (choix multiple)
           </span>
         </div>
         <div className="responsiveCheckbox1">
           <BigCheckboxButton
             type="themes"
-            label="Prendre en main un équipement informatique (ordinateur, smartphone, tablette, etc.)"
+            label="Prendre en main un &eacute;quipement informatique (ordinateur, smartphone, tablette, etc.)"
             value="equipement informatique"
             image="/logos/cra/logo-equip-info.svg"
             imageSelected="/logos/cra/logo-equip-info-n.svg"
@@ -36,7 +36,7 @@ function Themes() {
         <div className="responsiveCheckboxNewRow1">
           <BigCheckboxButton
             type="themes"
-            label="Envoyer, recevoir, gérer ses courriels"
+            label="Envoyer, recevoir, g&eacute;rer ses courriels"
             value="courriel"
             image="/logos/cra/logo-courriel.svg"
             imageSelected="/logos/cra/logo-courriel-n.svg"
@@ -54,7 +54,7 @@ function Themes() {
         <div className="responsiveCheckboxNewRow1">
           <BigCheckboxButton
             type="themes"
-            label="Créer et gérer (stocker, ranger, partager) ses contenus numériques"
+            label="Cr&eacute;er et g&eacute;rer (stocker, ranger, partager) ses contenus num&eacute;riques"
             value="contenus numeriques"
             image="/logos/cra/logo-contenus-numeriques.svg"
             imageSelected="/logos/cra/logo-contenus-numeriques-n.svg"
@@ -63,7 +63,7 @@ function Themes() {
         <div className="responsiveCheckboxNewRow2">
           <BigCheckboxButton
             type="themes"
-            label="Connaître l&rsquo;environnement et le vocabulaire numérique"
+            label="Connaître l&rsquo;environnement et le vocabulaire num&eacute;rique"
             value="vocabulaire"
             image="/logos/cra/logo-vocabulaire-info.svg"
             imageSelected="/logos/cra/logo-vocabulaire-info-n.svg"
@@ -108,7 +108,7 @@ function Themes() {
         <div className="responsiveCheckboxNewRow1">
           <BigCheckboxButton
             type="themes"
-            label="Comprendre ce que le numérique peut apporter à sa TPE/PME"
+            label="Comprendre ce que le num&eacute;rique peut apporter &agrave; sa TPE/PME"
             value="tpe/pme"
             image="/logos/cra/logo-tpe-pme.svg"
             imageSelected="/logos/cra/logo-tpe-pme-n.svg"
@@ -117,7 +117,7 @@ function Themes() {
         <div className="responsiveCheckboxNewRow2">
           <BigCheckboxButton
             type="themes"
-            label="Réaliser une démarche en ligne"
+            label="R&eacute;aliser une d&eacute;marche en ligne"
             value="demarche en ligne"
             image="/logos/cra/logo-demarche-en-ligne.svg"
             imageSelected="/logos/cra/logo-demarche-en-ligne-n.svg"

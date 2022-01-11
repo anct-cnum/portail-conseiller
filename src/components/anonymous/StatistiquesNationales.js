@@ -54,7 +54,7 @@ function StatistiquesNationales() {
           {isPDFDownloaded === false &&
             <FlashMessage duration={5000}>
               <p className="flashBag invalid">
-                Vos statistiques n&rsquo;ont pas pu être téléchargées, veuillez réessayer !
+                Vos statistiques n&rsquo;ont pas pu &ecirc;tre t&eacute;l&eacute;charg&eacute;es, veuillez r&eacute;essayer !
               </p>
             </FlashMessage>
           }

@@ -1,7 +1,7 @@
 [
   {
     "nom": "equipement informatique",
-    "correspondance": "Équipement informatique"
+    "correspondance": "&eacute;quipement informatique"
   },
   {
     "nom": "internet",
@@ -17,11 +17,11 @@
   },
   {
     "nom": "contenus numeriques",
-    "correspondance": "Gestion de contenus numériques"
+    "correspondance": "Gestion de contenus num&eacute;riques"
   },
   {
     "nom": "vocabulaire",
-    "correspondance": "Env., vocab. numérique"
+    "correspondance": "Env., vocab. num&eacute;rique"
   },
   {
     "nom": "traitement texte",
@@ -29,7 +29,7 @@
   },
   {
     "nom": "echanger",
-    "correspondance": "Échanger avec ses proches"
+    "correspondance": "&eacute;changer avec ses proches"
   },
   {
     "nom": "trouver emploi",
@@ -41,11 +41,11 @@
   },
   {
     "nom": "tpe/pme",
-    "correspondance": "Numérique et TPE/PME"
+    "correspondance": "Num&eacute;rique et TPE/PME"
   },
   {
     "nom": "demarche en ligne",
-    "correspondance": "Démarche en ligne"
+    "correspondance": "D&eacute;marche en ligne"
   },
   {
     "nom": "autre",
@@ -53,11 +53,11 @@
   },
   {
     "nom": "domicile",
-    "correspondance": "À domicile"
+    "correspondance": "&Agrave; domicile"
   },
   {
     "nom": "distance",
-    "correspondance": "À distance"
+    "correspondance": "&Agrave; distance"
   },
   {
     "nom": "rattachement",
@@ -69,15 +69,15 @@
   },
   {
     "nom": "0-30",
-    "correspondance": "0 à 30 min."
+    "correspondance": "0 &agrave; 30 min."
   },
   {
     "nom": "30-60",
-    "correspondance": "30 min. à 1h"
+    "correspondance": "30 min. &agrave; 1h"
   },
   {
     "nom": "60-120",
-    "correspondance": "1h à 2h"
+    "correspondance": "1h &agrave; 2h"
   },
   {
     "nom": "120+",
@@ -117,10 +117,10 @@
   },
   {
     "nom": "retraite",
-    "correspondance": "Retraité"
+    "correspondance": "Retrait&eacute;"
   },
   {
     "nom": "heterogene",
-    "correspondance": "Non renseigné"
+    "correspondance": "Non renseign&eacute;"
   }
 ]

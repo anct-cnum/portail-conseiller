@@ -21,7 +21,7 @@
   .menu-btn {
     line-height: 1.5rem;
     text-align: center;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
     font-size: 1rem;
     color: #fff;
@@ -52,8 +52,31 @@
   .icone-btn {
     display: block;
     margin: auto;
+  }
+  .icone-cra {
+    height: 63px;
+    width: 93px;
+    margin-bottom: 14px;
+  }
+  .icone-mattermost {
+    height: 86px;
+    width: 90px;
+    margin-top: -10px;
+  }
+  .icone-ressourcerie {
     height: 69px;
     width: 83px;
+    margin-bottom: 8px;
+  }
+  .icone-pix {
+    height: 64px;
+    width: 86px;
+    margin-bottom: 13px;
+  }
+  .icone-mail {
+    height: 64px;
+    width: 84px;
+    margin-bottom: 12px;
   }
   .bloc-document {
     background-color: #1e1e1e;
@@ -78,13 +101,35 @@
     width: 326px;
   }
   .img-home {
-    width: 586px;
+    width: 588px;
+  }
+  .propos-btn {
+    border: 1px solid #8585f6;
+    display: inline-block;
+    text-align: center;
+    line-height: 24px;
+    letter-spacing: 0;
+    padding: 8px 24px;
+    margin-top: -10px;
+    color: #8585f6;
+    font-size: 16px;
+    height: 40px;
   }
 
+  @media (max-width:  1436px) {
+    .img-home-futur {
+      width: 100%;
+    }
+  }
   @media (min-width: 768px) and (max-width: 1220px ) {
     .img-home {
       width: 90%;
     }
+  }
+  @media (min-width: 992px) and (max-width:  1033px) {
+   .propos-btn {
+    height: 70px;
+   }
   }
   @media (max-width:  978px) {
     .document-btn, .kit-communication-btn {
@@ -101,5 +146,10 @@
       width: 300px;
       height: 400px;
     }
+  }
+  @media (max-width: 524px) {
+    .propos-btn {
+      height: 70px;
+     }
   }
 }
