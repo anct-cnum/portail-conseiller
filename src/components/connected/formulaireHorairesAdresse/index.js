@@ -7,18 +7,21 @@ import Adresse from './Adresse';
 import Horaires from './Horaires';
 import Itinerance from './Itinerance';
 import Validation from './Validation';
+import Remerciement from './Remerciement';
 import Footer from '../../Footer';
 import FlashMessage from 'react-flash-message';
+import { useLocation } from 'react-router-dom';
 import { formulaireHorairesAdresseActions } from '../../../actions/formulaireHorairesAdresse.actions';
 
 function FormulaireHorairesAdresse() {
+  const location = useLocation();
   const dispatch = useDispatch();
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const structure = useSelector(state => state.structure?.structure);
   const isAdresseCachee = useSelector(state => state.horairesAdresse?.isAdresseCachee);
   const adresseStructure = structure?.insee.etablissement.adresse;
   const dateUpdate = conseiller?.informationsCartographie?.updateAt ? dayjs(conseiller?.informationsCartographie.updateAt).format('DD/MM/YYYY') : null;
-  const erreursFormulaire = useSelector(state => state.horairesAdresse.errorsFormulaire);
+  const showError = useSelector(state => state.horairesAdresse.showError);
   const isUpdated = useSelector(state => state.horairesAdresse.isUpdated);
 
   useEffect(() => {
@@ -29,21 +32,22 @@ function FormulaireHorairesAdresse() {
 
   return (
     <>
-      {(erreursFormulaire?.length === 0 && isUpdated) &&
+      {isUpdated &&
         <FlashMessage duration={5000}>
-
           <p className="rf-label flashBag">
             Vos informations ont bien &eacute;t&eacute; enregistr&eacute;es&nbsp;
             <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
           </p>
         </FlashMessage>
       }
-      {erreursFormulaire?.length > 0 &&
-        <FlashMessage>
-          <p className="rf-label flashBag invalid">
-            Une erreur est survenue lors du traitement de vos informations
-          </p>
-        </FlashMessage>
+
+      {showError &&
+        <p className="rf-label flashBag invalid">
+          Une erreur est survenue lors du traitement de vos informations
+        </p>
+      }
+      { (isUpdated && location === 'accueil') &&
+        <Remerciement/>
       }
       <div id="formulaire-horaires-adresse" className="rf-container">
         <div className="rf-grid-row">

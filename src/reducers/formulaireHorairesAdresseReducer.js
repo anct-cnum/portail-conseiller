@@ -1,7 +1,36 @@
 
 const initialState = {
   isAdresseCachee: true,
-  isUpdated: false
+  isUpdated: false,
+  showError: false,
+  lundiMatinDebut: 'Fermé',
+  lundiMatinFin: 'Fermé',
+  lundiApresMidiDebut: 'Fermé',
+  lundiApresMidiFin: 'Fermé',
+  mardiMatinDebut: 'Fermé',
+  mardiMatinFin: 'Fermé',
+  mardiApresMidiDebut: 'Fermé',
+  mardiApresMidiFin: 'Fermé',
+  mercrediMatinDebut: 'Fermé',
+  mercrediMatinFin: 'Fermé',
+  mercrediApresMidiDebut: 'Fermé',
+  mercrediApresMidiFin: 'Fermé',
+  jeudiMatinDebut: 'Fermé',
+  jeudiMatinFin: 'Fermé',
+  jeudiApresMidiDebut: 'Fermé',
+  jeudiApresMidiFin: 'Fermé',
+  vendrediMatinDebut: 'Fermé',
+  vendrediMatinFin: 'Fermé',
+  vendrediApresMidiDebut: 'Fermé',
+  vendrediApresMidiFin: 'Fermé',
+  samediMatinDebut: 'Fermé',
+  samediMatinFin: 'Fermé',
+  samediApresMidiDebut: 'Fermé',
+  samediApresMidiFin: 'Fermé',
+  dimancheMatinDebut: 'Fermé',
+  dimancheMatinFin: 'Fermé',
+  dimancheApresMidiDebut: 'Fermé',
+  dimancheApresMidiFin: 'Fermé',
 };
 
 export default function formulaireHorairesAdresse(state = initialState, action) {
@@ -9,22 +38,27 @@ export default function formulaireHorairesAdresse(state = initialState, action) 
     case 'VERIFY_FORMULAIRE':
       return {
         ...state,
+        isUpdated: false,
+        showError: true,
         errorsFormulaire: action.errors
       };
     case 'POST_HORAIRES_ADRESSE_REQUEST':
       return {
         ...state,
+        showError: false,
       };
     case 'POST_HORAIRES_ADRESSE_SUCCESS':
       return {
         ...state,
-        isUpdated: action.isUpdated
+        isUpdated: action.isUpdated,
+        showError: false,
       };
     case 'POST_HORAIRES_ADRESSE_FAILURE':
       return {
         ...state,
         isUpdated: false,
-        error: action.error
+        showError: true,
+        error: action.error,
       };
     /* Partie Informations */
     case 'CACHER_ADRESSE':
@@ -59,30 +93,35 @@ export default function formulaireHorairesAdresse(state = initialState, action) 
       return {
         ...state,
         lieuActivite: action.value,
+        showError: false,
         errorsFormulaire: state?.errorsFormulaire?.filter(erreur => erreur.name !== 'lieuActivite')
       };
     case 'UPDATE_SIRET':
       return {
         ...state,
         siret: Number(action.value),
+        showError: false,
         errorsFormulaire: state?.errorsFormulaire?.filter(erreur => erreur.name !== 'siret')
       };
     case 'UPDATE_NUMEROTELEPHONE':
       return {
         ...state,
         numeroTelephone: action.value,
+        showError: false,
         errorsFormulaire: state?.errorsFormulaire?.filter(erreur => erreur.name !== 'numeroTelephone')
       };
     case 'UPDATE_EMAIL':
       return {
         ...state,
         email: action.value,
+        showError: false,
         errorsFormulaire: state?.errorsFormulaire?.filter(erreur => erreur.name !== 'email')
       };
     case 'UPDATE_SITEWEB':
       return {
         ...state,
         siteWeb: action.value,
+        showError: false,
         errorsFormulaire: state?.errorsFormulaire?.filter(erreur => erreur.name !== 'siteWeb')
       };
 
@@ -91,24 +130,28 @@ export default function formulaireHorairesAdresse(state = initialState, action) 
       return {
         ...state,
         numeroVoie: action.value,
+        showError: false,
         errorsFormulaire: state?.errorsFormulaire?.filter(erreur => erreur.name !== 'numeroVoie')
       };
     case 'UPDATE_RUEVOIE':
       return {
         ...state,
         rueVoie: action.value,
+        showError: false,
         errorsFormulaire: state?.errorsFormulaire?.filter(erreur => erreur.name !== 'rueVoie')
       };
     case 'UPDATE_CODEPOSTAL':
       return {
         ...state,
         codePostal: action.value,
+        showError: false,
         errorsFormulaire: state?.errorsFormulaire?.filter(erreur => erreur.name !== 'codePostal')
       };
     case 'UPDATE_VILLE':
       return {
         ...state,
         ville: action.value,
+        showError: false,
         errorsFormulaire: state?.errorsFormulaire?.filter(erreur => erreur.name !== 'ville')
       };
     /* Partie Itinerance */
@@ -117,147 +160,176 @@ export default function formulaireHorairesAdresse(state = initialState, action) 
       return {
         ...state,
         itinerance: action.itinerance,
+        showError: false,
         errorsFormulaire: state?.errorsFormulaire?.filter(erreur => erreur.name !== 'itinerance')
       };
     /* Partie Horaires */
     case 'UPDATE_LUNDIMATINDEBUT':
       return {
         ...state,
+        showError: false,
         lundiMatinDebut: action.value
       };
     case 'UPDATE_LUNDIMATINFIN':
       return {
         ...state,
+        showError: false,
         lundiMatinFin: action.value
       };
     case 'UPDATE_LUNDIAPRESMIDIDEBUT':
       return {
         ...state,
+        showError: false,
         lundiApresMidiDebut: action.value
       };
     case 'UPDATE_LUNDIAPRESMIDIFIN':
       return {
         ...state,
+        showError: false,
         lundiApresMidiFin: action.value
       };
     case 'UPDATE_MARDIMATINDEBUT':
       return {
         ...state,
+        showError: false,
         mardiMatinDebut: action.value
       };
     case 'UPDATE_MARDIMATINFIN':
       return {
         ...state,
+        showError: false,
         mardiMatinFin: action.value
       };
     case 'UPDATE_MARDIAPRESMIDIDEBUT':
       return {
         ...state,
+        showError: false,
         mardiApresMidiDebut: action.value
       };
     case 'UPDATE_MARDIAPRESMIDIFIN':
       return {
         ...state,
+        showError: false,
         mardiApresMidiFin: action.value
       };
     case 'UPDATE_MERCREDIMATINDEBUT':
       return {
         ...state,
+        showError: false,
         mercrediMatinDebut: action.value
       };
     case 'UPDATE_MERCREDIMATINFIN':
       return {
         ...state,
+        showError: false,
         mercrediMatinFin: action.value
       };
     case 'UPDATE_MERCREDIAPRESMIDIDEBUT':
       return {
         ...state,
+        showError: false,
         mercrediApresMidiDebut: action.value
       };
     case 'UPDATE_MERCREDIAPRESMIDIFIN':
       return {
         ...state,
+        showError: false,
         mercrediApresMidiFin: action.value
       };
     case 'UPDATE_JEUDIMATINDEBUT':
       return {
         ...state,
+        showError: false,
         jeudiMatinDebut: action.value
       };
     case 'UPDATE_JEUDIMATINFIN':
       return {
         ...state,
+        showError: false,
         jeudiMatinFin: action.value
       };
     case 'UPDATE_JEUDIAPRESMIDIDEBUT':
       return {
         ...state,
+        showError: false,
         jeudiApresMidiDebut: action.value
       };
     case 'UPDATE_JEUDIAPRESMIDIFIN':
       return {
         ...state,
+        showError: false,
         jeudiApresMidiFin: action.value
       };
     case 'UPDATE_VENDREDIMATINDEBUT':
       return {
         ...state,
+        showError: false,
         vendrediMatinDebut: action.value
       };
     case 'UPDATE_VENDREDIMATINFIN':
       return {
         ...state,
+        showError: false,
         vendrediMatinFin: action.value
       };
     case 'UPDATE_VENDREDIAPRESMIDIDEBUT':
       return {
         ...state,
+        showError: false,
         vendrediApresMidiDebut: action.value
       };
     case 'UPDATE_VENDREDIAPRESMIDIFIN':
       return {
         ...state,
+        showError: false,
         vendrediApresMidiFin: action.value
       };
     case 'UPDATE_SAMEDIMATINDEBUT':
       return {
         ...state,
+        showError: false,
         samediMatinDebut: action.value
       };
     case 'UPDATE_SAMEDIMATINFIN':
       return {
         ...state,
+        showError: false,
         samediMatinFin: action.value
       };
     case 'UPDATE_SAMEDIAPRESMIDIDEBUT':
       return {
         ...state,
+        showError: false,
         samediApresMidiDebut: action.value
       };
     case 'UPDATE_SAMEDIAPRESMIDIFIN':
       return {
         ...state,
+        showError: false,
         samediApresMidiFin: action.value
       };
     case 'UPDATE_DIMANCHEMATINDEBUT':
       return {
         ...state,
+        showError: false,
         dimancheMatinDebut: action.value
       };
     case 'UPDATE_DIMANCHEMATINFIN':
       return {
         ...state,
+        showError: false,
         dimancheMatinFin: action.value
       };
     case 'UPDATE_DIMANCHEAPRESMIDIDEBUT':
       return {
         ...state,
+        showError: false,
         dimancheApresMidiDebut: action.value
       };
     case 'UPDATE_DIMANCHEAPRESMIDIFIN':
       return {
         ...state,
+        showError: false,
         dimancheApresMidiFin: action.value
       };
       /* init du formulaire de mise à jour des informations */

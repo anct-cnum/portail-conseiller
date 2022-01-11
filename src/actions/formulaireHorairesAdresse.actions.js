@@ -1,4 +1,3 @@
-import { useLocation } from 'react-router-dom';
 import { conseillerService } from '../services/conseiller.service';
 
 export const formulaireHorairesAdresseActions = {
@@ -11,9 +10,9 @@ export const formulaireHorairesAdresseActions = {
   initInformations
 };
 
-function verifyFormulaire(conseillerId, form) {
+function verifyFormulaire(form) {
   let errors = [];
-  
+
   /*required*/
   if (!form?.adresseExact) {
     errors.push({ name: 'adresseExact', error: 'La correspondance des informations doit obligatoirement être saisie' });

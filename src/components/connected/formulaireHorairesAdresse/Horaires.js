@@ -20,7 +20,7 @@ function Horaires({ horairesConseiller }) {
     mercrediMatinDebut: '', mercrediMatinFin: '', mercrediApresMidiDebut: '', mercrediApresMidiFin: '',
     jeudiMatinDebut: '', jeudiMatinFin: '', jeudiApresMidiDebut: '', jeudiApresMidiFin: '',
     vendrediMatinDebut: '', vendrediMatinFin: '', vendrediApresMidiDebut: '', vendrediApresMidiFin: '',
-    samediMatinDebut: '', samediMatinFin: '', samediApresMidiDebut: '', samediApresMidiFin: '',
+    samediMatinDebut: 'Fermé', samediMatinFin: 'Fermé', samediApresMidiDebut: 'Fermé', samediApresMidiFin: 'Fermé',
     dimancheMatinDebut: 'Fermé', dimancheMatinFin: 'Fermé', dimancheApresMidiDebut: 'Fermé', dimancheApresMidiFin: 'Fermé'
   });
 
@@ -100,10 +100,7 @@ function Horaires({ horairesConseiller }) {
         dimanchePm: horairesConseiller[6].dimanche.apresMidi[0] !== 'Fermé',
       });
     }
-
   }, [horairesConseiller]);
-
-  console.log(lundiAm);
 
   return (
     <>
