@@ -7,6 +7,7 @@ export const formulaireHorairesAdresseActions = {
   initAdresse,
   updateField,
   updateItinerance,
+  initInformations
 };
 
 function verifyFormulaire(conseillerId, form) {
@@ -65,7 +66,7 @@ function verifyFormulaire(conseillerId, form) {
 
 
   /*champ spécifiques*/
-  if (form?.siret && (form?.siret?.length !== 14 || Number.isInteger(form?.siret))) {
+  if (form?.siret && (String(form?.siret)?.length !== 14 || !Number.isInteger(form?.siret))) {
     errors.push({ name: 'siret', error: 'Le siret saisie est invalide, il doit comporter 14 chiffres' });
   }
   if (form?.numeroTelephone) {
@@ -168,4 +169,8 @@ function updateField(name, value) {
 
 function updateItinerance(itinerance) {
   return { type: 'UPDATE_ITINERANCE', itinerance };
+}
+
+function initInformations(informations) {
+  return { type: 'INIT_INFORMATION', informations };
 }

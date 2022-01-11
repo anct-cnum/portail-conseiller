@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { formulaireHorairesAdresseActions } from '../../../actions/formulaireHorairesAdresse.actions';
 
-function Informations({ structure, adresseStructure }) {
+function Informations({ structure, adresseStructure, siretStructure, informationsCartographie }) {
   const dispatch = useDispatch();
   const isAdresseCachee = useSelector(state => state.horairesAdresse?.isAdresseCachee);
   const erreursFormulaire = useSelector(state => state.horairesAdresse.errorsFormulaire);
@@ -26,23 +26,45 @@ function Informations({ structure, adresseStructure }) {
   let indicatif = structure?.codeDepartement.length === 3 ?
     telephoneHorsMetropole?.find(item => item.codeDepartement === structure?.codeDepartement).indicatif : '+33';
 
-  const [inputs, setInputs] = useState({});
+  const [inputs, setInputs] = useState({
+    lieuActivite: '',
+    siret: '',
+    numeroTelephone: '',
+    email: '',
+    siteWeb: '',
+    adresseExact: null
+  });
 
-  const { lieuActivite, siret, numeroTelephone, email, siteWeb } = inputs;
+  const { lieuActivite, siret, numeroTelephone, email, siteWeb, adresseExact } = inputs;
 
   function handleChange(e) {
     const { name, value } = e.target;
-    setInputs({ name: value });
+    setInputs(inputs => ({ ...inputs, [name]: value }));
     dispatch(formulaireHorairesAdresseActions.updateField(name, value));
   }
 
   function handleAdresse(boolean) {
     dispatch(formulaireHorairesAdresseActions.cacherAdresse(boolean));
     if (boolean) {
-      adresseStructure.siret = structure?.insee.entreprise.siret_siege_social;
+      adresseStructure.siret = siretStructure;
       dispatch(formulaireHorairesAdresseActions.initAdresse(adresseStructure));
+    } else {
+      setInputs(inputs => ({ ...inputs, siret: '' }));
     }
   }
+
+  useEffect(() => {
+    if (informationsCartographie) {
+      setInputs({
+        lieuActivite: informationsCartographie?.nomEnseigne,
+        siret: informationsCartographie?.siret,
+        numeroTelephone: informationsCartographie?.numeroTelephone,
+        email: informationsCartographie?.email,
+        siteWeb: informationsCartographie?.siteWeb ? informationsCartographie?.siteWeb : '',
+        adresseExact: true
+      });
+    }
+  }, [informationsCartographie]);
 
   return (
     <>
@@ -51,7 +73,7 @@ function Informations({ structure, adresseStructure }) {
         <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-2w">
           <div className="rf-fieldset__content">
             <div className="rf-radio-group">
-              <input type="radio" id="Oui" name="adresseExact" value="Oui" onClick={() => {
+              <input type="radio" id="Oui" name="adresseExact" value="Oui" defaultChecked={adresseExact} onClick={() => {
                 handleAdresse(true);
               }}/>
               <label className={erreurAdresseExact ? 'rf-label invalid' : 'rf-label' } htmlFor="Oui">Oui</label>
@@ -147,7 +169,8 @@ function Informations({ structure, adresseStructure }) {
 Informations.propTypes = {
   structure: PropTypes.object,
   adresseStructure: PropTypes.object,
-  informationsCartographie: PropTypes.object,
+  siretStructure: PropTypes.string,
+  informationsCartographie: PropTypes.object
 };
 
 export default Informations;

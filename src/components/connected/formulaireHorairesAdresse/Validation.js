@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { formulaireHorairesAdresseActions } from '../../../actions/formulaireHorairesAdresse.actions';
@@ -9,12 +9,15 @@ function Validation({ conseillerId }) {
   const form = useSelector(state => state.horairesAdresse);
   const errorsForm = useSelector(state => state.horairesAdresse?.errorsFormulaire);
 
+  const [clickSubmit, setClickSubmit] = useState(false);
   function handleSubmit() {
     dispatch(formulaireHorairesAdresseActions.verifyFormulaire(conseillerId, form));
+    setClickSubmit(true);
+    window.scrollTo(0, 0);
   }
 
   useEffect(() => {
-    if (errorsForm?.length === 0) {
+    if (errorsForm?.length === 0 && clickSubmit) {
       dispatch(formulaireHorairesAdresseActions.createHorairesAdresse(conseillerId, {
         nomEnseigne: form.lieuActivite,
         numeroTelephone: form.numeroTelephone,
@@ -55,8 +58,7 @@ function Validation({ conseillerId }) {
         dimancheApresMidiFin: form.dimancheApresMidiFin,
         itinerant: form.itinerance
       }));
-    } else {
-      window.scrollTo(0, 0);
+      setClickSubmit(false);
     }
   }, [errorsForm]);
 

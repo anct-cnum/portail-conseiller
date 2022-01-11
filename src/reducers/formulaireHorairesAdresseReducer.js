@@ -1,6 +1,7 @@
 
 const initialState = {
   isAdresseCachee: true,
+  isUpdated: false
 };
 
 export default function formulaireHorairesAdresse(state = initialState, action) {
@@ -22,6 +23,7 @@ export default function formulaireHorairesAdresse(state = initialState, action) 
     case 'POST_HORAIRES_ADRESSE_FAILURE':
       return {
         ...state,
+        isUpdated: false,
         error: action.error
       };
     /* Partie Informations */
@@ -47,11 +49,11 @@ export default function formulaireHorairesAdresse(state = initialState, action) 
     case 'INIT_ADRESSE':
       return {
         ...state,
-        numeroVoie: action.adresse.numero_voie,
-        rueVoie: action.adresse.type_voie + ' ' + action.adresse?.nom_voie,
-        codePostal: action.adresse.code_postal,
-        ville: action.adresse.localite,
-        siret: action.adresse.siret
+        numeroVoie: action.adresse.numeroRue ? action.adresse.numeroRue : action.adresse.numero_voie,
+        rueVoie: action.adresse?.rue ? action.adresse?.rue : action.adresse.type_voie + ' ' + action.adresse?.nom_voie,
+        codePostal: action.adresse.codePostal ? action.adresse.codePostal : action.adresse.code_postal,
+        ville: action.adresse.ville ? action.adresse.ville : action.adresse.localite,
+        siret: Number(action.adresse.siret)
       };
     case 'UPDATE_LIEUACTIVITE':
       return {
@@ -62,7 +64,7 @@ export default function formulaireHorairesAdresse(state = initialState, action) 
     case 'UPDATE_SIRET':
       return {
         ...state,
-        siret: action.value,
+        siret: Number(action.value),
         errorsFormulaire: state?.errorsFormulaire?.filter(erreur => erreur.name !== 'siret')
       };
     case 'UPDATE_NUMEROTELEPHONE':
@@ -257,6 +259,52 @@ export default function formulaireHorairesAdresse(state = initialState, action) 
       return {
         ...state,
         dimancheApresMidiFin: action.value
+      };
+      /* init du formulaire de mise à jour des informations */
+    case 'INIT_INFORMATION':
+      return {
+        ...state,
+        adresseExact: true,
+        lieuActivite: action.informations.nomEnseigne,
+        siret: Number(action.informations.siret),
+        numeroTelephone: action.informations.numeroTelephone,
+        email: action.informations.email,
+        siteWeb: action.informations.siteWeb ? action.informations.siteWeb : '',
+        itinerance: String(action.informations.itinerant),
+
+        numeroVoie: action.informations.adresse.numeroRue,
+        rueVoie: action.informations.adresse?.rue,
+        codePostal: action.informations.adresse.codePostal,
+        ville: action.informations.adresse.ville,
+
+        lundiMatinDebut: action.informations.horaires[0].lundi.matin[0],
+        lundiMatinFin: action.informations.horaires[0].lundi.matin[1],
+        lundiApresMidiDebut: action.informations.horaires[0].lundi.apresMidi[0],
+        lundiApresMidiFin: action.informations.horaires[0].lundi.apresMidi[1],
+        mardiMatinDebut: action.informations.horaires[1].mardi.matin[0],
+        mardiMatinFin: action.informations.horaires[1].mardi.matin[1],
+        mardiApresMidiDebut: action.informations.horaires[1].mardi.apresMidi[0],
+        mardiApresMidiFin: action.informations.horaires[1].mardi.apresMidi[1],
+        mercrediMatinDebut: action.informations.horaires[2].mercredi.matin[0],
+        mercrediMatinFin: action.informations.horaires[2].mercredi.matin[1],
+        mercrediApresMidiDebut: action.informations.horaires[2].mercredi.apresMidi[0],
+        mercrediApresMidiFin: action.informations.horaires[2].mercredi.apresMidi[1],
+        jeudiMatinDebut: action.informations.horaires[3].jeudi.matin[0],
+        jeudiMatinFin: action.informations.horaires[3].jeudi.matin[1],
+        jeudiApresMidiDebut: action.informations.horaires[3].jeudi.apresMidi[0],
+        jeudiApresMidiFin: action.informations.horaires[3].jeudi.apresMidi[1],
+        vendrediMatinDebut: action.informations.horaires[4].vendredi.matin[0],
+        vendrediMatinFin: action.informations.horaires[4].vendredi.matin[1],
+        vendrediApresMidiDebut: action.informations.horaires[4].vendredi.apresMidi[0],
+        vendrediApresMidiFin: action.informations.horaires[4].vendredi.apresMidi[1],
+        samediMatinDebut: action.informations.horaires[5].samedi.matin[0],
+        samediMatinFin: action.informations.horaires[5].samedi.matin[1],
+        samediApresMidiDebut: action.informations.horaires[5].samedi.apresMidi[0],
+        samediApresMidiFin: action.informations.horaires[5].samedi.apresMidi[1],
+        dimancheMatinDebut: action.informations.horaires[6].dimanche.matin[0],
+        dimancheMatinFin: action.informations.horaires[6].dimanche.matin[1],
+        dimancheApresMidiDebut: action.informations.horaires[6].dimanche.apresMidi[0],
+        dimancheApresMidiFin: action.informations.horaires[6].dimanche.apresMidi[1]
       };
     default:
       return state;
