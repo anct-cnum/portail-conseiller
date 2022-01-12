@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { formulaireHorairesAdresseActions } from '../../../actions/formulaireHorairesAdresse.actions';
+import telephoneHorsMetropole from '../../../data/indicatifs.json';
 
 function Informations({ structure, adresseStructure, siretStructure, informationsCartographie }) {
   const dispatch = useDispatch();
@@ -14,14 +15,6 @@ function Informations({ structure, adresseStructure, siretStructure, information
   const erreurNumeroTelephone = erreursFormulaire?.filter(erreur => erreur.name === 'numeroTelephone')[0];
   const erreurEmail = erreursFormulaire?.filter(erreur => erreur.name === 'email')[0];
   const erreurSiteWeb = erreursFormulaire?.filter(erreur => erreur.name === 'siteWeb')[0];
-
-  const telephoneHorsMetropole = [
-    { codeDepartement: '971', indicatif: '+590' },
-    { codeDepartement: '972', indicatif: '+596' },
-    { codeDepartement: '973', indicatif: '+594' },
-    { codeDepartement: '974', indicatif: '+262' },
-    { codeDepartement: '976', indicatif: '+269' },
-  ];
 
   let indicatif = structure?.codeDepartement.length === 3 ?
     telephoneHorsMetropole?.find(item => item.codeDepartement === structure?.codeDepartement).indicatif : '+33';
