@@ -39,7 +39,7 @@ function Itinerance({ informationsCartographie }) {
             </div>
             <div className="rf-radio-group">
               <input type="radio" id="itinerance-Non" name="itinerance" value="false" required="required" onChange={handleChange}
-                defaultChecked={!itinerance === null}
+                defaultChecked={!itinerance && itinerance !== null}
               />
               <label className={erreurItinerance ? 'rf-label invalid' : 'rf-label' } htmlFor="itinerance-Non">Non</label>
             </div>
