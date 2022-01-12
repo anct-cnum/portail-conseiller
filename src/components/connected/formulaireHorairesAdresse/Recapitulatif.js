@@ -16,12 +16,12 @@ function Recapitulatif({ nomStructure, siret, adresseStructure }) {
         <br/>
         <span className="libelle-adresse rf-mr-3w">Code Postal</span>
         <span className="info-adresse">
-          {adresseStructure?.codePostal ? adresseStructure?.codePostal : adresseStructure?.code_postal}
+          {adresseStructure?.codePostal ?? adresseStructure?.code_postal}
         </span>
         <br/>
         <span className="libelle-adresse rf-mr-3w">Ville</span>
         <span className="info-adresse">
-          {adresseStructure?.ville ? adresseStructure?.ville : adresseStructure?.localite}
+          {adresseStructure?.ville ?? adresseStructure?.localite}
         </span>
         <br/>
         <span className="libelle-adresse rf-mr-3w">N° de siret</span>

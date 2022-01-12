@@ -52,6 +52,7 @@ export default function formulaireHorairesAdresse(state = initialState, action) 
         ...state,
         isUpdated: action.isUpdated,
         showError: false,
+        error: false,
       };
     case 'POST_HORAIRES_ADRESSE_FAILURE':
       return {

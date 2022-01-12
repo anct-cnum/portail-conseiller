@@ -13,6 +13,11 @@ export const formulaireHorairesAdresseActions = {
 function verifyFormulaire(form) {
   let errors = [];
 
+  //eslint-disable-next-line max-len
+  const rexExpEmail = new RegExp(/^(([^<>()[\]\\.,;:\s@\\"]+(\.[^<>()[\]\\.,;:\s@\\"]+)*)|(\\".+\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+  const rexExpNumero = new RegExp(/^(?:(?:\+)(33|590|596|594|262|269))(?:[\s.-]*\d{3}){3,4}$/gi);
+  const rexExpSiteWeb = new RegExp(/(https?):\/\/[a-z0-9\\/:%_+.,#?!@&=-]+/gi);
+
   /*required*/
   if (!form?.adresseExact) {
     errors.push({ name: 'adresseExact', error: 'La correspondance des informations doit obligatoirement être saisie' });
@@ -69,23 +74,19 @@ function verifyFormulaire(form) {
     errors.push({ name: 'siret', error: 'Le siret saisie est invalide, il doit comporter 14 chiffres' });
   }
   if (form?.numeroTelephone) {
-    const matchTelephone = form.numeroTelephone.match(/^(?:(?:\+)(33|590|596|594|262|269))(?:[\s.-]*\d{3}){3,4}$/gi);
-    if (matchTelephone?.length !== 1 || matchTelephone === null) {
+    if (!rexExpNumero.test(form.numeroTelephone)) {
       errors.push({ name: 'numeroTelephone',
         error: 'Le numéro de téléphone saisie est invalide (mettre votre indicatif international suivi des 9 chiffres)'
       });
     }
   }
   if (form?.email) {
-    //eslint-disable-next-line max-len
-    const matchEmail = form.email.match(/^(([^<>()[\]\\.,;:\s@\\"]+(\.[^<>()[\]\\.,;:\s@\\"]+)*)|(\\".+\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-    if (matchEmail?.length < 1 || matchEmail === null) {
+    if (!rexExpEmail.test(form.email)) {
       errors.push({ name: 'email', error: 'L\'adresse email saisie est invalide' });
     }
   }
   if (form?.siteWeb) {
-    const matchUrl = form.siteWeb.match(/(https?):\/\/[a-z0-9\\/:%_+.,#?!@&=-]+/gi);
-    if (matchUrl?.length < 1 || matchUrl === null) {
+    if (!rexExpSiteWeb.test(form.siteWeb)) {
       errors.push({ name: 'siteWeb', error: 'L\'URL saisie est invalide (exemple de format valide https://www.mon-site.fr)' });
     }
   }

@@ -20,7 +20,7 @@ function FormulaireHorairesAdresse() {
   const structure = useSelector(state => state.structure?.structure);
   const isAdresseCachee = useSelector(state => state.horairesAdresse?.isAdresseCachee);
   const adresseStructure = structure?.insee.etablissement.adresse;
-  const dateUpdate = conseiller?.informationsCartographie?.updateAt ? dayjs(conseiller?.informationsCartographie.updateAt).format('DD/MM/YYYY') : null;
+  const dateUpdate = conseiller?.informationsCartographie?.updateAt ? dayjs(conseiller?.informationsCartographie.updatedAt).format('DD/MM/YYYY') : null;
   const showError = useSelector(state => state.horairesAdresse.showError);
   const isUpdated = useSelector(state => state.horairesAdresse.isUpdated);
 

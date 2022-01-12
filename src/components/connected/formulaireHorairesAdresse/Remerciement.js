@@ -8,10 +8,10 @@ function Remerciement() {
     dispatch(conseillerActions.closeFormulaire());
   }
   return (
-    <dialog aria-labelledby="rf-modal-sexe-age" role="dialog" id="rf-modal-sexe-age" className="rf-modal modalOpened">
+    <dialog aria-labelledby="rf-modal-remerciement" role="dialog" id="rf-modal-remerciement" className="rf-modal modalOpened">
       <div className="rf-container">
         <div className="rf-grid-row rf-grid-row--center">
-          <div className="rf-col-12 rf-col-sm-10 rf-col-md-7 rf-modal__body modal-sexe-age">
+          <div className="rf-col-12 rf-col-sm-10 rf-col-md-7 rf-modal__body modal-remerciement">
             <div className="rf-modal__content">
               <h1 className="rf-modal__title">Merci !</h1>
               <div className="rf-mb-3w">

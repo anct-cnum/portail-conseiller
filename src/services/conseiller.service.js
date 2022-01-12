@@ -167,8 +167,8 @@ function createHorairesAdresse(conseillerId, infoCartographie) {
     method: 'POST',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
     body: JSON.stringify({
-      conseillerId: conseillerId,
-      infoCartographie: infoCartographie
+      conseillerId,
+      infoCartographie
     })
   };
   return fetch(`${apiUrlRoot}/conseillers/horaires-adresse`, requestOptions).then(handleResponse);
