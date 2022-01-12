@@ -23,7 +23,7 @@ function Remerciement() {
                 <img className="conseillere-tablette" src="avatars/conseillere-tablette.svg"/>
               </div>
               <div className="centre">
-                <button className="sexe-age-btn" onClick={closeModal} >Fermer</button>
+                <button className="remerciement-btn" onClick={closeModal} >Fermer</button>
               </div>
             </div>
           </div>

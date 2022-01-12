@@ -46,7 +46,7 @@ function FormulaireHorairesAdresse() {
           Une erreur est survenue lors du traitement de vos informations
         </p>
       }
-      { (isUpdated && location === 'accueil') &&
+      { (isUpdated && location.pathname === '/accueil') &&
         <Remerciement/>
       }
       <div id="formulaire-horaires-adresse" className="rf-container">
