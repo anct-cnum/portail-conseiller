@@ -17,6 +17,7 @@
     "highcharts": "9.0.1",
     "highcharts-react-official": "3.0.0",
     "is-wsl": "^2.2.0",
+    "joi": "^17.5.0",
     "moment": "^2.29.1",
     "postcss": "^8.1.0",
     "react": "^17.0.1",

@@ -17,7 +17,7 @@ function Validation({ conseillerId }) {
   }
 
   useEffect(() => {
-    if (errorsForm?.length === 0 && clickSubmit) {
+    if (errorsForm?.lengthError === 0 && clickSubmit) {
       dispatch(formulaireHorairesAdresseActions.createHorairesAdresse(conseillerId, {
         nomEnseigne: form.lieuActivite,
         numeroTelephone: form.numeroTelephone,
@@ -28,34 +28,7 @@ function Validation({ conseillerId }) {
         rue: form.rueVoie,
         codePostal: form.codePostal,
         ville: form.ville,
-        lundiMatinDebut: form.lundiMatinDebut,
-        lundiMatinFin: form.lundiMatinFin,
-        lundiApresMidiDebut: form.lundiApresMidiDebut,
-        lundiApresMidiFin: form.lundiApresMidiFin,
-        mardiMatinDebut: form.mardiMatinDebut,
-        mardiMatinFin: form.mardiMatinFin,
-        mardiApresMidiDebut: form.mardiApresMidiDebut,
-        mardiApresMidiFin: form.mardiApresMidiFin,
-        mercrediMatinDebut: form.mercrediMatinDebut,
-        mercrediMatinFin: form.mercrediMatinFin,
-        mercrediApresMidiDebut: form.mercrediApresMidiDebut,
-        mercrediApresMidiFin: form.mercrediApresMidiFin,
-        jeudiMatinDebut: form.jeudiMatinDebut,
-        jeudiMatinFin: form.jeudiMatinFin,
-        jeudiApresMidiDebut: form.jeudiApresMidiDebut,
-        jeudiApresMidiFin: form.jeudiApresMidiFin,
-        vendrediMatinDebut: form.vendrediMatinDebut,
-        vendrediMatinFin: form.vendrediMatinFin,
-        vendrediApresMidiDebut: form.vendrediApresMidiDebut,
-        vendrediApresMidiFin: form.vendrediApresMidiFin,
-        samediMatinDebut: form.samediMatinDebut,
-        samediMatinFin: form.samediMatinFin,
-        samediApresMidiDebut: form.samediApresMidiDebut,
-        samediApresMidiFin: form.samediApresMidiFin,
-        dimancheMatinDebut: form.dimancheMatinDebut,
-        dimancheMatinFin: form.dimancheMatinFin,
-        dimancheApresMidiDebut: form.dimancheApresMidiDebut,
-        dimancheApresMidiFin: form.dimancheApresMidiFin,
+        horaires: form.horaires,
         itinerant: form.itinerance
       }));
     }

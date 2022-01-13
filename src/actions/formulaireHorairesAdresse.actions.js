@@ -1,4 +1,5 @@
 import { conseillerService } from '../services/conseiller.service';
+import Joi from 'joi';
 
 export const formulaireHorairesAdresseActions = {
   verifyFormulaire,
@@ -6,6 +7,7 @@ export const formulaireHorairesAdresseActions = {
   cacherAdresse,
   initAdresse,
   updateField,
+  updateHoraires,
   updateItinerance,
   initInformations
 };
@@ -15,113 +17,76 @@ function verifyFormulaire(form) {
 
   //eslint-disable-next-line max-len
   const rexExpEmail = new RegExp(/^(([^<>()[\]\\.,;:\s@\\"]+(\.[^<>()[\]\\.,;:\s@\\"]+)*)|(\\".+\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-  const rexExpNumero = new RegExp(/^(?:(?:\+)(33|590|596|594|262|269))(?:[\s.-]*\d{3}){3,4}$/gi);
-  const rexExpSiteWeb = new RegExp(/(https?):\/\/[a-z0-9\\/:%_+.,#?!@&=-]+/gi);
+  const rexExpNumero = new RegExp(/^(?:(?:\+)(33|590|596|594|262|269))(?:[\s.-]*\d{3}){3,4}$/);
+  const rexExpSiteWeb = new RegExp(/(https?):\/\/[a-z0-9\\/:%_+.,#?!@&=-]+/);
 
-  /*required*/
-  if (!form?.adresseExact) {
-    errors.push({ name: 'adresseExact', error: 'La correspondance des informations doit obligatoirement être saisie' });
-  }
-  if (!form?.lieuActivite) {
-    errors.push({ name: 'lieuActivite', error: 'Le lieu d\'activité doit obligatoirement être saisi' });
-  }
-  if (!form?.numeroTelephone) {
-    errors.push({ name: 'numeroTelephone', error: 'Le numéro de téléphone doit obligatoirement être saisi' });
-  }
-  if (!form?.email) {
-    errors.push({ name: 'email', error: 'L\'email doit obligatoirement être saisi' });
-  }
-  if (!form?.numeroVoie) {
-    errors.push({ name: 'numeroVoie', error: 'Le numéro de voie doit obligatoirement être saisi' });
-  }
-  if (!form?.rueVoie) {
-    errors.push({ name: 'rueVoie', error: 'La rue doit obligatoirement être saisie' });
-  }
-  if (!form?.codePostal) {
-    errors.push({ name: 'codePostal', error: 'Le code postal doit obligatoirement être saisi' });
-  }
-  if (!form?.ville) {
-    errors.push({ name: 'ville', error: 'La ville doit obligatoirement être saisie' });
-  }
-  if (!form?.itinerance) {
-    errors.push({ name: 'itinerance', error: 'L\'itinerance doit obligatoirement être saisie' });
-  }
+  console.log(form);
 
-  if (!form?.lundiMatinDebut || !form?.lundiMatinFin || !form?.lundiApresMidiDebut || !form?.lundiApresMidiFin) {
-    errors.push({ name: 'lundi', error: 'L\'heure doit obligatoirement être saisie' });
-  }
-  if (!form?.mardiMatinDebut || !form?.mardiMatinFin || !form?.mardiApresMidiDebut || !form?.mardiApresMidiFin) {
-    errors.push({ name: 'mardi', error: 'L\'heure doit obligatoirement être saisie' });
-  }
-  if (!form?.mercrediMatinDebut || !form?.mercrediMatinFin || !form?.mercrediApresMidiDebut || !form?.mercrediApresMidiFin) {
-    errors.push({ name: 'mercredi', error: 'L\'heure doit obligatoirement être saisie' });
-  }
-  if (!form?.jeudiMatinDebut || !form?.jeudiMatinFin || !form?.jeudiApresMidiDebut || !form?.jeudiApresMidiFin) {
-    errors.push({ name: 'jeudi', error: 'L\'heure doit obligatoirement être saisie' });
-  }
-  if (!form?.vendrediMatinDebut || !form?.vendrediMatinFin || !form?.vendrediApresMidiDebut || !form?.vendrediApresMidiFin) {
-    errors.push({ name: 'vendredi', error: 'L\'heure doit obligatoirement être saisie' });
-  }
-  if (!form?.samediMatinDebut || !form?.samediMatinFin || !form?.samediApresMidiDebut || !form?.samediApresMidiFin) {
-    errors.push({ name: 'samedi', error: 'L\'heure doit obligatoirement être saisie' });
-  }
-  if (!form?.dimancheMatinDebut || !form?.dimancheMatinFin || !form?.dimancheApresMidiDebut || !form?.dimancheApresMidiFin) {
-    errors.push({ name: 'dimanche', error: 'L\'heure doit obligatoirement être saisie' });
-  }
+  errors.push({ adresseExact: (Joi.object({
+    adresseExact: Joi.boolean().required() }).validate({ adresseExact: form?.adresseExact }).error) ?
+    'La correspondance des informations doit obligatoirement être saisie' : null });
 
-  /*champ spécifiques*/
-  if (form?.siret && (String(form?.siret)?.length !== 14 || !Number.isInteger(form?.siret))) {
-    errors.push({ name: 'siret', error: 'Le siret saisie est invalide, il doit comporter 14 chiffres' });
-  }
-  if (form?.numeroTelephone) {
-    if (!rexExpNumero.test(form.numeroTelephone)) {
-      errors.push({ name: 'numeroTelephone',
-        error: 'Le numéro de téléphone saisie est invalide (mettre votre indicatif international suivi des 9 chiffres)'
-      });
-    }
-  }
-  if (form?.email) {
-    if (!rexExpEmail.test(form.email)) {
-      errors.push({ name: 'email', error: 'L\'adresse email saisie est invalide' });
-    }
-  }
-  if (form?.siteWeb) {
-    if (!rexExpSiteWeb.test(form.siteWeb)) {
-      errors.push({ name: 'siteWeb', error: 'L\'URL saisie est invalide (exemple de format valide https://www.mon-site.fr)' });
-    }
-  }
+  errors.push({ lieuActivite: (Joi.object({
+    lieuActivite: Joi.string().required() }).validate({ lieuActivite: form?.lieuActivite }).error) ?
+    'Un lieu d\'activité doit obligatoirement être saisi' : null });
+
+  errors.push({ numeroTelephone: (Joi.object({
+    numeroTelephone: Joi.string().required().pattern(rexExpNumero) }).validate({ numeroTelephone: form?.numeroTelephone }).error) ?
+    'Un numéro de téléphone valide doit obligatoirement être saisi' : null });
+
+  errors.push({ email: (Joi.object({
+    email: Joi.string().required().pattern(rexExpEmail) }).validate({ email: form?.email }).error) ?
+    'Une adresse email valide doit obligatoirement être saisie' : null });
+
+  errors.push({ numeroVoie: (Joi.object({
+    numeroVoie: Joi.string().required() }).validate({ numeroVoie: form?.numeroVoie }).error) ?
+    'Un numéro de voie doit obligatoirement être saisi' : null });
+
+  errors.push({ rueVoie: (Joi.object({
+    rueVoie: Joi.string().required() }).validate({ rueVoie: form?.rueVoie }).error) ?
+    'Une rue doit obligatoirement être saisie' : null });
+
+  errors.push({ codePostal: (Joi.object({
+    codePostal: Joi.string().required() }).validate({ codePostal: form?.codePostal }).error) ?
+    'Un code postal doit obligatoirement être saisi' : null });
+
+  errors.push({ ville: (Joi.object({
+    ville: Joi.string().required() }).validate({ ville: form?.ville }).error) ?
+    'Une ville doit obligatoirement être saisie' : null });
+
+  errors.push({ itinerance: (Joi.object({
+    itinerance: Joi.string().required() }).validate({ itinerance: form?.itinerance }).error) ?
+    'Une itinérance doit obligatoirement être saisie' : null });
+
+  errors.push({ siteWeb: (Joi.object({
+    siteWeb: Joi.string().allow('').pattern(rexExpSiteWeb) }).validate({ siteWeb: form?.siteWeb }).error) ?
+    'Une URL valide doit être saisie (exemple de format valide https://www.mon-site.fr)' : null });
 
   /* Cohérence des horaires */
-  if (form?.lundiMatinDebut > form?.lundiMatinFin || form?.lundiApresMidiDebut > form?.lundiApresMidiFin ||
-    (form?.lundiApresMidiDebut !== 'Fermé' && form?.lundiMatinFin !== 'Fermé' && form?.lundiApresMidiDebut < form?.lundiMatinFin)) {
-    errors.push({ name: 'lundi', error: 'Il y a une incohérence sur les heures saisies' });
-  }
-  if (form?.mardiMatinDebut > form?.mardiMatinFin || form?.mardiApresMidiDebut > form?.mardiApresMidiFin ||
-    (form?.mardiApresMidiDebut !== 'Fermé' && form?.mardiMatinFin !== 'Fermé' && form?.mardiApresMidiDebut < form?.mardiMatinFin)) {
-    errors.push({ name: 'mardi', error: 'Il y a une incohérence sur les heures saisies' });
-  }
-  if (form?.mercrediMatinDebut > form?.mercrediMatinFin || form?.mercrediApresMidiDebut > form?.mercrediApresMidiFin ||
-    (form?.mercrediApresMidiDebut !== 'Fermé' && form?.mercrediMatinFin !== 'Fermé' && form?.mercrediApresMidiDebut < form?.mercrediMatinFin)) {
-    errors.push({ name: 'mercredi', error: 'Il y a une incohérence sur les heures saisies' });
-  }
-  if (form?.jeudiMatinDebut > form?.jeudiMatinFin || form?.jeudiApresMidiDebut > form?.jeudiApresMidiFin ||
-    (form?.jeudiApresMidiDebut !== 'Fermé' && form?.jeudiMatinFin !== 'Fermé' && form?.jeudiApresMidiDebut < form?.jeudiMatinFin)) {
-    errors.push({ name: 'jeudi', error: 'Il y a une incohérence sur les heures saisies' });
-  }
-  if (form?.vendrediMatinDebut > form?.vendrediMatinFin || form?.vendrediApresMidiDebut > form?.vendrediApresMidiFin ||
-    (form?.vendrediApresMidiDebut !== 'Fermé' && form?.vendrediMatinFin !== 'Fermé' && form?.vendrediApresMidiDebut < form?.vendrediMatinFin)) {
-    errors.push({ name: 'vendredi', error: 'Il y a une incohérence sur les heures saisies' });
-  }
-  if (form?.samediMatinDebut > form?.samediMatinFin || form?.samediApresMidiDebut > form?.samediApresMidiFin ||
-    (form?.samediApresMidiDebut !== 'Fermé' && form?.samediMatinFin !== 'Fermé' && form?.samediApresMidiDebut < form?.samediMatinFin)) {
-    errors.push({ name: 'samedi', error: 'Il y a une incohérence sur les heures saisies' });
-  }
-  if (form?.dimancheMatinDebut > form?.dimancheMatinFin || form?.dimancheApresMidiDebut > form?.dimancheApresMidiFin ||
-    (form?.dimancheApresMidiDebut !== 'Fermé' && form?.dimancheMatinFin !== 'Fermé' && form?.dimancheApresMidiDebut < form?.dimancheMatinFin)) {
-    errors.push({ name: 'dimanche', error: 'Il y a une incohérence sur les heures saisies' });
+  if (form?.horaires) {
+    let erreursHoraires = [];
+    form.horaires.forEach((jour, id) => {
+      if (jour.matin[0] > jour.matin[1] || jour.apresMidi[0] > jour.apresMidi[1] ||
+        (jour.matin[1] !== 'Fermé' && jour.apresMidi[0] !== 'Fermé' && jour.matin[1] > jour.apresMidi[0])) {
+        erreursHoraires.push(id);
+      }
+    });
+    errors.push({ horaires: erreursHoraires });
   }
 
-  return { type: 'VERIFY_FORMULAIRE', errors };
+  let nbErrors = 0;
+  errors.forEach(error => {
+    if (error[Object.keys(error)[0]]) {
+      nbErrors++;
+    }
+    if (error[Object.keys(error)[0]] && Object.keys(error)[0] === 'horaires') {
+      nbErrors += error[Object.keys(error)[0]].length - 1;
+    }
+  });
+
+  const errorsForm = { errors: errors, lengthError: nbErrors };
+
+  return { type: 'VERIFY_FORMULAIRE', errorsForm };
 }
 
 function createHorairesAdresse(conseillerId, infoCartographie) {
@@ -165,6 +130,9 @@ function initAdresse(adresse) {
 
 function updateField(name, value) {
   return { type: 'UPDATE_' + name.toUpperCase(), value };
+}
+function updateHoraires(horaires) {
+  return { type: 'UPDATE_HORAIRES', horaires };
 }
 
 function updateItinerance(itinerance) {

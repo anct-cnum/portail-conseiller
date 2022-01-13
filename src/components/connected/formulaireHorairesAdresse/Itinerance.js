@@ -6,9 +6,8 @@ import { formulaireHorairesAdresseActions } from '../../../actions/formulaireHor
 function Itinerance({ informationsCartographie }) {
   const dispatch = useDispatch();
 
-  const erreursFormulaire = useSelector(state => state.horairesAdresse.errorsFormulaire);
-
-  const erreurItinerance = erreursFormulaire?.filter(erreur => erreur.name === 'itinerance')[0];
+  const erreursFormulaire = useSelector(state => state.horairesAdresse.errorsFormulaire?.errors);
+  const erreurItinerance = erreursFormulaire?.filter(erreur => erreur?.itinerance)[0]?.itinerance;
 
   function handleChange(e) {
     dispatch(formulaireHorairesAdresseActions.updateItinerance(e.target.value));
@@ -46,7 +45,7 @@ function Itinerance({ informationsCartographie }) {
           </div>
         </fieldset>
         { erreurItinerance &&
-          <p className="text-error rf-mb-n3w">{erreurItinerance.error}</p>
+          <p className="text-error rf-mb-n3w">{erreurItinerance}</p>
         }
       </div>
     </>

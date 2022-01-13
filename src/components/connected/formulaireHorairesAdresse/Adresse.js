@@ -6,11 +6,12 @@ import { useDispatch, useSelector } from 'react-redux';
 function Adresse({ adresseCartographie }) {
 
   const dispatch = useDispatch();
-  const erreursFormulaire = useSelector(state => state.horairesAdresse.errorsFormulaire);
-  const erreurNumeroVoie = erreursFormulaire?.filter(erreur => erreur.name === 'numeroVoie')[0];
-  const erreurRueVoie = erreursFormulaire?.filter(erreur => erreur.name === 'rueVoie')[0];
-  const erreurcodePostal = erreursFormulaire?.filter(erreur => erreur.name === 'codePostal')[0];
-  const erreurVille = erreursFormulaire?.filter(erreur => erreur.name === 'ville')[0];
+  const erreursFormulaire = useSelector(state => state.horairesAdresse.errorsFormulaire?.errors);
+
+  const erreurNumeroVoie = erreursFormulaire?.filter(erreur => erreur?.numeroVoie)[0]?.numeroVoie;
+  const erreurRueVoie = erreursFormulaire?.filter(erreur => erreur?.rueVoie)[0]?.rueVoie;
+  const erreurcodePostal = erreursFormulaire?.filter(erreur => erreur?.codePostal)[0]?.codePostal;
+  const erreurVille = erreursFormulaire?.filter(erreur => erreur?.ville)[0]?.ville;
   const isAdresseCachee = useSelector(state => state.horairesAdresse?.isAdresseCachee);
 
   const [inputs, setInputs] = useState({
@@ -67,7 +68,7 @@ function Adresse({ adresseCartographie }) {
             id="numero-voie" name="numeroVoie" required="required" onChange={handleChange} value={numeroVoie}/>
         </label>
         { erreurNumeroVoie &&
-          <p className="text-error rf-mb-n3w">{erreurNumeroVoie.error}</p>
+          <p className="text-error rf-mb-n3w">{erreurNumeroVoie}</p>
         }
       </div>
 
@@ -80,7 +81,7 @@ function Adresse({ adresseCartographie }) {
             id="rue-voie" name="rueVoie" required="required" onChange={handleChange} value={rueVoie}/>
         </label>
         { erreurRueVoie &&
-          <p className="text-error rf-mb-n3w">{erreurRueVoie.error}</p>
+          <p className="text-error rf-mb-n3w">{erreurRueVoie}</p>
         }
       </div>
 
@@ -93,7 +94,7 @@ function Adresse({ adresseCartographie }) {
             id="code-postal" name="codePostal" required="required" onChange={handleChange} value={codePostal}/>
         </label>
         { erreurcodePostal &&
-          <p className="text-error rf-mb-n3w">{erreurcodePostal.error}</p>
+          <p className="text-error rf-mb-n3w">{erreurcodePostal}</p>
         }
       </div>
 
@@ -106,7 +107,7 @@ function Adresse({ adresseCartographie }) {
             id="ville" name="ville" required="required" onChange={handleChange} value={ville}/>
         </label>
         { erreurVille &&
-          <p className="text-error rf-mb-n3w">{erreurVille.error}</p>
+          <p className="text-error rf-mb-n3w">{erreurVille}</p>
         }
       </div>
 

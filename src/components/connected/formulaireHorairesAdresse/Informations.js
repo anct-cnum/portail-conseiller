@@ -7,14 +7,14 @@ import telephoneHorsMetropole from '../../../data/indicatifs.json';
 function Informations({ structure, adresseStructure, siretStructure, informationsCartographie }) {
   const dispatch = useDispatch();
   const isAdresseCachee = useSelector(state => state.horairesAdresse?.isAdresseCachee);
-  const erreursFormulaire = useSelector(state => state.horairesAdresse.errorsFormulaire);
+  const erreursFormulaire = useSelector(state => state.horairesAdresse.errorsFormulaire?.errors);
 
-  const erreurAdresseExact = erreursFormulaire?.filter(erreur => erreur.name === 'adresseExact')[0];
-  const erreurLieuActivite = erreursFormulaire?.filter(erreur => erreur.name === 'lieuActivite')[0];
-  const erreurSiret = erreursFormulaire?.filter(erreur => erreur.name === 'siret')[0];
-  const erreurNumeroTelephone = erreursFormulaire?.filter(erreur => erreur.name === 'numeroTelephone')[0];
-  const erreurEmail = erreursFormulaire?.filter(erreur => erreur.name === 'email')[0];
-  const erreurSiteWeb = erreursFormulaire?.filter(erreur => erreur.name === 'siteWeb')[0];
+  const erreurAdresseExact = erreursFormulaire?.filter(erreur => erreur?.adresseExact)[0]?.adresseExact;
+  const erreurLieuActivite = erreursFormulaire?.filter(erreur => erreur?.lieuActivite)[0]?.lieuActivite;
+  const erreurNumeroTelephone = erreursFormulaire?.filter(erreur => erreur?.numeroTelephone)[0]?.numeroTelephone;
+  const erreurEmail = erreursFormulaire?.filter(erreur => erreur?.email)[0]?.email;
+  const erreurSiret = erreursFormulaire?.filter(erreur => erreur?.siret)[0]?.siret;
+  const erreurSiteWeb = erreursFormulaire?.filter(erreur => erreur?.siteWeb)[0]?.siteWeb;
 
   let indicatif = structure?.codeDepartement.length === 3 ?
     telephoneHorsMetropole?.find(item => item.codeDepartement === structure?.codeDepartement).indicatif : '+33';
@@ -61,7 +61,8 @@ function Informations({ structure, adresseStructure, siretStructure, information
 
   return (
     <>
-      <div className={erreurAdresseExact ? 'question rf-col-12 invalid rf-mb-5w' : 'question rf-col-12 rf-mb-5w'}>
+      <div className={erreurAdresseExact ? 'question rf-col-12 invalid rf-mb-5w' :
+        'question rf-col-12 rf-mb-5w'}>
         Ces informations correspondent-elles à votre lieu principal d&rsquo;activit&eacute; ? <span className="obligatoire">*</span>
         <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-2w">
           <div className="rf-fieldset__content">
@@ -69,18 +70,22 @@ function Informations({ structure, adresseStructure, siretStructure, information
               <input type="radio" id="Oui" name="adresseExact" value="Oui" defaultChecked={adresseExact} onClick={() => {
                 handleAdresse(true);
               }}/>
-              <label className={erreurAdresseExact ? 'rf-label invalid' : 'rf-label' } htmlFor="Oui">Oui</label>
+              <label className={erreurAdresseExact ? 'rf-label invalid' : 'rf-label' } htmlFor="Oui">
+                Oui
+              </label>
             </div>
             <div className="rf-radio-group">
               <input type="radio" id="Non" name="adresseExact" value="Non" required="required" onClick={() => {
                 handleAdresse(false);
               }}/>
-              <label className={erreurAdresseExact ? 'rf-label invalid' : 'rf-label' } htmlFor="Non">Non</label>
+              <label className={erreurAdresseExact ? 'rf-label invalid' : 'rf-label' } htmlFor="Non">
+                Non
+              </label>
             </div>
           </div>
         </fieldset>
         { erreurAdresseExact &&
-          <p className="text-error rf-mb-n3w">{erreurAdresseExact.error}</p>
+          <p className="text-error rf-mb-n3w">{erreurAdresseExact}</p>
         }
       </div>
 
@@ -92,7 +97,7 @@ function Informations({ structure, adresseStructure, siretStructure, information
             required="required" onChange={handleChange}/>
         </label>
         { erreurLieuActivite &&
-          <p className="text-error rf-mb-n3w">{erreurLieuActivite.error}</p>
+          <p className="text-error rf-mb-n3w">{erreurLieuActivite}</p>
         }
       </div>
 
@@ -108,7 +113,7 @@ function Informations({ structure, adresseStructure, siretStructure, information
                 type="number" id="siret" name="siret" value={siret} onChange={handleChange} />
             </label>
             { erreurSiret &&
-            <p className="text-error rf-mb-n3w">{erreurSiret.error}</p>
+            <p className="text-error rf-mb-n3w">{erreurSiret}</p>
             }
           </div>
           <div className="rf-col-offset-3"></div>
@@ -126,7 +131,7 @@ function Informations({ structure, adresseStructure, siretStructure, information
             value={numeroTelephone} onChange={handleChange}/>
         </label>
         { erreurNumeroTelephone &&
-          <p className="text-error rf-mb-n3w">{erreurNumeroTelephone.error}</p>
+          <p className="text-error rf-mb-n3w">{erreurNumeroTelephone}</p>
         }
       </div>
 
@@ -139,7 +144,7 @@ function Informations({ structure, adresseStructure, siretStructure, information
             id="email" name="email" required="required" value={email} onChange={handleChange}/>
         </label>
         { erreurEmail &&
-          <p className="text-error rf-mb-n3w">{erreurEmail.error}</p>
+          <p className="text-error rf-mb-n3w">{erreurEmail}</p>
         }
       </div>
 
@@ -152,7 +157,7 @@ function Informations({ structure, adresseStructure, siretStructure, information
             id="site-web" name="siteWeb" value={siteWeb} onChange={handleChange}/>
         </label>
         { erreurSiteWeb &&
-          <p className="text-error rf-mb-n3w">{erreurSiteWeb.error}</p>
+          <p className="text-error rf-mb-n3w">{erreurSiteWeb}</p>
         }
       </div>
     </>
