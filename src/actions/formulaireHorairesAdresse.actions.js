@@ -20,8 +20,6 @@ function verifyFormulaire(form) {
   const rexExpNumero = new RegExp(/^(?:(?:\+)(33|590|596|594|262|269))(?:[\s.-]*\d{3}){3,4}$/);
   const rexExpSiteWeb = new RegExp(/(https?):\/\/[a-z0-9\\/:%_+.,#?!@&=-]+/);
 
-  console.log(form);
-
   errors.push({ adresseExact: (Joi.object({
     adresseExact: Joi.boolean().required() }).validate({ adresseExact: form?.adresseExact }).error) ?
     'La correspondance des informations doit obligatoirement être saisie' : null });
