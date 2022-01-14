@@ -29,6 +29,13 @@ function Horaires({ horairesConseiller }) {
     horaires[idJour].fermeture[jour === 'matin' ? 0 : 1] = horaires[idJour][jour][0] === 'Fermé' && horaires[idJour][jour][1] === 'Fermé';
     setHoraires(horaires => [...horaires]);
     dispatch(formulaireHorairesAdresseActions.updateHoraires(horaires));
+    if (erreursHoraires) {
+      erreursHoraires.forEach((erreur, idErreur) => {
+        if (erreur === idJour) {
+          erreursHoraires.splice(idErreur);
+        }
+      });
+    }
   }
 
   useEffect(() => {
