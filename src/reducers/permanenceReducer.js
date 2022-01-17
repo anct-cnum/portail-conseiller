@@ -1,12 +1,55 @@
 
 const initialState = {
   isAdresseCachee: true,
+  isCreated: false,
   isUpdated: false,
   showError: false,
 };
 
-export default function formulaireHorairesAdresse(state = initialState, action) {
+export default function permanence(state = initialState, action) {
   switch (action.type) {
+    case 'GET_PERMANENCE_REQUEST':
+      return {
+        ...state,
+        loading: true
+      };
+    case 'GET_PERMANENCE_SUCCESS':
+      return {
+        ...state,
+        permanence: action?.permanence
+      };
+    case 'GET_PERMANENCE_FAILURE':
+      return {
+        ...state,
+        error: action.error
+      };
+    case 'SHOW_FORMULAIRE_PERMANENCE':
+      return {
+        ...state,
+        showFormulairePermanence: action.show
+      };
+    case 'CLOSE_FORMULAIRE_PERMANENCE':
+      return {
+        showFormulairePermanence: false,
+        isUpdated: false
+      };
+    case 'INIT_PERMANENCE':
+      return {
+        ...state,
+        adresseExact: true,
+        lieuActivite: action.permanence?.nomEnseigne,
+        siret: String(action.permanence?.siret),
+        numeroTelephone: action.permanence?.numeroTelephone,
+        email: action.permanence?.email,
+        siteWeb: action.permanence.siteWeb ?? '',
+        itinerance: String(action.permanence?.itinerant),
+
+        numeroVoie: action.permanence?.adresse.numeroRue,
+        rueVoie: action.permanence?.adresse.rue,
+        codePostal: action.permanence?.adresse.codePostal,
+        ville: action.permanence?.adresse?.ville,
+        horaires: action.permanence?.horaires
+      };
     case 'VERIFY_FORMULAIRE':
       return {
         ...state,
@@ -14,44 +57,66 @@ export default function formulaireHorairesAdresse(state = initialState, action) 
         showError: true,
         errorsFormulaire: action.errorsForm
       };
-    case 'POST_HORAIRES_ADRESSE_REQUEST':
+    case 'POST_PERMANENCE_REQUEST':
       return {
         ...state,
         showError: false,
       };
-    case 'POST_HORAIRES_ADRESSE_SUCCESS':
+    case 'POST_PERMANENCE_SUCCESS':
+      return {
+        ...state,
+        isCreated: action.isCreated,
+        showError: false,
+        error: false,
+      };
+    case 'POST_PERMANENCE_FAILURE':
+      return {
+        ...state,
+        isCreated: false,
+        showError: true,
+        error: action.error,
+      };
+    case 'UPDATE_PERMANENCE_REQUEST':
+      return {
+        ...state,
+        showError: false,
+      };
+    case 'UPDATE_PERMANENCE_SUCCESS':
       return {
         ...state,
         isUpdated: action.isUpdated,
         showError: false,
         error: false,
       };
-    case 'POST_HORAIRES_ADRESSE_FAILURE':
+    case 'UPDATE_PERMANENCE_FAILURE':
       return {
         ...state,
         isUpdated: false,
         showError: true,
         error: action.error,
       };
+
     /* Partie Informations */
     case 'CACHER_ADRESSE':
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.adresseExact)[0]?.adresseExact;
       return {
         ...state,
-        isAdresseCachee: action.input,
+        isAdresseCachee: action.boolean,
         adresseExact: true,
+        showError: false,
       };
     case 'MONTRER_ADRESSE':
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.adresseExact)[0]?.adresseExact;
       return {
         ...state,
-        isAdresseCachee: action.input,
+        isAdresseCachee: action.boolean,
         numeroVoie: '',
         rueVoie: '',
         codePostal: '',
         ville: '',
         siret: '',
         adresseExact: true,
+        showError: false,
       };
     case 'INIT_ADRESSE':
       return {
@@ -60,7 +125,7 @@ export default function formulaireHorairesAdresse(state = initialState, action) 
         rueVoie: action.adresse?.rue ? action.adresse?.rue : action.adresse.type_voie + ' ' + action.adresse?.nom_voie,
         codePostal: action.adresse.codePostal ? action.adresse.codePostal : action.adresse.code_postal,
         ville: action.adresse.ville ? action.adresse.ville : action.adresse.localite,
-        siret: Number(action.adresse.siret)
+        siret: action.adresse.siret
       };
     case 'UPDATE_LIEUACTIVITE':
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.lieuActivite)[0]?.lieuActivite;
@@ -73,7 +138,7 @@ export default function formulaireHorairesAdresse(state = initialState, action) 
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.siret)[0]?.siret;
       return {
         ...state,
-        siret: Number(action.value),
+        siret: action.value,
         showError: false,
       };
     case 'UPDATE_NUMEROTELEPHONE':
@@ -127,6 +192,14 @@ export default function formulaireHorairesAdresse(state = initialState, action) 
         ville: action.value,
         showError: false,
       };
+
+    /* Partie Horaires */
+    case 'UPDATE_HORAIRES':
+      return {
+        ...state,
+        horaires: action.horaires
+      };
+
     /* Partie Itinerance */
     case 'UPDATE_ITINERANCE':
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.itinerance)[0]?.itinerance;
@@ -134,31 +207,6 @@ export default function formulaireHorairesAdresse(state = initialState, action) 
         ...state,
         itinerance: action.itinerance,
         showError: false,
-      };
-    /* Partie Horaires */
-    case 'UPDATE_HORAIRES':
-      return {
-        ...state,
-        horaires: action.horaires
-      };
-      /* init du formulaire de mise à jour des informations */
-    case 'INIT_INFORMATION':
-      return {
-        ...state,
-        adresseExact: true,
-        lieuActivite: action.informations.nomEnseigne,
-        siret: Number(action.informations.siret),
-        numeroTelephone: action.informations.numeroTelephone,
-        email: action.informations.email,
-        siteWeb: action.informations.siteWeb ? action.informations.siteWeb : '',
-        itinerance: String(action.informations.itinerant),
-
-        numeroVoie: action.informations.adresse.numeroRue,
-        rueVoie: action.informations.adresse?.rue,
-        codePostal: action.informations.adresse.codePostal,
-        ville: action.informations.adresse.ville,
-        horaires: action.informations.horaires
-
       };
     default:
       return state;

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { formulaireHorairesAdresseActions } from '../../../actions/formulaireHorairesAdresse.actions';
+import { permanenceActions } from '../../../actions/permanence.actions';
 
-function Horaires({ horairesConseiller }) {
+function Horaires({ horairesPermanence }) {
 
-  const erreursFormulaire = useSelector(state => state.horairesAdresse.errorsFormulaire?.errors);
+  const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
   const erreursHoraires = erreursFormulaire?.filter(erreur => erreur?.horaires)[0]?.horaires;
 
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ function Horaires({ horairesConseiller }) {
     horaires[idJour][jour][partie] = value === '' ? 'Fermé' : value;
     horaires[idJour].fermeture[jour === 'matin' ? 0 : 1] = horaires[idJour][jour][0] === 'Fermé' && horaires[idJour][jour][1] === 'Fermé';
     setHoraires(horaires => [...horaires]);
-    dispatch(formulaireHorairesAdresseActions.updateHoraires(horaires));
+    dispatch(permanenceActions.updateHoraires(horaires));
     if (erreursHoraires) {
       erreursHoraires.forEach((erreur, idErreur) => {
         if (erreur === idJour) {
@@ -39,8 +39,8 @@ function Horaires({ horairesConseiller }) {
   }
 
   useEffect(() => {
-    if (horairesConseiller) {
-      horairesConseiller.forEach((horairesJour, id) => {
+    if (horairesPermanence) {
+      horairesPermanence.forEach((horairesJour, id) => {
         horaires[id] = horairesJour;
         horaires[id].fermeture = [
           horairesJour.matin[0] === 'Fermé' && horairesJour.matin[1] === 'Fermé',
@@ -49,8 +49,8 @@ function Horaires({ horairesConseiller }) {
       });
       setHoraires(horaires => [...horaires]);
     }
-    dispatch(formulaireHorairesAdresseActions.updateHoraires(horaires));
-  }, [horairesConseiller]);
+    dispatch(permanenceActions.updateHoraires(horaires));
+  }, [horairesPermanence]);
 
   return (
     <>
@@ -130,7 +130,7 @@ function Horaires({ horairesConseiller }) {
 }
 
 Horaires.propTypes = {
-  horairesConseiller: PropTypes.array
+  horairesPermanence: PropTypes.array
 };
 
 

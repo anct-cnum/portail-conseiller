@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { formulaireHorairesAdresseActions } from '../../../actions/formulaireHorairesAdresse.actions';
+import { permanenceActions } from '../../../actions/permanence.actions';
 import { useDispatch, useSelector } from 'react-redux';
 
-function Adresse({ adresseCartographie }) {
+function Adresse({ adressePermanence }) {
 
   const dispatch = useDispatch();
-  const erreursFormulaire = useSelector(state => state.horairesAdresse.errorsFormulaire?.errors);
+  const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
 
   const erreurNumeroVoie = erreursFormulaire?.filter(erreur => erreur?.numeroVoie)[0]?.numeroVoie;
   const erreurRueVoie = erreursFormulaire?.filter(erreur => erreur?.rueVoie)[0]?.rueVoie;
   const erreurcodePostal = erreursFormulaire?.filter(erreur => erreur?.codePostal)[0]?.codePostal;
   const erreurVille = erreursFormulaire?.filter(erreur => erreur?.ville)[0]?.ville;
-  const isAdresseCachee = useSelector(state => state.horairesAdresse?.isAdresseCachee);
+  const isAdresseCachee = useSelector(state => state.permanence?.isAdresseCachee);
 
   const [inputs, setInputs] = useState({
     numeroVoie: '',
@@ -26,19 +26,19 @@ function Adresse({ adresseCartographie }) {
   function handleChange(e) {
     const { name, value } = e.target;
     setInputs(inputs => ({ ...inputs, [name]: value }));
-    dispatch(formulaireHorairesAdresseActions.updateField(name, value));
+    dispatch(permanenceActions.updateField(name, value));
   }
 
   useEffect(() => {
-    if (adresseCartographie) {
+    if (adressePermanence) {
       setInputs({
-        numeroVoie: adresseCartographie?.numeroRue,
-        rueVoie: adresseCartographie?.rue,
-        codePostal: adresseCartographie?.codePostal,
-        ville: adresseCartographie?.ville,
+        numeroVoie: adressePermanence?.numeroRue,
+        rueVoie: adressePermanence?.rue,
+        codePostal: adressePermanence?.codePostal,
+        ville: adressePermanence?.ville,
       });
     }
-  }, [adresseCartographie]);
+  }, [adressePermanence]);
 
   useEffect(() => {
     if (!isAdresseCachee) {
@@ -50,10 +50,10 @@ function Adresse({ adresseCartographie }) {
       });
     } else {
       setInputs({
-        numeroVoie: adresseCartographie?.numeroRue,
-        rueVoie: adresseCartographie?.rue,
-        codePostal: adresseCartographie?.codePostal,
-        ville: adresseCartographie?.ville,
+        numeroVoie: adressePermanence?.numeroRue,
+        rueVoie: adressePermanence?.rue,
+        codePostal: adressePermanence?.codePostal,
+        ville: adressePermanence?.ville,
       });
     }
   }, [isAdresseCachee]);
@@ -116,7 +116,7 @@ function Adresse({ adresseCartographie }) {
 }
 
 Adresse.propTypes = {
-  adresseCartographie: PropTypes.object
+  adressePermanence: PropTypes.object
 };
 
 export default Adresse;

@@ -1,24 +1,66 @@
-import { conseillerService } from '../services/conseiller.service';
+import { permanenceService } from '../services/permanence.service';
 import Joi from 'joi';
 
-export const formulaireHorairesAdresseActions = {
+export const permanenceActions = {
+  get,
+  isPermanenceChecked,
+  closePermanence,
+  initPermanence,
   verifyFormulaire,
-  createHorairesAdresse,
+  createPermanence,
+  updatePermanence,
   cacherAdresse,
   initAdresse,
   updateField,
   updateHoraires,
   updateItinerance,
-  initInformations
+
 };
+
+function get(idConseiller) {
+  return dispatch => {
+    dispatch(request());
+
+    permanenceService.get(idConseiller)
+    .then(
+      result => dispatch(success(result.permanence)),
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'GET_PERMANENCE_REQUEST' };
+  }
+  function success(permanence) {
+    return { type: 'GET_PERMANENCE_SUCCESS', permanence };
+  }
+  function failure(error) {
+    return { type: 'GET_PERMANENCE_FAILURE', error };
+  }
+}
+
+function isPermanenceChecked(hasPermanence) {
+  const show = !hasPermanence;
+  return { type: 'SHOW_FORMULAIRE_PERMANENCE', show };
+}
+
+function closePermanence() {
+  return { type: 'CLOSE_FORMULAIRE_PERMANENCE' };
+}
+
+function initPermanence(permanence) {
+  return { type: 'INIT_PERMANENCE', permanence };
+}
 
 function verifyFormulaire(form) {
   let errors = [];
-
   //eslint-disable-next-line max-len
-  const rexExpEmail = new RegExp(/^(([^<>()[\]\\.,;:\s@\\"]+(\.[^<>()[\]\\.,;:\s@\\"]+)*)|(\\".+\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-  const rexExpNumero = new RegExp(/^(?:(?:\+)(33|590|596|594|262|269))(?:[\s.-]*\d{3}){3,4}$/);
-  const rexExpSiteWeb = new RegExp(/(https?):\/\/[a-z0-9\\/:%_+.,#?!@&=-]+/);
+  const regExpEmail = new RegExp(/^(([^<>()[\]\\.,;:\s@\\"]+(\.[^<>()[\]\\.,;:\s@\\"]+)*)|(\\".+\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+  const regExpNumero = new RegExp(/^(?:(?:\+)(33|590|596|594|262|269))(?:[\s.-]*\d{3}){3,4}$/);
+  const regExpSiteWeb = new RegExp(/(https?):\/\/[a-z0-9\\/:%_+.,#?!@&=-]+/);
+  const regExpSiret = new RegExp(/^$|^[0-9]{14}$/);
 
   errors.push({ adresseExact: (Joi.object({
     adresseExact: Joi.boolean().required() }).validate({ adresseExact: form?.adresseExact }).error) ?
@@ -28,12 +70,16 @@ function verifyFormulaire(form) {
     lieuActivite: Joi.string().required() }).validate({ lieuActivite: form?.lieuActivite }).error) ?
     'Un lieu d\'activité doit obligatoirement être saisi' : null });
 
+  errors.push({ siret: (Joi.object({
+    siret: Joi.string().pattern(regExpSiret) }).validate({ siret: form?.siret }).error) ?
+    'Un siret valide de 14 chiffres doit être saisi' : null });
+
   errors.push({ numeroTelephone: (Joi.object({
-    numeroTelephone: Joi.string().required().pattern(rexExpNumero) }).validate({ numeroTelephone: form?.numeroTelephone }).error) ?
+    numeroTelephone: Joi.string().required().pattern(regExpNumero) }).validate({ numeroTelephone: form?.numeroTelephone }).error) ?
     'Un numéro de téléphone valide doit obligatoirement être saisi' : null });
 
   errors.push({ email: (Joi.object({
-    email: Joi.string().required().pattern(rexExpEmail) }).validate({ email: form?.email }).error) ?
+    email: Joi.string().required().pattern(regExpEmail) }).validate({ email: form?.email }).error) ?
     'Une adresse email valide doit obligatoirement être saisie' : null });
 
   errors.push({ numeroVoie: (Joi.object({
@@ -57,7 +103,7 @@ function verifyFormulaire(form) {
     'Une itinérance doit obligatoirement être saisie' : null });
 
   errors.push({ siteWeb: (Joi.object({
-    siteWeb: Joi.string().allow('').pattern(rexExpSiteWeb) }).validate({ siteWeb: form?.siteWeb }).error) ?
+    siteWeb: Joi.string().allow('').pattern(regExpSiteWeb) }).validate({ siteWeb: form?.siteWeb }).error) ?
     'Une URL valide doit être saisie (exemple de format valide https://www.mon-site.fr)' : null });
 
   /* Cohérence des horaires */
@@ -87,10 +133,35 @@ function verifyFormulaire(form) {
   return { type: 'VERIFY_FORMULAIRE', errorsForm };
 }
 
-function createHorairesAdresse(conseillerId, infoCartographie) {
+function createPermanence(permanence) {
   return dispatch => {
     dispatch(request());
-    conseillerService.createHorairesAdresse(conseillerId, infoCartographie)
+    permanenceService.createPermanence(permanence)
+    .then(
+      result => {
+        dispatch(success(result.isCreated));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'POST_PERMANENCE_REQUEST' };
+  }
+  function success(isCreated) {
+    return { type: 'POST_PERMANENCE_SUCCESS', isCreated };
+  }
+  function failure(error) {
+    return { type: 'POST_PERMANENCE_FAILURE', error };
+  }
+}
+
+function updatePermanence(idPermanence, permanence) {
+  return dispatch => {
+    dispatch(request());
+    permanenceService.updatePermanence(idPermanence, permanence)
     .then(
       result => {
         dispatch(success(result.isUpdated));
@@ -100,25 +171,23 @@ function createHorairesAdresse(conseillerId, infoCartographie) {
       }
     );
   };
+
   function request() {
-    return { type: 'POST_HORAIRES_ADRESSE_REQUEST' };
+    return { type: 'UPDATE_PERMANENCE_REQUEST' };
   }
   function success(isUpdated) {
-    return { type: 'POST_HORAIRES_ADRESSE_SUCCESS', isUpdated };
+    return { type: 'UPDATE_PERMANENCE_SUCCESS', isUpdated };
   }
   function failure(error) {
-    return { type: 'POST_HORAIRES_ADRESSE_FAILURE', error };
+    return { type: 'UPDATE_PERMANENCE_FAILURE', error };
   }
 }
 
-function cacherAdresse(input, adresse = null) {
-  if (input) {
-    if (adresse) {
-      initAdresse(adresse);
-    }
-    return { type: 'CACHER_ADRESSE', input };
+function cacherAdresse(boolean) {
+  if (boolean) {
+    return { type: 'CACHER_ADRESSE', boolean };
   } else {
-    return { type: 'MONTRER_ADRESSE', input };
+    return { type: 'MONTRER_ADRESSE', boolean };
   }
 }
 
@@ -137,6 +206,4 @@ function updateItinerance(itinerance) {
   return { type: 'UPDATE_ITINERANCE', itinerance };
 }
 
-function initInformations(informations) {
-  return { type: 'INIT_INFORMATION', informations };
-}
+

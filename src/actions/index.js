@@ -4,7 +4,7 @@ export * from './structure.actions';
 export * from './cra.actions';
 export * from './menu.actions';
 export * from './statistique.actions';
-export * from './formulaireHorairesAdresse.actions';
+export * from './permanence.actions';
 export * from './formulaireSexeAge.actions';
 export * from './filtersAndSorts.actions';
 export * from './pagination.actions';

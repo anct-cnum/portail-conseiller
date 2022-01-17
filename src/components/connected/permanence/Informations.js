@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { formulaireHorairesAdresseActions } from '../../../actions/formulaireHorairesAdresse.actions';
+import { permanenceActions } from '../../../actions/permanence.actions';
 import telephoneHorsMetropole from '../../../data/indicatifs.json';
 
-function Informations({ structure, adresseStructure, siretStructure, informationsCartographie }) {
+function Informations({ codeDepartement, adresseStructure, siretStructure, permanence }) {
   const dispatch = useDispatch();
-  const isAdresseCachee = useSelector(state => state.horairesAdresse?.isAdresseCachee);
-  const erreursFormulaire = useSelector(state => state.horairesAdresse.errorsFormulaire?.errors);
+  const isAdresseCachee = useSelector(state => state.permanence?.isAdresseCachee);
+  const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
 
   const erreurAdresseExact = erreursFormulaire?.filter(erreur => erreur?.adresseExact)[0]?.adresseExact;
   const erreurLieuActivite = erreursFormulaire?.filter(erreur => erreur?.lieuActivite)[0]?.lieuActivite;
@@ -16,8 +16,8 @@ function Informations({ structure, adresseStructure, siretStructure, information
   const erreurSiret = erreursFormulaire?.filter(erreur => erreur?.siret)[0]?.siret;
   const erreurSiteWeb = erreursFormulaire?.filter(erreur => erreur?.siteWeb)[0]?.siteWeb;
 
-  let indicatif = structure?.codeDepartement.length === 3 ?
-    telephoneHorsMetropole?.find(item => item.codeDepartement === structure?.codeDepartement).indicatif : '+33';
+  let indicatif = codeDepartement?.length === 3 ?
+    telephoneHorsMetropole?.find(item => item.codeDepartement === codeDepartement).indicatif : '+33';
 
   const [inputs, setInputs] = useState({
     lieuActivite: '',
@@ -33,31 +33,31 @@ function Informations({ structure, adresseStructure, siretStructure, information
   function handleChange(e) {
     const { name, value } = e.target;
     setInputs(inputs => ({ ...inputs, [name]: value }));
-    dispatch(formulaireHorairesAdresseActions.updateField(name, value));
+    dispatch(permanenceActions.updateField(name, value));
   }
 
   function handleAdresse(boolean) {
-    dispatch(formulaireHorairesAdresseActions.cacherAdresse(boolean));
+    dispatch(permanenceActions.cacherAdresse(boolean));
     if (boolean) {
       adresseStructure.siret = siretStructure;
-      dispatch(formulaireHorairesAdresseActions.initAdresse(adresseStructure));
+      dispatch(permanenceActions.initAdresse(adresseStructure));
     } else {
       setInputs(inputs => ({ ...inputs, siret: '' }));
     }
   }
 
   useEffect(() => {
-    if (informationsCartographie) {
+    if (permanence) {
       setInputs({
-        lieuActivite: informationsCartographie?.nomEnseigne,
-        siret: informationsCartographie?.siret,
-        numeroTelephone: informationsCartographie?.numeroTelephone,
-        email: informationsCartographie?.email,
-        siteWeb: informationsCartographie?.siteWeb ? informationsCartographie?.siteWeb : '',
+        lieuActivite: permanence?.nomEnseigne,
+        siret: permanence?.siret,
+        numeroTelephone: permanence?.numeroTelephone,
+        email: permanence?.email,
+        siteWeb: permanence?.siteWeb ? permanence?.siteWeb : '',
         adresseExact: true
       });
     }
-  }, [informationsCartographie]);
+  }, [permanence]);
 
   return (
     <>
@@ -67,7 +67,7 @@ function Informations({ structure, adresseStructure, siretStructure, information
         <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-2w">
           <div className="rf-fieldset__content">
             <div className="rf-radio-group">
-              <input type="radio" id="Oui" name="adresseExact" value="Oui" defaultChecked={adresseExact} onClick={() => {
+              <input type="radio" id="Oui" name="adresseExact" value="Oui" defaultChecked={adresseExact} required="required" onClick={() => {
                 handleAdresse(true);
               }}/>
               <label className={erreurAdresseExact ? 'rf-label invalid' : 'rf-label' } htmlFor="Oui">
@@ -75,9 +75,11 @@ function Informations({ structure, adresseStructure, siretStructure, information
               </label>
             </div>
             <div className="rf-radio-group">
-              <input type="radio" id="Non" name="adresseExact" value="Non" required="required" onClick={() => {
-                handleAdresse(false);
-              }}/>
+              <input type="radio" id="Non" name="adresseExact" value="Non" defaultChecked={!adresseExact && adresseExact !== null}
+                required="required" onClick={() => {
+                  handleAdresse(false);
+                }}
+              />
               <label className={erreurAdresseExact ? 'rf-label invalid' : 'rf-label' } htmlFor="Non">
                 Non
               </label>
@@ -110,7 +112,7 @@ function Informations({ structure, adresseStructure, siretStructure, information
                 <i className="rf-ml-1w ri-information-line ri-xl ri-info"></i>
               </a>
               <input className={erreurSiret ? 'rf-input rf-mt-2v input-error' : 'rf-input rf-mt-2v'}
-                type="number" id="siret" name="siret" value={siret} onChange={handleChange} />
+                type="string" id="siret" name="siret" value={siret} onChange={handleChange} />
             </label>
             { erreurSiret &&
             <p className="text-error rf-mb-n3w">{erreurSiret}</p>
@@ -165,10 +167,10 @@ function Informations({ structure, adresseStructure, siretStructure, information
 }
 
 Informations.propTypes = {
-  structure: PropTypes.object,
+  codeDepartement: PropTypes.string,
   adresseStructure: PropTypes.object,
   siretStructure: PropTypes.string,
-  informationsCartographie: PropTypes.object
+  permanence: PropTypes.object
 };
 
 export default Informations;

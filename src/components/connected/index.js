@@ -5,11 +5,11 @@ import Statistics from './statistics/Statistics';
 import Cra from './cra';
 import Welcome from './Welcome';
 import { useDispatch, useSelector } from 'react-redux';
-import { conseillerActions, structureActions } from '../../actions';
+import { conseillerActions, structureActions, permanenceActions } from '../../actions';
 import { userEntityId } from '../../helpers';
 import FormulaireSexeAge from './FormulaireSexeAge';
 import Ressourcerie from './ressourcerie/Ressourcerie';
-import FormulaireHorairesAdresse from './formulaireHorairesAdresse/index';
+import Permanence from './permanence/index';
 
 function Connected() {
 
@@ -20,15 +20,18 @@ function Connected() {
   const formulaireIsUpdated = useSelector(state => state?.conseiller?.isUpdated);
 
   const structure = useSelector(state => state?.structure?.structure);
-  const formulaireHorairesAdresseIsUpdated = useSelector(state => state?.formulaireHorairesAdresse?.isUpdated);
-  const voirFormulaireHorairesAdresse = useSelector(state => state?.conseiller?.showFormularHorairesAdresse);
+  const permanence = useSelector(state => state?.permanence?.permanence);
+  const voirPermanence = useSelector(state => state?.permanence?.showFormulairePermanence);
 
   useEffect(() => {
     if (conseiller) {
       dispatch(conseillerActions.isFormulaireChecked(conseiller.sexe, formulaireIsUpdated));
-      dispatch(conseillerActions.isFormulaireHorairesAdresseChecked(conseiller?.informationsCartographie, formulaireHorairesAdresseIsUpdated));
+      dispatch(permanenceActions.isPermanenceChecked(conseiller?.hasPermanence));
       if (!structure) {
         dispatch(structureActions.get(conseiller.structureId));
+      }
+      if (permanence === undefined) {
+        dispatch(permanenceActions.get(conseiller._id));
       }
     } else {
       dispatch(conseillerActions.get(userEntityId()));
@@ -43,19 +46,19 @@ function Connected() {
       }
       {!user.pdfGenerator &&
       <>
-        {!voirFormulaireHorairesAdresse &&
+        {!voirPermanence &&
           <>
             <Route path={`/accueil`} component={Welcome} />
             <Route path={`/compte-rendu-activite`} component={Cra} />
             <Route path={`/statistiques`} component={Statistics} />
             <Route path={`/ressourcerie`} component={Ressourcerie} />
-            <Route path={`/mes-informations`} component={FormulaireHorairesAdresse} />
+            <Route path={`/mes-informations`} component={Permanence} />
             <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
           </>
         }
-        {voirFormulaireHorairesAdresse &&
+        {voirPermanence &&
         <>
-          <Route path={`/accueil`} component={FormulaireHorairesAdresse} />
+          <Route path={`/accueil`} component={Permanence} />
           <Route path="/" render={() => (<Redirect to="/accueil" />)} />
         </>
         }

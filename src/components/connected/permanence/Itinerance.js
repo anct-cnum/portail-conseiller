@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { formulaireHorairesAdresseActions } from '../../../actions/formulaireHorairesAdresse.actions';
+import { permanenceActions } from '../../../actions/permanence.actions';
 
-function Itinerance({ informationsCartographie }) {
+function Itinerance({ permanence }) {
   const dispatch = useDispatch();
 
-  const erreursFormulaire = useSelector(state => state.horairesAdresse.errorsFormulaire?.errors);
+  const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
   const erreurItinerance = erreursFormulaire?.filter(erreur => erreur?.itinerance)[0]?.itinerance;
 
   function handleChange(e) {
-    dispatch(formulaireHorairesAdresseActions.updateItinerance(e.target.value));
+    dispatch(permanenceActions.updateItinerance(e.target.value));
   }
 
   const [inputs, setInputs] = useState({ itinerance: null });
@@ -18,11 +18,11 @@ function Itinerance({ informationsCartographie }) {
   const { itinerance } = inputs;
 
   useEffect(() => {
-    if (informationsCartographie) {
-      setInputs({ itinerance: informationsCartographie.itinerant });
+    if (permanence) {
+      setInputs({ itinerance: permanence.itinerant });
     }
-  }, [informationsCartographie]);
-
+  }, [permanence]);
+  
   return (
     <>
       <h2 className="sous-titre rf-col-12 rf-mb-4w">A propos de mon activit&eacute; de conseiller num&eacute;rique</h2>
@@ -32,13 +32,13 @@ function Itinerance({ informationsCartographie }) {
         <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-2w">
           <div className="rf-fieldset__content">
             <div className="rf-radio-group">
-              <input type="radio" id="itinerance-Oui" name="itinerance" value="true" onChange={handleChange} defaultChecked={itinerance}
+              <input type="radio" id="itinerance-Oui" name="itinerance" value="true" required="required" onChange={handleChange} defaultChecked={itinerance}
               />
               <label className={erreurItinerance ? 'rf-label invalid' : 'rf-label' } htmlFor="itinerance-Oui">Oui</label>
             </div>
             <div className="rf-radio-group">
               <input type="radio" id="itinerance-Non" name="itinerance" value="false" required="required" onChange={handleChange}
-                defaultChecked={!itinerance && itinerance !== null}
+                defaultChecked={itinerance === false}
               />
               <label className={erreurItinerance ? 'rf-label invalid' : 'rf-label' } htmlFor="itinerance-Non">Non</label>
             </div>
@@ -53,7 +53,7 @@ function Itinerance({ informationsCartographie }) {
 }
 
 Itinerance.propTypes = {
-  informationsCartographie: PropTypes.object
+  permanence: PropTypes.object
 };
 
 export default Itinerance;

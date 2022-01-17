@@ -1,11 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { conseillerActions } from '../../../actions';
+import { permanenceActions } from '../../../actions';
 
 function Remerciement() {
   const dispatch = useDispatch();
   function closeModal() {
-    dispatch(conseillerActions.closeFormulaire());
+    dispatch(permanenceActions.closePermanence());
   }
   return (
     <dialog aria-labelledby="rf-modal-remerciement" role="dialog" id="rf-modal-remerciement" className="rf-modal modalOpened">

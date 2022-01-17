@@ -11,24 +11,27 @@ import Remerciement from './Remerciement';
 import Footer from '../../Footer';
 import FlashMessage from 'react-flash-message';
 import { useLocation } from 'react-router-dom';
-import { formulaireHorairesAdresseActions } from '../../../actions/formulaireHorairesAdresse.actions';
+import { permanenceActions } from '../../../actions/permanence.actions';
 
-function FormulaireHorairesAdresse() {
+function Permanence() {
   const location = useLocation();
   const dispatch = useDispatch();
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const structure = useSelector(state => state.structure?.structure);
-  const isAdresseCachee = useSelector(state => state.horairesAdresse?.isAdresseCachee);
+  const permanence = useSelector(state => state.permanence?.permanence);
+  const isAdresseCachee = useSelector(state => state.permanence?.isAdresseCachee);
   const adresseStructure = structure?.insee.etablissement.adresse;
-  const dateUpdate = conseiller?.informationsCartographie?.updateAt ? dayjs(conseiller?.informationsCartographie.updatedAt).format('DD/MM/YYYY') : null;
-  const showError = useSelector(state => state.horairesAdresse.showError);
-  const isUpdated = useSelector(state => state.horairesAdresse.isUpdated);
+  const dateUpdate = permanence?.updateAt ? dayjs(permanence.updatedAt).format('DD/MM/YYYY') : null;
+  const showError = useSelector(state => state.permanence.showError);
+  const isUpdated = useSelector(state => state.permanence.isUpdated);
+  const isCreated = useSelector(state => state.permanence.isCreated);
+  const siretStructure = permanence?.siret ? String(permanence?.siret) : structure?.siret;
 
   useEffect(() => {
-    if (conseiller?.informationsCartographie) {
-      dispatch(formulaireHorairesAdresseActions.initInformations(conseiller?.informationsCartographie));
+    if (permanence !== null && permanence !== undefined) {
+      dispatch(permanenceActions.initPermanence(permanence));
     }
-  }, [conseiller?.informationsCartographie]);
+  }, [permanence]);
 
   return (
     <>
@@ -46,7 +49,7 @@ function FormulaireHorairesAdresse() {
           Une erreur est survenue lors du traitement de vos informations
         </p>
       }
-      { (isUpdated && location.pathname === '/accueil') &&
+      { (isCreated && location.pathname === '/accueil') &&
         <Remerciement/>
       }
       <div id="formulaire-horaires-adresse" className="rf-container">
@@ -57,23 +60,24 @@ function FormulaireHorairesAdresse() {
               <p className="derniere-modification">Derni&egrave;re modification de vos informations effectu&eacute;e le&nbsp;{dateUpdate}</p>
             }
             <Recapitulatif
-              nomStructure={conseiller?.informationsCartographie?.nomEnseigne ? conseiller?.informationsCartographie?.nomEnseigne : structure?.nom}
-              siret={conseiller?.informationsCartographie?.siret ? String(conseiller?.informationsCartographie?.siret) : structure?.siret}
-              adresseStructure={conseiller?.informationsCartographie?.adresse ? conseiller?.informationsCartographie?.adresse : adresseStructure}
+              nomStructure={permanence?.nomEnseigne ?? structure?.nom}
+              siret={permanence?.siret ? String(permanence?.siret) : structure?.siret}
+              adresseStructure={permanence?.adresse ?? adresseStructure}
             />
             <div className="rf-container rf-container--fluid">
               <div className="rf-grid-row rf-grid-row--gutters">
                 <Informations
-                  structure={structure} informationsCartographie={conseiller?.informationsCartographie}
-                  siretStructure={conseiller?.informationsCartographie?.siret ? String(conseiller?.informationsCartographie?.siret) : structure?.siret}
-                  adresseStructure={conseiller?.informationsCartographie?.adresse ? conseiller?.informationsCartographie?.adresse : adresseStructure}
+                  codeDepartement={structure?.codeDepartement}
+                  siretStructure={siretStructure}
+                  adresseStructure={permanence?.adresse ?? adresseStructure}
+                  permanence={permanence}
                 />
                 {!isAdresseCachee &&
-                <Adresse adresseCartographie={conseiller?.informationsCartographie?.adresse}/>
+                <Adresse adressePermanence={permanence?.adresse}/>
                 }
-                <Horaires horairesConseiller={conseiller?.informationsCartographie?.horaires}/>
-                <Itinerance conseiller={conseiller} informationsCartographie={conseiller?.informationsCartographie}/>
-                <Validation conseillerId={conseiller?._id}/>
+                <Horaires horairesPermanence={permanence?.horaires}/>
+                <Itinerance permanence={permanence}/>
+                <Validation permanence={permanence} conseillerId={conseiller?._id} structureId={structure?._id} />
               </div>
             </div>
           </div>
@@ -84,5 +88,5 @@ function FormulaireHorairesAdresse() {
   );
 }
 
-export default FormulaireHorairesAdresse;
+export default Permanence;
 
