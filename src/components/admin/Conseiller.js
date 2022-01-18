@@ -21,6 +21,7 @@ function Conseiller({ conseiller, currentPage, trClass, role }) {
         <td>{conseiller?.dateFinFormation ? dayjs(conseiller?.dateFinFormation).format('DD/MM/YYYY') : 'Non renseign&eacute;e'}</td>
         <td>{conseiller?.certifie ? <img src="logos/icone-check.svg"/> : <img src="logos/icone-croix.svg" /> }</td>
         <td><div className={isUserActif ? 'circle-true' : 'circle-false'}></div></td>
+        { role === 'admin_coop' && <td>{conseiller?.cra}</td> }
         <td>
           <Link className="rf-btn details-btn" style={{ boxShadow: 'none' }} to={{
             pathname: `/conseiller/${conseiller?._id}`,
