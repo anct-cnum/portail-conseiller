@@ -26,7 +26,7 @@ export default function permanence(state = initialState, action) {
     case 'SHOW_FORMULAIRE_PERMANENCE':
       return {
         ...state,
-        showFormulairePermanence: action.show
+        showFormulairePermanence: !action.hasPermanence
       };
     case 'CLOSE_FORMULAIRE_PERMANENCE':
       return {
@@ -101,7 +101,7 @@ export default function permanence(state = initialState, action) {
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.adresseExact)[0]?.adresseExact;
       return {
         ...state,
-        isAdresseCachee: action.boolean,
+        isAdresseCachee: action.hide,
         adresseExact: true,
         showError: false,
       };
@@ -109,7 +109,7 @@ export default function permanence(state = initialState, action) {
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.adresseExact)[0]?.adresseExact;
       return {
         ...state,
-        isAdresseCachee: action.boolean,
+        isAdresseCachee: action.hide,
         numeroVoie: '',
         rueVoie: '',
         codePostal: '',
@@ -121,11 +121,11 @@ export default function permanence(state = initialState, action) {
     case 'INIT_ADRESSE':
       return {
         ...state,
-        numeroVoie: action.adresse.numeroRue ? action.adresse.numeroRue : action.adresse.numero_voie,
-        rueVoie: action.adresse?.rue ? action.adresse?.rue : action.adresse.type_voie + ' ' + action.adresse?.nom_voie,
-        codePostal: action.adresse.codePostal ? action.adresse.codePostal : action.adresse.code_postal,
-        ville: action.adresse.ville ? action.adresse.ville : action.adresse.localite,
-        siret: action.adresse.siret
+        numeroVoie: action?.adresse?.numeroRue ? action?.adresse?.numeroRue : action?.adresse?.numero_voie,
+        rueVoie: action?.adresse?.rue ? action.adresse?.rue : action?.adresse?.type_voie + ' ' + action?.adresse?.nom_voie,
+        codePostal: action?.adresse?.codePostal ? action?.adresse?.codePostal : action?.adresse?.code_postal,
+        ville: action?.adresse?.ville ? action?.adresse?.ville : action?.adresse?.localite,
+        siret: action?.adresse?.siret
       };
     case 'UPDATE_LIEUACTIVITE':
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.lieuActivite)[0]?.lieuActivite;

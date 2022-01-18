@@ -7,7 +7,7 @@ import telephoneHorsMetropole from '../../../data/indicatifs.json';
 function Informations({ codeDepartement, adresseStructure, siretStructure, permanence }) {
   const dispatch = useDispatch();
   const isAdresseCachee = useSelector(state => state.permanence?.isAdresseCachee);
-  const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
+  const erreursFormulaire = useSelector(state => state.permanence?.errorsFormulaire?.errors);
 
   const erreurAdresseExact = erreursFormulaire?.filter(erreur => erreur?.adresseExact)[0]?.adresseExact;
   const erreurLieuActivite = erreursFormulaire?.filter(erreur => erreur?.lieuActivite)[0]?.lieuActivite;
@@ -36,9 +36,9 @@ function Informations({ codeDepartement, adresseStructure, siretStructure, perma
     dispatch(permanenceActions.updateField(name, value));
   }
 
-  function handleAdresse(boolean) {
-    dispatch(permanenceActions.cacherAdresse(boolean));
-    if (boolean) {
+  function handleAdresse(hide) {
+    dispatch(permanenceActions.cacherAdresse(hide));
+    if (hide) {
       adresseStructure.siret = siretStructure;
       dispatch(permanenceActions.initAdresse(adresseStructure));
     } else {

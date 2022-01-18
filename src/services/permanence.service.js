@@ -33,7 +33,7 @@ function createPermanence(permanence) {
 
 function updatePermanence(permanenceId, permanence) {
   const requestOptions = {
-    method: 'POST',
+    method: 'PATCH',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
     body: JSON.stringify({
       permanence

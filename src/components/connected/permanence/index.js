@@ -22,9 +22,9 @@ function Permanence() {
   const isAdresseCachee = useSelector(state => state.permanence?.isAdresseCachee);
   const adresseStructure = structure?.insee.etablissement.adresse;
   const dateUpdate = permanence?.updateAt ? dayjs(permanence.updatedAt).format('DD/MM/YYYY') : null;
-  const showError = useSelector(state => state.permanence.showError);
-  const isUpdated = useSelector(state => state.permanence.isUpdated);
-  const isCreated = useSelector(state => state.permanence.isCreated);
+  const showError = useSelector(state => state.permanence?.showError);
+  const isUpdated = useSelector(state => state.permanence?.isUpdated);
+  const isCreated = useSelector(state => state.permanence?.isCreated);
   const siretStructure = permanence?.siret ? String(permanence?.siret) : structure?.siret;
 
   useEffect(() => {

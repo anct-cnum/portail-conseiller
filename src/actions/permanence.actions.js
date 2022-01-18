@@ -42,8 +42,7 @@ function get(idConseiller) {
 }
 
 function isPermanenceChecked(hasPermanence) {
-  const show = !hasPermanence;
-  return { type: 'SHOW_FORMULAIRE_PERMANENCE', show };
+  return { type: 'SHOW_FORMULAIRE_PERMANENCE', hasPermanence };
 }
 
 function closePermanence() {
@@ -183,11 +182,11 @@ function updatePermanence(idPermanence, permanence) {
   }
 }
 
-function cacherAdresse(boolean) {
-  if (boolean) {
-    return { type: 'CACHER_ADRESSE', boolean };
+function cacherAdresse(hide) {
+  if (hide) {
+    return { type: 'CACHER_ADRESSE', hide };
   } else {
-    return { type: 'MONTRER_ADRESSE', boolean };
+    return { type: 'MONTRER_ADRESSE', hide };
   }
 }
 

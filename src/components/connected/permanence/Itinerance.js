@@ -19,10 +19,10 @@ function Itinerance({ permanence }) {
 
   useEffect(() => {
     if (permanence) {
-      setInputs({ itinerance: permanence.itinerant });
+      setInputs({ itinerance: permanence?.itinerant });
     }
   }, [permanence]);
-  
+
   return (
     <>
       <h2 className="sous-titre rf-col-12 rf-mb-4w">A propos de mon activit&eacute; de conseiller num&eacute;rique</h2>
