@@ -40,7 +40,7 @@ function Welcome() {
 
             <div className="rf-col-12">
               <div className="rf-container">
-                <div className="rf-grid-row">
+                <div className="rf-grid-row rf-grid-row--center">
                   <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
                     <Link to="/compte-rendu-activite" title="Acc&eacute;der &agrave; mon outil de suivi d&rsquo;activit&eacute;">
                       <img src="/logos/home-connected/icone-cra.svg" className="icone-btn icone-cra"/>

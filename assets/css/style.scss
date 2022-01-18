@@ -71,6 +71,10 @@
 .rf-fi-user-line {
   color:var(--bf500);
 }
+.information-link {
+  background-color: #2e2e2e;
+  border: none;
+}
 
 .flashBag {
   background-color: white;
@@ -114,9 +118,16 @@
 }
 
 .invalid {
-  color: #FF3333;
+  color: #FF3333 !important;
 }
-
+.input-error {
+  color: #ff3333 !important;
+  box-shadow: inset 0 -2px 0 0 #ff3333 !important;
+}
+.text-error {
+  color: #FF3333 !important;
+  font-size: 0.8rem !important;
+}
 .important {
   color: #e10600;
 }
@@ -182,9 +193,9 @@
 .rf-mt-15w {
   margin-top: 7.5rem !important;
 }
-.header-aide, .header-propos {
+.header-aide, .header-propos, .header-informations {
   .rf-nav__list {
-    margin: -24px -1rem;
+    margin: -28px -1rem;
     padding: 0 0 7px;
     a {
       box-shadow: none;
@@ -224,7 +235,7 @@
     width: 34px;
     top: 6px;
   }
-  .texte-aide {
+  .texte-aide, .texte-informations {
     position: relative;
     margin-left: 10px;
     bottom: 4px;
@@ -233,7 +244,10 @@
       position: relative;
     }
   }
-  .lien-aide {
+  .texte-informations {
+    bottom: -4px;
+  }
+  .lien-aide, .lien-informations {
     box-shadow: none !important;
     outline: none !important;
   }
@@ -242,7 +256,7 @@
     line-height: 24px;
     color: #fff;
   }
-  #menu-liens-aide {
+  #menu-liens-aide, #menu-informations {
     background-color: #1e1e1e;
     max-height: none;
     text-align: left;
@@ -260,6 +274,7 @@
     padding-top: 12px;
   }
 }
+
 .header-propos {
   font-size: 0.88rem;
   .rf-custom-link {
@@ -296,7 +311,7 @@
   opacity: 1;
   visibility: visible;
 }
-.modal-sexe-age {
+.modal-sexe-age, .modal-remerciement {
   background-color: #fff;
   padding: 4em 2.5em;
   color: #1e1e1e;
@@ -330,7 +345,7 @@
     border-bottom: 2px solid #6A6A6A;
     color:#a1a2a5;
   }
- .sexe-age-btn {
+ .sexe-age-btn, .remerciement-btn {
     background-color: #fff;
     border: 1px solid #1e1e1e;
     display: inline-block;
@@ -342,7 +357,7 @@
     font-size: 1em;
     color: #1e1e1e;
     height: 64px;
-    width: 220px;
+    width: 318px;
   }
 }
 .contenu-vide{
@@ -388,7 +403,7 @@
 }
 
 @media (max-width: 988px) {
-  .modal-sexe-age {
+  .modal-sexe-age, .modal-remerciement {
     .element-gauche {
       float:right;
       width:100%;
@@ -488,7 +503,6 @@
     .support-btn {
       width: 90%;
     }
-
   }
 
   /* Ajustement du footer xs*/
@@ -521,5 +535,10 @@
     .marge-responsive {
       padding-left: 9px;
     }
+  }
+}
+@media (max-width: 400px) {
+  .sexe-age-btn, .remerciement-btn {
+    width: 235px !important;
   }
 }

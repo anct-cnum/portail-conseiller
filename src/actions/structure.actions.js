@@ -2,6 +2,7 @@ import { structureService } from '../services/structure.service.js';
 
 export const structureActions = {
   get,
+  update,
 };
 
 function get(id) {
@@ -25,5 +26,29 @@ function get(id) {
   }
   function failure(error) {
     return { type: 'GET_STRUCTURE_FAILURE', error };
+  }
+}
+
+function update(structure) {
+  return dispatch => {
+    dispatch(request());
+
+    structureService.update(structure)
+    .then(
+      result => dispatch(success(result)),
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'UPDATE_STRUCTURE_REQUEST' };
+  }
+  function success(result) {
+    return { type: 'UPDATE_STRUCTURE_SUCCESS', result };
+  }
+  function failure(error) {
+    return { type: 'UPDATE_STRUCTURE_FAILURE', error };
   }
 }

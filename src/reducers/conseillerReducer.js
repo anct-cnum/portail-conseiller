@@ -121,6 +121,11 @@ export default function conseiller(state = initState, action) {
         ...state,
         showFormular: action.show
       };
+    case 'CLOSE_FORMULAIRE_SEXE_AGE':
+      return {
+        showFormular: false,
+        isUpdated: false
+      };
     case 'GETALL_REQUEST':
       return {
         ...state,
@@ -163,11 +168,6 @@ export default function conseiller(state = initState, action) {
 
       return nextState;
     }
-    case 'CLOSE_FORMULAIRE_SEXE_AGE':
-      return {
-        showFormular: false,
-        isUpdated: false
-      };
     case 'IS_USER_ACTIF':
       return {
         ...state,

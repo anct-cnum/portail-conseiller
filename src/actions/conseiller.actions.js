@@ -1,5 +1,6 @@
 import { conseillerService } from '../services/conseiller.service.js';
 import download from 'downloadjs';
+import { history } from '../helpers';
 import dayjs from 'dayjs';
 
 export const conseillerActions = {
@@ -14,7 +15,7 @@ export const conseillerActions = {
   resetExportDonneesCnfs,
   isFormulaireChecked,
   closeFormulaire,
-  isUserActif
+  isUserActif,
 };
 
 const formatDate = date => dayjs(date).format('DD-MM-YYYY');
@@ -207,6 +208,7 @@ function isFormulaireChecked(sexe, isUpdated) {
 }
 
 function closeFormulaire() {
+  history.push('/accueil');
   return { type: 'CLOSE_FORMULAIRE_SEXE_AGE' };
 }
 
