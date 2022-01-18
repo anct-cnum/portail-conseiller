@@ -28,7 +28,7 @@ function createPermanence(permanence) {
     })
   };
 
-  return fetch(`${apiUrlRoot}/permanence-conseillers/create`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/permanence-conseillers/conseiller/${permanence.conseillerId}/create`, requestOptions).then(handleResponse);
 }
 
 function updatePermanence(permanenceId, permanence) {
