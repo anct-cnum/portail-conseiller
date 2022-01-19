@@ -44,7 +44,7 @@ export default function cra(state = initialState, action) {
       return {
         ...state,
         activite: action.activite,
-        nbParticipants: action.activite === 'collectif' ? 5 : null,
+        nbParticipants: action.activite === 'collectif' ? 5 : 1,
         errorsRequired: {
           ...state.errorsRequired,
           activite: false },
