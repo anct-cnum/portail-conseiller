@@ -253,6 +253,7 @@ function Conseillers() {
                           </ul>
                         </nav>
                       </th>
+                      {user.role === 'admin_coop' && <th>CRA saisis</th> }
                       <th>D&eacute;tails</th>
                     </tr>
                   </thead>
