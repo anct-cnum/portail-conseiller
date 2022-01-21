@@ -10,7 +10,7 @@ function Header({ linkAccount }) {
   const location = useLocation();
   const dispatch = useDispatch();
   const [menuAideShow, setMenuAideShow] = useState(false);
-  const [menuInformationsShow, setMenuInformationsShow] = useState(false);
+  //const [menuInformationsShow, setMenuInformationsShow] = useState(false);
   const role = useSelector(state => state.authentication?.user?.user?.role);
 
   const toggleBurgerMenu = () => {
@@ -85,7 +85,7 @@ function Header({ linkAccount }) {
                                 aria-expanded={menuAideShow} aria-controls="menu-liens-aide" aria-current="true"
                                 onClick={() => {
                                   setMenuAideShow(!menuAideShow);
-                                  setMenuInformationsShow(false);
+                                  //setMenuInformationsShow(false);
                                 }}>
                                 <img className="logo-discussion" src="logos/bulle-ressourcerie.svg"/>
                                 <span className="texte-aide">Aide&nbsp;
@@ -145,7 +145,9 @@ function Header({ linkAccount }) {
                         </li>
                       }
 
-                      { (linkAccount !== 'noConnected' && role === 'conseiller') &&
+                      { /*(linkAccount !== 'noConnected' && role === 'conseiller') &&
+
+
                         <li className="rf-shortcuts__item header-informations">
                           <div className="" role="navigation" aria-label="informations">
                             <ul className="rf-nav__list">
@@ -183,18 +185,25 @@ function Header({ linkAccount }) {
                               </li>
                             </ul>
                           </div>
-                        </li>
+                        </li>*/
                       }
 
-                      { (linkAccount !== 'noConnected' && role !== 'conseiller') &&
+                      {/* (linkAccount !== 'noConnected' && role !== 'conseiller') &&
                         <li className="rf-shortcuts__item">
                           <span className="rf-link" style={{ cursor: 'unset' }}>
                             <span className="rf-fi-user-line" aria-hidden="true"></span>
                             { linkAccount }
                           </span>
                         </li>
-                      }
-                      
+                    */}
+
+                      { linkAccount === 'noConnected' ?
+                        <a href="/login" className="rf-link" target="_self">J&rsquo;ai d&eacute;j&Agrave; un compte</a> :
+                        <span className="rf-link" style={{ cursor: 'unset' }}>
+                          <span className="rf-fi-user-line" aria-hidden="true"></span>
+                          { linkAccount }
+                        </span> }
+
                       { linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
                       <li className="rf-shortcuts__item header-logout">
                         {role === 'conseiller' &&
