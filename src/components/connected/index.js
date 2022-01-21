@@ -21,7 +21,7 @@ function Connected() {
 
   const structure = useSelector(state => state?.structure?.structure);
   const permanence = useSelector(state => state?.permanence?.permanence);
-  const voirPermanence = useSelector(state => state?.permanence?.showFormulairePermanence);
+  const voirPermanence = false; //useSelector(state => state?.permanence?.showFormulairePermanence);
 
   useEffect(() => {
     if (conseiller) {
@@ -47,12 +47,12 @@ function Connected() {
       {!user.pdfGenerator &&
       <>
         {!voirPermanence &&
+          //<Route path={`/mes-informations`} component={Permanence} />
           <>
             <Route path={`/accueil`} component={Welcome} />
             <Route path={`/compte-rendu-activite`} component={Cra} />
             <Route path={`/statistiques`} component={Statistics} />
             <Route path={`/ressourcerie`} component={Ressourcerie} />
-            <Route path={`/mes-informations`} component={Permanence} />
             <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
           </>
         }
