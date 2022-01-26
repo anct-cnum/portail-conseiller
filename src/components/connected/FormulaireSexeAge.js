@@ -38,40 +38,21 @@ function FormulaireSexeAge() {
       setInputs(inputs => ({ ...inputs, errorInputs: false }));
       dispatch(formulaireSexeAgeActions.updateConseiller({ sexe: sexe, dateDeNaissance: date }));
       dispatch(conseillerActions.get($id));
+      dispatch(conseillerActions.closeFormulaire());
     } else {
       window.scrollTo(0, 0);
       setInputs(inputs => ({ ...inputs, errorInputs: true }));
     }
   }
 
-  function closeModal() {
-    dispatch(conseillerActions.closeFormulaire());
-  }
-
   return (
-    <dialog aria-labelledby="rf-modal-sexe-age" role="dialog" id="rf-modal-sexe-age" className="rf-modal modalOpened">
-      <div className="rf-container">
-        <div className="rf-grid-row rf-grid-row--center">
-          <div className="rf-col-7 rf-modal__body modal-sexe-age">
-            <div className="rf-modal__content">
-              { isUpdated &&
-              <>
-                <h1 className="rf-modal__title">Merci !</h1>
-                <div className="rf-mb-3w">
-                  <div className="rf-mb-3w">
-                    Votre compte sur l&rsquo;espace Coop est d&eacute;sormais activ&eacute; !
-                    Toute l&rsquo;&eacute;quipe Conseiller num&eacute;rique France Services vous souhaite un excellent d&eacute;but de mission.
-                  </div>
-                  <img className="conseiller-course" src="avatars/conseiller-course.png"/>
-                  <img className="conseillere-tablette" src="avatars/conseillere-tablette.svg"/>
-                </div>
-                <div className="centre">
-                  <button className="sexe-age-btn" onClick={closeModal} >Fermer</button>
-                </div>
-              </>
-              }
-              { !isUpdated &&
-                <>
+    <>
+      {!isUpdated &&
+        <dialog aria-labelledby="rf-modal-sexe-age" role="dialog" id="rf-modal-sexe-age" className="rf-modal modalOpened">
+          <div className="rf-container">
+            <div className="rf-grid-row rf-grid-row--center">
+              <div className="rf-col-12 rf-col-sm-10 rf-col-md-7 rf-modal__body modal-sexe-age">
+                <div className="rf-modal__content">
                   <h1 id="rf-modal-title-modal-sexe-age" className="rf-modal__title">
                     Une derni&egrave;re &eacute;tape !
                   </h1>
@@ -105,7 +86,6 @@ function FormulaireSexeAge() {
                       </div>
                     </fieldset>
                   </div>
-
                   <div className="element-droite">
                     <label className="label" htmlFor="date">Votre date de naissance <span className="important">*</span></label>
                     <DatePicker
@@ -134,16 +114,16 @@ function FormulaireSexeAge() {
                   </a>
                   </p>
                   <div className="centre">
-                    <button className="sexe-age-btn" onClick={handleSubmit}>Valider</button>
+                    <button className="sexe-age-btn" onClick={handleSubmit}>Valider et passer à la dernière étape</button>
                   </div>
-                </>
-              }
+                </div>
+              </div>
             </div>
-
           </div>
-        </div>
-      </div>
-    </dialog>
+        </dialog>
+      }
+
+    </>
   );
 }
 

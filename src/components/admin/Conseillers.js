@@ -85,7 +85,7 @@ function Conseillers() {
         <div className="rf-container rf-mt-2w">
           <div className="rf-grid-row rf-grid-row--center">
             <div className="rf-col-12">
-              <div className="rf-table">
+              <div className="rf-table" style={{ overflow: 'auto' }}>
                 <table >
                   <thead className="conseillers-thead">
                     <tr>

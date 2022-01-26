@@ -11,6 +11,7 @@ import filtersAndSortsReducer from './filtersAndSortsReducer';
 import pagination from './paginationReducer';
 import ressources from './ressourcesReducer';
 import ressourcesFiltres from './ressourcesFiltresReducer';
+import permanence from './permanenceReducer';
 
 import { combineReducers } from 'redux';
 
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   pagination: pagination,
   ressources: ressources,
   ressourcesFiltres: ressourcesFiltres,
+  permanence: permanence,
 });
 
 export default rootReducer;

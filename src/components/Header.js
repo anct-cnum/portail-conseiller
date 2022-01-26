@@ -10,6 +10,7 @@ function Header({ linkAccount }) {
   const location = useLocation();
   const dispatch = useDispatch();
   const [menuAideShow, setMenuAideShow] = useState(false);
+  //const [menuInformationsShow, setMenuInformationsShow] = useState(false);
   const role = useSelector(state => state.authentication?.user?.user?.role);
 
   const toggleBurgerMenu = () => {
@@ -84,6 +85,7 @@ function Header({ linkAccount }) {
                                 aria-expanded={menuAideShow} aria-controls="menu-liens-aide" aria-current="true"
                                 onClick={() => {
                                   setMenuAideShow(!menuAideShow);
+                                  //setMenuInformationsShow(false);
                                 }}>
                                 <img className="logo-discussion" src="logos/bulle-ressourcerie.svg"/>
                                 <span className="texte-aide">Aide&nbsp;
@@ -100,13 +102,19 @@ function Header({ linkAccount }) {
                                   {role !== 'structure_coop' &&
                                   <>
                                     <li className="aide-coop">
-                                      <a className="rf-nav__link lien-aide" href={aideCoop} target="blank" rel="noreferrer">
+                                      <a className="rf-nav__link lien-aide" href={aideCoop} target="blank" rel="noreferrer"
+                                        onClick={() => {
+                                          setMenuAideShow(false);
+                                        }}>
                                         Aide espace Coop<br/>
                                         <span className="sous-titre-lien">Suivi d&rsquo;activit&eacute;, Pix, mail, etc.</span>
                                       </a>
                                     </li>
                                     <li className="aide-metier">
-                                      <a className="rf-nav__link lien-aide" href={aideMetier} target="blank" rel="noreferrer">
+                                      <a className="rf-nav__link lien-aide" href={aideMetier} target="blank" rel="noreferrer"
+                                        onClick={() => {
+                                          setMenuAideShow(false);
+                                        }}>
                                         Aide m&eacute;tier<br/>
                                         <span className="sous-titre-lien">Missions et cadre de travail.</span>
                                       </a>
@@ -115,7 +123,10 @@ function Header({ linkAccount }) {
                                   }
                                   {role === 'structure_coop' &&
                                     <li className="aide-coop">
-                                      <a className="rf-nav__link lien-aide" href={aideStructure} target="blank" rel="noreferrer">
+                                      <a className="rf-nav__link lien-aide" href={aideStructure} target="blank" rel="noreferrer"
+                                        onClick={() => {
+                                          setMenuAideShow(false);
+                                        }}>
                                         Aide espace Coop<br/>
                                         <span className="sous-titre-lien">Consulter la Foire aux Questions.</span>
                                       </a>
@@ -127,15 +138,72 @@ function Header({ linkAccount }) {
                           </ul>
                         </div>
                       </li>
-                      <li className="rf-shortcuts__item">
 
-                        { linkAccount === 'noConnected' ?
-                          <a href="/login" className="rf-link" target="_self">J&rsquo;ai d&eacute;j&Agrave; un compte</a> :
+                      { linkAccount === 'noConnected' &&
+                        <li className="rf-shortcuts__item">
+                          <a href="/login" className="rf-link" target="_self">J&rsquo;ai d&eacute;j&Agrave; un compte</a>
+                        </li>
+                      }
+
+                      { /*(linkAccount !== 'noConnected' && role === 'conseiller') &&
+
+
+                        <li className="rf-shortcuts__item header-informations">
+                          <div className="" role="navigation" aria-label="informations">
+                            <ul className="rf-nav__list">
+                              <li className="rf-nav__item">
+                                <button className="rf-nav__btn rf-custom-link"
+                                  aria-expanded={menuInformationsShow} aria-controls="menu-informations" aria-current="true"
+                                  onClick={() => {
+                                    setMenuInformationsShow(!menuInformationsShow);
+                                    setMenuAideShow(false);
+                                  }}>
+                                  <span className="texte-informations"><span className="rf-fi-user-line" aria-hidden="true"></span>
+                                    { linkAccount }
+                                    {!menuInformationsShow &&
+                                      <i className="ri-arrow-down-s-line"></i>
+                                    }
+                                    {menuInformationsShow &&
+                                      <i className="ri-arrow-up-s-line"></i>
+                                    }
+                                  </span>
+                                </button>
+                                <div className={!menuInformationsShow ? 'rf-collapse rf-menu' : 'rf-collapse rf-menu rf-collapse--expanded'}
+                                  id="menu-informations">
+                                  <ul className="rf-menu__list">
+                                    <li className="mes-informations">
+                                      <a className="rf-nav__link lien-informations" href="/mes-informations"
+                                        onClick={() => {
+                                          setMenuInformationsShow(false);
+                                        }}>
+                                        Mes informations<br/>
+                                        <span className="sous-titre-lien">Mes horaires et mon adresse</span>
+                                      </a>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                        </li>*/
+                      }
+
+                      {/* (linkAccount !== 'noConnected' && role !== 'conseiller') &&
+                        <li className="rf-shortcuts__item">
                           <span className="rf-link" style={{ cursor: 'unset' }}>
                             <span className="rf-fi-user-line" aria-hidden="true"></span>
                             { linkAccount }
-                          </span> }
-                      </li>
+                          </span>
+                        </li>
+                    */}
+
+                      { linkAccount === 'noConnected' ?
+                        <a href="/login" className="rf-link" target="_self">J&rsquo;ai d&eacute;j&Agrave; un compte</a> :
+                        <span className="rf-link" style={{ cursor: 'unset' }}>
+                          <span className="rf-fi-user-line" aria-hidden="true"></span>
+                          { linkAccount }
+                        </span> }
+
                       { linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
                       <li className="rf-shortcuts__item header-logout">
                         {role === 'conseiller' &&
