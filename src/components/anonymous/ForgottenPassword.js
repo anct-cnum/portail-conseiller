@@ -219,7 +219,10 @@ function ForgottenPassword({ match = null }) {
                     <p>Votre mot de passe est unique et servira &agrave; la fois pour votre connexion au mail
                       <br />@conseiller-numerique.fr, pour vous identifier sur l&rsquo;espace Coop et de discussion.
                     </p>
-
+                    <h5 className="rf-mb-4v">
+                      Pensez à retourner sur votre boite mail
+                      <br/> pour valider votre nouveau mot de passe
+                    </h5>
                     <p><img className="cle" src="/logos/cle-precieuse.svg"/></p>
 
                     <p className="rf-mb-3w">Notez-le en lieu sûr et gardez-le pr&eacute;cieusement&nbsp;!</p>
