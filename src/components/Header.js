@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 import Menu from './connected/Menu';
 import { menuActions } from '../actions';
 
-function Header({ linkAccount }) {
+function Header({ linkAccount, printClass }) {
 
   const location = useLocation();
   const dispatch = useDispatch();
   const [menuAideShow, setMenuAideShow] = useState(false);
-  const [menuInformationsShow, setMenuInformationsShow] = useState(false);
+  //const [menuInformationsShow, setMenuInformationsShow] = useState(false);
   const role = useSelector(state => state.authentication?.user?.user?.role);
 
   const toggleBurgerMenu = () => {
@@ -22,7 +22,7 @@ function Header({ linkAccount }) {
   const aideStructure = process.env.REACT_APP_AIDE_URL;
 
   return (
-    <header className="rf-header" role="banner">
+    <header className={printClass + ' rf-header'} role="banner">
       <div className="rf-container">
         <div
           // eslint-disable-next-line max-len
@@ -30,7 +30,11 @@ function Header({ linkAccount }) {
           <div className="rf-col-xs-10 rf-col-sm-10 rf-col-md-10 rf-col-xl-12">
             <div className="rf-header__body">
               <a className="rf-header__operator" href="/" style={{ boxShadow: 'none' }}>
-                <img src="/logos/logo-conseiller-numerique-nb.svg" alt="logo Conseiller Num&eacute;rique France Services" style={{ height: '48px' }}/>
+                {printClass ?
+                  <><img src="/logos/logo-conseiller-numerique.svg" alt="logo Conseiller Num&eacute;rique France Services" style={{ height: '48px' }}/></> :
+                  <><img src="/logos/logo-conseiller-numerique-nb.svg" alt="logo Conseiller Num&eacute;rique France Services" style={{ height: '48px' }}/></>
+                }
+
               </a>
               <div className={`rf-header__navbar ${location.pathname === '/validation' || location.pathname.startsWith('/inscription') ? 'headerCustom' : ''}`}>
                 <div className="rf-service">
@@ -85,7 +89,7 @@ function Header({ linkAccount }) {
                                 aria-expanded={menuAideShow} aria-controls="menu-liens-aide" aria-current="true"
                                 onClick={() => {
                                   setMenuAideShow(!menuAideShow);
-                                  setMenuInformationsShow(false);
+                                  //setMenuInformationsShow(false);
                                 }}>
                                 <img className="logo-discussion" src="logos/bulle-ressourcerie.svg"/>
                                 <span className="texte-aide">Aide&nbsp;
@@ -145,7 +149,9 @@ function Header({ linkAccount }) {
                         </li>
                       }
 
-                      { (linkAccount !== 'noConnected' && role === 'conseiller') &&
+                      { /*(linkAccount !== 'noConnected' && role === 'conseiller') &&
+
+
                         <li className="rf-shortcuts__item header-informations">
                           <div className="" role="navigation" aria-label="informations">
                             <ul className="rf-nav__list">
@@ -183,18 +189,25 @@ function Header({ linkAccount }) {
                               </li>
                             </ul>
                           </div>
-                        </li>
+                        </li>*/
                       }
 
-                      { (linkAccount !== 'noConnected' && role !== 'conseiller') &&
+                      {/* (linkAccount !== 'noConnected' && role !== 'conseiller') &&
                         <li className="rf-shortcuts__item">
                           <span className="rf-link" style={{ cursor: 'unset' }}>
                             <span className="rf-fi-user-line" aria-hidden="true"></span>
                             { linkAccount }
                           </span>
                         </li>
-                      }
-                      
+                    */}
+
+                      { linkAccount === 'noConnected' ?
+                        <a href="/login" className="rf-link" target="_self">J&rsquo;ai d&eacute;j&Agrave; un compte</a> :
+                        <span className="rf-link" style={{ cursor: 'unset' }}>
+                          <span className="rf-fi-user-line" aria-hidden="true"></span>
+                          { linkAccount }
+                        </span> }
+
                       { linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
                       <li className="rf-shortcuts__item header-logout">
                         {role === 'conseiller' &&
@@ -231,7 +244,8 @@ function Header({ linkAccount }) {
 }
 
 Header.propTypes = {
-  linkAccount: PropTypes.string
+  linkAccount: PropTypes.string,
+  printClass: PropTypes.string,
 };
 
 export default Header;
