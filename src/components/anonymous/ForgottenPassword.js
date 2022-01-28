@@ -255,19 +255,20 @@ function ForgottenPassword({ match = null }) {
             <div className="rf-container">
               <div className="rf-grid-row rf-grid-row--center">
                 { passwordChoosen !== undefined || tokenVerified &&
-              <div className="rf-col-12 rf-col-md-5 rf-mt-2w rf-mt-md-4w">
-                <h2 className="titre rf-mb-4v">Renouveler votre mot de passe <img className="cle" src="/logos/cle.svg"/></h2>
-                <p className="sous-titre rf-mb-3w">
-                Celui-ci servira &agrave; la fois pour votre connexion au mail, pour vous identifier sur l’espace Coop
-                ainsi que sur le service de discussion en ligne, gardez-le pr&eacute;cieusement !
-                </p>
-                <p className="rf-mb-3w">
-                Un e-mail de validation sera envoy&eacute; &agrave; l’adresse {user?.persoEmail} lorsque vous cliquerez sur Valider.
-                </p>
-                <p className="rf-mb-md-3w">
-                Acc&eacute;dez ensuite &agrave; cette derni&egrave;re afin de pouvoir effectuer votre premi&egrave;re connexion &agrave; l’espace Coop.
-                </p>
-              </div>
+                  <div className="rf-col-12 rf-col-md-5 rf-mt-2w rf-mt-md-4w">
+                    <h2 className="titre rf-mb-4v">Renouveler votre mot de passe <img className="cle" src="/logos/cle.svg"/></h2>
+                    <p className="sous-titre rf-mb-3w">
+                    Celui-ci servira &agrave; la fois pour votre connexion au mail, pour vous identifier sur l&rsquo;espace Coop
+                    ainsi que sur le service de discussion en ligne, gardez-le pr&eacute;cieusement !
+                    </p>
+                    <p className="rf-mb-3w">
+                    Un e-mail de validation sera envoy&eacute; &agrave; l’adresse {user?.persoEmail} lorsque vous cliquerez sur Valider.
+                    </p>
+                    <p className="rf-mb-md-3w">
+                    Acc&eacute;dez ensuite &agrave; cette derni&egrave;re afin de pouvoir effectuer
+                    votre premi&egrave;re connexion &agrave; l&rsquo;espace Coop.
+                    </p>
+                  </div>
                 }
                 <div className="rf-col-12 rf-col-md-5">
 
@@ -302,7 +303,7 @@ function ForgottenPassword({ match = null }) {
                         </Link>
                         <p>Si vous avez simplement oublier votre mot de passe :</p>
                         <Link className="btn-connexion rf-mb-2w rf-mb-md-6w rf-p-5v" to={`/mot-de-passe-oublie`} style={{ textAlign: 'center' }}>
-                        Je rénitialise
+                        Je r&eacute;nitialise
                         </Link>
                       </div>
                     </div>
