@@ -31,8 +31,8 @@ function Header({ linkAccount, printClass }) {
             <div className="rf-header__body">
               <a className="rf-header__operator" href="/" style={{ boxShadow: 'none' }}>
                 {printClass ?
-                  <><img src="/logos/logo-conseiller-numerique.svg" alt="logo Conseiller Num&eacute;rique France Services" style={{ height: '48px' }}/></> :
-                  <><img src="/logos/logo-conseiller-numerique-nb.svg" alt="logo Conseiller Num&eacute;rique France Services" style={{ height: '48px' }}/></>
+                  <img src="/logos/logo-conseiller-numerique.svg" alt="logo Conseiller Num&eacute;rique France Services" style={{ height: '48px' }}/> :
+                  <img src="/logos/logo-conseiller-numerique-nb.svg" alt="logo Conseiller Num&eacute;rique France Services" style={{ height: '48px' }}/>
                 }
 
               </a>
