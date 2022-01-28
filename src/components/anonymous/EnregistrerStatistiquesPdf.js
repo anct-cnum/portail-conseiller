@@ -11,7 +11,6 @@ import Header from '../Header';
 function EnregistrerStatistiquesPdf({ match }) {
 
   const dispatch = useDispatch();
-  console.log(match);
   const type = match.params?.type;
   const id = match.params?.id;
   const dateDebut = new Date(match.params?.dateDebut);
@@ -28,11 +27,9 @@ function EnregistrerStatistiquesPdf({ match }) {
   useEffect(() => {
     if ((type !== 'user' && type !== 'conseiller' && type !== 'nationales') && territoire === undefined) {
       dispatch(statistiqueActions.getTerritoire(type, id, dateFin));
-      console.log(type);
     }
   });
 
-  console.log(territoire);
   useEffect(() => {
     dispatch(statistiqueActions.changeDateStatsDebut(dateDebut));
     dispatch(statistiqueActions.changeDateStatsFin(dateFin));
