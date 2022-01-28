@@ -120,6 +120,10 @@ $errorDarkMode: #FF3333;
     padding-left: 0.75rem;
   }
 
+  .baseline {
+    color: #919191;
+    font-size: 14px;
+  }
   /* custom point de rupture LG du DS */
   @media (max-width: 1024px) {
 
@@ -409,6 +413,9 @@ $errorDarkMode: #FF3333;
   .checkboxRattachement-selected {
     background-color: white!important;
     color: black!important;
+    .baseline {
+      color: #2a2a2a;
+    }
   }
 
   .labelCheckboxCustom {
