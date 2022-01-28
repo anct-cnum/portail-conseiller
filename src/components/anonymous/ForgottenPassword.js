@@ -57,6 +57,7 @@ function ForgottenPassword({ match = null }) {
   const choosingPassword = useSelector(state => state.createAccount.choosingPassword);
   let passwordChoosen = useSelector(state => state.createAccount.passwordChoosen);
   const errorPassword = useSelector(state => state.createAccount.error);
+  console.log('errorPassword:', errorPassword);
 
   useEffect(() => {
     dispatch(userActions.verifyToken(token));
@@ -253,21 +254,21 @@ function ForgottenPassword({ match = null }) {
           <div className="rf-col-12 zone-mot-de-passe">
             <div className="rf-container">
               <div className="rf-grid-row rf-grid-row--center">
-
-                <div className="rf-col-12 rf-col-md-5 rf-mt-2w rf-mt-md-4w">
-                  <h2 className="titre rf-mb-4v">Renouveler votre mot de passe <img className="cle" src="/logos/cle.svg"/></h2>
-                  <p className="sous-titre rf-mb-3w">
-                    Celui-ci servira &agrave; la fois pour votre connexion au mail, pour vous identifier sur l’espace Coop
-                    ainsi que sur le service de discussion en ligne, gardez-le pr&eacute;cieusement !
-                  </p>
-                  <p className="rf-mb-3w">
-                    Un e-mail de validation sera envoy&eacute; &agrave; l’adresse {user?.persoEmail} lorsque vous cliquerez sur Valider.
-                  </p>
-                  <p className="rf-mb-md-3w">
-                    Acc&eacute;dez ensuite &agrave; cette derni&egrave;re afin de pouvoir effectuer votre premi&egrave;re connexion &agrave; l’espace Coop.
-                  </p>
-                </div>
-
+                { passwordChoosen !== undefined || tokenVerified &&
+              <div className="rf-col-12 rf-col-md-5 rf-mt-2w rf-mt-md-4w">
+                <h2 className="titre rf-mb-4v">Renouveler votre mot de passe <img className="cle" src="/logos/cle.svg"/></h2>
+                <p className="sous-titre rf-mb-3w">
+                Celui-ci servira &agrave; la fois pour votre connexion au mail, pour vous identifier sur l’espace Coop
+                ainsi que sur le service de discussion en ligne, gardez-le pr&eacute;cieusement !
+                </p>
+                <p className="rf-mb-3w">
+                Un e-mail de validation sera envoy&eacute; &agrave; l’adresse {user?.persoEmail} lorsque vous cliquerez sur Valider.
+                </p>
+                <p className="rf-mb-md-3w">
+                Acc&eacute;dez ensuite &agrave; cette derni&egrave;re afin de pouvoir effectuer votre premi&egrave;re connexion &agrave; l’espace Coop.
+                </p>
+              </div>
+                }
                 <div className="rf-col-12 rf-col-md-5">
 
                   { verifyingToken || choosingPassword &&
@@ -275,12 +276,37 @@ function ForgottenPassword({ match = null }) {
                       Chargement...
                     </div>
                   }
-                  { tokenVerified === false &&
-                    <div className="erreur-token">
-                      <div className="invalid">D&eacute;sol&eacute; mais le lien est invalide ou a d&eacute;j&agrave; &eacute;t&eacute; utilis&eacute;.</div>
+                  { passwordChoosen &&
+                    <div className="rf-mb-12w rf-mt-md-12w sous-titre">
+                      <p style={{ textAlign: 'center' }} >
+                        <img className="cle" src="/logos/cle-precieuse.svg"/>
+                      </p>
+                      <h6>Votre mot de passe a &eacute;t&eacute; renouvel&eacute; avec succ&egrave;s.</h6>
+                      <p>Un email vous a &eacute;t&eacute; envoyer pour vous confirmer cela !
+                        <br/>Vous pouvez dès maintenant vous connecter via le bouton ci-dessous :
+                      </p>
+                      <Link className="btn-connexion rf-mb-6w rf-mb-md-11w rf-p-5v" to={`/login`} style={{ textAlign: 'center' }}>
+                        Accéder à mon espace
+                      </Link>
                     </div>
                   }
-
+                  { tokenVerified === false &&
+                    <div className="rf-mb-12w rf-mt-md-12w">
+                      <h6 style={{ color: '#e0000f' }}>
+                        D&eacute;sol&eacute; mais le lien est invalide ou a d&eacute;j&agrave; &eacute;t&eacute; utilis&eacute;.
+                      </h6>
+                      <div>
+                        <p>Si vous avez rescement changer votre mot de passe :</p>
+                        <Link className="btn-connexion rf-mb-2w rf-mb-md-6w rf-p-5v" to={`/login`} style={{ textAlign: 'center' }}>
+                        Accéder à mon espace
+                        </Link>
+                        <p>Si vous avez simplement oublier votre mot de passe :</p>
+                        <Link className="btn-connexion rf-mb-2w rf-mb-md-6w rf-p-5v" to={`/mot-de-passe-oublie`} style={{ textAlign: 'center' }}>
+                        Je rénitialise
+                        </Link>
+                      </div>
+                    </div>
+                  }
                   { tokenVerified && !passwordChoosen &&
                     <div className="rf-mt-11v">
                       {/* Form */}
@@ -323,13 +349,7 @@ function ForgottenPassword({ match = null }) {
                       <button className="btn-connexion rf-mb-6w rf-mb-md-7w" onClick={handleSubmitPassword} >Valider le mot de passe</button>
                     </div>
                   }
-                  { passwordChoosen &&
-                    <div className="rf-mb-12w rf-mt-md-12w sous-titre">
-                      Votre mot de passe a &eacute;t&eacute; renouvel&eacute; avec succ&egrave;s. <Link to={`/login`}>Vous pouvez vous connecter</Link>.
-                    </div>
-                  }
-
-                  {errorPassword && !tokenVerified && !passwordChoosen &&
+                  {errorPassword && !tokenVerified && !passwordChoosen && errorPassword !== 'User not found' &&
                     <div className="rf-mb-12w rf-mt-md-12w sous-titre">
                       <div className="invalid">{errorPassword}</div>
                     </div>
