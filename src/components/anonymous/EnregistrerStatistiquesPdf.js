@@ -11,7 +11,7 @@ import Header from '../Header';
 function EnregistrerStatistiquesPdf({ match }) {
 
   const dispatch = useDispatch();
-
+  console.log(match);
   const type = match.params?.type;
   const id = match.params?.id;
   const dateDebut = new Date(match.params?.dateDebut);
@@ -28,14 +28,15 @@ function EnregistrerStatistiquesPdf({ match }) {
   useEffect(() => {
     if ((type !== 'user' && type !== 'conseiller' && type !== 'nationales') && territoire === undefined) {
       dispatch(statistiqueActions.getTerritoire(type, id, dateFin));
+      console.log(type);
     }
   });
 
+  console.log(territoire);
   useEffect(() => {
     dispatch(statistiqueActions.changeDateStatsDebut(dateDebut));
     dispatch(statistiqueActions.changeDateStatsFin(dateFin));
     dispatch(statistiqueActions.changeCodePostalStats(codePostal));
-
     if ((type === 'user' || type === 'conseiller') && type !== 'nationales') {
       dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, id, codePostal));
     } else if (((type !== 'user' && type !== 'conseiller') && type !== 'nationales') && territoire?.conseillerIds) {
@@ -47,8 +48,8 @@ function EnregistrerStatistiquesPdf({ match }) {
 
   return (
 
-    <div className="Statistics">
-      <Header/>
+    <div className="Statistics print">
+      <Header printClass="print"/>
       <div className="rf-container">
 
         <div className="rf-grid-row">
@@ -95,8 +96,8 @@ function EnregistrerStatistiquesPdf({ match }) {
           <div className="rf-grid-row">
             <LeftPage donneesStats={donneesStatistiques} type={typeTerritoire} />
             <div className="rf-col-offset-md-1"></div>
-            <RightPage donneesStats={donneesStatistiques} type={typeTerritoire}/>
-            <BottomPage donneesStats={donneesStatistiques}/>
+            <RightPage donneesStats={donneesStatistiques} print={true}/>
+            <BottomPage donneesStats={donneesStatistiques} print={true}/>
           </div>
         }
         { !donneesStatistiques &&

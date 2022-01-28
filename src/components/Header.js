@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Menu from './connected/Menu';
 import { menuActions } from '../actions';
 
-function Header({ linkAccount }) {
+function Header({ linkAccount, printClass }) {
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ function Header({ linkAccount }) {
   const aideStructure = process.env.REACT_APP_AIDE_URL;
 
   return (
-    <header className="rf-header" role="banner">
+    <header className={printClass + ' rf-header'} role="banner">
       <div className="rf-container">
         <div
           // eslint-disable-next-line max-len
@@ -30,7 +30,11 @@ function Header({ linkAccount }) {
           <div className="rf-col-xs-10 rf-col-sm-10 rf-col-md-10 rf-col-xl-12">
             <div className="rf-header__body">
               <a className="rf-header__operator" href="/" style={{ boxShadow: 'none' }}>
-                <img src="/logos/logo-conseiller-numerique-nb.svg" alt="logo Conseiller Num&eacute;rique France Services" style={{ height: '48px' }}/>
+                {printClass ?
+                  <><img src="/logos/logo-conseiller-numerique.svg" alt="logo Conseiller Num&eacute;rique France Services" style={{ height: '48px' }}/></> :
+                  <><img src="/logos/logo-conseiller-numerique-nb.svg" alt="logo Conseiller Num&eacute;rique France Services" style={{ height: '48px' }}/></>
+                }
+
               </a>
               <div className={`rf-header__navbar ${location.pathname === '/validation' || location.pathname.startsWith('/inscription') ? 'headerCustom' : ''}`}>
                 <div className="rf-service">
@@ -240,7 +244,8 @@ function Header({ linkAccount }) {
 }
 
 Header.propTypes = {
-  linkAccount: PropTypes.string
+  linkAccount: PropTypes.string,
+  printClass: PropTypes.string,
 };
 
 export default Header;

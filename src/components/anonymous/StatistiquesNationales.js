@@ -96,13 +96,13 @@ function StatistiquesNationales() {
           { donneesStatistiques !== undefined &&
             <div className="rf-grid-row">
 
-              <LeftPage donneesStats={donneesStatistiques} type={typeTerritoire}/>
+              <LeftPage donneesStats={donneesStatistiques} type={typeTerritoire} print={false}/>
 
               <div className="rf-col-offset-md-1"></div>
 
-              <RightPage donneesStats={donneesStatistiques} type={typeTerritoire}/>
+              <RightPage donneesStats={donneesStatistiques} print={false}/>
 
-              <BottomPage donneesStats={donneesStatistiques}/>
+              <BottomPage donneesStats={donneesStatistiques} print={false}/>
 
             </div>
           }
