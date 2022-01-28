@@ -4,16 +4,16 @@ import labelsCorrespondance from '../../../../data/labelsCorrespondance.json';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 
-function ElementHighcharts(props) {
+function ElementHighcharts({ donneesStats, variablesGraphique, print }) {
 
   const { typeGraphique, largeurGraphique, hauteurGraphique,
-    margeGaucheGraphique, margeDroiteGraphique, optionResponsive, couleursGraphique } = props.variablesGraphique.graphique;
-  const { optionTitre, margeTitre, placementTitre } = props.variablesGraphique.titre;
+    margeGaucheGraphique, margeDroiteGraphique, optionResponsive, couleursGraphique } = variablesGraphique.graphique;
+  const { optionTitre, margeTitre, placementTitre } = variablesGraphique.titre;
 
-  const categoriesStatistiques = setCategoriesStatistiques(props.donneesStats, typeGraphique);
+  const categoriesStatistiques = setCategoriesStatistiques(donneesStats, typeGraphique);
   const chartStatistiques = setStatistiquesGraphique(typeGraphique, largeurGraphique, hauteurGraphique, margeGaucheGraphique, margeDroiteGraphique);
   const titreStatistiques = setStatistiquesTitre(optionTitre, margeTitre, placementTitre);
-  const seriesStatistiques = setStatistiquesDonnees(props.donneesStats, typeGraphique, couleursGraphique);
+  const seriesStatistiques = setStatistiquesDonnees(donneesStats, typeGraphique, couleursGraphique);
   const legendStatistiques = setStatistiquesLegende(typeGraphique);
   const yAxisStatistiques = setStatistiquesAxeY(typeGraphique);
   const xAxisStatistiques = setStatistiquesAxeX(typeGraphique, optionResponsive, categoriesStatistiques);
@@ -38,11 +38,11 @@ function ElementHighcharts(props) {
     const type = typeGraphique === 'stacked' ? 'bar' : typeGraphique;
 
     let chart = {
-      width: largeurGraphique,
+      width: print ? 700 : largeurGraphique,
       height: hauteurGraphique,
       marginLeft: margeGaucheGraphique,
       marginRight: margeDroiteGraphique,
-      backgroundColor: '#1e1e1e',
+      backgroundColor: print ? '#fff' : '#1e1e1e',
       spacing: [0, 0, 0, 0],
 
       style: {
@@ -73,7 +73,7 @@ function ElementHighcharts(props) {
       width: 300,
       align: 'left',
       style: {
-        color: '#ffffff',
+        color: print ? '#1e1e1e' : '#fff',
         fontSize: '16px',
         fontWeight: 'bold',
         lineHeight: '24px'
@@ -100,7 +100,7 @@ function ElementHighcharts(props) {
           name: labelsCorrespondance.find(label => label.nom === element.nom)?.correspondance ?? element.nom,
           data: [element.valeur],
           color: couleursGraphique[i],
-          borderColor: '#1e1e1e',
+          borderColor: print ? '#fff' : '#1e1e1e',
           borderWidth: 1,
         });
       } else if (typeGraphique === 'pie') {
@@ -181,12 +181,12 @@ function ElementHighcharts(props) {
           align: 'left',
           x: -10,
           itemStyle: {
-            color: '#fff',
+            color: print ? '#1e1e1e' : '#fff',
             fontWeight: 400,
             lineHeight: '20px'
           },
           itemHoverStyle: {
-            color: '#fff'
+            color: print ? '#1e1e1e' : '#fff'
           },
         };
 
@@ -207,11 +207,11 @@ function ElementHighcharts(props) {
           itemMarginBottom: 5,
           align: 'left',
           itemStyle: {
-            color: '#fff',
+            color: print ? '#1e1e1e' : '#fff',
             fontWeight: 400,
           },
           itemHoverStyle: {
-            color: '#fff'
+            color: print ? '#1e1e1e' : '#fff'
           },
         };
 
@@ -227,10 +227,10 @@ function ElementHighcharts(props) {
           y: -60,
           itemMarginBottom: 5,
           itemStyle: {
-            color: '#fff',
+            color: print ? '#1e1e1e' : '#fff',
           },
           itemHoverStyle: {
-            color: '#fff'
+            color: print ? '#1e1e1e' : '#fff'
           },
           navigation: {
             enabled: false,
@@ -290,7 +290,7 @@ function ElementHighcharts(props) {
             text: null
           },
           tickWidth: 1,
-          tickColor: '#ffffff',
+          tickColor: print ? '#1e1e1e' : '#fff',
           gridLineWidth: 0,
 
           labels: {
@@ -299,7 +299,7 @@ function ElementHighcharts(props) {
             format: '{value}',
             style: {
               fontSize: '12px',
-              color: '#ffffff',
+              color: print ? '#1e1e1e' : '#fff',
             }
           }
         };
@@ -372,7 +372,7 @@ function ElementHighcharts(props) {
             x: -24,
             format: '{value}',
             style: {
-              color: '#ffffff',
+              color: print ? '#1e1e1e' : '#fff',
               fontSize: '12px',
             }
           },
@@ -407,7 +407,7 @@ function ElementHighcharts(props) {
             format: '<b>{value}</b>',
             style: {
               fontSize: '12px',
-              color: '#fff',
+              color: print ? '#1e1e1e' : '#fff',
             }
           },
         };
@@ -421,7 +421,7 @@ function ElementHighcharts(props) {
           lineWidth: 0,
           labels: {
             style: {
-              color: '#fff',
+              color: print ? '#1e1e1e' : '#fff',
               fontSize: '12px'
             }
           }
@@ -453,7 +453,7 @@ function ElementHighcharts(props) {
         optionsTrace.bar = {
           borderRadius: 6,
           borderWidth: 2,
-          borderColor: '#1e1e1e',
+          borderColor: print ? '#fff' : '#1e1e1e',
           pointWidth: 12,
           pointPadding: 25,
           series: {
@@ -659,6 +659,7 @@ function ElementHighcharts(props) {
 ElementHighcharts.propTypes = {
   donneesStats: PropTypes.array,
   variablesGraphique: PropTypes.object,
+  print: PropTypes.bool
 };
 
 export default ElementHighcharts;
