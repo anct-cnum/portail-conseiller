@@ -15,7 +15,7 @@ function RightPage({ donneesStats, print }) {
     graphique: {
       typeGraphique: 'bar',
       largeurGraphique: null,
-      hauteurGraphique: 282,
+      hauteurGraphique: 428,
       margeGaucheGraphique: 235,
       margeDroiteGraphique: 0,
       optionResponsive: false,
@@ -122,11 +122,11 @@ function RightPage({ donneesStats, print }) {
               <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphique} print={print}/>
             </div>
 
-            <div className="rf-col-12 no-print">
+            <div className="rf-col-12">
               <div className="rf-my-6w rf-m-xs-to-md-7v"><hr/></div>
             </div>
 
-            <div className="rf-col-12 rf-col-lg-6 no-print">
+            <div className="rf-col-12 rf-col-lg-6">
               <ElementHighcharts donneesStats={statsLieux} variablesGraphique={pieGraphique} print={print}/>
             </div>
 
@@ -164,15 +164,18 @@ function RightPage({ donneesStats, print }) {
               <div className="rf-m-xs-to-md-7v"><hr/></div>
             </div>
 
-            <div className="rf-col-12 rf-col-md-6">
+            <div className="rf-col-12 rf-col-md-6 no-print">
               <ElementHighcharts donneesStats={statsLieux} variablesGraphique={pieGraphiqueSm} print={print}/>
             </div>
 
-            <div className="rf-col-12 hr-md-hide">
+            <div className="rf-col-12 hr-md-hide no-print">
               <div className="rf-m-6w rf-m-xs-to-md-7v"><hr/></div>
             </div>
 
             <div className="rf-col-12 rf-col-md-6">
+              {print &&
+                <div style={{ height: '250px' }}></div>
+              }
               <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphiqueSm} print={print}/>
             </div>
           </div>
