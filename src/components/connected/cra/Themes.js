@@ -49,7 +49,7 @@ function Themes() {
           <BigCheckboxButton
             type="themes"
             label="Apprendre à s&eacute;curiser un &eacute;quipement"
-            value="smartphone"
+            value="securite"
             image="/logos/cra/logo-securite.svg"
             imageSelected="/logos/cra/logo-securite-n.svg"
             heightImage="56px" />

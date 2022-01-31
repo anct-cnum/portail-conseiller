@@ -369,7 +369,7 @@ function ElementHighcharts(props) {
           lineWidth: 0,
           gridLineWidth: 0,
           labels: {
-            x: -24,
+            x: -8,
             format: '{value}',
             style: {
               color: '#ffffff',

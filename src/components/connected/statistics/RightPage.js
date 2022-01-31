@@ -10,12 +10,11 @@ function RightPage(props) {
   const tabColorDuree = ['#abcdf5', '#abcdf5', '#abcdf5', '#abcdf5'];
 
   const { statsThemes, statsDurees, statsLieux } = props.donneesStats;
-
   const barGraphique = {
     graphique: {
       typeGraphique: 'bar',
       largeurGraphique: null,
-      hauteurGraphique: 282,
+      hauteurGraphique: 428,
       margeGaucheGraphique: 235,
       margeDroiteGraphique: 0,
       optionResponsive: false,
