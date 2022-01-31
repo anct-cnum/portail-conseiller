@@ -156,7 +156,7 @@ function Territoires() {
                     { (!territoires?.items || !territoires?.items?.data) &&
                       <tr>
                         <td colSpan="9" className="not-found pair">
-                          {filtreTerritoire === 'codeDepartement' ? 'Aucun d&eacute;partement trouv&eacute;' : 'Aucune r&eacute;gion trouv&eacute;e' }
+                          {filtreTerritoire === 'codeDepartement' ? 'Aucun d&eacute;partement ' : 'Aucune r&eacute;gion ' } trouv&eacute;
                         </td>
                       </tr>
                     }

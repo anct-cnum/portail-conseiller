@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 
 import ElementHighcharts from './Components/ElementHighcharts';
 
-function RightPage(props) {
+function RightPage({ donneesStats, print }) {
 
   const tabColorTheme = ['#cac5b0', '#abb8df', '#fdcf41', '#169b62', '#80d5c6', '#ff8d7e', '#714753', '#956052', '#ddb094', '#5770be', '#ffed33', '#be9b31'];
   const tabColorLieux = ['#ffcc9f', '#ff8d7e', '#466964', '#5770be'];
   const tabColorDuree = ['#abcdf5', '#abcdf5', '#abcdf5', '#abcdf5'];
 
-  const { statsThemes, statsDurees, statsLieux } = props.donneesStats;
+  const { statsThemes, statsDurees, statsLieux } = donneesStats;
+
   const barGraphique = {
     graphique: {
       typeGraphique: 'bar',
@@ -117,9 +118,8 @@ function RightPage(props) {
       <div className="rf-col-12 rf-col-md-5 rf-col-lg-7 graphique-responsive-lg">
         <div className="rf-container-fluid">
           <div className="rf-grid-row ">
-            <div className={(props?.type === 'codeRegion' || props?.type === 'codeDepartement' || props?.type === 'nationales') ?
-              'rf-col-12 theme-territoire-print' : 'rf-col-12 theme-print'}>
-              <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphique} />
+            <div className="rf-col-12 theme-print">
+              <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphique} print={print}/>
             </div>
 
             <div className="rf-col-12 no-print">
@@ -127,12 +127,12 @@ function RightPage(props) {
             </div>
 
             <div className="rf-col-12 rf-col-lg-6 no-print">
-              <ElementHighcharts donneesStats={statsLieux} variablesGraphique={pieGraphique} />
+              <ElementHighcharts donneesStats={statsLieux} variablesGraphique={pieGraphique} print={print}/>
             </div>
 
             <div className="rf-col-12 rf-col-lg-6 no-print">
               <div className="rf-ml-md-6w">
-                <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphique} />
+                <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphique} print={print}/>
               </div>
             </div>
           </div>
@@ -144,7 +144,7 @@ function RightPage(props) {
         <div className="rf-container-fluid">
           <div className="rf-grid-row ">
             <div className="rf-col-12">
-              <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphiqueSm} />
+              <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphiqueSm} print={print}/>
             </div>
           </div>
         </div>
@@ -165,7 +165,7 @@ function RightPage(props) {
             </div>
 
             <div className="rf-col-12 rf-col-md-6">
-              <ElementHighcharts donneesStats={statsLieux} variablesGraphique={pieGraphiqueSm} />
+              <ElementHighcharts donneesStats={statsLieux} variablesGraphique={pieGraphiqueSm} print={print}/>
             </div>
 
             <div className="rf-col-12 hr-md-hide">
@@ -173,7 +173,7 @@ function RightPage(props) {
             </div>
 
             <div className="rf-col-12 rf-col-md-6">
-              <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphiqueSm} />
+              <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphiqueSm} print={print}/>
             </div>
           </div>
         </div>
@@ -184,7 +184,7 @@ function RightPage(props) {
 
 RightPage.propTypes = {
   donneesStats: PropTypes.object,
-  type: PropTypes.string,
+  print: PropTypes.bool
 };
 
 export default RightPage;
