@@ -29,28 +29,33 @@ function BigRadioButton({ type, label, value, image, imageSelected, heightImage,
   const [array2, __] = useState(['atelier', 'individuel']);
 
   const onClickRadio = e => {
-    const preAccompagnement = e.target.getAttribute('value') === null ? 'redirection' : e.target.getAttribute('value');
-    let accompagnement = !array2.includes(preAccompagnement) ? 'redirection' : e.target.getAttribute('value');
     switch (type) {
       case 'canal':
-        dispatch(craActions.updateCanal(accompagnement));
+        dispatch(craActions.updateCanal(e.target.getAttribute('value')));
         break;
       case 'activite':
-        dispatch(craActions.updateActivite(accompagnement));
+        dispatch(craActions.updateActivite(e.target.getAttribute('value')));
         break;
       case 'accompagnement':
+        const preAccompagnement = e.target.getAttribute('value') === null ? 'redirection' : e.target.getAttribute('value');
+        let accompagnement = !array2.includes(preAccompagnement) ? 'redirection' : e.target.getAttribute('value');
         const organismeRedirection = array.find(v => v === e.target.getAttribute('value')) ? e.target.getAttribute('value') : label;
         const organismeValue = array.includes(e.target.getAttribute('value')) ? organismeRedirection : null;
+        console.log('organismeValue:', organismeValue);
         const organisme = organismeValue ?? valeurInput;
         if (organisme !== null) {
           setOption(organisme);
-          setOpenList(true);
+          if (openList) {
+            setOpenList(false);
+          } else {
+            setOpenList(true);
+          }
         }
         //Optional case so deselection is possible
         if (e.target.getAttribute('value') === controlSelected) {
           dispatch(craActions.updateAccompagnement(null, organisme));
         } else {
-          dispatch(craActions.updateAccompagnement(accompagnement, organisme));
+          dispatch(craActions.updateAccompagnement(accompagnement, array2.includes(accompagnement) ? null : organisme));
         }
         break;
       default:
