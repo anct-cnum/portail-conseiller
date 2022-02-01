@@ -90,6 +90,7 @@ export default function cra(state = initialState, action) {
       return {
         ...state,
         accompagnement: action.accompagnement,
+        organisme: action.organisme
       };
     case 'VERIFY_CRA':
       return {

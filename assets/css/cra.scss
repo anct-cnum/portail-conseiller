@@ -120,6 +120,43 @@ $errorDarkMode: #FF3333;
     padding-left: 0.75rem;
   }
 
+  .selectAccompagnementRedirection {
+    font-family: 'MarianneMedium', Arial, sans-serif!important;
+    list-style-type: none;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(-100%);
+    border-radius: 20px 20px 0 0;
+    background: #1e1e1e;
+    height: 230px;
+    border: solid 1px #5398FF;
+    border-bottom: none;
+    max-height: 300px
+  }
+
+  .selectAccompagnement {
+    border: '1px solid white';
+    list-style-type: none;
+    display: none
+  }
+  .selecteurList:hover {
+  color: #1e1e10;
+  height: 48px;
+  width: 264px;
+  background-color: #FFFFFF;
+  }
+  .selecteurList {
+    padding: 1em 2em;
+     text-align: left
+    }
+  .styleButtonRedirection {
+    border-radius: '0 0 20px 20px';
+    position: relative;
+    border: solid 1px #5398FF
+  }
   /* custom point de rupture LG du DS */
   @media (max-width: 1024px) {
 
