@@ -25,8 +25,12 @@ function BigRadioButton({ type, label, value, image, imageSelected, heightImage,
   const [option, setOption] = useState(label);
   const [openList, setOpenList] = useState(false);
 
+  const [valeurInput, setValeurInput] = useState('');
+  const [array2, __] = useState(['atelier', 'individuel']);
+
   const onClickRadio = e => {
-    let accompagnement = array.includes(e.target.getAttribute('value')) ? 'redirection' : e.target.getAttribute('value');
+    const preAccompagnement = e.target.getAttribute('value') === null ? 'redirection' : e.target.getAttribute('value');
+    let accompagnement = !array2.includes(preAccompagnement) ? 'redirection' : e.target.getAttribute('value');
     switch (type) {
       case 'canal':
         dispatch(craActions.updateCanal(accompagnement));
@@ -35,11 +39,12 @@ function BigRadioButton({ type, label, value, image, imageSelected, heightImage,
         dispatch(craActions.updateActivite(accompagnement));
         break;
       case 'accompagnement':
-        const organismeRedirection = array.find(v => v === e.target.getAttribute('value')) ?? label;
-        const organisme = array.includes(e.target.getAttribute('value')) ? organismeRedirection : null;
+        const organismeRedirection = array.find(v => v === e.target.getAttribute('value')) ? e.target.getAttribute('value') : label;
+        const organismeValue = array.includes(e.target.getAttribute('value')) ? organismeRedirection : null;
+        const organisme = organismeValue ?? valeurInput;
         if (organisme !== null) {
           setOption(organisme);
-          setOpenList(false);
+          setOpenList(true);
         }
         //Optional case so deselection is possible
         if (e.target.getAttribute('value') === controlSelected) {
@@ -64,7 +69,7 @@ function BigRadioButton({ type, label, value, image, imageSelected, heightImage,
         value={value}
         onClick={() => setOpenList(true)}>
         { value === 'redirection' && openList &&
-        <SelectAccompagnement value={value} controlSelected={controlSelected} />
+        <SelectAccompagnement value={value} controlSelected={controlSelected} setValeurInput={setValeurInput}/>
         }
         <div value={value}>
           <div className={classDiv !== undefined ? classDiv : '' } value={value}>
@@ -77,7 +82,7 @@ function BigRadioButton({ type, label, value, image, imageSelected, heightImage,
           <span
             className={`rf-label labelBigRadioCustom ${controlSelected === value ? 'radioRattachement-selected' : ''}`}
             value={value}>
-            {value === 'redirection' && controlSelected === value ? option : label}
+            {value === 'redirection' && controlSelected === value && option !== '' ? option : label}
           </span>
         </div>
       </button>
