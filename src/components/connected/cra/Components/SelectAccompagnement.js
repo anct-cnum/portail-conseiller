@@ -38,13 +38,7 @@ function SelectAccompagnement({ value, controlSelected }) {
 }
 
 SelectAccompagnement.propTypes = {
-  type: PropTypes.string,
-  label: PropTypes.string,
   value: PropTypes.string,
-  image: PropTypes.string,
-  imageSelected: PropTypes.string,
-  heightImage: PropTypes.string,
-  classDiv: PropTypes.string,
   controlSelected: PropTypes.string
 };
 

@@ -59,11 +59,12 @@ function BigRadioButton({ type, label, value, image, imageSelected, heightImage,
         id="radioRattachement"
         className={`radioRattachement ${controlSelected === value ? 'radioRattachement-selected' : ''}
         ${value === 'redirection' && controlSelected === value && openList ? `styleButtonRedirection` : ``}`}
-        style={{ height: '144px' }}
+        style={value === 'redirection' && controlSelected === value && openList ?
+          { height: '144px', borderRadius: '0 0 20px 20px', position: 'relative', border: 'solid 1px #5398FF', maxHeight: '250px' } : { height: '144px' }}
         value={value}
         onClick={() => setOpenList(true)}>
         { value === 'redirection' && openList &&
-        <SelectAccompagnement value={value} controlSelected={controlSelected} setOpenList={setOpenList} />
+        <SelectAccompagnement value={value} controlSelected={controlSelected} />
         }
         <div value={value}>
           <div className={classDiv !== undefined ? classDiv : '' } value={value}>
