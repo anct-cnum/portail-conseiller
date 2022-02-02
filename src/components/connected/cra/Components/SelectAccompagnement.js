@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-function SelectAccompagnement({ value, controlSelected, setValeurInput }) {
-  const [array, _] = useState([
+function SelectAccompagnement({ value, controlSelected, setChampAutre }) {
+  const lieuxReorientation = [
     'ANTS',
     'Assistante sociale',
     'CAF',
@@ -22,21 +22,23 @@ function SelectAccompagnement({ value, controlSelected, setValeurInput }) {
     'Service de police',
     'Gendarmerie',
     'Tiers-lieu / fablab'
-  ]);
+  ];
   const [autre, setAutre] = useState(null);
 
   return (
     <div className={`${controlSelected === value ?
       'selectAccompagnementRedirection dropdown-expanded scrollOptions' : 'selectAccompagnement'}`}>
       <ul style={{ color: 'white', listStyleType: 'none', padding: 0 }}>
-        {array.map((opt, key) =>
-          <li className="selecteurList" onClick={() => setValeurInput('')} key={key} value={opt} style={{ padding: '1em 2em', textAlign: 'left' }}>
+        {lieuxReorientation.map((opt, key) =>
+          <li style={{ padding: '1em 2em', textAlign: 'left' }} className="selecteurList" onClick={() => setChampAutre('')} key={key} value={opt}>
             {opt}
           </li>
         )}
       </ul>
-      <input className="rf-input" placeholder="Autre" type="text" id="autre-redirection" name="autre-redirection" onChange={e => setAutre(e.target.value)} />
-      <button className="rf-btn" value="OK" onClick={setValeurInput(autre)}>OK</button>
+      <div style={{ display: 'flex', paddingBottom: '1 rem' }}>
+        <input className="rf-input" placeholder="Autre" type="text" id="autre-redirection" name="autre-redirection" onChange={e => setAutre(e.target.value)} />
+        <button className="rf-btn" value="OK" onClick={setChampAutre(autre)}>OK</button>
+      </div>
     </div>
   );
 }
@@ -44,7 +46,7 @@ function SelectAccompagnement({ value, controlSelected, setValeurInput }) {
 SelectAccompagnement.propTypes = {
   value: PropTypes.string,
   controlSelected: PropTypes.string,
-  setValeurInput: PropTypes.func
+  setChampAutre: PropTypes.func
 };
 
 export default SelectAccompagnement;
