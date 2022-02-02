@@ -19,7 +19,8 @@ function SelectAccompagnement({ value, controlSelected, setValeurInput }) {
     'Pôle emploi',
     'Préfecture',
     'Sous-préfecture',
-    'Service de police', 'gendarmerie',
+    'Service de police',
+    'Gendarmerie',
     'Tiers-lieu / fablab'
   ]);
   const [autre, setAutre] = useState(null);

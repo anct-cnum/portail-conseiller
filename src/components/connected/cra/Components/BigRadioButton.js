@@ -7,7 +7,13 @@ import SelectAccompagnement from './SelectAccompagnement';
 
 function BigRadioButton({ type, label, value, image, imageSelected, heightImage, classDiv }) {
   const [array, _] = useState([
-    'ANTS', 'Assistante sociale', 'CAF', 'CARSAT', 'CCAS', 'CEFS', 'CIP',
+    'ANTS',
+    'Assistante sociale',
+    'CAF',
+    'CARSAT',
+    'CCAS',
+    'CEFS',
+    'CIP',
     'CPAM',
     'DGFIP',
     'France Services',
@@ -17,7 +23,8 @@ function BigRadioButton({ type, label, value, image, imageSelected, heightImage,
     'Pôle emploi',
     'Préfecture',
     'Sous-préfecture',
-    'Service de police', 'gendarmerie',
+    'Service de police',
+    'Gendarmerie',
     'Tiers-lieu / fablab'
   ]);
   const dispatch = useDispatch();
@@ -41,7 +48,6 @@ function BigRadioButton({ type, label, value, image, imageSelected, heightImage,
         let accompagnement = !array2.includes(preAccompagnement) ? 'redirection' : e.target.getAttribute('value');
         const organismeRedirection = array.find(v => v === e.target.getAttribute('value')) ? e.target.getAttribute('value') : label;
         const organismeValue = array.includes(e.target.getAttribute('value')) ? organismeRedirection : null;
-        console.log('organismeValue:', organismeValue);
         const organisme = organismeValue ?? valeurInput;
         if (organisme !== null) {
           setOption(organisme);
