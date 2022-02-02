@@ -18,13 +18,24 @@ function Themes() {
         <div className="responsiveCheckbox1">
           <BigCheckboxButton
             type="themes"
-            label="Prendre en main un &eacute;quipement informatique (ordinateur, smartphone, tablette, etc.)"
+            label="Prendre en main un &eacute;quipement"
             value="equipement informatique"
             image="/logos/cra/logo-equip-info.svg"
             imageSelected="/logos/cra/logo-equip-info-n.svg"
             heightImage="56px" />
         </div>
+
         <div className="responsiveCheckbox2">
+          <BigCheckboxButton
+            type="themes"
+            label="Connaître le vocabulaire num&eacute;rique"
+            value="vocabulaire"
+            image="/logos/cra/logo-vocabulaire-info.svg"
+            imageSelected="/logos/cra/logo-vocabulaire-info-n.svg"
+            heightImage="56px" />
+        </div>
+
+        <div className="responsiveCheckboxNewRow1">
           <BigCheckboxButton
             type="themes"
             label="Naviguer sur Internet"
@@ -33,51 +44,27 @@ function Themes() {
             imageSelected="/logos/cra/logo-naviguer-internet-n.svg"
             heightImage="56px" />
         </div>
+
+        <div className="responsiveCheckboxNewRow2">
+          <BigCheckboxButton
+            type="themes"
+            label="Apprendre à s&eacute;curiser un &eacute;quipement"
+            value="securite"
+            image="/logos/cra/logo-securite.svg"
+            imageSelected="/logos/cra/logo-securite-n.svg"
+            heightImage="56px" />
+        </div>
+
         <div className="responsiveCheckboxNewRow1">
           <BigCheckboxButton
             type="themes"
-            label="Envoyer, recevoir, g&eacute;rer ses courriels"
+            label="G&eacute;rer ses courriels"
             value="courriel"
             image="/logos/cra/logo-courriel.svg"
             imageSelected="/logos/cra/logo-courriel-n.svg"
             heightImage="56px" />
         </div>
-        <div className="responsiveCheckboxNewRow2">
-          <BigCheckboxButton
-            type="themes"
-            label="Installer et utiliser des applications utiles sur son smartphone"
-            value="smartphone"
-            image="/logos/cra/logo-telephone-portable.svg"
-            imageSelected="/logos/cra/logo-telephone-portable-n.svg"
-            heightImage="56px" />
-        </div>
-        <div className="responsiveCheckboxNewRow1">
-          <BigCheckboxButton
-            type="themes"
-            label="Cr&eacute;er et g&eacute;rer (stocker, ranger, partager) ses contenus num&eacute;riques"
-            value="contenus numeriques"
-            image="/logos/cra/logo-contenus-numeriques.svg"
-            imageSelected="/logos/cra/logo-contenus-numeriques-n.svg"
-            heightImage="56px" />
-        </div>
-        <div className="responsiveCheckboxNewRow2">
-          <BigCheckboxButton
-            type="themes"
-            label="Connaître l&rsquo;environnement et le vocabulaire num&eacute;rique"
-            value="vocabulaire"
-            image="/logos/cra/logo-vocabulaire-info.svg"
-            imageSelected="/logos/cra/logo-vocabulaire-info-n.svg"
-            heightImage="56px" />
-        </div>
-        <div className="responsiveCheckboxNewRow1">
-          <BigCheckboxButton
-            type="themes"
-            label="Apprendre les bases du traitement de texte"
-            value="traitement texte"
-            image="/logos/cra/logo-traitement-texte.svg"
-            imageSelected="/logos/cra/logo-traitement-texte-n.svg"
-            heightImage="56px" />
-        </div>
+
         <div className="responsiveCheckboxNewRow2">
           <BigCheckboxButton
             type="themes"
@@ -87,6 +74,27 @@ function Themes() {
             imageSelected="/logos/cra/logo-echanger-proches-n.svg"
             heightImage="56px" />
         </div>
+
+        <div className="responsiveCheckboxNewRow1">
+          <BigCheckboxButton
+            type="themes"
+            label="Apprendre les bases de la bureautique"
+            value="traitement texte"
+            image="/logos/cra/logo-traitement-texte.svg"
+            imageSelected="/logos/cra/logo-traitement-texte-n.svg"
+            heightImage="56px" />
+        </div>
+
+        <div className="responsiveCheckboxNewRow2">
+          <BigCheckboxButton
+            type="themes"
+            label="Cr&eacute;er, g&eacute;rer ses contenus num&eacute;riques"
+            value="contenus numeriques"
+            image="/logos/cra/logo-contenus-numeriques.svg"
+            imageSelected="/logos/cra/logo-contenus-numeriques-n.svg"
+            heightImage="56px" />
+        </div>
+
         <div className="responsiveCheckboxNewRow1">
           <BigCheckboxButton
             type="themes"
@@ -96,33 +104,61 @@ function Themes() {
             imageSelected="/logos/cra/logo-trouver-emploi-n.svg"
             heightImage="56px" />
         </div>
+
         <div className="responsiveCheckboxNewRow2">
           <BigCheckboxButton
             type="themes"
-            label="Accompagner son enfant"
-            value="accompagner enfant"
-            image="/logos/cra/logo-accompagner-enfant.svg"
-            imageSelected="/logos/cra/logo-accompagner-enfant-n.svg"
-            heightImage="56px" />
-        </div>
-        <div className="responsiveCheckboxNewRow1">
-          <BigCheckboxButton
-            type="themes"
-            label="Comprendre ce que le num&eacute;rique peut apporter &agrave; sa TPE/PME"
+            label="Assister un professionnel"
+            baseline="TPE, PME..."
             value="tpe/pme"
             image="/logos/cra/logo-tpe-pme.svg"
             imageSelected="/logos/cra/logo-tpe-pme-n.svg"
             heightImage="56px" />
         </div>
+
+        <div className="responsiveCheckboxNewRow1">
+          <BigCheckboxButton
+            type="themes"
+            label="Accompagner un aidant"
+            baseline="parent, &eacute;ducateur, professeur..."
+            value="accompagner enfant"
+            image="/logos/cra/logo-accompagner-enfant.svg"
+            imageSelected="/logos/cra/logo-accompagner-enfant-n.svg"
+            heightImage="56px" />
+        </div>
+
         <div className="responsiveCheckboxNewRow2">
           <BigCheckboxButton
             type="themes"
             label="R&eacute;aliser une d&eacute;marche en ligne"
+            baseline="vers l&rsquo;autonomie"
             value="demarche en ligne"
             image="/logos/cra/logo-demarche-en-ligne.svg"
             imageSelected="/logos/cra/logo-demarche-en-ligne-n.svg"
             heightImage="56px" />
         </div>
+
+        <div className="responsiveCheckboxNewRow1">
+          <BigCheckboxButton
+            type="themes"
+            label="Pr&eacute;venir les fraudes et/ou le harc&egrave;lement"
+            value="fraude et harcelement"
+            image="/logos/cra/logo-accompagner-enfant.svg"
+            imageSelected="/logos/cra/logo-accompagner-enfant-n.svg"
+            heightImage="56px" />
+        </div>
+
+        <div className="responsiveCheckboxNewRow2">
+          <BigCheckboxButton
+            type="themes"
+            label="Sant&eacute;"
+            baseline="création de compte Ameli, etc."
+            value="sante"
+            image="/logos/cra/logo-sante.svg"
+            imageSelected="/logos/cra/logo-sante-n.svg"
+            heightImage="56px" />
+        </div>
+
         <div className="responsiveSmallCheckbox">
           <SmallCheckboxButton
             type="themes"
