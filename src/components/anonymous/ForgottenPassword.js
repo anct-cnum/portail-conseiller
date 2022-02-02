@@ -57,7 +57,6 @@ function ForgottenPassword({ match = null }) {
   const choosingPassword = useSelector(state => state.createAccount.choosingPassword);
   let passwordChoosen = useSelector(state => state.createAccount.passwordChoosen);
   const errorPassword = useSelector(state => state.createAccount.error);
-  console.log('errorPassword:', errorPassword);
 
   useEffect(() => {
     dispatch(userActions.verifyToken(token));
@@ -299,11 +298,12 @@ function ForgottenPassword({ match = null }) {
                       <div>
                         <p>Si vous avez rescement changer votre mot de passe :</p>
                         <Link className="btn-connexion rf-mb-2w rf-mb-md-6w rf-p-5v" to={`/login`} style={{ textAlign: 'center' }}>
-                        Accéder à mon espace
+                        Acc&eacute;der à mon espace
                         </Link>
-                        <p>Si vous avez simplement oublier votre mot de passe :</p>
-                        <Link className="btn-connexion rf-mb-2w rf-mb-md-6w rf-p-5v" to={`/mot-de-passe-oublie`} style={{ textAlign: 'center' }}>
-                        Je r&eacute;nitialise
+                        <p>Si vous avez oublier votre mot de passe:</p>
+                        <Link className="btn-connexion rf-mb-2w rf-mb-md-6w rf-p-5v" to={`/mot-de-passe-oublie`}
+                          style={{ textAlign: 'center', whiteSpace: 'nowrap' }}>
+                          R&eacute;initialiser mon mot de passe
                         </Link>
                       </div>
                     </div>
