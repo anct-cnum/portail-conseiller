@@ -1,4 +1,5 @@
 const initialState = {
+  dateAccompagnement: new Date(),
   errorsRequired: {
     cp: true,
     canal: true,
@@ -6,7 +7,7 @@ const initialState = {
     age: true,
     statut: true,
     themes: true,
-    duree: true,
+    duree: true
   },
 };
 
@@ -91,6 +92,16 @@ export default function cra(state = initialState, action) {
         ...state,
         accompagnement: action.accompagnement,
       };
+    case 'UPDATE_DATE':
+      return {
+        ...state,
+        dateAccompagnement: action.date,
+      };
+    case 'UPDATE_DATEPICKER_STATUS':
+      return {
+        ...state,
+        datePickerStatus: action.status,
+      };
     case 'VERIFY_CRA':
       return {
         ...state,
@@ -103,6 +114,7 @@ export default function cra(state = initialState, action) {
       };
     case 'SUBMIT_CRA_SUCCESS':
       return {
+        dateAccompagnement: initialState.dateAccompagnement,
         errorsRequired: initialState.errorsRequired //retour à l'état initial
       };
     case 'SUBMIT_CRA_FAILURE':

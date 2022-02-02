@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import BigDatePickerButton from './Components/BigDatePickerButton';
 import SelectCP from './Components/SelectCP';
 
 function CodePostal() {
@@ -16,6 +17,9 @@ function CodePostal() {
         </div>
         <div className="responsiveSelect">
           <SelectCP/>
+        </div>
+        <div className={cra?.datePickerStatus ? 'responsiveDate active' : 'responsiveDate' } >
+          <BigDatePickerButton initDate={cra?.dateAccompagnement} />
         </div>
       </div>
     </>
