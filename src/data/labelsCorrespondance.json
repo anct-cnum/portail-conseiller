@@ -1,7 +1,11 @@
 [
   {
     "nom": "equipement informatique",
-    "correspondance": "&eacute;quipement informatique"
+    "correspondance": "Prendre en main un &eacute;quipement"
+  },
+  {
+    "nom": "vocabulaire",
+    "correspondance": "Connaître le vocabulaire num&eacute;rique"
   },
   {
     "nom": "internet",
@@ -12,16 +16,15 @@
     "correspondance": "Courriels"
   },
   {
+    "nom": "securite",
+    "correspondance" : "S&eacute;curiser un &eacute;quipement" },
+  {
     "nom": "smartphone",
     "correspondance": "Applications smartphone"
   },
   {
     "nom": "contenus numeriques",
     "correspondance": "Gestion de contenus num&eacute;riques"
-  },
-  {
-    "nom": "vocabulaire",
-    "correspondance": "Env., vocab. num&eacute;rique"
   },
   {
     "nom": "traitement texte",
@@ -46,6 +49,14 @@
   {
     "nom": "demarche en ligne",
     "correspondance": "D&eacute;marche en ligne"
+  },
+  {
+    "nom": "fraude et harcelement",
+    "correspondance": "Fraude et harc&egrave;lement"
+  },
+  {
+    "nom": "sante",
+    "correspondance": "Sant&eacute;"
   },
   {
     "nom": "autre",
