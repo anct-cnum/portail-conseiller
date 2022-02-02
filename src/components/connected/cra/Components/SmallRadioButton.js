@@ -76,12 +76,19 @@ function SmallRadioButton({ type, label, value, image, imageSelected, heightImag
     return label;
   };
 
+  const cssOpenSelectRedirection = () => {
+    if (value === 'redirection' && controlSelected === value && openSelectRedirection) {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <div className="radioButton" onClick={onClickRadio} value={value}>
       <button id="radioRattachement"
         className={`radioRattachement ${controlSelected === value ? 'radioRattachement-selected' : ''}
         ${value === 'redirection' && controlSelected === value && openSelectRedirection ? `styleButtonRedirection` : ``}`}
-        style={{ height: '73px' }}
+        style={cssOpenSelectRedirection() ? { height: '73px', borderRadius: '0 0 20px 20px', border: 'solid 1px #5398FF' } : { height: '73px' }}
         value={value}>
         { value === 'redirection' && openSelectRedirection &&
         <SelectAccompagnement value={value} controlSelected={controlSelected} setChampAutre={setChampAutre}/>

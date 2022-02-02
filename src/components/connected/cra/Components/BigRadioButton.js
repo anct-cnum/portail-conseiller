@@ -75,14 +75,19 @@ function BigRadioButton({ type, label, value, image, imageSelected, heightImage,
     }
     return label;
   };
-
+  const cssOpenSelectRedirection = () => {
+    if (value === 'redirection' && controlSelected === value && openSelectRedirection) {
+      return true;
+    }
+    return false;
+  };
   return (
     <div className="radioButton" onClick={onClickRadio} value={value}>
       <button
         id="radioRattachement"
         className={`radioRattachement ${controlSelected === value ? 'radioRattachement-selected' : ''}
-        ${value === 'redirection' && controlSelected === value && openSelectRedirection ? `styleButtonRedirection` : ``}`}
-        style={{ height: '144px' }}
+        ${cssOpenSelectRedirection() ? `styleButtonRedirection` : ``}`}
+        style={cssOpenSelectRedirection() ? { height: '144px', borderRadius: '0 0 20px 20px', border: 'solid 1px #5398FF' } : { height: '144px' }}
         value={value}
         onClick={() => setOpenSelectRedirection(true)}>
         { value === 'redirection' && openSelectRedirection &&
