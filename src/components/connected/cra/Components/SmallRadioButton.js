@@ -32,7 +32,7 @@ function SmallRadioButton({ type, label, value, image, imageSelected, heightImag
   const [selectOption, setSelectOption] = useState(label);
   const [openSelectRedirection, setOpenSelectRedirection] = useState(false);
 
-  const [valeurInput, setValeurInput] = useState('');
+  const [champAutre, setChampAutre] = useState('');
   const autreAccompagnement = ['atelier', 'individuel'];
 
   const onClickRadio = e => {
@@ -48,7 +48,7 @@ function SmallRadioButton({ type, label, value, image, imageSelected, heightImag
         let accompagnement = !autreAccompagnement.includes(preAccompagnement) ? 'redirection' : e.target.getAttribute('value');
         const organismeRedirection = lieuxReorientation.find(v => v === e.target.getAttribute('value')) ? e.target.getAttribute('value') : label;
         const organismeValue = lieuxReorientation.includes(e.target.getAttribute('value')) ? organismeRedirection : null;
-        const organisme = organismeValue ?? valeurInput;
+        const organisme = organismeValue ?? champAutre;
         if (organisme !== null) {
           setSelectOption(organisme);
           if (openSelectRedirection) {
@@ -81,11 +81,10 @@ function SmallRadioButton({ type, label, value, image, imageSelected, heightImag
       <button id="radioRattachement"
         className={`radioRattachement ${controlSelected === value ? 'radioRattachement-selected' : ''}
         ${value === 'redirection' && controlSelected === value && openSelectRedirection ? `styleButtonRedirection` : ``}`}
-        style={value === 'redirection' && controlSelected === value && openSelectRedirection ?
-          { height: '73px', borderRadius: '0 0 20px 20px', position: 'relative', border: 'solid 1px #5398FF', maxHeight: '250px' } : { height: '73px' }}
+        style={{ height: '73px' }}
         value={value}>
         { value === 'redirection' && openSelectRedirection &&
-        <SelectAccompagnement value={value} controlSelected={controlSelected} setValeurInput={setValeurInput}/>
+        <SelectAccompagnement value={value} controlSelected={controlSelected} setChampAutre={setChampAutre}/>
         }
         <div value={value}>
           <img

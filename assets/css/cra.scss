@@ -156,7 +156,8 @@ $errorDarkMode: #FF3333;
   .styleButtonRedirection {
     border-radius: '0 0 20px 20px';
     position: relative;
-    border: solid 1px #5398FF
+    border: solid 1px #5398FF;
+    max-height: 250px;
     }
   
   .baseline {
