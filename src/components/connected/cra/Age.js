@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import SmallCountRadioButton from './Components/SmallCountRadioButton';
 import SquareButton from './Components/SquareButton';
 
 function Age() {
@@ -15,34 +16,85 @@ function Age() {
           </span>
         </div>
         <div className="responsiveSquare1">
-          <SquareButton
-            type="age"
-            value="-12"
-            label="-12 ans"/>
+          {cra?.age.moins12ans === 0 &&
+            <SquareButton
+              type="age"
+              value="moins12ans"
+              label="-12 ans"
+              cra={cra}/>
+          }
+          {cra?.age.moins12ans > 0 &&
+            <SmallCountRadioButton
+              type="age"
+              typeKey="moins12ans"
+              typeLabel="-12 ans"
+              typeValue={cra?.age.moins12ans}/>
+          }
         </div>
         <div className="responsiveSquare2">
-          <SquareButton
-            type="age"
-            value="12-18"
-            label="12 - 18 ans"/>
+          {cra?.age.de12a18ans === 0 &&
+            <SquareButton
+              type="age"
+              value="de12a18ans"
+              label="12 - 18 ans"
+              cra={cra}/>
+          }
+          {cra?.age.de12a18ans > 0 &&
+            <SmallCountRadioButton
+              type="age"
+              typeKey="de12a18ans"
+              typeLabel="12 - 18 ans"
+              typeValue={cra?.age.de12a18ans}/>
+          }
         </div>
         <div className="responsiveSquare3">
-          <SquareButton
-            type="age"
-            value="18-35"
-            label="18 - 35 ans"/>
+          {cra?.age.de18a35ans === 0 &&
+            <SquareButton
+              type="age"
+              value="de18a35ans"
+              label="18 - 35 ans"
+              cra={cra}/>
+          }
+          {cra?.age.de18a35ans > 0 &&
+            <SmallCountRadioButton
+              type="age"
+              typeKey="de18a35ans"
+              typeLabel="18 - 35 ans"
+              typeValue={cra?.age.de18a35ans}/>
+          }
         </div>
         <div className="responsiveSquare4">
-          <SquareButton
-            type="age"
-            value="35-60"
-            label="35 - 60 ans"/>
+          {cra?.age.de35a60ans === 0 &&
+            <SquareButton
+              type="age"
+              value="de35a60ans"
+              label="35 - 60 ans"
+              cra={cra}/>
+          }
+          {cra?.age.de35a60ans > 0 &&
+            <SmallCountRadioButton
+              type="age"
+              typeKey= "de35a60ans"
+              typeLabel="35 - 60 ans"
+              typeValue={cra?.age.de35a60ans}
+            />
+          }
         </div>
         <div className="responsiveSquare5">
-          <SquareButton
-            type="age"
-            value="+60"
-            label="Plus de 60 ans"/>
+          {cra?.age.plus60ans === 0 &&
+            <SquareButton
+              type="age"
+              value="plus60ans"
+              label="Plus de 60 ans"
+              cra={cra}/>
+          }
+          {cra?.age.plus60ans > 0 &&
+            <SmallCountRadioButton
+              type="age"
+              typeKey="plus60ans"
+              typeLabel="Plus de 60 ans"
+              typeValue={cra?.age.plus60ans}/>
+          }
         </div>
       </div>
     </>

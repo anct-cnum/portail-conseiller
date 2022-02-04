@@ -8,6 +8,22 @@ const initialState = {
     themes: true,
     duree: true,
   },
+  age: {
+    moins12ans: 0,
+    de12a18ans: 0,
+    de18a35ans: 0,
+    de35a60ans: 0,
+    plus60ans: 0,
+  },
+  nbParticipantsAge: 0,
+  statut: {
+    etudiant: 0,
+    sansEmploi: 0,
+    enEmploi: 0,
+    retraite: 0,
+    heterogene: 0
+  },
+  nbParticipantsStatut: 0
 };
 
 export default function cra(state = initialState, action) {
@@ -57,7 +73,8 @@ export default function cra(state = initialState, action) {
     case 'UPDATE_AGE':
       return {
         ...state,
-        age: action.age,
+        age: action.data.age,
+        nbParticipantsAge: action.data.nbParticipantsAge,
         errorsRequired: {
           ...state.errorsRequired,
           age: false },
@@ -65,7 +82,8 @@ export default function cra(state = initialState, action) {
     case 'UPDATE_STATUT':
       return {
         ...state,
-        statut: action.statut,
+        statut: action.data.statut,
+        nbParticipantsStatut: action.data.nbParticipantsStatut,
         errorsRequired: {
           ...state.errorsRequired,
           statut: false },

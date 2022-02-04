@@ -41,12 +41,13 @@ function updateNbParticipants(nbParticipants) {
   return { type: 'UPDATE_NB_PARTICIPANTS', nbParticipants };
 }
 
-function updateAge(age) {
-  return { type: 'UPDATE_AGE', age };
+function updateAge(age, nbParticipantsAge) {
+  console.log(nbParticipantsAge);
+  return { type: 'UPDATE_AGE', data: { age, nbParticipantsAge } };
 }
 
-function updateStatut(statut) {
-  return { type: 'UPDATE_STATUT', statut };
+function updateStatut(statut, nbParticipantsStatut) {
+  return { type: 'UPDATE_STATUT', data: { statut, nbParticipantsStatut } };
 }
 
 function updateThemes(themes) {
