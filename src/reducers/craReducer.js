@@ -61,9 +61,15 @@ export default function cra(state = initialState, action) {
         ...state,
         activite: action.activite,
         nbParticipants: action.activite === 'collectif' ? 5 : 1,
+        age: { ...initialState.age },
+        statut: { ...initialState.statut },
+        nbParticipantsStatut: initialState.nbParticipantsStatut,
+        nbParticipantsAge: initialState.nbParticipantsAge,
         errorsRequired: {
           ...state.errorsRequired,
-          activite: false },
+          activite: false,
+          age: true,
+          statut: true },
       };
     case 'UPDATE_NB_PARTICIPANTS':
       return {
@@ -77,7 +83,7 @@ export default function cra(state = initialState, action) {
         nbParticipantsAge: action.data.nbParticipantsAge,
         errorsRequired: {
           ...state.errorsRequired,
-          age: false },
+          age: action.data.nbParticipantsAge !== state.nbParticipants },
       };
     case 'UPDATE_STATUT':
       return {
@@ -86,7 +92,7 @@ export default function cra(state = initialState, action) {
         nbParticipantsStatut: action.data.nbParticipantsStatut,
         errorsRequired: {
           ...state.errorsRequired,
-          statut: false },
+          statut: action.data.nbParticipantsStatut !== state.nbParticipants },
       };
     case 'UPDATE_THEMES':
       return {
@@ -121,7 +127,12 @@ export default function cra(state = initialState, action) {
       };
     case 'SUBMIT_CRA_SUCCESS':
       return {
-        errorsRequired: initialState.errorsRequired //retour à l'état initial
+        //retour à l'état initial
+        errorsRequired: initialState.errorsRequired,
+        age: { ...initialState.age },
+        nbParticipantsAge: 0,
+        statut: { ...initialState.statut },
+        nbParticipantsStatut: 0
       };
     case 'SUBMIT_CRA_FAILURE':
       return {

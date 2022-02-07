@@ -5,8 +5,8 @@ import SmallCountRadioButton from './Components/SmallCountRadioButton';
 
 function Statut() {
 
-  let cra = useSelector(state => state.cra);
-
+  const cra = useSelector(state => state.cra);
+  const statut = cra?.statut;
   return (
     <>
       <div className="rf-grid-row rf-grid-row--gutters rf-grid-row--middle rf-mb-7w">
@@ -16,82 +16,82 @@ function Statut() {
           </span>
         </div>
         <div className="responsiveSquare1">
-          {cra?.statut.etudiant === 0 &&
+          {statut?.etudiant === 0 &&
             <SquareButton
               type="statut"
               value="etudiant"
               label="&Eacute;tudiant(e)"
               cra= {cra}/>
           }
-          {cra?.statut.etudiant > 0 &&
+          {statut?.etudiant > 0 &&
             <SmallCountRadioButton
               type="statut"
               typeKey="etudiant"
-              typeValue={cra.statut.etudiant}
+              typeValue={statut?.etudiant}
               typeLabel="&Eacute;tudiant(e)"/>
           }
         </div>
         <div className="responsiveSquare2">
-          {cra?.statut.sansEmploi === 0 &&
+          {statut?.sansEmploi === 0 &&
             <SquareButton
               type="statut"
               value="sansEmploi"
               label="Sans emploi"
               cra= {cra}/>
           }
-          {cra?.statut.sansEmploi > 0 &&
+          {statut?.sansEmploi > 0 &&
             <SmallCountRadioButton
               type="statut"
               typeKey="sansEmploi"
-              typeValue={cra.statut.sansEmploi}
+              typeValue={statut?.sansEmploi}
               typeLabel="Sans emploi"/>
           }
         </div>
         <div className="responsiveSquare3">
-          {cra?.statut.enEmploi === 0 &&
+          {statut?.enEmploi === 0 &&
             <SquareButton
               type="statut"
               value="enEmploi"
               label="En emploi"
               cra= {cra}/>
           }
-          {cra?.statut.enEmploi > 0 &&
+          {statut?.enEmploi > 0 &&
             <SmallCountRadioButton
               type="statut"
               typeKey="enEmploi"
-              typeValue={cra.statut.enEmploi}
+              typeValue={statut?.enEmploi}
               typeLabel="En emploi"/>
           }
         </div>
         <div className="responsiveSquare4">
-          {cra?.statut.retraite === 0 &&
+          {statut?.retraite === 0 &&
             <SquareButton
               type="statut"
               value="retraite"
               label="Retrait&eacute;"
               cra= {cra}/>
           }
-          {cra?.statut.retraite > 0 &&
+          {statut?.retraite > 0 &&
             <SmallCountRadioButton
               type="statut"
               typeKey="retraite"
-              typeValue={cra.statut.retraite}
+              typeValue={statut?.retraite}
               typeLabel="Retrait&eacute;"/>
           }
         </div>
         <div className="responsiveSquare5">
-          {cra?.statut.heterogene === 0 &&
+          {statut?.heterogene === 0 &&
             <SquareButton
               type="statut"
               value="heterogene"
               label="Non renseign&eacute; ou h&eacute;t&eacute;rog&egrave;ne"
               cra= {cra}/>
           }
-          {cra?.statut.heterogene > 0 &&
+          {statut?.heterogene > 0 &&
             <SmallCountRadioButton
               type="statut"
               typeKey="heterogene"
-              typeValue={cra.statut.heterogene}
+              typeValue={statut?.heterogene}
               typeLabel="NC ou h&eacute;t&eacute;rog&egrave;ne"/>
           }
         </div>

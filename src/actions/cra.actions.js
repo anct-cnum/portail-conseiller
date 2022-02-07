@@ -42,7 +42,6 @@ function updateNbParticipants(nbParticipants) {
 }
 
 function updateAge(age, nbParticipantsAge) {
-  console.log(nbParticipantsAge);
   return { type: 'UPDATE_AGE', data: { age, nbParticipantsAge } };
 }
 

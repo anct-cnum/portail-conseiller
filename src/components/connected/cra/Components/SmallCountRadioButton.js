@@ -10,7 +10,7 @@ function SmallCountRadioButton({ type, typeKey, typeLabel, typeValue }) {
   let nbParticipants = cra?.nbParticipants;
   let nbParticipantsAge = cra?.nbParticipantsAge;
   let nbParticipantsStatut = cra?.nbParticipantsStatut;
-console.log(nbParticipantsAge);
+
   const onClickMore = () => {
     switch (type) {
       case 'duree':
