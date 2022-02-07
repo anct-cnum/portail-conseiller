@@ -151,15 +151,20 @@ $errorDarkMode: #FF3333;
   .selecteurList {
     padding: 1em 2em;
      text-align: left
-    }
-  
+  }
+  .autreColorWhite:hover {
+    background-color: #FFFFFF;
+  }
+  .autreColorDark {
+    background: #1e1e1e;
+  }
   .styleButtonRedirection {
     border: solid 1px #5398FF;
     border-radius: 0 0 20px 20px;
     position: relative;
     max-height: 250px;
     }
-  
+
   .baseline {
     color: #919191;
     font-size: 14px;

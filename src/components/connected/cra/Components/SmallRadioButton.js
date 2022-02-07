@@ -59,6 +59,7 @@ function SmallRadioButton({ type, label, value, image, imageSelected, heightImag
         }
         //Optional case so deselection is possible
         if (e.target.getAttribute('value') === controlSelected) {
+          setSelectOption('');
           dispatch(craActions.updateAccompagnement(null, organisme));
         } else {
           dispatch(craActions.updateAccompagnement(accompagnement, autreAccompagnement.includes(accompagnement) ? null : organisme));
