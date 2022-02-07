@@ -1,28 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { lieuxReorientation } from '../utils/ArrayLieuxReorientation.json';
 
 function SelectAccompagnement({ value, controlSelected, setChampAutre }) {
-  const lieuxReorientation = [
-    'ANTS',
-    'Assistante sociale',
-    'CAF',
-    'CARSAT',
-    'CCAS',
-    'CEFS',
-    'CIP',
-    'CPAM',
-    'DGFIP',
-    'France Services',
-    'Mairie',
-    'Médiathèque',
-    'Mission locale',
-    'Pôle emploi',
-    'Préfecture',
-    'Sous-préfecture',
-    'Service de police',
-    'Gendarmerie',
-    'Tiers-lieu / fablab'
-  ];
   const [autre, setAutre] = useState(null);
   const [champAutreActif, setChampAutreActif] = useState(false);
 
@@ -31,7 +11,7 @@ function SelectAccompagnement({ value, controlSelected, setChampAutre }) {
       'selectAccompagnementRedirection dropdown-expanded scrollOptions' : 'selectAccompagnement'}`}>
       <ul style={{ color: 'white', listStyleType: 'none', padding: 0 }}>
         {lieuxReorientation.map((opt, key) =>
-          <li style={{ padding: '1em 2em', textAlign: 'left' }} className="selecteurList" onClick={() => {
+          <li className="selecteurList" onClick={() => {
             setChampAutre('');
             setChampAutreActif(false);
           }} key={key} value={opt}>
@@ -45,7 +25,7 @@ function SelectAccompagnement({ value, controlSelected, setChampAutre }) {
           <input style={{ color: 'black', height: 'auto', width: '100%', borderRadius: '4px 0 0 0' }}
             className={`${champAutreActif ? 'autreColorWhite' : 'autreColorDark autreColorWhite'} autretest`}
             placeholder="Autre" type="text" id="autre-redirection" name="autre-redirection"
-            onChange={e => setAutre(e.target.value)} value={autre} />
+            onChange={e => setAutre(e.target.value)} value={autre ?? ''} />
           <button className={`${champAutreActif ? 'autreColorWhite' : 'autreColorDark autreColorWhite'}`} value="OK" onClick={setChampAutre(autre)}
             style={{ width: '52px', borderRadius: '0 6px 0 0' }}
           >

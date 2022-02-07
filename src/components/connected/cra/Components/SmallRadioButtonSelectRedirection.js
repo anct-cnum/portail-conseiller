@@ -4,29 +4,9 @@ import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
 import { getCraValue } from '../utils/CraFunctions';
 import SelectAccompagnement from './SelectAccompagnement';
+import { lieuxReorientation } from '../utils/ArrayLieuxReorientation.json';
 
 function SmallRadioButtonSelectRedirection({ type, label, value, image, imageSelected, heightImage }) {
-  const lieuxReorientation = [
-    'ANTS',
-    'Assistante sociale',
-    'CAF',
-    'CARSAT',
-    'CCAS',
-    'CEFS',
-    'CIP',
-    'CPAM',
-    'DGFIP',
-    'France Services',
-    'Mairie',
-    'Médiathèque',
-    'Mission locale',
-    'Pôle emploi',
-    'Préfecture',
-    'Sous-préfecture',
-    'Service de police',
-    'Gendarmerie',
-    'Tiers-lieu / fablab'
-  ];
   const dispatch = useDispatch();
   let controlSelected = getCraValue(type);
   const [selectOption, setSelectOption] = useState(label);

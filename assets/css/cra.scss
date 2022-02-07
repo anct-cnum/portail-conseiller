@@ -121,7 +121,7 @@ $errorDarkMode: #FF3333;
   }
 
   .selectAccompagnementRedirection {
-    font-family: 'MarianneMedium', Arial, sans-serif;
+    font-family: 'MarianneMedium', Arial, sans-serif!important;
     list-style-type: none;
     display: block;
     position: absolute;
@@ -141,6 +141,10 @@ $errorDarkMode: #FF3333;
     border: '1px solid white';
     list-style-type: none;
     display: none
+  }
+  .selectList {
+    padding: 1em 2em;
+    text-align: left
   }
   .selecteurList:hover {
   color: #1e1e10;

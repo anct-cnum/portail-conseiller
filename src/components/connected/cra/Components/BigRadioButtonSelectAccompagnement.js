@@ -4,29 +4,10 @@ import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
 import { getCraValue } from '../utils/CraFunctions';
 import SelectAccompagnement from './SelectAccompagnement';
+import { lieuxReorientation } from '../utils/ArrayLieuxReorientation.json';
 
 function BigRadioButtonSlectAccompagnement({ type, label, value, image, imageSelected, heightImage, classDiv }) {
-  const [array, _] = useState([
-    'ANTS',
-    'Assistante sociale',
-    'CAF',
-    'CARSAT',
-    'CCAS',
-    'CEFS',
-    'CIP',
-    'CPAM',
-    'DGFIP',
-    'France Services',
-    'Mairie',
-    'Médiathèque',
-    'Mission locale',
-    'Pôle emploi',
-    'Préfecture',
-    'Sous-préfecture',
-    'Service de police',
-    'Gendarmerie',
-    'Tiers-lieu / fablab'
-  ]);
+
   const dispatch = useDispatch();
   let controlSelected = getCraValue(type);
   const [selectOption, setSelectOption] = useState(label);
@@ -38,8 +19,8 @@ function BigRadioButtonSlectAccompagnement({ type, label, value, image, imageSel
   const onClickRadio = e => {
     const preAccompagnement = e.target.getAttribute('value') === null ? 'redirection' : e.target.getAttribute('value');
     let accompagnement = !autreAccompagnement.includes(preAccompagnement) ? 'redirection' : e.target.getAttribute('value');
-    const organismeRedirection = array.find(v => v === e.target.getAttribute('value')) ? e.target.getAttribute('value') : label;
-    const organismeValue = array.includes(e.target.getAttribute('value')) ? organismeRedirection : null;
+    const organismeRedirection = lieuxReorientation.find(v => v === e.target.getAttribute('value')) ? e.target.getAttribute('value') : label;
+    const organismeValue = lieuxReorientation.includes(e.target.getAttribute('value')) ? organismeRedirection : null;
     const organisme = organismeValue ?? champAutre;
     if (organisme !== null) {
       setSelectOption(organisme);
