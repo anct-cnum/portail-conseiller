@@ -6,8 +6,8 @@ import PropTypes from 'prop-types';
 function SmallCountRadioButton({ type, typeKey, typeLabel, typeValue }) {
 
   const dispatch = useDispatch();
-  let cra = useSelector(state => state.cra);
-  let nbParticipants = cra?.nbParticipants;
+  const cra = useSelector(state => state.cra);
+  const nbParticipants = cra?.nbParticipants;
   let nbParticipantsAge = cra?.nbParticipantsAge;
   let nbParticipantsStatut = cra?.nbParticipantsStatut;
 
@@ -20,7 +20,7 @@ function SmallCountRadioButton({ type, typeKey, typeLabel, typeValue }) {
         break;
       case 'age':
         if (nbParticipants > nbParticipantsAge) {
-          let age = cra?.age;
+          const age = cra?.age;
           for (let key in cra?.age) {
             if (key === typeKey) {
               age[key] += 1;
@@ -32,7 +32,7 @@ function SmallCountRadioButton({ type, typeKey, typeLabel, typeValue }) {
         break;
       case 'statut':
         if (nbParticipants > nbParticipantsStatut) {
-          let statut = cra?.statut;
+          const statut = cra?.statut;
           for (let key in cra?.statut) {
             if (key === typeKey) {
               statut[key] += 1;

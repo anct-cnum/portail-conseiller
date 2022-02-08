@@ -13,7 +13,7 @@ function SquareButton({ value, label, type, cra }) {
     switch (type) {
       case 'age':
         if (cra?.nbParticipants && cra?.nbParticipants > cra?.nbParticipantsAge) {
-          let age = cra?.age;
+          const age = cra?.age;
           for (let key in cra?.age) {
             if (key === value) {
               age[key] += 1;
@@ -24,7 +24,7 @@ function SquareButton({ value, label, type, cra }) {
         break;
       case 'statut':
         if (cra?.nbParticipants && cra?.nbParticipants > cra?.nbParticipantsStatut) {
-          let statut = cra?.statut;
+          const statut = cra?.statut;
           for (let key in cra?.statut) {
             if (key === value) {
               statut[key] += 1;

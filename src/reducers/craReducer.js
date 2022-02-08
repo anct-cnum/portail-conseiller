@@ -126,14 +126,8 @@ export default function cra(state = initialState, action) {
         saveInProgress: true,
       };
     case 'SUBMIT_CRA_SUCCESS':
-      return {
-        //retour à l'état initial
-        errorsRequired: initialState.errorsRequired,
-        age: { ...initialState.age },
-        nbParticipantsAge: 0,
-        statut: { ...initialState.statut },
-        nbParticipantsStatut: 0
-      };
+      //retour à l'état initial
+      return initialState;
     case 'SUBMIT_CRA_FAILURE':
       return {
         ...state,
