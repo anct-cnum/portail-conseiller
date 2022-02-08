@@ -156,7 +156,7 @@ $errorDarkMode: #FF3333;
     padding: 1em 2em;
      text-align: left
   }
-  .autreColorWhite:hover, .autreColorWhite:hover > input, .autreColorWhite:hover > button {
+  .autreColorWhite:hover, .autreColorWhite:hover > input, .autreColorWhite:hover > div {
     background-color: #FFFFFF;
   }
   .autreColorWhiteSansHover {
@@ -169,10 +169,15 @@ $errorDarkMode: #FF3333;
     height: 40px;
     width: 100%;
     color: black;
-    margin-bottom: 25px;
+    margin-bottom: 28px;
     display: flex;
     align-items: stretch;
-    padding: 4px 5%;
+    padding: 4px 18px;
+  }
+  .tailledivCheck {
+    width: 52px;
+    border-radius: 0px 6px 0px 0px;
+    padding: 5px;
   }
   .styleInputAutre {
     color: black;
@@ -181,7 +186,7 @@ $errorDarkMode: #FF3333;
     border-radius: 4px 0 0 0;
   }
   .borderInputButtonAutre {
-    border: solid 1px grey
+    border: solid 1px #929292
   }
   .styleButtonRedirection {
     border: solid 1px #5398FF;

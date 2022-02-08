@@ -22,11 +22,10 @@ function SelectAccompagnement({ value, controlSelected, setChampAutre, champAutr
             className={`${champAutreActif ? 'autreColorWhite' : 'autreColorDark'} styleInputAutre borderInputButtonAutre`}
             placeholder="Autre" type="text" id="autre-redirection" name="autre-redirection"
             onChange={e => setAutre(e.target.value)} value={autre ?? ''} />
-          <button className={`${champAutreActif ? 'autreColorWhite' : 'autreColorDark'} borderInputButtonAutre`} value="OK" onClick={() => {
+          <div className={`${champAutreActif ? 'autreColorWhite' : 'autreColorDark'} borderInputButtonAutre tailledivCheck`} value="OK" onClick={() => {
             setSelectOption(autre);
             setChampAutre(autre);
           }}
-          style={{ width: '52px', borderRadius: '0 6px 0 0' }}
           >
             { champAutreActif ?
               <svg width="18px" height="16px" viewBox="0 0 18 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
@@ -42,7 +41,7 @@ function SelectAccompagnement({ value, controlSelected, setChampAutre, champAutr
                 </g>
               </svg>
             }
-          </button>
+          </div>
         </li>
       </ul>
     </div>
