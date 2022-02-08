@@ -11,13 +11,10 @@ function SmallRadioButtonSelectRedirection({ type, label, value, image, imageSel
   let controlSelected = getCraValue(type);
   const [selectOption, setSelectOption] = useState(label);
   const [openSelectRedirection, setOpenSelectRedirection] = useState(false);
-
-  const [champAutre, setChampAutre] = useState('');
-  const autreAccompagnement = ['atelier', 'individuel'];
+  const [champAutre, setChampAutre] = useState(null);
+  const [champAutreActif, setChampAutreActif] = useState(false);
 
   const onClickRadio = e => {
-    const preAccompagnement = e.target.getAttribute('value') === null ? 'redirection' : e.target.getAttribute('value');
-    let accompagnement = !autreAccompagnement.includes(preAccompagnement) ? 'redirection' : e.target.getAttribute('value');
     const organismeRedirection = lieuxReorientation.find(v => v === e.target.getAttribute('value')) ? e.target.getAttribute('value') : label;
     const organismeValue = lieuxReorientation.includes(e.target.getAttribute('value')) ? organismeRedirection : null;
     const organisme = organismeValue ?? champAutre;
@@ -28,39 +25,49 @@ function SmallRadioButtonSelectRedirection({ type, label, value, image, imageSel
       } else {
         setOpenSelectRedirection(true);
       }
+      setChampAutreActif(false);
+    } else {
+      setOpenSelectRedirection(true);
     }
     //Optional case so deselection is possible
-    if (e.target.getAttribute('value') === controlSelected) {
+    if ((e.target.getAttribute('value') === controlSelected && champAutre === null && e.target.getAttribute('value') === null) ||
+    (e.target.getAttribute('value') === controlSelected && champAutre !== null) ||
+    (e.target.getAttribute('value') === controlSelected && lieuxReorientation.find(v => v === selectOption))) {
       setSelectOption('');
+      setChampAutre(null);
       dispatch(craActions.updateAccompagnement(null, organisme));
     } else {
-      dispatch(craActions.updateAccompagnement(accompagnement, autreAccompagnement.includes(accompagnement) ? null : organisme));
+      dispatch(craActions.updateAccompagnement(value, organisme));
+      if (e.target.getAttribute('value') === null) {
+        setOpenSelectRedirection(false);
+      }
     }
   };
 
   const affichageLabel = () => {
-    if (value === 'redirection' && controlSelected === value && selectOption !== '') {
+    if (controlSelected === value && selectOption !== '') {
       return selectOption;
     }
     return label;
   };
-
   const cssOpenSelectRedirection = () => {
-    if (value === 'redirection' && controlSelected === value && openSelectRedirection) {
+    console.log('openSelectRedirection:', openSelectRedirection);
+    if (controlSelected === value && openSelectRedirection) {
       return true;
     }
     return false;
   };
-
   return (
     <div className="radioButton" onClick={onClickRadio} value={value}>
       <button id="radioRattachement"
         className={`radioRattachement ${controlSelected === value ? 'radioRattachement-selected' : ''}
-        ${value === 'redirection' && controlSelected === value && openSelectRedirection ? `styleButtonRedirection` : ``}`}
+        ${cssOpenSelectRedirection() ? `styleButtonRedirection` : ``}`}
         style={cssOpenSelectRedirection() ? { height: '73px', borderRadius: '0 0 20px 20px', border: 'solid 1px #5398FF' } : { height: '73px' }}
         value={value}>
-        { value === 'redirection' && openSelectRedirection &&
-        <SelectAccompagnement value={value} controlSelected={controlSelected} setChampAutre={setChampAutre}/>
+        {openSelectRedirection &&
+        <SelectAccompagnement value={value} controlSelected={controlSelected}
+          setChampAutre={setChampAutre} champAutreActif={champAutreActif}
+          setChampAutreActif={setChampAutreActif} setOpenSelectRedirection={setOpenSelectRedirection} setSelectOption={setSelectOption} />
         }
         <div value={value}>
           <img

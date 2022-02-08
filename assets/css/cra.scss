@@ -156,11 +156,20 @@ $errorDarkMode: #FF3333;
     padding: 1em 2em;
      text-align: left
   }
-  .autreColorWhite:hover {
+  .autreColorWhite:hover, .autreColorWhite:hover > input, .autreColorWhite:hover > button {
     background-color: #FFFFFF;
   }
   .autreColorDark {
     background: #1e1e1e;
+  }
+  .styleChampAutre {
+    height: 40px;
+    width: 100%;
+    color: black;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: stretch;
+    padding: 4px 5%;
   }
   .styleButtonRedirection {
     border: solid 1px #5398FF;

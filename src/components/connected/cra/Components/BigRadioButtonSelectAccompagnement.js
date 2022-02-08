@@ -12,13 +12,10 @@ function BigRadioButtonSlectAccompagnement({ type, label, value, image, imageSel
   let controlSelected = getCraValue(type);
   const [selectOption, setSelectOption] = useState(label);
   const [openSelectRedirection, setOpenSelectRedirection] = useState(false);
-
-  const [champAutre, setChampAutre] = useState('');
-  const autreAccompagnement = ['atelier', 'individuel'];
+  const [champAutre, setChampAutre] = useState(null);
+  const [champAutreActif, setChampAutreActif] = useState(false);
 
   const onClickRadio = e => {
-    const preAccompagnement = e.target.getAttribute('value') === null ? 'redirection' : e.target.getAttribute('value');
-    let accompagnement = !autreAccompagnement.includes(preAccompagnement) ? 'redirection' : e.target.getAttribute('value');
     const organismeRedirection = lieuxReorientation.find(v => v === e.target.getAttribute('value')) ? e.target.getAttribute('value') : label;
     const organismeValue = lieuxReorientation.includes(e.target.getAttribute('value')) ? organismeRedirection : null;
     const organisme = organismeValue ?? champAutre;
@@ -29,24 +26,31 @@ function BigRadioButtonSlectAccompagnement({ type, label, value, image, imageSel
       } else {
         setOpenSelectRedirection(true);
       }
+      setChampAutreActif(false);
     }
     //Optional case so deselection is possible
-    if (e.target.getAttribute('value') === controlSelected) {
+    if ((e.target.getAttribute('value') === controlSelected && champAutre === null && e.target.getAttribute('value') === null) ||
+    (e.target.getAttribute('value') === controlSelected && champAutre !== null) ||
+    (e.target.getAttribute('value') === controlSelected && lieuxReorientation.find(v => v === selectOption))) {
       setSelectOption('');
+      setChampAutre(null);
       dispatch(craActions.updateAccompagnement(null, organisme));
     } else {
-      dispatch(craActions.updateAccompagnement(accompagnement, autreAccompagnement.includes(accompagnement) ? null : organisme));
+      dispatch(craActions.updateAccompagnement(value, organisme));
+      if (e.target.getAttribute('value') === null) {
+        setOpenSelectRedirection(false);
+      }
     }
   };
 
   const affichageLabel = () => {
-    if (value === 'redirection' && controlSelected === value && selectOption !== '') {
+    if (controlSelected === value && selectOption !== '') {
       return selectOption;
     }
     return label;
   };
   const cssOpenSelectRedirection = () => {
-    if (value === 'redirection' && controlSelected === value && openSelectRedirection) {
+    if (controlSelected === value && openSelectRedirection) {
       return true;
     }
     return false;
@@ -60,8 +64,10 @@ function BigRadioButtonSlectAccompagnement({ type, label, value, image, imageSel
         style={cssOpenSelectRedirection() ? { height: '144px', borderRadius: '0 0 20px 20px', border: 'solid 1px #5398FF' } : { height: '144px' }}
         value={value}
         onClick={() => setOpenSelectRedirection(true)}>
-        { value === 'redirection' && openSelectRedirection &&
-        <SelectAccompagnement value={value} controlSelected={controlSelected} setChampAutre={setChampAutre}/>
+        {openSelectRedirection &&
+        <SelectAccompagnement value={value} controlSelected={controlSelected}
+          setChampAutre={setChampAutre} champAutreActif={champAutreActif}
+          setChampAutreActif={setChampAutreActif} setOpenSelectRedirection={setOpenSelectRedirection} setSelectOption={setSelectOption} />
         }
         <div value={value}>
           <div className={classDiv !== undefined ? classDiv : '' } value={value}>

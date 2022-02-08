@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { lieuxReorientation } from '../utils/ArrayLieuxReorientation.json';
 
-function SelectAccompagnement({ value, controlSelected, setChampAutre }) {
+function SelectAccompagnement({ value, controlSelected, setChampAutre, champAutreActif, setChampAutreActif, setSelectOption }) {
   const [autre, setAutre] = useState(null);
-  const [champAutreActif, setChampAutreActif] = useState(false);
 
   return (
     <div className={`${controlSelected === value ?
@@ -12,22 +11,25 @@ function SelectAccompagnement({ value, controlSelected, setChampAutre }) {
       <ul style={{ color: 'white', listStyleType: 'none', padding: 0 }}>
         {lieuxReorientation.map((opt, key) =>
           <li className="selecteurList" onClick={() => {
-            setChampAutre('');
+            setChampAutre(null);
             setChampAutreActif(false);
           }} key={key} value={opt}>
             {opt}
           </li>
         )}
-        <li style={{ height: '40px', width: '90%', color: 'black', marginBottom: '25px', display: 'flex', alignItems: 'stretch', marginInline: 'auto' }}
-          onClick={() => setChampAutreActif(true)}
-          className="autreColorWhite"
-        >
+        <li onClick={() => setChampAutreActif(true)} className={`autreColorWhite styleChampAutre ${champAutreActif ? 'autreColorWhite' : 'autreColorDark'}`}>
           <input style={{ color: 'black', height: 'auto', width: '100%', borderRadius: '4px 0 0 0' }}
-            className={`${champAutreActif ? 'autreColorWhite' : 'autreColorDark autreColorWhite'} autretest`}
+            className={`${champAutreActif ? 'autreColorWhite' : 'autreColorDark'} autretest`}
             placeholder="Autre" type="text" id="autre-redirection" name="autre-redirection"
-            onChange={e => setAutre(e.target.value)} value={autre ?? ''} />
-          <button className={`${champAutreActif ? 'autreColorWhite' : 'autreColorDark autreColorWhite'}`} value="OK" onClick={setChampAutre(autre)}
-            style={{ width: '52px', borderRadius: '0 6px 0 0' }}
+            onChange={e => {
+              setAutre(e.target.value);
+              console.log('e.target.value:', e.target.value);
+            }} value={autre ?? ''} />
+          <button className={`${champAutreActif ? 'autreColorWhite' : 'autreColorDark'}`} value="OK" onClick={() => {
+            setSelectOption(autre);
+            setChampAutre(autre);
+          }}
+          style={{ width: '52px', borderRadius: '0 6px 0 0' }}
           >
             { champAutreActif ?
               <svg width="18px" height="16px" viewBox="0 0 18 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
@@ -53,7 +55,10 @@ function SelectAccompagnement({ value, controlSelected, setChampAutre }) {
 SelectAccompagnement.propTypes = {
   value: PropTypes.string,
   controlSelected: PropTypes.string,
-  setChampAutre: PropTypes.func
+  setChampAutre: PropTypes.func,
+  champAutreActif: PropTypes.bool,
+  setChampAutreActif: PropTypes.func,
+  setSelectOption: PropTypes.func
 };
 
 export default SelectAccompagnement;
