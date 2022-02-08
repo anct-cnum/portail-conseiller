@@ -41,6 +41,7 @@ function BigDatePickerButton({ initDate }) {
       customInput={<CustomDateInput />}
       disabledKeyboardNavigation
       maxDate={new Date()}
+      minDate={new Date('2020-01-01')}
     />
   );
 }
