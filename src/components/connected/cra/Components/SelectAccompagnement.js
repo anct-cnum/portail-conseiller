@@ -17,14 +17,11 @@ function SelectAccompagnement({ value, controlSelected, setChampAutre, champAutr
             {opt}
           </li>
         )}
-        <li onClick={() => setChampAutreActif(true)} className={`autreColorWhite styleChampAutre ${champAutreActif ? 'autreColorWhite' : 'autreColorDark'}`}>
-          <input style={{ color: 'black', height: 'auto', width: '100%', borderRadius: '4px 0 0 0' }}
-            className={`${champAutreActif ? 'autreColorWhite' : 'autreColorDark'} autretest`}
+        <li onClick={() => setChampAutreActif(true)} className={`autreColorWhite styleChampAutre ${champAutreActif ? 'autreColorWhiteSansHover' : ''}`}>
+          <input
+            className={`${champAutreActif ? 'autreColorWhite' : 'autreColorDark'} styleInputAutre`}
             placeholder="Autre" type="text" id="autre-redirection" name="autre-redirection"
-            onChange={e => {
-              setAutre(e.target.value);
-              console.log('e.target.value:', e.target.value);
-            }} value={autre ?? ''} />
+            onChange={e => setAutre(e.target.value)} value={autre ?? ''} />
           <button className={`${champAutreActif ? 'autreColorWhite' : 'autreColorDark'}`} value="OK" onClick={() => {
             setSelectOption(autre);
             setChampAutre(autre);

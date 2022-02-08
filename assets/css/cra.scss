@@ -159,6 +159,9 @@ $errorDarkMode: #FF3333;
   .autreColorWhite:hover, .autreColorWhite:hover > input, .autreColorWhite:hover > button {
     background-color: #FFFFFF;
   }
+  .autreColorWhiteSansHover {
+    background-color: #FFFFFF;
+  }
   .autreColorDark {
     background: #1e1e1e;
   }
@@ -170,6 +173,12 @@ $errorDarkMode: #FF3333;
     display: flex;
     align-items: stretch;
     padding: 4px 5%;
+  }
+  .styleInputAutre {
+    color: black;
+    height: auto;
+    width: 100%;
+    border-radius: 4px 0 0 0;
   }
   .styleButtonRedirection {
     border: solid 1px #5398FF;

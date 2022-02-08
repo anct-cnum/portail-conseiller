@@ -7,6 +7,7 @@ import SelectAccompagnement from './SelectAccompagnement';
 import { lieuxReorientation } from '../utils/ArrayLieuxReorientation.json';
 
 function SmallRadioButtonSelectRedirection({ type, label, value, image, imageSelected, heightImage }) {
+
   const dispatch = useDispatch();
   let controlSelected = getCraValue(type);
   const [selectOption, setSelectOption] = useState(label);
@@ -51,7 +52,6 @@ function SmallRadioButtonSelectRedirection({ type, label, value, image, imageSel
     return label;
   };
   const cssOpenSelectRedirection = () => {
-    console.log('openSelectRedirection:', openSelectRedirection);
     if (controlSelected === value && openSelectRedirection) {
       return true;
     }
