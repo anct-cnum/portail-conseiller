@@ -4,7 +4,7 @@ import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
 import { getCraValue } from '../utils/CraFunctions';
 import SelectAccompagnement from './SelectAccompagnement';
-import { lieuxReorientation } from '../utils/ArrayLieuxReorientation.json';
+import { lieuxReorientation } from '../utils/ArrayLieuxReorientation';
 
 function SmallRadioButtonSelectRedirection({ type, label, value, image, imageSelected, heightImage }) {
 
@@ -18,7 +18,7 @@ function SmallRadioButtonSelectRedirection({ type, label, value, image, imageSel
   const onClickRadio = e => {
     const organismeRedirection = lieuxReorientation.find(v => v === e.target.getAttribute('value')) ? e.target.getAttribute('value') : label;
     const organismeValue = lieuxReorientation.includes(e.target.getAttribute('value')) ? organismeRedirection : null;
-    const organisme = organismeValue ?? champAutre;
+    let organisme = organismeValue ?? champAutre.trim();
     if (organisme !== null) {
       setSelectOption(organisme);
       if (openSelectRedirection) {
@@ -27,6 +27,7 @@ function SmallRadioButtonSelectRedirection({ type, label, value, image, imageSel
         setOpenSelectRedirection(true);
       }
       setChampAutreActif(false);
+      organisme = organisme.toLowerCase();
     } else {
       setOpenSelectRedirection(true);
     }
