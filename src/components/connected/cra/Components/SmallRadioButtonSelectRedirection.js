@@ -18,7 +18,7 @@ function SmallRadioButtonSelectRedirection({ type, label, value, image, imageSel
   const onClickRadio = e => {
     const organismeRedirection = lieuxReorientation.find(v => v === e.target.getAttribute('value')) ? e.target.getAttribute('value') : label;
     const organismeValue = lieuxReorientation.includes(e.target.getAttribute('value')) ? organismeRedirection : null;
-    let organisme = organismeValue ?? champAutre.trim();
+    let organisme = organismeValue ?? champAutre;
     if (organisme !== null) {
       setSelectOption(organisme);
       if (openSelectRedirection) {
@@ -27,7 +27,7 @@ function SmallRadioButtonSelectRedirection({ type, label, value, image, imageSel
         setOpenSelectRedirection(true);
       }
       setChampAutreActif(false);
-      organisme = organisme.toLowerCase();
+      organisme = organisme = organisme.toLowerCase().trim();
     } else {
       setOpenSelectRedirection(true);
     }

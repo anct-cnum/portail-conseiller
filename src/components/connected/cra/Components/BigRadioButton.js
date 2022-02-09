@@ -18,11 +18,12 @@ function BigRadioButton({ type, label, value, image, imageSelected, heightImage,
         dispatch(craActions.updateActivite(e.target.getAttribute('value')));
         break;
       case 'accompagnement':
+        const organisme = null;
         //Optional case so deselection is possible
         if (e.target.getAttribute('value') === controlSelected) {
-          dispatch(craActions.updateAccompagnement(null));
+          dispatch(craActions.updateAccompagnement(null, organisme));
         } else {
-          dispatch(craActions.updateAccompagnement(e.target.getAttribute('value')));
+          dispatch(craActions.updateAccompagnement(e.target.getAttribute('value'), organisme));
         }
         break;
       default:

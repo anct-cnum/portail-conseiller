@@ -129,14 +129,24 @@ $errorDarkMode: #FF3333;
     left: 0;
     right: 0;
     transform: translateY(-100%);
-    border-radius: 20px 20px 0 0;
+    border-radius: 20px 8px 0 0;
     background: #1e1e1e;
     height: 230px;
     border: solid 1px #5398FF;
     border-bottom: none;
-    max-height: 300px
-  }
+    max-height: 300px;
 
+  &::-webkit-scrollbar {
+    width: 12px;
+    height: 48px;
+    border-radius: 8px;
+    // background-color: #cccccc
+  };
+  &::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: #909090;
+  }
+  }
   .selectAccompagnement {
     border: '1px solid white';
     list-style-type: none;
@@ -184,6 +194,9 @@ $errorDarkMode: #FF3333;
     height: auto;
     width: 100%;
     border-radius: 4px 0 0 0;
+    font-size: 16px;
+    font-family: 'Marianne';
+    padding: 8px 0 8px 16px;
   }
   .borderInputButtonAutre {
     border: solid 1px #929292
