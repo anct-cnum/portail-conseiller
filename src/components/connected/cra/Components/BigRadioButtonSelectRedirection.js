@@ -4,9 +4,9 @@ import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
 import { getCraValue } from '../utils/CraFunctions';
 import SelectAccompagnement from './SelectAccompagnement';
-import { lieuxReorientation } from '../utils/ArrayLieuxReorientation';
+import { lieuxReorientation } from '../../../../data/LieuxRedirection';
 
-function BigRadioButtonSlectAccompagnement({ type, label, value, image, imageSelected, heightImage, classDiv }) {
+function BigRadioButtonSelectRedirection({ type, label, value, image, imageSelected, heightImage, classDiv }) {
 
   const dispatch = useDispatch();
   let controlSelected = getCraValue(type);
@@ -96,7 +96,7 @@ function BigRadioButtonSlectAccompagnement({ type, label, value, image, imageSel
   );
 }
 
-BigRadioButtonSlectAccompagnement.propTypes = {
+BigRadioButtonSelectRedirection.propTypes = {
   type: PropTypes.string,
   label: PropTypes.string,
   value: PropTypes.string,
@@ -106,4 +106,4 @@ BigRadioButtonSlectAccompagnement.propTypes = {
   classDiv: PropTypes.string,
 };
 
-export default BigRadioButtonSlectAccompagnement;
+export default BigRadioButtonSelectRedirection;

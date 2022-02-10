@@ -1,6 +1,6 @@
 import React from 'react';
 import BigRadioButton from './Components/BigRadioButton';
-import BigRadioButtonSelectAccompagnement from './Components/BigRadioButtonSelectAccompagnement';
+import BigRadioButtonSelectRedirection from './Components/BigRadioButtonSelectRedirection';
 import SmallRadioButtonSelectRedirection from './Components/SmallRadioButtonSelectRedirection';
 
 function Accompagnement() {
@@ -32,7 +32,7 @@ function Accompagnement() {
             classDiv="atelierCollectif"/>
         </div>
         <div className="responsiveRadioActivity3Big">
-          <BigRadioButtonSelectAccompagnement
+          <BigRadioButtonSelectRedirection
             type="accompagnement"
             label="Redirection vers un &eacute;tablissement agr&eacute;&eacute;"
             value="redirection"

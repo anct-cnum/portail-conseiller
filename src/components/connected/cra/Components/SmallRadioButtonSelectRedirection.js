@@ -4,7 +4,7 @@ import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
 import { getCraValue } from '../utils/CraFunctions';
 import SelectAccompagnement from './SelectAccompagnement';
-import { lieuxReorientation } from '../utils/ArrayLieuxReorientation';
+import { lieuxReorientation } from '../../../../data/LieuxRedirection';
 
 function SmallRadioButtonSelectRedirection({ type, label, value, image, imageSelected, heightImage }) {
 

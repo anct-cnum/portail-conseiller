@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { lieuxReorientation } from '../utils/ArrayLieuxReorientation.json';
+import { lieuxReorientation } from '../../../../data/LieuxRedirection';
 
 function SelectAccompagnement({ value, controlSelected, setChampAutre, champAutreActif, setChampAutreActif, setSelectOption }) {
   const [autre, setAutre] = useState(null);
