@@ -157,6 +157,7 @@ function Themes() {
             imageSelected="/logos/cra/logo-sante-n.svg"
             heightImage="56px" />
         </div>
+
       </div>
     </>
   );
