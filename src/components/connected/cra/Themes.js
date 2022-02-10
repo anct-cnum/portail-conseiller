@@ -158,13 +158,6 @@ function Themes() {
             imageSelected="/logos/cra/logo-sante-n.svg"
             heightImage="56px" />
         </div>
-
-        <div className="responsiveSmallCheckbox">
-          <SmallCheckboxButton
-            type="themes"
-            label="Autre..."
-            value="autre" />
-        </div>
       </div>
     </>
   );
