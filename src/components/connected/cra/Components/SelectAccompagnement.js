@@ -22,7 +22,7 @@ function SelectAccompagnement({ value, controlSelected, setChampAutre, champAutr
             className={`${champAutreActif ? 'autreColorWhite' : 'autreColorDark'} styleInputAutre borderInputButtonAutre textInputAutre`}
             placeholder="Autre" type="text" id="autre-redirection" name="autre-redirection"
             onChange={e => setAutre(e.target.value)} value={autre ?? ''} />
-          <div className={`${champAutreActif ? 'autreColorWhite' : 'autreColorDark'} borderInputButtonAutre tailledivCheck`} value="OK" onClick={() => {
+          <div className={`${champAutreActif ? 'autreColorWhite' : 'autreColorDark'} borderInputButtonAutre tailledivCheck`} value={autre} onClick={() => {
             setSelectOption(autre);
             setChampAutre(autre);
           }}
@@ -54,7 +54,8 @@ SelectAccompagnement.propTypes = {
   setChampAutre: PropTypes.func,
   champAutreActif: PropTypes.bool,
   setChampAutreActif: PropTypes.func,
-  setSelectOption: PropTypes.func
+  setSelectOption: PropTypes.func,
+  onClickRadio: PropTypes.func
 };
 
 export default SelectAccompagnement;

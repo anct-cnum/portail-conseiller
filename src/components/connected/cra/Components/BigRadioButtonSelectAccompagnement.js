@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
@@ -33,7 +33,7 @@ function BigRadioButtonSlectAccompagnement({ type, label, value, image, imageSel
     if ((e.target.getAttribute('value') === controlSelected && champAutre === null && e.target.getAttribute('value') === null) ||
     (e.target.getAttribute('value') === controlSelected && champAutre !== null) ||
     (e.target.getAttribute('value') === controlSelected && lieuxReorientation.find(v => v === selectOption))) {
-      setSelectOption('');
+      setSelectOption(label);
       setChampAutre(null);
       dispatch(craActions.updateAccompagnement(null, organisme));
     } else {
@@ -43,6 +43,13 @@ function BigRadioButtonSlectAccompagnement({ type, label, value, image, imageSel
       }
     }
   };
+  useEffect(() => {
+    // C'est pour récupéré la valeur de la selection (assuré que la valeur autre sois récupé à temps)
+    if (value === controlSelected) {
+      const organisme = selectOption.toLowerCase().trim();
+      dispatch(craActions.updateAccompagnement(value, organisme));
+    }
+  }, [selectOption]);
 
   const affichageLabel = () => {
     if (controlSelected === value && selectOption !== '') {

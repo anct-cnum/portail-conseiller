@@ -8,6 +8,7 @@ const initialState = {
     themes: true,
     duree: true,
   },
+  organisme: null
 };
 
 export default function cra(state = initialState, action) {

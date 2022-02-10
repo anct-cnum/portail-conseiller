@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
@@ -45,6 +45,12 @@ function SmallRadioButtonSelectRedirection({ type, label, value, image, imageSel
       }
     }
   };
+  useEffect(() => {
+    if (value === controlSelected) {
+      const organisme = selectOption.toLowerCase().trim();
+      dispatch(craActions.updateAccompagnement(value, organisme));
+    }
+  }, [selectOption]);
 
   const affichageLabel = () => {
     if (controlSelected === value && selectOption !== '') {
