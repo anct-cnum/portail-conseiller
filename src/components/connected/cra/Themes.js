@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import BigCheckboxButton from './Components/BigCheckboxButton';
-import SmallCheckboxButton from './Components/SmallCheckboxButton';
 
 function Themes() {
 
