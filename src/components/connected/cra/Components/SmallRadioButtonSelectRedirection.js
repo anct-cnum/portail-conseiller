@@ -47,7 +47,7 @@ function SmallRadioButtonSelectRedirection({ type, label, value, image, imageSel
   };
   useEffect(() => {
     if (value === controlSelected) {
-      const organisme = selectOption.toLowerCase().trim();
+      const organisme = selectOption === null ? selectOption : selectOption.toLowerCase().trim();
       dispatch(craActions.updateAccompagnement(value, organisme));
     }
   }, [selectOption]);

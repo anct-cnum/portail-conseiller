@@ -46,7 +46,7 @@ function BigRadioButtonSelectRedirection({ type, label, value, image, imageSelec
   useEffect(() => {
     // C'est pour récupéré la valeur de la selection (assuré que la valeur autre sois récupé à temps)
     if (value === controlSelected) {
-      const organisme = selectOption.toLowerCase().trim();
+      const organisme = selectOption === null ? selectOption : selectOption.toLowerCase().trim();
       dispatch(craActions.updateAccompagnement(value, organisme));
     }
   }, [selectOption]);
