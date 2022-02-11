@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
-import { getCraValue } from '../utils/CraFunctions';
+import { getCraValue, valueMinuscule } from '../utils/CraFunctions';
 import SelectAccompagnement from './SelectAccompagnement';
 import { lieuxReorientation } from '../../../../data/LieuxRedirection';
 
@@ -15,9 +15,25 @@ function SmallRadioButtonSelectRedirection({ type, label, value, image, imageSel
   const [champAutre, setChampAutre] = useState(null);
   const [champAutreActif, setChampAutreActif] = useState(false);
 
+  const selectButton = (valueClick, organisme) => {
+    if ((valueClick === controlSelected && champAutre === null && valueClick === null) ||
+    (valueClick === controlSelected && champAutre !== null) ||
+    (valueClick === controlSelected && lieuxReorientation.find(v => v === selectOption))) {
+      setSelectOption('');
+      setChampAutre(null);
+      dispatch(craActions.updateAccompagnement(null, organisme));
+    } else {
+      dispatch(craActions.updateAccompagnement(value, organisme));
+      if (valueClick === null) {
+        setOpenSelectRedirection(false);
+      }
+    }
+  };
+
   const onClickRadio = e => {
-    const organismeRedirection = lieuxReorientation.find(v => v === e.target.getAttribute('value')) ? e.target.getAttribute('value') : label;
-    const organismeValue = lieuxReorientation.includes(e.target.getAttribute('value')) ? organismeRedirection : null;
+    const valueClick = e.target.getAttribute('value');
+    const organismeRedirection = lieuxReorientation.find(v => v === valueClick) ? valueClick : label;
+    const organismeValue = lieuxReorientation.includes(valueClick) ? organismeRedirection : null;
     let organisme = organismeValue ?? champAutre;
     if (organisme !== null) {
       setSelectOption(organisme);
@@ -27,27 +43,17 @@ function SmallRadioButtonSelectRedirection({ type, label, value, image, imageSel
         setOpenSelectRedirection(true);
       }
       setChampAutreActif(false);
-      organisme = organisme = organisme.toLowerCase().trim();
+      organisme = valueMinuscule(organisme);
     } else {
       setOpenSelectRedirection(true);
     }
     //Optional case so deselection is possible
-    if ((e.target.getAttribute('value') === controlSelected && champAutre === null && e.target.getAttribute('value') === null) ||
-    (e.target.getAttribute('value') === controlSelected && champAutre !== null) ||
-    (e.target.getAttribute('value') === controlSelected && lieuxReorientation.find(v => v === selectOption))) {
-      setSelectOption('');
-      setChampAutre(null);
-      dispatch(craActions.updateAccompagnement(null, organisme));
-    } else {
-      dispatch(craActions.updateAccompagnement(value, organisme));
-      if (e.target.getAttribute('value') === null) {
-        setOpenSelectRedirection(false);
-      }
-    }
+    selectButton(valueClick, organisme);
   };
+
   useEffect(() => {
     if (value === controlSelected) {
-      const organisme = selectOption === null ? selectOption : selectOption.toLowerCase().trim();
+      const organisme = selectOption === null ? selectOption : valueMinuscule(selectOption);
       dispatch(craActions.updateAccompagnement(value, organisme));
     }
   }, [selectOption]);
@@ -58,12 +64,11 @@ function SmallRadioButtonSelectRedirection({ type, label, value, image, imageSel
     }
     return label;
   };
+
   const cssOpenSelectRedirection = () => {
-    if (controlSelected === value && openSelectRedirection) {
-      return true;
-    }
-    return false;
+    return controlSelected === value && openSelectRedirection;
   };
+
   return (
     <div className="radioButton" onClick={onClickRadio} value={value}>
       <button id="radioRattachement"

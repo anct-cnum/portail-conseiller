@@ -24,3 +24,8 @@ export function getCraValue(type) {
       return '';
   }
 }
+
+export function valueMinuscule(value) {
+  return value.toLowerCase().trim();
+}
+
