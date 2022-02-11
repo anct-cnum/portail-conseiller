@@ -6,6 +6,12 @@
       .pin, .hexagone {
         margin-right: 25px;
       }
+      .pin {
+        margin-top: 5px;
+      }
+      .hexagone {
+        margin-top: 14px;
+      }
     }
     .texte-banniere {
       color: #9177dd;
@@ -104,9 +110,19 @@
     cursor: pointer;
     width: 180px;
   }
+  @media (min-width: 768px) and (max-width: 1102px){
+    .banniere .col-logo .hexagone {
+      margin-top: 39px;
+    }
+  }
   @media (max-width: 767px) {
     .titre {
       font-size: 48px;
+    }
+  }
+  @media (max-width: 607px) {
+    .banniere .col-logo .hexagone {
+      margin-top: 39px;
     }
   }
   @media (max-width: 576px) {

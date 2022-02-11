@@ -9,17 +9,17 @@ function Banner() {
             <h1 className="titre rf-mt-9w rf-mb-6w">Données de localisation et contacts</h1>
           </div>
           <div className="rf-col-1 col-logo"><br/><br/>
-            <img className="pin" src="logos/permanences/pin.svg" style={{ marginTop: '5px' }}/>
+            <img className="pin" src="logos/permanences/pin.svg"/>
             <br/>
-            <img className="hexagone" src="logos/permanences/hexagone.svg" style={{ marginTop: '14px' }}/>
+            <img className="hexagone" src="logos/permanences/hexagone.svg"/>
           </div>
-          <div className="rf-col-6 texte-banniere rf-mb-7w">
+          <div className="rf-col-11 rf-col-md-6 texte-banniere rf-mb-7w">
             <span className="important violet">Dans cette page, vous renseignez :</span><br/><br/>
             Vos <span className="important blanc">lieux d’activité</span>, ceux-ci seront visibles sur la carte nationale des conseillers numériques.<br/><br/>
             Les <span className="important vert">informations professionnelles</span> qui serviront à vous donner de la visibilité auprès de vos publics,
              celles-ci seront visibles sur la carte.
           </div>
-          <div className="rf-col-5">
+          <div className="rf-col-5 rf-mb-7w">
             <img src="logos/permanences/cartographie-cnfs.svg"/>
           </div>
         </div>
