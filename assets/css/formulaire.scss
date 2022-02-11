@@ -1,24 +1,29 @@
 #formulaire-horaires-adresse {
   .banniere {
     background-color: #1B1B35;
-  }
-  .texte-banniere {
-    color: #9177dd;
-    font-size: 12px;
-    .important {
-      font-weight: 600;
+    .col-logo {
+      text-align: right;
+      .pin, .hexagone {
+        margin-right: 25px;
+      }
     }
-    .violet {
+    .texte-banniere {
       color: #9177dd;
-    }
-    .blanc {
-      color: #ffffff;
-    }
-    .vert {
-      color: #bfe4b5;
+      font-size: 12px;
+      .important {
+        font-weight: 600;
+      }
+      .violet {
+        color: #9177dd;
+      }
+      .blanc {
+        color: #ffffff;
+      }
+      .vert {
+        color: #bfe4b5;
+      }
     }
   }
-
 
   a {
     box-shadow: none;
