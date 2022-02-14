@@ -8,6 +8,8 @@ const initialState = {
     themes: true,
     duree: true,
   },
+  accompagnement: null,
+  organisme: null
 };
 
 export default function cra(state = initialState, action) {
@@ -90,6 +92,7 @@ export default function cra(state = initialState, action) {
       return {
         ...state,
         accompagnement: action.accompagnement,
+        organisme: action.organisme
       };
     case 'VERIFY_CRA':
       return {
@@ -102,9 +105,7 @@ export default function cra(state = initialState, action) {
         saveInProgress: true,
       };
     case 'SUBMIT_CRA_SUCCESS':
-      return {
-        errorsRequired: initialState.errorsRequired //retour à l'état initial
-      };
+      return initialState; //retour à l'état initial
     case 'SUBMIT_CRA_FAILURE':
       return {
         ...state,

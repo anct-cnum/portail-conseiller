@@ -57,8 +57,8 @@ function updateDuree(duree) {
   return { type: 'UPDATE_DUREE', duree };
 }
 
-function updateAccompagnement(accompagnement) {
-  return { type: 'UPDATE_ACCOMPAGNEMENT', accompagnement };
+function updateAccompagnement(accompagnement, organisme = null) {
+  return { type: 'UPDATE_ACCOMPAGNEMENT', accompagnement, organisme };
 }
 
 function verifyCra(errors) {
