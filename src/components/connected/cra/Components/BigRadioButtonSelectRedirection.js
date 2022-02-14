@@ -37,11 +37,7 @@ function BigRadioButtonSelectRedirection({ type, label, value, image, imageSelec
     let organisme = organismeValue ?? champAutre;
     if (organisme !== null) {
       setSelectOption(organisme);
-      if (openSelectRedirection) {
-        setOpenSelectRedirection(false);
-      } else {
-        setOpenSelectRedirection(true);
-      }
+      setOpenSelectRedirection(!openSelectRedirection);
       setChampAutreActif(false);
       organisme = valueMinuscule(organisme);
     }
