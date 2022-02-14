@@ -108,12 +108,15 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print }) {
         if (element.valeur === 0) {
           valeurs.push({
             name: labelsCorrespondance.find(label => label.nom === element.nom)?.correspondance ?? element.nom,
+            y: element.valeur,
+            visible: false
           });
         } else {
           valeurs.push({
             name: labelsCorrespondance.find(label => label.nom === element.nom)?.correspondance ?? element.nom,
             y: element.valeur,
-            color: couleursGraphique[i]
+            color: couleursGraphique[i],
+            visible: true
           });
         }
       } else {
