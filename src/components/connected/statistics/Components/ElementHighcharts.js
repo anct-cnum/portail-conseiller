@@ -108,6 +108,8 @@ function ElementHighcharts(props) {
         if (element.valeur === 0) {
           valeurs.push({
             name: labelsCorrespondance.find(label => label.nom === element.nom)?.correspondance ?? element.nom,
+            y: element.valeur,
+            visible: false
           });
         } else {
           valeurs.push({
