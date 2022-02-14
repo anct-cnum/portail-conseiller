@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
-import { getCraValue, valueMinuscule } from '../utils/CraFunctions';
+import { getCraValue, changeToMinusculeWithTrim } from '../utils/CraFunctions';
 import SelectAccompagnement from './SelectAccompagnement';
 import { lieuxReorientation } from '../../../../data/LieuxRedirection';
 
@@ -39,7 +39,7 @@ function SmallRadioButtonSelectRedirection({ type, label, value, image, imageSel
       setSelectOption(organisme);
       setOpenSelectRedirection(!openSelectRedirection);
       setChampAutreActif(false);
-      organisme = valueMinuscule(organisme);
+      organisme = changeToMinusculeWithTrim(organisme);
     } else {
       setOpenSelectRedirection(true);
     }
@@ -49,7 +49,7 @@ function SmallRadioButtonSelectRedirection({ type, label, value, image, imageSel
 
   useEffect(() => {
     if (value === controlSelected) {
-      const organisme = selectOption === null ? selectOption : valueMinuscule(selectOption);
+      const organisme = selectOption === null ? selectOption : changeToMinusculeWithTrim(selectOption);
       dispatch(craActions.updateAccompagnement(value, organisme));
     }
   }, [selectOption]);

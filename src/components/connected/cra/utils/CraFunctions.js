@@ -25,7 +25,7 @@ export function getCraValue(type) {
   }
 }
 
-export function valueMinuscule(value) {
+export function changeToMinusculeWithTrim(value) {
   return value.toLowerCase().trim();
 }
 
