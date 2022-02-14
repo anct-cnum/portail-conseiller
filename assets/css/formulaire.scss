@@ -2,10 +2,6 @@
   .banniere {
     background-color: #1B1B35;
     .col-logo {
-      text-align: right;
-      .pin, .hexagone {
-        margin-right: 25px;
-      }
       .pin {
         margin-top: 5px;
       }
@@ -30,7 +26,12 @@
       }
     }
   }
-
+  .col-logo {
+    text-align: right;
+    .pin, .hexagone {
+      margin-right: 25px;
+    }
+  }
   a {
     box-shadow: none;
     &:hover {

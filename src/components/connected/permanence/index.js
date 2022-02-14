@@ -13,6 +13,7 @@ import FlashMessage from 'react-flash-message';
 import { useLocation } from 'react-router-dom';
 import { permanenceActions } from '../../../actions/permanence.actions';
 import Banner from './Banner';
+import ContactProfessionel from './ContactProfessionel';
 
 function Permanence() {
   const location = useLocation();
@@ -22,7 +23,6 @@ function Permanence() {
   const permanence = useSelector(state => state.permanence?.permanence);
   const isAdresseCachee = useSelector(state => state.permanence?.isAdresseCachee);
   const adresseStructure = structure?.insee.etablissement.adresse;
-  const dateUpdate = permanence?.updateAt ? dayjs(permanence.updatedAt).format('DD/MM/YYYY') : null;
   const showError = useSelector(state => state.permanence?.showError);
   const isUpdated = useSelector(state => state.permanence?.isUpdated);
   const isCreated = useSelector(state => state.permanence?.isCreated);
@@ -55,12 +55,10 @@ function Permanence() {
       }
       <div id="formulaire-horaires-adresse" >
         <Banner />
+        <ContactProfessionel />
         <div className="rf-container">
           <div className="rf-grid-row">
             <div className="rf-col-12">
-              {dateUpdate &&
-                <p className="derniere-modification">Derni&egrave;re modification de vos informations effectu&eacute;e le&nbsp;{dateUpdate}</p>
-              }
               <Recapitulatif
                 nomStructure={permanence?.nomEnseigne ?? structure?.nom}
                 siret={permanence?.siret ? String(permanence?.siret) : structure?.siret}
