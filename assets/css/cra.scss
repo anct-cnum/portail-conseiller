@@ -316,6 +316,18 @@ $errorDarkMode: #FF3333;
     color: #919191;
     font-size: 14px;
   }
+  .ageStatusValueSmallCount{
+      font-size: 32px;
+      font-weight: 500;
+      letter-spacing: 0;
+      line-height: 32px;
+  }
+  .ageStatusLabelSmallCount {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 20px;
+  }
   /* custom point de rupture LG du DS */
   @media (max-width: 1024px) {
 
@@ -407,8 +419,13 @@ $errorDarkMode: #FF3333;
 
   .labelCalculCustom {
     font-size: 2.5rem;
-    padding-top: 10px;
     color: black;
+  }
+
+  .countSmallRadioCalcul {
+    .labelCalculCustom {
+      padding-top: 10px;
+    }
   }
 
   .responsiveRadioCanal1, .responsiveRadioCanal2, .responsiveRadioActivity1, .responsiveRadioActivity2, .responsiveRadioActivity3Big {
@@ -728,6 +745,31 @@ $errorDarkMode: #FF3333;
   }
 
   .countSmallRadioCalcul ~ .countSmallRadioCalcul:hover {
+    border-radius: 0 0 20px 0;
+  }
+
+  .countSmallSquareLabel {
+    border-bottom: 1.5px solid black;
+    height: 68px;
+  }
+
+  .countSmallSquareCalcul {
+    width: 50%;
+    height: 33px;
+    display: inline-block;
+    margin-bottom: -14px;
+  }
+
+  .countSmallSquareCalcul:hover {
+    background-color: $background;
+    border-radius: 0 0 0 20px;
+
+    .labelCalculCustom {
+      color: white;
+    }
+  }
+
+  .countSmallSquareCalcul ~ .countSmallSquareCalcul:hover {
     border-radius: 0 0 20px 0;
   }
 

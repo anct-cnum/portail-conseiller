@@ -9,6 +9,22 @@ const initialState = {
     themes: true,
     duree: true
   },
+  age: {
+    moins12ans: 0,
+    de12a18ans: 0,
+    de18a35ans: 0,
+    de35a60ans: 0,
+    plus60ans: 0,
+  },
+  nbParticipantsAge: 0,
+  statut: {
+    etudiant: 0,
+    sansEmploi: 0,
+    enEmploi: 0,
+    retraite: 0,
+    heterogene: 0
+  },
+  nbParticipantsStatut: 0,
   accompagnement: null,
   organisme: null
 };
@@ -48,9 +64,15 @@ export default function cra(state = initialState, action) {
         ...state,
         activite: action.activite,
         nbParticipants: action.activite === 'collectif' ? 5 : 1,
+        age: { ...initialState.age },
+        statut: { ...initialState.statut },
+        nbParticipantsStatut: initialState.nbParticipantsStatut,
+        nbParticipantsAge: initialState.nbParticipantsAge,
         errorsRequired: {
           ...state.errorsRequired,
-          activite: false },
+          activite: false,
+          age: true,
+          statut: true },
       };
     case 'UPDATE_NB_PARTICIPANTS':
       return {
@@ -60,18 +82,20 @@ export default function cra(state = initialState, action) {
     case 'UPDATE_AGE':
       return {
         ...state,
-        age: action.age,
+        age: action.data.age,
+        nbParticipantsAge: action.data.nbParticipantsAge,
         errorsRequired: {
           ...state.errorsRequired,
-          age: false },
+          age: action.data.nbParticipantsAge !== state.nbParticipants },
       };
     case 'UPDATE_STATUT':
       return {
         ...state,
-        statut: action.statut,
+        statut: action.data.statut,
+        nbParticipantsStatut: action.data.nbParticipantsStatut,
         errorsRequired: {
           ...state.errorsRequired,
-          statut: false },
+          statut: action.data.nbParticipantsStatut !== state.nbParticipants },
       };
     case 'UPDATE_THEMES':
       return {
@@ -116,7 +140,8 @@ export default function cra(state = initialState, action) {
         saveInProgress: true,
       };
     case 'SUBMIT_CRA_SUCCESS':
-      return initialState; //retour à l'état initial
+      //retour à l'état initial
+      return initialState;
     case 'SUBMIT_CRA_FAILURE':
       return {
         ...state,

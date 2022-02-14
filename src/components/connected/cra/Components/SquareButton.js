@@ -4,7 +4,7 @@ import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
 import { getCraValue } from '../utils/CraFunctions';
 
-function SquareButton({ value, label, type }) {
+function SquareButton({ value, label, type, cra }) {
 
   const dispatch = useDispatch();
   let controlSelected = getCraValue(type);
@@ -12,10 +12,26 @@ function SquareButton({ value, label, type }) {
   const onClickSquare = e => {
     switch (type) {
       case 'age':
-        dispatch(craActions.updateAge(e.target.getAttribute('value')));
+        if (cra?.nbParticipants && cra?.nbParticipants > cra?.nbParticipantsAge) {
+          const age = cra?.age;
+          for (let key in cra?.age) {
+            if (key === value) {
+              age[key] += 1;
+            }
+          }
+          dispatch(craActions.updateAge(age, cra?.nbParticipantsAge + 1));
+        }
         break;
       case 'statut':
-        dispatch(craActions.updateStatut(e.target.getAttribute('value')));
+        if (cra?.nbParticipants && cra?.nbParticipants > cra?.nbParticipantsStatut) {
+          const statut = cra?.statut;
+          for (let key in cra?.statut) {
+            if (key === value) {
+              statut[key] += 1;
+            }
+          }
+          dispatch(craActions.updateStatut(statut, cra?.nbParticipantsStatut + 1));
+        }
         break;
       case 'duree':
         dispatch(craActions.updateDuree(e.target.getAttribute('value')));
@@ -44,7 +60,8 @@ function SquareButton({ value, label, type }) {
 SquareButton.propTypes = {
   value: PropTypes.string,
   label: PropTypes.string,
-  type: PropTypes.string
+  type: PropTypes.string,
+  cra: PropTypes.object,
 };
 
 export default SquareButton;
