@@ -1,4 +1,5 @@
 const initialState = {
+  dateAccompagnement: new Date(),
   errorsRequired: {
     cp: true,
     canal: true,
@@ -6,7 +7,7 @@ const initialState = {
     age: true,
     statut: true,
     themes: true,
-    duree: true,
+    duree: true
   },
   age: {
     moins12ans: 0,
@@ -24,6 +25,8 @@ const initialState = {
     heterogene: 0
   },
   nbParticipantsStatut: 0
+  accompagnement: null,
+  organisme: null
 };
 
 export default function cra(state = initialState, action) {
@@ -114,6 +117,17 @@ export default function cra(state = initialState, action) {
       return {
         ...state,
         accompagnement: action.accompagnement,
+        organisme: action.organisme
+      };
+    case 'UPDATE_DATE':
+      return {
+        ...state,
+        dateAccompagnement: action.date,
+      };
+    case 'UPDATE_DATEPICKER_STATUS':
+      return {
+        ...state,
+        datePickerStatus: action.status,
       };
     case 'VERIFY_CRA':
       return {

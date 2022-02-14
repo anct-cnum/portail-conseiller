@@ -15,6 +15,8 @@ export const craActions = {
   updateAccompagnement,
   verifyCra,
   submitCra,
+  changeDate,
+  datePickerStatus,
 };
 
 function getSearchlist() {
@@ -57,8 +59,16 @@ function updateDuree(duree) {
   return { type: 'UPDATE_DUREE', duree };
 }
 
-function updateAccompagnement(accompagnement) {
-  return { type: 'UPDATE_ACCOMPAGNEMENT', accompagnement };
+function updateAccompagnement(accompagnement, organisme = null) {
+  return { type: 'UPDATE_ACCOMPAGNEMENT', accompagnement, organisme };
+}
+
+function changeDate(date) {
+  return { type: 'UPDATE_DATE', date };
+}
+
+function datePickerStatus(status) {
+  return { type: 'UPDATE_DATEPICKER_STATUS', status };
 }
 
 function verifyCra(errors) {
