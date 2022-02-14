@@ -24,7 +24,7 @@ const initialState = {
     retraite: 0,
     heterogene: 0
   },
-  nbParticipantsStatut: 0
+  nbParticipantsStatut: 0,
   accompagnement: null,
   organisme: null
 };
