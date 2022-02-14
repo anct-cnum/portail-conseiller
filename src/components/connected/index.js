@@ -21,7 +21,7 @@ function Connected() {
 
   const structure = useSelector(state => state?.structure?.structure);
   const permanence = useSelector(state => state?.permanence?.permanence);
-  const voirPermanence = false; //useSelector(state => state?.permanence?.showFormulairePermanence);
+  const voirPermanence = useSelector(state => state?.permanence?.showFormulairePermanence);
 
   useEffect(() => {
     if (conseiller) {
