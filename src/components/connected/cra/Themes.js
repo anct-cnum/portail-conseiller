@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import BigCheckboxButton from './Components/BigCheckboxButton';
-import SmallCheckboxButton from './Components/SmallCheckboxButton';
 
 function Themes() {
 
@@ -159,12 +158,6 @@ function Themes() {
             heightImage="56px" />
         </div>
 
-        <div className="responsiveSmallCheckbox">
-          <SmallCheckboxButton
-            type="themes"
-            label="Autre..."
-            value="autre" />
-        </div>
       </div>
     </>
   );
