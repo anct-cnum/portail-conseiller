@@ -115,7 +115,8 @@ function ElementHighcharts(props) {
           valeurs.push({
             name: labelsCorrespondance.find(label => label.nom === element.nom)?.correspondance ?? element.nom,
             y: element.valeur,
-            color: couleursGraphique[i]
+            color: couleursGraphique[i],
+            visible: true
           });
         }
       } else {
