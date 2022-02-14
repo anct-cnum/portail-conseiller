@@ -31,7 +31,7 @@ function Duree() {
         <div className="responsiveSquareTime3">
           <SquareButton
             type="duree"
-            value="90"
+            value="60"
             label="1h ou plus"/>
         </div>
         }
