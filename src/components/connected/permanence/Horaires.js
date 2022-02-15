@@ -54,9 +54,9 @@ function Horaires({ horairesPermanence }) {
 
   return (
     <>
-      <h2 className="sous-titre rf-col-12 rf-mb-4w">Horaires de mon lieu d&rsquo;activit&eacute;</h2>
-      <div className="rf-col-12">
-        <table className="rf-mb-9w">
+      <div className="rf-col-offset-1 rf-col-11 rf-mb-4w">Horaires de la structure</div>
+      <div className="rf-col-offset-1 rf-col-11">
+        <table>
           <thead>
             <tr>
               <th></th>

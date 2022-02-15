@@ -46,15 +46,34 @@
     font-size: 56px;
   }
   .sous-titre {
-    line-height: 40px;
-    font-weight: 600;
-    font-size: 32px;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 32px;
+    color: #8585F6;
   }
+  .baseline {
+    display: block;
+    font-weight: normal;
+    line-height: 20px;
+    color: #929292;
+    font-size: 12px;
+    .link {
+      color: #518FFF;
+    }
+  }
+
   .derniere-modification {
     line-height: 20px;
     font-weight: 300;
     color: #929292;
     font-size: 12px;
+  }
+  .nom-structure {
+    display: block;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 24px;
+    color: #cecece;
   }
   .libelle-adresse, .info-adresse {
     display: inline-block;
@@ -74,20 +93,37 @@
     position: relative;
   }
   .validation-btn {
-    background-color: #FFFFFF;
-    padding: 13px 35px 19px;
-    border-radius: 28px;
+    background-color: #8585F6;
+    padding: 8px 24px;
     text-align: center;
-    color: #161616;
-    height: 56px;
-    width: 282px;
+    color: #000091;
+    height: 40px;
+    width: 288px;
+
+  }
+  .nouveau-btn {
+    background: #1e1e1e;
+    border: 1px solid #8585f6;
+    line-height: 24px;
+    text-align: center;
+    font-size: 16px;
+    color: #8585f6;
+  }
+  .emplacement-permanences {
+    overflow: auto;
+    height: 240px;
+  }
+  .horaires-titre {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
   }
   .jour {
     font-weight: 600;
     width: 78px;
   }
   .horaires-debut, .horaires-fin, .horaires-fermeture {
-    border: 1px solid #FFFFFF;
+    border: 1px solid #518FFF;
     background-color: #1e1e1e;
     box-sizing: border-box;
     padding-left: 16px;
@@ -108,6 +144,7 @@
   .horaires-fermeture {
     border-radius: 8px;
     padding-top: 14px;
+    color: #929292;
     cursor: pointer;
     width: 180px;
   }

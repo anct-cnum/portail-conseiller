@@ -4,6 +4,7 @@ const initialState = {
   isCreated: false,
   isUpdated: false,
   showError: false,
+  showLieuSecondaire: false,
 };
 
 export default function permanence(state = initialState, action) {
@@ -198,6 +199,12 @@ export default function permanence(state = initialState, action) {
       return {
         ...state,
         horaires: action.horaires
+      };
+
+    case 'HAVE_LIEU_SECONDAIRE':
+      return {
+        ...state,
+        showLieuSecondaire: action.show
       };
 
     /* Partie Itinerance */

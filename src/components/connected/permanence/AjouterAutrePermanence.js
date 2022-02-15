@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { permanenceActions } from '../../../actions/permanence.actions';
 
-function Validation({ permanence, conseillerId, structureId }) {
+function AjouterAutrePermanence({ permanence, conseillerId, structureId }) {
   const dispatch = useDispatch();
   const form = useSelector(state => state.permanence);
   const errorsForm = useSelector(state => state.permanence?.errorsFormulaire);
@@ -58,16 +58,25 @@ function Validation({ permanence, conseillerId, structureId }) {
   }, [errorsForm]);
 
   return (
-    <div className="rf-col-offset-1 rf-col-4">
-      <button className="rf-btn validation-btn rf-mb-12w" onClick={handleSubmit}>Enregistrer et revenir &agrave; l&rsquo;accueil</button>
-    </div>
+    <>
+      <div className="rf-col-1 col-logo rf-mt-8w">
+        <img className="pin" src="logos/permanences/pin.svg"/>
+      </div>
+      <div className="rf-col-8 rf-mt-7w">
+        <button className="rf-btn nouveau-btn rf-mb-2w" onClick={handleSubmit}>
+          Ajouter un autre lieu d&rsquo;activit&eacute; secondaire</button>
+        <span className="baseline rf-mb-6w">
+          Vous pourrez ajouer et modifier vos lieux d’activité plus tard.
+        </span>
+      </div>
+    </>
   );
 }
 
-Validation.propTypes = {
+AjouterAutrePermanence.propTypes = {
   permanence: PropTypes.object,
   conseillerId: PropTypes.string,
   structureId: PropTypes.string,
 };
 
-export default Validation;
+export default AjouterAutrePermanence;

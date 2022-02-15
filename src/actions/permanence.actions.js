@@ -14,7 +14,7 @@ export const permanenceActions = {
   updateField,
   updateHoraires,
   updateItinerance,
-
+  montrerLieuSecondaire,
 };
 
 function get(idConseiller) {
@@ -190,6 +190,10 @@ function cacherAdresse(hide) {
   }
 }
 
+function montrerLieuSecondaire(show) {
+  return { type: 'HAVE_LIEU_SECONDAIRE', show };
+}
+
 function initAdresse(adresse) {
   return { type: 'INIT_ADRESSE', adresse };
 }
@@ -197,6 +201,7 @@ function initAdresse(adresse) {
 function updateField(name, value) {
   return { type: 'UPDATE_' + name.toUpperCase(), value };
 }
+
 function updateHoraires(horaires) {
   return { type: 'UPDATE_HORAIRES', horaires };
 }
