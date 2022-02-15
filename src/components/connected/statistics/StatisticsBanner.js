@@ -30,8 +30,9 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false
   function saveCSV() {
     if (user?.role === 'admin_coop' || user?.role === 'structure_coop') {
       const type = nationales === false ? typeTerritoire ?? 'user' : 'nationales';
-
-      dispatch(conseillerActions.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser));
+      const conseillerIds = territoire?.conseillerIds ?? undefined;
+      // eslint-disable-next-line max-len
+      dispatch(conseillerActions.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser, conseillerIds));
     } else {
       dispatch(conseillerActions.getStatistiquesCSV(dateDebut, dateFin, codePostal));
     }
