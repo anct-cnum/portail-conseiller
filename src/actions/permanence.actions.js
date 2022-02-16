@@ -15,6 +15,7 @@ export const permanenceActions = {
   updateHoraires,
   updateItinerance,
   montrerLieuSecondaire,
+  updateTypeAcces,
 };
 
 function get(idConseiller) {
@@ -210,4 +211,6 @@ function updateItinerance(itinerance) {
   return { type: 'UPDATE_ITINERANCE', itinerance };
 }
 
-
+function updateTypeAcces(typeAcces) {
+  return { type: 'UPDATE_TYPE_ACCES', typeAcces };
+}

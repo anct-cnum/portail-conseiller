@@ -36,8 +36,8 @@ function AjouterAutrePermanence({ permanence, conseillerId, structureId }) {
         dispatch(permanenceActions.updatePermanence(permanence._id, permanence));
       } else {
         dispatch(permanenceActions.createPermanence({
-          conseillerId: conseillerId,
-          structureId: structureId,
+          conseillerId,
+          structureId,
           nomEnseigne: form.lieuActivite,
           numeroTelephone: form.numeroTelephone,
           email: form.email,
@@ -66,7 +66,7 @@ function AjouterAutrePermanence({ permanence, conseillerId, structureId }) {
         <button className="rf-btn nouveau-btn rf-mb-2w" onClick={handleSubmit}>
           Ajouter un autre lieu d&rsquo;activit&eacute; secondaire</button>
         <span className="baseline rf-mb-6w">
-          Vous pourrez ajouer et modifier vos lieux d’activité plus tard.
+          Vous pourrez ajouter et modifier vos lieux d&rsquo;activit&eacute; plus tard.
         </span>
       </div>
     </>

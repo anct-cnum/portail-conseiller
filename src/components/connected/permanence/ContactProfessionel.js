@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import telephoneHorsMetropole from '../../../data/indicatifs.json';
 
-function ContactProfessionel({codeDepartement}) {
+function ContactProfessionel({ codeDepartement }) {
 
   const erreurTypeCnFS = useSelector(state => state.permanence?.erreurTypeCnFS);
   const erreurTelephonePro = useSelector(state => state.permanence?.erreurTelephonePro);
@@ -16,19 +16,19 @@ function ContactProfessionel({codeDepartement}) {
     <div className="rf-container">
       <div className="rf-grid-row">
         <div className="rf-col-offset-1 rf-col-11 rf-mt-9w">
-          Vous êtes :
+          Vous &ecirc;tes :
           <fieldset className="rf-fieldset rf-mt-2w">
             <div className="rf-fieldset__content">
               <div className="rf-radio-group">
                 <input type="radio" id="CnFS" name="typeCnFS" value="CnFS" required="required" />
                 <label className={erreurTypeCnFS ? 'rf-label invalid' : 'rf-label' } htmlFor="CnFS">
-                Conseiller.ère numérique France Services
+                Conseiller.&egrave;re num&eacute;rique France Services
                 </label>
               </div>
               <div className="rf-radio-group">
                 <input type="radio" id="CnFSCoord" name="typeCnFS" value="CnFSCoord" required="required" />
                 <label className={erreurTypeCnFS ? 'rf-label invalid' : 'rf-label' } htmlFor="CnFSCoord">
-                  Conseiller.ère numérique France Services Coordinateur.ice
+                  Conseiller.&egrave;re num&eacute;rique France Services Coordinateur.ice
                 </label>
               </div>
             </div>

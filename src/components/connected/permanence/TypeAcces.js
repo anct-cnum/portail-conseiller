@@ -13,13 +13,11 @@ function TypeAcces({ permanence, isAdresseCachee }) {
     dispatch(permanenceActions.updateTypeAcces(e.target.value));
   }
 
-  const [inputs, setInputs] = useState({ typeAcces: null });
-
-  const { typeAcces } = inputs;
+  const [typeAcces, setTypeAcces] = useState(null);
 
   useEffect(() => {
     if (permanence) {
-      setInputs({ typeAcces: permanence?.typeAcces });
+      setTypeAcces(permanence?.typeAcces);
     }
   }, [permanence]);
 
@@ -27,26 +25,26 @@ function TypeAcces({ permanence, isAdresseCachee }) {
     <>
       <div className="rf-col-offset-1 rf-col-11">
         <div className={erreurTypeAcces ? 'rf-col-12 invalid rf-mb-6w' : 'rf-col-12 rf-mb-6w'}>
-          Type d’accès <span className="obligatoire">*</span>
+          Type d’acc&egrave;ss <span className="obligatoire">*</span>
           <span className="baseline">Comment les usagers acc&egrave;dent-ils &agrave; la structure ?</span>
 
           <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-2w">
             <div className="rf-fieldset__content">
               <div className="rf-radio-group">
-                <input type="radio" id="libre" name="typeAcces" value="libre" required="required"/>
+                <input type="radio" id="libre" name="typeAcces" value="libre" required="required" onClick={handleChange}/>
                 <label className={erreurTypeAcces ? 'rf-label invalid' : 'rf-label' } htmlFor="libre">
                   Acc&egrave;s libre
                 </label>
               </div>
               <div className="rf-radio-group">
-                <input type="radio" id="rdv" name="typeAcces" value="rdv" />
+                <input type="radio" id="rdv" name="typeAcces" value="rdv" onClick={handleChange}/>
                 <label className={erreurTypeAcces ? 'rf-label invalid' : 'rf-label' } htmlFor="rdv">
                   Sur rendez-vous
                 </label>
               </div>
               {isAdresseCachee &&
                 <div className="rf-radio-group">
-                  <input type="radio" id="prive" name="typeAcces" value="prive" />
+                  <input type="radio" id="prive" name="typeAcces" value="prive" onClick={handleChange}/>
                   <label className={erreurTypeAcces ? 'rf-label invalid' : 'rf-label' } htmlFor="prive">
                     La structure n&rsquo;accueille pas de public
                   </label>

@@ -92,13 +92,13 @@ function Adresse({ codeDepartement, adressePermanence }) {
             }
           </div>
 
-          <div className="rf-col-offset-4"></div>
+          <div className="rf-col-4"></div>
 
           <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
             <div className="rf-checkbox-group">
               <input type="checkbox" id="intinerant" name="intinerant" value={true}/>
               <label className="rf-label" htmlFor="intinerant">
-                Lieu d&rsquo;activit&eacute; itin&eacute;rant (exemple : bus)
+                Lieu d&rsquo;activit&eacute; itin&eacute;rant (exemple&nbsp;: bus)
               </label>
               <span className="baseline">
                 Chaque point d&rsquo;itin&eacute;rance doit être enregistr&eacute; comme un nouveau lieu d&rsquo;activit&eacute;.
@@ -106,14 +106,14 @@ function Adresse({ codeDepartement, adressePermanence }) {
             </div>
           </div>
 
-          <div className="rf-col-offset-4"></div>
+          <div className="rf-col-4"></div>
 
           <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
             <label className={erreurSiret ? 'rf-label invalid' : 'rf-label' } htmlFor="siret">
               Num&eacute;ro de Siret
               <span className="baseline">
                 <a className="link" href="https://www.pappers.fr/" title="Liens vers https://www.pappers.fr/" target="blank" rel="noreferrer">
-                  O&ugrave; trouver un num&eacute;ro de Siret ?
+                  O&ugrave; trouver un num&eacute;ro de Siret&nbsp;?
                 </a>
               </span>
               <input className={erreurSiret ? 'rf-input rf-mt-2v input-error' : 'rf-input rf-mt-2v'}
@@ -124,7 +124,7 @@ function Adresse({ codeDepartement, adressePermanence }) {
             }
           </div>
 
-          <div className="rf-col-offset-4"></div>
+          <div className="rf-col-4"></div>
 
           <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
             <label className={erreurNumeroVoie ? 'rf-label invalid' : 'rf-label' } htmlFor="numero-voie">
@@ -137,7 +137,7 @@ function Adresse({ codeDepartement, adressePermanence }) {
             }
           </div>
 
-          <div className="rf-col-offset-4"></div>
+          <div className="rf-col-4"></div>
 
           <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
             <label className={erreurRueVoie ? 'rf-label invalid' : 'rf-label' } htmlFor="rue-voie">
@@ -150,7 +150,7 @@ function Adresse({ codeDepartement, adressePermanence }) {
             }
           </div>
 
-          <div className="rf-col-offset-4"></div>
+          <div className="rf-col-4"></div>
 
           <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
             <label className={erreurcodePostal ? 'rf-label invalid' : 'rf-label' } htmlFor="code-postal">
@@ -163,7 +163,7 @@ function Adresse({ codeDepartement, adressePermanence }) {
             }
           </div>
 
-          <div className="rf-col-offset-4"></div>
+          <div className="rf-col-4"></div>
 
           <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
             <label className={erreurVille ? 'rf-label invalid' : 'rf-label' } htmlFor="ville">
@@ -176,7 +176,7 @@ function Adresse({ codeDepartement, adressePermanence }) {
             }
           </div>
 
-          <div className="rf-col-offset-4"></div>
+          <div className="rf-col-4"></div>
         </>
       }
 
@@ -193,11 +193,11 @@ function Adresse({ codeDepartement, adressePermanence }) {
         }
       </div>
 
-      <div className="rf-col-offset-4"></div>
+      <div className="rf-col-4"></div>
 
       <div className="rf-col-offset-1 rf-col-10 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
         <label className={erreurEmail ? 'rf-label invalid' : 'rf-label' } htmlFor="email">
-          Mail de la structure <span className="obligatoire">*</span>
+          Mail de la structure&nbsp;<span className="obligatoire">*</span>
           <span className="baseline">Mail g&eacute;n&eacute;rique (accueil). Vous pouvez laisser vide si la structure n&rsquo;en a pas.</span>
           <input className={erreurEmail ? 'rf-input rf-mt-2v input-error' : 'rf-input rf-mt-2v'} type="text"
             id="email" name="email" required="required" value={email} onChange={handleChange}/>
@@ -207,7 +207,7 @@ function Adresse({ codeDepartement, adressePermanence }) {
         }
       </div>
 
-      <div className="rf-col-offset-4"></div>
+      <div className="rf-col-4"></div>
 
       <div className="rf-col-offset-1 rf-col-10 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
         <label className={erreurSiteWeb ? 'rf-label invalid' : 'rf-label' } htmlFor="site-web">
@@ -221,7 +221,7 @@ function Adresse({ codeDepartement, adressePermanence }) {
         }
       </div>
 
-      <div className="rf-col-offset-4"></div>
+      <div className="rf-col-4"></div>
     </>
   );
 }

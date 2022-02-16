@@ -207,6 +207,12 @@ export default function permanence(state = initialState, action) {
         showLieuSecondaire: action.show
       };
 
+    case 'UPDATE_TYPE_ACCES':
+      return {
+        ...state,
+        typeAcces: action.typeAcces
+      };
+
     /* Partie Itinerance */
     case 'UPDATE_ITINERANCE':
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.itinerance)[0]?.itinerance;

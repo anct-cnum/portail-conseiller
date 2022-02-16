@@ -13,8 +13,8 @@ import TypeAcces from './TypeAcces';
 function PermanencePrincipale({ permanence, structure }) {
   const dispatch = useDispatch();
 
-  const adresseStructure = structure?.insee.etablissement.adresse;
-  const siretStructure = permanence?.siret ? String(permanence?.siret) : structure?.siret;
+  const adresseStructure = structure?.insee?.etablissement?.adresse;
+  const siretStructure = `${permanence?.siret ?? structure?.siret}`;
   const isAdresseCachee = useSelector(state => state.permanence?.isAdresseCachee);
   const erreursFormulaire = useSelector(state => state.permanence?.errorsFormulaire?.errors);
 
@@ -49,7 +49,7 @@ function PermanencePrincipale({ permanence, structure }) {
         siret: permanence?.siret,
         numeroTelephone: permanence?.numeroTelephone,
         email: permanence?.email,
-        siteWeb: permanence?.siteWeb ? permanence?.siteWeb : '',
+        siteWeb: permanence?.siteWeb ?? '',
         adresseExact: true
       });
     }
