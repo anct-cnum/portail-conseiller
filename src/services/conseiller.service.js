@@ -112,13 +112,14 @@ function getStatistiquesCSV(dateDebut, dateFin, codePostal) {
     requestOptions).then(handleFileResponse);
 }
 
-function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType) {
+function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, conseillerIds) {
   const requestOptions = {
     method: 'GET',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
   };
 
-  return fetch(`${apiUrlRoot}/stats/admincoop/statistiques.csv?dateDebut=${dateDebut}&dateFin=${dateFin}&type=${type}&idType=${idType}`,
+  // eslint-disable-next-line max-len
+  return fetch(`${apiUrlRoot}/stats/admincoop/statistiques.csv?dateDebut=${dateDebut}&dateFin=${dateFin}&type=${type}&idType=${idType}&conseillerIds=${conseillerIds}`,
     requestOptions).then(handleFileResponse);
 }
 
