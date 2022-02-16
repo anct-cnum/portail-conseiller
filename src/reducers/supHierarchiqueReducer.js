@@ -21,6 +21,7 @@ export default function formulaireSupHierarchique(state = initialState, action) 
                 email: action.formSupHierarchique?.email,
                 prenom: action.formSupHierarchique?.prenom,
                 nom: action.formSupHierarchique?.nom,
+                fonction: action.formSupHierarchique?.fonction
             };
         case 'UPDATE_NUMEROTELEPHONE':
             console.log(state);
@@ -49,6 +50,13 @@ export default function formulaireSupHierarchique(state = initialState, action) 
             return {
                 ...state,
                 prenom: action.value,
+                showError: false,
+            };
+        case 'UPDATE_FONCTION':
+            delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.fonction)[0]?.fonction;
+            return {
+                ...state,
+                fonction: action.value,
                 showError: false,
             };
         default:

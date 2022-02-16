@@ -1,24 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import { formSupHierarchiqueActions } from '../../actions/formulaireSupHierarchique.actions';
+import { formSupHierarchiqueActions } from '../../actions/supHierarchique.actions';
 import { useDispatch, useSelector } from 'react-redux';
+import { supHierarchiqueService } from '../../services/supHierarchique.service';
 
 function FormulaireSuperieurHierarchique() {
-    const erreursFormulaire = useSelector(state => state.formulaireSupHierarchique?.errorsFormulaire?.errors);
-    const erreurNumeroTelephone = erreursFormulaire?.filter(erreur => erreur?.numeroTelephone)[0]?.numeroTelephone;
-    const erreurEmail = erreursFormulaire?.filter(erreur => erreur?.email)[0]?.email;
-    const erreurNom = erreursFormulaire?.filter(erreur => erreur?.nom)[0]?.nom;
-    const erreurPrenom = erreursFormulaire?.filter(erreur => erreur?.prenom)[0]?.prenom;
+    const erreursFormulaire = useSelector(state => state.formulaireSupHierarchique?.errorsFormulaire);
+    const erreurNumeroTelephone = erreursFormulaire?.errors?.filter(erreur => erreur?.numeroTelephone)[0]?.numeroTelephone;
+    const erreurEmail = erreursFormulaire?.errors?.filter(erreur => erreur?.email)[0]?.email;
+    const erreurNom = erreursFormulaire?.errors?.filter(erreur => erreur?.nom)[0]?.nom;
+    const erreurPrenom = erreursFormulaire?.errors?.filter(erreur => erreur?.prenom)[0]?.prenom;
+    const erreurFonction = erreursFormulaire?.errors?.filter(erreur => erreur?.fonction)[0]?.fonction;
     const dispatch = useDispatch();
     const form = useSelector(state => state.formSupHierarchique);
     const [inputs, setInputs] = useState({
         prenom: '',
         nom: '',
+        fonction: '',
         email: '',
         numeroTelephone: ''
     });
     const [submitted, setSubmitted] = useState(false);
-    const { prenom, nom, email, numeroTelephone } = inputs;
-
+    const { prenom, nom, fonction, email, numeroTelephone } = inputs;
+    // useEffect(() => {
+    //     if (erreursFormulaire?.lengthError === 0 && setSubmitted) {
+    //         if (form) {
+    //             console.log("dfds");
+    //             // dispatch(permanenceActions.updatePermanence(permanence._id, permanence));
+    //         } else {
+    //             dispatch(supHierarchiqueService.createSupHierarchique({
+    //                 numeroTelephone: form.numeroTelephone,
+    //                 email: form.email,
+    //                 nom: form.nom,
+    //                 prenom: form.prenom
+    //             }));
+    //         }
+    //     }
+    //     setSubmitted(false);
+    // }, [erreursFormulaire]);
     useEffect(() => {
         if (form !== null && form !== undefined) {
             dispatch(formSupHierarchiqueActions.initFormSupHierarchique(form));
@@ -87,6 +105,25 @@ function FormulaireSuperieurHierarchique() {
                                 {submitted && erreurNom &&
                                     <p id="text-input-error-desc-error" className="rf-error-text">
                                         {erreurNom}
+                                    </p>
+                                }
+                            </div>
+                            <div className={`rf-input-group ${submitted && erreurFonction ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
+                                <label className="rf-label" htmlFor="nom">
+                                    Fonction
+                                </label>
+                                <input
+                                    className={`rf-input ${submitted && erreurFonction ? 'rf-input--error' : ''}`}
+                                    aria-describedby="text-input-error-desc-error"
+                                    type="text"
+                                    id="fonction"
+                                    name="fonction"
+                                    value={fonction}
+                                    onChange={handleChange}
+                                />
+                                {submitted && erreurFonction &&
+                                    <p id="text-input-error-desc-error" className="rf-error-text">
+                                        {erreurFonction}
                                     </p>
                                 }
                             </div>

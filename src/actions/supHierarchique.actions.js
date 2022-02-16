@@ -1,4 +1,5 @@
 import Joi from 'joi';
+import { supHierarchiqueService } from '../services/supHierarchique.service';
 
 export const formSupHierarchiqueActions = {
     verifyFormulaire,
@@ -37,6 +38,12 @@ function verifyFormulaire(form) {
         }).validate({ prenom: form?.prenom }).error) ?
             'Un prénom doit obligatoirement être saisie' : null
     });
+    errors.push({
+        fonction: (Joi.object({
+            fonction: Joi.string().required()
+        }).validate({ fonction: form?.fonction }).error) ?
+            'Une fonction doit obligatoirement être saisie' : null
+    });
 
     let nbErrors = 0;
     errors.forEach(error => {
@@ -59,6 +66,27 @@ function initFormSupHierarchique(formSupHierarchique) {
     return { type: 'INIT_FORM_SUP_HIERARCHIQUE', formSupHierarchique };
 }
 
-function createSupHierarchique(permanence) {
-   
-}
+function createSupHierarchique(supHierarchique) {
+    return dispatch => {
+      dispatch(request());
+      supHierarchiqueService.createSupHierarchique(supHierarchique)
+      .then(
+        result => {
+          dispatch(success(result.isCreated));
+        },
+        error => {
+          dispatch(failure(error));
+        }
+      );
+    };
+  
+    function request() {
+      return { type: 'POST_SUP_HIERARCHIQUE_REQUEST' };
+    }
+    function success(isCreated) {
+      return { type: 'POST_SUP_HIERARCHIQUE_SUCCESS', isCreated };
+    }
+    function failure(error) {
+      return { type: 'POST_SUP_HIERARCHIQUE_FAILURE', error };
+    }
+  }

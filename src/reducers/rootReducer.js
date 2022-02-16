@@ -12,7 +12,7 @@ import pagination from './paginationReducer';
 import ressources from './ressourcesReducer';
 import ressourcesFiltres from './ressourcesFiltresReducer';
 import permanence from './permanenceReducer';
-import formulaireSupHierarchique from './formulaireSupHierarchiqueReducer';
+import formulaireSupHierarchique from './supHierarchiqueReducer';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
