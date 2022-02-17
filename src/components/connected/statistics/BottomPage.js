@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import 'moment/locale/fr';
 import ElementHighcharts from './Components/ElementHighcharts';
+import { sortByMonthAndYear } from '../../../utils/functionsSort';
 
 function BottomPage({ donneesStats, print }) {
 
@@ -56,20 +57,7 @@ function BottomPage({ donneesStats, print }) {
   });
 
   //Tri par mois/annee croissant
-  const orderMonths = (a, b) => {
-    if (a.annee === b.annee) {
-      if (a.mois < b.mois) {
-        return -1;
-      }
-      if (a.mois > b.mois) {
-        return 1;
-      }
-      return 0;
-    } else {
-      return a.annee < b.annee ? -1 : 1;
-    }
-  };
-  statsEvolutionsFiltered.sort(orderMonths);
+  statsEvolutionsFiltered.sort(sortByMonthAndYear);
 
   const graphiqueEvolution = {
     graphique: {
