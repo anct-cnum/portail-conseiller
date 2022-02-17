@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -10,56 +10,31 @@ import Horaires from './Horaires';
 import Adresse from './Adresse';
 import TypeAcces from './TypeAcces';
 
-function PermanencePrincipale({ permanence, structure }) {
+function PermanencePrincipale({ structure }) {
   const dispatch = useDispatch();
 
-  const adresseStructure = structure?.insee?.etablissement?.adresse;
-  const siretStructure = `${permanence?.siret ?? structure?.siret}`;
   const isAdresseCachee = useSelector(state => state.permanence?.isAdresseCachee);
   const erreursFormulaire = useSelector(state => state.permanence?.errorsFormulaire?.errors);
+  const erreurAdresseExact = erreursFormulaire?.filter(erreur => erreur?.principalLieuActivite)[0]?.principalLieuActivite;
 
-  const erreurAdresseExact = erreursFormulaire?.filter(erreur => erreur?.adresseExact)[0]?.adresseExact;
+  const adresseStructure = structure?.insee?.etablissement?.adresse;
 
-
-  const [inputs, setInputs] = useState({
-    lieuActivite: '',
-    siret: '',
-    numeroTelephone: '',
-    email: '',
-    siteWeb: '',
-    adresseExact: null
-  });
-
-  const { adresseExact } = inputs;
-
-  function handleAdresse(hide) {
-    dispatch(permanenceActions.cacherAdresse(hide));
-    if (hide) {
-      adresseStructure.siret = siretStructure;
+  function handleAdresse(estLieuPrincipal) {
+    dispatch(permanenceActions.updateLieuPrincipal(estLieuPrincipal));
+    if (estLieuPrincipal) {
+      console.log(structure?.nom);
+      dispatch(permanenceActions.updateField('nomEnseigne', structure?.nom));
+      dispatch(permanenceActions.updateField('siret', structure?.siret));
       dispatch(permanenceActions.initAdresse(adresseStructure));
-    } else {
-      setInputs(inputs => ({ ...inputs, siret: '' }));
     }
   }
 
-  useEffect(() => {
-    if (permanence) {
-      setInputs({
-        lieuActivite: permanence?.nomEnseigne,
-        siret: permanence?.siret,
-        numeroTelephone: permanence?.numeroTelephone,
-        email: permanence?.email,
-        siteWeb: permanence?.siteWeb ?? '',
-        adresseExact: true
-      });
-    }
-  }, [permanence]);
   return (
     <>
       <Recapitulatif
-        nomStructure={permanence?.nomEnseigne ?? structure?.nom}
-        siret={permanence?.siret ? String(permanence?.siret) : structure?.siret}
-        adresseStructure={permanence?.adresse ?? adresseStructure}
+        nomStructure={structure?.nom}
+        siret={structure?.siret}
+        adresseStructure={adresseStructure}
       />
 
       <div className="rf-col-1 col-logo rf-mt-10w">
@@ -76,7 +51,7 @@ function PermanencePrincipale({ permanence, structure }) {
           <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-2w">
             <div className="rf-fieldset__content">
               <div className="rf-radio-group">
-                <input type="radio" id="Oui" name="adresseExact" value="Oui" defaultChecked={adresseExact} required="required" onClick={() => {
+                <input type="radio" id="Oui" name="principalLieuActivite" value="Oui" required="required" onClick={() => {
                   handleAdresse(true);
                 }}/>
                 <label className={erreurAdresseExact ? 'rf-label invalid' : 'rf-label' } htmlFor="Oui">
@@ -84,7 +59,7 @@ function PermanencePrincipale({ permanence, structure }) {
                 </label>
               </div>
               <div className="rf-radio-group">
-                <input type="radio" id="Non" name="adresseExact" value="Non" defaultChecked={!adresseExact && adresseExact !== null}
+                <input type="radio" id="Non" name="principalLieuActivite" value="Non"
                   required="required" onClick={() => {
                     handleAdresse(false);
                   }}
@@ -103,11 +78,13 @@ function PermanencePrincipale({ permanence, structure }) {
 
       <ListPermanences isAdresseCachee={isAdresseCachee}/>
 
-      <Adresse isAdresseCachee={isAdresseCachee}/>
+      <Adresse
+        codeDepartement={structure?.codeDepartement}
+      />
 
-      <TypeAcces isAdresseCachee={isAdresseCachee} />
+      <TypeAcces lieuPrincipal={true} />
 
-      <Horaires horairesPermanence={permanence?.horaires}/>
+      <Horaires />
     </>
   );
 }

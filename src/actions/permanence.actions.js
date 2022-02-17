@@ -9,7 +9,7 @@ export const permanenceActions = {
   verifyFormulaire,
   createPermanence,
   updatePermanence,
-  cacherAdresse,
+  updateLieuPrincipal,
   initAdresse,
   updateField,
   updateHoraires,
@@ -55,6 +55,7 @@ function initPermanence(permanence) {
 }
 
 function verifyFormulaire(form) {
+  console.log(form);
   let errors = [];
   //eslint-disable-next-line max-len
   const regExpEmail = new RegExp(/^(([^<>()[\]\\.,;:\s@\\"]+(\.[^<>()[\]\\.,;:\s@\\"]+)*)|(\\".+\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
@@ -62,12 +63,24 @@ function verifyFormulaire(form) {
   const regExpSiteWeb = new RegExp(/(https?):\/\/[a-z0-9\\/:%_+.,#?!@&=-]+/);
   const regExpSiret = new RegExp(/^$|^[0-9]{14}$/);
 
-  errors.push({ adresseExact: (Joi.object({
-    adresseExact: Joi.boolean().required() }).validate({ adresseExact: form?.adresseExact }).error) ?
+  errors.push({ estCoordinateur: (Joi.object({
+    estCoordinateur: Joi.boolean().required() }).validate({ estCoordinateur: form?.estCoordinateur }).error) ?
+    'Votre rôle doit obligatoirement être saisie' : null });
+
+  errors.push({ telephonePro: (Joi.object({
+    telephonePro: Joi.string().allow('').pattern(regExpNumero) }).validate({ telephonePro: form?.telephonePro }).error) ?
+    'Un numéro de téléphone valide doit être saisi' : null });
+
+  errors.push({ emailPro: (Joi.object({
+    emailPro: Joi.string().allow('').pattern(regExpEmail) }).validate({ emailPro: form?.emailPro }).error) ?
+    'Une adresse email valide doit être saisie' : null });
+
+  errors.push({ principalLieuActivite: (Joi.object({
+    principalLieuActivite: Joi.boolean().required() }).validate({ principalLieuActivite: form?.principalLieuActivite }).error) ?
     'La correspondance des informations doit obligatoirement être saisie' : null });
 
-  errors.push({ lieuActivite: (Joi.object({
-    lieuActivite: Joi.string().required() }).validate({ lieuActivite: form?.lieuActivite }).error) ?
+  errors.push({ nomEnseigne: (Joi.object({
+    nomEnseigne: Joi.string().required() }).validate({ nomEnseigne: form?.nomEnseigne }).error) ?
     'Un lieu d\'activité doit obligatoirement être saisi' : null });
 
   errors.push({ siret: (Joi.object({
@@ -75,12 +88,12 @@ function verifyFormulaire(form) {
     'Un siret valide de 14 chiffres doit être saisi' : null });
 
   errors.push({ numeroTelephone: (Joi.object({
-    numeroTelephone: Joi.string().required().pattern(regExpNumero) }).validate({ numeroTelephone: form?.numeroTelephone }).error) ?
-    'Un numéro de téléphone valide doit obligatoirement être saisi' : null });
+    numeroTelephone: Joi.string().pattern(regExpNumero) }).validate({ numeroTelephone: form?.numeroTelephone }).error) ?
+    'Un numéro de téléphone valide doit être saisi' : null });
 
   errors.push({ email: (Joi.object({
-    email: Joi.string().required().pattern(regExpEmail) }).validate({ email: form?.email }).error) ?
-    'Une adresse email valide doit obligatoirement être saisie' : null });
+    email: Joi.string().pattern(regExpEmail) }).validate({ email: form?.email }).error) ?
+    'Une adresse email valide doit être saisie' : null });
 
   errors.push({ numeroVoie: (Joi.object({
     numeroVoie: Joi.string().required() }).validate({ numeroVoie: form?.numeroVoie }).error) ?
@@ -99,12 +112,17 @@ function verifyFormulaire(form) {
     'Une ville doit obligatoirement être saisie' : null });
 
   errors.push({ itinerance: (Joi.object({
-    itinerance: Joi.string().required() }).validate({ itinerance: form?.itinerance }).error) ?
+    itinerance: Joi.string() }).validate({ itinerance: form?.itinerance }).error) ?
     'Une itinérance doit obligatoirement être saisie' : null });
 
   errors.push({ siteWeb: (Joi.object({
     siteWeb: Joi.string().allow('').pattern(regExpSiteWeb) }).validate({ siteWeb: form?.siteWeb }).error) ?
     'Une URL valide doit être saisie (exemple de format valide https://www.mon-site.fr)' : null });
+
+  errors.push({ typeAcces: (Joi.object({
+    typeAcces: Joi.string().required().valid('libre', 'rdv', 'prive') }).validate({ typeAcces: form?.typeAcces }).error) ?
+    'Un type d\'accès doit obligatoirement être indiqué' : null });
+
 
   /* Cohérence des horaires */
   if (form?.horaires) {
@@ -129,7 +147,7 @@ function verifyFormulaire(form) {
   });
 
   const errorsForm = { errors: errors, lengthError: nbErrors };
-
+  console.log(errorsForm);
   return { type: 'VERIFY_FORMULAIRE', errorsForm };
 }
 
@@ -183,7 +201,7 @@ function updatePermanence(idPermanence, permanence) {
   }
 }
 
-function cacherAdresse(hide) {
+function updateLieuPrincipal(hide) {
   if (hide) {
     return { type: 'CACHER_ADRESSE', hide };
   } else {

@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { permanenceActions } from '../../../actions/permanence.actions';
 
-function Horaires({ horairesPermanence }) {
+function Horaires() {
 
   const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
   const erreursHoraires = erreursFormulaire?.filter(erreur => erreur?.horaires)[0]?.horaires;
@@ -38,23 +37,9 @@ function Horaires({ horairesPermanence }) {
     }
   }
 
-  useEffect(() => {
-    if (horairesPermanence) {
-      horairesPermanence.forEach((horairesJour, id) => {
-        horaires[id] = horairesJour;
-        horaires[id].fermeture = [
-          horairesJour.matin[0] === 'Fermé' && horairesJour.matin[1] === 'Fermé',
-          horairesJour.apresMidi[0] === 'Fermé' && horairesJour.apresMidi[1] === 'Fermé'
-        ];
-      });
-      setHoraires(horaires => [...horaires]);
-    }
-    dispatch(permanenceActions.updateHoraires(horaires));
-  }, [horairesPermanence]);
-
   return (
     <>
-      <div className="rf-col-offset-1 rf-col-11 rf-mb-4w">Horaires de la structure</div>
+      <div className="rf-col-offset-1 rf-col-11 rf-mb-4w">Horaires de la structure&nbsp;<span className="obligatoire">*</span></div>
       <div className="rf-col-offset-1 rf-col-11">
         <table>
           <thead>
@@ -128,10 +113,5 @@ function Horaires({ horairesPermanence }) {
     </>
   );
 }
-
-Horaires.propTypes = {
-  horairesPermanence: PropTypes.array
-};
-
 
 export default Horaires;

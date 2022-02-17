@@ -37,8 +37,8 @@ export default function permanence(state = initialState, action) {
     case 'INIT_PERMANENCE':
       return {
         ...state,
-        adresseExact: true,
-        lieuActivite: action.permanence?.nomEnseigne,
+        principalLieuActivite: true,
+        nomEnseigne: action.permanence?.nomEnseigne,
         siret: String(action.permanence?.siret),
         numeroTelephone: action.permanence?.numeroTelephone,
         email: action.permanence?.email,
@@ -49,7 +49,8 @@ export default function permanence(state = initialState, action) {
         rueVoie: action.permanence?.adresse.rue,
         codePostal: action.permanence?.adresse.codePostal,
         ville: action.permanence?.adresse?.ville,
-        horaires: action.permanence?.horaires
+        horaires: action.permanence?.horaires,
+        typeAcces: action.permanence?.typeAcces,
       };
     case 'VERIFY_FORMULAIRE':
       return {
@@ -96,18 +97,39 @@ export default function permanence(state = initialState, action) {
         showError: true,
         error: action.error,
       };
-
+    /* Partie Informations professionnel*/
+    case 'UPDATE_ESTCOORDINATEUR':
+      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.estCoordinateur)[0]?.estCoordinateur;
+      return {
+        ...state,
+        estCoordinateur: action.value === 'true',
+        showError: false,
+      };
+    case 'UPDATE_EMAILPRO':
+      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.emailPro)[0]?.emailPro;
+      return {
+        ...state,
+        emailPro: action.value,
+        showError: false,
+      };
+    case 'UPDATE_TELEPHONEPRO':
+      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.telephonePro)[0]?.telephonePro;
+      return {
+        ...state,
+        telephonePro: action.value,
+        showError: false,
+      };
     /* Partie Informations */
-    case 'CACHER_ADRESSE':
-      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.adresseExact)[0]?.adresseExact;
+    case 'UPDATE_ESTLIEUPRINCIPAL':
+      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.principalLieuActivite)[0]?.principalLieuActivite;
       return {
         ...state,
         isAdresseCachee: action.hide,
-        adresseExact: true,
+        principalLieuActivite: true,
         showError: false,
       };
     case 'MONTRER_ADRESSE':
-      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.adresseExact)[0]?.adresseExact;
+      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.principalLieuActivite)[0]?.principalLieuActivite;
       return {
         ...state,
         isAdresseCachee: action.hide,
@@ -116,7 +138,7 @@ export default function permanence(state = initialState, action) {
         codePostal: '',
         ville: '',
         siret: '',
-        adresseExact: true,
+        principalLieuActivite: true,
         showError: false,
       };
     case 'INIT_ADRESSE':
@@ -126,13 +148,12 @@ export default function permanence(state = initialState, action) {
         rueVoie: action?.adresse?.rue ? action.adresse?.rue : action?.adresse?.type_voie + ' ' + action?.adresse?.nom_voie,
         codePostal: action?.adresse?.codePostal ? action?.adresse?.codePostal : action?.adresse?.code_postal,
         ville: action?.adresse?.ville ? action?.adresse?.ville : action?.adresse?.localite,
-        siret: action?.adresse?.siret
       };
-    case 'UPDATE_LIEUACTIVITE':
-      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.lieuActivite)[0]?.lieuActivite;
+    case 'UPDATE_NOMENSEIGNE':
+      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.nomEnseigne)[0]?.nomEnseigne;
       return {
         ...state,
-        lieuActivite: action.value,
+        nomEnseigne: action.value,
         showError: false,
       };
     case 'UPDATE_SIRET':
@@ -208,9 +229,11 @@ export default function permanence(state = initialState, action) {
       };
 
     case 'UPDATE_TYPE_ACCES':
+      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.typeAcces)[0]?.typeAcces;
       return {
         ...state,
-        typeAcces: action.typeAcces
+        typeAcces: action.typeAcces,
+        showError: false,
       };
 
     /* Partie Itinerance */

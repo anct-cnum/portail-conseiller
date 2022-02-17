@@ -61,7 +61,7 @@ function PermanenceSecondaire() {
 
         <Adresse />
 
-        <TypeAcces />
+        <TypeAcces lieuPrincipal={false}/>
 
         <Horaires />
 

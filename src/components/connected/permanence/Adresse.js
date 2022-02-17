@@ -6,10 +6,12 @@ import telephoneHorsMetropole from '../../../data/indicatifs.json';
 
 function Adresse({ codeDepartement, adressePermanence }) {
 
+  console.log(adressePermanence);
   const dispatch = useDispatch();
+
   const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
 
-  const erreurLieuActivite = erreursFormulaire?.filter(erreur => erreur?.lieuActivite)[0]?.lieuActivite;
+  const erreurLieuActivite = erreursFormulaire?.filter(erreur => erreur?.nomEnseigne)[0]?.nomEnseigne;
   const erreurSiret = erreursFormulaire?.filter(erreur => erreur?.siret)[0]?.siret;
   const erreurNumeroVoie = erreursFormulaire?.filter(erreur => erreur?.numeroVoie)[0]?.numeroVoie;
   const erreurRueVoie = erreursFormulaire?.filter(erreur => erreur?.rueVoie)[0]?.rueVoie;
@@ -24,7 +26,7 @@ function Adresse({ codeDepartement, adressePermanence }) {
     telephoneHorsMetropole?.find(item => item.codeDepartement === codeDepartement).indicatif : '+33';
 
   const [inputs, setInputs] = useState({
-    lieuActivite: '',
+    nomEnseigne: '',
     siret: '',
     numeroVoie: '',
     rueVoie: '',
@@ -32,7 +34,7 @@ function Adresse({ codeDepartement, adressePermanence }) {
     ville: ''
   });
 
-  const { lieuActivite, siret, numeroTelephone, email, siteWeb, numeroVoie, rueVoie, codePostal, ville } = inputs;
+  const { nomEnseigne, siret, numeroTelephone, email, siteWeb, numeroVoie, rueVoie, codePostal, ville } = inputs;
 
 
   function handleChange(e) {
@@ -44,7 +46,7 @@ function Adresse({ codeDepartement, adressePermanence }) {
   useEffect(() => {
     if (adressePermanence) {
       setInputs({
-        lieuActivite: adressePermanence?.lieuActivite,
+        nomEnseigne: adressePermanence?.nomEnseigne,
         siret: adressePermanence?.siret,
         numeroVoie: adressePermanence?.numeroRue,
         rueVoie: adressePermanence?.rue,
@@ -57,7 +59,7 @@ function Adresse({ codeDepartement, adressePermanence }) {
   useEffect(() => {
     if (!isAdresseCachee) {
       setInputs({
-        lieuActivite: '',
+        nomEnseigne: '',
         siret: '',
         numeroVoie: '',
         rueVoie: '',
@@ -66,7 +68,7 @@ function Adresse({ codeDepartement, adressePermanence }) {
       });
     } else {
       setInputs({
-        lieuActivite: adressePermanence?.lieuActivite,
+        nomEnseigne: adressePermanence?.nomEnseigne,
         siret: adressePermanence?.siret,
         numeroVoie: adressePermanence?.numeroRue,
         rueVoie: adressePermanence?.rue,
@@ -75,6 +77,7 @@ function Adresse({ codeDepartement, adressePermanence }) {
       });
     }
   }, [isAdresseCachee]);
+
   return (
     <>
       {!isAdresseCachee &&
@@ -84,7 +87,7 @@ function Adresse({ codeDepartement, adressePermanence }) {
               Nom de votre lieu d&rsquo;activit&eacute; principal <span className="obligatoire">*</span>
               <span className="baseline">Il sera affich&eacute; sur la carte nationale des conseillers num&eacute;riques, et sera modifiable.</span>
               <input className={erreurLieuActivite ? 'rf-input rf-mt-2v input-error' : 'rf-input rf-mt-2v'}
-                type="text" id="lieu-activite" name="lieuActivite" value={lieuActivite}
+                type="text" id="nom-enseigne" name="nomEnseigne" value={nomEnseigne}
                 required="required" onChange={handleChange}/>
             </label>
             { erreurLieuActivite &&
@@ -182,7 +185,7 @@ function Adresse({ codeDepartement, adressePermanence }) {
 
       <div className="rf-col-offset-1 rf-col-10 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
         <label className={erreurNumeroTelephone ? 'rf-label invalid' : 'rf-label' } htmlFor="numero-telephone">
-          T&eacute;l&eacute;phone de la structure <span className="obligatoire">*</span>
+          T&eacute;l&eacute;phone de la structure
           <span className="baseline">Accueil. Vous pouvez laisser vide si la structure n&rsquo;a pas de t&eacute;l&eacute;phone d&rsquo;accueil.</span>
           <input className={erreurNumeroTelephone ? 'rf-input rf-mt-2v input-error' : 'rf-input rf-mt-2v'} type="tel"
             id="numero-telephone" name="numeroTelephone" required="required" placeholder={indicatif + ' XXX XXX XXX'}
@@ -197,7 +200,7 @@ function Adresse({ codeDepartement, adressePermanence }) {
 
       <div className="rf-col-offset-1 rf-col-10 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
         <label className={erreurEmail ? 'rf-label invalid' : 'rf-label' } htmlFor="email">
-          Mail de la structure&nbsp;<span className="obligatoire">*</span>
+          Mail de la structure
           <span className="baseline">Mail g&eacute;n&eacute;rique (accueil). Vous pouvez laisser vide si la structure n&rsquo;en a pas.</span>
           <input className={erreurEmail ? 'rf-input rf-mt-2v input-error' : 'rf-input rf-mt-2v'} type="text"
             id="email" name="email" required="required" value={email} onChange={handleChange}/>
@@ -228,7 +231,7 @@ function Adresse({ codeDepartement, adressePermanence }) {
 
 Adresse.propTypes = {
   codeDepartement: PropTypes.string,
-  adressePermanence: PropTypes.object
+  adressePermanence: PropTypes.object,
 };
 
 export default Adresse;

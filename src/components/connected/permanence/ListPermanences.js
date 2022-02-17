@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 
 function ListPermanences({ isAdresseCachee }) {
 
+  // TODO récupérer la liste des permanences déjà créées
+  // const permanences = useSelector(state => state.permanence?.permanences);
+
   const listPermanences = [
     { '_id': '4s5df456sfdsfd45sfd5sfd45', 'nomStructure': 'Espace numérique sud Laon', 'codePostal': '02000', 'ville': 'LAON' },
     { '_id': 'kopkpok94u56t5hh5fd5sfd45', 'nomStructure': 'Solidarité formation Médiation de Chauny', 'codePostal': '02300', 'ville': 'CHAUNY' },
