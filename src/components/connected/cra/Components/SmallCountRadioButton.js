@@ -82,7 +82,7 @@ function SmallCountRadioButton({ type, typeKey, typeLabel, typeValue }) {
   return (
     <div className="SmallCountRadioButton">
       <button id="radioRattachement"
-        className="radioRattachement radioRattachement-selected"
+        className={type !== 'duree' ? 'radioRattachementAlt radioRattachement-selected' : 'radioRattachement radioRattachement-selected'}
         style={{ height: '104px', padding: 0 }}>
         <div className={type === 'duree' ? 'countSmallRadioLabel' : 'countSmallSquareLabel'}>
 
