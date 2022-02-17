@@ -223,7 +223,6 @@ $errorDarkMode: #FF3333;
     }
   }
 
-
   .selectAccompagnementRedirection {
     font-family: 'MarianneMedium', Arial, sans-serif;
     list-style-type: none;
@@ -328,6 +327,11 @@ $errorDarkMode: #FF3333;
     letter-spacing: 0;
     line-height: 20px;
   }
+
+  .radioRattachementAlt {
+    height: 104px;
+  }
+
   /* custom point de rupture LG du DS */
   @media (max-width: 1024px) {
 
@@ -370,7 +374,7 @@ $errorDarkMode: #FF3333;
   /** END SELECT CP **/
 
   /** START RADIO CANAL & ACTIVITY **/
-  .radioRattachement {
+  .radioRattachement, .radioRattachementAlt {
     width: 100%;
     border-radius: 20px;
     border: 1px solid white;
@@ -540,7 +544,7 @@ $errorDarkMode: #FF3333;
   /** END RADIO CANAL & ACTIVITY **/
 
   /** START SQUARE BUTTON AGE AND STATUT **/
-  .squareRattachement {
+  .squareRattachement, .squareRattachementAlt {
     width: 100%;
     height: 104px;
     border-radius: 20px;

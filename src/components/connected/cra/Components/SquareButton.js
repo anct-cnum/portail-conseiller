@@ -45,7 +45,9 @@ function SquareButton({ value, label, type, cra }) {
     <div className="squareButton" onClick={onClickSquare} value={value}>
       <button
         id="squareRattachement"
-        className={`squareRattachement ${controlSelected === value ? 'squareRattachement-selected' : ''}`}
+        className={type === 'duree' ? `squareRattachement ${controlSelected === value ? 'squareRattachement-selected' : ''}` :
+          `squareRattachementAlt ${controlSelected === value ? 'squareRattachement-selected' : ''}`
+        }
         value={value}>
         <span
           className={`rf-label squareLabel ${controlSelected === value ? 'squareRattachement-selected' : ''}`}
