@@ -25,7 +25,12 @@ const initialState = {
     heterogene: 0
   },
   nbParticipantsStatut: 0,
-  accompagnement: null,
+  accompagnement: {
+    individuel: 0,
+    atelier: 0,
+    redirection: 0,
+  },
+  nbParticipantsAccompagnement: 0,
   organisme: null
 };
 
@@ -117,6 +122,11 @@ export default function cra(state = initialState, action) {
       return {
         ...state,
         accompagnement: action.accompagnement,
+        nbParticipantsAccompagnement: action.nbParticipantsAccompagnement
+      };
+    case 'UPDATE_ORGAMNISME':
+      return {
+        ...state,
         organisme: action.organisme
       };
     case 'UPDATE_DATE':
@@ -147,6 +157,11 @@ export default function cra(state = initialState, action) {
         ...state,
         error: action.error,
         saveInProgress: false,
+      };
+    case 'SHOW_SELECT_REDIRECTION':
+      return {
+        ...state,
+        showSelectRedirection: action.show
       };
     default:
       return state;

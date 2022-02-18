@@ -223,43 +223,40 @@ $errorDarkMode: #FF3333;
     }
   }
 
+  .radioButtonRedirection {
+    margin-top: -230px;
+    .radioRattachement {
+      border-radius: 0 0 20px 20px !important;
+    }
+  }
   .selectAccompagnementRedirection {
     font-family: 'MarianneMedium', Arial, sans-serif;
-    list-style-type: none;
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    transform: translateY(-100%);
-    border-radius: 20px 8px 0 0;
-    background: #1e1e1e;
-    height: 230px;
+    border-radius: 20px 20px 0 0;
     border: solid 1px #5398FF;
+    background: #1e1e1e;
     border-bottom: none;
-    max-height: 300px;
-
-  &::-webkit-scrollbar {
-    width: 12px;
-    height: 48px;
-    border-radius: 8px;
-    // background-color: #cccccc
-  };
-  &::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    background: #909090;
+    height: 230px;
   }
+  .listRedirection {
+    display: block;
+    position: relative;
+    list-style: none;
+    overflow-y: scroll;
+    height: 200px;
+    color: #fff;
+    padding: 0;
+    &::-webkit-scrollbar {
+      width: 12px;
+      height: 48px;
+      border-radius: 8px;
+      // background-color: #cccccc
+    };
+    &::-webkit-scrollbar-thumb {
+      border-radius: 8px;
+      background: #909090;
+    }
   }
-  .selectAccompagnement {
-    border: '1px solid white';
-    list-style-type: none;
-    display: none
-  }
-  .selectList {
-    padding: 1em 2em;
-    text-align: left
-  }
-  .selecteurList:hover {
+  .selecteurList:hover, .selecteurList:active {
   color: #1e1e10;
   height: 48px;
   width: auto;
@@ -269,40 +266,19 @@ $errorDarkMode: #FF3333;
     padding: 1em 2em;
      text-align: left
   }
-  .autreColorWhite:hover, .autreColorWhite:hover > input, .autreColorWhite:hover > div {
-    background-color: #FFFFFF;
-  }
-  .autreColorWhiteSansHover {
-    background-color: #FFFFFF;
-  }
-  .autreColorDark {
-    background: #1e1e1e;
-  }
-  .styleChampAutre {
-    height: 40px;
-    width: 100%;
-    color: black;
-    margin-bottom: 28px;
-    display: flex;
-    align-items: stretch;
-    padding: 4px 18px;
-  }
-  .tailledivCheck {
-    width: 52px;
-    border-radius: 0px 6px 0px 0px;
-    padding: 5px;
-  }
   .styleInputAutre {
-    color: black;
-    height: auto;
+    background-color: #1e1e1e;
+    border: solid 1px #929292;
+    padding: 1em 2em;
+    font-size: 1rem;
+    text-align: left;
     width: 100%;
-    border-radius: 4px 0 0 0;
-    font-size: 16px;
-    font-family: 'Marianne';
-    padding: 8px 0 8px 16px;
-  }
-  .borderInputButtonAutre {
-    border: solid 1px #929292
+    color: #fff;
+    &:hover, &:focus, &:active   {
+      background-color: #fff;
+      border-color: #1e1e1e;
+      color: #1e1e1e;
+    }
   }
   .styleButtonRedirection {
     border: solid 1px #5398FF;

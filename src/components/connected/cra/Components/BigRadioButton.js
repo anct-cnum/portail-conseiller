@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
 import { getCraValue } from '../utils/CraFunctions';
@@ -7,6 +7,7 @@ import { getCraValue } from '../utils/CraFunctions';
 function BigRadioButton({ type, label, value, image, imageSelected, heightImage, classDiv }) {
 
   const dispatch = useDispatch();
+  const cra = useSelector(state => state.cra);
   let controlSelected = getCraValue(type);
 
   const onClickRadio = e => {
@@ -18,11 +19,18 @@ function BigRadioButton({ type, label, value, image, imageSelected, heightImage,
         dispatch(craActions.updateActivite(e.target.getAttribute('value')));
         break;
       case 'accompagnement':
-        //Optional case so deselection is possible
-        if (e.target.getAttribute('value') === controlSelected) {
-          dispatch(craActions.updateAccompagnement(null));
-        } else {
-          dispatch(craActions.updateAccompagnement(e.target.getAttribute('value')));
+        if (cra?.nbParticipants && cra?.nbParticipants > cra?.nbParticipantsAccompagnement) {
+          const accompagnement = cra?.accompagnement;
+          for (let key in cra?.accompagnement) {
+            if (key === value) {
+              accompagnement[key] += 1;
+            }
+          }
+          dispatch(craActions.updateAccompagnement(accompagnement, cra?.nbParticipantsAccompagnement + 1));
+          if (value === 'redirection') {
+            dispatch(craActions.updateOrganisme(null));
+            dispatch(craActions.showSelectRedirection(true));
+          }
         }
         break;
       default:
@@ -33,7 +41,8 @@ function BigRadioButton({ type, label, value, image, imageSelected, heightImage,
   return (
     <div className="radioButton" onClick={onClickRadio} value={value}>
       <button id="radioRattachement"
-        className={`radioRattachement ${controlSelected === value ? 'radioRattachement-selected' : ''}`}
+        className={type !== 'accompagnement' ? `radioRattachement ${controlSelected === value ? 'radioRattachement-selected' : ''}` :
+          `radioRattachement ${controlSelected[value] === value ? 'radioRattachement-selected' : ''}`}
         style={{ height: '144px' }}
         value={value}>
         <div value={value}>
