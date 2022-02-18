@@ -69,10 +69,28 @@ export default function cra(state = initialState, action) {
         ...state,
         activite: action.activite,
         nbParticipants: action.activite === 'collectif' ? 5 : 1,
-        age: { ...initialState.age },
-        statut: { ...initialState.statut },
-        nbParticipantsStatut: initialState.nbParticipantsStatut,
-        nbParticipantsAge: initialState.nbParticipantsAge,
+        nbParticipantsAccompagnement: 0,
+        nbParticipantsAge: 0,
+        nbParticipantsStatut: 0,
+        age: {
+          moins12ans: 0,
+          de12a18ans: 0,
+          de18a35ans: 0,
+          de35a60ans: 0,
+          plus60ans: 0,
+        },
+        statut: {
+          etudiant: 0,
+          sansEmploi: 0,
+          enEmploi: 0,
+          retraite: 0,
+          heterogene: 0
+        },
+        accompagnement: {
+          individuel: 0,
+          atelier: 0,
+          redirection: 0,
+        },
         errorsRequired: {
           ...state.errorsRequired,
           activite: false,
@@ -83,6 +101,28 @@ export default function cra(state = initialState, action) {
       return {
         ...state,
         nbParticipants: action.nbParticipants,
+        nbParticipantsAccompagnement: 0,
+        nbParticipantsAge: 0,
+        nbParticipantsStatut: 0,
+        age: {
+          moins12ans: 0,
+          de12a18ans: 0,
+          de18a35ans: 0,
+          de35a60ans: 0,
+          plus60ans: 0,
+        },
+        statut: {
+          etudiant: 0,
+          sansEmploi: 0,
+          enEmploi: 0,
+          retraite: 0,
+          heterogene: 0
+        },
+        accompagnement: {
+          individuel: 0,
+          atelier: 0,
+          redirection: 0,
+        },
       };
     case 'UPDATE_AGE':
       return {

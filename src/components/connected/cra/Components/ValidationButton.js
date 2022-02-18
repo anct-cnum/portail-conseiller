@@ -23,10 +23,6 @@ function ValidationButton() {
       //Pas d'erreurs, envoi seulement des donnes necessaires à l'API
       // eslint-disable-next-line no-unused-vars
       let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error, ...dataCraToSend } = cra;
-      //Ajout du choix optionnel si non présent
-      if (cra?.accompagnement === undefined) {
-        dataCraToSend.accompagnement = null;
-      }
       dispatch(craActions.submitCra(dataCraToSend));
     }
   };

@@ -10,16 +10,16 @@ function BigRadioButton({ type, label, value, image, imageSelected, heightImage,
   const cra = useSelector(state => state.cra);
   let controlSelected = getCraValue(type);
 
-  const onClickRadio = e => {
+  const onClickRadio = () => {
     switch (type) {
       case 'canal':
-        dispatch(craActions.updateCanal(e.target.getAttribute('value')));
+        dispatch(craActions.updateCanal(value));
         break;
       case 'activite':
-        dispatch(craActions.updateActivite(e.target.getAttribute('value')));
+        dispatch(craActions.updateActivite(value));
         break;
       case 'accompagnement':
-        if (cra?.nbParticipants && cra?.nbParticipants > cra?.nbParticipantsAccompagnement) {
+        if (cra?.nbParticipants > cra?.nbParticipantsAccompagnement) {
           const accompagnement = cra?.accompagnement;
           for (let key in cra?.accompagnement) {
             if (key === value) {

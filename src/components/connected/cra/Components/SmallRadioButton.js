@@ -21,7 +21,7 @@ function SmallRadioButton({ type, label, value, image, imageSelected, heightImag
         dispatch(craActions.updateActivite(e.target.getAttribute('value')));
         break;
       case 'accompagnement':
-        if (cra?.nbParticipants && cra?.nbParticipants > cra?.nbParticipantsAccompagnement) {
+        if (cra?.nbParticipants > cra?.nbParticipantsAccompagnement) {
           const accompagnement = cra?.accompagnement;
           for (let key in cra?.accompagnement) {
             if (key === value) {
