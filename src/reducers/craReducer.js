@@ -1,5 +1,6 @@
 const initialState = {
   dateAccompagnement: new Date(),
+  nbParticipantsRecurrents: null,
   errorsRequired: {
     cp: true,
     canal: true,
@@ -78,6 +79,11 @@ export default function cra(state = initialState, action) {
       return {
         ...state,
         nbParticipants: action.nbParticipants,
+      };
+    case 'UPDATE_NB_RECURRENCE':
+      return {
+        ...state,
+        nbParticipantsRecurrents: action.nbParticipantsRecurrents
       };
     case 'UPDATE_AGE':
       return {

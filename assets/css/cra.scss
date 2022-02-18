@@ -30,7 +30,7 @@ $errorDarkMode: #FF3333;
     font-weight: 100;
   }
 
-  .buttonCP {
+  .buttonCP, .buttonRecurrence {
     height: 104px;
     width: 100%;
     border: 1px solid white;
@@ -44,7 +44,7 @@ $errorDarkMode: #FF3333;
     font-weight: 500;
   }
 
-  .buttonCP-filled {
+  .buttonCP-filled, .buttonRecurrence-filled {
     border-color: white;
     height: 104px;
     width: 100%;
@@ -115,7 +115,7 @@ $errorDarkMode: #FF3333;
     display: block;
   }
 
-  .responsiveSelect {
+  .responsiveSelect, .responsiveRecurrence {
     width: calc(810%/12 - 271px);
     padding-left: 0.75rem;
   }
@@ -222,7 +222,39 @@ $errorDarkMode: #FF3333;
       color:#5398ff;
     }
   }
-
+  .lessRecurrence, .moreRecurrence {
+    border-radius: 20px 0 0 0;
+    border: 1px solid $background;
+    border-left: 1px solid #fff;
+    border-top: 1px solid #fff;
+    height: 51px;
+    width: 25%;
+    &:hover {
+      background-color: $background;
+      .labelCalculCustom{
+        color: #fff;
+      }
+    }
+  }
+  .moreRecurrence {
+    border-radius: 0 0 0 20px;
+    border-bottom: 1px solid #fff;
+    border-left: 1px solid #fff;
+    border-top: none;
+  }
+  .laberRecurrence {
+    display: inline-block;
+    position: relative;
+    bottom: 67px;
+    width: 75%;
+    left: 11.5%;
+    span {
+      position: relative;
+      font-size: 2rem;
+      right: 6px;
+      top: 6px;
+    }
+  }
   .selectAccompagnementRedirection {
     font-family: 'MarianneMedium', Arial, sans-serif;
     list-style-type: none;
@@ -335,7 +367,7 @@ $errorDarkMode: #FF3333;
   /* custom point de rupture LG du DS */
   @media (max-width: 1024px) {
 
-    .responsiveSelect {
+    .responsiveSelect, .responsiveRecurrence {
       padding-left: 0.5rem;
     }
 
@@ -349,7 +381,7 @@ $errorDarkMode: #FF3333;
       line-height:40px;
     }
 
-    .responsiveSelect {
+    .responsiveSelect, .responsiveRecurrence {
       width: calc(1000%/12);
       margin: 0 auto;
     }
@@ -366,7 +398,7 @@ $errorDarkMode: #FF3333;
       width: calc(1200%/12);
     }
 
-    .responsiveSelect {
+    .responsiveSelect, .responsiveRecurrence {
       width: calc(1200%/12);
     }
 
