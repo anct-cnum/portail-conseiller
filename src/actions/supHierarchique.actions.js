@@ -1,12 +1,38 @@
 import Joi from 'joi';
+import { conseillerService } from '../services/conseiller.service';
 import { supHierarchiqueService } from '../services/supHierarchique.service';
 
 export const formSupHierarchiqueActions = {
     verifyFormulaire,
     updateField,
-    initFormSupHierarchique
+    initFormSupHierarchique,
+    createSupHierarchique,
+    get,
 };
 
+function get(idConseiller) {
+    return dispatch => {
+        dispatch(request());
+
+        conseillerService.get(idConseiller)
+            .then(
+                result => dispatch(success(result.supHierarchique)),
+                error => {
+                    dispatch(failure(error));
+                }
+            );
+    };
+
+    function request() {
+        return { type: 'GET_SUP_HIERARCHIQUE_REQUEST' };
+    }
+    function success(supHierarchique) {
+        return { type: 'GET_SUP_HIERARCHIQUE_SUCCESS', supHierarchique };
+    }
+    function failure(error) {
+        return { type: 'GET_SUP_HIERARCHIQUE_FAILURE', error };
+    }
+}
 function verifyFormulaire(form) {
     let errors = [];
     //eslint-disable-next-line max-len
@@ -30,13 +56,13 @@ function verifyFormulaire(form) {
         nom: (Joi.object({
             nom: Joi.string().required()
         }).validate({ nom: form?.nom }).error) ?
-            'Un nom doit obligatoirement être saisie' : null
+            'Un nom doit obligatoirement être saisi' : null
     });
     errors.push({
         prenom: (Joi.object({
             prenom: Joi.string().required()
         }).validate({ prenom: form?.prenom }).error) ?
-            'Un prénom doit obligatoirement être saisie' : null
+            'Un prénom doit obligatoirement être saisi' : null
     });
     errors.push({
         fonction: (Joi.object({
@@ -58,7 +84,6 @@ function verifyFormulaire(form) {
 }
 
 function updateField(name, value) {
-    console.log(name.toUpperCase());
     return { type: 'UPDATE_' + name.toUpperCase(), value };
 }
 
@@ -66,27 +91,27 @@ function initFormSupHierarchique(formSupHierarchique) {
     return { type: 'INIT_FORM_SUP_HIERARCHIQUE', formSupHierarchique };
 }
 
-function createSupHierarchique(supHierarchique) {
+function createSupHierarchique(supHierarchique, conseillerId) {
     return dispatch => {
-      dispatch(request());
-      supHierarchiqueService.createSupHierarchique(supHierarchique)
-      .then(
-        result => {
-          dispatch(success(result.isCreated));
-        },
-        error => {
-          dispatch(failure(error));
-        }
-      );
+        dispatch(request());
+        supHierarchiqueService.createSupHierarchique(supHierarchique, conseillerId)
+            .then(
+                result => {
+                    dispatch(success(result.isCreated));
+                },
+                error => {
+                    dispatch(failure(error));
+                }
+            );
     };
-  
+
     function request() {
-      return { type: 'POST_SUP_HIERARCHIQUE_REQUEST' };
+        return { type: 'POST_SUP_HIERARCHIQUE_REQUEST' };
     }
     function success(isCreated) {
-      return { type: 'POST_SUP_HIERARCHIQUE_SUCCESS', isCreated };
+        return { type: 'POST_SUP_HIERARCHIQUE_SUCCESS', isCreated };
     }
     function failure(error) {
-      return { type: 'POST_SUP_HIERARCHIQUE_FAILURE', error };
+        return { type: 'POST_SUP_HIERARCHIQUE_FAILURE', error };
     }
-  }
+}

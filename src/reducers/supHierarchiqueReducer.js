@@ -7,6 +7,21 @@ const initialState = {
 
 export default function formulaireSupHierarchique(state = initialState, action) {
     switch (action.type) {
+        case 'GET_SUP_HIERARCHIQUE_REQUEST':
+            return {
+                ...state,
+                loading: true
+            };
+        case 'GET_SUP_HIERARCHIQUE_SUCCESS':
+            return {
+                ...state,
+                supHierarchique: action?.supHierarchique
+            };
+        case 'GET_SUP_HIERARCHIQUE_FAILURE':
+            return {
+                ...state,
+                error: action.error
+            };
         case 'VERIFY_FORMULAIRE':
             return {
                 ...state,
@@ -24,7 +39,6 @@ export default function formulaireSupHierarchique(state = initialState, action) 
                 fonction: action.formSupHierarchique?.fonction
             };
         case 'UPDATE_NUMEROTELEPHONE':
-            console.log(state);
             delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.numeroTelephone)[0]?.numeroTelephone;
             return {
                 ...state,

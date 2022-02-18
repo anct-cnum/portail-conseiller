@@ -5,13 +5,15 @@ import { supHierarchiqueService } from '../../services/supHierarchique.service';
 
 function FormulaireSuperieurHierarchique() {
     const erreursFormulaire = useSelector(state => state.formulaireSupHierarchique?.errorsFormulaire);
-    const erreurNumeroTelephone = erreursFormulaire?.errors?.filter(erreur => erreur?.numeroTelephone)[0]?.numeroTelephone;
+    const erreurNumeroTelephone = erreursFormulaire?.errors?.filter(erreur => erreur?.numeroTelephone).numeroTelephone;
     const erreurEmail = erreursFormulaire?.errors?.filter(erreur => erreur?.email)[0]?.email;
     const erreurNom = erreursFormulaire?.errors?.filter(erreur => erreur?.nom)[0]?.nom;
     const erreurPrenom = erreursFormulaire?.errors?.filter(erreur => erreur?.prenom)[0]?.prenom;
     const erreurFonction = erreursFormulaire?.errors?.filter(erreur => erreur?.fonction)[0]?.fonction;
+    const conseiller = useSelector(state => state.conseiller?.conseiller);
+    const form = useSelector(state => state.formulaireSupHierarchique);
     const dispatch = useDispatch();
-    const form = useSelector(state => state.formSupHierarchique);
+    const supHierarchique = useSelector(state => state.formulaireSupHierarchique?.supHierarchique);
     const [inputs, setInputs] = useState({
         prenom: '',
         nom: '',
@@ -21,27 +23,23 @@ function FormulaireSuperieurHierarchique() {
     });
     const [submitted, setSubmitted] = useState(false);
     const { prenom, nom, fonction, email, numeroTelephone } = inputs;
-    // useEffect(() => {
-    //     if (erreursFormulaire?.lengthError === 0 && setSubmitted) {
-    //         if (form) {
-    //             console.log("dfds");
-    //             // dispatch(permanenceActions.updatePermanence(permanence._id, permanence));
-    //         } else {
-    //             dispatch(supHierarchiqueService.createSupHierarchique({
-    //                 numeroTelephone: form.numeroTelephone,
-    //                 email: form.email,
-    //                 nom: form.nom,
-    //                 prenom: form.prenom
-    //             }));
-    //         }
-    //     }
-    //     setSubmitted(false);
-    // }, [erreursFormulaire]);
     useEffect(() => {
-        if (form !== null && form !== undefined) {
-            dispatch(formSupHierarchiqueActions.initFormSupHierarchique(form));
+        if (erreursFormulaire?.lengthError === 0 && setSubmitted) {
+            dispatch(formSupHierarchiqueActions.createSupHierarchique({
+                numeroTelephone: form.numeroTelephone,
+                email: form.email,
+                nom: form.nom,
+                prenom: form.prenom,
+                fonction: form.fonction
+            }, conseiller._id));
         }
-    }, [form]);
+        setSubmitted(false);
+    }, [erreursFormulaire, dispatch]);
+    useEffect(() => {
+        if (supHierarchique !== null && supHierarchique !== undefined) {
+            dispatch(formSupHierarchiqueActions.initFormSupHierarchique(supHierarchique));
+        }
+    }, [supHierarchique]);
 
     function handleChange(e) {
         const { name, value } = e.target;
