@@ -265,7 +265,7 @@ $errorDarkMode: #FF3333;
     right: 0;
     transform: translateY(-100%);
     border-radius: 20px 8px 0 0;
-    background: #1e1e1e;
+    background: $background;
     height: 230px;
     border: solid 1px #5398FF;
     border-bottom: none;
@@ -308,7 +308,7 @@ $errorDarkMode: #FF3333;
     background-color: #FFFFFF;
   }
   .autreColorDark {
-    background: #1e1e1e;
+    background: $background;
   }
   .styleChampAutre {
     height: 40px;
