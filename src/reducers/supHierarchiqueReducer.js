@@ -32,11 +32,11 @@ export default function formulaireSupHierarchique(state = initialState, action) 
         case 'INIT_FORM_SUP_HIERARCHIQUE':
             return {
                 ...state,
-                numeroTelephone: action.formSupHierarchique?.numeroTelephone,
-                email: action.formSupHierarchique?.email,
-                prenom: action.formSupHierarchique?.prenom,
-                nom: action.formSupHierarchique?.nom,
-                fonction: action.formSupHierarchique?.fonction
+                numeroTelephone: action?.formSupHierarchique.numeroTelephone,
+                email: action?.formSupHierarchique.email,
+                prenom: action?.formSupHierarchique.prenom,
+                nom: action?.formSupHierarchique.nom,
+                fonction: action?.formSupHierarchique.fonction
             };
         case 'UPDATE_NUMEROTELEPHONE':
             delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.numeroTelephone)[0]?.numeroTelephone;
@@ -72,6 +72,25 @@ export default function formulaireSupHierarchique(state = initialState, action) 
                 ...state,
                 fonction: action.value,
                 showError: false,
+            };
+        case 'POST_SUP_HIERARCHIQUE_REQUEST':
+            return {
+                ...state,
+                showError: false,
+            };
+        case 'POST_SUP_HIERARCHIQUE_SUCCESS':
+            return {
+                ...state,
+                isCreated: true,
+                showError: false,
+                error: false,
+            };
+        case 'POST_SUP_HIERARCHIQUE_FAILURE':
+            return {
+                ...state,
+                isCreated: false,
+                showError: true,
+                error: action.error,
             };
         default:
             return state;

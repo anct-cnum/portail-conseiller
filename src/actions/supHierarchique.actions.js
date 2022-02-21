@@ -1,4 +1,4 @@
-import Joi from 'joi';
+import Joi, { func } from 'joi';
 import { conseillerService } from '../services/conseiller.service';
 import { supHierarchiqueService } from '../services/supHierarchique.service';
 
@@ -97,7 +97,8 @@ function createSupHierarchique(supHierarchique, conseillerId) {
         supHierarchiqueService.createSupHierarchique(supHierarchique, conseillerId)
             .then(
                 result => {
-                    dispatch(success(result.isCreated));
+                    dispatch(success());
+                    dispatch(success_conseiller(result));
                 },
                 error => {
                     dispatch(failure(error));
@@ -108,8 +109,11 @@ function createSupHierarchique(supHierarchique, conseillerId) {
     function request() {
         return { type: 'POST_SUP_HIERARCHIQUE_REQUEST' };
     }
-    function success(isCreated) {
-        return { type: 'POST_SUP_HIERARCHIQUE_SUCCESS', isCreated };
+    function success() {
+        return { type: 'POST_SUP_HIERARCHIQUE_SUCCESS' };
+    }
+    function success_conseiller(conseiller) {
+        return { type: 'GET_CONSEILLER_SUCCESS', conseiller };
     }
     function failure(error) {
         return { type: 'POST_SUP_HIERARCHIQUE_FAILURE', error };

@@ -8,7 +8,6 @@ export const supHierarchiqueService = {
 };
 
 function createSupHierarchique(supHierarchique, idConseiller) {
-  console.log(idConseiller);
   const requestOptions = {
     method: 'PATCH',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
@@ -32,7 +31,6 @@ function handleResponse(response) {
       const error = (data && data.message) || response.statusText;
       return Promise.reject(error);
     }
-    
     return data;
   });
 }
