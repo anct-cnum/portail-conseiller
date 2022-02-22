@@ -6,9 +6,10 @@ import ElementHighcharts from './Components/ElementHighcharts';
 import { sortByMonthAndYear } from '../../../utils/functionsSort';
 
 function BottomPage({ donneesStats, print }) {
-
+console.log(donneesStats);
   const tabColorAge = ['#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e'];
   const tabColorStatut = ['#a2b4b1', '#ffdbd2', '#a3a6bc', '#ddb094', '#fff480'];
+  const tabColorLieux = ['#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e', '#a2b4b1', '#ffdbd2', '#a3a6bc', '#ddb094', '#fff480'];
 
   const get4lastMonths = (month, year) => {
     let monthToPrint = [month];
@@ -24,7 +25,7 @@ function BottomPage({ donneesStats, print }) {
     return [monthToPrint, yearAssociated];
   };
 
-  const { statsEvolutions, statsUsagers, statsAges } = donneesStats;
+  const { statsEvolutions, statsUsagers, statsAges, statsReorientations } = donneesStats;
 
   //Map des stats evolutions pour ajouter les données nécessaires pour le graph (label mois année, valeur)
   let statsEvolutionsMapped = [];
@@ -124,6 +125,23 @@ function BottomPage({ donneesStats, print }) {
     }
   };
 
+  const graphiqueReorientations = {
+    graphique: {
+      typeGraphique: 'pie',
+      largeurGraphique: 300,
+      hauteurGraphique: 320,
+      margeGaucheGraphique: 0,
+      margeDroiteGraphique: 10,
+      optionResponsive: false,
+      couleursGraphique: tabColorLieux
+    },
+    titre: {
+      optionTitre: 'Usager.ères réorienté.es',
+      margeTitre: 48,
+      placementTitre: 0
+    }
+  };
+
   return (
     <div className="rf-col-12">
       <div className="rf-grid-row">
@@ -150,6 +168,10 @@ function BottomPage({ donneesStats, print }) {
         <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">
           <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v"><hr/></div>
           <ElementHighcharts donneesStats={statsUsagers} variablesGraphique={graphiqueStatut} print={print}/>
+        </div>
+        <div className="rf-col-12">
+          {/*<ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientations} print={print}/> */}
+
         </div>
         <div className="rf-col-12">
           <div className="rf-m-xs-to-md-7v rf-md-9w rf-m-lg-15w"></div>
