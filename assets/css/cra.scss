@@ -222,12 +222,7 @@ $errorDarkMode: #FF3333;
       color:#5398ff;
     }
   }
-  .radioButtonRedirection {
-    margin-top: -230px;
-    .radioRattachement {
-      border-radius: 0 0 20px 20px !important;
-    }
-  }
+
   .lessRecurrence, .moreRecurrence {
     border-radius: 20px 0 0 0;
     border: 1px solid $background;
@@ -261,18 +256,16 @@ $errorDarkMode: #FF3333;
       top: 6px;
     }
   }
+
+  .radioButtonRedirection {
+    margin-top: -230px;
+    .radioRattachement {
+      border-radius: 0 0 20px 20px !important;
+    }
+  }
   .selectAccompagnementRedirection {
     font-family: 'MarianneMedium', Arial, sans-serif;
-    list-style-type: none;
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    transform: translateY(-100%);
     border-radius: 20px 20px 0 0;
-    background: $background;
-    height: 230px;
     border: solid 1px #5398FF;
     background: #1e1e1e;
     border-bottom: none;
@@ -290,6 +283,7 @@ $errorDarkMode: #FF3333;
       width: 12px;
       height: 48px;
       border-radius: 8px;
+      // background-color: #cccccc
     };
     &::-webkit-scrollbar-thumb {
       border-radius: 8px;
@@ -397,7 +391,7 @@ $errorDarkMode: #FF3333;
     background-color: $background;
     cursor: pointer;
   }
-
+  
   .radioRattachement-selected {
     background-color: white!important;
     color: black!important;

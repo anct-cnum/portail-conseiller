@@ -26,7 +26,7 @@ function BigCountRadioButton({ type, value, label }) {
         }
         break;
       case 'accompagnement':
-        if (cra?.nbParticipants > cra?.nbParticipantsAccompagnement) {
+        if (cra?.nbParticipants && cra?.nbParticipants > cra?.nbParticipantsAccompagnement) {
           const accompagnement = cra?.accompagnement;
           for (let key in cra?.accompagnement) {
             if (key === value) {
@@ -49,7 +49,7 @@ function BigCountRadioButton({ type, value, label }) {
         }
         break;
       case 'accompagnement':
-        if (cra?.nbParticipants >= cra?.nbParticipantsAccompagnement) {
+        if (cra?.nbParticipants && cra?.nbParticipants >= cra?.nbParticipantsAccompagnement) {
           const accompagnement = cra?.accompagnement;
           for (let key in cra?.accompagnement) {
             if (key === value) {

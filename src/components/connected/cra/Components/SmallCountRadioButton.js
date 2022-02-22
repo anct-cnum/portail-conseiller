@@ -98,6 +98,7 @@ function SmallCountRadioButton({ type, typeKey, typeLabel, typeValue }) {
         }
         nbParticipantsAccompagnement--;
         dispatch(craActions.updateAccompagnement(accompagnement, nbParticipantsAccompagnement));
+
         break;
       default:
         break;
