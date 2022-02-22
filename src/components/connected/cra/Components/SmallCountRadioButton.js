@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
 
+import SelectAccompagnement from './SelectAccompagnement';
+
 function SmallCountRadioButton({ type, typeKey, typeLabel, typeValue }) {
 
   const dispatch = useDispatch();
@@ -10,6 +12,7 @@ function SmallCountRadioButton({ type, typeKey, typeLabel, typeValue }) {
   const nbParticipants = cra?.nbParticipants;
   let nbParticipantsAge = cra?.nbParticipantsAge;
   let nbParticipantsStatut = cra?.nbParticipantsStatut;
+  let nbParticipantsAccompagnement = cra.nbParticipantsAccompagnement;
 
   const onClickMore = () => {
     switch (type) {
@@ -40,6 +43,18 @@ function SmallCountRadioButton({ type, typeKey, typeLabel, typeValue }) {
           }
           nbParticipantsStatut++;
           dispatch(craActions.updateStatut(statut, nbParticipantsStatut));
+        }
+        break;
+      case 'accompagnement':
+        if (nbParticipants > nbParticipantsAccompagnement) {
+          const accompagnement = cra?.accompagnement;
+          for (let key in cra?.accompagnement) {
+            if (key === typeKey) {
+              accompagnement[key] += 1;
+            }
+          }
+          nbParticipantsAccompagnement++;
+          dispatch(craActions.updateAccompagnement(accompagnement, nbParticipantsAccompagnement));
         }
         break;
       default:
@@ -74,6 +89,17 @@ function SmallCountRadioButton({ type, typeKey, typeLabel, typeValue }) {
         nbParticipantsStatut--;
         dispatch(craActions.updateStatut(statut, nbParticipantsStatut));
         break;
+      case 'accompagnement':
+        const accompagnement = cra?.accompagnement;
+        for (let key in cra?.accompagnement) {
+          if (key === typeKey) {
+            accompagnement[key] -= 1;
+          }
+        }
+        nbParticipantsAccompagnement--;
+        dispatch(craActions.updateAccompagnement(accompagnement, nbParticipantsAccompagnement));
+
+        break;
       default:
         break;
     }
@@ -84,8 +110,12 @@ function SmallCountRadioButton({ type, typeKey, typeLabel, typeValue }) {
       <button id="radioRattachement"
         className={type !== 'duree' ? 'radioRattachementAlt radioRattachement-selected' : 'radioRattachement radioRattachement-selected'}
         style={{ height: '104px', padding: 0 }}>
-        <div className={type === 'duree' ? 'countSmallRadioLabel' : 'countSmallSquareLabel'}>
 
+        {type === 'accompagnement' &&
+          <SelectAccompagnement />
+        }
+
+        <div className={type === 'duree' ? 'countSmallRadioLabel' : 'countSmallSquareLabel'}>
           <span className="rf-label labelSmallCount">
             {type === 'duree' &&
               <>{Math.floor(cra?.duree / 60)}h{(cra?.duree % 60).toLocaleString('fr-FR', { minimumIntegerDigits: 2 })}</>
