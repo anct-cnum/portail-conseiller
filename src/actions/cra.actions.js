@@ -14,10 +14,12 @@ export const craActions = {
   updateThemes,
   updateDuree,
   updateAccompagnement,
+  updateOrganisme,
   verifyCra,
   submitCra,
   changeDate,
   datePickerStatus,
+  showSelectRedirection,
 };
 
 function getSearchlist() {
@@ -63,10 +65,12 @@ function updateDuree(duree) {
   return { type: 'UPDATE_DUREE', duree };
 }
 
-function updateAccompagnement(accompagnement, organisme = null) {
-  return { type: 'UPDATE_ACCOMPAGNEMENT', accompagnement, organisme };
+function updateAccompagnement(accompagnement, nbParticipantsAccompagnement) {
+  return { type: 'UPDATE_ACCOMPAGNEMENT', accompagnement, nbParticipantsAccompagnement };
 }
-
+function updateOrganisme(organisme) {
+  return { type: 'UPDATE_ORGAMNISME', organisme };
+}
 function changeDate(date) {
   return { type: 'UPDATE_DATE', date };
 }
@@ -114,4 +118,8 @@ function submitCra(cra) {
   function failure(error) {
     return { type: 'SUBMIT_CRA_FAILURE', error };
   }
+}
+
+function showSelectRedirection(show) {
+  return { type: 'SHOW_SELECT_REDIRECTION', show };
 }

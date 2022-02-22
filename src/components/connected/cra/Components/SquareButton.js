@@ -12,18 +12,19 @@ function SquareButton({ value, label, type, cra }) {
   const onClickSquare = e => {
     switch (type) {
       case 'age':
-        if (cra?.nbParticipants && cra?.nbParticipants > cra?.nbParticipantsAge) {
+        if (cra?.nbParticipants > cra?.nbParticipantsAge) {
           const age = cra?.age;
           for (let key in cra?.age) {
             if (key === value) {
               age[key] += 1;
             }
           }
+
           dispatch(craActions.updateAge(age, cra?.nbParticipantsAge + 1));
         }
         break;
       case 'statut':
-        if (cra?.nbParticipants && cra?.nbParticipants > cra?.nbParticipantsStatut) {
+        if (cra?.nbParticipants > cra?.nbParticipantsStatut) {
           const statut = cra?.statut;
           for (let key in cra?.statut) {
             if (key === value) {

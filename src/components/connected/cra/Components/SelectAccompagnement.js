@@ -1,48 +1,45 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { lieuxReorientation } from '../../../../data/LieuxRedirection';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-function SelectAccompagnement({ value, controlSelected, setChampAutre, champAutreActif, setChampAutreActif, setSelectOption }) {
-  const [autre, setAutre] = useState(null);
+import { lieuxReorientation } from '../../../../data/LieuxRedirection';
+import { craActions } from '../../../../actions';
+
+function SelectAccompagnement() {
+  const dispatch = useDispatch();
+
+  const showSelect = useSelector(state => state.cra.showSelectRedirection);
+
+  const handleLieuRedirectionList = lieu => {
+    dispatch(craActions.updateOrganisme(lieu));
+    dispatch(craActions.showSelectRedirection(false));
+  };
+
+  const handleLieuRedirectionInput = lieu => {
+    dispatch(craActions.updateOrganisme(lieu));
+  };
 
   return (
-    <div className={`${controlSelected === value ?
-      'selectAccompagnementRedirection dropdown-expanded scrollOptions' : 'selectAccompagnement'}`}>
-      <ul style={{ color: 'white', listStyleType: 'none', padding: 0 }}>
-        {lieuxReorientation.map((opt, key) =>
-          <li className="selecteurList" onClick={() => {
-            setChampAutre(null);
-            setChampAutreActif(false);
-          }} key={key} value={opt}>
-            {opt}
-          </li>
-        )}
-        <li onClick={() => setChampAutreActif(true)} className={`autreColorWhite styleChampAutre ${champAutreActif ? 'autreColorWhiteSansHover' : ''}`}>
-          <input
-            className={`${champAutreActif ? 'autreColorWhite' : 'autreColorDark'} styleInputAutre borderInputButtonAutre textInputAutre`}
-            placeholder="Autre" type="text" id="autre-redirection" name="autre-redirection"
-            onChange={e => setAutre(e.target.value)} value={autre ?? ''} />
-          <div className={`${champAutreActif ? 'autreColorWhite' : 'autreColorDark'} borderInputButtonAutre tailledivCheck`} value={autre} onClick={() => {
-            setSelectOption(autre);
-            setChampAutre(autre);
-          }}
-          >
-            { champAutreActif ? <img src="/logos/cra/logo-check-ok-dark.svg" /> : <img src="/logos/cra/logo-check-ok-grise.svg" /> }
-          </div>
-        </li>
-      </ul>
-    </div>
+    <>
+      {showSelect &&
+        <div className="selectAccompagnementRedirection" >
+          <ul className="listRedirection dropdown-expanded scrollOptions">
+            {lieuxReorientation.map((lieu, key) =>
+              <li key={key} className="selecteurList" onClick={() => {
+                handleLieuRedirectionList(lieu);
+              }}>
+                {lieu}
+              </li>
+            )}
+            <li >
+              <input
+                className="styleInputAutre" placeholder="Autre" type="text" id="autre-redirection" name="autre-redirection"
+                onChange={e => handleLieuRedirectionInput(e.target.value)} />
+            </li>
+          </ul>
+        </div>
+      }
+    </>
   );
 }
-
-SelectAccompagnement.propTypes = {
-  value: PropTypes.string,
-  controlSelected: PropTypes.string,
-  setChampAutre: PropTypes.func,
-  champAutreActif: PropTypes.bool,
-  setChampAutreActif: PropTypes.func,
-  setSelectOption: PropTypes.func,
-  onClickRadio: PropTypes.func
-};
 
 export default SelectAccompagnement;
