@@ -102,9 +102,9 @@ function Header({ linkAccount }) {
                                   </span>
                                 </button>
                                 <div
-                                className={!menuAideShow ? 'rf-collapse rf-menu' : 'rf-collapse rf-menu rf-collapse--expanded'}
-                                style={!menuAideShow ? { display: 'none' } : {}}
-                                id="menu-liens-aide">
+                                  className={!menuAideShow ? 'rf-collapse rf-menu' : 'rf-collapse rf-menu rf-collapse--expanded'}
+                                  style={!menuAideShow ? { display: 'none' } : {}}
+                                  id="menu-liens-aide">
                                   <ul className="rf-menu__list">
                                     {role !== 'structure_coop' &&
                                       <>
@@ -166,9 +166,9 @@ function Header({ linkAccount }) {
                                     </span>
                                   </button>
                                   <div
-                                  className={!menuUserShow ? 'rf-collapse rf-menu' : 'rf-collapse rf-menu rf-collapse--expanded'}
-                                  style={!menuUserShow ? { display: 'none' } : {}}
-                                  id="menu-liens-user">
+                                    className={!menuUserShow ? 'rf-collapse rf-menu' : 'rf-collapse rf-menu rf-collapse--expanded'}
+                                    style={!menuUserShow ? { display: 'none' } : {}}
+                                    id="menu-liens-user">
                                     <ul className="rf-menu__list">
                                       <li className="user-infos">
                                         <Link className="rf-nav__link lien-user" to="/infos"
