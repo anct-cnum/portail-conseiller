@@ -8,41 +8,39 @@ function Duree() {
   let cra = useSelector(state => state.cra);
 
   return (
-    <>
-      <div className="rf-grid-row rf-grid-row--gutters rf-grid-row--middle rf-mb-7w">
-        <div className="rf-col-xs-11 rf-col-sm-11 rf-col-md-2 questionResponsive">
-          <span className={`question ${cra?.printError && cra?.errorsRequired?.duree ? 'questionRequired' : ''}`}>
-            Combien de temps a dur&eacute; l&rsquo;accompagnement&nbsp;?
-          </span>
-        </div>
-        <div className="responsiveSquareTime1">
-          <SquareButton
-            type="duree"
-            value="0-30"
-            label="30 min. ou moins"/>
-        </div>
-        <div className="responsiveSquareTime2">
-          <SquareButton
-            type="duree"
-            value="30-60"
-            label="30 min. &agrave; 1h"/>
-        </div>
-        { (!cra?.duree || cra?.duree === '0-30' || cra?.duree === '30-60') &&
-        <div className="responsiveSquareTime3">
-          <SquareButton
-            type="duree"
-            value="90"
-            label="1h ou plus"/>
-        </div>
-        }
-        { (cra?.duree && cra?.duree !== '0-30' && cra?.duree !== '30-60') &&
-        <div className="responsiveSquareTime3">
-          <SmallCountRadioButton
-            type="duree"/>
-        </div>
-        }
+    <div className="rf-grid-row rf-grid-row--gutters rf-grid-row--middle rf-mb-7w">
+      <div className="rf-col-xs-11 rf-col-sm-11 rf-col-md-2 questionResponsive">
+        <span className={`question ${cra?.printError && cra?.errorsRequired?.duree ? 'questionRequired' : ''}`}>
+          Combien de temps a dur&eacute; l&rsquo;accompagnement&nbsp;?
+        </span>
       </div>
-    </>
+      <div className="responsiveSquareTime1">
+        <SquareButton
+          type="duree"
+          value="0-30"
+          label="30 min. ou moins"/>
+      </div>
+      <div className="responsiveSquareTime2">
+        <SquareButton
+          type="duree"
+          value="30-60"
+          label="30 min. &agrave; 1h"/>
+      </div>
+      { (!cra?.duree || cra?.duree === '0-30' || cra?.duree === '30-60') &&
+      <div className="responsiveSquareTime3">
+        <SquareButton
+          type="duree"
+          value="60"
+          label="1h ou plus"/>
+      </div>
+      }
+      { (cra?.duree && cra?.duree !== '0-30' && cra?.duree !== '30-60') &&
+      <div className="responsiveSquareTime3">
+        <SmallCountRadioButton
+          type="duree"/>
+      </div>
+      }
+    </div>
   );
 }
 

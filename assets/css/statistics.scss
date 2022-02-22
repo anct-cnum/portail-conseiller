@@ -1,4 +1,5 @@
 .Statistics {
+
   background-color: #1e1e1e;
   .infobulle-image {
     width:64px;
@@ -125,7 +126,7 @@
     letter-spacing: 0;
     margin-right: 1rem;
   }
-  .numbers {
+  .numbers, .numbers-renewal {
     font-size: 24px;
     font-weight: 600;
     text-align: right;
@@ -260,6 +261,9 @@
     }
   }
   @media (max-width: 767px) {
+    .numbers-renewal, .many-numbers {
+      text-align: left;
+    }
     .graphique-responsive-md-lg {
       display:none;
     }
@@ -325,23 +329,29 @@
   }
 
   @media print {
+
+    #burgerMenu {
+      display: none;
+    }
     #footer {
       display: none;
     }
-
+    .number, .numbers, .numbers-renewal, .many-numbers {
+      text-align: left;
+    }
     div {
-      background: #1e1e1e !important;;
-      background-color: #1e1e1e !important;;
+      background: #fff !important;
+      background-color: #fff !important;
     }
 
     h1 {
-      margin: 70px 0;
+      margin: 0px 0;
     }
 
     .title-print-territoire {
-      margin: 70px 0 45px 0;
+      margin: 0;
       font-weight: 100;
-      font-size: 40px;
+      font-size: 35px;
       text-align: left;
     }
 
@@ -350,13 +360,18 @@
     }
 
     .theme-print {
-      margin: 150px 0 0 0;
+      margin: 50px 0 0 0;
     }
-    .theme-territoire-print {
-      margin: 60px 0 0 0;
-    }
+
     .evolution-print {
-      margin: 100px 0 0 0;
+      margin: 105px 0 0 0;
     }
+  }
+}
+.print {
+  background-color: #fff;
+  color: #1e1e1e;
+  .rf-service__title {
+    color: #1e1e1e;
   }
 }

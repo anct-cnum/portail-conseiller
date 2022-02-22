@@ -39,6 +39,7 @@ function FilterDate(props) {
       id={props.idDate}
       name={props.nomDate}
       dateFormat="dd/MM/yyyy"
+      maxDate={new Date()}
       locale="fr"
       selected={props.initDate}
       onChange={date => setDate(date)}

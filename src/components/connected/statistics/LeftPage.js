@@ -9,15 +9,18 @@ import StatisticsTotalAccompaniments from './StatisticsTotalAccompaniments';
 
 function LeftPage({ donneesStats, type }) {
 
+  const nbTotalAccompagnements = donneesStats?.nbTotalParticipant + donneesStats?.nbAccompagnementPerso + donneesStats?.nbDemandePonctuel;
+  const nbTotalSansRecurrence = nbTotalAccompagnements - donneesStats?.nbParticipantsRecurrents;
+
   return (
     <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">
       <StatisticsTotalAccompaniments
-        nbTotalAccompagnements={donneesStats?.nbTotalParticipant + donneesStats?.nbAccompagnementPerso + donneesStats?.nbDemandePonctuel} type={type}
+        nbTotalAccompagnements={nbTotalSansRecurrence} type={type}
       />
       <div className={type ? 'rf-mb-3w' : 'rf-m-7w rf-mb-5w rf-m-xs-to-md-7v' }></div>
       <hr/>
       <div className={type ? 'rf-mb-2w' : 'rf-m-5w rf-m-xs-to-md-7v' }></div>
-      <StatisticsAccompaniment nbAccompagnement={donneesStats?.nbAccompagnement} type={type}/>
+      <StatisticsAccompaniment nbAccompagnement={nbTotalAccompagnements} type={type}/>
       <br/>
       <StatisticsWorkshop nbAteliers={donneesStats?.nbAteliers} nbTotalParticipant={donneesStats?.nbTotalParticipant} type={type}/>
       <div className={type ? 'rf-mb-5v' : 'rf-m-5w rf-m-xs-to-md-7v' }></div>
