@@ -11,6 +11,7 @@ import ValidationButton from './Components/ValidationButton';
 import Footer from '../../Footer';
 import FlashMessage from 'react-flash-message';
 import { useLocation } from 'react-router';
+import Recurrence from './Recurrence';
 
 function Cra() {
 
@@ -39,6 +40,7 @@ function Cra() {
         <CodePostal/>
         <Canal/>
         <Activite/>
+        <Recurrence/>
         <Age/>
         <Statut/>
         <Themes/>

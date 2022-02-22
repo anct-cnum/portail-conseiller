@@ -8,6 +8,7 @@ export const craActions = {
   updateCanal,
   updateActivite,
   updateNbParticipants,
+  updateRecurrence,
   updateAge,
   updateStatut,
   updateThemes,
@@ -43,6 +44,9 @@ function updateNbParticipants(nbParticipants) {
   return { type: 'UPDATE_NB_PARTICIPANTS', nbParticipants };
 }
 
+function updateRecurrence(nbParticipantsRecurrents) {
+  return { type: 'UPDATE_NB_RECURRENCE', nbParticipantsRecurrents };
+}
 function updateAge(age, nbParticipantsAge) {
   return { type: 'UPDATE_AGE', data: { age, nbParticipantsAge } };
 }
