@@ -207,8 +207,8 @@
     }
   }
   .rf-nav__btn[aria-expanded="true"] {
-    background-color: #ae5dff;
-    color: #420095 !important;
+    background-color: #9A9AFF;
+    color: #000091 !important;
   }
   .rf-custom-link {
     padding: 2.5rem 1rem !important;
@@ -220,8 +220,8 @@
     cursor: pointer;
     border: none;
     &:hover{
-      background-color: #ae5dff;
-      color: #420095 !important;
+      background-color: #9A9AFF;
+      color: #000091 !important;
     }
     &:focus {
       outline-color: transparent;
@@ -233,7 +233,7 @@
   }
   .link-actif {
     background-color: #9A9AFF;
-    color: #000092 !important;
+    color: #000091 !important;
   }
   .logo-discussion {
     position: relative;
@@ -261,25 +261,21 @@
     line-height: 24px;
     color: #fff;
   }
-  #menu-liens-aide, #menu-informations {
+  #menu-liens-aide, #menu-informations, #menu-liens-user {
     background-color: #1e1e1e;
     max-height: none;
     text-align: left;
+    border: 1px solid #9A9AFF;
     padding: 15px;
     left: 32px;
+    margin-top: -0.43rem;
     .rf-menu__list {
       background-color: #1e1e1e;
     }
   }
   #menu-liens-user {
-    background-color: #1e1e1e;
-    max-height: none;
-    text-align: left;
-    padding: 15px;
     max-width: 11rem;
-    left: 32px;
     .rf-menu__list {
-      background-color: #1e1e1e;
       font-size: 14px;
       line-height: 24px;
     }
@@ -292,7 +288,7 @@
     padding-top: 12px;
   }
   .user-disconnect {
-    border-top: 1px solid #bfbfe3;
+    border-top: 1px solid #6A6A6A;
     padding-top: 12px;
   }
   .user-infos {

@@ -12,8 +12,8 @@ function FormulaireSuperieurHierarchique() {
     const erreurFonction = erreursFormulaire?.errors?.filter(erreur => erreur?.fonction)[0]?.fonction;
     const conseiller = useSelector(state => state.conseiller?.conseiller);
     const form = useSelector(state => state.formulaireSupHierarchique);
-    const dispatch = useDispatch();
     const supHierarchique = useSelector(state => state.conseiller?.conseiller?.supHierarchique);
+    const dispatch = useDispatch();
     const [inputs, setInputs] = useState({
         prenom: '',
         nom: '',
@@ -56,17 +56,24 @@ function FormulaireSuperieurHierarchique() {
 
     function handleSubmit() {
         setSubmitted(true);
-        form.isCreated = form.isCreated === true ? false : false;
         dispatch(formSupHierarchiqueActions.verifyFormulaire(form));
         window.scrollTo(0, 0);
     }
     return (
         <>
-            {form.isCreated === true &&
+            {form.isCreated &&
                 <FlashMessage duration={5000}>
                     <p className="rf-label flashBag">
                         Vos informations ont bien &eacute;t&eacute; enregistr&eacute;es&nbsp;
                         <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+                    </p>
+                </FlashMessage>
+            }
+            {form.showError &&
+                <FlashMessage duration={5000}>
+                    <p className="rf-label flashBag invalid">
+                        {form.error}
+                        <i className="ri-close-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
                     </p>
                 </FlashMessage>
             }

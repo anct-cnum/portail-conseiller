@@ -88,6 +88,7 @@ function Header({ linkAccount }) {
                                   aria-expanded={menuAideShow} aria-controls="menu-liens-aide" aria-current="true"
                                   onClick={() => {
                                     setMenuAideShow(!menuAideShow);
+                                    setMenuUserShow(menuUserShow ? !menuUserShow : menuUserShow);
                                     //setMenuInformationsShow(false);
                                   }}>
                                   <img className="logo-discussion" src="logos/bulle-ressourcerie.svg" />
@@ -100,7 +101,10 @@ function Header({ linkAccount }) {
                                     }
                                   </span>
                                 </button>
-                                <div className={!menuAideShow ? 'rf-collapse rf-menu' : 'rf-collapse rf-menu rf-collapse--expanded'} id="menu-liens-aide">
+                                <div
+                                className={!menuAideShow ? 'rf-collapse rf-menu' : 'rf-collapse rf-menu rf-collapse--expanded'}
+                                style={!menuAideShow ? { display: 'none' } : {}}
+                                id="menu-liens-aide">
                                   <ul className="rf-menu__list">
                                     {role !== 'structure_coop' &&
                                       <>
@@ -150,6 +154,7 @@ function Header({ linkAccount }) {
                                     aria-expanded={menuUserShow} aria-controls="menu-liens-user" aria-current="true"
                                     onClick={() => {
                                       setMenuUserShow(!menuUserShow);
+                                      setMenuAideShow(menuAideShow ? !menuAideShow : menuAideShow);
                                     }}>
                                     <span className="texte-user">{prenom} {nom}&nbsp;
                                       {!menuUserShow &&
@@ -160,7 +165,10 @@ function Header({ linkAccount }) {
                                       }
                                     </span>
                                   </button>
-                                  <div className={!menuUserShow ? 'rf-collapse rf-menu' : 'rf-collapse rf-menu rf-collapse--expanded'} id="menu-liens-user">
+                                  <div
+                                  className={!menuUserShow ? 'rf-collapse rf-menu' : 'rf-collapse rf-menu rf-collapse--expanded'}
+                                  style={!menuUserShow ? { display: 'none' } : {}}
+                                  id="menu-liens-user">
                                     <ul className="rf-menu__list">
                                       <li className="user-infos">
                                         <Link className="rf-nav__link lien-user" to="/infos"

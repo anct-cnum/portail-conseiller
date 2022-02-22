@@ -1,7 +1,6 @@
 
 const initialState = {
     isCreated: false,
-    isUpdated: false,
     showError: false,
 };
 
@@ -25,7 +24,6 @@ export default function formulaireSupHierarchique(state = initialState, action) 
         case 'VERIFY_FORMULAIRE':
             return {
                 ...state,
-                isUpdated: false,
                 showError: true,
                 errorsFormulaire: action.errorsForm
             };
@@ -76,6 +74,7 @@ export default function formulaireSupHierarchique(state = initialState, action) 
         case 'POST_SUP_HIERARCHIQUE_REQUEST':
             return {
                 ...state,
+                isCreated: false,
                 showError: false,
             };
         case 'POST_SUP_HIERARCHIQUE_SUCCESS':
