@@ -62,20 +62,20 @@ function FormulaireSuperieurHierarchique() {
   return (
     <>
       {form.isCreated &&
-                <FlashMessage duration={5000}>
-                  <p className="rf-label flashBag">
-                        Vos informations ont bien &eacute;t&eacute; enregistr&eacute;es&nbsp;
-                    <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
-                  </p>
-                </FlashMessage>
+        <FlashMessage duration={5000}>
+          <p className="rf-label flashBag">
+            Vos informations ont bien &eacute;t&eacute; enregistr&eacute;es&nbsp;
+            <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+          </p>
+        </FlashMessage>
       }
       {form.showError &&
-                <FlashMessage duration={5000}>
-                  <p className="rf-label flashBag invalid">
-                    {form.error}
-                    <i className="ri-close-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
-                  </p>
-                </FlashMessage>
+        <FlashMessage duration={5000}>
+          <p className="rf-label flashBag invalid">
+            {form.error}
+            <i className="ri-close-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+          </p>
+        </FlashMessage>
       }
       <div className="form-sup-hierarchique">
         <div className="rf-container">
@@ -90,12 +90,12 @@ function FormulaireSuperieurHierarchique() {
               <div className="rf-ml-md-10w">
                 <h2 className="rf-mb-md-4w sous-titre">Contact de mon responsable</h2>
                 <p className="paragraphe rf-mb-3w">Ces coordonn&eacute;es pourront &ecirc;tre utilis&eacute;es pour communiquer des informations concernant
-                                    le dispositif et l&rsquo;animation du r&eacute;seau à votre employeur (ex: invitation à des webinaires,
-                                    envoi de documents explicatifs, newsletter, etc.)
+                  le dispositif et l&rsquo;animation du r&eacute;seau à votre employeur (ex: invitation à des webinaires,
+                  envoi de documents explicatifs, newsletter, etc.)
                 </p>
                 <div className={`rf-input-group ${submitted && erreurPrenom ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
                   <label className="rf-label" htmlFor="prenom">
-                                        Prénom
+                    Prénom
                   </label>
                   <input
                     className={`rf-input ${submitted && erreurPrenom ? 'rf-input--error' : ''}`}
@@ -107,14 +107,14 @@ function FormulaireSuperieurHierarchique() {
                     onChange={handleChange}
                   />
                   {submitted && erreurPrenom &&
-                                        <p id="text-input-error-desc-error" className="rf-error-text">
-                                          {erreurPrenom}
-                                        </p>
+                    <p id="text-input-error-desc-error" className="rf-error-text">
+                      {erreurPrenom}
+                    </p>
                   }
                 </div>
                 <div className={`rf-input-group ${erreurNom ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
                   <label className="rf-label" htmlFor="nom">
-                                        Nom
+                    Nom
                   </label>
                   <input
                     className={`rf-input ${erreurNom ? 'rf-input--error' : ''}`}
@@ -126,14 +126,14 @@ function FormulaireSuperieurHierarchique() {
                     onChange={handleChange}
                   />
                   {erreurNom &&
-                                        <p id="text-input-error-desc-error" className="rf-error-text">
-                                          {erreurNom}
-                                        </p>
+                    <p id="text-input-error-desc-error" className="rf-error-text">
+                      {erreurNom}
+                    </p>
                   }
                 </div>
                 <div className={`rf-input-group ${erreurFonction ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
                   <label className="rf-label" htmlFor="nom">
-                                        Fonction
+                    Fonction
                   </label>
                   <input
                     className={`rf-input ${erreurFonction ? 'rf-input--error' : ''}`}
@@ -145,14 +145,14 @@ function FormulaireSuperieurHierarchique() {
                     onChange={handleChange}
                   />
                   {erreurFonction &&
-                                        <p id="text-input-error-desc-error" className="rf-error-text">
-                                          {erreurFonction}
-                                        </p>
+                    <p id="text-input-error-desc-error" className="rf-error-text">
+                      {erreurFonction}
+                    </p>
                   }
                 </div>
                 <div className={`rf-input-group ${erreurEmail ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
                   <label className="rf-label" htmlFor="email">
-                                        Adresse email
+                    Adresse email
                   </label>
                   <input
                     className={`rf-input ${erreurEmail ? 'rf-input--error' : ''}`}
@@ -164,14 +164,14 @@ function FormulaireSuperieurHierarchique() {
                     onChange={handleChange}
                   />
                   {erreurEmail &&
-                                        <p id="text-input-error-desc-error" className="rf-error-text">
-                                          {erreurEmail}
-                                        </p>
+                    <p id="text-input-error-desc-error" className="rf-error-text">
+                      {erreurEmail}
+                    </p>
                   }
                 </div>
                 <div className={`rf-input-group ${erreurNumeroTelephone ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
                   <label className="rf-label" htmlFor="numeroTelephone">
-                                        Numéro de téléphone
+                    Numéro de téléphone
                   </label>
                   <input
                     className={`rf-input ${erreurNumeroTelephone ? 'rf-input--error' : ''}`}
@@ -183,13 +183,13 @@ function FormulaireSuperieurHierarchique() {
                     onChange={handleChange}
                   />
                   {erreurNumeroTelephone &&
-                                        <p id="text-input-error-desc-error" className="rf-error-text">
-                                          {erreurNumeroTelephone}
-                                        </p>
+                    <p id="text-input-error-desc-error" className="rf-error-text">
+                      {erreurNumeroTelephone}
+                    </p>
                   }
                 </div>
                 <button className="form-button rf-btn" onClick={handleSubmit}>
-                                    Enregistrer
+                  Enregistrer
                 </button>
               </div>
             </div>
