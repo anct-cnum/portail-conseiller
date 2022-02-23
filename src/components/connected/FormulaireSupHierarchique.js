@@ -84,7 +84,10 @@ function FormulaireSuperieurHierarchique() {
               <h1 className="titre rf-mt-15w rf-mb-4w rf-mb-md-4w">Mes informations personnelles et contact de mon responsable</h1>
             </div>
             <div className="rf-col-12 rf-col-md-6">
-              <h2 className="rf-mb-md-5v sous-titre">Mes informations personnelles</h2>
+              <div>
+                <h2 className="rf-mb-md-4w sous-titre">Mes informations personnelles</h2>
+                <p className="paragraphe rf-mb-3w">En cours de d&eacute;veloppement</p>
+              </div>
             </div>
             <div className="rf-col-12 rf-col-md-6">
               <div className="rf-ml-md-10w">
