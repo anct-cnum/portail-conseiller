@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import 'moment/locale/fr';
 import ElementHighcharts from './Components/ElementHighcharts';
+import { sortByMonthAndYear } from '../../../utils/functionsSort';
 
-function BottomPage(props) {
+function BottomPage({ donneesStats, print }) {
 
   const tabColorAge = ['#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e'];
   const tabColorStatut = ['#a2b4b1', '#ffdbd2', '#a3a6bc', '#ddb094', '#fff480'];
@@ -23,7 +24,7 @@ function BottomPage(props) {
     return [monthToPrint, yearAssociated];
   };
 
-  const { statsEvolutions, statsUsagers, statsAges } = props.donneesStats;
+  const { statsEvolutions, statsUsagers, statsAges } = donneesStats;
 
   //Map des stats evolutions pour ajouter les données nécessaires pour le graph (label mois année, valeur)
   let statsEvolutionsMapped = [];
@@ -56,20 +57,7 @@ function BottomPage(props) {
   });
 
   //Tri par mois/annee croissant
-  const orderMonths = (a, b) => {
-    if (a.annee === b.annee) {
-      if (a.mois < b.mois) {
-        return -1;
-      }
-      if (a.mois > b.mois) {
-        return 1;
-      }
-      return 0;
-    } else {
-      return a.annee < b.annee ? -1 : 1;
-    }
-  };
-  statsEvolutionsFiltered.sort(orderMonths);
+  statsEvolutionsFiltered.sort(sortByMonthAndYear);
 
   const graphiqueEvolution = {
     graphique: {
@@ -143,10 +131,10 @@ function BottomPage(props) {
         <div className="rf-col-12 rf-col-md-5 rf-col-lg-3 evolution-print">
           <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v no-print"><hr/></div>
           <span className="graphique-responsive-md-lg ">
-            <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolution} />
+            <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolution} print={print}/>
           </span>
           <span className="graphique-responsive-sm">
-            <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolutionSM} />
+            <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolutionSM} print={print}/>
           </span>
         </div>
 
@@ -154,14 +142,14 @@ function BottomPage(props) {
 
         <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">
           <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v"><hr/></div>
-          <ElementHighcharts donneesStats={statsAges} variablesGraphique={graphiqueAge} />
+          <ElementHighcharts donneesStats={statsAges} variablesGraphique={graphiqueAge} print={print}/>
         </div>
 
         <div className="rf-col-offset-12 rf-col-offset-md-6 rf-col-offset-lg-1"></div>
 
         <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">
           <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v"><hr/></div>
-          <ElementHighcharts donneesStats={statsUsagers} variablesGraphique={graphiqueStatut} />
+          <ElementHighcharts donneesStats={statsUsagers} variablesGraphique={graphiqueStatut} print={print}/>
         </div>
         <div className="rf-col-12">
           <div className="rf-m-xs-to-md-7v rf-md-9w rf-m-lg-15w"></div>
@@ -173,5 +161,6 @@ function BottomPage(props) {
 
 BottomPage.propTypes = {
   donneesStats: PropTypes.object,
+  print: PropTypes.bool
 };
 export default BottomPage;

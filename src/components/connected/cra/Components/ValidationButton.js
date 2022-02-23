@@ -22,11 +22,10 @@ function ValidationButton() {
     } else {
       //Pas d'erreurs, envoi seulement des donnes necessaires à l'API
       // eslint-disable-next-line no-unused-vars
-      let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error, ...dataCraToSend } = cra;
-      //Ajout du choix optionnel si non présent
-      if (cra?.accompagnement === undefined) {
-        dataCraToSend.accompagnement = null;
-      }
+      let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error,
+        // eslint-disable-next-line no-unused-vars
+        showSelectRedirection, nbParticipantsAge, nbParticipantsStatut, nbParticipantsAccompagnement, ...dataCraToSend } = cra;
+
       dispatch(craActions.submitCra(dataCraToSend));
     }
   };
