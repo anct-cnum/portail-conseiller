@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { sortByValueThenName } from '../../../utils/functionsSort';
 import ElementHighcharts from './Components/ElementHighcharts';
-import { useSelector } from 'react-redux';
 
 function RightPage({ donneesStats, print }) {
 
@@ -11,11 +9,6 @@ function RightPage({ donneesStats, print }) {
   const tabColorDuree = ['#abcdf5', '#abcdf5', '#abcdf5', '#abcdf5'];
 
   const { statsThemes, statsDurees, statsLieux } = donneesStats;
-
-  const user = useSelector(state => state?.authentication?.user?.user);
-  if (user?.role === 'admin_coop') {
-    statsThemes.sort(sortByValueThenName);
-  }
 
   const barGraphique = {
     graphique: {
