@@ -5,7 +5,7 @@ import FlashMessage from 'react-flash-message';
 
 function FormulaireSuperieurHierarchique() {
   const erreursFormulaire = useSelector(state => state.formulaireSupHierarchique?.errorsFormulaire);
-  const erreurNumeroTelephone = erreursFormulaire?.errors?.filter(erreur => erreur?.numeroTelephone).numeroTelephone;
+  const erreurNumeroTelephone = erreursFormulaire?.errors?.filter(erreur => erreur?.numeroTelephone)?.numeroTelephone;
   const erreurEmail = erreursFormulaire?.errors?.filter(erreur => erreur?.email)[0]?.email;
   const erreurNom = erreursFormulaire?.errors?.filter(erreur => erreur?.nom)[0]?.nom;
   const erreurPrenom = erreursFormulaire?.errors?.filter(erreur => erreur?.prenom)[0]?.prenom;
@@ -24,7 +24,7 @@ function FormulaireSuperieurHierarchique() {
   const [submitted, setSubmitted] = useState(false);
   const { prenom, nom, fonction, email, numeroTelephone } = inputs;
   useEffect(() => {
-    if (erreursFormulaire?.lengthError === 0 && setSubmitted) {
+    if (erreursFormulaire?.lengthError === 0 && submitted) {
       dispatch(formSupHierarchiqueActions.createSupHierarchique({
         numeroTelephone: form.numeroTelephone,
         email: form.email,
@@ -69,7 +69,7 @@ function FormulaireSuperieurHierarchique() {
           </p>
         </FlashMessage>
       }
-      {form.showError &&
+      {form.error &&
         <FlashMessage duration={5000}>
           <p className="rf-label flashBag invalid">
             {form.error}
@@ -93,12 +93,12 @@ function FormulaireSuperieurHierarchique() {
                   le dispositif et l&rsquo;animation du r&eacute;seau à votre employeur (ex: invitation à des webinaires,
                   envoi de documents explicatifs, newsletter, etc.)
                 </p>
-                <div className={`rf-input-group ${submitted && erreurPrenom ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
+                <div className={`rf-input-group ${erreurPrenom ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
                   <label className="rf-label" htmlFor="prenom">
-                    Prénom
+                    Pr&eacute;nom
                   </label>
                   <input
-                    className={`rf-input ${submitted && erreurPrenom ? 'rf-input--error' : ''}`}
+                    className={`rf-input ${erreurPrenom ? 'rf-input--error' : ''}`}
                     aria-describedby="text-input-error-desc-error"
                     type="text"
                     id="prenom"
@@ -106,7 +106,7 @@ function FormulaireSuperieurHierarchique() {
                     value={prenom}
                     onChange={handleChange}
                   />
-                  {submitted && erreurPrenom &&
+                  {erreurPrenom &&
                     <p id="text-input-error-desc-error" className="rf-error-text">
                       {erreurPrenom}
                     </p>
@@ -171,7 +171,7 @@ function FormulaireSuperieurHierarchique() {
                 </div>
                 <div className={`rf-input-group ${erreurNumeroTelephone ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
                   <label className="rf-label" htmlFor="numeroTelephone">
-                    Numéro de téléphone
+                    Num&eacute;ro de t&eacute;l&eacute;phone
                   </label>
                   <input
                     className={`rf-input ${erreurNumeroTelephone ? 'rf-input--error' : ''}`}

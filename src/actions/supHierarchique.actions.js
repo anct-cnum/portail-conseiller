@@ -29,19 +29,19 @@ function verifyFormulaire(form) {
   });
   errors.push({
     nom: (Joi.object({
-      nom: Joi.string().required()
+      nom: Joi.string().min(2).required()
     }).validate({ nom: form?.nom }).error) ?
       'Un nom doit obligatoirement être saisi' : null
   });
   errors.push({
     prenom: (Joi.object({
-      prenom: Joi.string().required()
+      prenom: Joi.string().min(2).required()
     }).validate({ prenom: form?.prenom }).error) ?
       'Un prénom doit obligatoirement être saisi' : null
   });
   errors.push({
     fonction: (Joi.object({
-      fonction: Joi.string().required()
+      fonction: Joi.string().min(2).required()
     }).validate({ fonction: form?.fonction }).error) ?
       'Une fonction doit obligatoirement être saisie' : null
   });

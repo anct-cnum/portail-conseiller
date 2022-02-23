@@ -93,12 +93,7 @@ function Header({ linkAccount }) {
                                   }}>
                                   <img className="logo-discussion" src="logos/bulle-ressourcerie.svg" />
                                   <span className="texte-aide">Aide&nbsp;
-                                    {!menuAideShow &&
-                                      <i className="ri-arrow-down-s-line"></i>
-                                    }
-                                    {menuAideShow &&
-                                      <i className="ri-arrow-up-s-line"></i>
-                                    }
+                                    {!menuAideShow ? <i className="ri-arrow-down-s-line"></i> : <i className="ri-arrow-up-s-line"></i>}
                                   </span>
                                 </button>
                                 <div
@@ -157,12 +152,7 @@ function Header({ linkAccount }) {
                                       setMenuAideShow(menuAideShow ? !menuAideShow : menuAideShow);
                                     }}>
                                     <span className="texte-user">{prenom} {nom}&nbsp;
-                                      {!menuUserShow &&
-                                        <i className="ri-arrow-down-s-line"></i>
-                                      }
-                                      {menuUserShow &&
-                                        <i className="ri-arrow-up-s-line"></i>
-                                      }
+                                      {!menuUserShow ? <i className="ri-arrow-down-s-line"></i> : <i className="ri-arrow-up-s-line"></i>}
                                     </span>
                                   </button>
                                   <div
@@ -171,11 +161,11 @@ function Header({ linkAccount }) {
                                     id="menu-liens-user">
                                     <ul className="rf-menu__list">
                                       <li className="user-infos">
-                                        <Link className="rf-nav__link lien-user" to="/infos"
+                                        <Link className="rf-nav__link lien-user" to="/mes-informations"
                                           onClick={() => {
                                             setMenuUserShow(false);
                                           }}>
-                                          Mes informations, Contact hiérarchique<br />
+                                          Mes informations, Contact hi&eacute;rarchique<br />
                                         </Link>
                                       </li>
                                       {linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
@@ -185,7 +175,7 @@ function Header({ linkAccount }) {
                                               onClick={() => {
                                                 setMenuUserShow(false);
                                               }}>
-                                              Déconnexion<br />
+                                              D&eacute;connexion<br />
                                             </Link>
                                           }
                                           {role !== 'conseiller' &&
@@ -193,7 +183,7 @@ function Header({ linkAccount }) {
                                               onClick={() => {
                                                 setMenuUserShow(false);
                                               }}>
-                                              Déconnexion<br />
+                                              D&eacute;connexion<br />
                                             </Link>
                                           }
                                         </li>

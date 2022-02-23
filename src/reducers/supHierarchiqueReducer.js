@@ -1,4 +1,3 @@
-
 const initialState = {
   isCreated: false,
   showError: false,
@@ -9,17 +8,16 @@ export default function formulaireSupHierarchique(state = initialState, action) 
     case 'VERIFY_FORMULAIRE':
       return {
         ...state,
-        showError: true,
         errorsFormulaire: action.errorsForm
       };
     case 'INIT_FORM_SUP_HIERARCHIQUE':
       return {
         ...state,
-        numeroTelephone: action?.formSupHierarchique.numeroTelephone,
-        email: action?.formSupHierarchique.email,
-        prenom: action?.formSupHierarchique.prenom,
-        nom: action?.formSupHierarchique.nom,
-        fonction: action?.formSupHierarchique.fonction
+        numeroTelephone: action.formSupHierarchique.numeroTelephone,
+        email: action.formSupHierarchique.email,
+        prenom: action.formSupHierarchique.prenom,
+        nom: action.formSupHierarchique.nom,
+        fonction: action.formSupHierarchique.fonction
       };
     case 'UPDATE_NUMEROTELEPHONE':
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.numeroTelephone)[0]?.numeroTelephone;
