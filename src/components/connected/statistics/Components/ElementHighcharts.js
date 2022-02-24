@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 import labelsCorrespondance from '../../../../data/labelsCorrespondance.json';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import { useSelector } from 'react-redux';
+import { userRoles } from '../../../../helpers';
 
 function ElementHighcharts({ donneesStats, variablesGraphique, print }) {
-
-  const { role } = useSelector(state => state?.authentication?.user?.user);
 
   const { typeGraphique, largeurGraphique, hauteurGraphique,
     margeGaucheGraphique, margeDroiteGraphique, optionResponsive, couleursGraphique } = variablesGraphique.graphique;
@@ -497,7 +495,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print }) {
           cursor: 'pointer',
           size: 162,
           dataLabels: {
-            format: role === 'admin_coop' ? '{point.y}%' : '{point.y}',
+            format: userRoles()?.includes('admin_coop') ? '{point.y}%' : '{point.y}',
             color: '#fff',
             distance: '-40%',
             style: {
