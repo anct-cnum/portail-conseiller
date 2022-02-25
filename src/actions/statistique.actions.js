@@ -14,6 +14,7 @@ export const statistiqueActions = {
   exportDonneesTerritoire,
   resetExportDonneesTerritoire,
   getCodesPostauxCrasConseiller,
+  updateListeAutresReorientations,
 };
 
 const formatDate = date => {
@@ -234,4 +235,8 @@ function getCodesPostauxCrasConseiller() {
   function failure(error) {
     return { type: 'GET_CODE_POSTAUX_CRA_FAILURE', error };
   }
+}
+
+function updateListeAutresReorientations(listeAutresReorientations) {
+  return { type: 'UPDATE_AUTRES_REORIENTATIONS', listeAutresReorientations };
 }

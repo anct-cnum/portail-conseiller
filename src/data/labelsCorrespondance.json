@@ -133,5 +133,85 @@
   {
     "nom": "heterogene",
     "correspondance": "Non renseign&eacute;"
+  },
+  {
+    "nom": "ANTS",
+    "correspondance": "ANTS"
+  },
+  {
+    "nom": "Assistante sociale",
+    "correspondance": "Assistante sociale"
+  },
+  {
+    "nom": "CAF",
+    "correspondance": "CAF"
+  },
+  {
+    "nom": "CARSAT",
+    "correspondance": "CARSAT"
+  },
+  {
+    "nom": "CCAS",
+    "correspondance": "CCAS"
+  },
+  {
+    "nom": "CEFS",
+    "correspondance": "CEFS"
+  },
+  {
+    "nom": "CIP",
+    "correspondance": "CIP"
+  },
+  {
+    "nom": "CPAM",
+    "correspondance": "CPAM"
+  },
+  {
+    "nom": "DGFIP",
+    "correspondance": "DGFIP"
+  },
+  {
+    "nom": "France Services",
+    "correspondance": "France Services"
+  },
+  {
+    "nom": "Mairie",
+    "correspondance": "Mairie"
+  },
+  {
+    "nom": "Médiathèque",
+    "correspondance": "M&eacute;diath&egrave;que"
+  },
+  {
+    "nom": "Mission locale",
+    "correspondance": "Mission locale"
+  },
+  {
+    "nom": "Pôle emploi",
+    "correspondance": "Pôle emploi"
+  },
+  {
+    "nom": "Préfecture",
+    "correspondance": "Pr&eacute;fecture"
+  },
+  {
+    "nom": "Sous-préfecture",
+    "correspondance": "Sous-pr&eacute;fecture"
+  },
+  {
+    "nom": "Service de police",
+    "correspondance": "Service de police"
+  },
+  {
+    "nom": "Gendarmerie",
+    "correspondance": "Gendarmerie"
+  },
+  {
+    "nom": "Tiers-lieu / Fablab",
+    "correspondance": "Tiers-lieu / Fablab"
+  },
+  {
+    "nom": "Autres",
+    "correspondance": "Autres"
   }
 ]

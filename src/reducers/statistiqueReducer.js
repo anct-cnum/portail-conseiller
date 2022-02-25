@@ -3,6 +3,7 @@ const initialState = {
   dateDebutStats: new Date(anneeEnCours + '/01/01'),
   dateFinStats: new Date(),
   codePostalStats: '',
+  listeAutresReorientations: [],
 };
 export default function statistique(state = initialState, action) {
   switch (action.type) {
@@ -170,6 +171,11 @@ export default function statistique(state = initialState, action) {
 
       return nextState;
     }
+    case 'UPDATE_AUTRES_REORIENTATIONS':
+      return {
+        ...state,
+        listeAutresReorientations: action.listeAutresReorientations
+      };
     default:
       return state;
   }
