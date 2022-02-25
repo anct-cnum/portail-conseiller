@@ -45,7 +45,7 @@ function EnregistrerStatistiquesPdf({ match }) {
 
   return (
 
-    <div className="Statistics print">
+    <div className="statistics print">
       <Header printClass="print"/>
       <div className="rf-container">
 
