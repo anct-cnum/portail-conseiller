@@ -10,7 +10,7 @@ import { userEntityId } from '../../helpers';
 import FormulaireSexeAge from './FormulaireSexeAge';
 import Ressourcerie from './ressourcerie/Ressourcerie';
 import Permanence from './permanence/index';
-import FormulaireSuperieurHierarchique from './FormulaireSupHierarchique';
+import MesInformations from './mesInformations';
 
 function Connected() {
 
@@ -54,7 +54,7 @@ function Connected() {
               <Route path={`/compte-rendu-activite`} component={Cra} />
               <Route path={`/statistiques`} component={Statistics} />
               <Route path={`/ressourcerie`} component={Ressourcerie} />
-              <Route path={'/mes-informations'} component={FormulaireSuperieurHierarchique} />
+              <Route path={'/mes-informations'} component={MesInformations} />
               <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
             </>
           }
