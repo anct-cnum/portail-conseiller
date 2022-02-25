@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import labelsCorrespondance from '../../../../data/labelsCorrespondance.json';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import { userRoles } from '../../../../helpers';
 
 function ElementHighcharts({ donneesStats, variablesGraphique, print }) {
 
@@ -494,7 +495,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print }) {
           cursor: 'pointer',
           size: 162,
           dataLabels: {
-            format: '{point.y}',
+            format: userRoles()?.includes('admin_coop') ? '{point.y}%' : '{point.y}',
             color: '#fff',
             distance: '-40%',
             style: {
