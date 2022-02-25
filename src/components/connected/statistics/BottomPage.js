@@ -231,9 +231,7 @@ function BottomPage({ donneesStats, print }) {
           {statsReorientations.length > 0 &&
             <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientations} listeAutres={listeAutres} print={print}/>
           }
-          {statsReorientations.length === 0 &&
-            <div className="rf-m-no-reorientation"></div>
-          }
+          <div className="rf-m-no-reorientation"></div>
         </div>
 
       </div>
