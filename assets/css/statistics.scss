@@ -390,22 +390,16 @@
       display: block !important;
     }
     .theme-print {
-      margin: 80px 0 0 0;
+      margin: 120px 0 0 0;
     }
     .evolution-print {
-      margin: 105px 0 0 0;
+      margin-top: 70px;
     }
     .age-print{
-      margin-top: 200px;
+      margin-top: -130px;
     }
-
-    .print-conseiller {
-      .statut-print{
-        //margin-top: 400px;
-      }
-      .reorientation-print {
-        //margin-top: -550px;
-      }
+    .reorientation-print {
+      margin-top: -500px;
     }
   }
 }
@@ -415,6 +409,10 @@
   color: #1e1e1e;
   .rf-service__title {
     color: #1e1e1e;
+  }
+  .lieux-autres{
+    position: static;
+    margin: -120px 0 0 410px;
   }
   .lieux-autres, .lieux-autres ul{
     color: #1e1e1e;

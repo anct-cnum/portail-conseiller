@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ElementHighcharts from './Components/ElementHighcharts';
 
-function RightPage({ donneesStats, print, type }) {
+function RightPage({ donneesStats, print }) {
 
   const tabColorTheme = ['#cac5b0', '#abb8df', '#fdcf41', '#169b62', '#80d5c6', '#ff8d7e', '#714753', '#956052', '#ddb094', '#5770be', '#ffed33', '#be9b31'];
   const tabColorLieux = ['#ffcc9f', '#ff8d7e', '#466964', '#5770be'];
@@ -186,8 +186,7 @@ function RightPage({ donneesStats, print, type }) {
 
 RightPage.propTypes = {
   donneesStats: PropTypes.object,
-  print: PropTypes.bool,
-  type: PropTypes.string,
+  print: PropTypes.bool
 };
 
 export default RightPage;

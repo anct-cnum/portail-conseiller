@@ -9,7 +9,7 @@ import { sortByMonthAndYear } from '../../../utils/functionsSort';
 import labelsCorrespondance from '../../../data/labelsCorrespondance.json';
 import { statistiqueActions } from '../../../actions/statistique.actions';
 
-function BottomPage({ donneesStats, print, type }) {
+function BottomPage({ donneesStats, print }) {
 
   const dispatch = useDispatch();
 
@@ -17,7 +17,10 @@ function BottomPage({ donneesStats, print, type }) {
 
   const tabColorAge = ['#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e'];
   const tabColorStatut = ['#a2b4b1', '#ffdbd2', '#a3a6bc', '#ddb094', '#fff480'];
-  const tabColorLieux = ['#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e', '#a2b4b1', '#ffdbd2', '#a3a6bc', '#ddb094', '#fff480'];
+  const tabColorLieux = [
+    '#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e', '#a2b4b1', '#ffdbd2', '#a3a6bc', '#ddb094', '#fff480',
+    '#cac5b0', '#abb8df', '#fdcf41', '#169b62', '#80d5c6', '#ff8d7e', '#714753', '#956052', '#ffed33', '#be9b31'
+  ];
 
   const get4lastMonths = (month, year) => {
     let monthToPrint = [month];
@@ -70,7 +73,6 @@ function BottomPage({ donneesStats, print, type }) {
 
   //Tri liste des réorientations autres
   if (statsReorientations?.length > 0) {
-    console.log(statsReorientations);
     let listeAutres = [];
     let listDelete = [];
     let donneesAutre = {
@@ -104,7 +106,7 @@ function BottomPage({ donneesStats, print, type }) {
       couleursGraphique: tabColorAge
     },
     titre: {
-      optionTitre: '&eacute;volution des accompagnements',
+      optionTitre: '&Eacute;volution des accompagnements',
       margeTitre: 48,
     }
   };
@@ -120,7 +122,7 @@ function BottomPage({ donneesStats, print, type }) {
       couleursGraphique: tabColorAge
     },
     titre: {
-      optionTitre: '&eacute;volution des accompagnements',
+      optionTitre: '&Eacute;volution des accompagnements',
       margeTitre: 48,
       placementTitre: 10,
     }
@@ -178,8 +180,8 @@ function BottomPage({ donneesStats, print, type }) {
   const graphiqueReorientations = {
     graphique: {
       typeGraphique: 'pie',
-      hauteurGraphique: 460,
-      margeGaucheGraphique: print ? -350 : -450,
+      hauteurGraphique: 555,
+      margeGaucheGraphique: print ? -315 : -419,
       optionResponsive: false,
       couleursGraphique: tabColorLieux
     },
@@ -224,7 +226,7 @@ function BottomPage({ donneesStats, print, type }) {
           <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v no-print"><hr/></div>
           <ElementHighcharts donneesStats={statsUsagers} variablesGraphique={graphiqueStatut} print={print}/>
         </div>
-        <div className="rf-col-12 rf-col-offset-md-4 rf-col-md-8 graphique-responsive-lg print-reorientation">
+        <div className="rf-col-12 rf-col-offset-md-4 rf-col-md-8 graphique-responsive-lg reorientation-print">
           <div className="rf-mt-6w"></div>
           {statsReorientations.length > 0 &&
             <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientations} listeAutres={listeAutres} print={print}/>
@@ -241,7 +243,6 @@ function BottomPage({ donneesStats, print, type }) {
 
 BottomPage.propTypes = {
   donneesStats: PropTypes.object,
-  print: PropTypes.bool,
-  type: PropTypes.string,
+  print: PropTypes.bool
 };
 export default BottomPage;

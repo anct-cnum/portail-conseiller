@@ -43,7 +43,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
 
     let chart = {
       width: print ? 700 : largeurGraphique,
-      height: print ? 350 : hauteurGraphique,
+      height: hauteurGraphique,
       marginLeft: margeGaucheGraphique,
       marginRight: margeDroiteGraphique,
       backgroundColor: print ? '#fff' : '#1e1e1e',
@@ -201,6 +201,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
             x: optionResponsive ? 0 : x,
             y: optionResponsive ? 0 : 65,
             width: optionResponsive ? '100%' : '30%',
+            maxHeight: '450px',
             itemStyle: {
               color: print ? '#1e1e1e' : '#fff',
               fontWeight: 400,
@@ -527,7 +528,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
           },
           allowPointSelect: true,
           cursor: 'pointer',
-          size: isReoriente && !optionResponsive ? '95%' : 162,
+          size: isReoriente && !optionResponsive ? 382 : 162,
           dataLabels: {
             format: userRoles()?.includes('admin_coop') || isReoriente ? '{point.y}%' : '{point.y}',
             color: '#fff',
