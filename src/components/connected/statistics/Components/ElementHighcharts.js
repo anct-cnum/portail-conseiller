@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import { userRoles } from '../../../../helpers';
 
 import labelsCorrespondance from '../../../../data/labelsCorrespondance.json';
 
@@ -528,7 +529,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
           cursor: 'pointer',
           size: isReoriente && !optionResponsive ? '95%' : 162,
           dataLabels: {
-            format: isReoriente ? '{point.y}%' : '{point.y}',
+            format: userRoles()?.includes('admin_coop') || isReoriente ? '{point.y}%' : '{point.y}',
             color: '#fff',
             distance: '-40%',
             style: {
