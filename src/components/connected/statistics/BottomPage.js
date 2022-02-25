@@ -1,12 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import 'moment/locale/fr';
 import ElementHighcharts from './Components/ElementHighcharts';
 import { sortByMonthAndYear } from '../../../utils/functionsSort';
 
-function BottomPage({ donneesStats, print }) {
-console.log(donneesStats);
+import labelsCorrespondance from '../../../data/labelsCorrespondance.json';
+import { statistiqueActions } from '../../../actions/statistique.actions';
+
+function BottomPage({ donneesStats, print, type }) {
+
+  const dispatch = useDispatch();
+
+  const listeAutres = useSelector(states => states.statistique.listeAutresReorientations);
+
   const tabColorAge = ['#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e'];
   const tabColorStatut = ['#a2b4b1', '#ffdbd2', '#a3a6bc', '#ddb094', '#fff480'];
   const tabColorLieux = ['#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e', '#a2b4b1', '#ffdbd2', '#a3a6bc', '#ddb094', '#fff480'];
@@ -59,6 +67,31 @@ console.log(donneesStats);
 
   //Tri par mois/annee croissant
   statsEvolutionsFiltered.sort(sortByMonthAndYear);
+
+  //Tri liste des réorientations autres
+  if (statsReorientations?.length > 0) {
+    console.log(statsReorientations);
+    let listeAutres = [];
+    let listDelete = [];
+    let donneesAutre = {
+      nom: 'Autres',
+      valeur: 0
+    };
+    statsReorientations.forEach((donnees, i) => {
+      if (labelsCorrespondance.find(label => label.nom === donnees.nom)?.correspondance === undefined) {
+        donneesAutre.valeur += donnees.valeur;
+        listeAutres.push(donnees.nom);
+        listDelete.push(i);
+      }
+    });
+    if (!statsReorientations.find(stats => stats?.nom === 'Autres')) {
+      statsReorientations.push(donneesAutre);
+      listDelete.forEach(i => {
+        delete statsReorientations[i];
+      });
+      dispatch(statistiqueActions.updateListeAutresReorientations(listeAutres));
+    }
+  }
 
   const graphiqueEvolution = {
     graphique: {
@@ -125,13 +158,28 @@ console.log(donneesStats);
     }
   };
 
-  const graphiqueReorientations = {
+  const graphiqueReorientationsSM = {
     graphique: {
       typeGraphique: 'pie',
-      largeurGraphique: 300,
+      largeurGraphique: 320,
       hauteurGraphique: 320,
       margeGaucheGraphique: 0,
       margeDroiteGraphique: 10,
+      optionResponsive: true,
+      couleursGraphique: tabColorLieux
+    },
+    titre: {
+      optionTitre: 'Usager.ères réorienté.es',
+      margeTitre: -17,
+      placementTitre: 0
+    }
+  };
+
+  const graphiqueReorientations = {
+    graphique: {
+      typeGraphique: 'pie',
+      hauteurGraphique: 460,
+      margeGaucheGraphique: print ? -350 : -450,
       optionResponsive: false,
       couleursGraphique: tabColorLieux
     },
@@ -158,24 +206,34 @@ console.log(donneesStats);
 
         <div className="rf-col-offset-12 rf-col-offset-md-1"></div>
 
-        <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">
-          <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v"><hr/></div>
+        <div className="rf-col-12 rf-col-md-5 rf-col-lg-3 age-print">
+          <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v"><hr className="no-print"/></div>
           <ElementHighcharts donneesStats={statsAges} variablesGraphique={graphiqueAge} print={print}/>
         </div>
 
-        <div className="rf-col-offset-12 rf-col-offset-md-6 rf-col-offset-lg-1"></div>
+        <div className="rf-col-12 rf-col-md-5 graphique-responsive-md no-print">
+          {statsReorientations.length > 0 &&
+            <>
+              <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v"><hr/></div>
+              <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientationsSM} print={print}/>
+            </>
+          }
+        </div>
 
-        <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">
-          <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v"><hr/></div>
+        <div className="rf-col-offset-md-1 rf-col-12 rf-col-md-5 rf-col-lg-3 statut-print">
+          <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v no-print"><hr/></div>
           <ElementHighcharts donneesStats={statsUsagers} variablesGraphique={graphiqueStatut} print={print}/>
         </div>
-        <div className="rf-col-12">
-          {/*<ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientations} print={print}/> */}
+        <div className="rf-col-12 rf-col-offset-md-4 rf-col-md-8 graphique-responsive-lg print-reorientation">
+          <div className="rf-mt-6w"></div>
+          {statsReorientations.length > 0 &&
+            <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientations} listeAutres={listeAutres} print={print}/>
+          }
+          {statsReorientations.length === 0 &&
+            <div className="rf-m-no-reorientation"></div>
+          }
+        </div>
 
-        </div>
-        <div className="rf-col-12">
-          <div className="rf-m-xs-to-md-7v rf-md-9w rf-m-lg-15w"></div>
-        </div>
       </div>
     </div>
   );
@@ -183,6 +241,7 @@ console.log(donneesStats);
 
 BottomPage.propTypes = {
   donneesStats: PropTypes.object,
-  print: PropTypes.bool
+  print: PropTypes.bool,
+  type: PropTypes.string,
 };
 export default BottomPage;

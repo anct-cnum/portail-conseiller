@@ -4,7 +4,7 @@ import { sortByValueThenName } from '../../../utils/functionsSort';
 import ElementHighcharts from './Components/ElementHighcharts';
 import { useSelector } from 'react-redux';
 
-function RightPage({ donneesStats, print }) {
+function RightPage({ donneesStats, print, type }) {
 
   const tabColorTheme = ['#cac5b0', '#abb8df', '#fdcf41', '#169b62', '#80d5c6', '#ff8d7e', '#714753', '#956052', '#ddb094', '#5770be', '#ffed33', '#be9b31'];
   const tabColorLieux = ['#ffcc9f', '#ff8d7e', '#466964', '#5770be'];
@@ -193,7 +193,8 @@ function RightPage({ donneesStats, print }) {
 
 RightPage.propTypes = {
   donneesStats: PropTypes.object,
-  print: PropTypes.bool
+  print: PropTypes.bool,
+  type: PropTypes.string,
 };
 
 export default RightPage;
