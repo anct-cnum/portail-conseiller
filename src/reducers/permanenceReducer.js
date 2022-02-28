@@ -120,7 +120,7 @@ export default function permanence(state = initialState, action) {
         showError: false,
       };
     /* Partie Informations */
-    case 'UPDATE_ESTLIEUPRINCIPAL':
+    case 'CACHER_ADRESSE':
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.principalLieuActivite)[0]?.principalLieuActivite;
       return {
         ...state,
@@ -138,7 +138,7 @@ export default function permanence(state = initialState, action) {
         codePostal: '',
         ville: '',
         siret: '',
-        principalLieuActivite: true,
+        principalLieuActivite: false,
         showError: false,
       };
     case 'INIT_ADRESSE':

@@ -1,10 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
-function ListPermanences({ isAdresseCachee }) {
+function ListPermanences() {
 
   // TODO récupérer la liste des permanences déjà créées
   // const permanences = useSelector(state => state.permanence?.permanences);
+
+  const isAdresseCachee = useSelector(state => state.permanence?.isAdresseCachee);
 
   const listPermanences = [
     { '_id': '4s5df456sfdsfd45sfd5sfd45', 'nomStructure': 'Espace numérique sud Laon', 'codePostal': '02000', 'ville': 'LAON' },
@@ -12,9 +14,14 @@ function ListPermanences({ isAdresseCachee }) {
     { '_id': '4s5df456sfd8sdf855dsf4245', 'nomStructure': 'CCAS de Saint-Quentin', 'codePostal': '02100', 'ville': 'SAINT-QUENTIN' },
     { '_id': '4poi456kjh5erfu5sfd5sfd45', 'nomStructure': 'Communauté d’agglomération du Beauvais', 'codePostal': '60000', 'ville': 'BEAUVAIS' },
   ];
+  
+  const handleClick = value => {
+
+  };
+
   return (
     <>
-      {!isAdresseCachee &&
+      {isAdresseCachee === false &&
         <>
           <div className="rf-col-offset-1 rf-col-11">
             S&eacute;lectionnez votre lieu d&rsquo;activit&eacute;, s&rsquo;il n&rsquo;apparaît pas dans cette liste,
@@ -34,9 +41,9 @@ function ListPermanences({ isAdresseCachee }) {
                         <hr />
                         <div className="rf-fieldset__content">
                           <div className="rf-radio-group">
-                            <input type="radio" id={permanence._id} name="permancenceSecondaire" value={permanence._id}
+                            <input type="radio" id={permanence._id} className="permanence-existante" name="permancenceSecondaire" value={permanence._id}
                               defaultChecked={permanence._id} required="required"/>
-                            <label className="rf-label rf-my-2w" htmlFor={permanence._id}>
+                            <label className="rf-label rf-my-2w permanence-existante" htmlFor={permanence._id}>
                               <span className="rf-container rf-container--fluid">
                                 <span className="rf-grid-row">
                                   <span className="rf-col-3">{permanence.ville.toUpperCase()}</span>
@@ -67,9 +74,5 @@ function ListPermanences({ isAdresseCachee }) {
     </>
   );
 }
-
-ListPermanences.propTypes = {
-  isAdresseCachee: PropTypes.bool,
-};
 
 export default ListPermanences;

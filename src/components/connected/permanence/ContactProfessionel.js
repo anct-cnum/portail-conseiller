@@ -26,7 +26,6 @@ function ContactProfessionel({ codeDepartement }) {
   function handleChange(e) {
     const { name, value } = e.target;
     setInputs(inputs => ({ ...inputs, [name]: value }));
-    console.log(value);
     dispatch(permanenceActions.updateField(name, value));
   }
 

@@ -13,7 +13,6 @@ import TypeAcces from './TypeAcces';
 function PermanencePrincipale({ structure }) {
   const dispatch = useDispatch();
 
-  const isAdresseCachee = useSelector(state => state.permanence?.isAdresseCachee);
   const erreursFormulaire = useSelector(state => state.permanence?.errorsFormulaire?.errors);
   const erreurAdresseExact = erreursFormulaire?.filter(erreur => erreur?.principalLieuActivite)[0]?.principalLieuActivite;
 
@@ -22,7 +21,6 @@ function PermanencePrincipale({ structure }) {
   function handleAdresse(estLieuPrincipal) {
     dispatch(permanenceActions.updateLieuPrincipal(estLieuPrincipal));
     if (estLieuPrincipal) {
-      console.log(structure?.nom);
       dispatch(permanenceActions.updateField('nomEnseigne', structure?.nom));
       dispatch(permanenceActions.updateField('siret', structure?.siret));
       dispatch(permanenceActions.initAdresse(adresseStructure));
@@ -76,10 +74,11 @@ function PermanencePrincipale({ structure }) {
         </div>
       </div>
 
-      <ListPermanences isAdresseCachee={isAdresseCachee}/>
+      <ListPermanences />
 
       <Adresse
         codeDepartement={structure?.codeDepartement}
+        adressePermanence={adresseStructure}
       />
 
       <TypeAcces lieuPrincipal={true} />

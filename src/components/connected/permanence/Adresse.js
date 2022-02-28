@@ -6,7 +6,6 @@ import telephoneHorsMetropole from '../../../data/indicatifs.json';
 
 function Adresse({ codeDepartement, adressePermanence }) {
 
-  console.log(adressePermanence);
   const dispatch = useDispatch();
 
   const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
@@ -31,10 +30,13 @@ function Adresse({ codeDepartement, adressePermanence }) {
     numeroVoie: '',
     rueVoie: '',
     codePostal: '',
-    ville: ''
+    ville: '',
+    numeroTelephone: '',
+    email: '',
+    siteWeb: ''
   });
 
-  const { nomEnseigne, siret, numeroTelephone, email, siteWeb, numeroVoie, rueVoie, codePostal, ville } = inputs;
+  const { nomEnseigne, siret, numeroVoie, rueVoie, codePostal, ville, numeroTelephone, email, siteWeb } = inputs;
 
 
   function handleChange(e) {
@@ -44,19 +46,7 @@ function Adresse({ codeDepartement, adressePermanence }) {
   }
 
   useEffect(() => {
-    if (adressePermanence) {
-      setInputs({
-        nomEnseigne: adressePermanence?.nomEnseigne,
-        siret: adressePermanence?.siret,
-        numeroVoie: adressePermanence?.numeroRue,
-        rueVoie: adressePermanence?.rue,
-        codePostal: adressePermanence?.codePostal,
-        ville: adressePermanence?.ville,
-      });
-    }
-  }, [adressePermanence]);
-
-  useEffect(() => {
+    console.log(adressePermanence);
     if (!isAdresseCachee) {
       setInputs({
         nomEnseigne: '',
@@ -67,16 +57,18 @@ function Adresse({ codeDepartement, adressePermanence }) {
         ville: ''
       });
     } else {
-      setInputs({
-        nomEnseigne: adressePermanence?.nomEnseigne,
-        siret: adressePermanence?.siret,
-        numeroVoie: adressePermanence?.numeroRue,
-        rueVoie: adressePermanence?.rue,
-        codePostal: adressePermanence?.codePostal,
-        ville: adressePermanence?.ville,
-      });
+
+      setInputs(inputs => ({ ...inputs,
+        nomEnseigne: adressePermanence?.nomEnseigne ?? '',
+        siret: adressePermanence?.siret ?? '',
+        numeroVoie: adressePermanence?.numeroRue ?? '',
+        rueVoie: adressePermanence?.rue ?? '',
+        codePostal: adressePermanence?.codePostal ?? '',
+        ville: adressePermanence?.ville ?? '',
+      }));
+      console.log(inputs);
     }
-  }, [isAdresseCachee]);
+  }, [isAdresseCachee, adressePermanence]);
 
   return (
     <>
@@ -128,60 +120,60 @@ function Adresse({ codeDepartement, adressePermanence }) {
           </div>
 
           <div className="rf-col-4"></div>
-
-          <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
-            <label className={erreurNumeroVoie ? 'rf-label invalid' : 'rf-label' } htmlFor="numero-voie">
-              N° de voie <span className="obligatoire">*</span>
-              <input className={erreurNumeroVoie ? 'rf-input rf-mt-2v input-error' : 'rf-input rf-mt-2v'} type="text"
-                id="numero-voie" name="numeroVoie" required="required" onChange={handleChange} value={numeroVoie}/>
-            </label>
-            { erreurNumeroVoie &&
-              <p className="text-error rf-mb-n3w">{erreurNumeroVoie}</p>
-            }
-          </div>
-
-          <div className="rf-col-4"></div>
-
-          <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
-            <label className={erreurRueVoie ? 'rf-label invalid' : 'rf-label' } htmlFor="rue-voie">
-              Voie <span className="obligatoire">*</span>
-              <input className={erreurRueVoie ? 'rf-input rf-mt-2v input-error' : 'rf-input rf-mt-2v'} type="text"
-                id="rue-voie" name="rueVoie" required="required" onChange={handleChange} value={rueVoie}/>
-            </label>
-            { erreurRueVoie &&
-              <p className="text-error rf-mb-n3w">{erreurRueVoie}</p>
-            }
-          </div>
-
-          <div className="rf-col-4"></div>
-
-          <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
-            <label className={erreurcodePostal ? 'rf-label invalid' : 'rf-label' } htmlFor="code-postal">
-              Code postal <span className="obligatoire">*</span>
-              <input className={erreurcodePostal ? 'rf-input rf-mt-2v input-error' : 'rf-input rf-mt-2v'} type="text"
-                id="code-postal" name="codePostal" required="required" onChange={handleChange} value={codePostal}/>
-            </label>
-            { erreurcodePostal &&
-              <p className="text-error rf-mb-n3w">{erreurcodePostal}</p>
-            }
-          </div>
-
-          <div className="rf-col-4"></div>
-
-          <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
-            <label className={erreurVille ? 'rf-label invalid' : 'rf-label' } htmlFor="ville">
-              Ville <span className="obligatoire">*</span>
-              <input className={erreurVille ? 'rf-input rf-mt-2v input-error' : 'rf-input rf-mt-2v'} type="text"
-                id="ville" name="ville" required="required" onChange={handleChange} value={ville}/>
-            </label>
-            { erreurVille &&
-              <p className="text-error rf-mb-n3w">{erreurVille}</p>
-            }
-          </div>
-
-          <div className="rf-col-4"></div>
         </>
       }
+
+      <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
+        <label className={erreurNumeroVoie ? 'rf-label invalid' : 'rf-label' } htmlFor="numero-voie">
+          N° de voie <span className="obligatoire">*</span>
+          <input className={erreurNumeroVoie ? 'rf-input rf-mt-2v input-error' : 'rf-input rf-mt-2v'} type="text"
+            id="numero-voie" name="numeroVoie" required="required" onChange={handleChange} value={numeroVoie}/>
+        </label>
+        { erreurNumeroVoie &&
+          <p className="text-error rf-mb-n3w">{erreurNumeroVoie}</p>
+        }
+      </div>
+
+      <div className="rf-col-4"></div>
+
+      <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
+        <label className={erreurRueVoie ? 'rf-label invalid' : 'rf-label' } htmlFor="rue-voie">
+          Voie <span className="obligatoire">*</span>
+          <input className={erreurRueVoie ? 'rf-input rf-mt-2v input-error' : 'rf-input rf-mt-2v'} type="text"
+            id="rue-voie" name="rueVoie" required="required" onChange={handleChange} value={rueVoie}/>
+        </label>
+        { erreurRueVoie &&
+          <p className="text-error rf-mb-n3w">{erreurRueVoie}</p>
+        }
+      </div>
+
+      <div className="rf-col-4"></div>
+
+      <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
+        <label className={erreurcodePostal ? 'rf-label invalid' : 'rf-label' } htmlFor="code-postal">
+          Code postal <span className="obligatoire">*</span>
+          <input className={erreurcodePostal ? 'rf-input rf-mt-2v input-error' : 'rf-input rf-mt-2v'} type="text"
+            id="code-postal" name="codePostal" required="required" onChange={handleChange} value={codePostal}/>
+        </label>
+        { erreurcodePostal &&
+          <p className="text-error rf-mb-n3w">{erreurcodePostal}</p>
+        }
+      </div>
+
+      <div className="rf-col-4"></div>
+
+      <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
+        <label className={erreurVille ? 'rf-label invalid' : 'rf-label' } htmlFor="ville">
+          Ville <span className="obligatoire">*</span>
+          <input className={erreurVille ? 'rf-input rf-mt-2v input-error' : 'rf-input rf-mt-2v'} type="text"
+            id="ville" name="ville" required="required" onChange={handleChange} value={ville}/>
+        </label>
+        { erreurVille &&
+          <p className="text-error rf-mb-n3w">{erreurVille}</p>
+        }
+      </div>
+
+      <div className="rf-col-4"></div>
 
       <div className="rf-col-offset-1 rf-col-10 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
         <label className={erreurNumeroTelephone ? 'rf-label invalid' : 'rf-label' } htmlFor="numero-telephone">
