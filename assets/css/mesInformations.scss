@@ -1,0 +1,64 @@
+.mes-informations {
+  font-family: "Marianne", Arial, sans-serif;
+  .titre {
+    font-family: "MarianneThin", Arial, sans-serif;
+    font-size: 56px;
+    line-height: 72px;
+    margin: 0;
+  }
+  .sous-titre {
+    font-size: 32px;
+    line-height: 40px;
+    line-height: 32px;
+    font-family: "Marianne-Bold", Arial, sans-serif;
+  }
+  .desc-input {
+    color: #929292;
+  }
+  .contact-mail {
+    display: flex;
+    align-content: center;
+    .infos-user {
+      display: flex;
+      line-height: 24px;
+      font-weight: 300;
+      font-size: 16px;
+      flex-direction: column;
+      span:first-child {
+        font-weight: 600;
+      }
+    }
+    img {
+      margin-right: 16px;
+      height: 29.8px;
+      width: 40px;
+    }
+  }
+  .username {
+    font-family: "Marianne-Bold", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .paragraphe {
+    font-family: "Marianne-Light", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 24px;
+    color: #929292;
+  }
+  .form-button {
+    background-color: #9a9aff;
+    color: #000091;
+    &:hover {
+      background-color: #7171ff;
+      color: #000091;
+    }
+  }
+  .radio-genre {
+    margin-right: 40px;
+    input[type="radio"]:checked + label::before {
+      background-color: #9a9aff;
+      border: 1px solid #9a9aff;
+    }
+  }
+}

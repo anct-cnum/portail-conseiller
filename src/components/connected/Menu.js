@@ -19,7 +19,7 @@ function Menu() {
     }
   };
 
-  const exclusionPages = ['/ressourcerie', '/a-propos'];
+  const exclusionPages = ['/ressourcerie', '/a-propos', '/mes-informations'];
 
   return (
     <>

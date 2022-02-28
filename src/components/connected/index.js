@@ -10,6 +10,7 @@ import { userEntityId } from '../../helpers';
 import FormulaireSexeAge from './FormulaireSexeAge';
 import Ressourcerie from './ressourcerie/Ressourcerie';
 import Permanence from './permanence/index';
+import MesInformations from './mesInformations';
 
 function Connected() {
 
@@ -40,31 +41,32 @@ function Connected() {
 
   return (
     <>
-      <Header linkAccount={user?.name}/>
+      <Header linkAccount={user?.name} />
       {voirFormulaire &&
-        <FormulaireSexeAge/>
+        <FormulaireSexeAge />
       }
       {!user.pdfGenerator &&
-      <>
-        {!voirPermanence &&
-          //<Route path={`/mes-informations`} component={Permanence} />
-          <>
-            <Route path={`/accueil`} component={Welcome} />
-            <Route path={`/compte-rendu-activite`} component={Cra} />
-            <Route path={`/statistiques`} component={Statistics} />
-            <Route path={`/ressourcerie`} component={Ressourcerie} />
-            <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
-          </>
-        }
-        {voirPermanence &&
         <>
-          <Route path={`/accueil`} component={Permanence} />
-          <Route path="/" render={() => (<Redirect to="/accueil" />)} />
+          {!voirPermanence &&
+            //<Route path={`/mes-informations`} component={Permanence} />
+            <>
+              <Route path={`/accueil`} component={Welcome} />
+              <Route path={`/compte-rendu-activite`} component={Cra} />
+              <Route path={`/statistiques`} component={Statistics} />
+              <Route path={`/ressourcerie`} component={Ressourcerie} />
+              <Route path={'/mes-informations'} component={MesInformations} />
+              <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
+            </>
+          }
+          {voirPermanence &&
+            <>
+              <Route path={`/accueil`} component={Permanence} />
+              <Route path="/" render={() => (<Redirect to="/accueil" />)} />
+            </>
+          }
         </>
-        }
-      </>
       }
-      { user.pdfGenerator &&
+      {user.pdfGenerator &&
         <>
           <Route path={`/statistiques`} component={Statistics} />
         </>
