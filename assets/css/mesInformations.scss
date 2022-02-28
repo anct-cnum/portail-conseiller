@@ -12,6 +12,9 @@
     line-height: 32px;
     font-family: "Marianne-Bold", Arial, sans-serif;
   }
+  .desc-input {
+    color: #929292;
+  }
   .contact-mail {
     display: flex;
     align-content: center;
@@ -53,7 +56,7 @@
   }
   .radio-genre {
     margin-right: 40px;
-    input[type=radio]:checked + label::before {
+    input[type="radio"]:checked + label::before {
       background-color: #9a9aff;
       border: 1px solid #9a9aff;
     }

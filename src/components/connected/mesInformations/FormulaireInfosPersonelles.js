@@ -1,11 +1,12 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 function FormulaireInfosPersonnelles() {
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   function calcAge(birthDate) {
-    const yearDiff = moment().diff(birthDate, 'years');
+    const now = dayjs();
+    const yearDiff = now.diff(birthDate, 'years');
 
     return yearDiff;
   }
@@ -42,6 +43,7 @@ function FormulaireInfosPersonnelles() {
       <div className="rf-input-group rf-mb-5w">
         <label className="rf-label" htmlFor="email">
           Adresse mail secondaire
+          <span className="rf-hint-text desc-input">Celle-ci vous a servi pour candidater au dispositif Conseiller numérique France services.</span>
         </label>
         <input
           className="rf-input"

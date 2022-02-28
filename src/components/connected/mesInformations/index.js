@@ -37,10 +37,10 @@ function MesInformations() {
                 <h2 className="rf-mb-md-4w sous-titre">Mes informations personnelles</h2>
                 <div className="contact-mail">
                   <img src="/logos/home-connected/icone-courriel.svg" />
-                  <div className="infos-user rf-mb-md-4w">
+                  <div className="infos-user rf-mb-md-9w">
                     <span>{user.name}</span>
-                    <span>Modification de mon mot de passe</span>
-                    <span>Modification de mon mail Conseiller numérique</span>
+                    {/* <span>Modification de mon mot de passe</span>
+                    <span>Modification de mon mail Conseiller numérique</span> */}
                   </div>
                 </div>
                 <FormulaireInfosPersonnelles />
@@ -49,7 +49,7 @@ function MesInformations() {
             <div className="rf-col-12 rf-col-md-6">
               <div className="rf-ml-md-10w">
                 <h2 className="rf-mb-md-4w sous-titre">Contact de mon responsable</h2>
-                <p className="paragraphe rf-mb-md-4w">Ces coordonn&eacute;es pourront &ecirc;tre utilis&eacute;es pour communiquer des informations concernant
+                <p className="paragraphe rf-mb-md-3w">Ces coordonn&eacute;es pourront &ecirc;tre utilis&eacute;es pour communiquer des informations concernant
                   le dispositif et l&rsquo;animation du r&eacute;seau à votre employeur (ex: invitation à des webinaires,
                   envoi de documents explicatifs, newsletter, etc.)
                 </p>
