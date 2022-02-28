@@ -155,7 +155,7 @@ function FormulaireSuperieurHierarchique() {
           </p>
         }
       </div>
-      <button className="form-button rf-btn" onClick={handleSubmit}>
+      <button className="form-button rf-btn rf-mb-4w" onClick={handleSubmit}>
         Enregistrer
       </button>
     </>
