@@ -111,7 +111,7 @@
   }
   .emplacement-permanences {
     overflow: auto;
-    height: 240px;
+    max-height: 240px;
   }
   .permanence-existante {
     margin-left: 4px;

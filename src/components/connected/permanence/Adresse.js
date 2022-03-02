@@ -4,10 +4,11 @@ import { permanenceActions } from '../../../actions/permanence.actions';
 import { useDispatch, useSelector } from 'react-redux';
 import telephoneHorsMetropole from '../../../data/indicatifs.json';
 
-function Adresse({ codeDepartement, adressePermanence }) {
+function Adresse({ codeDepartement, nomEnseignePermanence, adressePermanence, lieuPrincipal }) {
 
   const dispatch = useDispatch();
 
+  const showSiret = useSelector(state => state.permanence.showSiret);
   const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
 
   const erreurLieuActivite = erreursFormulaire?.filter(erreur => erreur?.nomEnseigne)[0]?.nomEnseigne;
@@ -45,30 +46,33 @@ function Adresse({ codeDepartement, adressePermanence }) {
     dispatch(permanenceActions.updateField(name, value));
   }
 
+  function toggleSiret() {
+    dispatch(permanenceActions.toggleSiret());
+  }
+
   useEffect(() => {
-    console.log(adressePermanence);
     if (!isAdresseCachee) {
-      setInputs({
+      setInputs(inputs => ({ ...inputs,
         nomEnseigne: '',
         siret: '',
         numeroVoie: '',
         rueVoie: '',
         codePostal: '',
         ville: ''
-      });
-    } else {
-
-      setInputs(inputs => ({ ...inputs,
-        nomEnseigne: adressePermanence?.nomEnseigne ?? '',
-        siret: adressePermanence?.siret ?? '',
-        numeroVoie: adressePermanence?.numeroRue ?? '',
-        rueVoie: adressePermanence?.rue ?? '',
-        codePostal: adressePermanence?.codePostal ?? '',
-        ville: adressePermanence?.ville ?? '',
       }));
-      console.log(inputs);
+    } else {
+      setInputs(inputs => ({ ...inputs,
+        nomEnseigne: nomEnseignePermanence ?? '',
+        siret: adressePermanence?.siret ?? '',
+        numeroVoie: adressePermanence?.numero_voie ?? '',
+        rueVoie: adressePermanence?.type_voie + ' ' + adressePermanence?.nom_voie ?? '',
+        codePostal: adressePermanence?.code_postal ?? '',
+        ville: adressePermanence?.localite ?? '',
+      }));
     }
   }, [isAdresseCachee, adressePermanence]);
+
+  console.log(adressePermanence);
 
   return (
     <>
@@ -103,23 +107,52 @@ function Adresse({ codeDepartement, adressePermanence }) {
 
           <div className="rf-col-4"></div>
 
-          <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
-            <label className={erreurSiret ? 'rf-label invalid' : 'rf-label' } htmlFor="siret">
-              Num&eacute;ro de Siret
-              <span className="baseline">
-                <a className="link" href="https://www.pappers.fr/" title="Liens vers https://www.pappers.fr/" target="blank" rel="noreferrer">
-                  O&ugrave; trouver un num&eacute;ro de Siret&nbsp;?
-                </a>
-              </span>
-              <input className={erreurSiret ? 'rf-input rf-mt-2v input-error' : 'rf-input rf-mt-2v'}
-                type="string" id="siret" name="siret" value={siret} onChange={handleChange} />
-            </label>
-            { erreurSiret &&
-            <p className="text-error rf-mb-n3w">{erreurSiret}</p>
-            }
-          </div>
+          {!lieuPrincipal &&
+            <>
+              <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
+                <label className={erreurSiret ? 'rf-label invalid' : 'rf-label' } htmlFor="siret">
+                  Num&eacute;ro de Siret
+                  <span className="baseline">
+                    <a className="link" href="https://www.pappers.fr/" title="Liens vers https://www.pappers.fr/" target="blank" rel="noreferrer">
+                      O&ugrave; trouver un num&eacute;ro de Siret&nbsp;?
+                    </a>
+                  </span>
+                  <input className={erreurSiret ? 'rf-input rf-mt-2v input-error' : 'rf-input rf-mt-2v'}
+                    type="text" id="siret" name="siret" value={siret} onChange={handleChange} />
+                </label>
+                { erreurSiret &&
+                <p className="text-error rf-mb-n3w">{erreurSiret}</p>
+                }
+              </div>
 
-          <div className="rf-col-4"></div>
+              <div className="rf-col-4"></div>
+
+              <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-10 rf-mb-6w">
+
+                <div className="rf-checkbox-group">
+                  <input type="checkbox" id="checkbox" name="checkbox" onClick={toggleSiret}/>
+                  <label className="rf-label" htmlFor="checkbox">
+                  La structure n&rsquo;a pas de num&eacute;ro de Siret
+                    <span className="baseline">
+                      Cochez &eacute;galemnent si le lieu d&rsquo;activit&eacute; partage le Siret d&rsquo;une autre structure &agrave; laquelle il
+                      est rattach&eacute;. Exemple : ma m&eacute;diath&egrave;que a le m&ecirc;me Siret que la mairie.
+                    </span>
+                  </label>
+                </div>
+
+                <label className={erreurSiret ? 'rf-label invalid' : 'rf-label' } htmlFor="siret">
+
+                  <input className={'rf-input rf-mt-2v'}
+                    type="checkbox" id="siret" name="siret" value={siret} onChange={handleChange} />
+                </label>
+                { erreurSiret &&
+                <p className="text-error rf-mb-n3w">{erreurSiret}</p>
+                }
+              </div>
+
+              <div className="rf-col-4"></div>
+            </>
+          }
         </>
       }
 
@@ -224,6 +257,8 @@ function Adresse({ codeDepartement, adressePermanence }) {
 Adresse.propTypes = {
   codeDepartement: PropTypes.string,
   adressePermanence: PropTypes.object,
+  nomEnseignePermanence: PropTypes.string,
+  lieuPrincipal: PropTypes.bool,
 };
 
 export default Adresse;

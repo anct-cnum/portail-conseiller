@@ -3,6 +3,7 @@ import Joi from 'joi';
 
 export const permanenceActions = {
   get,
+  getListePermanences,
   isPermanenceChecked,
   closePermanence,
   initPermanence,
@@ -16,6 +17,7 @@ export const permanenceActions = {
   updateItinerance,
   montrerLieuSecondaire,
   updateTypeAcces,
+  toggleSiret,
 };
 
 function get(idConseiller) {
@@ -39,6 +41,30 @@ function get(idConseiller) {
   }
   function failure(error) {
     return { type: 'GET_PERMANENCE_FAILURE', error };
+  }
+}
+
+function getListePermanences(idStructure) {
+  return dispatch => {
+    dispatch(request());
+
+    permanenceService.getListePermanences(idStructure)
+    .then(
+      result => dispatch(success(result.permanences)),
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'GET_PERMANENCES_REQUEST' };
+  }
+  function success(permanences) {
+    return { type: 'GET_PERMANENCES_SUCCESS', permanences };
+  }
+  function failure(error) {
+    return { type: 'GET_PERMANENCES_FAILURE', error };
   }
 }
 
@@ -202,7 +228,6 @@ function updatePermanence(idPermanence, permanence) {
 }
 
 function updateLieuPrincipal(hide) {
-  console.log(hide);
   if (hide) {
     return { type: 'CACHER_ADRESSE', hide };
   } else {
@@ -232,4 +257,8 @@ function updateItinerance(itinerance) {
 
 function updateTypeAcces(typeAcces) {
   return { type: 'UPDATE_TYPE_ACCES', typeAcces };
+}
+
+function toggleSiret() {
+  return { type: 'TOGGLE_SIRET' };
 }

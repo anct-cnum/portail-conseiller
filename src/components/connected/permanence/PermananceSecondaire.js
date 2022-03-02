@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import AjouterAutrePermanence from './AjouterAutrePermanence';
 import ListPermanences from './ListPermanences';
@@ -9,10 +10,12 @@ import Adresse from './Adresse';
 
 import { permanenceActions } from '../../../actions';
 
-function PermanenceSecondaire() {
+function PermanenceSecondaire({ structure }) {
   const dispatch = useDispatch();
 
   const showLieuSecondaire = useSelector(state => state.permanence.showLieuSecondaire);
+
+  const adresseStructure = structure?.insee?.etablissement?.adresse;
 
   function handleSecondaire(show) {
     dispatch(permanenceActions.montrerLieuSecondaire(show));
@@ -57,9 +60,14 @@ function PermanenceSecondaire() {
       </div>
       {showLieuSecondaire &&
       <>
-        <ListPermanences />
+        <ListPermanences structureId={structure?._id}/>
 
-        <Adresse />
+        <Adresse
+          codeDepartement={structure?.codeDepartement}
+          adressePermanence={adresseStructure}
+          nomEnseignePermanence={structure?.nom}
+          lieuPrincipal={false}
+        />
 
         <TypeAcces lieuPrincipal={false}/>
 
@@ -73,6 +81,7 @@ function PermanenceSecondaire() {
 }
 
 PermanenceSecondaire.propTypes = {
+  structure: PropTypes.object
 };
 
 export default PermanenceSecondaire;

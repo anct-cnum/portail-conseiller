@@ -74,11 +74,13 @@ function PermanencePrincipale({ structure }) {
         </div>
       </div>
 
-      <ListPermanences />
+      <ListPermanences structureId={structure?._id}/>
 
       <Adresse
         codeDepartement={structure?.codeDepartement}
         adressePermanence={adresseStructure}
+        nomEnseignePermanence={structure?.nom}
+        lieuPrincipal={true}
       />
 
       <TypeAcces lieuPrincipal={true} />

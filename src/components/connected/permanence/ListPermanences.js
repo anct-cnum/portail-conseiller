@@ -1,24 +1,27 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { permanenceActions } from '../../../actions';
 
-function ListPermanences() {
+function ListPermanences({ structureId }) {
+  const dispatch = useDispatch();
 
-  // TODO récupérer la liste des permanences déjà créées
-  // const permanences = useSelector(state => state.permanence?.permanences);
-
+  const listPermanences = useSelector(state => state.permanence?.permanences);
   const isAdresseCachee = useSelector(state => state.permanence?.isAdresseCachee);
-
-  const listPermanences = [
-    { '_id': '4s5df456sfdsfd45sfd5sfd45', 'nomStructure': 'Espace numérique sud Laon', 'codePostal': '02000', 'ville': 'LAON' },
-    { '_id': 'kopkpok94u56t5hh5fd5sfd45', 'nomStructure': 'Solidarité formation Médiation de Chauny', 'codePostal': '02300', 'ville': 'CHAUNY' },
-    { '_id': '4s5df456sfd8sdf855dsf4245', 'nomStructure': 'CCAS de Saint-Quentin', 'codePostal': '02100', 'ville': 'SAINT-QUENTIN' },
-    { '_id': '4poi456kjh5erfu5sfd5sfd45', 'nomStructure': 'Communauté d’agglomération du Beauvais', 'codePostal': '60000', 'ville': 'BEAUVAIS' },
-  ];
-  
-  const handleClick = value => {
-
+  const permanencestate = useSelector(state => state.permanence);
+  console.log(permanencestate);
+  const handleClick = e => {
+    const permanence = listPermanences.find(permanence => permanence._id === e.target.value);
+    dispatch(permanenceActions.updateField('nomEnseigne', permanence?.nomEnseigne));
+    dispatch(permanenceActions.updateField('siret', permanence?.siret));
+    dispatch(permanenceActions.initAdresse(permanence?.adresse));
   };
-
+  useEffect(() => {
+    if (structureId) {
+      console.log(structureId);
+      dispatch(permanenceActions.getListePermanences(structureId));
+    }
+  }, [structureId]);
   return (
     <>
       {isAdresseCachee === false &&
@@ -37,23 +40,28 @@ function ListPermanences() {
                 <div className="emplacement-permanences">
                   {listPermanences.map(((permanence, idx) => {
                     return (
+
                       <div key={idx}>
-                        <hr />
-                        <div className="rf-fieldset__content">
-                          <div className="rf-radio-group">
-                            <input type="radio" id={permanence._id} className="permanence-existante" name="permancenceSecondaire" value={permanence._id}
-                              defaultChecked={permanence._id} required="required"/>
-                            <label className="rf-label rf-my-2w permanence-existante" htmlFor={permanence._id}>
-                              <span className="rf-container rf-container--fluid">
-                                <span className="rf-grid-row">
-                                  <span className="rf-col-3">{permanence.ville.toUpperCase()}</span>
-                                  <span className="rf-col-2">{permanence.codePostal}</span>
-                                  <span className="rf-col-7">{permanence.nomStructure}</span>
+                        {!permanence.estStructure &&
+                        <>
+                          <hr />
+                          <div className="rf-fieldset__content">
+                            <div className="rf-radio-group">
+                              <input type="radio" id={permanence._id} className="permanence-existante" name="permancenceSecondaire" value={permanence._id}
+                                defaultChecked={permanence._id} required="required" onClick={handleClick}/>
+                              <label className="rf-label rf-my-2w permanence-existante" htmlFor={permanence._id}>
+                                <span className="rf-container rf-container--fluid">
+                                  <span className="rf-grid-row">
+                                    <span className="rf-col-3">{permanence.adresse.ville.toUpperCase()}</span>
+                                    <span className="rf-col-2">{permanence.adresse.codePostal}</span>
+                                    <span className="rf-col-7">{permanence.nomEnseigne}</span>
+                                  </span>
                                 </span>
-                              </span>
-                            </label>
+                              </label>
+                            </div>
                           </div>
-                        </div>
+                        </>
+                        }
                       </div>);
                   })) }
                 </div>
@@ -74,5 +82,9 @@ function ListPermanences() {
     </>
   );
 }
+
+ListPermanences.propTypes = {
+  structureId: PropTypes.string,
+};
 
 export default ListPermanences;

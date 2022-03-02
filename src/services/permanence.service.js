@@ -5,6 +5,7 @@ const apiUrlRoot = process.env.REACT_APP_API;
 
 export const permanenceService = {
   get,
+  getListePermanences,
   createPermanence,
   updatePermanence,
 };
@@ -16,6 +17,15 @@ function get(idConseiller) {
   };
 
   return fetch(`${apiUrlRoot}/permanence-conseillers/conseiller/${idConseiller}`, requestOptions).then(handleResponse);
+}
+
+function getListePermanences(idStructure) {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  };
+
+  return fetch(`${apiUrlRoot}/permanence-conseillers/structure/${idStructure}`, requestOptions).then(handleResponse);
 }
 
 function createPermanence(permanence) {

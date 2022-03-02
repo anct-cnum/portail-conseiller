@@ -5,6 +5,7 @@ const initialState = {
   isUpdated: false,
   showError: false,
   showLieuSecondaire: false,
+  showSiret: true,
 };
 
 export default function permanence(state = initialState, action) {
@@ -20,6 +21,21 @@ export default function permanence(state = initialState, action) {
         permanence: action?.permanence
       };
     case 'GET_PERMANENCE_FAILURE':
+      return {
+        ...state,
+        error: action.error
+      };
+    case 'GET_PERMANENCES_REQUEST':
+      return {
+        ...state,
+        loading: true
+      };
+    case 'GET_PERMANENCES_SUCCESS':
+      return {
+        ...state,
+        permanences: action?.permanences
+      };
+    case 'GET_PERMANENCES_FAILURE':
       return {
         ...state,
         error: action.error
@@ -186,6 +202,11 @@ export default function permanence(state = initialState, action) {
       };
 
     /* Partie Adresse */
+    case 'TOGGLE_SIRET':
+      return {
+        ...state,
+        showSiret: !state.showSiret
+      };
     case 'UPDATE_NUMEROVOIE':
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.numeroVoie)[0]?.numeroVoie;
       return {
