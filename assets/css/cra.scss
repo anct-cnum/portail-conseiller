@@ -17,6 +17,16 @@ $errorDarkMode: #FF3333;
     font-family: 'MarianneThin', Arial, sans-serif;
   }
 
+  .a-propos {
+    display: inline-block;
+    box-shadow: none !important;
+    text-decoration: none;
+    line-height: 24px;
+    letter-spacing: 0;
+    color: #929292;
+    font-size: 14px;
+    margin-right: -18px;
+  }
   .questionRequired, .labelError {
     color: $errorDarkMode;
   }
