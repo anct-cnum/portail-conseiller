@@ -9,29 +9,43 @@ function SquareButton({ value, label, type, cra }) {
   const dispatch = useDispatch();
   let controlSelected = getCraValue(type);
 
+  const ajoutNbParticipants = (valeur, groupe, groupeNbParticipants, totalNbParticipants, action) => {
+
+    const filtre = Object.values(groupe).filter(tranche => tranche === totalNbParticipants).length;
+
+    if (groupeNbParticipants === 0) {
+      groupe[valeur] = totalNbParticipants;
+      dispatch(action(groupe, totalNbParticipants));
+
+    } else if (totalNbParticipants > groupeNbParticipants) {
+      for (let key in groupe) {
+        if (key === valeur) {
+          groupe[key] += 1;
+        }
+      }
+      dispatch(action(groupe, groupeNbParticipants + 1));
+    } else if (filtre > 0) {
+      for (let key in groupe) {
+        if (key === valeur) {
+          groupe[key] += 1;
+        } else if (groupe[key] === groupeNbParticipants) {
+          groupe[key] -= 1;
+        }
+      }
+      dispatch(action(groupe, totalNbParticipants));
+    }
+  };
+
   const onClickSquare = e => {
     switch (type) {
       case 'age':
-        if (cra?.nbParticipants > cra?.nbParticipantsAge) {
-          const age = cra?.age;
-          for (let key in cra?.age) {
-            if (key === value) {
-              age[key] += 1;
-            }
-          }
-
-          dispatch(craActions.updateAge(age, cra?.nbParticipantsAge + 1));
+        if (cra?.nbParticipants) {
+          ajoutNbParticipants(value, cra?.age, cra?.nbParticipantsAge, cra?.nbParticipants, craActions.updateAge);
         }
         break;
       case 'statut':
-        if (cra?.nbParticipants > cra?.nbParticipantsStatut) {
-          const statut = cra?.statut;
-          for (let key in cra?.statut) {
-            if (key === value) {
-              statut[key] += 1;
-            }
-          }
-          dispatch(craActions.updateStatut(statut, cra?.nbParticipantsStatut + 1));
+        if (cra?.nbParticipants) {
+          ajoutNbParticipants(value, cra?.statut, cra?.nbParticipantsStatut, cra?.nbParticipants, craActions.updateStatut);
         }
         break;
       case 'duree':

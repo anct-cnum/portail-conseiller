@@ -35,7 +35,12 @@ function Cra() {
       }
       <div className="rf-container cra">
         <div className="rf-grid-row rf-grid-row--center rf-my-md-12w rf-pt-1w rf-pb-3w">
-          <h1 className="titre">Mon suivi d&rsquo;activit&eacute;</h1>
+          <div className="rf-col-md-2">
+            <img src="/logos/home-connected/icone-cra.svg" style={{ width: '114px', height: '78px' }} />
+          </div>
+          <div className="rf-col-12 rf-col-md-10">
+            <h1 className="titre">Mon suivi d&rsquo;activit&eacute;</h1>
+          </div>
         </div>
         <CodePostal/>
         <Canal/>

@@ -39,7 +39,7 @@ function ValidationButton() {
 
   return (
     <div className="rf-grid-row rf-grid-row--center rf-pb-12w rf-mb-3w">
-      <div className="rf-col-sm-8 rf-col-md-6 submitResponsive" style={{ textAlign: 'center' }}>
+      <div className="rf-col-sm-10 rf-col-md-6 submitResponsive" style={{ textAlign: 'center' }}>
         <button className="rf-btn rf-text--bold big-btn submitCra" onClick={sendCra}>Valider</button>
         <br/>
         {saveInProgress &&
