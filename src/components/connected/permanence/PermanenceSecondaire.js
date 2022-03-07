@@ -10,7 +10,7 @@ import Adresse from './Adresse';
 
 import { permanenceActions } from '../../../actions';
 
-function PermanenceSecondaire({ structure }) {
+function PermanenceSecondaire({ structure, tableauIndex }) {
   const dispatch = useDispatch();
 
   const showLieuSecondaire = useSelector(state => state.permanence.showLieuSecondaire);
@@ -18,13 +18,19 @@ function PermanenceSecondaire({ structure }) {
   const adresseStructure = structure?.insee?.etablissement?.adresse;
 
   function handleSecondaire(show) {
-    dispatch(permanenceActions.montrerLieuSecondaire(show));
-  }
+    tableauIndex[0].showPermanence = show;
+    dispatch(permanenceActions.montrerLieuSecondaire(tableauIndex));
 
+    console.log(tableauIndex);
+  }
+  console.log(showLieuSecondaire);
+  const test = tableauIndex.map((permanence, idx) => {
+    return permanence.showPermanence;
+  });
+  console.log(test);
   return (
     <>
       <div className="rf-col-1 col-logo">
-
         <img className="pin rf-mt-8w" src="logos/permanences/pin.svg"/>
       </div>
       <div className="rf-col-8 ">
@@ -58,30 +64,59 @@ function PermanenceSecondaire({ structure }) {
           </div>
         </fieldset>
       </div>
-      {showLieuSecondaire &&
+
+      {tableauIndex && tableauIndex.map((permanence, idx) => {
+        return (<span key={idx} className="rf-col-12">
+          {permanence.showPermanence &&
+            <>
+              <ListPermanences prefixId={ 'secondaire_' + permanence.id + '_'}/>
+
+              <Adresse
+                codeDepartement={structure?.codeDepartement}
+                adressePermanence={adresseStructure}
+                nomEnseignePermanence={structure?.nom}
+                prefixId={ 'secondaire_' + permanence.id + '_'}
+                islieuPrincipal={false}
+              />
+
+              <TypeAcces prefixId={ 'secondaire_' + permanence.id + '_'} islieuPrincipal={false}/>
+
+              <Horaires prefixId={ 'secondaire_' + permanence.id + '_'} />
+
+              <AjouterAutrePermanence prefixId={ 'secondaire_' + permanence.id + '_'} idSecondaire={ permanence.id } />
+            </>
+          }
+        </span>);
+      })
+      }
+
+
+      {/*showLieuSecondaire &&
       <>
-        <ListPermanences structureId={structure?._id}/>
+        <ListPermanences prefixId="secondaire_"/>
 
         <Adresse
           codeDepartement={structure?.codeDepartement}
           adressePermanence={adresseStructure}
           nomEnseignePermanence={structure?.nom}
-          lieuPrincipal={false}
+          prefixId="secondaire_"
+          islieuPrincipal={false}
         />
 
-        <TypeAcces lieuPrincipal={false}/>
+        <TypeAcces islieuPrincipal={false}/>
 
         <Horaires />
 
         <AjouterAutrePermanence />
       </>
-      }
+    */}
     </>
   );
 }
 
 PermanenceSecondaire.propTypes = {
-  structure: PropTypes.object
+  structure: PropTypes.object,
+  tableauIndex: PropTypes.array,
 };
 
 export default PermanenceSecondaire;

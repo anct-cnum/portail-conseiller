@@ -19,12 +19,15 @@ function PermanencePrincipale({ structure }) {
   const adresseStructure = structure?.insee?.etablissement?.adresse;
 
   function handleAdresse(estLieuPrincipal) {
+    dispatch(permanenceActions.updateField('estLieuPrincipal', estLieuPrincipal));
+    /*
     dispatch(permanenceActions.updateLieuPrincipal(estLieuPrincipal));
     if (estLieuPrincipal) {
-      dispatch(permanenceActions.updateField('nomEnseigne', structure?.nom));
-      dispatch(permanenceActions.updateField('siret', structure?.siret));
-      dispatch(permanenceActions.initAdresse(adresseStructure));
+      dispatch(permanenceActions.updateField('principal_nomEnseigne', structure?.nom));
+      dispatch(permanenceActions.updateField('principal_siret', structure?.siret));
+      dispatch(permanenceActions.initAdresse('principal_', adresseStructure));
     }
+    */
   }
 
   return (
@@ -74,18 +77,19 @@ function PermanencePrincipale({ structure }) {
         </div>
       </div>
 
-      <ListPermanences structureId={structure?._id}/>
+      <ListPermanences prefixId="principal_" />
 
       <Adresse
         codeDepartement={structure?.codeDepartement}
         adressePermanence={adresseStructure}
         nomEnseignePermanence={structure?.nom}
-        lieuPrincipal={true}
+        prefixId="principal_"
+        islieuPrincipal={true}
       />
 
-      <TypeAcces lieuPrincipal={true} />
+      <TypeAcces prefixId="principal_" islieuPrincipal={true} />
 
-      <Horaires />
+      <Horaires prefixId="principal_" />
     </>
   );
 }

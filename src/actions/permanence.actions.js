@@ -239,12 +239,12 @@ function montrerLieuSecondaire(show) {
   return { type: 'HAVE_LIEU_SECONDAIRE', show };
 }
 
-function initAdresse(adresse) {
-  return { type: 'INIT_ADRESSE', adresse };
+function initAdresse(prefixId, adresse) {
+  return { type: 'INIT_ADRESSE', prefixId, adresse };
 }
 
 function updateField(name, value) {
-  return { type: 'UPDATE_' + name.toUpperCase(), value };
+  return { type: 'UPDATE_FIELD', field: { name: name, value: value } };
 }
 
 function updateHoraires(horaires) {

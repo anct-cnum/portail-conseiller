@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { permanenceActions } from '../../../actions/permanence.actions';
+import PropTypes from 'prop-types';
 
-function Horaires() {
+function Horaires({ prefixId }) {
 
   const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
   const erreursHoraires = erreursFormulaire?.filter(erreur => erreur?.horaires)[0]?.horaires;
@@ -113,5 +114,11 @@ function Horaires() {
     </>
   );
 }
+
+Horaires.propTypes = {
+  prefixId: PropTypes.string,
+};
+
+
 
 export default Horaires;

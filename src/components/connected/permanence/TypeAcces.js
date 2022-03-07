@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { permanenceActions } from '../../../actions/permanence.actions';
 
-function TypeAcces({ permanence, lieuPrincipal }) {
+function TypeAcces({ permanence, islieuPrincipal }) {
   const dispatch = useDispatch();
 
   const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
@@ -36,7 +36,7 @@ function TypeAcces({ permanence, lieuPrincipal }) {
                   Sur rendez-vous
                 </label>
               </div>
-              {!lieuPrincipal &&
+              {!islieuPrincipal &&
                 <div className="rf-radio-group">
                   <input type="radio" id="prive" name="typeAcces" value="prive"
                     defaultChecked={permanence?.typeAcces === 'prive'} onClick={handleChange}/>
@@ -59,7 +59,7 @@ function TypeAcces({ permanence, lieuPrincipal }) {
 
 TypeAcces.propTypes = {
   permanence: PropTypes.object,
-  lieuPrincipal: PropTypes.bool,
+  islieuPrincipal: PropTypes.bool,
 };
 
 export default TypeAcces;
