@@ -3,7 +3,9 @@ $blue: #2B8BF7;
 $errorDarkMode: #FF3333;
 
 .cra {
-
+  .espacement {
+    margin-bottom: 3.75rem !important;
+  }
   *:focus {
     outline: none;
   }
@@ -15,6 +17,16 @@ $errorDarkMode: #FF3333;
     font-family: 'MarianneThin', Arial, sans-serif;
   }
 
+  .a-propos {
+    display: inline-block;
+    box-shadow: none !important;
+    text-decoration: none;
+    line-height: 24px;
+    letter-spacing: 0;
+    color: #929292;
+    font-size: 14px;
+    margin-right: -18px;
+  }
   .questionRequired, .labelError {
     color: $errorDarkMode;
   }
@@ -119,13 +131,14 @@ $errorDarkMode: #FF3333;
     width: calc(810%/12 - 271px);
     padding-left: 0.75rem;
   }
+
   .react-datepicker{
     border-radius: 0 0 1.4rem 1.4rem;
     background-color: $background;
     border: 1px solid #5398ff;
     font-family: Marianne;
     color: #fff;
-    left: 20px;
+    left: 32px;
     top: -10px;
     .react-datepicker-popper {
       margin: 0 !important;
@@ -197,7 +210,12 @@ $errorDarkMode: #FF3333;
     top: 0px;
     left: -93px;
   }
-
+  .chevron-stats {
+    margin: 0px 2px 0px 4px;
+    position: relative;
+    font-size: 2rem;
+    top: 10px;
+  }
   .responsiveDate{
     background-color: $background;
     border: 1px solid white;
@@ -210,7 +228,7 @@ $errorDarkMode: #FF3333;
       cursor: pointer;
     }
     .buttonDate {
-      padding-top: 32%;
+      padding-top: 21%;
       cursor: pointer;
       height: 103px;
       &:hover, &:active {
@@ -237,13 +255,15 @@ $errorDarkMode: #FF3333;
       }
     }
   }
-  .moreRecurrence {
+  .lessRecurrence {
+    margin-top:0px;
+    padding-top: 5px;
     border-radius: 0 0 0 20px;
     border-bottom: 1px solid #fff;
     border-left: 1px solid #fff;
     border-top: none;
   }
-  .laberRecurrence {
+  .labelRecurrence, .labelRecurrence-alt {
     display: inline-block;
     position: relative;
     bottom: 67px;
@@ -255,6 +275,11 @@ $errorDarkMode: #FF3333;
       right: 6px;
       top: 6px;
     }
+  }
+  .labelRecurrence-alt {
+    bottom: -32px;
+    width: 100%;
+    left: 0;
   }
 
   .radioButtonRedirection {
@@ -355,16 +380,27 @@ $errorDarkMode: #FF3333;
   @media (max-width: 767px) {
 
     .titre {
+      text-align: center;
       font-size:28px;
       line-height:40px;
     }
-
-    .responsiveSelect, .responsiveRecurrence {
+    .questionResponsive {
+      text-align: center;
+      margin: auto;
+    }
+    .dateBox {
+      padding-left: .5rem;
+      width: 100%;
+    }
+    .responsiveSelect, .responsiveRecurrence, .responsiveDate {
       width: calc(1000%/12);
       margin: 0 auto;
+      padding-left: .5rem;
     }
-    .responsiveDate {
-      margin: 0 auto;
+    .labelRecurrence span {
+      display: block;
+      top: -15px;
+      right: 0;
     }
   }
 
@@ -372,12 +408,12 @@ $errorDarkMode: #FF3333;
   @media (max-width: 576px) {
 
     .questionResponsive {
-      margin-left: 0;
       width: calc(1200%/12);
     }
 
-    .responsiveSelect, .responsiveRecurrence {
+    .responsiveSelect, .responsiveRecurrence, .responsiveDate {
       width: calc(1200%/12);
+      padding-left: .5rem;
     }
 
   }
@@ -391,7 +427,7 @@ $errorDarkMode: #FF3333;
     background-color: $background;
     cursor: pointer;
   }
-  
+
   .radioRattachement-selected {
     background-color: white!important;
     color: black!important;
@@ -432,12 +468,14 @@ $errorDarkMode: #FF3333;
   }
 
   .labelCalculCustom {
+    margin-top: 5px;
     font-size: 2.5rem;
     color: black;
   }
 
   .countSmallRadioCalcul {
     .labelCalculCustom {
+      margin-top: 0px;
       padding-top: 10px;
     }
   }
@@ -772,6 +810,9 @@ $errorDarkMode: #FF3333;
     height: 33px;
     display: inline-block;
     margin-bottom: -14px;
+    .labelCalculCustom {
+      margin-top: 0px;
+    }
   }
 
   .countSmallSquareCalcul:hover {

@@ -34,6 +34,12 @@ function BigDatePickerButton({ initDate }) {
       name="dateCra"
       dateFormat="dd/MM/yyyy"
       locale="fr"
+      popperPlacement="bottom-start"
+      popperModifiers={{
+        flip: { behavior: ['bottom-start'] },
+        preventOverflow: { enabled: false },
+        hide: { enabled: false }
+      }}
       selected={initDate}
       onChange={dateAccompagnement => setDate(dateAccompagnement)}
       onCalendarOpen={() => setActive(true)}

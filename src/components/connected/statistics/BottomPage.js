@@ -214,7 +214,7 @@ function BottomPage({ donneesStats, print }) {
         </div>
 
         <div className="rf-col-12 rf-col-md-5 graphique-responsive-md no-print">
-          {statsReorientations.length > 0 &&
+          {statsReorientations?.length > 0 &&
             <>
               <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v"><hr/></div>
               <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientationsSM} print={print}/>
@@ -228,7 +228,7 @@ function BottomPage({ donneesStats, print }) {
         </div>
         <div className="rf-col-12 rf-col-offset-md-4 rf-col-md-8 graphique-responsive-lg reorientation-print">
           <div className="rf-mt-6w"></div>
-          {statsReorientations.length > 0 &&
+          {statsReorientations?.length > 0 &&
             <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientations} listeAutres={listeAutres} print={print}/>
           }
           <div className="rf-m-no-reorientation"></div>

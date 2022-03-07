@@ -8,7 +8,7 @@ function Statut() {
   const cra = useSelector(state => state.cra);
   const statut = cra?.statut;
   return (
-    <div className="rf-grid-row rf-grid-row--gutters rf-grid-row--middle rf-mb-7w">
+    <div className="rf-grid-row rf-grid-row--gutters rf-grid-row--middle espacement">
       <div className="rf-col-xs-11 rf-col-sm-11 rf-col-md-2 questionResponsive">
         <span className={`question ${cra?.printError && cra?.errorsRequired?.statut ? 'questionRequired' : ''}`}>
           Statut
@@ -19,7 +19,7 @@ function Statut() {
           <SquareButton
             type="statut"
             value="etudiant"
-            label="&Eacute;tudiant(e)"
+            label="Scolaris&eacute;(e)"
             cra= {cra}/>
         }
         {statut?.etudiant > 0 &&
@@ -27,7 +27,7 @@ function Statut() {
             type="statut"
             typeKey="etudiant"
             typeValue={statut?.etudiant}
-            typeLabel="&Eacute;tudiant(e)"/>
+            typeLabel="Scolaris&eacute;(e)"/>
         }
       </div>
       <div className="responsiveSquare2">

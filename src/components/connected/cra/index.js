@@ -16,6 +16,8 @@ import Recurrence from './Recurrence';
 function Cra() {
 
   const location = useLocation();
+  const urlAPropos = null; //'https://aide.conseiller-numerique.gouv.fr/fr/article/a-quelles-fins-les-donnees-du-cra-sont-elles-recoltees-1i5g761/';
+
   //Forcer affichage en haut de la page pour voir le flashbag
   if (location?.printFlashbag === true) {
     useEffect(() => {
@@ -35,7 +37,20 @@ function Cra() {
       }
       <div className="rf-container cra">
         <div className="rf-grid-row rf-grid-row--center rf-my-md-12w rf-pt-1w rf-pb-3w">
-          <h1 className="titre">Mon suivi d&rsquo;activit&eacute;</h1>
+          <div className="rf-col-12 rf-col-md-2">
+            <img src="/logos/home-connected/icone-cra.svg" style={{ width: '114px', height: '78px' }} />
+          </div>
+          <div className="rf-col-12 rf-col-md-6">
+            <h1 className="titre">Mon suivi d&rsquo;activit&eacute;</h1>
+          </div>
+          <div className="rf-col-12 rf-col-md-2" style={{ textAlign: 'right', marginTop: '18px' }}>
+            {urlAPropos &&
+              <a className="a-propos" href={urlAPropos} target="blank" rel="noreferrer" >&Agrave; propos<br/>
+              du suivi d&rsquo;activit&eacute;
+              </a>
+            }
+          </div>
+          <div className="rf-col-12 rf-col-md-2"></div>
         </div>
         <CodePostal/>
         <Canal/>

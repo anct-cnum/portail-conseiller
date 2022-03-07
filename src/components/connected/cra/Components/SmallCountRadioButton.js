@@ -14,6 +14,26 @@ function SmallCountRadioButton({ type, typeKey, typeLabel, typeValue }) {
   let nbParticipantsStatut = cra?.nbParticipantsStatut;
   let nbParticipantsAccompagnement = cra.nbParticipantsAccompagnement;
 
+  const ajoutRetraitNbParticipants = (groupe, groupeNbParticipants, action, condition, operateur) => {
+    if (condition) {
+      for (let key in groupe) {
+        if (key === typeKey) {
+          if (operateur === 'plus') {
+            groupe[key] += 1;
+          } else {
+            groupe[key] -= 1;
+          }
+        }
+      }
+      if (operateur === 'plus') {
+        groupeNbParticipants++;
+      } else {
+        groupeNbParticipants--;
+      }
+      dispatch(action(groupe, groupeNbParticipants));
+    }
+  };
+
   const onClickMore = () => {
     switch (type) {
       case 'duree':
@@ -22,40 +42,14 @@ function SmallCountRadioButton({ type, typeKey, typeLabel, typeValue }) {
         }
         break;
       case 'age':
-        if (nbParticipants > nbParticipantsAge) {
-          const age = cra?.age;
-          for (let key in cra?.age) {
-            if (key === typeKey) {
-              age[key] += 1;
-            }
-          }
-          nbParticipantsAge++;
-          dispatch(craActions.updateAge(age, nbParticipantsAge));
-        }
+        ajoutRetraitNbParticipants(cra?.age, nbParticipantsAge, craActions.updateAge, nbParticipants > nbParticipantsAge, 'plus');
         break;
       case 'statut':
-        if (nbParticipants > nbParticipantsStatut) {
-          const statut = cra?.statut;
-          for (let key in cra?.statut) {
-            if (key === typeKey) {
-              statut[key] += 1;
-            }
-          }
-          nbParticipantsStatut++;
-          dispatch(craActions.updateStatut(statut, nbParticipantsStatut));
-        }
+        ajoutRetraitNbParticipants(cra?.statut, nbParticipantsStatut, craActions.updateStatut, nbParticipants > nbParticipantsStatut, 'plus');
         break;
       case 'accompagnement':
-        if (nbParticipants > nbParticipantsAccompagnement) {
-          const accompagnement = cra?.accompagnement;
-          for (let key in cra?.accompagnement) {
-            if (key === typeKey) {
-              accompagnement[key] += 1;
-            }
-          }
-          nbParticipantsAccompagnement++;
-          dispatch(craActions.updateAccompagnement(accompagnement, nbParticipantsAccompagnement));
-        }
+        ajoutRetraitNbParticipants(cra?.accompagnement, nbParticipantsAccompagnement, craActions.updateAccompagnement,
+          nbParticipants > nbParticipantsAccompagnement, 'plus');
         break;
       default:
         break;
@@ -70,35 +64,13 @@ function SmallCountRadioButton({ type, typeKey, typeLabel, typeValue }) {
         }
         break;
       case 'age':
-        let age = cra?.age;
-        for (let key in cra?.age) {
-          if (key === typeKey) {
-            age[key] -= 1;
-          }
-        }
-        nbParticipantsAge--;
-        dispatch(craActions.updateAge(age, nbParticipantsAge));
+        ajoutRetraitNbParticipants(cra?.age, nbParticipantsAge, craActions.updateAge, true, 'moins');
         break;
       case 'statut':
-        let statut = cra?.statut;
-        for (let key in cra?.statut) {
-          if (key === typeKey) {
-            statut[key] -= 1;
-          }
-        }
-        nbParticipantsStatut--;
-        dispatch(craActions.updateStatut(statut, nbParticipantsStatut));
+        ajoutRetraitNbParticipants(cra?.statut, nbParticipantsStatut, craActions.updateStatut, true, 'moins');
         break;
       case 'accompagnement':
-        const accompagnement = cra?.accompagnement;
-        for (let key in cra?.accompagnement) {
-          if (key === typeKey) {
-            accompagnement[key] -= 1;
-          }
-        }
-        nbParticipantsAccompagnement--;
-        dispatch(craActions.updateAccompagnement(accompagnement, nbParticipantsAccompagnement));
-
+        ajoutRetraitNbParticipants(cra?.accompagnement, nbParticipantsAccompagnement, craActions.updateAccompagnement, true, 'moins');
         break;
       default:
         break;
