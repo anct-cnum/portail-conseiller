@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Menu from './connected/Menu';
+import MenuAdmin from './admin/MenuAdmin';
 import { menuActions } from '../actions';
 
 function Header({ linkAccount, printClass }) {
 
   const location = useLocation();
   const dispatch = useDispatch();
+  let menu = useSelector(state => state.menu);
   const [menuAideShow, setMenuAideShow] = useState(false);
   const [menuUserShow, setMenuUserShow] = useState(false);
   //const [menuInformationsShow, setMenuInformationsShow] = useState(false);
@@ -65,14 +67,15 @@ function Header({ linkAccount, printClass }) {
                     className="rf-btn rf-fi-menu-fill rf-btn--icon "
                     title="Ouvrir le menu"
                     aria-controls="header-nav-popin"
-                    onClick={toggleBurgerMenu}>
+                    onClick={toggleBurgerMenu}
+                    style={!menu.hiddenMenu ? { zIndex: -1 } : {} }>
                   </button>
                 }
               </div>
               {linkAccount !== undefined &&
                 <>
                   <div className="rf-header__tools headerCustom">
-                    <div className="rf-shortcuts">
+                    <div className="rf-shortcuts" style={!menu.hiddenMenu ? { display: 'none' } : {} }>
                       <ul className="rf-shortcuts__list">
                         <li className="rf-shortcuts__item header-propos">
                           <ul className="rf-nav__list">
@@ -163,14 +166,16 @@ function Header({ linkAccount, printClass }) {
                                     style={!menuUserShow ? { display: 'none' } : {}}
                                     id="menu-liens-user">
                                     <ul className="rf-menu__list">
-                                      <li className="user-infos">
-                                        <Link className="rf-nav__link lien-user" to="/mes-informations"
-                                          onClick={() => {
-                                            setMenuUserShow(false);
-                                          }}>
-                                          Mes informations, Contact hi&eacute;rarchique<br />
-                                        </Link>
-                                      </li>
+                                      {role === 'conseiller' &&
+                                        <li className="user-infos">
+                                          <Link className="rf-nav__link lien-user" to="/mes-informations"
+                                            onClick={() => {
+                                              setMenuUserShow(false);
+                                            }}>
+                                            Mes informations, Contact hi&eacute;rarchique<br />
+                                          </Link>
+                                        </li>
+                                      }
                                       {linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
                                         <li className="user-disconnect">
                                           {role === 'conseiller' &&
@@ -267,9 +272,7 @@ function Header({ linkAccount, printClass }) {
       </div>
       {linkAccount !== undefined && linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
         <>
-          {role === 'conseiller' &&
-            <Menu />
-          }
+          {role === 'conseiller' ? <Menu /> : <MenuAdmin />}
         </>
       }
     </header>
