@@ -21,10 +21,12 @@ function AdminHeader({ role }) {
     <>
       <div className="rf-container">
         <div className="rf-grid-row rf-grid-row--right">
-          <div className={role !== 'admin_coop' ? 'rf-col-4 rf-mt-5w rf-mb-6w' : 'rf-col-4'}>
+          <div className={`rf-col-xs-12 rf-col-md-4 ${role !== 'admin_coop' ? 'rf-mt-5w rf-mb-6w' : 'rf-mt-md-1w'}`}>
             <a className="statistiques_nationales-btn" href="statistiques-nationales">Statistiques Nationales</a>
           </div>
-          <div className={role !== 'admin_coop' ? 'rf-col-8 rf-mt-5w rf-mb-6w' : 'rf-col-8'} style={{ textAlign: 'right' }}>
+          <div
+            className={`'rf-col-xs-12 rf-mt-7w rf-col-md-8 ${role !== 'admin_coop' ? 'rf-mt-5w rf-mb-6w' : 'rf-mt-md-1w'}`}
+            style={{ textAlign: 'right' }}>
             {(location.pathname === '/territoires' || location.pathname === '/ressourcerie') &&
             <a className="header-btn" href="accueil">
               <span className="conseillers-logo-btn"></span>
