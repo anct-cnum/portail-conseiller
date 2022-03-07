@@ -17,6 +17,7 @@ function Header({ linkAccount, printClass }) {
   const role = useSelector(state => state.authentication?.user?.user?.role);
   const nom = useSelector(state => state.authentication?.user?.user?.nom);
   const prenom = useSelector(state => state.authentication?.user?.user?.prenom);
+  const email = useSelector(state => state.authentication?.user?.user?.name);
 
   const toggleBurgerMenu = () => {
     dispatch(menuActions.toggleMenu());
@@ -157,7 +158,7 @@ function Header({ linkAccount, printClass }) {
                                       setMenuUserShow(!menuUserShow);
                                       setMenuAideShow(menuAideShow ? !menuAideShow : menuAideShow);
                                     }}>
-                                    <span className="texte-user">{prenom} {nom}&nbsp;
+                                    <span className="texte-user">{prenom ? prenom + ' ' + nom : email}&nbsp;
                                       {!menuUserShow ? <i className="ri-arrow-down-s-line"></i> : <i className="ri-arrow-up-s-line"></i>}
                                     </span>
                                   </button>
