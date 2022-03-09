@@ -16,7 +16,8 @@ import Recurrence from './Recurrence';
 function Cra() {
 
   const location = useLocation();
-  const urlAPropos = null; //'https://aide.conseiller-numerique.gouv.fr/fr/article/a-quelles-fins-les-donnees-du-cra-sont-elles-recoltees-1i5g761/';
+  const urlAPropos =
+  'https://aide.conseiller-numerique.gouv.fr/fr/article/comment-le-conseiller-numerique-rend-il-compte-de-ses-activites-et-a-quoi-cela-sert-il-16n3yhq/';
 
   //Forcer affichage en haut de la page pour voir le flashbag
   if (location?.printFlashbag === true) {
