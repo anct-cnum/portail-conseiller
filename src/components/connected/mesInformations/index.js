@@ -11,7 +11,7 @@ function MesInformations() {
   return (
     <>
       {form.isCreated &&
-        <FlashMessage duration={5000}>
+        <FlashMessage duration={10000}>
           <p className="rf-label flashBag">
             Vos informations ont bien &eacute;t&eacute; enregistr&eacute;es&nbsp;
             <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
@@ -19,7 +19,7 @@ function MesInformations() {
         </FlashMessage>
       }
       {form.error &&
-        <FlashMessage duration={5000}>
+        <FlashMessage duration={10000}>
           <p className="rf-label flashBag invalid">
             {form.error}
             <i className="ri-close-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
