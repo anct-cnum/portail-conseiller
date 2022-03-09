@@ -26,10 +26,10 @@ function FormulaireSuperieurHierarchique() {
     if (erreursFormulaire?.lengthError === 0 && submitted) {
       dispatch(formSupHierarchiqueActions.createSupHierarchique({
         numeroTelephone: form.numeroTelephone,
-        email: form.email,
-        nom: form.nom,
-        prenom: form.prenom,
-        fonction: form.fonction
+        email: form.email.trim(),
+        nom: form.nom.trim(),
+        prenom: form.prenom.trim(),
+        fonction: form.fonction.trim()
       }, conseiller._id));
       window.scrollTo(0, 0);
     }

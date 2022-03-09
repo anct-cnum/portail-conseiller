@@ -23,7 +23,7 @@ function FormulaireInfosPersonnelles() {
           id="prenom"
           name="prenom"
           disabled
-          value={conseiller.prenom}
+          value={conseiller?.prenom}
         />
       </div>
       <div className="rf-input-group rf-mb-5w">
@@ -37,7 +37,7 @@ function FormulaireInfosPersonnelles() {
           id="nom"
           name="nom"
           disabled
-          value={conseiller.nom}
+          value={conseiller?.nom}
         />
       </div>
       <div className="rf-input-group rf-mb-5w">
@@ -52,7 +52,7 @@ function FormulaireInfosPersonnelles() {
           id="email"
           disabled
           name="email"
-          value={conseiller.email}
+          value={conseiller?.email}
         />
       </div>
       <div className="rf-input-group rf-mb-5w">
@@ -66,7 +66,7 @@ function FormulaireInfosPersonnelles() {
           id="prenom"
           disabled
           name="prenom"
-          value={calcAge(conseiller.dateDeNaissance)}
+          value={calcAge(conseiller?.dateDeNaissance)}
         />
       </div>
       <div className="rf-form-group">
@@ -77,18 +77,18 @@ function FormulaireInfosPersonnelles() {
           <div className="rf-fieldset__content">
             <div className="rf-radio-group radio-genre">
               <input type="radio" id="radio-inline-1" name="radio-inline" value="Homme"
-                checked={conseiller.sexe === 'Homme'}
+                checked={conseiller?.sexe === 'Homme'}
               />
               <label className="rf-label" htmlFor="radio-inline-1">Homme
               </label>
             </div>
             <div className="rf-radio-group radio-genre">
-              <input type="radio" id="radio-inline-2" name="radio-inline" value="Femme" checked={conseiller.sexe === 'Femme'} />
+              <input type="radio" id="radio-inline-2" name="radio-inline" value="Femme" checked={conseiller?.sexe === 'Femme'} />
               <label className="rf-label" htmlFor="radio-inline-2">Femme
               </label>
             </div>
             <div className="rf-radio-group radio-genre">
-              <input type="radio" id="radio-inline-3" name="radio-inline" value="Autre" checked={conseiller.sexe === 'Autre'} />
+              <input type="radio" id="radio-inline-3" name="radio-inline" value="Autre" checked={conseiller?.sexe === 'Autre'} />
               <label className="rf-label" htmlFor="radio-inline-3">Autre
               </label>
             </div>
