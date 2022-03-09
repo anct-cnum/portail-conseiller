@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function FormulaireSuperieurHierarchique() {
   const erreursFormulaire = useSelector(state => state.formulaireSupHierarchique?.errorsFormulaire);
-  const erreurNumeroTelephone = erreursFormulaire?.errors?.filter(erreur => erreur?.numeroTelephone)?.numeroTelephone;
+  const erreurNumeroTelephone = erreursFormulaire?.errors?.filter(erreur => erreur?.numeroTelephone)[0]?.numeroTelephone;
   const erreurEmail = erreursFormulaire?.errors?.filter(erreur => erreur?.email)[0]?.email;
   const erreurNom = erreursFormulaire?.errors?.filter(erreur => erreur?.nom)[0]?.nom;
   const erreurPrenom = erreursFormulaire?.errors?.filter(erreur => erreur?.prenom)[0]?.prenom;
@@ -31,6 +31,7 @@ function FormulaireSuperieurHierarchique() {
         prenom: form.prenom,
         fonction: form.fonction
       }, conseiller._id));
+      window.scrollTo(0, 0);
     }
     setSubmitted(false);
   }, [erreursFormulaire]);
@@ -56,7 +57,6 @@ function FormulaireSuperieurHierarchique() {
   function handleSubmit() {
     setSubmitted(true);
     dispatch(formSupHierarchiqueActions.verifyFormulaire(form));
-    window.scrollTo(0, 0);
   }
   return (
     <>
@@ -145,6 +145,7 @@ function FormulaireSuperieurHierarchique() {
           aria-describedby="text-input-error-desc-error"
           type="numeroTelephone"
           id="numeroTelephone"
+          placeholder="+33XXXXXXXXX ou +262XXXXXXXXX, ..."
           name="numeroTelephone"
           value={numeroTelephone}
           onChange={handleChange}
