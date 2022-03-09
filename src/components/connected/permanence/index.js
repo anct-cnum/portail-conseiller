@@ -22,15 +22,11 @@ function Permanence() {
   const isUpdated = useSelector(state => state.permanence?.isUpdated);
   const isCreated = useSelector(state => state.permanence?.isCreated);
 
-  const tableauIndex = [];
-  for (let index = 0; index < 20; index++) {
-    tableauIndex.push({ id: index, permanence: null, showPermanence: false });
-  }
-
   useEffect(() => {
     if (structure?._id) {
       dispatch(permanenceActions.getListePermanences(structure?._id));
     }
+
   }, [structure?._id]);
 
   return (
@@ -60,8 +56,12 @@ function Permanence() {
         <ContactProfessionel />
         <div className="rf-container">
           <div className="rf-grid-row">
-            <PermanencePrincipale structure={structure}/>
-            <PermanenceSecondaire structure={structure} tableauIndex={tableauIndex} />
+            <PermanencePrincipale structure={structure} />
+          </div>
+        </div>
+        <PermanenceSecondaire structure={structure} />
+        <div className="rf-container">
+          <div className="rf-grid-row">
             <Validation conseillerId={conseiller?._id} structureId={structure?._id} />
           </div>
         </div>

@@ -26,11 +26,11 @@ function Adresse({ codeDepartement, prefixId }) {
   return (
     <>
       {(prefixId !== 'principal_' ||
-       (prefixId === 'principal_' && !fields.filter(field => field.name === 'estLieuPrincipal')[0]?.value)) &&
+      (prefixId === 'principal_' && !fields.filter(field => field.name === 'estLieuPrincipal')[0]?.value)) &&
         <>
           <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
             <InputText
-              textLabel="Nom de votre lieu d&rsquo;activit&eacute; principal"
+              textLabel={ prefixId === 'principal_' ? `Nom de votre lieu d'activité principal` : `Nom de votre lieu d'activité`}
               errorInput={erreurLieuActivite}
               nameInput= {prefixId + 'nomEnseigne'}
               requiredInput={true}
@@ -166,6 +166,7 @@ Adresse.propTypes = {
   adressePermanence: PropTypes.object,
   nomEnseignePermanence: PropTypes.string,
   prefixId: PropTypes.string,
+  secondaireId: PropTypes.number,
 };
 
 export default Adresse;

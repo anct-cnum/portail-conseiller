@@ -1,12 +1,13 @@
 
 const initialState = {
+  fields: [{ name: 'estLieuPrincipal', value: true }],
+  showLieuSecondaire: [false, false, false, false, false],
+  showSiret: [],
+
   isAdresseCachee: true,
   isCreated: false,
   isUpdated: false,
   showError: false,
-  showLieuSecondaire: [],
-  showSiret: [],
-  fields: [],
 };
 
 export default function permanence(state = initialState, action) {

@@ -61,11 +61,11 @@ function Horaires({ prefixId }) {
                     {!horaires[idx].fermeture[0] &&
                       <>
                         <input className="horaires-debut rf-mb-md-1w" type="time" value={horaires[idx].matin[0]}
-                          required name={jour + 'MatinDebut'} onChange={e => {
+                          required name={prefixId + jour + 'MatinDebut'} onChange={e => {
                             handleChange(e, idx, 'matin', 0);
                           }}/>
                         <input className="horaires-fin rf-mr-2w" type="time" value={horaires[idx].matin[1]}
-                          required name={jour + 'MatinFin'} onChange={e => {
+                          required name={prefixId + jour + 'MatinFin'} onChange={e => {
                             handleChange(e, idx, 'matin', 1);
                           }}/>
                       </>
@@ -81,11 +81,11 @@ function Horaires({ prefixId }) {
                     {!horaires[idx].fermeture[1] &&
                       <>
                         <input className="horaires-debut rf-mb-md-1w" type="time" value={horaires[idx].apresMidi[0]}
-                          required name={jour + 'ApresMidiDebut'} onChange={e => {
+                          required name={prefixId + jour + 'ApresMidiDebut'} onChange={e => {
                             handleChange(e, idx, 'apresMidi', 0);
                           }}/>
                         <input className="horaires-fin rf-mr-2w" type="time" value={horaires[idx].apresMidi[1]}
-                          required name={jour + 'ApresMidiFin'} onChange={e => {
+                          required name={prefixId + jour + 'ApresMidiFin'} onChange={e => {
                             handleChange(e, idx, 'apresMidi', 1);
                           }}/>
                       </>
@@ -118,7 +118,5 @@ function Horaires({ prefixId }) {
 Horaires.propTypes = {
   prefixId: PropTypes.string,
 };
-
-
 
 export default Horaires;
