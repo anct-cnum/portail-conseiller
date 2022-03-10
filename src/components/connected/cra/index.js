@@ -38,13 +38,13 @@ function Cra() {
       }
       <div className="rf-container cra">
         <div className="rf-grid-row rf-grid-row--center rf-my-md-12w rf-pt-1w rf-pb-3w">
-          <div className="rf-col-12 rf-col-md-2">
+          <div className="rf-col-12 rf-col-lg-2 centre-titre">
             <img src="/logos/home-connected/icone-cra.svg" style={{ width: '114px', height: '78px' }} />
           </div>
-          <div className="rf-col-12 rf-col-md-6">
-            <h1 className="titre">Mon suivi d&rsquo;activit&eacute;</h1>
+          <div className="rf-col-12 rf-col-lg-6">
+            <h1 className="titre centre-titre">Mon suivi d&rsquo;activit&eacute;</h1>
           </div>
-          <div className="rf-col-12 rf-col-md-2" style={{ textAlign: 'right', marginTop: '18px' }}>
+          <div className="rf-col-12 rf-col-lg-2 url-a-propos">
             {urlAPropos &&
               <a className="a-propos" href={urlAPropos} target="blank" rel="noreferrer" >&Agrave; propos<br/>
               du suivi d&rsquo;activit&eacute;
