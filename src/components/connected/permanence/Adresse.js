@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import telephoneHorsMetropole from '../../../data/indicatifs.json';
@@ -30,7 +30,8 @@ function Adresse({ codeDepartement, prefixId }) {
         <>
           <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
             <InputText
-              textLabel={ prefixId === 'principal_' ? `Nom de votre lieu d'activité principal` : `Nom de votre lieu d'activité`}
+              textLabel={ prefixId === 'principal_' ? <Fragment>Nom de votre lieu d&rsqo;activit&eacute; principal</Fragment> :
+                <Fragment>Nom de votre lieu d&rsqo;activit&eacute;</Fragment> }
               errorInput={erreurLieuActivite}
               nameInput= {prefixId + 'nomEnseigne'}
               requiredInput={true}

@@ -13,12 +13,13 @@ import { permanenceActions } from '../../../actions';
 function PermanenceSecondaire({ structure }) {
   const dispatch = useDispatch();
 
-  const lieuxSecondaires = [{}, {}, {}, {}, {}];
+  const lieuxSecondaires = Array.from({ length: process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE }, () => ({}));
   const adresseStructure = structure?.insee?.etablissement?.adresse;
   const fields = useSelector(state => state.permanence.fields);
 
   const [show, setShow] = useState(
-    [false, false, false, false, false]);
+    Array.from({ length: process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE }, () => (false))
+  );
 
   function handleSecondaire(showPermanence, idx) {
     show[idx] = showPermanence;

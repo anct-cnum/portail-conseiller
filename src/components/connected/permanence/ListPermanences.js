@@ -23,7 +23,7 @@ function ListPermanences({ prefixId }) {
         <>
           <div className="rf-col-offset-1 rf-col-11">
             S&eacute;lectionnez votre lieu d&rsquo;activit&eacute;, s&rsquo;il n&rsquo;apparaît pas dans cette liste,
-            cochez la puce « Ajouter un nouveau lieu d&rsquo;activit&eacute; ».
+            cochez la puce &laquo;&nbsp;Ajouter un nouveau lieu d&rsquo;activit&eacute;&nbsp;&raquo;.
             <span className="baseline">
               Cette liste correspond aux lieux d&rsquo;activit&eacute; d&eacute;j&agrave; enregistr&eacute;s par les
               conseillers num&eacute;riques de votre structure d&rsquo;accueil.
@@ -37,20 +37,20 @@ function ListPermanences({ prefixId }) {
                     return (
 
                       <div key={idx}>
-                        {!permanence.estStructure &&
+                        {!permanence?.estStructure &&
                         <>
                           <hr />
                           <div className="rf-fieldset__content">
                             <div className="rf-radio-group">
-                              <input type="radio" id={prefixId + permanence._id} className="permanence-existante"
-                                name={prefixId + 'permancenceSecondaire'} value={permanence._id}
-                                defaultChecked={permanence._id} required="required" onClick={handleClick}/>
-                              <label className="rf-label rf-my-2w permanence-existante" htmlFor={prefixId + permanence._id}>
+                              <input type="radio" id={prefixId + permanence?._id} className="permanence-existante"
+                                name={prefixId + 'permancenceSecondaire'} value={permanence?._id}
+                                defaultChecked={permanence?._id} required="required" onClick={handleClick}/>
+                              <label className="rf-label rf-my-2w permanence-existante" htmlFor={prefixId + permanence?._id}>
                                 <span className="rf-container rf-container--fluid">
                                   <span className="rf-grid-row">
-                                    <span className="rf-col-3">{permanence.adresse.ville.toUpperCase()}</span>
-                                    <span className="rf-col-2">{permanence.adresse.codePostal}</span>
-                                    <span className="rf-col-7">{permanence.nomEnseigne}</span>
+                                    <span className="rf-col-3">{permanence?.adresse.ville.toUpperCase()}</span>
+                                    <span className="rf-col-2">{permanence?.adresse.codePostal}</span>
+                                    <span className="rf-col-7">{permanence?.nomEnseigne}</span>
                                   </span>
                                 </span>
                               </label>
