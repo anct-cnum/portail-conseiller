@@ -4,7 +4,7 @@ import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
 import { getCraValue } from '../utils/CraFunctions';
 
-function BigCheckboxButton({ type, label, value, image, imageSelected, heightImage }) {
+function BigCheckboxButton({ type, label, value, image, imageSelected, heightImage, baseline }) {
 
   const dispatch = useDispatch();
   let cra = useSelector(state => state.cra);
@@ -42,6 +42,12 @@ function BigCheckboxButton({ type, label, value, image, imageSelected, heightIma
             className={`rf-label labelCheckboxCustom ${controlSelected?.includes(value) ? 'checkboxRattachement-selected' : ''}`}
             value={value}>
             {label}
+            {baseline &&
+              <>
+                <br/>
+                <span value={value} className="baseline">{baseline}</span>
+              </>
+            }
           </span>
         </div>
       </button>
@@ -56,6 +62,7 @@ BigCheckboxButton.propTypes = {
   image: PropTypes.string,
   imageSelected: PropTypes.string,
   heightImage: PropTypes.string,
+  baseline: PropTypes.string,
 };
 
 export default BigCheckboxButton;

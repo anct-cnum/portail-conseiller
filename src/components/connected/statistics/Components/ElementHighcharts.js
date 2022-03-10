@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import labelsCorrespondance from '../../../../data/labelsCorrespondance.json';
+
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import { userRoles } from '../../../../helpers';
 
-function ElementHighcharts({ donneesStats, variablesGraphique, print }) {
+import labelsCorrespondance from '../../../../data/labelsCorrespondance.json';
 
+function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutres }) {
+
+  const isReoriente = variablesGraphique.titre.optionTitre === 'Usager.ères réorienté.es';
   const { typeGraphique, largeurGraphique, hauteurGraphique,
     margeGaucheGraphique, margeDroiteGraphique, optionResponsive, couleursGraphique } = variablesGraphique.graphique;
   const { optionTitre, margeTitre, placementTitre } = variablesGraphique.titre;
@@ -14,10 +18,10 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print }) {
   const chartStatistiques = setStatistiquesGraphique(typeGraphique, largeurGraphique, hauteurGraphique, margeGaucheGraphique, margeDroiteGraphique);
   const titreStatistiques = setStatistiquesTitre(optionTitre, margeTitre, placementTitre);
   const seriesStatistiques = setStatistiquesDonnees(donneesStats, typeGraphique, couleursGraphique);
-  const legendStatistiques = setStatistiquesLegende(typeGraphique);
+  const legendStatistiques = setStatistiquesLegende(typeGraphique, isReoriente);
   const yAxisStatistiques = setStatistiquesAxeY(typeGraphique);
   const xAxisStatistiques = setStatistiquesAxeX(typeGraphique, optionResponsive, categoriesStatistiques);
-  const plotOptionsStatistiques = setStatistiquesOptionsTrace(typeGraphique, optionResponsive);
+  const plotOptionsStatistiques = setStatistiquesOptionsTrace(typeGraphique, optionResponsive, isReoriente);
 
   function setCategoriesStatistiques(donneesStats, typeGraphique) {
 
@@ -105,6 +109,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print }) {
         });
       } else if (typeGraphique === 'pie') {
         //Ne pas afficher la valeur 0 dans le camembert
+
         if (element.valeur === 0) {
           valeurs.push({
             name: labelsCorrespondance.find(label => label.nom === element.nom)?.correspondance ?? element.nom,
@@ -163,7 +168,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print }) {
     return donnees;
   }
 
-  function setStatistiquesLegende(typeGraphique) {
+  function setStatistiquesLegende(typeGraphique, isReoriente) {
     let legende = { };
 
     switch (typeGraphique) {
@@ -177,22 +182,53 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print }) {
         break;
 
       case 'pie':
-
-        legende = {
-          symbolPadding: 12,
-          itemMarginBottom: 5,
-          align: 'left',
-          x: -10,
-          itemStyle: {
-            color: print ? '#1e1e1e' : '#fff',
-            fontWeight: 400,
-            lineHeight: '20px'
-          },
-          itemHoverStyle: {
-            color: print ? '#1e1e1e' : '#fff'
-          },
-        };
-
+        if (isReoriente) {
+          const x = print ? -100 : -165;
+          legende = {
+            title: optionResponsive ? {} : {
+              text: '<span>Lieux</span>',
+              style: {
+                fontFamily: 'Marianne',
+                fontWeight: 'bold',
+                fontSize: '16px',
+                color: print ? '#1e1e1e' : '#fff',
+              }
+            },
+            itemMarginBottom: 5,
+            symbolPadding: 12,
+            verticalAlign: optionResponsive ? 'bottom' : 'right',
+            align: optionResponsive ? 'left' : 'right',
+            x: optionResponsive ? 0 : x,
+            y: optionResponsive ? 0 : 65,
+            width: optionResponsive ? '100%' : '30%',
+            maxHeight: '450px',
+            itemStyle: {
+              color: print ? '#1e1e1e' : '#fff',
+              fontWeight: 400,
+              lineHeight: '20px',
+            },
+            itemHoverStyle: {
+              color: print ? '#1e1e1e' : '#fff'
+            },
+          };
+        } else {
+          legende = {
+            symbolPadding: 12,
+            itemMarginBottom: 5,
+            align: 'left',
+            x: -10,
+            y: 0,
+            width: '100%',
+            itemStyle: {
+              color: print ? '#1e1e1e' : '#fff',
+              fontWeight: 400,
+              lineHeight: '20px'
+            },
+            itemHoverStyle: {
+              color: print ? '#1e1e1e' : '#fff'
+            },
+          };
+        }
         break;
 
       case 'column':
@@ -372,7 +408,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print }) {
           lineWidth: 0,
           gridLineWidth: 0,
           labels: {
-            x: -24,
+            x: -8,
             format: '{value}',
             style: {
               color: print ? '#1e1e1e' : '#fff',
@@ -446,7 +482,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print }) {
     return axeX;
   }
 
-  function setStatistiquesOptionsTrace(typeGraphique, optionResponsive) {
+  function setStatistiquesOptionsTrace(typeGraphique, optionResponsive, isReoriente) {
     let optionsTrace = { };
 
     switch (typeGraphique) {
@@ -492,9 +528,9 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print }) {
           },
           allowPointSelect: true,
           cursor: 'pointer',
-          size: 162,
+          size: isReoriente && !optionResponsive ? 382 : 162,
           dataLabels: {
-            format: '{point.y}',
+            format: userRoles()?.includes('admin_coop') || isReoriente ? '{point.y}%' : '{point.y}',
             color: '#fff',
             distance: '-40%',
             style: {
@@ -655,14 +691,27 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print }) {
   };
 
   return (
-    <HighchartsReact highcharts={Highcharts} options={optionsStatistiques} />
+    <>
+      <HighchartsReact highcharts={Highcharts} options={optionsStatistiques} />
+      {listeAutres &&
+        <div className="lieux-autres">
+          <div className="rf-mt-list">Autres <span>(écrits manuellement)</span></div>
+          <ul>
+            {listeAutres?.map((autres, idx) => {
+              return (<li key={idx}>{autres}</li>);
+            })}
+          </ul>
+        </div>
+      }
+    </>
   );
 }
 
 ElementHighcharts.propTypes = {
   donneesStats: PropTypes.array,
   variablesGraphique: PropTypes.object,
-  print: PropTypes.bool
+  print: PropTypes.bool,
+  listeAutres: PropTypes.array,
 };
 
 export default ElementHighcharts;

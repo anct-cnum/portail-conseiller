@@ -1,7 +1,11 @@
 [
   {
     "nom": "equipement informatique",
-    "correspondance": "&eacute;quipement informatique"
+    "correspondance": "Prendre en main un &eacute;quipement"
+  },
+  {
+    "nom": "vocabulaire",
+    "correspondance": "Connaître le vocabulaire num&eacute;rique"
   },
   {
     "nom": "internet",
@@ -12,6 +16,9 @@
     "correspondance": "Courriels"
   },
   {
+    "nom": "securite",
+    "correspondance" : "S&eacute;curiser un &eacute;quipement" },
+  {
     "nom": "smartphone",
     "correspondance": "Applications smartphone"
   },
@@ -20,16 +27,12 @@
     "correspondance": "Gestion de contenus num&eacute;riques"
   },
   {
-    "nom": "vocabulaire",
-    "correspondance": "Env., vocab. num&eacute;rique"
-  },
-  {
     "nom": "traitement texte",
     "correspondance": "Traitement de texte"
   },
   {
     "nom": "echanger",
-    "correspondance": "&eacute;changer avec ses proches"
+    "correspondance": "&Eacute;changer avec ses proches"
   },
   {
     "nom": "trouver emploi",
@@ -46,6 +49,14 @@
   {
     "nom": "demarche en ligne",
     "correspondance": "D&eacute;marche en ligne"
+  },
+  {
+    "nom": "fraude et harcelement",
+    "correspondance": "Fraude et harc&egrave;lement"
+  },
+  {
+    "nom": "sante",
+    "correspondance": "Sant&eacute;"
   },
   {
     "nom": "autre",
@@ -105,7 +116,7 @@
   },
   {
     "nom": "etudiant",
-    "correspondance": "Etudiant"
+    "correspondance": "Scolarisé(e)"
   },
   {
     "nom": "sans emploi",
@@ -122,5 +133,85 @@
   {
     "nom": "heterogene",
     "correspondance": "Non renseign&eacute;"
+  },
+  {
+    "nom": "ANTS",
+    "correspondance": "ANTS"
+  },
+  {
+    "nom": "Assistante sociale",
+    "correspondance": "Assistante sociale"
+  },
+  {
+    "nom": "CAF",
+    "correspondance": "CAF"
+  },
+  {
+    "nom": "CARSAT",
+    "correspondance": "CARSAT"
+  },
+  {
+    "nom": "CCAS",
+    "correspondance": "CCAS"
+  },
+  {
+    "nom": "CEFS",
+    "correspondance": "CEFS"
+  },
+  {
+    "nom": "CIP",
+    "correspondance": "CIP"
+  },
+  {
+    "nom": "CPAM",
+    "correspondance": "CPAM"
+  },
+  {
+    "nom": "DGFIP",
+    "correspondance": "DGFIP"
+  },
+  {
+    "nom": "France Services",
+    "correspondance": "France Services"
+  },
+  {
+    "nom": "Mairie",
+    "correspondance": "Mairie"
+  },
+  {
+    "nom": "Médiathèque",
+    "correspondance": "M&eacute;diath&egrave;que"
+  },
+  {
+    "nom": "Mission locale",
+    "correspondance": "Mission locale"
+  },
+  {
+    "nom": "Pôle emploi",
+    "correspondance": "Pôle emploi"
+  },
+  {
+    "nom": "Préfecture",
+    "correspondance": "Pr&eacute;fecture"
+  },
+  {
+    "nom": "Sous-préfecture",
+    "correspondance": "Sous-pr&eacute;fecture"
+  },
+  {
+    "nom": "Service de police",
+    "correspondance": "Service de police"
+  },
+  {
+    "nom": "Gendarmerie",
+    "correspondance": "Gendarmerie"
+  },
+  {
+    "nom": "Tiers-lieu / Fablab",
+    "correspondance": "Tiers-lieu / Fablab"
+  },
+  {
+    "nom": "Autres",
+    "correspondance": "Autres"
   }
 ]

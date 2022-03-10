@@ -3,7 +3,9 @@ $blue: #2B8BF7;
 $errorDarkMode: #FF3333;
 
 .cra {
-
+  .espacement {
+    margin-bottom: 3.75rem !important;
+  }
   *:focus {
     outline: none;
   }
@@ -15,6 +17,20 @@ $errorDarkMode: #FF3333;
     font-family: 'MarianneThin', Arial, sans-serif;
   }
 
+  .a-propos {
+    display: inline-block;
+    box-shadow: none !important;
+    text-decoration: none;
+    line-height: 24px;
+    letter-spacing: 0;
+    color: #929292;
+    font-size: 14px;
+    margin-right: -18px;
+  }
+  .url-a-propos {
+    text-align: right;
+    margin-top: 18px;
+  }
   .questionRequired, .labelError {
     color: $errorDarkMode;
   }
@@ -30,7 +46,7 @@ $errorDarkMode: #FF3333;
     font-weight: 100;
   }
 
-  .buttonCP {
+  .buttonCP, .buttonRecurrence {
     height: 104px;
     width: 100%;
     border: 1px solid white;
@@ -44,7 +60,7 @@ $errorDarkMode: #FF3333;
     font-weight: 500;
   }
 
-  .buttonCP-filled {
+  .buttonCP-filled, .buttonRecurrence-filled {
     border-color: white;
     height: 104px;
     width: 100%;
@@ -115,15 +131,250 @@ $errorDarkMode: #FF3333;
     display: block;
   }
 
-  .responsiveSelect {
-    width: calc(544%/12);
+  .responsiveSelect, .responsiveRecurrence {
+    width: calc(810%/12 - 271px);
     padding-left: 0.75rem;
+  }
+
+  .react-datepicker{
+    border-radius: 0 0 1.4rem 1.4rem;
+    background-color: $background;
+    border: 1px solid #5398ff;
+    font-family: Marianne;
+    color: #fff;
+    left: 32px;
+    top: -10px;
+    .react-datepicker-popper {
+      margin: 0 !important;
+    }
+    .react-datepicker__triangle {
+      display: none;
+    }
+    .react-datepicker__navigation--previous {
+      background: url(../../public/logos/statistics/logo-chevron-gauche.svg) no-repeat;
+      margin-left: 11px;
+      border: none;
+      height: 16px;
+      width: 10px;
+    }
+    .react-datepicker__navigation--next {
+      background: url(../../public/logos/statistics/logo-chevron-droit.svg) no-repeat;
+      margin-right: 11px;
+      border: none;
+      height: 16px;
+      width: 10px;
+    }
+    .react-datepicker__header {
+      background-color: $background;
+      color: #fff;
+      .react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header {
+        color: #fff;
+      }
+      .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+        color: #fff;
+      }
+      .react-datepicker__month {
+        color: #fff;
+      }
+    }
+    .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+      font-size: 16px;
+      color: #fff;
+      width: 1.54rem;
+      height: 1.54rem;
+      margin: 6px;
+    }
+    .react-datepicker__week {
+      cursor: default;
+    }
+    .react-datepicker__day--outside-month {
+      color: #909090;
+    }
+    .react-datepicker__day--disabled {
+      color: $background;
+      cursor: default;
+      &:hover {
+        color: $background;
+      }
+    }
+    .react-datepicker__day:hover, .react-datepicker__month-text:hover, .react-datepicker__quarter-text:hover, .react-datepicker__year-text:hover{
+      color: $background;
+    }
+    .react-datepicker__day--selected, .react-datepicker__day--keyboard-selected {
+      color: $background;
+      background-color: #fff;
+    }
+    .react-date-picker__calendar--open {
+      top: 100% !important;
+      bottom: unset !important;
+    }
+  }
+  .react-datepicker__tab-loop {
+    position: absolute;
+    top: 0px;
+    left: -93px;
+  }
+  .chevron-stats {
+    margin: 0px 2px 0px 4px;
+    position: relative;
+    font-size: 2rem;
+    top: 10px;
+  }
+  .responsiveDate{
+    background-color: $background;
+    border: 1px solid white;
+    width: 271px;
+    border-radius: 20px;
+    text-align: center;
+    &.active {
+      border-radius: 20px 20px 0 0;
+      border-color:#5398ff;
+      cursor: pointer;
+    }
+    .buttonDate {
+      padding-top: 21%;
+      cursor: pointer;
+      height: 103px;
+      &:hover, &:active {
+        color:#5398ff;
+        cursor: pointer;
+      }
+    }
+    .buttonDateActive{
+      color:#5398ff;
+    }
+  }
+
+  .lessRecurrence, .moreRecurrence {
+    border-radius: 20px 0 0 0;
+    border: 1px solid $background;
+    border-left: 1px solid #fff;
+    border-top: 1px solid #fff;
+    height: 51px;
+    width: 25%;
+    &:hover {
+      background-color: $background;
+      .labelCalculCustom{
+        color: #fff;
+      }
+    }
+  }
+  .lessRecurrence {
+    margin-top:0px;
+    padding-top: 5px;
+    border-radius: 0 0 0 20px;
+    border-bottom: 1px solid #fff;
+    border-left: 1px solid #fff;
+    border-top: none;
+  }
+  .labelRecurrence, .labelRecurrence-alt {
+    display: inline-block;
+    position: relative;
+    bottom: 67px;
+    width: 75%;
+    left: 11.5%;
+    span {
+      position: relative;
+      font-size: 2rem;
+      right: 6px;
+      top: 6px;
+    }
+  }
+  .labelRecurrence-alt {
+    bottom: -32px;
+    width: 100%;
+    left: 0;
+  }
+
+  .radioButtonRedirection {
+    margin-top: -230px;
+    .radioRattachement {
+      border-radius: 0 0 20px 20px !important;
+    }
+  }
+  .selectAccompagnementRedirection {
+    font-family: 'MarianneMedium', Arial, sans-serif;
+    border-radius: 20px 20px 0 0;
+    border: solid 1px #5398FF;
+    background: #1e1e1e;
+    border-bottom: none;
+    height: 230px;
+  }
+  .listRedirection {
+    display: block;
+    position: relative;
+    list-style: none;
+    overflow-y: scroll;
+    height: 200px;
+    color: #fff;
+    padding: 0;
+    &::-webkit-scrollbar {
+      width: 12px;
+      height: 48px;
+      border-radius: 8px;
+      // background-color: #cccccc
+    };
+    &::-webkit-scrollbar-thumb {
+      border-radius: 8px;
+      background: #909090;
+    }
+  }
+  .selecteurList:hover, .selecteurList:active {
+  color: #1e1e10;
+  height: 48px;
+  width: auto;
+  background-color: #FFFFFF;
+  }
+  .selecteurList {
+    padding: 1em 2em;
+     text-align: left
+  }
+  .styleInputAutre {
+    background-color: #1e1e1e;
+    border: solid 1px #929292;
+    padding: 1em 2em;
+    font-size: 1rem;
+    text-align: left;
+    width: 100%;
+    color: #fff;
+    &:hover, &:focus, &:active   {
+      background-color: #fff;
+      border-color: #1e1e1e;
+      color: #1e1e1e;
+    }
+  }
+  .styleButtonRedirection {
+    border: solid 1px #5398FF;
+    border-radius: 0 0 20px 20px;
+    position: relative;
+    max-height: 250px;
+    }
+
+  .baseline {
+    color: #919191;
+    font-size: 14px;
+  }
+  .ageStatusValueSmallCount{
+      font-size: 32px;
+      font-weight: 500;
+      letter-spacing: 0;
+      line-height: 32px;
+  }
+  .ageStatusLabelSmallCount {
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 20px;
+  }
+
+  .radioRattachementAlt {
+    height: 104px;
   }
 
   /* custom point de rupture LG du DS */
   @media (max-width: 1024px) {
 
-    .responsiveSelect {
+    .responsiveSelect, .responsiveRecurrence {
       padding-left: 0.5rem;
     }
 
@@ -133,34 +384,47 @@ $errorDarkMode: #FF3333;
   @media (max-width: 767px) {
 
     .titre {
+      text-align: center;
       font-size:28px;
       line-height:40px;
     }
-
-    .responsiveSelect {
+    .questionResponsive {
+      text-align: center;
+      margin: auto;
+    }
+    .dateBox {
+      padding-left: .5rem;
+      width: 100%;
+    }
+    .responsiveSelect, .responsiveRecurrence, .responsiveDate {
       width: calc(1000%/12);
       margin: 0 auto;
+      padding-left: .5rem;
     }
-
+    .labelRecurrence span {
+      display: block;
+      top: -15px;
+      right: 0;
+    }
   }
 
   /* custom point de rupture SM du DS */
   @media (max-width: 576px) {
 
     .questionResponsive {
-      margin-left: 0;
       width: calc(1200%/12);
     }
 
-    .responsiveSelect {
+    .responsiveSelect, .responsiveRecurrence, .responsiveDate {
       width: calc(1200%/12);
+      padding-left: .5rem;
     }
 
   }
   /** END SELECT CP **/
 
   /** START RADIO CANAL & ACTIVITY **/
-  .radioRattachement {
+  .radioRattachement, .radioRattachementAlt {
     width: 100%;
     border-radius: 20px;
     border: 1px solid white;
@@ -208,9 +472,16 @@ $errorDarkMode: #FF3333;
   }
 
   .labelCalculCustom {
+    margin-top: 5px;
     font-size: 2.5rem;
-    padding-top: 10px;
     color: black;
+  }
+
+  .countSmallRadioCalcul {
+    .labelCalculCustom {
+      margin-top: 0px;
+      padding-top: 10px;
+    }
   }
 
   .responsiveRadioCanal1, .responsiveRadioCanal2, .responsiveRadioActivity1, .responsiveRadioActivity2, .responsiveRadioActivity3Big {
@@ -325,7 +596,7 @@ $errorDarkMode: #FF3333;
   /** END RADIO CANAL & ACTIVITY **/
 
   /** START SQUARE BUTTON AGE AND STATUT **/
-  .squareRattachement {
+  .squareRattachement, .squareRattachementAlt {
     width: 100%;
     height: 104px;
     border-radius: 20px;
@@ -409,6 +680,9 @@ $errorDarkMode: #FF3333;
   .checkboxRattachement-selected {
     background-color: white!important;
     color: black!important;
+    .baseline {
+      color: #2a2a2a;
+    }
   }
 
   .labelCheckboxCustom {
@@ -443,7 +717,12 @@ $errorDarkMode: #FF3333;
 
   /* custom point de rupture LG du DS */
   @media (max-width: 991px) {
-
+    .centre-titre {
+      text-align: center;
+    }
+    .url-a-propos {
+      text-align: center;
+    }
     .labelCheckboxCustom {
       font-size: 12px;
     }
@@ -527,6 +806,34 @@ $errorDarkMode: #FF3333;
   }
 
   .countSmallRadioCalcul ~ .countSmallRadioCalcul:hover {
+    border-radius: 0 0 20px 0;
+  }
+
+  .countSmallSquareLabel {
+    border-bottom: 1.5px solid black;
+    height: 68px;
+  }
+
+  .countSmallSquareCalcul {
+    width: 50%;
+    height: 33px;
+    display: inline-block;
+    margin-bottom: -14px;
+    .labelCalculCustom {
+      margin-top: 0px;
+    }
+  }
+
+  .countSmallSquareCalcul:hover {
+    background-color: $background;
+    border-radius: 0 0 0 20px;
+
+    .labelCalculCustom {
+      color: white;
+    }
+  }
+
+  .countSmallSquareCalcul ~ .countSmallSquareCalcul:hover {
     border-radius: 0 0 20px 0;
   }
 

@@ -56,7 +56,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false
 
   return (
     <>
-      <div className="rf-col-offset-2 rf-col-8 no-print">
+      <div className="rf-col-offset-2 rf-col-8 no-print rf-mt-md-n15w">
         <hr className="rf-mx-5w"/>
         <div className="rf-m-5w rf-m-md-4w rf-m-xs-to-md-7v"></div>
       </div>

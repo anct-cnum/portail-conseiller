@@ -22,11 +22,10 @@ function ValidationButton() {
     } else {
       //Pas d'erreurs, envoi seulement des donnes necessaires à l'API
       // eslint-disable-next-line no-unused-vars
-      let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error, ...dataCraToSend } = cra;
-      //Ajout du choix optionnel si non présent
-      if (cra?.accompagnement === undefined) {
-        dataCraToSend.accompagnement = null;
-      }
+      let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error,
+        // eslint-disable-next-line no-unused-vars
+        showSelectRedirection, nbParticipantsAge, nbParticipantsStatut, nbParticipantsAccompagnement, ...dataCraToSend } = cra;
+
       dispatch(craActions.submitCra(dataCraToSend));
     }
   };
@@ -40,7 +39,7 @@ function ValidationButton() {
 
   return (
     <div className="rf-grid-row rf-grid-row--center rf-pb-12w rf-mb-3w">
-      <div className="rf-col-sm-8 rf-col-md-6 submitResponsive" style={{ textAlign: 'center' }}>
+      <div className="rf-col-sm-10 rf-col-md-6 submitResponsive" style={{ textAlign: 'center' }}>
         <button className="rf-btn rf-text--bold big-btn submitCra" onClick={sendCra}>Valider</button>
         <br/>
         {saveInProgress &&

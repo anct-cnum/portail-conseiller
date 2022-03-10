@@ -38,6 +38,11 @@
   src: url(/public/fontsAddons/Marianne-Regular.woff2);
 }
 
+@font-face {
+  font-family: MarianneLight;
+  src: url(/public/fontsAddons/Marianne-Light.woff2);
+}
+
 .rf-container--fluid {
   padding-left: 0;
   padding-right: 0;
@@ -187,13 +192,13 @@
   font-size: 16px;
 
 }
-.rf-header .rf-shortcuts__item.header-aide {
+.rf-header .rf-shortcuts__item.header-aide, .rf-shortcuts__item.header-user {
   border: none;
 }
 .rf-mt-15w {
   margin-top: 7.5rem !important;
 }
-.header-aide, .header-propos, .header-informations {
+.header-aide, .header-propos, .header-informations, .header-user {
   .rf-nav__list {
     margin: -28px -1rem;
     padding: 0 0 7px;
@@ -202,8 +207,8 @@
     }
   }
   .rf-nav__btn[aria-expanded="true"] {
-    background-color: #ae5dff;
-    color: #420095 !important;
+    background-color: #9A9AFF;
+    color: #000091 !important;
   }
   .rf-custom-link {
     padding: 2.5rem 1rem !important;
@@ -215,8 +220,8 @@
     cursor: pointer;
     border: none;
     &:hover{
-      background-color: #ae5dff;
-      color: #420095 !important;
+      background-color: #9A9AFF;
+      color: #000091 !important;
     }
     &:focus {
       outline-color: transparent;
@@ -228,14 +233,14 @@
   }
   .link-actif {
     background-color: #9A9AFF;
-    color: #000092 !important;
+    color: #000091 !important;
   }
   .logo-discussion {
     position: relative;
     width: 34px;
     top: 6px;
   }
-  .texte-aide, .texte-informations {
+  .texte-aide, .texte-informations, .texte-user {
     position: relative;
     margin-left: 10px;
     bottom: 4px;
@@ -244,10 +249,10 @@
       position: relative;
     }
   }
-  .texte-informations {
+  .texte-informations, .texte-user {
     bottom: -4px;
   }
-  .lien-aide, .lien-informations {
+  .lien-aide, .lien-informations, .lien-user {
     box-shadow: none !important;
     outline: none !important;
   }
@@ -256,14 +261,23 @@
     line-height: 24px;
     color: #fff;
   }
-  #menu-liens-aide, #menu-informations {
+  #menu-liens-aide, #menu-informations, #menu-liens-user {
     background-color: #1e1e1e;
     max-height: none;
     text-align: left;
+    border: 1px solid #9A9AFF;
     padding: 15px;
     left: 32px;
+    margin-top: -0.43rem;
     .rf-menu__list {
       background-color: #1e1e1e;
+    }
+  }
+  #menu-liens-user {
+    max-width: 11rem;
+    .rf-menu__list {
+      font-size: 14px;
+      line-height: 24px;
     }
   }
   .aide-coop {
@@ -272,6 +286,13 @@
   .aide-metier {
     border-top: 1px solid #bfbfe3;
     padding-top: 12px;
+  }
+  .user-disconnect {
+    border-top: 1px solid #6A6A6A;
+    padding-top: 12px;
+  }
+  .user-infos {
+    padding-bottom: 12px;
   }
 }
 
