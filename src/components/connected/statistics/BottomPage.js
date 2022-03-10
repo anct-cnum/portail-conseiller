@@ -86,13 +86,8 @@ function BottomPage({ donneesStats, print, type }) {
         listDelete.push(i);
       }
     });
-    console.log(listeAutres);
-    console.log(listDelete);
-    console.log(donneesAutre);
-    console.log(statsReorientations.find(stats => stats?.nom === 'Autres'));
     if (!statsReorientations.find(stats => stats?.nom === 'Autres&#0;')) {
       statsReorientations.push(donneesAutre);
-      console.log(statsReorientations);
       listDelete.forEach(i => {
         delete statsReorientations[i];
       });
