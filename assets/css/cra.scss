@@ -27,6 +27,10 @@ $errorDarkMode: #FF3333;
     font-size: 14px;
     margin-right: -18px;
   }
+  .url-a-propos {
+    text-align: right;
+    margin-top: 18px;
+  }
   .questionRequired, .labelError {
     color: $errorDarkMode;
   }
@@ -713,7 +717,12 @@ $errorDarkMode: #FF3333;
 
   /* custom point de rupture LG du DS */
   @media (max-width: 991px) {
-
+    .centre-titre {
+      text-align: center;
+    }
+    .url-a-propos {
+      text-align: center;
+    }
     .labelCheckboxCustom {
       font-size: 12px;
     }
