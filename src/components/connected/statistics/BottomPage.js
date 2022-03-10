@@ -9,7 +9,7 @@ import { sortByMonthAndYear } from '../../../utils/functionsSort';
 import labelsCorrespondance from '../../../data/labelsCorrespondance.json';
 import { statistiqueActions } from '../../../actions/statistique.actions';
 
-function BottomPage({ donneesStats, print }) {
+function BottomPage({ donneesStats, print, type }) {
 
   const dispatch = useDispatch();
 
@@ -226,7 +226,9 @@ function BottomPage({ donneesStats, print }) {
           <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v no-print"><hr/></div>
           <ElementHighcharts donneesStats={statsUsagers} variablesGraphique={graphiqueStatut} print={print}/>
         </div>
-        <div className="rf-col-12 rf-col-offset-md-4 rf-col-md-8 graphique-responsive-lg reorientation-print">
+        <div className={type === 'conseiller' ? 'rf-col-12 rf-col-offset-md-4 rf-col-md-8 graphique-responsive-lg reorientation-print-conseiller' :
+          'rf-col-12 rf-col-offset-md-4 rf-col-md-8 graphique-responsive-lg reorientation-print'}
+        >
           <div className="rf-mt-6w"></div>
           {statsReorientations?.length > 0 &&
             <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientations} listeAutres={listeAutres} print={print}/>
@@ -241,6 +243,7 @@ function BottomPage({ donneesStats, print }) {
 
 BottomPage.propTypes = {
   donneesStats: PropTypes.object,
-  print: PropTypes.bool
+  print: PropTypes.bool,
+  type: PropTypes.string,
 };
 export default BottomPage;
