@@ -393,6 +393,7 @@
     .theme-print {
       margin: 120px 0 0 0;
     }
+
     .evolution-print {
       margin-top: 70px;
     }
@@ -416,6 +417,13 @@
     margin: -28px 0 0 405px;
   }
   .lieux-autres, .lieux-autres ul{
+    color: #1e1e1e;
+  }
+}
+.print {
+  background-color: #fff;
+  color: #1e1e1e;
+  .rf-service__title {
     color: #1e1e1e;
   }
 }
