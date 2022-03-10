@@ -76,7 +76,7 @@ function BottomPage({ donneesStats, print, type }) {
     let listeAutres = [];
     let listDelete = [];
     let donneesAutre = {
-      nom: 'Autres',
+      nom: 'Autres&#0;',
       valeur: 0
     };
     statsReorientations.forEach((donnees, i) => {
@@ -86,8 +86,13 @@ function BottomPage({ donneesStats, print, type }) {
         listDelete.push(i);
       }
     });
-    if (!statsReorientations.find(stats => stats?.nom === 'Autres')) {
+    console.log(listeAutres);
+    console.log(listDelete);
+    console.log(donneesAutre);
+    console.log(statsReorientations.find(stats => stats?.nom === 'Autres'));
+    if (!statsReorientations.find(stats => stats?.nom === 'Autres&#0;')) {
       statsReorientations.push(donneesAutre);
+      console.log(statsReorientations);
       listDelete.forEach(i => {
         delete statsReorientations[i];
       });
