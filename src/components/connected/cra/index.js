@@ -17,7 +17,7 @@ function Cra() {
 
   const location = useLocation();
   const urlAPropos =
-  'https://aide.conseiller-numerique.gouv.fr/fr/article/comment-le-conseiller-numerique-rend-il-compte-de-ses-activites-et-a-quoi-cela-sert-il-16n3yhq/';
+  process.env.REACT_APP_AIDE_URL + '/article/comment-le-conseiller-numerique-rend-il-compte-de-ses-activites-et-a-quoi-cela-sert-il-16n3yhq/';
 
   //Forcer affichage en haut de la page pour voir le flashbag
   if (location?.printFlashbag === true) {
