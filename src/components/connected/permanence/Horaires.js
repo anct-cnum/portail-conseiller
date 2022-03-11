@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { permanenceActions } from '../../../actions/permanence.actions';
+import PropTypes from 'prop-types';
 
-function Horaires({ horairesPermanence }) {
+function Horaires({ prefixId }) {
 
   const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
   const erreursHoraires = erreursFormulaire?.filter(erreur => erreur?.horaires)[0]?.horaires;
@@ -38,25 +38,11 @@ function Horaires({ horairesPermanence }) {
     }
   }
 
-  useEffect(() => {
-    if (horairesPermanence) {
-      horairesPermanence.forEach((horairesJour, id) => {
-        horaires[id] = horairesJour;
-        horaires[id].fermeture = [
-          horairesJour.matin[0] === 'Fermé' && horairesJour.matin[1] === 'Fermé',
-          horairesJour.apresMidi[0] === 'Fermé' && horairesJour.apresMidi[1] === 'Fermé'
-        ];
-      });
-      setHoraires(horaires => [...horaires]);
-    }
-    dispatch(permanenceActions.updateHoraires(horaires));
-  }, [horairesPermanence]);
-
   return (
     <>
-      <h2 className="sous-titre rf-col-12 rf-mb-4w">Horaires de mon lieu d&rsquo;activit&eacute;</h2>
-      <div className="rf-col-12">
-        <table className="rf-mb-9w">
+      <div className="rf-col-offset-1 rf-col-11 rf-mb-4w">Horaires de la structure&nbsp;<span className="obligatoire">*</span></div>
+      <div className="rf-col-offset-1 rf-col-11">
+        <table>
           <thead>
             <tr>
               <th></th>
@@ -75,11 +61,11 @@ function Horaires({ horairesPermanence }) {
                     {!horaires[idx].fermeture[0] &&
                       <>
                         <input className="horaires-debut rf-mb-md-1w" type="time" value={horaires[idx].matin[0]}
-                          required name={jour + 'MatinDebut'} onChange={e => {
+                          required name={prefixId + jour + 'MatinDebut'} onChange={e => {
                             handleChange(e, idx, 'matin', 0);
                           }}/>
                         <input className="horaires-fin rf-mr-2w" type="time" value={horaires[idx].matin[1]}
-                          required name={jour + 'MatinFin'} onChange={e => {
+                          required name={prefixId + jour + 'MatinFin'} onChange={e => {
                             handleChange(e, idx, 'matin', 1);
                           }}/>
                       </>
@@ -95,11 +81,11 @@ function Horaires({ horairesPermanence }) {
                     {!horaires[idx].fermeture[1] &&
                       <>
                         <input className="horaires-debut rf-mb-md-1w" type="time" value={horaires[idx].apresMidi[0]}
-                          required name={jour + 'ApresMidiDebut'} onChange={e => {
+                          required name={prefixId + jour + 'ApresMidiDebut'} onChange={e => {
                             handleChange(e, idx, 'apresMidi', 0);
                           }}/>
                         <input className="horaires-fin rf-mr-2w" type="time" value={horaires[idx].apresMidi[1]}
-                          required name={jour + 'ApresMidiFin'} onChange={e => {
+                          required name={prefixId + jour + 'ApresMidiFin'} onChange={e => {
                             handleChange(e, idx, 'apresMidi', 1);
                           }}/>
                       </>
@@ -130,8 +116,7 @@ function Horaires({ horairesPermanence }) {
 }
 
 Horaires.propTypes = {
-  horairesPermanence: PropTypes.array
+  prefixId: PropTypes.string,
 };
-
 
 export default Horaires;

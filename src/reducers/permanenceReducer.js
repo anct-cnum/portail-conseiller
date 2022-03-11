@@ -1,5 +1,9 @@
 
 const initialState = {
+  fields: [{ name: 'estLieuPrincipal', value: true }],
+  showLieuSecondaire: Array.from({ length: process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE }, () => (false)),
+  showSiret: [],
+
   isAdresseCachee: true,
   isCreated: false,
   isUpdated: false,
@@ -23,6 +27,21 @@ export default function permanence(state = initialState, action) {
         ...state,
         error: action.error
       };
+    case 'GET_PERMANENCES_REQUEST':
+      return {
+        ...state,
+        loading: true
+      };
+    case 'GET_PERMANENCES_SUCCESS':
+      return {
+        ...state,
+        permanences: action?.permanences
+      };
+    case 'GET_PERMANENCES_FAILURE':
+      return {
+        ...state,
+        error: action.error
+      };
     case 'SHOW_FORMULAIRE_PERMANENCE':
       return {
         ...state,
@@ -33,11 +52,40 @@ export default function permanence(state = initialState, action) {
         showFormulairePermanence: false,
         isUpdated: false
       };
+
+    case 'UPDATE_FIELD':
+      let fields = state?.fields;
+      delete fields?.filter(field => field.name === action.field.name)[0]?.value;
+      delete fields?.filter(field => field.name === action.field.name)[0]?.name;
+
+      fields?.push(action.field);
+
+      fields = fields?.filter(field => {
+        if (Object.keys(field).length !== 0) {
+          return true;
+        }
+        return false;
+      });
+
+      return {
+        ...state,
+        fields: fields
+      };
+
+    case 'INIT_ADRESSE':
+
+      return {
+        ...state,
+        numeroVoie: action?.adresse?.numeroRue ? action?.adresse?.numeroRue : action?.adresse?.numero_voie,
+        rueVoie: action?.adresse?.rue ? action.adresse?.rue : action?.adresse?.type_voie + ' ' + action?.adresse?.nom_voie,
+        codePostal: action?.adresse?.codePostal ? action?.adresse?.codePostal : action?.adresse?.code_postal,
+        ville: action?.adresse?.ville ? action?.adresse?.ville : action?.adresse?.localite,
+      };
     case 'INIT_PERMANENCE':
       return {
         ...state,
-        adresseExact: true,
-        lieuActivite: action.permanence?.nomEnseigne,
+        principalLieuActivite: true,
+        nomEnseigne: action.permanence?.nomEnseigne,
         siret: String(action.permanence?.siret),
         numeroTelephone: action.permanence?.numeroTelephone,
         email: action.permanence?.email,
@@ -48,7 +96,8 @@ export default function permanence(state = initialState, action) {
         rueVoie: action.permanence?.adresse.rue,
         codePostal: action.permanence?.adresse.codePostal,
         ville: action.permanence?.adresse?.ville,
-        horaires: action.permanence?.horaires
+        horaires: action.permanence?.horaires,
+        typeAcces: action.permanence?.typeAcces,
       };
     case 'VERIFY_FORMULAIRE':
       return {
@@ -95,18 +144,39 @@ export default function permanence(state = initialState, action) {
         showError: true,
         error: action.error,
       };
-
+    /* Partie Informations professionnel*/
+    case 'UPDATE_ESTCOORDINATEUR':
+      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.estCoordinateur)[0]?.estCoordinateur;
+      return {
+        ...state,
+        estCoordinateur: action.value === 'true',
+        showError: false,
+      };
+    case 'UPDATE_EMAILPRO':
+      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.emailPro)[0]?.emailPro;
+      return {
+        ...state,
+        emailPro: action.value,
+        showError: false,
+      };
+    case 'UPDATE_TELEPHONEPRO':
+      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.telephonePro)[0]?.telephonePro;
+      return {
+        ...state,
+        telephonePro: action.value,
+        showError: false,
+      };
     /* Partie Informations */
     case 'CACHER_ADRESSE':
-      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.adresseExact)[0]?.adresseExact;
+      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.principalLieuActivite)[0]?.principalLieuActivite;
       return {
         ...state,
         isAdresseCachee: action.hide,
-        adresseExact: true,
+        principalLieuActivite: true,
         showError: false,
       };
     case 'MONTRER_ADRESSE':
-      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.adresseExact)[0]?.adresseExact;
+      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.principalLieuActivite)[0]?.principalLieuActivite;
       return {
         ...state,
         isAdresseCachee: action.hide,
@@ -115,23 +185,15 @@ export default function permanence(state = initialState, action) {
         codePostal: '',
         ville: '',
         siret: '',
-        adresseExact: true,
+        principalLieuActivite: false,
         showError: false,
       };
-    case 'INIT_ADRESSE':
+
+    case 'UPDATE_NOMENSEIGNE':
+      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.nomEnseigne)[0]?.nomEnseigne;
       return {
         ...state,
-        numeroVoie: action?.adresse?.numeroRue ? action?.adresse?.numeroRue : action?.adresse?.numero_voie,
-        rueVoie: action?.adresse?.rue ? action.adresse?.rue : action?.adresse?.type_voie + ' ' + action?.adresse?.nom_voie,
-        codePostal: action?.adresse?.codePostal ? action?.adresse?.codePostal : action?.adresse?.code_postal,
-        ville: action?.adresse?.ville ? action?.adresse?.ville : action?.adresse?.localite,
-        siret: action?.adresse?.siret
-      };
-    case 'UPDATE_LIEUACTIVITE':
-      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.lieuActivite)[0]?.lieuActivite;
-      return {
-        ...state,
-        lieuActivite: action.value,
+        nomEnseigne: action.value,
         showError: false,
       };
     case 'UPDATE_SIRET':
@@ -164,6 +226,11 @@ export default function permanence(state = initialState, action) {
       };
 
     /* Partie Adresse */
+    case 'TOGGLE_SIRET':
+      return {
+        ...state,
+        showSiret: !state.showSiret
+      };
     case 'UPDATE_NUMEROVOIE':
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.numeroVoie)[0]?.numeroVoie;
       return {
@@ -198,6 +265,20 @@ export default function permanence(state = initialState, action) {
       return {
         ...state,
         horaires: action.horaires
+      };
+
+    case 'HAVE_LIEU_SECONDAIRE':
+      return {
+        ...state,
+        showLieuSecondaire: action.show
+      };
+
+    case 'UPDATE_TYPE_ACCES':
+      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.typeAcces)[0]?.typeAcces;
+      return {
+        ...state,
+        typeAcces: action.typeAcces,
+        showError: false,
       };
 
     /* Partie Itinerance */
