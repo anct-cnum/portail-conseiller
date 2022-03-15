@@ -42,15 +42,18 @@ function Adresse({ codeDepartement, prefixId }) {
         </>
       }
       {prefixId !== 'principal_' &&
+        <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-10 rf-mb-6w">
+          <InputCheckbox
+            textLabel="Lieu d&rsquo;activit&eacute; itin&eacute;rant (exemple&nbsp;: bus)"
+            errorInput={null}
+            nameInput={ prefixId + 'intinerant' }
+            baselineInput="Chaque point d&rsquo;itin&eacute;rance doit être enregistr&eacute; comme un nouveau lieu d&rsquo;activit&eacute;."
+          />
+        </div>
+      }
+      {(prefixId !== 'principal_' ||
+       (prefixId === 'principal_' && fields.filter(field => field.name === 'estLieuPrincipal')[0]?.value === false)) &&
         <>
-          <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-10 rf-mb-6w">
-            <InputCheckbox
-              textLabel="Lieu d&rsquo;activit&eacute; itin&eacute;rant (exemple&nbsp;: bus)"
-              errorInput={null}
-              nameInput={ prefixId + 'intinerant' }
-              baselineInput="Chaque point d&rsquo;itin&eacute;rance doit être enregistr&eacute; comme un nouveau lieu d&rsquo;activit&eacute;."
-            />
-          </div>
           {!fields.filter(field => field.name === String(prefixId) + 'checkboxSiret')[0]?.value &&
             <>
               <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
