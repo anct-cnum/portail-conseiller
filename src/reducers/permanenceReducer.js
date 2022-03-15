@@ -1,6 +1,6 @@
 
 const initialState = {
-  fields: [{ name: 'estLieuPrincipal', value: undefined }],
+  fields: [{ name: 'estLieuPrincipal', value: null }],
   showLieuSecondaire: Array.from({ length: process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE }, () => (false)),
   showSiret: [],
 

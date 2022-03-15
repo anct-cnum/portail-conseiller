@@ -17,7 +17,7 @@ function PermanencePrincipale({ structure }) {
   const erreurAdresseExact = erreursFormulaire?.filter(erreur => erreur?.estLieuPrincipal)[0]?.estLieuPrincipal;
   const adresseStructure = structure?.insee?.etablissement?.adresse;
   const fields = useSelector(state => state.permanence.fields);
-  const boolLieuPrincipal = fields.filter(field => field.name === 'estLieuPrincipal')[0]?.value === undefined;
+  const boolLieuPrincipal = fields.filter(field => field.name === 'estLieuPrincipal')[0]?.value === null;
 
   function handleAdresse(estLieuPrincipal) {
     dispatch(permanenceActions.updateField('estLieuPrincipal', estLieuPrincipal));
