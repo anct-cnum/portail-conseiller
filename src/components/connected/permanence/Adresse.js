@@ -10,28 +10,27 @@ function Adresse({ codeDepartement, prefixId }) {
   const fields = useSelector(state => state.permanence.fields);
   const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
 
-  const erreurLieuActivite = erreursFormulaire?.filter(erreur => erreur?.nomEnseigne)[0]?.nomEnseigne;
-  const erreurSiret = erreursFormulaire?.filter(erreur => erreur?.siret)[0]?.siret;
-  const erreurNumeroVoie = erreursFormulaire?.filter(erreur => erreur?.numeroVoie)[0]?.numeroVoie;
-  const erreurRueVoie = erreursFormulaire?.filter(erreur => erreur?.rueVoie)[0]?.rueVoie;
-  const erreurcodePostal = erreursFormulaire?.filter(erreur => erreur?.codePostal)[0]?.codePostal;
-  const erreurVille = erreursFormulaire?.filter(erreur => erreur?.ville)[0]?.ville;
-  const erreurNumeroTelephone = erreursFormulaire?.filter(erreur => erreur?.numeroTelephone)[0]?.numeroTelephone;
-  const erreurEmail = erreursFormulaire?.filter(erreur => erreur?.email)[0]?.email;
-  const erreurSiteWeb = erreursFormulaire?.filter(erreur => erreur?.siteWeb)[0]?.siteWeb;
+  const erreurLieuActivite = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'nomEnseigne'])[0]?.[prefixId + 'nomEnseigne'];
+  const erreurSiret = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'siret'])[0]?.[prefixId + 'siret'];
+  const erreurNumeroVoie = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'numeroVoie'])[0]?.[prefixId + 'numeroVoie'];
+  const erreurRueVoie = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'rueVoie'])[0]?.[prefixId + 'rueVoie'];
+  const erreurcodePostal = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'codePostal'])[0]?.[prefixId + 'codePostal'];
+  const erreurVille = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'ville'])[0]?.[prefixId + 'ville'];
+  const erreurNumeroTelephone = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'numeroTelephone'])[0]?.[prefixId + 'numeroTelephone'];
+  const erreurEmail = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'email'])[0]?.[prefixId + 'email'];
+  const erreurSiteWeb = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'siteWeb'])[0]?.[prefixId + 'siteWeb'];
 
   let indicatif = codeDepartement?.length === 3 ?
     telephoneHorsMetropole?.find(item => item.codeDepartement === codeDepartement).indicatif : '+33';
-
   return (
     <>
       {(prefixId !== 'principal_' ||
-      (prefixId === 'principal_' && !fields.filter(field => field.name === 'estLieuPrincipal')[0]?.value)) &&
+      (prefixId === 'principal_' && fields.filter(field => field.name === 'estLieuPrincipal')[0]?.value === false)) &&
         <>
           <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
             <InputText
-              textLabel={ prefixId === 'principal_' ? <Fragment>Nom de votre lieu d&rsqo;activit&eacute; principal</Fragment> :
-                <Fragment>Nom de votre lieu d&rsqo;activit&eacute;</Fragment> }
+              textLabel={ prefixId === 'principal_' ? <Fragment>Nom de votre lieu d&rsquo;activit&eacute; principal</Fragment> :
+                <Fragment>Nom de votre lieu d&rsquo;activit&eacute;</Fragment> }
               errorInput={erreurLieuActivite}
               nameInput= {prefixId + 'nomEnseigne'}
               requiredInput={true}
@@ -75,8 +74,9 @@ function Adresse({ codeDepartement, prefixId }) {
               textLabel="La structure n&rsquo;a pas de num&eacute;ro de Siret"
               errorInput={null}
               nameInput={ prefixId + 'checkboxSiret' }
-              baselineInput="Cochez &eacute;galemnent si le lieu d&rsquo;activit&eacute; partage le Siret d&rsquo;une autre structure &agrave; laquelle il
-              est rattach&eacute;. Exemple : ma m&eacute;diath&egrave;que a le m&ecirc;me Siret que la mairie."
+              baselineInput="Si l&rsquo;adresse pr&eacute;-remplie par le num&eacute;ro de Siret ne correspond pas &agrave;
+              votre lieu d&rsquo;activit&eacute;, vous pouvez cochez la case ci-dessus."
+              classBaseline="toggle-siret"
             />
           </div>
         </>

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ButtonAjoutLieu from './Components/ButtonAjoutLieu';
 
-function AjouterAutrePermanence({ secondaireId }) {
+function AjouterAutrePermanence({ secondaireId, show }) {
 
   return (
     <>
@@ -10,7 +10,7 @@ function AjouterAutrePermanence({ secondaireId }) {
         <img className="pin" src="logos/permanences/pin.svg"/>
       </div>
       <div className="rf-col-5 rf-mt-7w">
-        <ButtonAjoutLieu secondaireId={secondaireId} />
+        <ButtonAjoutLieu secondaireId={secondaireId} show={show} />
         <span className="baseline rf-mb-6w">
           Vous pourrez ajouter et modifier vos lieux d&rsquo;activit&eacute; plus tard.
         </span>
@@ -20,6 +20,7 @@ function AjouterAutrePermanence({ secondaireId }) {
 }
 
 AjouterAutrePermanence.propTypes = {
+  show: PropTypes.array,
   secondaireId: PropTypes.number,
 };
 

@@ -6,11 +6,10 @@ import PropTypes from 'prop-types';
 function Horaires({ prefixId }) {
 
   const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
-  const erreursHoraires = erreursFormulaire?.filter(erreur => erreur?.horaires)[0]?.horaires;
+  const erreursHoraires = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'horaires'])[0]?.[prefixId + 'horaires'];
 
   const dispatch = useDispatch();
 
-  /* V2 gestion des horaires */
   const jourSemaine = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
 
   const [horaires, setHoraires] = useState([
@@ -29,6 +28,7 @@ function Horaires({ prefixId }) {
     horaires[idJour].fermeture[jour === 'matin' ? 0 : 1] = horaires[idJour][jour][0] === 'Fermé' && horaires[idJour][jour][1] === 'Fermé';
     setHoraires(horaires => [...horaires]);
     dispatch(permanenceActions.updateHoraires(horaires));
+    dispatch(permanenceActions.updateField(prefixId + 'horaires', horaires));
     if (erreursHoraires) {
       erreursHoraires.forEach((erreur, idErreur) => {
         if (erreur === idJour) {

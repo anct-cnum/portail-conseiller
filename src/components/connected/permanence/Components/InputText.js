@@ -40,7 +40,10 @@ function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineIn
 }
 
 InputText.propTypes = {
-  textLabel: PropTypes.string,
+  textLabel: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object
+  ]),
   errorInput: PropTypes.string,
   nameInput: PropTypes.string,
   baselineInput: PropTypes.oneOfType([

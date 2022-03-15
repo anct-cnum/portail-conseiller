@@ -1,17 +1,12 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { permanenceActions } from '../../../actions/permanence.actions';
+import InputRadio from './Components/InputRadio';
 
-function TypeAcces({ permanence, islieuPrincipal, prefixId }) {
-  const dispatch = useDispatch();
+function TypeAcces({ islieuPrincipal, prefixId }) {
 
   const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
-  const erreurTypeAcces = erreursFormulaire?.filter(erreur => erreur?.typeAcces)[0]?.typeAcces;
-
-  function handleChange(e) {
-    dispatch(permanenceActions.updateTypeAcces(e.target.value));
-  }
+  const erreurTypeAcces = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'typeAcces'])[0]?.[prefixId + 'typeAcces'];
 
   return (
     <>
@@ -22,28 +17,15 @@ function TypeAcces({ permanence, islieuPrincipal, prefixId }) {
 
           <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-2w">
             <div className="rf-fieldset__content">
-              <div className="rf-radio-group">
-                <input type="radio" id={prefixId + 'libre'} name={prefixId + 'typeAcces'} value="libre" required="required"
-                  defaultChecked={permanence?.typeAcces === 'libre'} onClick={handleChange}/>
-                <label className={erreurTypeAcces ? 'rf-label invalid' : 'rf-label' } htmlFor={prefixId + 'libre'}>
-                  Acc&egrave;s libre
-                </label>
-              </div>
-              <div className="rf-radio-group">
-                <input type="radio" id={prefixId + 'rdv'} name={prefixId + 'typeAcces'} value="rdv"
-                  defaultChecked={permanence?.typeAcces === 'rdv'} onClick={handleChange}/>
-                <label className={erreurTypeAcces ? 'rf-label invalid' : 'rf-label' } htmlFor={prefixId + 'rdv'}>
-                  Sur rendez-vous
-                </label>
-              </div>
+              <InputRadio textLabel="Acc&egrave;s libre" errorInput={erreurTypeAcces}
+                idInput={prefixId + 'libre'} nameInput={prefixId + 'typeAcces'} valueInput="libre"/>
+
+              <InputRadio textLabel="Sur rendez-vous" errorInput={erreurTypeAcces}
+                idInput={prefixId + 'rdv'} nameInput={prefixId + 'typeAcces'} valueInput="rdv"/>
+
               {!islieuPrincipal &&
-                <div className="rf-radio-group">
-                  <input type="radio" id={prefixId + 'prive'} name={prefixId + 'typeAcces'} value="prive"
-                    defaultChecked={permanence?.typeAcces === 'prive'} onClick={handleChange}/>
-                  <label className={erreurTypeAcces ? 'rf-label invalid' : 'rf-label' } htmlFor={prefixId + 'prive'}>
-                    La structure n&rsquo;accueille pas de public
-                  </label>
-                </div>
+                <InputRadio textLabel="La structure n&rsquo;accueille pas de public" errorInput={erreurTypeAcces}
+                  idInput={prefixId + 'prive'} nameInput={prefixId + 'typeAcces'} valueInput="prive"/>
               }
             </div>
           </fieldset>
@@ -58,7 +40,6 @@ function TypeAcces({ permanence, islieuPrincipal, prefixId }) {
 }
 
 TypeAcces.propTypes = {
-  permanence: PropTypes.object,
   islieuPrincipal: PropTypes.bool,
   prefixId: PropTypes.string,
 };

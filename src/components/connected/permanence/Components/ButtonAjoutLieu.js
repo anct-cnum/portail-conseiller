@@ -4,11 +4,14 @@ import { permanenceActions } from '../../../../actions';
 import { useDispatch } from 'react-redux';
 
 
-function ButtonAjoutLieu({ secondaireId }) {
+function ButtonAjoutLieu({ secondaireId, show }) {
   const dispatch = useDispatch();
+
   const onClick = e => {
     const { id } = e.target;
+    show[secondaireId + 1] = true;
     dispatch(permanenceActions.updateField(id, true));
+    dispatch(permanenceActions.montrerLieuSecondaire(show));
   };
 
   return (
@@ -21,10 +24,7 @@ function ButtonAjoutLieu({ secondaireId }) {
 }
 
 ButtonAjoutLieu.propTypes = {
-  textLabel: PropTypes.string,
-  errorInput: PropTypes.string,
-  nameInput: PropTypes.string,
-  baselineInput: PropTypes.string,
+  show: PropTypes.array,
   secondaireId: PropTypes.number,
 };
 

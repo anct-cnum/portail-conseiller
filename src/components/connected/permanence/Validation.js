@@ -8,15 +8,13 @@ function Validation({ conseillerId, structureId }) {
   const dispatch = useDispatch();
   const form = useSelector(state => state.permanence);
   const errorsForm = useSelector(state => state.permanence?.errorsFormulaire);
-  const showLieuSecondaire = useSelector(state => state.permanence.showLieuSecondaire);
 
   const [clickSubmit, setClickSubmit] = useState(false);
+
   function handleSubmit() {
-    if (!showLieuSecondaire) {
-      dispatch(permanenceActions.verifyFormulaire(form));
-      setClickSubmit(true);
-      window.scrollTo(0, 0);
-    }
+    dispatch(permanenceActions.verifyFormulaire(form));
+
+
   }
 
   useEffect(() => {

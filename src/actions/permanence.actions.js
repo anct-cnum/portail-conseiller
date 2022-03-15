@@ -14,10 +14,7 @@ export const permanenceActions = {
   initAdresse,
   updateField,
   updateHoraires,
-  updateItinerance,
   montrerLieuSecondaire,
-  updateTypeAcces,
-  toggleSiret,
 };
 
 function get(idConseiller) {
@@ -81,8 +78,8 @@ function initPermanence(permanence) {
 }
 
 function verifyFormulaire(form) {
-
   let errors = [];
+  const showLieuSecondaire = form?.showLieuSecondaire;
   //eslint-disable-next-line max-len
   const regExpEmail = new RegExp(/^(([^<>()[\]\\.,;:\s@\\"]+(\.[^<>()[\]\\.,;:\s@\\"]+)*)|(\\".+\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
   const regExpNumero = new RegExp(/^(?:(?:\+)(33|590|596|594|262|269))(?:[\s.-]*\d{3}){3,4}$/);
@@ -90,77 +87,110 @@ function verifyFormulaire(form) {
   const regExpSiret = new RegExp(/^$|^[0-9]{14}$/);
 
   errors.push({ estCoordinateur: (Joi.object({
-    estCoordinateur: Joi.boolean().required() }).validate({ estCoordinateur: form?.estCoordinateur }).error) ?
+    estCoordinateur: Joi.boolean().required() }).validate({
+    estCoordinateur: form?.fields.filter(field => field.name === 'estCoordinateur')[0]?.value }).error) ?
     'Votre rôle doit obligatoirement être saisie' : null });
 
   errors.push({ telephonePro: (Joi.object({
-    telephonePro: Joi.string().allow('').pattern(regExpNumero) }).validate({ telephonePro: form?.telephonePro }).error) ?
+    telephonePro: Joi.string().allow('').pattern(regExpNumero) }).validate({
+    telephonePro: form?.fields.filter(field => field.name === 'telephonePro')[0]?.value }).error) ?
     'Un numéro de téléphone valide doit être saisi' : null });
 
   errors.push({ emailPro: (Joi.object({
-    emailPro: Joi.string().allow('').pattern(regExpEmail) }).validate({ emailPro: form?.emailPro }).error) ?
+    emailPro: Joi.string().allow('').pattern(regExpEmail) }).validate({
+    emailPro: form?.fields.filter(field => field.name === 'emailPro')[0]?.value }).error) ?
     'Une adresse email valide doit être saisie' : null });
 
-  errors.push({ principalLieuActivite: (Joi.object({
-    principalLieuActivite: Joi.boolean().required() }).validate({ principalLieuActivite: form?.principalLieuActivite }).error) ?
-    'La correspondance des informations doit obligatoirement être saisie' : null });
+  errors.push({ estLieuPrincipal: (Joi.object({
+    estLieuPrincipal: Joi.boolean().allow(true, false).required() }).validate({ estLieuPrincipal:
+    form?.fields.filter(field => field.name === 'estLieuPrincipal')[0]?.value }).error) ?
+    'Vous devez indiquer si votre structure est votre lieu d\'activité principal ou non' : null });
 
-  errors.push({ nomEnseigne: (Joi.object({
-    nomEnseigne: Joi.string().required() }).validate({ nomEnseigne: form?.nomEnseigne }).error) ?
-    'Un lieu d\'activité doit obligatoirement être saisi' : null });
+  const champsAcceptes = [
+    {
+      nom: 'nomEnseigne', validation: Joi.string().required(),
+      message: 'Un lieu d\'activité doit obligatoirement être saisi'
+    },
+    {
+      nom: 'siret', validation: Joi.string().pattern(regExpSiret),
+      message: 'Un siret valide de 14 chiffres doit être saisi'
+    },
+    {
+      nom: 'numeroTelephone', validation: Joi.string().pattern(regExpNumero),
+      message: 'Un numéro de téléphone valide doit être saisi'
+    },
+    {
+      nom: 'email', validation: Joi.string().pattern(regExpEmail),
+      message: 'Une adresse email valide doit être saisie'
+    },
+    {
+      nom: 'numeroVoie', validation: Joi.string().required(),
+      message: 'Un numéro de voie doit obligatoirement être saisi'
+    },
+    {
+      nom: 'rueVoie', validation: Joi.string().required(),
+      message: 'Une rue doit obligatoirement être saisie' },
+    {
+      nom: 'codePostal', validation: Joi.string().required(),
+      message: 'Un code postal doit obligatoirement être saisi' },
+    {
+      nom: 'ville', validation: Joi.string().required(),
+      message: 'Une ville doit obligatoirement être saisie'
+    },
+    {
+      nom: 'itinerance', validation: Joi.string().required(),
+      message: 'Une itinérance doit obligatoirement être saisie'
+    },
+    {
+      nom: 'siteWeb', validation: Joi.string().allow('').pattern(regExpSiteWeb),
+      message: 'Une URL valide doit être saisie (exemple de format valide https://www.mon-site.fr)'
+    },
+    {
+      nom: 'typeAcces', validation: Joi.string().required().valid('libre', 'rdv', 'prive'),
+      message: 'Un type d\'accès doit obligatoirement être indiqué'
+    },
+    {
+      nom: 'horaires' }
+  ];
 
-  errors.push({ siret: (Joi.object({
-    siret: Joi.string().pattern(regExpSiret) }).validate({ siret: form?.siret }).error) ?
-    'Un siret valide de 14 chiffres doit être saisi' : null });
-
-  errors.push({ numeroTelephone: (Joi.object({
-    numeroTelephone: Joi.string().pattern(regExpNumero) }).validate({ numeroTelephone: form?.numeroTelephone }).error) ?
-    'Un numéro de téléphone valide doit être saisi' : null });
-
-  errors.push({ email: (Joi.object({
-    email: Joi.string().pattern(regExpEmail) }).validate({ email: form?.email }).error) ?
-    'Une adresse email valide doit être saisie' : null });
-
-  errors.push({ numeroVoie: (Joi.object({
-    numeroVoie: Joi.string().required() }).validate({ numeroVoie: form?.numeroVoie }).error) ?
-    'Un numéro de voie doit obligatoirement être saisi' : null });
-
-  errors.push({ rueVoie: (Joi.object({
-    rueVoie: Joi.string().required() }).validate({ rueVoie: form?.rueVoie }).error) ?
-    'Une rue doit obligatoirement être saisie' : null });
-
-  errors.push({ codePostal: (Joi.object({
-    codePostal: Joi.string().required() }).validate({ codePostal: form?.codePostal }).error) ?
-    'Un code postal doit obligatoirement être saisi' : null });
-
-  errors.push({ ville: (Joi.object({
-    ville: Joi.string().required() }).validate({ ville: form?.ville }).error) ?
-    'Une ville doit obligatoirement être saisie' : null });
-
-  errors.push({ itinerance: (Joi.object({
-    itinerance: Joi.string() }).validate({ itinerance: form?.itinerance }).error) ?
-    'Une itinérance doit obligatoirement être saisie' : null });
-
-  errors.push({ siteWeb: (Joi.object({
-    siteWeb: Joi.string().allow('').pattern(regExpSiteWeb) }).validate({ siteWeb: form?.siteWeb }).error) ?
-    'Une URL valide doit être saisie (exemple de format valide https://www.mon-site.fr)' : null });
-
-  errors.push({ typeAcces: (Joi.object({
-    typeAcces: Joi.string().required().valid('libre', 'rdv', 'prive') }).validate({ typeAcces: form?.typeAcces }).error) ?
-    'Un type d\'accès doit obligatoirement être indiqué' : null });
-
-
-  /* Cohérence des horaires */
-  if (form?.horaires) {
-    let erreursHoraires = [];
-    form.horaires.forEach((jour, id) => {
-      if (jour.matin[0] > jour.matin[1] || jour.apresMidi[0] > jour.apresMidi[1] ||
-        (jour.matin[1] !== 'Fermé' && jour.apresMidi[0] !== 'Fermé' && jour.matin[1] > jour.apresMidi[0])) {
-        erreursHoraires.push(id);
-      }
-    });
-    errors.push({ horaires: erreursHoraires });
-  }
+  ['principal_', 'secondaire_'].forEach(champ => {
+    if (champ === 'secondaire_') {
+      showLieuSecondaire.forEach((show, id) => {
+        if (show) {
+          champsAcceptes.forEach(accepte => {
+            if (accepte.nom === 'horaires') {
+              errors.push({
+                [champ + id + '_' + accepte.nom]: controleHoraires(form?.fields.filter(field => field.name === champ + id + '_' + accepte.nom)[0]?.value)
+              });
+            } else {
+              errors.push({
+                [champ + id + '_' + accepte.nom]: (Joi.object({
+                  [champ + id + '_' + accepte.nom]: accepte.validation }).validate(
+                  { [champ + id + '_' + accepte.nom]:
+                    form?.fields.filter(field => field.name === champ + id + '_' + accepte.nom)[0]?.value }).error) ? accepte.message : null
+              });
+            }
+          });
+        }
+      });
+    } else {
+      champsAcceptes.forEach(accepte => {
+        if (accepte.nom === 'horaires') {
+          /* Cohérence des horaires */
+          errors.push({
+            principal_horaires: controleHoraires(form?.fields.filter(field => field.name === champ + accepte.nom)[0]?.value)
+          });
+        } else if (accepte.nom !== 'itinerance') {
+          errors.push({
+            [champ + accepte.nom]: (Joi.object({
+              [champ + accepte.nom]: accepte.validation }).validate(
+              { [champ + accepte.nom]:
+                form?.fields.filter(field => field.name === champ + accepte.nom)[0]?.value }).error) ? accepte.message : null
+          });
+        }
+      });
+    }
+  });
 
   let nbErrors = 0;
   errors.forEach(error => {
@@ -173,10 +203,20 @@ function verifyFormulaire(form) {
   });
 
   const errorsForm = { errors: errors, lengthError: nbErrors };
-
   return { type: 'VERIFY_FORMULAIRE', errorsForm };
 }
 
+/* Cohérence des horaires */
+function controleHoraires(horaires) {
+  let erreursHoraires = [];
+  horaires?.forEach((jour, id) => {
+    if (jour.matin[0] > jour.matin[1] || jour.apresMidi[0] > jour.apresMidi[1] ||
+      (jour.matin[1] !== 'Fermé' && jour.apresMidi[0] !== 'Fermé' && jour.matin[1] > jour.apresMidi[0])) {
+      erreursHoraires.push(id);
+    }
+  });
+  return erreursHoraires;
+}
 function createPermanence(permanence) {
   return dispatch => {
     dispatch(request());
@@ -230,8 +270,6 @@ function updatePermanence(idPermanence, permanence) {
 function updateLieuPrincipal(hide) {
   if (hide) {
     return { type: 'CACHER_ADRESSE', hide };
-  } else {
-    return { type: 'MONTRER_ADRESSE', hide };
   }
 }
 
@@ -249,16 +287,4 @@ function updateField(name, value) {
 
 function updateHoraires(horaires) {
   return { type: 'UPDATE_HORAIRES', horaires };
-}
-
-function updateItinerance(itinerance) {
-  return { type: 'UPDATE_ITINERANCE', itinerance };
-}
-
-function updateTypeAcces(typeAcces) {
-  return { type: 'UPDATE_TYPE_ACCES', typeAcces };
-}
-
-function toggleSiret() {
-  return { type: 'TOGGLE_SIRET' };
 }

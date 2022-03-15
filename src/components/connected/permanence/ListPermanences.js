@@ -19,7 +19,7 @@ function ListPermanences({ prefixId }) {
   return (
     <>
       {((prefixId !== 'principal_') ||
-       (prefixId === 'principal_' && !fields.filter(field => field.name === 'estLieuPrincipal')[0]?.value)) &&
+       (prefixId === 'principal_' && fields.filter(field => field.name === 'estLieuPrincipal')[0]?.value === false)) &&
         <>
           <div className="rf-col-offset-1 rf-col-11">
             S&eacute;lectionnez votre lieu d&rsquo;activit&eacute;, s&rsquo;il n&rsquo;apparaît pas dans cette liste,
