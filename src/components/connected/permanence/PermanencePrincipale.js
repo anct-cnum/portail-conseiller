@@ -14,9 +14,10 @@ function PermanencePrincipale({ structure }) {
   const dispatch = useDispatch();
 
   const erreursFormulaire = useSelector(state => state.permanence?.errorsFormulaire?.errors);
-  const erreurAdresseExact = erreursFormulaire?.filter(erreur => erreur?.principalLieuActivite)[0]?.principalLieuActivite;
-
+  const erreurAdresseExact = erreursFormulaire?.filter(erreur => erreur?.estLieuPrincipal)[0]?.estLieuPrincipal;
   const adresseStructure = structure?.insee?.etablissement?.adresse;
+  const fields = useSelector(state => state.permanence.fields);
+  const boolLieuPrincipal = fields.filter(field => field.name === 'estLieuPrincipal')[0]?.value === undefined;
 
   function handleAdresse(estLieuPrincipal) {
     dispatch(permanenceActions.updateField('estLieuPrincipal', estLieuPrincipal));
@@ -46,7 +47,7 @@ function PermanencePrincipale({ structure }) {
       </div>
 
       <div className="rf-col-offset-1 rf-col-11">
-        <div className={erreurAdresseExact ? 'rf-col-12 invalid rf-mb-7w' : 'rf-col-12 rf-mb-7w'}>
+        <div className={(erreurAdresseExact && boolLieuPrincipal) ? 'rf-col-12 invalid rf-mb-7w' : 'rf-col-12 rf-mb-7w'}>
             Votre structure d&rsquo;accueil mentionn&eacute;e ci-dessus est-elle votre <b>lieu d&rsquo;activit&eacute; principal</b> ?&nbsp;
           <span className="obligatoire">*</span>
           <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-2w">
@@ -55,7 +56,7 @@ function PermanencePrincipale({ structure }) {
                 <input type="radio" id="Oui" name="principalLieuActivite" value="Oui" required="required" onClick={() => {
                   handleAdresse(true);
                 }}/>
-                <label className={erreurAdresseExact ? 'rf-label invalid' : 'rf-label' } htmlFor="Oui">
+                <label className={(erreurAdresseExact && boolLieuPrincipal) ? 'rf-label invalid' : 'rf-label' } htmlFor="Oui">
                   Oui
                 </label>
               </div>
@@ -65,13 +66,13 @@ function PermanencePrincipale({ structure }) {
                     handleAdresse(false);
                   }}
                 />
-                <label className={erreurAdresseExact ? 'rf-label invalid' : 'rf-label' } htmlFor="Non">
+                <label className={(erreurAdresseExact && boolLieuPrincipal) ? 'rf-label invalid' : 'rf-label' } htmlFor="Non">
                   Non
                 </label>
               </div>
             </div>
           </fieldset>
-          { erreurAdresseExact &&
+          { (erreurAdresseExact && boolLieuPrincipal === undefined) &&
             <p className="text-error rf-mb-n3w">{erreurAdresseExact}</p>
           }
         </div>

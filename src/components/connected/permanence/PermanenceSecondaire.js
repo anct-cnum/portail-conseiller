@@ -25,6 +25,7 @@ function PermanenceSecondaire({ structure }) {
     show[idx] = showPermanence;
     setShow(show);
     dispatch(permanenceActions.updateField('submit_and_next_' + idx, showPermanence));
+    dispatch(permanenceActions.montrerLieuSecondaire(show));
 
   }
 
@@ -85,7 +86,7 @@ function PermanenceSecondaire({ structure }) {
               />
               <TypeAcces prefixId={ 'secondaire_' + idx + '_'} islieuPrincipal={false} />
               <Horaires prefixId={ 'secondaire_' + idx + '_'} />
-              <AjouterAutrePermanence secondaireId={ idx } />
+              <AjouterAutrePermanence secondaireId={ idx } show={show} />
 
             </div>
           </div>

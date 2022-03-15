@@ -4,7 +4,7 @@ import { permanenceActions } from '../../../../actions';
 import { useDispatch } from 'react-redux';
 
 
-function InputCheckbox({ textLabel, errorInput, nameInput, baselineInput }) {
+function InputCheckbox({ textLabel, errorInput, nameInput, baselineInput, classBaseline }) {
   const dispatch = useDispatch();
   const onClick = e => {
     const { name, checked } = e.target;
@@ -21,7 +21,7 @@ function InputCheckbox({ textLabel, errorInput, nameInput, baselineInput }) {
           {textLabel}
         </label>
         {baselineInput &&
-          <span className="baseline">
+          <span className={'baseline ' + classBaseline}>
             {baselineInput}
           </span>
         }
@@ -39,6 +39,7 @@ InputCheckbox.propTypes = {
   errorInput: PropTypes.string,
   nameInput: PropTypes.string,
   baselineInput: PropTypes.string,
+  classBaseline: PropTypes.string,
 };
 
 export default InputCheckbox;
