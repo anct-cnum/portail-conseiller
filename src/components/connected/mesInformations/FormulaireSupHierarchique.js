@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { formSupHierarchiqueActions } from '../../../actions/supHierarchique.actions';
 import { useDispatch, useSelector } from 'react-redux';
+import modalUpdateForm from './ModalModif';
 
 function FormulaireSuperieurHierarchique() {
   const erreursFormulaire = useSelector(state => state.formulaireSupHierarchique?.errorsFormulaire);
@@ -21,16 +22,18 @@ function FormulaireSuperieurHierarchique() {
     numeroTelephone: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const { prenom, nom, fonction, email, numeroTelephone } = inputs;
   useEffect(() => {
     if (erreursFormulaire?.lengthError === 0 && submitted) {
-      dispatch(formSupHierarchiqueActions.createSupHierarchique({
-        numeroTelephone: form.numeroTelephone,
-        email: form.email.trim(),
-        nom: form.nom.trim(),
-        prenom: form.prenom.trim(),
-        fonction: form.fonction.trim()
-      }, conseiller._id));
+      // dispatch(formSupHierarchiqueActions.createSupHierarchique({
+      //   numeroTelephone: form.numeroTelephone,
+      //   email: form.email.trim(),
+      //   nom: form.nom.trim(),
+      //   prenom: form.prenom.trim(),
+      //   fonction: form.fonction.trim()
+      setShowModal(true);
+      // }, conseiller._id));
       window.scrollTo(0, 0);
     }
     setSubmitted(false);
@@ -60,6 +63,7 @@ function FormulaireSuperieurHierarchique() {
   }
   return (
     <>
+      <modalUpdateForm conseiller={form} />
       <div className={`rf-input-group ${erreurPrenom ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
         <label className="rf-label" htmlFor="prenom">
           Pr&eacute;nom
@@ -156,7 +160,7 @@ function FormulaireSuperieurHierarchique() {
           </p>
         }
       </div>
-      <button className="form-button rf-btn rf-mb-4w" onClick={handleSubmit}>
+      <button className="form-button rf-btn rf-mb-4w" onClick={handleSubmit} data-rf-opened={showModal} aria-controls="rf-modal-supprimer-candidat">
         Enregistrer
       </button>
     </>

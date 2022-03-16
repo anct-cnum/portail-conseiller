@@ -39,8 +39,7 @@ function MesInformations() {
                   <img src="/logos/home-connected/icone-courriel.svg" />
                   <div className="infos-user rf-mb-md-9w">
                     <span>{user.name}</span>
-                    {/* <span>Modification de mon mot de passe</span>
-                    <span>Modification de mon mail Conseiller numérique</span> */}
+                    <span>Modification de mon mot de passe</span>
                   </div>
                 </div>
                 <FormulaireInfosPersonnelles />
