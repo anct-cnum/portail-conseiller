@@ -71,10 +71,10 @@ function Propos() {
               <p className="rf-mb-3w">
                 <a className="lien-footer" href={aideMetier} target="blank" rel="noreferrer">
                   <img src="logos/bulle-ressourcerie.svg" className="bulle-ressourcerie"/>
-                  <div className="lien-a-propos" >
+                  <p className="lien-a-propos" >
                     Vous souhaitez manifester votre int&eacute;r&ecirc;t pour participer &agrave; une future am&eacute;lioration d&rsquo;outil :
                     rejoignez le canal Atelier NEC.
-                  </div>
+                  </p>
                 </a>
               </p>
               <p className="rf-mb-15w">

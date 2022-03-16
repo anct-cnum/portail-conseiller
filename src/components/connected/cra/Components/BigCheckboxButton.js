@@ -45,7 +45,7 @@ function BigCheckboxButton({ type, label, value, image, imageSelected, heightIma
             {baseline &&
               <>
                 <br/>
-                <span className="baseline">{baseline}</span>
+                <span value={value} className="baseline">{baseline}</span>
               </>
             }
           </span>

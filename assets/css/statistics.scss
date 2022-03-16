@@ -1,4 +1,4 @@
-.Statistics {
+.statistics {
 
   background-color: #1e1e1e;
   .infobulle-image {
@@ -191,7 +191,6 @@
   .highcharts-legend-item.highcharts-line-series.highcharts-color-undefined.highcharts-series-1 path.highcharts-graph {
     stroke-width: 0;
   }
-
   .image-banniere {
     display: inline-block;
     margin: 0 5px -3px 0;
@@ -226,6 +225,36 @@
   .afficher-etapes {
     margin-left: 77px;
   }
+  .lieux-autres {
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bold;
+    padding-left: 18px;
+    position: relative;
+    width: 200px;
+    top: -509px;
+    left: 70%;
+    ul, span {
+      color: #FFA500;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    ul {
+      list-style: none;
+      color: #FFFFFF;
+      line-height: 20px;
+      margin: 0;
+      padding: 0;
+    }
+    .rf-mt-list {
+      margin-top: 1.4rem;
+      margin-bottom: 5px;
+      width: 200px;
+    }
+  }
+  .rf-m-no-reorientation {
+    margin: 7.5rem 0;
+  }
 
   @media (min-width: 991px) {
     .graphique-responsive-md{
@@ -236,6 +265,9 @@
     }
     .rf-m-lg-15w {
       margin: 7.5rem 0 !important;
+    }
+    .rf-mt-md-n15w {
+      margin-top: -7rem;
     }
   }
   @media (max-width: 991px) {
@@ -251,7 +283,7 @@
     .hr-lg-hide {
       display: block;
     }
-    .graphique-responsive-lg{
+    .graphique-responsive-lg {
       display:none;
     }
   }
@@ -358,14 +390,37 @@
     .graphique-responsive-lg {
       display: block !important;
     }
-
     .theme-print {
-      margin: 50px 0 0 0;
+      margin: 120px 0 0 0;
     }
 
     .evolution-print {
-      margin: 105px 0 0 0;
+      margin-top: 70px;
     }
+    .age-print{
+      margin-top: 50px;
+    }
+    .reorientation-print-conseiller {
+      margin-top: -750px;
+    }
+    .reorientation-print {
+      margin-top: -20px;
+    }
+  }
+}
+
+.statistics.print {
+  background-color: #fff;
+  color: #1e1e1e;
+  .rf-service__title {
+    color: #1e1e1e;
+  }
+  .lieux-autres{
+    position: static;
+    margin: -28px 0 0 405px;
+  }
+  .lieux-autres, .lieux-autres ul{
+    color: #1e1e1e;
   }
 }
 .print {

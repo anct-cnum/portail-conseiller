@@ -45,7 +45,7 @@ function EnregistrerStatistiquesPdf({ match }) {
 
   return (
 
-    <div className="Statistics print">
+    <div className="statistics print">
       <Header printClass="print"/>
       <div className="rf-container">
 
@@ -93,8 +93,8 @@ function EnregistrerStatistiquesPdf({ match }) {
           <div className="rf-grid-row">
             <LeftPage donneesStats={donneesStatistiques} type={typeTerritoire} />
             <div className="rf-col-offset-md-1"></div>
-            <RightPage donneesStats={donneesStatistiques} print={true}/>
-            <BottomPage donneesStats={donneesStatistiques} print={true}/>
+            <RightPage donneesStats={donneesStatistiques} print={true} type={type}/>
+            <BottomPage donneesStats={donneesStatistiques} print={true} type={type}/>
           </div>
         }
         { !donneesStatistiques &&

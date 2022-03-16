@@ -39,7 +39,7 @@ function StatistiquesNationales() {
           <AdminHeader />
         </div>
       }
-      <div className="Statistics">
+      <div className="statistics">
         <div className="rf-container">
           <div className="spinnerCustom">
             <Spinner

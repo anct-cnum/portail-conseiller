@@ -10,3 +10,4 @@ export * from './filtersAndSorts.actions';
 export * from './pagination.actions';
 export * from './ressources.actions';
 export * from './ressourcesFiltres.actions';
+export * from './supHierarchique.actions';

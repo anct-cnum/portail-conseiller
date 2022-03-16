@@ -8,13 +8,18 @@ export const craActions = {
   updateCanal,
   updateActivite,
   updateNbParticipants,
+  updateRecurrence,
   updateAge,
   updateStatut,
   updateThemes,
   updateDuree,
   updateAccompagnement,
+  updateOrganisme,
   verifyCra,
   submitCra,
+  changeDate,
+  datePickerStatus,
+  showSelectRedirection,
 };
 
 function getSearchlist() {
@@ -41,12 +46,15 @@ function updateNbParticipants(nbParticipants) {
   return { type: 'UPDATE_NB_PARTICIPANTS', nbParticipants };
 }
 
-function updateAge(age) {
-  return { type: 'UPDATE_AGE', age };
+function updateRecurrence(nbParticipantsRecurrents) {
+  return { type: 'UPDATE_NB_RECURRENCE', nbParticipantsRecurrents };
+}
+function updateAge(age, nbParticipantsAge) {
+  return { type: 'UPDATE_AGE', data: { age, nbParticipantsAge } };
 }
 
-function updateStatut(statut) {
-  return { type: 'UPDATE_STATUT', statut };
+function updateStatut(statut, nbParticipantsStatut) {
+  return { type: 'UPDATE_STATUT', data: { statut, nbParticipantsStatut } };
 }
 
 function updateThemes(themes) {
@@ -57,8 +65,18 @@ function updateDuree(duree) {
   return { type: 'UPDATE_DUREE', duree };
 }
 
-function updateAccompagnement(accompagnement) {
-  return { type: 'UPDATE_ACCOMPAGNEMENT', accompagnement };
+function updateAccompagnement(accompagnement, nbParticipantsAccompagnement) {
+  return { type: 'UPDATE_ACCOMPAGNEMENT', accompagnement, nbParticipantsAccompagnement };
+}
+function updateOrganisme(organisme) {
+  return { type: 'UPDATE_ORGAMNISME', organisme };
+}
+function changeDate(date) {
+  return { type: 'UPDATE_DATE', date };
+}
+
+function datePickerStatus(status) {
+  return { type: 'UPDATE_DATEPICKER_STATUS', status };
 }
 
 function verifyCra(errors) {
@@ -100,4 +118,8 @@ function submitCra(cra) {
   function failure(error) {
     return { type: 'SUBMIT_CRA_FAILURE', error };
   }
+}
+
+function showSelectRedirection(show) {
+  return { type: 'SHOW_SELECT_REDIRECTION', show };
 }
