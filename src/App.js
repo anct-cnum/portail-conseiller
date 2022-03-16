@@ -15,8 +15,6 @@ import PrivateRoute from './components/connected/PrivateRoute';
 import choosePasswordChangeMailbox from './components/anonymous/choosePasswordChangeMailbox';
 import Propos from './components/anonymous/Propos';
 
-require('dotenv').config();
-
 function App() {
 
   let statsDataLoading = useSelector(state => state.statistique?.statsDataLoading);

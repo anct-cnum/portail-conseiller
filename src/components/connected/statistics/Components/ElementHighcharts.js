@@ -144,13 +144,13 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
       donnees = valeurs;
     } else if (typeGraphique === 'xy') {
       donnees = [{
-        name: 'Accompagnement par mois',
+        name: 'Accompagnements par mois',
         type: 'column',
         yAxis: 1,
         data: valeurs,
         color: '#169b62',
       }, {
-        name: 'Accompagnement cumul&eacute;s',
+        name: 'Accompagnements cumul&eacute;s',
         data: valeursCumul,
         lineWidth: 5,
         color: '#f7a35c',
