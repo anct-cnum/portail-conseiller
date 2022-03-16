@@ -11,8 +11,8 @@ export const permanenceActions = {
   createPermanence,
   updatePermanence,
   updateLieuPrincipal,
-  initAdresse,
   updateField,
+  disabledField,
   updateHoraires,
   montrerLieuSecondaire,
 };
@@ -277,12 +277,12 @@ function montrerLieuSecondaire(show) {
   return { type: 'HAVE_LIEU_SECONDAIRE', show };
 }
 
-function initAdresse(prefixId, adresse) {
-  return { type: 'INIT_ADRESSE', prefixId, adresse };
+function updateField(name, value) {
+  return { type: 'UPDATE_FIELD', field: { name, value } };
 }
 
-function updateField(name, value) {
-  return { type: 'UPDATE_FIELD', field: { name: name, value: value } };
+function disabledField(id, value) {
+  return { type: 'DISABLED_FIELD', field: { id, value } };
 }
 
 function updateHoraires(horaires) {

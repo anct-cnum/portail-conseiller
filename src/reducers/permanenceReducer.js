@@ -2,8 +2,8 @@
 const initialState = {
   fields: [{ name: 'estLieuPrincipal', value: null }],
   showLieuSecondaire: Array.from({ length: process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE }, () => (false)),
+  disabledFields: [],
   showSiret: [],
-
   isAdresseCachee: true,
   isCreated: false,
   isUpdated: false,
@@ -71,15 +71,22 @@ export default function permanence(state = initialState, action) {
         ...state,
         fields: fields
       };
+    case 'DISABLED_FIELD':
+      let disabledFields = state?.disabledFields;
+      delete disabledFields?.filter(field => field.id === action.field.id)[0]?.value;
+      delete disabledFields?.filter(field => field.id === action.field.id)[0]?.id;
 
-    case 'INIT_ADRESSE':
+      disabledFields?.push(action.field);
 
+      disabledFields = disabledFields?.filter(field => {
+        if (Object.keys(field).length !== 0) {
+          return true;
+        }
+        return false;
+      });
       return {
         ...state,
-        numeroVoie: action?.adresse?.numeroRue ? action?.adresse?.numeroRue : action?.adresse?.numero_voie,
-        rueVoie: action?.adresse?.rue ? action.adresse?.rue : action?.adresse?.type_voie + ' ' + action?.adresse?.nom_voie,
-        codePostal: action?.adresse?.codePostal ? action?.adresse?.codePostal : action?.adresse?.code_postal,
-        ville: action?.adresse?.ville ? action?.adresse?.ville : action?.adresse?.localite,
+        disabledFields: disabledFields,
       };
     case 'HAVE_LIEU_SECONDAIRE':
       return {

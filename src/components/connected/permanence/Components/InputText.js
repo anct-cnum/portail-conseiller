@@ -4,7 +4,7 @@ import { permanenceActions } from '../../../../actions';
 import { useDispatch } from 'react-redux';
 
 
-function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineInput, valueInput, placeholderInput }) {
+function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineInput, valueInput, placeholderInput, disabled }) {
   const dispatch = useDispatch();
 
   const handleChange = e => {
@@ -29,6 +29,7 @@ function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineIn
           required={ requiredInput }
           onChange={handleChange}
           placeholder={placeholderInput}
+          disabled={disabled}
         />
 
       </label>
@@ -56,6 +57,7 @@ InputText.propTypes = {
     PropTypes.number
   ]),
   placeholderInput: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 export default InputText;

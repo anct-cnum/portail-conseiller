@@ -11,9 +11,21 @@ function ListPermanences({ prefixId }) {
 
   const handleClick = e => {
     const permanence = listPermanences.find(permanence => permanence._id === e.target.value);
-    dispatch(permanenceActions.updateField('nomEnseigne', permanence?.nomEnseigne));
-    dispatch(permanenceActions.updateField('siret', permanence?.siret));
-    dispatch(permanenceActions.initAdresse(prefixId, permanence?.adresse));
+
+    dispatch(permanenceActions.updateField(prefixId + 'nomEnseigne', permanence?.nomEnseigne));
+    dispatch(permanenceActions.updateField(prefixId + 'siret', permanence?.siret));
+    dispatch(permanenceActions.updateField(prefixId + 'numeroVoie', permanence?.adresse.numeroRue));
+    dispatch(permanenceActions.updateField(prefixId + 'rueVoie', permanence?.adresse.rue));
+    dispatch(permanenceActions.updateField(prefixId + 'codePostal', permanence?.adresse.codePostal));
+    dispatch(permanenceActions.updateField(prefixId + 'ville', permanence?.adresse.ville.toUpperCase()));
+    dispatch(permanenceActions.updateField(prefixId + 'numeroTelephone', permanence?.numeroTelephone));
+    dispatch(permanenceActions.updateField(prefixId + 'email', permanence?.email));
+    dispatch(permanenceActions.updateField(prefixId + 'siteWeb', permanence?.siteWeb));
+    dispatch(permanenceActions.updateField(prefixId + 'typeAcces', permanence?.typeAcces));
+    dispatch(permanenceActions.updateField(prefixId + 'horaires', permanence?.horaires));
+
+    dispatch(permanenceActions.disabledField(prefixId, e.target.value !== 'nouveau'));
+
   };
 
   return (
@@ -43,8 +55,7 @@ function ListPermanences({ prefixId }) {
                           <div className="rf-fieldset__content">
                             <div className="rf-radio-group">
                               <input type="radio" id={prefixId + permanence?._id} className="permanence-existante"
-                                name={prefixId + 'permancenceSecondaire'} value={permanence?._id}
-                                defaultChecked={permanence?._id} required="required" onClick={handleClick}/>
+                                name={prefixId + 'permancenceSecondaire'} value={permanence?._id} required="required" onClick={handleClick}/>
                               <label className="rf-label rf-my-2w permanence-existante" htmlFor={prefixId + permanence?._id}>
                                 <span className="rf-container rf-container--fluid">
                                   <span className="rf-grid-row">
@@ -66,7 +77,7 @@ function ListPermanences({ prefixId }) {
               <div className="rf-fieldset__content rf-mt-5w rf-mb-9w">
                 <div className="rf-radio-group">
                   <input type="radio" id={prefixId + 'nouveau'} name={prefixId + 'permancenceSecondaire'} value="nouveau"
-                    defaultChecked={true} required="required"/>
+                    defaultChecked={true} required="required" onClick={handleClick}/>
                   <label className="rf-label rf-my-2w" htmlFor={prefixId + 'nouveau'} >
                     Ajouter un nouveau lieu d&rsquo;activit&eacute;
                   </label>

@@ -8,6 +8,7 @@ import InputCheckbox from './Components/InputCheckbox';
 function Adresse({ codeDepartement, prefixId }) {
 
   const fields = useSelector(state => state.permanence.fields);
+  const disabledFields = useSelector(state => state.permanence.disabledFields);
   const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
 
   const erreurLieuActivite = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'nomEnseigne'])[0]?.[prefixId + 'nomEnseigne'];
@@ -20,6 +21,9 @@ function Adresse({ codeDepartement, prefixId }) {
   const erreurEmail = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'email'])[0]?.[prefixId + 'email'];
   const erreurSiteWeb = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'siteWeb'])[0]?.[prefixId + 'siteWeb'];
 
+  const estDisabled = disabledFields?.filter(field => field.id === prefixId)[0]?.value;
+  console.log(estDisabled);
+
   let indicatif = codeDepartement?.length === 3 ?
     telephoneHorsMetropole?.find(item => item.codeDepartement === codeDepartement).indicatif : '+33';
   return (
@@ -28,7 +32,7 @@ function Adresse({ codeDepartement, prefixId }) {
       (prefixId === 'principal_' && fields.filter(field => field.name === 'estLieuPrincipal')[0]?.value === false)) &&
         <>
           <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
-            <InputText
+            <InputText disabled={estDisabled}
               textLabel={ prefixId === 'principal_' ? <Fragment>Nom de votre lieu d&rsquo;activit&eacute; principal</Fragment> :
                 <Fragment>Nom de votre lieu d&rsquo;activit&eacute;</Fragment> }
               errorInput={erreurLieuActivite}
@@ -57,7 +61,7 @@ function Adresse({ codeDepartement, prefixId }) {
           {!fields.filter(field => field.name === String(prefixId) + 'checkboxSiret')[0]?.value &&
             <>
               <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
-                <InputText
+                <InputText disabled={estDisabled}
                   textLabel="Num&eacute;ro de Siret"
                   errorInput={erreurSiret}
                   nameInput= {prefixId + 'siret'}
@@ -85,7 +89,7 @@ function Adresse({ codeDepartement, prefixId }) {
         </>
       }
       <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
-        <InputText
+        <InputText disabled={estDisabled}
           textLabel="Num&eacute;ro de voie"
           errorInput={erreurNumeroVoie}
           nameInput= {prefixId + 'numeroVoie'}
@@ -96,7 +100,7 @@ function Adresse({ codeDepartement, prefixId }) {
       <div className="rf-col-4"></div>
 
       <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
-        <InputText
+        <InputText disabled={estDisabled}
           textLabel="Voie"
           errorInput={erreurRueVoie}
           nameInput= {prefixId + 'rueVoie'}
@@ -107,7 +111,7 @@ function Adresse({ codeDepartement, prefixId }) {
       <div className="rf-col-4"></div>
 
       <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
-        <InputText
+        <InputText disabled={estDisabled}
           textLabel="Code postal"
           errorInput={erreurcodePostal}
           nameInput= {prefixId + 'codePostal'}
@@ -118,7 +122,7 @@ function Adresse({ codeDepartement, prefixId }) {
       <div className="rf-col-4"></div>
 
       <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
-        <InputText
+        <InputText disabled={estDisabled}
           textLabel="Ville"
           errorInput={erreurVille}
           nameInput= {prefixId + 'ville'}
