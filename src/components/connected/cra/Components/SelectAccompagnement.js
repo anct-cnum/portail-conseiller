@@ -1,12 +1,13 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { lieuxReorientation } from '../../../../data/LieuxRedirection';
+import LieuxRedirection from '../../../../data/LieuxRedirection.json';
 import { craActions } from '../../../../actions';
 
 function SelectAccompagnement() {
   const dispatch = useDispatch();
 
+  const { lieuxReorientation } = LieuxRedirection;
   const showSelect = useSelector(state => state.cra.showSelectRedirection);
 
   const handleLieuRedirectionList = lieu => {
