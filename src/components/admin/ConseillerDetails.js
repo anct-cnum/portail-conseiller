@@ -14,6 +14,10 @@ function ConseillerDetails({ location }) {
   const structure = useSelector(state => state.structure?.structure);
   const isUserActif = useSelector(state => state.conseiller?.isUserActif);
 
+  const capitalize = word => {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  };
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     dispatch(conseillerActions.get(id));
@@ -51,19 +55,21 @@ function ConseillerDetails({ location }) {
         <div className="rf-col-3">
           <div className="rf-mb-3w">
             <strong>Nom</strong><br/>
-            <span>{conseiller?.nom}</span>
+            <span className="breakWord">{conseiller?.nom}</span>
           </div>
           <div className="rf-mb-3w">
             <strong>Pr&eacute;nom</strong><br/>
-            <span>{conseiller?.prenom}</span>
+            <span className="breakWord">{conseiller?.prenom}</span>
           </div>
           <div className="rf-mb-3w">
             <strong>Sexe</strong><br/>
-            <span>{conseiller?.sexe ?? <>non renseign&eacute;</>}</span>
+            <span className="breakWord">{conseiller?.sexe ?? <>non renseign&eacute;</>}</span>
           </div>
-          <div className="rf-pb-12w rf-mb-3w">
+          <div className="rf-mb-3w">
             <strong>Date de naissance</strong><br/>
-            <span>{conseiller?.dateDeNaissance ? dayjs(conseiller?.dateDeNaissance).format('DD/MM/YYYY') : <>non renseign&eacute;e</>}</span>
+            <span className="breakWord">
+              {conseiller?.dateDeNaissance ? dayjs(conseiller?.dateDeNaissance).format('DD/MM/YYYY') : <>non renseign&eacute;e</>}
+            </span>
           </div>
         </div>
         <div className="rf-col-5">
@@ -120,7 +126,59 @@ function ConseillerDetails({ location }) {
           </div>
         </div>
       </div>
-      <div className="rf-grid-row rf-mb-2w">
+      <div className="rf-grid-row rf-mt-5w">
+        <div className="rf-col-12">
+          <hr style={{ borderWidth: '0.5px' }}/>
+        </div>
+      </div>
+      <div className="rf-grid-row rf-mt-6w rf-mb-8w">
+        <div className="rf-col-12 titreCol">
+          <h1 className="titre">Contact du responsable</h1>
+        </div>
+      </div>
+      <div className="rf-grid-row">
+        <div className="rf-col-3">
+          <div className="rf-mb-3w">
+            <strong>Nom</strong><br/>
+            <span className="breakWord">{capitalize(conseiller?.supHierarchique?.nom ?? '-')}</span>
+          </div>
+          <div className="rf-mb-3w">
+            <strong>Pr&eacute;nom</strong><br/>
+            <span className="breakWord">{capitalize(conseiller?.supHierarchique?.prenom ?? '-')}</span>
+          </div>
+        </div>
+        <div className="rf-col-5">
+          <div className="rf-mb-3w">
+            <strong>Mail</strong><br/>
+            {conseiller?.supHierarchique?.email &&
+              <a className="email"href={'mailto:' + conseiller?.supHierarchique?.email}>
+                {conseiller?.supHierarchique?.email}
+              </a>
+            }
+            {!conseiller?.supHierarchique?.email &&
+              <span>-</span>
+            }
+          </div>
+          <div className="rf-mb-3w">
+            <strong>T&eacute;l&eacute;phone</strong><br/>
+            <span>
+              {conseiller?.supHierarchique?.numeroTelephone ?
+                /* espace tous les 2 chiffres après l'indicatif*/
+                conseiller?.supHierarchique?.numeroTelephone.replace(/(\+)(33|590|596|594|262|269)(\d{1})(\d{2})(\d{2})(\d{2})(\d{2})/, '$1$2$3 $4 $5 $6 $7') :
+                <>-</>
+              }
+            </span>
+          </div>
+        </div>
+        <div className="rf-col-xs-12 rf-col-xl-4">
+          <p className="blocCoordonnees">
+            Ces coordonn&eacute;es pourront &ecirc;tre utilis&eacute;es pour communiquer des informations concernant le dispositif
+            et l&rsquo;animation du r&eacute;seau &agrave; votre employeur
+            (ex: invitation &agrave; des webinaires, envoi de documents explicatifs, newsletter, etc.)
+          </p>
+        </div>
+      </div>
+      <div className="rf-grid-row rf-mt-5w rf-mb-2w">
         <div className="rf-col-12">
           <hr style={{ borderWidth: '0.5px' }}/>
         </div>
@@ -131,7 +189,7 @@ function ConseillerDetails({ location }) {
             <li className="rf-footer__bottom-item">
               <Link
                 className="rf-footer__bottom-link rf-pr-sm-1w"
-                style={{ boxShadow: 'none' }}
+                style={{ boxShadow: 'none', color: '#8585F6', fontSize: '16px' }}
                 to={{
                   pathname: `/accueil`,
                   currentPage: location?.currentPage }}>
@@ -139,8 +197,8 @@ function ConseillerDetails({ location }) {
                   className="image-banniere"
                   src="/logos/statistics/logo-fleche-gauche.svg"
                   alt="Revenir &agrave; l’&eacute;tape pr&eacute;c&eacute;dente"
-                  style={{ verticalAlign: 'middle' }} />
-                <span style={{ paddingLeft: '16px' }}>Revenir &agrave; la page pr&eacute;c&eacute;dente</span>
+                  style={{ verticalAlign: 'super' }} />
+                <span style={{ paddingLeft: '8px' }}>Page pr&eacute;c&eacute;dente</span>
               </Link>
             </li>
           </ul>
@@ -151,7 +209,7 @@ function ConseillerDetails({ location }) {
             currentPage: location?.currentPage,
             idUser: conseiller?._id,
             origin: '/accueil' }}>
-              Voir les statistiques d&rsquo;accompagnement
+              Statistiques d&rsquo;accompagnement
           </Link>
         </div>
       </div>

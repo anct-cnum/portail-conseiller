@@ -76,11 +76,12 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false
             <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-7 rf-col-lg-8 afficher-etapes">
               <ul className="rf-footer__bottom-list liste-action">
                 <li className="rf-footer__bottom-item">
-                  <Link className="rf-footer__bottom-link rf-pr-sm-1w" style={{ boxShadow: 'none' }}
+                  <Link className="rf-footer__bottom-link rf-pr-sm-1w" style={{ boxShadow: 'none', color: '#8585F6', fontSize: '16px' }}
                     to={linkTo}>
                     <img className="image-banniere" src="/logos/statistics/logo-fleche-gauche.svg" alt="Revenir &agrave;
-                    l’&eacute;tape pr&eacute;c&eacute;dente"/>
-                    Revenir &agrave; la page pr&eacute;c&eacute;dente
+                    l’&eacute;tape pr&eacute;c&eacute;dente"
+                    style={{ verticalAlign: 'super' }} />
+                    <span style={{ paddingLeft: '8px' }}>Page pr&eacute;c&eacute;dente</span>
                   </Link>
                 </li>
               </ul>
