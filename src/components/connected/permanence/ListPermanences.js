@@ -7,11 +7,12 @@ function ListPermanences({ prefixId }) {
   const dispatch = useDispatch();
 
   const listPermanences = useSelector(state => state.permanence?.permanences);
-  const fields = useSelector(state => state.permanence.fields);
+  const fields = useSelector(state => state.permanence?.fields);
 
   const handleClick = e => {
     const permanence = listPermanences.find(permanence => permanence._id === e.target.value);
 
+    dispatch(permanenceActions.updateField(prefixId + 'idPermanence', permanence?._id));
     dispatch(permanenceActions.updateField(prefixId + 'nomEnseigne', permanence?.nomEnseigne));
     dispatch(permanenceActions.updateField(prefixId + 'siret', permanence?.siret));
     dispatch(permanenceActions.updateField(prefixId + 'numeroVoie', permanence?.adresse.numeroRue));
@@ -23,6 +24,7 @@ function ListPermanences({ prefixId }) {
     dispatch(permanenceActions.updateField(prefixId + 'siteWeb', permanence?.siteWeb));
     dispatch(permanenceActions.updateField(prefixId + 'typeAcces', permanence?.typeAcces));
     dispatch(permanenceActions.updateField(prefixId + 'horaires', permanence?.horaires));
+    dispatch(permanenceActions.updateField(prefixId + 'conseillers', permanence?.conseillers));
 
     dispatch(permanenceActions.disabledField(prefixId, e.target.value !== 'nouveau'));
 

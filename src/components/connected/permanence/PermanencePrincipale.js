@@ -16,19 +16,19 @@ function PermanencePrincipale({ structure }) {
   const erreursFormulaire = useSelector(state => state.permanence?.errorsFormulaire?.errors);
   const erreurAdresseExact = erreursFormulaire?.filter(erreur => erreur?.estLieuPrincipal)[0]?.estLieuPrincipal;
   const adresseStructure = structure?.insee?.etablissement?.adresse;
-  const fields = useSelector(state => state.permanence.fields);
+  const fields = useSelector(state => state.permanence?.fields);
   const boolLieuPrincipal = fields.filter(field => field.name === 'estLieuPrincipal')[0]?.value === null;
 
   function handleAdresse(estLieuPrincipal) {
     dispatch(permanenceActions.updateField('estLieuPrincipal', estLieuPrincipal));
-    /*
-    dispatch(permanenceActions.updateLieuPrincipal(estLieuPrincipal));
     if (estLieuPrincipal) {
       dispatch(permanenceActions.updateField('principal_nomEnseigne', structure?.nom));
       dispatch(permanenceActions.updateField('principal_siret', structure?.siret));
-      dispatch(permanenceActions.initAdresse('principal_', adresseStructure));
+      dispatch(permanenceActions.updateField('principal_numeroVoie', adresseStructure.numero_voie));
+      dispatch(permanenceActions.updateField('principal_rueVoie', adresseStructure.type_voie + ' ' + adresseStructure.nom_voie));
+      dispatch(permanenceActions.updateField('principal_codePostal', adresseStructure.code_postal));
+      dispatch(permanenceActions.updateField('principal_ville', adresseStructure.localite.toUpperCase()));
     }
-    */
   }
 
   return (

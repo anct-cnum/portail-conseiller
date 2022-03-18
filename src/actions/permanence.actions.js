@@ -87,7 +87,7 @@ function verifyFormulaire(form) {
   const regExpSiret = new RegExp(/^$|^[0-9]{14}$/);
 
   errors.push({ estCoordinateur: (Joi.object({
-    estCoordinateur: Joi.boolean().required() }).validate({
+    estCoordinateur: Joi.boolean().required().allow(true, false) }).validate({
     estCoordinateur: form?.fields.filter(field => field.name === 'estCoordinateur')[0]?.value }).error) ?
     'Votre rôle doit obligatoirement être saisie' : null });
 
@@ -112,7 +112,7 @@ function verifyFormulaire(form) {
       message: 'Un lieu d\'activité doit obligatoirement être saisi'
     },
     {
-      nom: 'siret', validation: Joi.string().pattern(regExpSiret),
+      nom: 'siret', validation: Joi.string().pattern(regExpSiret).min(14).max(14),
       message: 'Un siret valide de 14 chiffres doit être saisi'
     },
     {
@@ -124,17 +124,17 @@ function verifyFormulaire(form) {
       message: 'Une adresse email valide doit être saisie'
     },
     {
-      nom: 'numeroVoie', validation: Joi.string().required(),
+      nom: 'numeroVoie', validation: Joi.string().required().allow(''),
       message: 'Un numéro de voie doit obligatoirement être saisi'
     },
     {
-      nom: 'rueVoie', validation: Joi.string().required(),
+      nom: 'rueVoie', validation: Joi.string().required().min(5).max(120),
       message: 'Une rue doit obligatoirement être saisie' },
     {
-      nom: 'codePostal', validation: Joi.string().required(),
+      nom: 'codePostal', validation: Joi.string().required().min(5).max(5),
       message: 'Un code postal doit obligatoirement être saisi' },
     {
-      nom: 'ville', validation: Joi.string().required(),
+      nom: 'ville', validation: Joi.string().required().min(3).max(60),
       message: 'Une ville doit obligatoirement être saisie'
     },
     {
@@ -197,7 +197,7 @@ function verifyFormulaire(form) {
     if (error[Object.keys(error)[0]]) {
       nbErrors++;
     }
-    if (error[Object.keys(error)[0]] && Object.keys(error)[0] === 'horaires') {
+    if (error[Object.keys(error)[0]] && Object.keys(error)[0].slice(-8) === 'horaires') {
       nbErrors += error[Object.keys(error)[0]].length - 1;
     }
   });
@@ -217,10 +217,12 @@ function controleHoraires(horaires) {
   });
   return erreursHoraires;
 }
-function createPermanence(permanence) {
+
+function createPermanence(idConseiller, permanence) {
+
   return dispatch => {
     dispatch(request());
-    permanenceService.createPermanence(permanence)
+    permanenceService.createPermanence(idConseiller, permanence)
     .then(
       result => {
         dispatch(success(result.isCreated));
@@ -243,6 +245,7 @@ function createPermanence(permanence) {
 }
 
 function updatePermanence(idPermanence, permanence) {
+  console.log(permanence);
   return dispatch => {
     dispatch(request());
     permanenceService.updatePermanence(idPermanence, permanence)

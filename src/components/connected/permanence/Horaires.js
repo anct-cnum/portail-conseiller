@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { permanenceActions } from '../../../actions/permanence.actions';
 import PropTypes from 'prop-types';
 
 function Horaires({ prefixId }) {
 
+  const dispatch = useDispatch();
+
   const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
   const erreursHoraires = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'horaires'])[0]?.[prefixId + 'horaires'];
-
-  const dispatch = useDispatch();
+  const fields = useSelector(state => state.permanence?.fields);
+  const horairesFields = fields?.filter(field => field.name === prefixId + 'horaires')[0]?.value;
 
   const jourSemaine = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
 
@@ -27,7 +29,6 @@ function Horaires({ prefixId }) {
     horaires[idJour][jour][partie] = value === '' ? 'Fermé' : value;
     horaires[idJour].fermeture[jour === 'matin' ? 0 : 1] = horaires[idJour][jour][0] === 'Fermé' && horaires[idJour][jour][1] === 'Fermé';
     setHoraires(horaires => [...horaires]);
-    dispatch(permanenceActions.updateHoraires(horaires));
     dispatch(permanenceActions.updateField(prefixId + 'horaires', horaires));
     if (erreursHoraires) {
       erreursHoraires.forEach((erreur, idErreur) => {
@@ -37,6 +38,31 @@ function Horaires({ prefixId }) {
       });
     }
   }
+
+  useEffect(() => {
+    if (horairesFields !== undefined) {
+      const newHoraires = [];
+      horairesFields.forEach(horaires => {
+        horaires.fermeture = [false, false];
+        if (horaires.matin[0].length === 4) {
+          horaires.matin[0] = '0' + horaires.matin[0];
+        }
+        if (horaires.matin[1].length === 4) {
+          horaires.matin[1] = '0' + horaires.matin[1];
+        }
+        if (horaires.apresMidi[0].length === 4) {
+          horaires.apresMidi[0] = '0' + horaires.apresMidi[0];
+        }
+        if (horaires.apresMidi[1].length === 4) {
+          horaires.apresMidi[1] = '0' + horaires.apresMidi[1];
+        }
+        newHoraires.push(horaires);
+      });
+      setHoraires(newHoraires);
+    } else {
+      dispatch(permanenceActions.updateField(prefixId + 'horaires', horaires));
+    }
+  }, [horairesFields]);
 
   return (
     <>

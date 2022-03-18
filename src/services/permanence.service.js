@@ -28,7 +28,7 @@ function getListePermanences(idStructure) {
   return fetch(`${apiUrlRoot}/permanence-conseillers/structure/${idStructure}`, requestOptions).then(handleResponse);
 }
 
-function createPermanence(permanence) {
+function createPermanence(idConseiller, permanence) {
 
   const requestOptions = {
     method: 'POST',
@@ -38,7 +38,7 @@ function createPermanence(permanence) {
     })
   };
 
-  return fetch(`${apiUrlRoot}/permanence-conseillers/conseiller/${permanence.conseillerId}/create`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/permanence-conseillers/conseiller/${idConseiller}/create`, requestOptions).then(handleResponse);
 }
 
 function updatePermanence(permanenceId, permanence) {

@@ -15,7 +15,7 @@ function PermanenceSecondaire({ structure }) {
 
   const lieuxSecondaires = Array.from({ length: process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE }, () => ({}));
   const adresseStructure = structure?.insee?.etablissement?.adresse;
-  const fields = useSelector(state => state.permanence.fields);
+  const fields = useSelector(state => state.permanence?.fields);
 
   const [show, setShow] = useState(
     Array.from({ length: process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE }, () => (false))

@@ -7,7 +7,7 @@ import InputCheckbox from './Components/InputCheckbox';
 
 function Adresse({ codeDepartement, prefixId }) {
 
-  const fields = useSelector(state => state.permanence.fields);
+  const fields = useSelector(state => state.permanence?.fields);
   const disabledFields = useSelector(state => state.permanence.disabledFields);
   const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
 
@@ -22,7 +22,6 @@ function Adresse({ codeDepartement, prefixId }) {
   const erreurSiteWeb = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'siteWeb'])[0]?.[prefixId + 'siteWeb'];
 
   const estDisabled = disabledFields?.filter(field => field.id === prefixId)[0]?.value;
-  console.log(estDisabled);
 
   let indicatif = codeDepartement?.length === 3 ?
     telephoneHorsMetropole?.find(item => item.codeDepartement === codeDepartement).indicatif : '+33';

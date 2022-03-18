@@ -4,6 +4,7 @@ const initialState = {
   showLieuSecondaire: Array.from({ length: process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE }, () => (false)),
   disabledFields: [],
   showSiret: [],
+  prefixIdLieuEnregistrable: 'principal_',
   isAdresseCachee: true,
   isCreated: false,
   isUpdated: false,

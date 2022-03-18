@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { permanenceActions } from '../../../actions/permanence.actions';
+import { prepareLieuActivite } from './utils/PermanenceFunctions';
 
 function Validation({ conseillerId, structureId }) {
   const dispatch = useDispatch();
@@ -13,33 +14,19 @@ function Validation({ conseillerId, structureId }) {
 
   function handleSubmit() {
     dispatch(permanenceActions.verifyFormulaire(form));
-
-
+    setClickSubmit(true);
   }
 
   useEffect(() => {
     if (errorsForm?.lengthError === 0 && clickSubmit) {
-      dispatch(permanenceActions.createPermanence({
-        conseillerId: conseillerId,
-        structureId: structureId,
-        nomEnseigne: form.nomEnseigne,
-        numeroTelephone: form.numeroTelephone,
-        email: form.email,
-        siteWeb: form.siteWeb,
-        siret: form.siret,
-        adresse: {
-          numeroRue: form.numeroVoie,
-          rue: form.rueVoie,
-          codePostal: form.codePostal,
-          ville: form.ville
-        },
-        horaires: form.horaires,
-        itinerant: form.itinerance === 'true',
-        estCoordinateur: form.estCoordinateur,
-        emailPro: form.emailPro,
-        telephonePro: form.telephonePro,
-        typeAcces: form.typeAcces,
-      }));
+
+      const nouveauLieu = prepareLieuActivite(conseillerId, structureId);
+
+      if (nouveauLieu._id !== null) {
+        dispatch(permanenceActions.updatePermanence(nouveauLieu._id, nouveauLieu));
+      } else {
+        dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu));
+      }
     }
     setClickSubmit(false);
   }, [errorsForm]);
