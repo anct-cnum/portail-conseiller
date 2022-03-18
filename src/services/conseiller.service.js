@@ -13,6 +13,7 @@ export const conseillerService = {
   getStatistiquesAdminCoopCSV,
   createSexeAge,
   getExportDonneesCnfs,
+  confirmUserEmail
 };
 
 function get(id) {
@@ -22,6 +23,15 @@ function get(id) {
   };
 
   return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
+}
+
+function confirmUserEmail(token, idConseiller) {
+  const requestOptions = {
+    method: 'PATCH',
+    headers: authHeader(),
+  };
+  let uri = `${apiUrlRoot}/conseillers/${idConseiller}/confirmation-email/${token}`;
+  return fetch(uri, requestOptions).then(handleResponse);
 }
 
 function cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreCertifie, idStructure) {

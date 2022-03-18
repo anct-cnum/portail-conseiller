@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
-import { formSupHierarchiqueActions } from '../../../actions/supHierarchique.actions';
 import { useDispatch, useSelector } from 'react-redux';
+import { formInfoPersonnelActions } from '../../../actions/infoPersonnel.actions';
+import ModalUpdateForm from './ModalUpdateForm';
 
 function FormulaireInfosPersonnelles() {
   const conseiller = useSelector(state => state.conseiller?.conseiller);
-  const erreursFormulaire = useSelector(state => state.formulaireSupHierarchique?.errorsFormulaire);
-  const erreurNumeroTelephone = erreursFormulaire?.errors?.filter(erreur => erreur?.numeroTelephone)[0]?.numeroTelephone;
+  const erreursFormulaire = useSelector(state => state.formulaireInfoPersonnel?.errorsFormulaire);
+  const erreurNumeroTelephone = erreursFormulaire?.errors?.filter(erreur => erreur?.telephone)[0]?.telephone;
   const erreurNumeroTelephonePro = erreursFormulaire?.errors?.filter(erreur => erreur?.telephonePro)[0]?.telephonePro;
   const erreurEmailPerso = erreursFormulaire?.errors?.filter(erreur => erreur?.email)[0]?.email;
-  const form = useSelector(state => state.formulaireSupHierarchique);
+  const form = useSelector(state => state.formulaireInfoPersonnel);
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
     telephone: '',
@@ -17,24 +18,19 @@ function FormulaireInfosPersonnelles() {
     email: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const { telephone, telephonePro, email } = inputs;
 
   useEffect(() => {
     if (erreursFormulaire?.lengthError === 0 && submitted) {
-      // dispatch(formSupHierarchiqueActions.createSupHierarchique({
-      //   numeroTelephone: form.numeroTelephone,
-      //   email: form.email.trim(),
-      //   nom: form.nom.trim(),
-      //   prenom: form.prenom.trim(),
-      //   fonction: form.fonction.trim()
-      // }, conseiller._id));
+      setShowModal(true);
       window.scrollTo(0, 0);
     }
     setSubmitted(false);
   }, [erreursFormulaire]);
   useEffect(() => {
     if (conseiller !== null && conseiller !== undefined) {
-      dispatch(formSupHierarchiqueActions.initFormSupHierarchique(conseiller));
+      dispatch(formInfoPersonnelActions.initFormInfoPersonnel(conseiller.email, conseiller.telephone, conseiller.telephonePro));
       setInputs({
         telephone: conseiller.telephone,
         telephonePro: conseiller.telephonePro,
@@ -46,12 +42,12 @@ function FormulaireInfosPersonnelles() {
   function handleChange(e) {
     const { name, value } = e.target;
     setInputs(inputs => ({ ...inputs, [name]: value }));
-    dispatch(formSupHierarchiqueActions.updateField(name, value));
+    dispatch(formInfoPersonnelActions.updateField(name, value));
   }
 
   function handleSubmit() {
     setSubmitted(true);
-    dispatch(formSupHierarchiqueActions.verifyFormulaire(form));
+    dispatch(formInfoPersonnelActions.verifyFormulaire(form));
   }
   function calcAge(birthDate) {
     const now = dayjs();
@@ -61,6 +57,7 @@ function FormulaireInfosPersonnelles() {
   }
   return (
     <>
+      <ModalUpdateForm form={form} showModal={showModal} setShowModal={setShowModal} />
       <div className="rf-input-group rf-mb-5w">
         <label className="rf-label" htmlFor="prenom">
           Pr&eacute;nom
@@ -89,17 +86,18 @@ function FormulaireInfosPersonnelles() {
           value={conseiller?.nom}
         />
       </div>
-      <div className="rf-input-group rf-mb-5w">
-        <label className="rf-label" htmlFor="telephone-pro">
+      <div className={`rf-input-group ${erreurNumeroTelephonePro ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
+        <label className="rf-label" htmlFor="telephonePro">
           T&eacute;l&eacute;phone professionnel
           <span className="rf-hint-text desc-input">Si votre structure vous en a fourni un.</span>
         </label>
         <input
-          className="rf-input"
+          className={`rf-input ${erreurNumeroTelephonePro ? 'rf-input--error' : ''}`}
           aria-describedby="text-input-error-desc-error"
           type="tel"
-          id="telephone-pro"
-          name="telephone-pro"
+          id="telephonePro"
+          placeholder="+33XXXXXXXXX ou +262XXXXXXXXX, ..."
+          name="telephonePro"
           value={telephonePro}
           onChange={handleChange}
         />
@@ -109,16 +107,17 @@ function FormulaireInfosPersonnelles() {
           </p>
         }
       </div>
-      <div className="rf-input-group rf-mb-5w">
-        <label className="rf-label" htmlFor="telephone-perso">
+      <div className={`rf-input-group ${erreurNumeroTelephone ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
+        <label className="rf-label" htmlFor="telephone">
           T&eacute;l&eacute;phone personnel
         </label>
         <input
-          className="rf-input"
+          className={`rf-input ${erreurNumeroTelephone ? 'rf-input--error' : ''}`}
           aria-describedby="text-input-error-desc-error"
-          type="tel"
-          id="telephone-perso"
-          name="telephone-perso"
+          type="telephone"
+          id="telephone"
+          placeholder="+33XXXXXXXXX ou +262XXXXXXXXX, ..."
+          name="telephone"
           value={telephone}
           onChange={handleChange}
         />
@@ -128,13 +127,13 @@ function FormulaireInfosPersonnelles() {
           </p>
         }
       </div>
-      <div className="rf-input-group rf-mb-5w">
+      <div className={`rf-input-group ${erreurEmailPerso ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
         <label className="rf-label" htmlFor="email">
           Adresse mail secondaire
           <span className="rf-hint-text desc-input">Celle-ci vous a servi pour candidater au dispositif Conseiller numérique France services.</span>
         </label>
         <input
-          className="rf-input"
+          className={`rf-input ${erreurEmailPerso ? 'rf-input--error' : ''}`}
           aria-describedby="text-input-error-desc-error"
           type="email"
           id="email"

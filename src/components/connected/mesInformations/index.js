@@ -7,10 +7,11 @@ import FlashMessage from 'react-flash-message';
 
 function MesInformations() {
   const user = useSelector(state => state.authentication.user.user);
-  const form = useSelector(state => state.formulaireSupHierarchique);
+  const formSupHierarchique = useSelector(state => state.formulaireSupHierarchique);
+  const formInfoPersonnel = useSelector(state => state.formulaireInfoPersonnel);
   return (
     <>
-      {form.isCreated &&
+      {formSupHierarchique.isCreated &&
         <FlashMessage duration={10000}>
           <p className="rf-label flashBag">
             Vos informations ont bien &eacute;t&eacute; enregistr&eacute;es&nbsp;
@@ -18,10 +19,26 @@ function MesInformations() {
           </p>
         </FlashMessage>
       }
-      {form.error &&
+      {formInfoPersonnel.isCreated &&
+        <FlashMessage duration={10000}>
+          <p className="rf-label flashBag">
+            Vos informations ont bien &eacute;t&eacute; enregistr&eacute;es&nbsp;
+            <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+          </p>
+        </FlashMessage>
+      }
+      {formSupHierarchique.error &&
         <FlashMessage duration={10000}>
           <p className="rf-label flashBag invalid">
-            {form.error}
+            {formSupHierarchique.error}
+            <i className="ri-close-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+          </p>
+        </FlashMessage>
+      }
+      {formInfoPersonnel.error &&
+        <FlashMessage duration={10000}>
+          <p className="rf-label flashBag invalid">
+            {formInfoPersonnel.error}
             <i className="ri-close-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
           </p>
         </FlashMessage>
@@ -37,7 +54,7 @@ function MesInformations() {
                 <h2 className="rf-mb-md-4w sous-titre">Mes informations personnelles</h2>
                 <div className="contact-mail">
                   <img src="/logos/home-connected/icone-courriel.svg" />
-                  <div className="infos-user rf-mb-md-9w">
+                  <div className="infos-user rf-mb-md-6w">
                     <span>{user.name}</span>
                     <span>Modification de mon mot de passe</span>
                   </div>
