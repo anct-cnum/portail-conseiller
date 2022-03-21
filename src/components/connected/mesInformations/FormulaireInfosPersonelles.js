@@ -13,13 +13,13 @@ function FormulaireInfosPersonnelles() {
   const form = useSelector(state => state.formulaireInfoPersonnel);
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
-    telephone: '',
-    telephonePro: '',
-    email: ''
+    conseillerTelephone: '',
+    conseillerTelephonePro: '',
+    conseillerEmail: ''
   });
   const [submitted, setSubmitted] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const { telephone, telephonePro, email } = inputs;
+  const { conseillerTelephone, conseillerTelephonePro, conseillerEmail } = inputs;
 
   useEffect(() => {
     if (erreursFormulaire?.lengthError === 0 && submitted) {
@@ -32,9 +32,9 @@ function FormulaireInfosPersonnelles() {
     if (conseiller !== null && conseiller !== undefined) {
       dispatch(formInfoPersonnelActions.initFormInfoPersonnel(conseiller.email, conseiller.telephone, conseiller.telephonePro));
       setInputs({
-        telephone: conseiller.telephone,
-        telephonePro: conseiller.telephonePro,
-        email: conseiller.email,
+        conseillerTelephone: conseiller.telephone,
+        conseillerTelephonePro: conseiller.telephonePro,
+        conseillerEmail: conseiller.email,
       });
     }
   }, [conseiller]);
@@ -47,7 +47,7 @@ function FormulaireInfosPersonnelles() {
 
   function handleSubmit() {
     setSubmitted(true);
-    dispatch(formInfoPersonnelActions.verifyFormulaire(form));
+    dispatch(formInfoPersonnelActions.verifyFormulaire(form, conseiller.telephone));
   }
   function calcAge(birthDate) {
     const now = dayjs();
@@ -59,35 +59,35 @@ function FormulaireInfosPersonnelles() {
     <>
       <ModalUpdateForm form={form} showModal={showModal} setShowModal={setShowModal} />
       <div className="rf-input-group rf-mb-5w">
-        <label className="rf-label" htmlFor="prenom">
+        <label className="rf-label" htmlFor="conseiller-prenom">
           Pr&eacute;nom
         </label>
         <input
           className="rf-input"
           aria-describedby="text-input-error-desc-error"
           type="text"
-          id="prenom"
-          name="prenom"
+          id="conseiller-prenom"
+          name="conseillerPrenom"
           disabled
           value={conseiller?.prenom}
         />
       </div>
       <div className="rf-input-group rf-mb-5w">
-        <label className="rf-label" htmlFor="nom">
+        <label className="rf-label" htmlFor="conseiller-nom">
           Nom
         </label>
         <input
           className="rf-input"
           aria-describedby="text-input-error-desc-error"
           type="text"
-          id="nom"
-          name="nom"
+          id="conseiller-nom"
+          name="conseillerNom"
           disabled
           value={conseiller?.nom}
         />
       </div>
       <div className={`rf-input-group ${erreurNumeroTelephonePro ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
-        <label className="rf-label" htmlFor="telephonePro">
+        <label className="rf-label" htmlFor="conseiller-telephone-pro">
           T&eacute;l&eacute;phone professionnel
           <span className="rf-hint-text desc-input">Si votre structure vous en a fourni un.</span>
         </label>
@@ -95,10 +95,10 @@ function FormulaireInfosPersonnelles() {
           className={`rf-input ${erreurNumeroTelephonePro ? 'rf-input--error' : ''}`}
           aria-describedby="text-input-error-desc-error"
           type="tel"
-          id="telephonePro"
+          id="conseiller-telephone-pro"
           placeholder="+33XXXXXXXXX ou +262XXXXXXXXX, ..."
-          name="telephonePro"
-          value={telephonePro}
+          name="conseillerTelephonePro"
+          value={conseillerTelephonePro}
           onChange={handleChange}
         />
         {erreurNumeroTelephonePro &&
@@ -108,17 +108,17 @@ function FormulaireInfosPersonnelles() {
         }
       </div>
       <div className={`rf-input-group ${erreurNumeroTelephone ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
-        <label className="rf-label" htmlFor="telephone">
+        <label className="rf-label" htmlFor="conseiller-telephone">
           T&eacute;l&eacute;phone personnel
         </label>
         <input
           className={`rf-input ${erreurNumeroTelephone ? 'rf-input--error' : ''}`}
           aria-describedby="text-input-error-desc-error"
-          type="telephone"
-          id="telephone"
+          type="tel"
+          id="conseiller-telephone"
           placeholder="+33XXXXXXXXX ou +262XXXXXXXXX, ..."
-          name="telephone"
-          value={telephone}
+          name="conseillerTelephone"
+          value={conseillerTelephone}
           onChange={handleChange}
         />
         {erreurNumeroTelephone &&
@@ -128,7 +128,7 @@ function FormulaireInfosPersonnelles() {
         }
       </div>
       <div className={`rf-input-group ${erreurEmailPerso ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
-        <label className="rf-label" htmlFor="email">
+        <label className="rf-label" htmlFor="conseiller-email">
           Adresse mail secondaire
           <span className="rf-hint-text desc-input">Celle-ci vous a servi pour candidater au dispositif Conseiller numérique France services.</span>
         </label>
@@ -136,9 +136,9 @@ function FormulaireInfosPersonnelles() {
           className={`rf-input ${erreurEmailPerso ? 'rf-input--error' : ''}`}
           aria-describedby="text-input-error-desc-error"
           type="email"
-          id="email"
-          name="email"
-          value={email}
+          id="conseiller-email"
+          name="conseillerEmail"
+          value={conseillerEmail}
           onChange={handleChange}
         />
         {erreurEmailPerso &&
@@ -148,16 +148,16 @@ function FormulaireInfosPersonnelles() {
         }
       </div>
       <div className="rf-input-group rf-mb-5w">
-        <label className="rf-label" htmlFor="prenom">
+        <label className="rf-label" htmlFor="conseiller-age">
           &Acirc;ge
         </label>
         <input
           className="rf-input"
           aria-describedby="text-input-error-desc-error"
           type="text"
-          id="prenom"
+          id="conseiller-age"
           disabled
-          name="prenom"
+          name="conseillerAge"
           value={calcAge(conseiller?.dateDeNaissance)}
         />
       </div>

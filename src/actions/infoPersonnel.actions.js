@@ -8,20 +8,48 @@ export const formInfoPersonnelActions = {
   updateField,
   initFormInfoPersonnel,
   createInfoPersonnel,
+  confirmConseillerEmail
 };
 
-function verifyFormulaire(form) {
+function confirmConseillerEmail(token) {
+  return dispatch => {
+    dispatch(request());
+    infoPersonnelService.confirmConseillerEmail(token)
+      .then(
+        conseiller => dispatch(success(conseiller)),
+        error => {
+          dispatch(failure(error));
+        }
+      );
+  };
+
+  function request() {
+    return { type: 'CONFIRMATION_UPDATE_CONSEILLER_EMAIL_REQUEST' };
+  }
+  function success(conseiller) {
+    return { type: 'CONFIRMATION_UPDATE_CONSEILLER_EMAIL_SUCCESS', conseiller };
+  }
+  function failure(error) {
+    return { type: 'CONFIRMATION_UPDATE_CONSEILLER_EMAIL_FAILURE', error };
+  }
+}
+
+function verifyFormulaire(form, telephone) {
   let errors = [];
   //eslint-disable-next-line max-len
   const regExpEmail = new RegExp(/^(([^<>()[\]\\.,;:\s@\\"]+(\.[^<>()[\]\\.,;:\s@\\"]+)*)|(\\".+\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
   const regExpNumero = new RegExp(/^(?:(?:\+)(33|590|596|594|262|269))(?:[\s.-]*\d{3}){3,4}$/);
+  const regExpOldTelephone = new RegExp('^((06)|(07))[0-9]{8}$', 'i');
 
-  errors.push({
-    telephone: (Joi.object({
-      telephone: Joi.string().required().pattern(regExpNumero)
-    }).validate({ telephone: form?.telephone }).error) ?
-      'Un numéro de téléphone valide doit obligatoirement être saisi. Exemples: +33XXXXXXXXX ou +262XXXXXXXXX, ...' : null
-  });
+  if (!regExpOldTelephone.test(telephone)) {
+    errors.push({
+      telephone: (Joi.object({
+        telephone: Joi.string().required().pattern(regExpNumero)
+      }).validate({ telephone: form?.telephone }).error) ?
+        'Un numéro de téléphone valide doit obligatoirement être saisi. Exemples: +33XXXXXXXXX ou +262XXXXXXXXX, ...' : null
+    });
+  }
+
   errors.push({
     telephonePro: (Joi.object({
       telephonePro: Joi.string().required().pattern(regExpNumero)
@@ -63,8 +91,8 @@ function createInfoPersonnel(infoPersonnel, conseillerId, username, password) {
         infoPersonnelService.createInfoPersonnel(infoPersonnel, conseillerId)
           .then(
             result => {
-              dispatch(success());
-              dispatch(successConseiller(result));
+              dispatch(success(result.initModifMailPersoConseiller));
+              dispatch(successConseiller(result.conseiller));
             },
             error => {
               dispatch(failure(error));
@@ -82,8 +110,8 @@ function createInfoPersonnel(infoPersonnel, conseillerId, username, password) {
 function request() {
   return { type: 'POST_INFO_PERSONNEL_REQUEST' };
 }
-function success() {
-  return { type: 'POST_INFO_PERSONNEL_SUCCESS' };
+function success(initModifMailPersoConseiller) {
+  return { type: 'POST_INFO_PERSONNEL_SUCCESS', initModifMailPersoConseiller };
 }
 function successConseiller(conseiller) {
   return { type: 'GET_CONSEILLER_SUCCESS', conseiller };

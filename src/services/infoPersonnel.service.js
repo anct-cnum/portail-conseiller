@@ -5,6 +5,7 @@ const apiUrlRoot = process.env.REACT_APP_API;
 
 export const infoPersonnelService = {
   createInfoPersonnel,
+  confirmConseillerEmail
 };
 
 function createInfoPersonnel(infoPersonnel, idConseiller) {
@@ -18,7 +19,16 @@ function createInfoPersonnel(infoPersonnel, idConseiller) {
     })
   };
 
-  return fetch(`${apiUrlRoot}/conseillers/${idConseiller}`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/conseillers/updateInfosConseiller/${idConseiller}`, requestOptions).then(handleResponse);
+}
+
+function confirmConseillerEmail(token) {
+  const requestOptions = {
+    method: 'PATCH',
+    headers: authHeader(),
+  };
+  let uri = `${apiUrlRoot}/conseillers/confirmation-email/${token}`;
+  return fetch(uri, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

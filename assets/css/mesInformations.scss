@@ -15,6 +15,12 @@
   .desc-input {
     color: #929292;
   }
+  .modif-password {
+    box-shadow: none;
+  }
+  .modif-password:hover {
+    color: #929292
+  }
   .contact-mail {
     display: flex;
     align-content: center;

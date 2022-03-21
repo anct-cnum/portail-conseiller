@@ -4,6 +4,7 @@ import FormulaireSuperieurHierarchique from './FormulaireSupHierarchique';
 import { useSelector } from 'react-redux';
 import Footer from '../../Footer';
 import FlashMessage from 'react-flash-message';
+import { Link } from 'react-router-dom';
 
 function MesInformations() {
   const user = useSelector(state => state.authentication.user.user);
@@ -23,6 +24,14 @@ function MesInformations() {
         <FlashMessage duration={10000}>
           <p className="rf-label flashBag">
             Vos informations ont bien &eacute;t&eacute; enregistr&eacute;es&nbsp;
+            <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+          </p>
+        </FlashMessage>
+      }
+      {formInfoPersonnel.showConfirmationMail &&
+        <FlashMessage duration={10000}>
+          <p className="rf-label flashBag">
+            Un mail de confirmation de votre nouvelle adresse mail vous a &eacute;t&eacute; envoy&eacute;
             <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
           </p>
         </FlashMessage>
@@ -56,7 +65,14 @@ function MesInformations() {
                   <img src="/logos/home-connected/icone-courriel.svg" />
                   <div className="infos-user rf-mb-md-6w">
                     <span>{user.name}</span>
-                    <span>Modification de mon mot de passe</span>
+                    <Link to={{
+                      pathname: '/mot-de-passe-oublie',
+                      state: {
+                        fromModifPassword: true,
+                      },
+                    }} className="modif-password">
+                      Modification de mon mot de passe
+                    </Link>
                   </div>
                 </div>
                 <FormulaireInfosPersonnelles />

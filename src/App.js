@@ -14,6 +14,7 @@ import StatistiquesNationales from './components/anonymous/StatistiquesNationale
 import PrivateRoute from './components/connected/PrivateRoute';
 import choosePasswordChangeMailbox from './components/anonymous/choosePasswordChangeMailbox';
 import Propos from './components/anonymous/Propos';
+import EmailConfirmer from './components/connected/mesInformations/ConfirmationEmail';
 
 require('dotenv').config();
 
@@ -34,6 +35,7 @@ function App() {
           <Route path="/mot-de-passe-oublie" component={ForgottenPassword} />
           <Route path="/renouveler-mot-de-passe/:token" component={ForgottenPassword} />
           <Route path="/inscription/:token" component={ChoosePassword} />
+          <Route path="/conseillers/confirmation-email/:token" component={EmailConfirmer} />
           <Route path="/changer-email/:token" component={choosePasswordChangeMailbox} />
           <Route path="/validation" component={ValidationAccount} />
           <Route path="/a-propos" component={Propos}/>
