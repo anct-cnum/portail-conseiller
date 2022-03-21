@@ -14,10 +14,6 @@ function ConseillerDetails({ location }) {
   const structure = useSelector(state => state.structure?.structure);
   const isUserActif = useSelector(state => state.conseiller?.isUserActif);
 
-  const capitalize = word => {
-    return word.charAt(0).toUpperCase() + word.slice(1);
-  };
-
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     dispatch(conseillerActions.get(id));
@@ -140,11 +136,15 @@ function ConseillerDetails({ location }) {
         <div className="rf-col-3">
           <div className="rf-mb-3w">
             <strong>Nom</strong><br/>
-            <span className="breakWord">{capitalize(conseiller?.supHierarchique?.nom ?? '-')}</span>
+            <span className="breakWord">{conseiller?.supHierarchique?.nom ?? '-'}</span>
           </div>
           <div className="rf-mb-3w">
             <strong>Pr&eacute;nom</strong><br/>
-            <span className="breakWord">{capitalize(conseiller?.supHierarchique?.prenom ?? '-')}</span>
+            <span className="breakWord">{conseiller?.supHierarchique?.prenom ?? '-'}</span>
+          </div>
+          <div className="rf-mb-3w">
+            <strong>Fonction</strong><br/>
+            <span className="breakWord">{conseiller?.supHierarchique?.fonction ?? '-'}</span>
           </div>
         </div>
         <div className="rf-col-5">
@@ -173,7 +173,7 @@ function ConseillerDetails({ location }) {
         <div className="rf-col-xs-12 rf-col-xl-4">
           <p className="blocCoordonnees">
             Ces coordonn&eacute;es pourront &ecirc;tre utilis&eacute;es pour communiquer des informations concernant le dispositif
-            et l&rsquo;animation du r&eacute;seau &agrave; votre employeur
+            et l&rsquo;animation du r&eacute;seau
             (ex: invitation &agrave; des webinaires, envoi de documents explicatifs, newsletter, etc.)
           </p>
         </div>

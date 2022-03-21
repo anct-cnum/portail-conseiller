@@ -44,6 +44,7 @@
 
   .breakWord {
     word-wrap: break-word;
+    text-transform: capitalize;
   }
 
   @media (max-width: 992px) {
