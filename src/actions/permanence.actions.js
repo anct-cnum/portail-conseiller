@@ -112,15 +112,15 @@ function verifyFormulaire(form) {
       message: 'Un lieu d\'activité doit obligatoirement être saisi'
     },
     {
-      nom: 'siret', validation: Joi.string().pattern(regExpSiret).min(14).max(14),
+      nom: 'siret', validation: Joi.string().allow('', null).pattern(regExpSiret).min(14).max(14),
       message: 'Un siret valide de 14 chiffres doit être saisi'
     },
     {
-      nom: 'numeroTelephone', validation: Joi.string().pattern(regExpNumero),
+      nom: 'numeroTelephone', validation: Joi.string().allow('', null).pattern(regExpNumero),
       message: 'Un numéro de téléphone valide doit être saisi'
     },
     {
-      nom: 'email', validation: Joi.string().pattern(regExpEmail),
+      nom: 'email', validation: Joi.string().allow('', null).pattern(regExpEmail),
       message: 'Une adresse email valide doit être saisie'
     },
     {
@@ -138,11 +138,11 @@ function verifyFormulaire(form) {
       message: 'Une ville doit obligatoirement être saisie'
     },
     {
-      nom: 'itinerance', validation: Joi.string().required(),
+      nom: 'itinerance', validation: Joi.string().allow('', null),
       message: 'Une itinérance doit obligatoirement être saisie'
     },
     {
-      nom: 'siteWeb', validation: Joi.string().allow('').pattern(regExpSiteWeb),
+      nom: 'siteWeb', validation: Joi.string().allow('', null).pattern(regExpSiteWeb),
       message: 'Une URL valide doit être saisie (exemple de format valide https://www.mon-site.fr)'
     },
     {
@@ -203,7 +203,10 @@ function verifyFormulaire(form) {
   });
 
   const errorsForm = { errors: errors, lengthError: nbErrors };
-  return { type: 'VERIFY_FORMULAIRE', errorsForm };
+  const errorMessage = 'Vous devez impérativement corriger les erreurs avant de passer à la suite';
+  const showError = nbErrors > 0;
+
+  return { type: 'VERIFY_FORMULAIRE', errorsForm, errorMessage, showError };
 }
 
 /* Cohérence des horaires */
@@ -218,14 +221,14 @@ function controleHoraires(horaires) {
   return erreursHoraires;
 }
 
-function createPermanence(idConseiller, permanence) {
+function createPermanence(idConseiller, permanence, isEnded) {
 
   return dispatch => {
     dispatch(request());
     permanenceService.createPermanence(idConseiller, permanence)
     .then(
       result => {
-        dispatch(success(result.isCreated));
+        dispatch(success(result.isCreated, isEnded));
       },
       error => {
         dispatch(failure(error));
@@ -236,22 +239,21 @@ function createPermanence(idConseiller, permanence) {
   function request() {
     return { type: 'POST_PERMANENCE_REQUEST' };
   }
-  function success(isCreated) {
-    return { type: 'POST_PERMANENCE_SUCCESS', isCreated };
+  function success(isCreated, isEnded) {
+    return { type: 'POST_PERMANENCE_SUCCESS', isCreated, isEnded };
   }
   function failure(error) {
     return { type: 'POST_PERMANENCE_FAILURE', error };
   }
 }
 
-function updatePermanence(idPermanence, permanence) {
-  console.log(permanence);
+function updatePermanence(idPermanence, idConseiller, permanence, isEnded) {
   return dispatch => {
     dispatch(request());
-    permanenceService.updatePermanence(idPermanence, permanence)
+    permanenceService.updatePermanence(idPermanence, idConseiller, permanence)
     .then(
       result => {
-        dispatch(success(result.isUpdated));
+        dispatch(success(result.isUpdated, isEnded));
       },
       error => {
         dispatch(failure(error));
@@ -262,8 +264,8 @@ function updatePermanence(idPermanence, permanence) {
   function request() {
     return { type: 'UPDATE_PERMANENCE_REQUEST' };
   }
-  function success(isUpdated) {
-    return { type: 'UPDATE_PERMANENCE_SUCCESS', isUpdated };
+  function success(isUpdated, isEnded) {
+    return { type: 'UPDATE_PERMANENCE_SUCCESS', isUpdated, isEnded };
   }
   function failure(error) {
     return { type: 'UPDATE_PERMANENCE_FAILURE', error };

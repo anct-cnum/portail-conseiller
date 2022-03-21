@@ -4,30 +4,58 @@ import PropTypes from 'prop-types';
 
 import { permanenceActions } from '../../../actions';
 
+import horairesInitiales from '../../../data/horairesInitiales.json';
 import ListPermanences from './ListPermanences';
 import Recapitulatif from './Recapitulatif';
 import Horaires from './Horaires';
 import Adresse from './Adresse';
 import TypeAcces from './TypeAcces';
 
-function PermanencePrincipale({ structure }) {
+function PermanencePrincipale({ structure, conseillerId }) {
   const dispatch = useDispatch();
 
+  const listPermanences = useSelector(state => state.permanence?.permanences);
   const erreursFormulaire = useSelector(state => state.permanence?.errorsFormulaire?.errors);
   const erreurAdresseExact = erreursFormulaire?.filter(erreur => erreur?.estLieuPrincipal)[0]?.estLieuPrincipal;
   const adresseStructure = structure?.insee?.etablissement?.adresse;
   const fields = useSelector(state => state.permanence?.fields);
-  const boolLieuPrincipal = fields.filter(field => field.name === 'estLieuPrincipal')[0]?.value === null;
+  const boolLieuPrincipal = fields?.filter(field => field.name === 'estLieuPrincipal')[0]?.value === null;
 
   function handleAdresse(estLieuPrincipal) {
     dispatch(permanenceActions.updateField('estLieuPrincipal', estLieuPrincipal));
+    dispatch(permanenceActions.updateField('principal_idPermanence', null));
+    dispatch(permanenceActions.updateField('principal_numeroTelephone', null));
+    dispatch(permanenceActions.updateField('principal_email', null));
+    dispatch(permanenceActions.updateField('principal_siteWeb', null));
+    dispatch(permanenceActions.updateField('principal_typeAcces', null));
+    dispatch(permanenceActions.updateField('principal_horaires', horairesInitiales));
+    dispatch(permanenceActions.updateField('principal_conseillers', null));
+    dispatch(permanenceActions.updateField('principal_nomEnseigne', null));
+    dispatch(permanenceActions.updateField('principal_siret', null));
+    dispatch(permanenceActions.updateField('principal_numeroVoie', null));
+    dispatch(permanenceActions.updateField('principal_rueVoie', null));
+    dispatch(permanenceActions.updateField('principal_codePostal', null));
+    dispatch(permanenceActions.updateField('principal_ville', null));
+
     if (estLieuPrincipal) {
-      dispatch(permanenceActions.updateField('principal_nomEnseigne', structure?.nom));
-      dispatch(permanenceActions.updateField('principal_siret', structure?.siret));
-      dispatch(permanenceActions.updateField('principal_numeroVoie', adresseStructure.numero_voie));
-      dispatch(permanenceActions.updateField('principal_rueVoie', adresseStructure.type_voie + ' ' + adresseStructure.nom_voie));
-      dispatch(permanenceActions.updateField('principal_codePostal', adresseStructure.code_postal));
-      dispatch(permanenceActions.updateField('principal_ville', adresseStructure.localite.toUpperCase()));
+      const permanencePrincipale = listPermanences.find(permanence => permanence.structure.$id === structure._id && permanence.estLieuPrincipal === true);
+      dispatch(permanenceActions.updateField('principal_idPermanence', permanencePrincipale?._id ?? null));
+      dispatch(permanenceActions.updateField('principal_numeroTelephone', permanencePrincipale?.numeroTelephone ?? null));
+      dispatch(permanenceActions.updateField('principal_email', permanencePrincipale?.email ?? null));
+      dispatch(permanenceActions.updateField('principal_siteWeb', permanencePrincipale?.siteWeb ?? null));
+      dispatch(permanenceActions.updateField('principal_typeAcces', permanencePrincipale?.typeAcces ?? null));
+      dispatch(permanenceActions.updateField('principal_horaires', permanencePrincipale?.horaires ?? horairesInitiales));
+      dispatch(permanenceActions.updateField('principal_conseillers', permanencePrincipale?.conseillers ?? null));
+      dispatch(permanenceActions.updateField('principal_nomEnseigne', permanencePrincipale?.nomEnseigne ?? structure?.nom));
+      dispatch(permanenceActions.updateField('principal_siret', permanencePrincipale?.siret ?? structure?.siret));
+      dispatch(permanenceActions.updateField('principal_numeroVoie',
+        permanencePrincipale?.adresse?.numeroRue ?? adresseStructure.numero_voie));
+      dispatch(permanenceActions.updateField('principal_rueVoie',
+        permanencePrincipale?.adresse?.rue ?? adresseStructure.type_voie + ' ' + adresseStructure.nom_voie));
+      dispatch(permanenceActions.updateField('principal_codePostal',
+        permanencePrincipale?.adresse?.codePostal ?? adresseStructure.code_postal));
+      dispatch(permanenceActions.updateField('principal_ville',
+        permanencePrincipale?.adresse?.ville.toUpperCase() ?? adresseStructure.localite.toUpperCase()));
     }
   }
 
@@ -78,7 +106,7 @@ function PermanencePrincipale({ structure }) {
         </div>
       </div>
 
-      <ListPermanences prefixId="principal_" />
+      <ListPermanences prefixId="principal_" conseillerId={conseillerId} />
 
       <Adresse
         codeDepartement={structure?.codeDepartement}
@@ -97,7 +125,8 @@ function PermanencePrincipale({ structure }) {
 
 PermanencePrincipale.propTypes = {
   permanence: PropTypes.object,
-  structure: PropTypes.object
+  structure: PropTypes.object,
+  conseillerId: PropTypes.string,
 };
 
 export default PermanencePrincipale;

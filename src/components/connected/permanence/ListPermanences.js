@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { permanenceActions } from '../../../actions';
 
-function ListPermanences({ prefixId }) {
+function ListPermanences({ prefixId, conseillerId }) {
   const dispatch = useDispatch();
 
   const listPermanences = useSelector(state => state.permanence?.permanences);
@@ -51,7 +51,7 @@ function ListPermanences({ prefixId }) {
                     return (
 
                       <div key={idx}>
-                        {!permanence?.estStructure &&
+                        {permanence?.conseillers.includes(conseillerId) === false &&
                         <>
                           <hr />
                           <div className="rf-fieldset__content">
@@ -95,7 +95,7 @@ function ListPermanences({ prefixId }) {
 
 ListPermanences.propTypes = {
   prefixId: PropTypes.string,
-  secondaireId: PropTypes.number,
+  conseillerId: PropTypes.string,
 };
 
 export default ListPermanences;

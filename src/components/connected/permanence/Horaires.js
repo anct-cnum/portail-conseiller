@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { permanenceActions } from '../../../actions/permanence.actions';
 import PropTypes from 'prop-types';
-
+import { permanenceActions } from '../../../actions/permanence.actions';
+import horairesInitiales from '../../../data/horairesInitiales.json';
 function Horaires({ prefixId }) {
 
   const dispatch = useDispatch();
@@ -11,18 +11,11 @@ function Horaires({ prefixId }) {
   const erreursHoraires = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'horaires'])[0]?.[prefixId + 'horaires'];
   const fields = useSelector(state => state.permanence?.fields);
   const horairesFields = fields?.filter(field => field.name === prefixId + 'horaires')[0]?.value;
+  const idFields = fields?.filter(field => field.name === prefixId + 'idPermanence')[0]?.value;
 
   const jourSemaine = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
 
-  const [horaires, setHoraires] = useState([
-    { matin: ['Fermé', 'Fermé'], apresMidi: ['Fermé', 'Fermé'], fermeture: [false, false] }, // lundi
-    { matin: ['Fermé', 'Fermé'], apresMidi: ['Fermé', 'Fermé'], fermeture: [false, false] }, // mardi
-    { matin: ['Fermé', 'Fermé'], apresMidi: ['Fermé', 'Fermé'], fermeture: [false, false] }, // mercredi
-    { matin: ['Fermé', 'Fermé'], apresMidi: ['Fermé', 'Fermé'], fermeture: [false, false] }, // jeudi
-    { matin: ['Fermé', 'Fermé'], apresMidi: ['Fermé', 'Fermé'], fermeture: [false, false] }, // vendredi
-    { matin: ['Fermé', 'Fermé'], apresMidi: ['Fermé', 'Fermé'], fermeture: [true, true] }, // samedi
-    { matin: ['Fermé', 'Fermé'], apresMidi: ['Fermé', 'Fermé'], fermeture: [true, true] }, // dimanche
-  ]);
+  const [horaires, setHoraires] = useState(horairesInitiales);
 
   function handleChange(e, idJour, jour, partie) {
     const { value } = e.target;
@@ -40,9 +33,9 @@ function Horaires({ prefixId }) {
   }
 
   useEffect(() => {
-    if (horairesFields !== undefined) {
+    if (horairesFields && idFields) {
       const newHoraires = [];
-      horairesFields.forEach(horaires => {
+      horairesFields?.forEach(horaires => {
         horaires.fermeture = [false, false];
         if (horaires.matin[0].length === 4) {
           horaires.matin[0] = '0' + horaires.matin[0];
@@ -50,17 +43,21 @@ function Horaires({ prefixId }) {
         if (horaires.matin[1].length === 4) {
           horaires.matin[1] = '0' + horaires.matin[1];
         }
+        if (horaires.matin[1] === 'Fermé') {
+          horaires.fermeture[0] = true;
+        }
         if (horaires.apresMidi[0].length === 4) {
           horaires.apresMidi[0] = '0' + horaires.apresMidi[0];
         }
         if (horaires.apresMidi[1].length === 4) {
           horaires.apresMidi[1] = '0' + horaires.apresMidi[1];
         }
+        if (horaires.apresMidi[0] === 'Fermé') {
+          horaires.fermeture[1] = true;
+        }
         newHoraires.push(horaires);
       });
       setHoraires(newHoraires);
-    } else {
-      dispatch(permanenceActions.updateField(prefixId + 'horaires', horaires));
     }
   }, [horairesFields]);
 

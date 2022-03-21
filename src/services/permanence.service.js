@@ -16,7 +16,7 @@ function get(idConseiller) {
     headers: authHeader()
   };
 
-  return fetch(`${apiUrlRoot}/permanence-conseillers/conseiller/${idConseiller}`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/permanences/conseiller/${idConseiller}`, requestOptions).then(handleResponse);
 }
 
 function getListePermanences(idStructure) {
@@ -25,7 +25,7 @@ function getListePermanences(idStructure) {
     headers: authHeader()
   };
 
-  return fetch(`${apiUrlRoot}/permanence-conseillers/structure/${idStructure}`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/permanences/structure/${idStructure}`, requestOptions).then(handleResponse);
 }
 
 function createPermanence(idConseiller, permanence) {
@@ -38,10 +38,10 @@ function createPermanence(idConseiller, permanence) {
     })
   };
 
-  return fetch(`${apiUrlRoot}/permanence-conseillers/conseiller/${idConseiller}/create`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/permanences/conseiller/${idConseiller}/create`, requestOptions).then(handleResponse);
 }
 
-function updatePermanence(permanenceId, permanence) {
+function updatePermanence(idPermanence, idConseiller, permanence) {
   const requestOptions = {
     method: 'PATCH',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
@@ -49,7 +49,7 @@ function updatePermanence(permanenceId, permanence) {
       permanence
     })
   };
-  return fetch(`${apiUrlRoot}/permanence-conseillers/${permanenceId}`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/permanences/conseiller/${idConseiller}/update/${idPermanence}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

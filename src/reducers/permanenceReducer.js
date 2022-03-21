@@ -98,7 +98,8 @@ export default function permanence(state = initialState, action) {
       return {
         ...state,
         isUpdated: false,
-        showError: true,
+        showError: action.showError,
+        showErrorMessage: action.errorMessage,
         errorsFormulaire: action.errorsForm
       };
     case 'POST_PERMANENCE_REQUEST':
@@ -110,6 +111,7 @@ export default function permanence(state = initialState, action) {
       return {
         ...state,
         isCreated: action.isCreated,
+        isEnded: action.isEnded,
         showError: false,
         error: false,
       };
@@ -129,6 +131,7 @@ export default function permanence(state = initialState, action) {
       return {
         ...state,
         isUpdated: action.isUpdated,
+        isEnded: action.isEnded,
         showError: false,
         error: false,
       };

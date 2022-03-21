@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Validation from './Validation';
 import Remerciement from './Remerciement';
 import Footer from '../../Footer';
-import FlashMessage from 'react-flash-message';
 import { useLocation } from 'react-router-dom';
 import Banner from './Banner';
 import ContactProfessionel from './ContactProfessionel';
@@ -19,8 +18,8 @@ function Permanence() {
   const structure = useSelector(state => state.structure?.structure);
 
   const showError = useSelector(state => state.permanence?.showError);
-  const isUpdated = useSelector(state => state.permanence?.isUpdated);
-  const isCreated = useSelector(state => state.permanence?.isCreated);
+  const showErrorMessage = useSelector(state => state.permanence?.showErrorMessage);
+  const isEnded = useSelector(state => state.permanence?.isEnded);
 
   useEffect(() => {
     if (structure?._id) {
@@ -32,34 +31,25 @@ function Permanence() {
   return (
     <>
 
-      { (isCreated && location.pathname === '/accueil') &&
+      { (isEnded && location.pathname === '/accueil') &&
         <Remerciement/>
       }
       <div id="formulaire-horaires-adresse" >
         <Banner />
 
-        {isUpdated &&
-        <FlashMessage duration={5000}>
-          <p className="rf-label flashBag">
-            Vos informations ont bien &eacute;t&eacute; enregistr&eacute;es&nbsp;
-            <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
-          </p>
-        </FlashMessage>
-        }
-
         {showError &&
           <p className="rf-label flashBag invalid">
-            Une erreur est survenue lors du traitement de vos informations
+            {showErrorMessage ?? 'Une erreur est survenue lors du traitement de vos informations'}
           </p>
         }
 
         <ContactProfessionel />
         <div className="rf-container">
           <div className="rf-grid-row">
-            <PermanencePrincipale structure={structure} />
+            <PermanencePrincipale structure={structure} conseillerId={conseiller?._id}/>
           </div>
         </div>
-        <PermanenceSecondaire structure={structure} />
+        <PermanenceSecondaire structure={structure} conseillerId={conseiller?._id} structureId={structure?._id} />
         <div className="rf-container">
           <div className="rf-grid-row">
             <Validation conseillerId={conseiller?._id} structureId={structure?._id} />
