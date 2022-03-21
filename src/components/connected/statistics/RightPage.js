@@ -15,7 +15,7 @@ function RightPage({ donneesStats, print }) {
       typeGraphique: 'bar',
       largeurGraphique: null,
       hauteurGraphique: 428,
-      margeGaucheGraphique: 235,
+      margeGaucheGraphique: 300,
       margeDroiteGraphique: 0,
       optionResponsive: false,
       couleursGraphique: tabColorTheme

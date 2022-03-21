@@ -15,20 +15,38 @@
   .statistiques-btn {
     display: block;
     background-color: transparent;
-    border: 1px solid #fff;
-    line-height: 1.25rem;
-    border-radius: 40px;
+    border: 1px solid #8585F6;
     text-align:center;
     box-shadow: none;
-    font-size: 16px;
+    font-size: 20px;
+    line-height: 32px;
     cursor: pointer;
-    color: #fff;
+    color: #8585F6;
     padding: 21px;
   }
   .email {
     color: #9a9aff;
     box-shadow: none;
   }
+
+  .image-banniere {
+    display: inline-block;
+    margin: 0 5px -3px 8px;
+    width: 12px;
+  }
+
+  .blocCoordonnees {
+    font-size: 14px;
+    line-height: 24px;
+    font-family: 'MarianneThin', Arial, sans-serif;
+    color: #929292;
+  }
+
+  .breakWord {
+    word-wrap: break-word;
+    text-transform: capitalize;
+  }
+
   @media (max-width: 992px) {
     .recrutementCol {
       margin-right: 16px;
