@@ -15,12 +15,12 @@ function confirmConseillerEmail(token) {
   return dispatch => {
     dispatch(request());
     infoPersonnelService.confirmConseillerEmail(token)
-      .then(
-        conseiller => dispatch(success(conseiller)),
-        error => {
-          dispatch(failure(error));
-        }
-      );
+    .then(
+      conseiller => dispatch(success(conseiller)),
+      error => {
+        dispatch(failure(error));
+      }
+    );
   };
 
   function request() {
@@ -41,7 +41,7 @@ function verifyFormulaire(form, telephone) {
   const regExpNumero = new RegExp(/^(?:(?:\+)(33|590|596|594|262|269))(?:[\s.-]*\d{3}){3,4}$/);
   const regExpOldTelephone = new RegExp('^((06)|(07))[0-9]{8}$', 'i');
 
-  if (!regExpOldTelephone.test(telephone)) {
+  if (!regExpOldTelephone.test(telephone) || form?.telephone !== telephone) {
     errors.push({
       telephone: (Joi.object({
         telephone: Joi.string().required().pattern(regExpNumero)
@@ -89,15 +89,15 @@ function createInfoPersonnel(infoPersonnel, conseillerId, username, password) {
     userService.login(username, password).then(
       () => {
         infoPersonnelService.createInfoPersonnel(infoPersonnel, conseillerId)
-          .then(
-            result => {
-              dispatch(success(result.initModifMailPersoConseiller));
-              dispatch(successConseiller(result.conseiller));
-            },
-            error => {
-              dispatch(failure(error));
-            }
-          );
+        .then(
+          result => {
+            dispatch(success(result.initModifMailPersoConseiller));
+            dispatch(successConseiller(result.conseiller));
+          },
+          error => {
+            dispatch(failure(error));
+          }
+        );
       },
       error => {
         dispatch(failure(error.error));

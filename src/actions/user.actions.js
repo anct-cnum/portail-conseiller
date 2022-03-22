@@ -8,30 +8,29 @@ export const userActions = {
   verifyToken,
   checkForgottenPasswordEmail,
   forgottenPassword,
-  choosePasswordMailBox,
-  confirmUserEmail
+  choosePasswordMailBox
 };
 
 function login(username, password, to) {
   return dispatch => {
     dispatch(request({ username }));
     userService.login(username, password)
-      .then(
-        data => {
-          data.user = getRole(data.user);
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('user', JSON.stringify(data));
-          dispatch(success(data));
-          if (to.pathname === '/') {
-            history.push('/accueil');
-          } else {
-            history.push(to);
-          }
-        },
-        error => {
-          dispatch(failure(error));
+    .then(
+      data => {
+        data.user = getRole(data.user);
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem('user', JSON.stringify(data));
+        dispatch(success(data));
+        if (to.pathname === '/') {
+          history.push('/accueil');
+        } else {
+          history.push(to);
         }
-      );
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
   };
 
   function request(user) {
@@ -54,15 +53,15 @@ function choosePassword(token, password, typeEmail) {
   return dispatch => {
     dispatch(request(token));
     userService.choosePassword(token, password, typeEmail)
-      .then(
-        user => {
-          user = getRole(user);
-          dispatch(success(user));
-        },
-        error => {
-          dispatch(failure(error));
-        }
-      );
+    .then(
+      user => {
+        user = getRole(user);
+        dispatch(success(user));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
   };
 
   function request(token) {
@@ -81,15 +80,15 @@ function verifyToken(token) {
     dispatch(request(token));
 
     userService.verifyToken(token)
-      .then(
-        user => {
-          user = getRole(user);
-          dispatch(success(user));
-        },
-        error => {
-          dispatch(failure(error));
-        }
-      );
+    .then(
+      user => {
+        user = getRole(user);
+        dispatch(success(user));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
   };
 
   function request(token) {
@@ -107,14 +106,14 @@ function checkForgottenPasswordEmail(username) {
   return dispatch => {
     dispatch(request({ username }));
     userService.checkForgottenPasswordEmail(username)
-      .then(
-        response => {
-          dispatch(success(response));
-        },
-        error => {
-          dispatch(failure(error));
-        }
-      );
+    .then(
+      response => {
+        dispatch(success(response));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
   };
 
   function request(user) {
@@ -132,14 +131,14 @@ function forgottenPassword(username) {
   return dispatch => {
     dispatch(request({ username }));
     userService.sendForgottenPasswordEmail(username)
-      .then(
-        response => {
-          dispatch(success(response));
-        },
-        error => {
-          dispatch(failure(error));
-        }
-      );
+    .then(
+      response => {
+        dispatch(success(response));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
   };
 
   function request(user) {
@@ -164,41 +163,19 @@ function getRole(user) {
   delete user.roles;
   return user;
 }
-function confirmUserEmail(token) {
-  return dispatch => {
-    dispatch(request());
-    userService.confirmUserEmail(token)
-      .then(
-        user => dispatch(success(user)),
-        error => {
-          dispatch(failure(error));
-        }
-      );
-  };
-
-  function request() {
-    return { type: 'CONFIRMATION_UPDATE_USER_EMAIL_REQUEST' };
-  }
-  function success(user) {
-    return { type: 'CONFIRMATION_UPDATE_USER_EMAIL_SUCCESS', user };
-  }
-  function failure(error) {
-    return { type: 'CONFIRMATION_UPDATE_USER_EMAIL_FAILURE', error };
-  }
-}
 
 function choosePasswordMailBox(token, password) {
   return dispatch => {
     dispatch(request(token));
     userService.choosePasswordMailBox(token, password)
-      .then(
-        messageCreationMail => {
-          dispatch(success(messageCreationMail));
-        },
-        error => {
-          dispatch(failure(error));
-        }
-      );
+    .then(
+      messageCreationMail => {
+        dispatch(success(messageCreationMail));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
   };
 
   function request() {

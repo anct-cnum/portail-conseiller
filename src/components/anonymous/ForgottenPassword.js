@@ -343,7 +343,7 @@ function ForgottenPassword({ match = null }) {
 
                           <input name="confirmPassword" type="password" value={confirmPassword}
                             onChange=
-                            {handleChangePassword} className={(submittedPassword && confirmPassword !== password ? ' is-invalid rf-input' : 'rf-input')}
+                              {handleChangePassword} className={(submittedPassword && confirmPassword !== password ? ' is-invalid rf-input' : 'rf-input')}
                           />
                         </label>
                         {submittedPassword && confirmPassword !== password &&
