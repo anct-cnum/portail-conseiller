@@ -7,9 +7,13 @@ import { useDispatch } from 'react-redux';
 function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineInput, valueInput, placeholderInput, disabled }) {
   const dispatch = useDispatch();
 
+  const reg = new RegExp('^[0-9]{14}$');
   const handleChange = e => {
     const { name, value } = e.target;
     dispatch(permanenceActions.updateField(name, value));
+    if (name.slice(-5) === 'siret' && value.length === 14 && reg.test(value)) {
+      dispatch(permanenceActions.verifySiret(name.slice(0, -5), value));
+    }
   };
 
   return (
@@ -28,6 +32,7 @@ function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineIn
           value={ valueInput }
           required={ requiredInput }
           onChange={handleChange}
+          onPaste={handleChange}
           placeholder={placeholderInput}
           disabled={disabled}
         />

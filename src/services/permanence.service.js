@@ -8,6 +8,7 @@ export const permanenceService = {
   getListePermanences,
   createPermanence,
   updatePermanence,
+  verifySiret,
 };
 
 function get(idConseiller) {
@@ -50,6 +51,18 @@ function updatePermanence(idPermanence, idConseiller, permanence) {
     })
   };
   return fetch(`${apiUrlRoot}/permanences/conseiller/${idConseiller}/update/${idPermanence}`, requestOptions).then(handleResponse);
+}
+
+function verifySiret(siret) {
+  const requestOptions = {
+    method: 'POST',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+    body: JSON.stringify({
+      siret
+    })
+  };
+  return fetch(`${apiUrlRoot}/permanences/verifySiret`, requestOptions).then(handleResponse);
+
 }
 
 function handleResponse(response) {

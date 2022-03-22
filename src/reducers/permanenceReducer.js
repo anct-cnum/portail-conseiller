@@ -11,6 +11,15 @@ const initialState = {
   showError: false,
 };
 
+const nettoyageState = form => {
+  return form?.filter(field => {
+    if (Object.keys(field).length !== 0) {
+      return true;
+    }
+    return false;
+  });
+};
+
 export default function permanence(state = initialState, action) {
   switch (action.type) {
     case 'GET_PERMANENCE_REQUEST':
@@ -53,7 +62,6 @@ export default function permanence(state = initialState, action) {
         showFormulairePermanence: false,
         isUpdated: false
       };
-
     case 'UPDATE_FIELD':
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.[action.field.name])[0]?.[action.field.name];
       let fields = state?.fields;
@@ -62,12 +70,8 @@ export default function permanence(state = initialState, action) {
 
       fields?.push(action.field);
 
-      fields = fields?.filter(field => {
-        if (Object.keys(field).length !== 0) {
-          return true;
-        }
-        return false;
-      });
+      fields = nettoyageState(fields);
+
       return {
         ...state,
         fields: fields
@@ -79,12 +83,8 @@ export default function permanence(state = initialState, action) {
 
       disabledFields?.push(action.field);
 
-      disabledFields = disabledFields?.filter(field => {
-        if (Object.keys(field).length !== 0) {
-          return true;
-        }
-        return false;
-      });
+      disabledFields = nettoyageState(disabledFields);
+      console.log(disabledFields);
       return {
         ...state,
         disabledFields: disabledFields,
@@ -101,6 +101,53 @@ export default function permanence(state = initialState, action) {
         showError: action.showError,
         showErrorMessage: action.errorMessage,
         errorsFormulaire: action.errorsForm
+      };
+    case 'VERIFY_SIRET_REQUEST':
+      return {
+        ...state,
+        showError: false,
+      };
+    case 'VERIFY_SIRET_SUCCESS':
+
+      let fieldsAdresse = state?.fields;
+      let disabledAdresse = state?.disabledFields;
+
+      if (action.adresseParSiret !== null) {
+        delete fieldsAdresse?.filter(field => field.name === action.champ + 'nomEnseigne')[0]?.value;
+        delete fieldsAdresse?.filter(field => field.name === action.champ + 'numeroVoie')[0]?.value;
+        delete fieldsAdresse?.filter(field => field.name === action.champ + 'rueVoie')[0]?.value;
+        delete fieldsAdresse?.filter(field => field.name === action.champ + 'codePostal')[0]?.value;
+        delete fieldsAdresse?.filter(field => field.name === action.champ + 'ville')[0]?.value;
+        delete fieldsAdresse?.filter(field => field.name === action.champ + 'nomEnseigne')[0]?.name;
+        delete fieldsAdresse?.filter(field => field.name === action.champ + 'numeroVoie')[0]?.name;
+        delete fieldsAdresse?.filter(field => field.name === action.champ + 'rueVoie')[0]?.name;
+        delete fieldsAdresse?.filter(field => field.name === action.champ + 'codePostal')[0]?.name;
+        delete fieldsAdresse?.filter(field => field.name === action.champ + 'ville')[0]?.name;
+        fieldsAdresse.push({ name: action.champ + 'nomEnseigne', value: action.adresseParSiret?.l1 });
+        fieldsAdresse.push({ name: action.champ + 'numeroVoie', value: action.adresseParSiret?.numero_voie });
+        fieldsAdresse.push({ name: action.champ + 'rueVoie', value: action.adresseParSiret?.type_voie + ' ' + action.adresseParSiret?.nom_voie });
+        fieldsAdresse.push({ name: action.champ + 'codePostal', value: action.adresseParSiret?.code_postal });
+        fieldsAdresse.push({ name: action.champ + 'ville', value: action.adresseParSiret?.localite.toUpperCase() });
+        fieldsAdresse = nettoyageState(fieldsAdresse);
+
+        delete disabledAdresse?.filter(field => field.id === action.champ)[0]?.value;
+        delete disabledAdresse?.filter(field => field.id === action.champ)[0]?.id;
+        disabledAdresse?.push({ id: action.champ, value: true });
+        disabledAdresse = nettoyageState(disabledAdresse);
+      }
+
+      return {
+        ...state,
+        fields: fieldsAdresse,
+        disabledFields: disabledAdresse,
+        showError: false,
+        error: false,
+      };
+    case 'VERIFY_SIRET_FAILURE':
+      return {
+        ...state,
+        showError: true,
+        error: action.error,
       };
     case 'POST_PERMANENCE_REQUEST':
       return {

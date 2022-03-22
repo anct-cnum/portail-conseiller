@@ -10,6 +10,7 @@ export const permanenceActions = {
   verifyFormulaire,
   createPermanence,
   updatePermanence,
+  verifySiret,
   updateLieuPrincipal,
   updateField,
   disabledField,
@@ -108,45 +109,45 @@ function verifyFormulaire(form) {
 
   const champsAcceptes = [
     {
-      nom: 'nomEnseigne', validation: Joi.string().required(),
+      nom: 'nomEnseigne', validation: Joi.string().trim().required(),
       message: 'Un lieu d\'activité doit obligatoirement être saisi'
     },
     {
-      nom: 'siret', validation: Joi.string().allow('', null).pattern(regExpSiret).min(14).max(14),
+      nom: 'siret', validation: Joi.string().trim().allow('', null).pattern(regExpSiret).min(14).max(14),
       message: 'Un siret valide de 14 chiffres doit être saisi'
     },
     {
-      nom: 'numeroTelephone', validation: Joi.string().allow('', null).pattern(regExpNumero),
+      nom: 'numeroTelephone', validation: Joi.string().trim().allow('', null).pattern(regExpNumero),
       message: 'Un numéro de téléphone valide doit être saisi'
     },
     {
-      nom: 'email', validation: Joi.string().allow('', null).pattern(regExpEmail),
+      nom: 'email', validation: Joi.string().trim().allow('', null).pattern(regExpEmail),
       message: 'Une adresse email valide doit être saisie'
     },
     {
-      nom: 'numeroVoie', validation: Joi.string().required().allow(''),
+      nom: 'numeroVoie', validation: Joi.string().trim().required().allow('', null),
       message: 'Un numéro de voie doit obligatoirement être saisi'
     },
     {
-      nom: 'rueVoie', validation: Joi.string().required().min(5).max(120),
+      nom: 'rueVoie', validation: Joi.string().trim().required().min(5).max(120),
       message: 'Une rue doit obligatoirement être saisie' },
     {
-      nom: 'codePostal', validation: Joi.string().required().min(5).max(5),
+      nom: 'codePostal', validation: Joi.string().trim().required().min(5).max(5),
       message: 'Un code postal doit obligatoirement être saisi' },
     {
-      nom: 'ville', validation: Joi.string().required().min(3).max(60),
+      nom: 'ville', validation: Joi.string().trim().required().min(3).max(60),
       message: 'Une ville doit obligatoirement être saisie'
     },
     {
-      nom: 'itinerance', validation: Joi.string().allow('', null),
+      nom: 'itinerance', validation: Joi.string().trim().allow('', null),
       message: 'Une itinérance doit obligatoirement être saisie'
     },
     {
-      nom: 'siteWeb', validation: Joi.string().allow('', null).pattern(regExpSiteWeb),
+      nom: 'siteWeb', validation: Joi.string().trim().allow('', null).pattern(regExpSiteWeb),
       message: 'Une URL valide doit être saisie (exemple de format valide https://www.mon-site.fr)'
     },
     {
-      nom: 'typeAcces', validation: Joi.string().required().valid('libre', 'rdv', 'prive'),
+      nom: 'typeAcces', validation: Joi.string().trim().required().valid('libre', 'rdv', 'prive'),
       message: 'Un type d\'accès doit obligatoirement être indiqué'
     },
     {
@@ -269,6 +270,31 @@ function updatePermanence(idPermanence, idConseiller, permanence, isEnded) {
   }
   function failure(error) {
     return { type: 'UPDATE_PERMANENCE_FAILURE', error };
+  }
+}
+
+function verifySiret(champ, siret) {
+  return dispatch => {
+    dispatch(request());
+    permanenceService.verifySiret(siret)
+    .then(
+      result => {
+        dispatch(success(result.adresseParSiret, champ));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'VERIFY_SIRET_REQUEST' };
+  }
+  function success(adresseParSiret, champ) {
+    return { type: 'VERIFY_SIRET_SUCCESS', adresseParSiret, champ };
+  }
+  function failure(error) {
+    return { type: 'VERIFY_SIRET_FAILURE', error };
   }
 }
 

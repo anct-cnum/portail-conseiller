@@ -9,8 +9,8 @@ function Adresse({ codeDepartement, prefixId }) {
 
   const fields = useSelector(state => state.permanence?.fields);
   const disabledFields = useSelector(state => state.permanence.disabledFields);
-  const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
 
+  const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
   const erreurLieuActivite = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'nomEnseigne'])[0]?.[prefixId + 'nomEnseigne'];
   const erreurSiret = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'siret'])[0]?.[prefixId + 'siret'];
   const erreurNumeroVoie = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'numeroVoie'])[0]?.[prefixId + 'numeroVoie'];
@@ -25,6 +25,7 @@ function Adresse({ codeDepartement, prefixId }) {
 
   let indicatif = codeDepartement?.length === 3 ?
     telephoneHorsMetropole?.find(item => item.codeDepartement === codeDepartement).indicatif : '+33';
+
   return (
     <>
       {(prefixId !== 'principal_' ||

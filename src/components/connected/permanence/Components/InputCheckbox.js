@@ -8,7 +8,13 @@ function InputCheckbox({ textLabel, errorInput, nameInput, baselineInput, classB
   const dispatch = useDispatch();
   const onClick = e => {
     const { name, checked } = e.target;
+    const prefixId = name.slice(0, -13);
+
     dispatch(permanenceActions.updateField(name, checked));
+    if (name.slice(-5) === 'Siret') {
+      dispatch(permanenceActions.updateField(prefixId + 'siret', ''));
+      dispatch(permanenceActions.disabledField(prefixId, false));
+    }
   };
 
   return (

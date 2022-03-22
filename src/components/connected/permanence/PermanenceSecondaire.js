@@ -63,20 +63,16 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
         structureId: structureId,
         hasPermanence: false,
       };
-/*
+
       if (nouveauLieu._id !== null) {
         dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, false));
       } else {
         dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, false));
       }
-      */
       show[0] = true;
       dispatch(permanenceActions.updateField('submit_and_next_0', true));
       dispatch(permanenceActions.montrerLieuSecondaire(show));
     } else {
-      show[0] = false;
-      dispatch(permanenceActions.updateField('submit_and_next_0', false));
-      dispatch(permanenceActions.montrerLieuSecondaire(show));
       window.scrollTo(0, 0);
     }
     setShow(show);
