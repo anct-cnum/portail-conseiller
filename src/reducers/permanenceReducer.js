@@ -84,7 +84,6 @@ export default function permanence(state = initialState, action) {
       disabledFields?.push(action.field);
 
       disabledFields = nettoyageState(disabledFields);
-      console.log(disabledFields);
       return {
         ...state,
         disabledFields: disabledFields,
