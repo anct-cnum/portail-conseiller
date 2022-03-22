@@ -31,7 +31,7 @@ function MesInformations() {
       {formInfoPersonnel.showConfirmationMail &&
         <FlashMessage duration={10000}>
           <p className="rf-label flashBag">
-            Un mail de confirmation de votre nouvelle adresse mail vous a &eacute;t&eacute; envoy&eacute;
+            Un mail de confirmation de votre nouvelle adresse mail vous a &eacute;t&eacute; envoy&eacute; pour valider votre changement
             <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
           </p>
         </FlashMessage>
