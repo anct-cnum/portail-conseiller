@@ -7,7 +7,7 @@ export const formInfoPersonnelActions = {
   verifyFormulaire,
   updateField,
   initFormInfoPersonnel,
-  createInfoPersonnel,
+  updateInfoPersonnel,
   confirmConseillerEmail
 };
 
@@ -15,19 +15,19 @@ function confirmConseillerEmail(token) {
   return dispatch => {
     dispatch(request());
     infoPersonnelService.confirmConseillerEmail(token)
-    .then(
-      conseiller => dispatch(success(conseiller)),
-      error => {
-        dispatch(failure(error));
-      }
-    );
+      .then(
+        email => dispatch(success(email)),
+        error => {
+          dispatch(failure(error));
+        }
+      );
   };
 
   function request() {
     return { type: 'CONFIRMATION_UPDATE_CONSEILLER_EMAIL_REQUEST' };
   }
-  function success(conseiller) {
-    return { type: 'CONFIRMATION_UPDATE_CONSEILLER_EMAIL_SUCCESS', conseiller };
+  function success(email) {
+    return { type: 'CONFIRMATION_UPDATE_CONSEILLER_EMAIL_SUCCESS', email };
   }
   function failure(error) {
     return { type: 'CONFIRMATION_UPDATE_CONSEILLER_EMAIL_FAILURE', error };
@@ -52,7 +52,7 @@ function verifyFormulaire(form, telephone) {
 
   errors.push({
     telephonePro: (Joi.object({
-      telephonePro: Joi.string().required().pattern(regExpNumero)
+      telephonePro: Joi.string().optional().allow(null).pattern(regExpNumero)
     }).validate({ telephonePro: form?.telephonePro }).error) ?
       'Un numéro de téléphone professionnel valide doit obligatoirement être saisi. Exemples: +33XXXXXXXXX ou +262XXXXXXXXX, ...' : null
   });
@@ -79,25 +79,24 @@ function updateField(name, value) {
   return { type: 'UPDATE_' + name.toUpperCase(), value };
 }
 
-function initFormInfoPersonnel(email, telephone, telephonePro) {
-  return { type: 'INIT_FORM_INFO_PERSONNEL', email, telephone, telephonePro };
+function initFormInfoPersonnel(email, telephone, telephonePro, dateDeNaissance, sexe) {
+  return { type: 'INIT_FORM_INFO_PERSONNEL', email, telephone, telephonePro, dateDeNaissance, sexe };
 }
 
-function createInfoPersonnel(infoPersonnel, conseillerId, username, password) {
+function updateInfoPersonnel(infoPersonnel, conseillerId, username, password) {
   return dispatch => {
     dispatch(request());
     userService.login(username, password).then(
       () => {
-        infoPersonnelService.createInfoPersonnel(infoPersonnel, conseillerId)
-        .then(
-          result => {
-            dispatch(success(result.initModifMailPersoConseiller));
-            dispatch(successConseiller(result.conseiller));
-          },
-          error => {
-            dispatch(failure(error));
-          }
-        );
+        infoPersonnelService.updateInfoPersonnel(infoPersonnel, conseillerId)
+          .then(
+            result => {
+              dispatch(success(result.conseiller, result.initModifMailPersoConseiller));
+            },
+            error => {
+              dispatch(failure(error));
+            }
+          );
       },
       error => {
         dispatch(failure(error.error));
@@ -110,11 +109,8 @@ function createInfoPersonnel(infoPersonnel, conseillerId, username, password) {
 function request() {
   return { type: 'POST_INFO_PERSONNEL_REQUEST' };
 }
-function success(initModifMailPersoConseiller) {
-  return { type: 'POST_INFO_PERSONNEL_SUCCESS', initModifMailPersoConseiller };
-}
-function successConseiller(conseiller) {
-  return { type: 'GET_CONSEILLER_SUCCESS', conseiller };
+function success(conseiller, initModifMailPersoConseiller) {
+  return { type: 'POST_INFO_PERSONNEL_SUCCESS', conseiller, initModifMailPersoConseiller };
 }
 function failure(error) {
   return { type: 'POST_INFO_PERSONNEL_FAILURE', error };

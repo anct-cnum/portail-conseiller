@@ -4,18 +4,20 @@ import { userService } from './user.service';
 const apiUrlRoot = process.env.REACT_APP_API;
 
 export const infoPersonnelService = {
-  createInfoPersonnel,
+  updateInfoPersonnel,
   confirmConseillerEmail
 };
 
-function createInfoPersonnel(infoPersonnel, idConseiller) {
+function updateInfoPersonnel(infoPersonnel, idConseiller) {
   const requestOptions = {
     method: 'PATCH',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
     body: JSON.stringify({
       'telephone': infoPersonnel.telephone,
       'telephonePro': infoPersonnel.telephonePro,
-      'email': infoPersonnel.email
+      'email': infoPersonnel.email,
+      'dateDeNaissance': infoPersonnel.dateDeNaissance,
+      'sexe': infoPersonnel.sexe
     })
   };
 

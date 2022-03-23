@@ -33,10 +33,12 @@ function ModalUpdateForm({ form, showModal, setShowModal, isSupHierarchique = fa
         fonction: form.fonction.trim()
       }, conseiller._id, user.name, password));
     } else {
-      dispatch(formInfoPersonnelActions.createInfoPersonnel({
+      dispatch(formInfoPersonnelActions.updateInfoPersonnel({
         telephone: form.telephone,
         telephonePro: form.telephonePro,
         email: form.email.trim(),
+        dateDeNaissance: form.dateDeNaissance,
+        sexe: form.sexe
       }, conseiller._id, user.name, password));
     }
 

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import dayjs from 'dayjs';
 import { useDispatch, useSelector } from 'react-redux';
 import { formInfoPersonnelActions } from '../../../actions/infoPersonnel.actions';
 import ModalUpdateForm from './ModalUpdateForm';
+import DatePicker, { registerLocale } from 'react-datepicker';
+import fr from 'date-fns/locale/fr';
 
+registerLocale('fr', fr);
 function FormulaireInfosPersonnelles() {
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const erreursFormulaire = useSelector(state => state.formulaireInfoPersonnel?.errorsFormulaire);
@@ -15,11 +17,16 @@ function FormulaireInfosPersonnelles() {
   const [inputs, setInputs] = useState({
     conseillerTelephone: '',
     conseillerTelephonePro: '',
-    conseillerEmail: ''
+    conseillerEmail: '',
+    conseillerDateDeNaissance: new Date(),
+    conseillerSexe: ''
   });
   const [submitted, setSubmitted] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const { conseillerTelephone, conseillerTelephonePro, conseillerEmail } = inputs;
+  const { conseillerTelephone, conseillerTelephonePro, conseillerEmail, conseillerDateDeNaissance, conseillerSexe } = inputs;
+  const todayDate = new Date();
+  const maxDate = todayDate.getFullYear() - 18;
+  const minDate = todayDate.getFullYear() - 99;
 
   useEffect(() => {
     if (erreursFormulaire?.lengthError === 0 && submitted) {
@@ -30,30 +37,37 @@ function FormulaireInfosPersonnelles() {
   }, [erreursFormulaire]);
   useEffect(() => {
     if (conseiller !== null && conseiller !== undefined) {
-      dispatch(formInfoPersonnelActions.initFormInfoPersonnel(conseiller.email, conseiller.telephone, conseiller.telephonePro));
+      dispatch(formInfoPersonnelActions.initFormInfoPersonnel(
+        conseiller.email,
+        conseiller.telephone,
+        conseiller.telephonePro,
+        conseiller.dateDeNaissance,
+        conseiller.sexe
+      ));
       setInputs({
         conseillerTelephone: conseiller.telephone,
         conseillerTelephonePro: conseiller.telephonePro,
         conseillerEmail: conseiller.email,
+        conseillerDateDeNaissance: conseiller.dateDeNaissance,
+        conseillerSexe: conseiller.sexe
       });
     }
   }, [conseiller]);
 
   function handleChange(e) {
-    const { name, value } = e.target;
-    setInputs(inputs => ({ ...inputs, [name]: value }));
-    dispatch(formInfoPersonnelActions.updateField(name, value));
+    if (e?.target) {
+      const { name, value } = e.target;
+      setInputs(inputs => ({ ...inputs, [name]: value }));
+      dispatch(formInfoPersonnelActions.updateField(name, value));
+    } else {
+      setInputs(inputs => ({ ...inputs, conseillerDateDeNaissance: e }));
+      dispatch(formInfoPersonnelActions.updateField('conseillerDateDeNaissance', e));
+    }
   }
 
   function handleSubmit() {
     setSubmitted(true);
     dispatch(formInfoPersonnelActions.verifyFormulaire(form, conseiller.telephone));
-  }
-  function calcAge(birthDate) {
-    const now = dayjs();
-    const yearDiff = now.diff(birthDate, 'years');
-
-    return yearDiff;
   }
   return (
     <>
@@ -148,40 +162,50 @@ function FormulaireInfosPersonnelles() {
         }
       </div>
       <div className="rf-input-group rf-mb-5w">
-        <label className="rf-label" htmlFor="conseiller-age">
-          &Acirc;ge
+        <label className="rf-label" htmlFor="conseiller-date-de-naissance">
+          Date de naissance
         </label>
-        <input
-          className="rf-input"
-          aria-describedby="text-input-error-desc-error"
-          type="text"
-          id="conseiller-age"
-          disabled
-          name="conseillerAge"
-          value={calcAge(conseiller?.dateDeNaissance)}
+        <DatePicker
+          id="conseiller-date-de-naissance"
+          name="conseillerDateDeNaissance"
+          className="rf-input rf-my-1w"
+          placeholderText="../../...."
+          dateFormat="dd/MM/yyyy"
+          locale="fr"
+          selected={new Date(conseillerDateDeNaissance)}
+          onChange={handleChange}
+          value={new Date(conseillerDateDeNaissance)}
+          peekNextMonth
+          onChangeRaw={e => e.preventDefault()}
+          showMonthDropdown
+          showYearDropdown
+          maxDate={new Date('12/31/' + maxDate)}
+          minDate={new Date('01/01/' + minDate)}
+          dropdownMode="select"
+          required="required"
         />
       </div>
       <div className="rf-form-group">
-        <fieldset className="rf-fieldset rf-fieldset--inline" disabled="disabled">
+        <fieldset className="rf-fieldset rf-fieldset--inline">
           <legend className="rf-fieldset__legend rf-text--regular" id="radio-inline-legend">
             Genre
           </legend>
           <div className="rf-fieldset__content">
             <div className="rf-radio-group radio-genre">
-              <input type="radio" id="radio-inline-1" name="radio-inline" value="Homme"
-                checked={conseiller?.sexe === 'Homme'}
+              <input type="radio" id="Homme" name="conseillerSexe" value="Homme" onClick={handleChange}
+                checked={conseillerSexe === 'Homme'}
               />
-              <label className="rf-label" htmlFor="radio-inline-1">Homme
+              <label className="rf-label" htmlFor="Homme">Homme
               </label>
             </div>
             <div className="rf-radio-group radio-genre">
-              <input type="radio" id="radio-inline-2" name="radio-inline" value="Femme" checked={conseiller?.sexe === 'Femme'} />
-              <label className="rf-label" htmlFor="radio-inline-2">Femme
+              <input type="radio" id="Femme" name="conseillerSexe" value="Femme" onClick={handleChange} checked={conseillerSexe === 'Femme'} />
+              <label className="rf-label" htmlFor="Femme">Femme
               </label>
             </div>
             <div className="rf-radio-group radio-genre">
-              <input type="radio" id="radio-inline-3" name="radio-inline" value="Autre" checked={conseiller?.sexe === 'Autre'} />
-              <label className="rf-label" htmlFor="radio-inline-3">Autre
+              <input type="radio" id="Autre" name="conseillerSexe" value="Autre" onClick={handleChange} checked={conseillerSexe === 'Autre'} />
+              <label className="rf-label" htmlFor="Autre">Autre
               </label>
             </div>
           </div>

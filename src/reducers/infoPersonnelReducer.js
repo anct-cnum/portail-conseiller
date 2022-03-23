@@ -16,12 +16,28 @@ export default function formulaireInfoPersonnel(state = initialState, action) {
         telephone: action.telephone,
         telephonePro: action.telephonePro,
         email: action.email,
+        dateDeNaissance: action.dateDeNaissance,
+        sexe: action.sexe
       };
     case 'UPDATE_CONSEILLERTELEPHONE':
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.telephone)[0]?.telephone;
       return {
         ...state,
         telephone: action.value,
+        showError: false,
+      };
+    case 'UPDATE_CONSEILLERSEXE':
+      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.sexe)[0]?.sexe;
+      return {
+        ...state,
+        sexe: action.value,
+        showError: false,
+      };
+    case 'UPDATE_CONSEILLERDATEDENAISSANCE':
+      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.dateDeNaissance)[0]?.dateDeNaissance;
+      return {
+        ...state,
+        dateDeNaissance: action.value,
         showError: false,
       };
     case 'UPDATE_CONSEILLERTELEPHONEPRO':
@@ -47,10 +63,14 @@ export default function formulaireInfoPersonnel(state = initialState, action) {
     case 'POST_INFO_PERSONNEL_SUCCESS':
       return {
         ...state,
-        isCreated: true,
-        showError: false,
-        showConfirmationMail: action.initModifMailPersoConseiller,
-        error: false,
+        'isCreated': true,
+        'showError': false,
+        'conseiller.telephone': action.conseiller.telephone,
+        'conseiller.telephonePro': action.conseiller.telephonePro,
+        'conseiller.dateDeNaissance': action.conseiller.dateDeNaissance,
+        'conseiller.sexe': action.conseiller.sexe,
+        'showConfirmationMail': action.initModifMailPersoConseiller,
+        'error': false,
       };
     case 'POST_INFO_PERSONNEL_FAILURE':
       return {
@@ -63,14 +83,14 @@ export default function formulaireInfoPersonnel(state = initialState, action) {
       return {
         ...state,
         loading: true,
-        flashMessage: true
+        flashMessage: false
       };
     case 'CONFIRMATION_UPDATE_CONSEILLER_EMAIL_SUCCESS':
       return {
         ...state,
-        conseiller: action.conseiller,
-        tokenError: false,
-        flashMessage: true
+        'conseiller.email': action.email,
+        'tokenError': false,
+        'flashMessage': true
       };
     case 'CONFIRMATION_UPDATE_CONSEILLER_EMAIL_FAILURE':
       return {

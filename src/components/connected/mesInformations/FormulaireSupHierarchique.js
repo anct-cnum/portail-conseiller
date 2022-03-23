@@ -152,7 +152,7 @@ function FormulaireSuperieurHierarchique() {
           </p>
         }
       </div>
-      <button className="form-button rf-btn rf-mb-4w" onClick={handleSubmit} aria-controls="rf-modal-supprimer-candidat">
+      <button className="form-button rf-btn rf-mb-4w" onClick={handleSubmit}>
         Enregistrer
       </button>
     </>
