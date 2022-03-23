@@ -15,6 +15,7 @@ function updateInfoPersonnel(infoPersonnel, idConseiller) {
     body: JSON.stringify({
       'telephone': infoPersonnel.telephone,
       'telephonePro': infoPersonnel.telephonePro,
+      'emailPro': infoPersonnel.emailPro,
       'email': infoPersonnel.email,
       'dateDeNaissance': infoPersonnel.dateDeNaissance,
       'sexe': infoPersonnel.sexe

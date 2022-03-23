@@ -12,18 +12,20 @@ function FormulaireInfosPersonnelles() {
   const erreurNumeroTelephone = erreursFormulaire?.errors?.filter(erreur => erreur?.telephone)[0]?.telephone;
   const erreurNumeroTelephonePro = erreursFormulaire?.errors?.filter(erreur => erreur?.telephonePro)[0]?.telephonePro;
   const erreurEmailPerso = erreursFormulaire?.errors?.filter(erreur => erreur?.email)[0]?.email;
+  const erreurEmailPro = erreursFormulaire?.errors?.filter(erreur => erreur?.emailPro)[0]?.emailPro;
   const form = useSelector(state => state.formulaireInfoPersonnel);
   const dispatch = useDispatch();
   const [inputs, setInputs] = useState({
     conseillerTelephone: '',
     conseillerTelephonePro: '',
+    conseillerEmailPro: '',
     conseillerEmail: '',
     conseillerDateDeNaissance: new Date(),
     conseillerSexe: ''
   });
   const [submitted, setSubmitted] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const { conseillerTelephone, conseillerTelephonePro, conseillerEmail, conseillerDateDeNaissance, conseillerSexe } = inputs;
+  const { conseillerTelephone, conseillerTelephonePro, conseillerEmail, conseillerDateDeNaissance, conseillerSexe, conseillerEmailPro } = inputs;
   const todayDate = new Date();
   const maxDate = todayDate.getFullYear() - 18;
   const minDate = todayDate.getFullYear() - 99;
@@ -41,12 +43,14 @@ function FormulaireInfosPersonnelles() {
         conseiller.email,
         conseiller.telephone,
         conseiller.telephonePro,
+        conseiller.emailPro,
         conseiller.dateDeNaissance,
         conseiller.sexe
       ));
       setInputs({
         conseillerTelephone: conseiller.telephone,
         conseillerTelephonePro: conseiller.telephonePro,
+        conseillerEmailPro: conseiller.emailPro,
         conseillerEmail: conseiller.email,
         conseillerDateDeNaissance: conseiller.dateDeNaissance,
         conseillerSexe: conseiller.sexe
@@ -99,6 +103,26 @@ function FormulaireInfosPersonnelles() {
           disabled
           value={conseiller?.nom}
         />
+      </div>
+      <div className={`rf-input-group ${erreurEmailPro ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
+        <label className="rf-label" htmlFor="conseiller-email-pro">
+          Adresse mail professionnelle
+          <span className="rf-hint-text desc-input">Si votre structure vous en a fourni une.</span>
+        </label>
+        <input
+          className={`rf-input ${erreurEmailPro ? 'rf-input--error' : ''}`}
+          aria-describedby="text-input-error-desc-error"
+          type="email"
+          id="conseiller-email-pro"
+          name="conseillerEmailPro"
+          value={conseillerEmailPro}
+          onChange={handleChange}
+        />
+        {erreurEmailPro &&
+          <p id="text-input-error-desc-error" className="rf-error-text">
+            {erreurEmailPro}
+          </p>
+        }
       </div>
       <div className={`rf-input-group ${erreurNumeroTelephonePro ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
         <label className="rf-label" htmlFor="conseiller-telephone-pro">

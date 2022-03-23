@@ -15,6 +15,7 @@ export default function formulaireInfoPersonnel(state = initialState, action) {
         ...state,
         telephone: action.telephone,
         telephonePro: action.telephonePro,
+        emailPro: action.emailPro,
         email: action.email,
         dateDeNaissance: action.dateDeNaissance,
         sexe: action.sexe
@@ -47,6 +48,13 @@ export default function formulaireInfoPersonnel(state = initialState, action) {
         telephonePro: action.value,
         showError: false,
       };
+    case 'UPDATE_CONSEILLEREMAILPRO':
+      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.emailPro)[0]?.emailPro;
+      return {
+        ...state,
+        emailPro: action.value,
+        showError: false,
+      };
     case 'UPDATE_CONSEILLEREMAIL':
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.email)[0]?.email;
       return {
@@ -70,6 +78,7 @@ export default function formulaireInfoPersonnel(state = initialState, action) {
         'conseiller.dateDeNaissance': action.conseiller.dateDeNaissance,
         'conseiller.sexe': action.conseiller.sexe,
         'showConfirmationMail': action.initModifMailPersoConseiller,
+        'showConfirmationMailPro': action.initModifMailProConseiller,
         'error': false,
       };
     case 'POST_INFO_PERSONNEL_FAILURE':
@@ -85,10 +94,17 @@ export default function formulaireInfoPersonnel(state = initialState, action) {
         loading: true,
         flashMessage: false
       };
-    case 'CONFIRMATION_UPDATE_CONSEILLER_EMAIL_SUCCESS':
+    case 'CONFIRMATION_UPDATE_CONSEILLER_EMAIL_PERSO_SUCCESS':
       return {
         ...state,
         'conseiller.email': action.email,
+        'tokenError': false,
+        'flashMessage': true
+      };
+    case 'CONFIRMATION_UPDATE_CONSEILLER_EMAIL_PRO_SUCCESS':
+      return {
+        ...state,
+        'conseiller.emailPro': action.emailPro,
         'tokenError': false,
         'flashMessage': true
       };

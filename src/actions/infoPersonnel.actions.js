@@ -15,19 +15,22 @@ function confirmConseillerEmail(token) {
   return dispatch => {
     dispatch(request());
     infoPersonnelService.confirmConseillerEmail(token)
-      .then(
-        email => dispatch(success(email)),
-        error => {
-          dispatch(failure(error));
-        }
-      );
+    .then(
+      result => result.isEmailPro === false ? dispatch(successMail(result.email)) : dispatch(successMailPro(result.emailPro)),
+      error => {
+        dispatch(failure(error));
+      }
+    );
   };
 
   function request() {
     return { type: 'CONFIRMATION_UPDATE_CONSEILLER_EMAIL_REQUEST' };
   }
-  function success(email) {
-    return { type: 'CONFIRMATION_UPDATE_CONSEILLER_EMAIL_SUCCESS', email };
+  function successMail(email) {
+    return { type: 'CONFIRMATION_UPDATE_CONSEILLER_EMAIL_PERSO_SUCCESS', email };
+  }
+  function successMailPro(emailPro) {
+    return { type: 'CONFIRMATION_UPDATE_CONSEILLER_EMAIL_PRO_SUCCESS', emailPro };
   }
   function failure(error) {
     return { type: 'CONFIRMATION_UPDATE_CONSEILLER_EMAIL_FAILURE', error };
@@ -62,6 +65,12 @@ function verifyFormulaire(form, telephone) {
     }).validate({ email: form?.email }).error) ?
       'Une adresse email valide doit obligatoirement être saisie' : null
   });
+  errors.push({
+    emailPro: (Joi.object({
+      emailPro: Joi.string().optional().allow(null).pattern(regExpEmail)
+    }).validate({ emailPro: form?.emailPro }).error) ?
+      'Une adresse email professionnelle valide doit obligatoirement être saisie' : null
+  });
 
   let nbErrors = 0;
   errors.forEach(error => {
@@ -79,8 +88,8 @@ function updateField(name, value) {
   return { type: 'UPDATE_' + name.toUpperCase(), value };
 }
 
-function initFormInfoPersonnel(email, telephone, telephonePro, dateDeNaissance, sexe) {
-  return { type: 'INIT_FORM_INFO_PERSONNEL', email, telephone, telephonePro, dateDeNaissance, sexe };
+function initFormInfoPersonnel(email, telephone, telephonePro, emailPro, dateDeNaissance, sexe) {
+  return { type: 'INIT_FORM_INFO_PERSONNEL', email, telephone, telephonePro, emailPro, dateDeNaissance, sexe };
 }
 
 function updateInfoPersonnel(infoPersonnel, conseillerId, username, password) {
@@ -89,14 +98,14 @@ function updateInfoPersonnel(infoPersonnel, conseillerId, username, password) {
     userService.login(username, password).then(
       () => {
         infoPersonnelService.updateInfoPersonnel(infoPersonnel, conseillerId)
-          .then(
-            result => {
-              dispatch(success(result.conseiller, result.initModifMailPersoConseiller));
-            },
-            error => {
-              dispatch(failure(error));
-            }
-          );
+        .then(
+          result => {
+            dispatch(success(result.conseiller, result.initModifMailPersoConseiller, result.initModifMailProConseiller));
+          },
+          error => {
+            dispatch(failure(error));
+          }
+        );
       },
       error => {
         dispatch(failure(error.error));
@@ -109,8 +118,8 @@ function updateInfoPersonnel(infoPersonnel, conseillerId, username, password) {
 function request() {
   return { type: 'POST_INFO_PERSONNEL_REQUEST' };
 }
-function success(conseiller, initModifMailPersoConseiller) {
-  return { type: 'POST_INFO_PERSONNEL_SUCCESS', conseiller, initModifMailPersoConseiller };
+function success(conseiller, initModifMailPersoConseiller, initModifMailProConseiller) {
+  return { type: 'POST_INFO_PERSONNEL_SUCCESS', conseiller, initModifMailPersoConseiller, initModifMailProConseiller };
 }
 function failure(error) {
   return { type: 'POST_INFO_PERSONNEL_FAILURE', error };

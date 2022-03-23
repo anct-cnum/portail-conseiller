@@ -36,6 +36,14 @@ function MesInformations() {
           </p>
         </FlashMessage>
       }
+      {formInfoPersonnel.showConfirmationMailPro &&
+        <FlashMessage duration={10000}>
+          <p className="rf-label flashBag">
+            Un mail de confirmation de votre nouvelle adresse mail professionnelle vous a &eacute;t&eacute; envoy&eacute; pour valider votre changement
+            <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+          </p>
+        </FlashMessage>
+      }
       {formSupHierarchique.error &&
         <FlashMessage duration={10000}>
           <p className="rf-label flashBag invalid">
