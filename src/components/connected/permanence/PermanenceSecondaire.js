@@ -127,7 +127,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
         return (
           <div key={idx} className="rf-container">
             <div className={(idx === 0 && show[0]) ||
-              (idx > 0 && fields.filter(field => field.name === 'submit_and_next_' + idx)[0]?.value) ? 'rf-grid-row' : 'hide'}>
+              (idx > 0 && fields?.filter(field => field.name === 'submit_and_next_' + idx)[0]?.value) ? 'rf-grid-row' : 'hide'}>
 
               <ListPermanences prefixId={ 'secondaire_' + idx + '_'} conseillerId={conseillerId}/>
               <Adresse

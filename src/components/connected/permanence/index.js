@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Validation from './Validation';
-import Remerciement from './Remerciement';
-import Footer from '../../Footer';
-import { useLocation } from 'react-router-dom';
-import Banner from './Banner';
+import { permanenceActions } from '../../../actions';
+
 import ContactProfessionel from './ContactProfessionel';
 import PermanenceSecondaire from './PermanenceSecondaire';
 import PermanencePrincipale from './PermanencePrincipale';
-import { permanenceActions } from '../../../actions';
+import Remerciement from './Remerciement';
+import Validation from './Validation';
+import Ouverture from './Ouverture';
+import Footer from '../../Footer';
+import Banner from './Banner';
 
 function Permanence() {
   const dispatch = useDispatch();
-  const location = useLocation();
 
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const structure = useSelector(state => state.structure?.structure);
@@ -31,6 +31,8 @@ function Permanence() {
   return (
     <>
 
+      <Ouverture />
+
       { (isEnded && location.pathname === '/accueil') &&
         <Remerciement/>
       }
@@ -43,7 +45,7 @@ function Permanence() {
           </p>
         }
 
-        <ContactProfessionel />
+        <ContactProfessionel conseiller={conseiller}/>
         <div className="rf-container">
           <div className="rf-grid-row">
             <PermanencePrincipale structure={structure} conseillerId={conseiller?._id}/>

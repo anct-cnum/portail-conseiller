@@ -1,4 +1,5 @@
 import { permanenceService } from '../services/permanence.service';
+import { history } from '../helpers';
 import Joi from 'joi';
 
 export const permanenceActions = {
@@ -14,8 +15,8 @@ export const permanenceActions = {
   updateLieuPrincipal,
   updateField,
   disabledField,
-  updateHoraires,
   montrerLieuSecondaire,
+  suspensionFormulaire
 };
 
 function get(idConseiller) {
@@ -101,7 +102,7 @@ function verifyFormulaire(form) {
     emailPro: Joi.string().allow('').pattern(regExpEmail) }).validate({
     emailPro: form?.fields.filter(field => field.name === 'emailPro')[0]?.value }).error) ?
     'Une adresse email valide doit être saisie' : null });
-
+    
   errors.push({ estLieuPrincipal: (Joi.object({
     estLieuPrincipal: Joi.boolean().allow(true, false).required() }).validate({ estLieuPrincipal:
     form?.fields.filter(field => field.name === 'estLieuPrincipal')[0]?.value }).error) ?
@@ -316,6 +317,8 @@ function disabledField(id, value) {
   return { type: 'DISABLED_FIELD', field: { id, value } };
 }
 
-function updateHoraires(horaires) {
-  return { type: 'UPDATE_HORAIRES', horaires };
+function suspensionFormulaire() {
+  localStorage.setItem('suspension_permanence', true);
+  history.push('/accueil');
+  return { type: 'SUSPENSION_FORM' };
 }

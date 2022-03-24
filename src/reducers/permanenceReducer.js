@@ -9,6 +9,7 @@ const initialState = {
   isCreated: false,
   isUpdated: false,
   showError: false,
+  suspensionPermanence: false,
 };
 
 const nettoyageState = form => {
@@ -188,7 +189,8 @@ export default function permanence(state = initialState, action) {
         showError: true,
         error: action.error,
       };
-
+    case 'SUSPENSION_FORM':
+      return { };
     default:
       return state;
   }

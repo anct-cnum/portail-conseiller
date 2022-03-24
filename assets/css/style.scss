@@ -327,7 +327,7 @@
   opacity: 1;
   visibility: visible;
 }
-.modal-sexe-age, .modal-remerciement {
+.modal-sexe-age, .modal-remerciement, .modal-ouverture {
   background-color: #fff;
   padding: 4em 2.5em;
   color: #1e1e1e;
@@ -343,25 +343,41 @@
     margin-left: 60%;
     margin-top:60px;
   }
- p {
-  font-style: 'italic';
-    color: #383838;
- }
- .rf-modal__content {
+  p {
+    font-style: 'italic';
+      color: #383838;
+  }
+  .rf-modal__content {
     margin:0;
- }
- .rf-fieldset {
-    color: #1e1e1e;
- }
- .label {
+  }
+  .rf-fieldset {
+      color: #1e1e1e;
+  }
+  .label {
     font-weight: 600;
- }
+  }
   #date {
     background-color: #f0f0f0;
     border-bottom: 2px solid #6A6A6A;
     color:#a1a2a5;
   }
- .sexe-age-btn, .remerciement-btn {
+  .ouverture-link {
+    font-weight: 600;
+    color: #000091;
+
+  }
+  .remerciement-enregistrees {
+    line-height: 32px;
+    font-weight: 700;
+    font-size: 24px;
+    color: #18753C;
+  }
+  .enregistrees-check {
+    position: relative;
+    right: 10px;
+    top: 5px;
+  }
+ .sexe-age-btn {
     background-color: #fff;
     border: 1px solid #1e1e1e;
     display: inline-block;
@@ -375,6 +391,19 @@
     height: 64px;
     width: 318px;
   }
+  .ouverture-btn, .remerciement-btn {
+    background-color: #000091;
+    color: #fff;
+  }
+  .plus-tard-btn {
+    background-color: #fff;
+    border: 1px solid #000091;
+    color: #000091;
+  }
+}
+
+.modal-remerciement{
+  max-height: 85vh;
 }
 .contenu-vide{
   height: 445px;
@@ -419,7 +448,7 @@
 }
 
 @media (max-width: 988px) {
-  .modal-sexe-age, .modal-remerciement {
+  .modal-sexe-age {
     .element-gauche {
       float:right;
       width:100%;
@@ -554,7 +583,7 @@
   }
 }
 @media (max-width: 400px) {
-  .sexe-age-btn, .remerciement-btn {
+  .sexe-age-btn {
     width: 235px !important;
   }
 }

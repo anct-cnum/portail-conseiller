@@ -20,10 +20,10 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show }) {
   };
 
   useEffect(() => {
-    const submit = fields.filter(field => field.name === 'submit_and_next_' + secondaireId)[0]?.value;
+    const submit = fields?.filter(field => field.name === 'submit_and_next_' + secondaireId)[0]?.value;
     if (errorsForm?.lengthError === 0 && submit === true && clickSubmit === true) {
 
-      const conseillers = fields.filter(field => field.name === prefixId + 'conseillers')[0]?.value ?? [];
+      const conseillers = fields?.filter(field => field.name === prefixId + 'conseillers')[0]?.value ?? [];
       if (!conseillers.includes(conseillerId)) {
         conseillers.push(conseillerId);
       }

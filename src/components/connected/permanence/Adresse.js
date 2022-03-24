@@ -29,7 +29,7 @@ function Adresse({ codeDepartement, prefixId }) {
   return (
     <>
       {(prefixId !== 'principal_' ||
-      (prefixId === 'principal_' && fields.filter(field => field.name === 'estLieuPrincipal')[0]?.value === false)) &&
+      (prefixId === 'principal_' && fields?.filter(field => field.name === 'estLieuPrincipal')[0]?.value === false)) &&
         <>
           <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
             <InputText disabled={estDisabled}
@@ -39,7 +39,7 @@ function Adresse({ codeDepartement, prefixId }) {
               nameInput= {prefixId + 'nomEnseigne'}
               requiredInput={true}
               baselineInput="Il sera affich&eacute; sur la carte nationale des conseillers num&eacute;riques, et sera modifiable."
-              valueInput={fields.filter(field => field.name === prefixId + 'nomEnseigne')[0]?.value ?? ''}
+              valueInput={fields?.filter(field => field.name === prefixId + 'nomEnseigne')[0]?.value ?? ''}
             />
           </div>
           <div className="rf-col-4"></div>
@@ -56,9 +56,9 @@ function Adresse({ codeDepartement, prefixId }) {
         </div>
       }
       {(prefixId !== 'principal_' ||
-       (prefixId === 'principal_' && fields.filter(field => field.name === 'estLieuPrincipal')[0]?.value === false)) &&
+       (prefixId === 'principal_' && fields?.filter(field => field.name === 'estLieuPrincipal')[0]?.value === false)) &&
         <>
-          {!fields.filter(field => field.name === String(prefixId) + 'checkboxSiret')[0]?.value &&
+          {!fields?.filter(field => field.name === String(prefixId) + 'checkboxSiret')[0]?.value &&
             <>
               <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
                 <InputText disabled={estDisabled}
@@ -70,7 +70,7 @@ function Adresse({ codeDepartement, prefixId }) {
                       O&ugrave; trouver un num&eacute;ro de Siret&nbsp;?
                     </a>
                   }
-                  valueInput={fields.filter(field => field.name === prefixId + 'siret')[0]?.value ?? ''}
+                  valueInput={fields?.filter(field => field.name === prefixId + 'siret')[0]?.value ?? ''}
                 />
               </div>
               <div className="rf-col-4"></div>
@@ -94,7 +94,7 @@ function Adresse({ codeDepartement, prefixId }) {
           errorInput={erreurNumeroVoie}
           nameInput= {prefixId + 'numeroVoie'}
           requiredInput={true}
-          valueInput={fields.filter(field => field.name === prefixId + 'numeroVoie')[0]?.value ?? ''}
+          valueInput={fields?.filter(field => field.name === prefixId + 'numeroVoie')[0]?.value ?? ''}
         />
       </div>
       <div className="rf-col-4"></div>
@@ -105,7 +105,7 @@ function Adresse({ codeDepartement, prefixId }) {
           errorInput={erreurRueVoie}
           nameInput= {prefixId + 'rueVoie'}
           requiredInput={true}
-          valueInput={fields.filter(field => field.name === prefixId + 'rueVoie')[0]?.value ?? ''}
+          valueInput={fields?.filter(field => field.name === prefixId + 'rueVoie')[0]?.value ?? ''}
         />
       </div>
       <div className="rf-col-4"></div>
@@ -116,7 +116,7 @@ function Adresse({ codeDepartement, prefixId }) {
           errorInput={erreurcodePostal}
           nameInput= {prefixId + 'codePostal'}
           requiredInput={true}
-          valueInput={fields.filter(field => field.name === prefixId + 'codePostal')[0]?.value ?? ''}
+          valueInput={fields?.filter(field => field.name === prefixId + 'codePostal')[0]?.value ?? ''}
         />
       </div>
       <div className="rf-col-4"></div>
@@ -127,7 +127,7 @@ function Adresse({ codeDepartement, prefixId }) {
           errorInput={erreurVille}
           nameInput= {prefixId + 'ville'}
           requiredInput={true}
-          valueInput={fields.filter(field => field.name === prefixId + 'ville')[0]?.value ?? ''}
+          valueInput={fields?.filter(field => field.name === prefixId + 'ville')[0]?.value ?? ''}
         />
       </div>
       <div className="rf-col-4"></div>
@@ -138,8 +138,8 @@ function Adresse({ codeDepartement, prefixId }) {
           errorInput={erreurNumeroTelephone}
           nameInput= {prefixId + 'numeroTelephone'}
           baselineInput="Accueil. Vous pouvez laisser vide si la structure n&rsquo;a pas de t&eacute;l&eacute;phone d&rsquo;accueil."
-          valueInput={fields.filter(field => field.name === prefixId + 'numeroTelephone')[0]?.value ?? ''}
-          placeholderInput={indicatif + ' XXX XXX XXX'}
+          valueInput={fields?.filter(field => field.name === prefixId + 'numeroTelephone')[0]?.value ?? ''}
+          placeholderInput={indicatif + ' XXXXXXXXX'}
         />
       </div>
       <div className="rf-col-4"></div>
@@ -150,7 +150,7 @@ function Adresse({ codeDepartement, prefixId }) {
           errorInput={erreurEmail}
           nameInput= {prefixId + 'email'}
           baselineInput="Mail g&eacute;n&eacute;rique (accueil). Vous pouvez laisser vide si la structure n&rsquo;en a pas."
-          valueInput={fields.filter(field => field.name === prefixId + 'email')[0]?.value ?? ''}
+          valueInput={fields?.filter(field => field.name === prefixId + 'email')[0]?.value ?? ''}
         />
       </div>
       <div className="rf-col-4"></div>
@@ -161,7 +161,7 @@ function Adresse({ codeDepartement, prefixId }) {
           errorInput={erreurSiteWeb}
           nameInput= {prefixId + 'siteWeb'}
           baselineInput="Vous pouvez laisser vide la structure n&rsquo;en a pas."
-          valueInput={fields.filter(field => field.name === prefixId + 'siteWeb')[0]?.value ?? ''}
+          valueInput={fields?.filter(field => field.name === prefixId + 'siteWeb')[0]?.value ?? ''}
         />
       </div>
       <div className="rf-col-4"></div>

@@ -23,7 +23,7 @@ function InputCheckbox({ textLabel, errorInput, nameInput, baselineInput, classB
         <input type="checkbox" id={ nameInput } name={ nameInput } value={true} onClick={ e => {
           onClick(e);
         }}/>
-        <label className="rf-label" htmlFor={ nameInput }>
+        <label className={errorInput ? 'rf-label invalid' : 'rf-label' } htmlFor={ nameInput }>
           {textLabel}
         </label>
         {baselineInput &&
