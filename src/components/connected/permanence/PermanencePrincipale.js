@@ -16,13 +16,13 @@ function PermanencePrincipale({ structure, conseillerId }) {
 
   const listPermanences = useSelector(state => state.permanence?.permanences);
   const erreursFormulaire = useSelector(state => state.permanence?.errorsFormulaire?.errors);
-  const erreurAdresseExact = erreursFormulaire?.filter(erreur => erreur?.estLieuPrincipal)[0]?.estLieuPrincipal;
+  const erreurAdresseExact = erreursFormulaire?.filter(erreur => erreur?.estStructure)[0]?.estStructure;
   const adresseStructure = structure?.insee?.etablissement?.adresse;
   const fields = useSelector(state => state.permanence?.fields);
-  const boolLieuPrincipal = fields?.filter(field => field.name === 'estLieuPrincipal')[0]?.value === null;
-
-  function handleAdresse(estLieuPrincipal) {
-    dispatch(permanenceActions.updateField('estLieuPrincipal', estLieuPrincipal));
+  const boolLieuPrincipal = fields?.filter(field => field.name === 'estStructure')[0]?.value === null;
+  
+  function handleAdresse(estStructure) {
+    dispatch(permanenceActions.updateField('principal_estStructure', estStructure));
     dispatch(permanenceActions.updateField('principal_idPermanence', null));
     dispatch(permanenceActions.updateField('principal_numeroTelephone', null));
     dispatch(permanenceActions.updateField('principal_email', null));
@@ -37,8 +37,8 @@ function PermanencePrincipale({ structure, conseillerId }) {
     dispatch(permanenceActions.updateField('principal_codePostal', null));
     dispatch(permanenceActions.updateField('principal_ville', null));
 
-    if (estLieuPrincipal) {
-      const permanencePrincipale = listPermanences.find(permanence => permanence.structure.$id === structure._id && permanence.estLieuPrincipal === true);
+    if (estStructure) {
+      const permanencePrincipale = listPermanences.find(permanence => permanence.structure.$id === structure._id && permanence.estStructure === true);
       dispatch(permanenceActions.updateField('principal_idPermanence', permanencePrincipale?._id ?? null));
       dispatch(permanenceActions.updateField('principal_numeroTelephone', permanencePrincipale?.numeroTelephone ?? null));
       dispatch(permanenceActions.updateField('principal_email', permanencePrincipale?.email ?? null));

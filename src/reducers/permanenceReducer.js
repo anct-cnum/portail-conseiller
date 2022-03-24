@@ -1,6 +1,6 @@
 
 const initialState = {
-  fields: [{ name: 'estLieuPrincipal', value: null }],
+  fields: [{ name: 'principal_estStructure', value: null }],
   showLieuSecondaire: Array.from({ length: process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE }, () => (false)),
   disabledFields: [],
   showSiret: [],
@@ -158,6 +158,7 @@ export default function permanence(state = initialState, action) {
       return {
         ...state,
         isCreated: action.isCreated,
+        prefixIdLieuEnregistrable: action.prefixId,
         isEnded: action.isEnded,
         showError: false,
         error: false,
@@ -178,6 +179,7 @@ export default function permanence(state = initialState, action) {
       return {
         ...state,
         isUpdated: action.isUpdated,
+        prefixIdLieuEnregistrable: action.prefixId,
         isEnded: action.isEnded,
         showError: false,
         error: false,

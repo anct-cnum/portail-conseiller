@@ -7,7 +7,6 @@ export const permanenceActions = {
   getListePermanences,
   isPermanenceChecked,
   closePermanence,
-  initPermanence,
   verifyFormulaire,
   createPermanence,
   updatePermanence,
@@ -75,10 +74,6 @@ function closePermanence() {
   return { type: 'CLOSE_FORMULAIRE_PERMANENCE' };
 }
 
-function initPermanence(permanence) {
-  return { type: 'INIT_PERMANENCE', permanence };
-}
-
 function verifyFormulaire(form) {
   let errors = [];
   const showLieuSecondaire = form?.showLieuSecondaire;
@@ -102,10 +97,10 @@ function verifyFormulaire(form) {
     emailPro: Joi.string().allow('').pattern(regExpEmail) }).validate({
     emailPro: form?.fields.filter(field => field.name === 'emailPro')[0]?.value }).error) ?
     'Une adresse email valide doit être saisie' : null });
-    
-  errors.push({ estLieuPrincipal: (Joi.object({
-    estLieuPrincipal: Joi.boolean().allow(true, false).required() }).validate({ estLieuPrincipal:
-    form?.fields.filter(field => field.name === 'estLieuPrincipal')[0]?.value }).error) ?
+
+  errors.push({ principal_estStructure: (Joi.object({
+    principal_estStructure: Joi.boolean().allow(true, false).required() }).validate({ principal_estStructure:
+    form?.fields.filter(field => field.name === 'principal_estStructure')[0]?.value }).error) ?
     'Vous devez indiquer si votre structure est votre lieu d\'activité principal ou non' : null });
 
   const champsAcceptes = [
@@ -140,7 +135,7 @@ function verifyFormulaire(form) {
       message: 'Une ville doit obligatoirement être saisie'
     },
     {
-      nom: 'itinerance', validation: Joi.string().trim().allow('', null),
+      nom: 'itinerant', validation: Joi.string().trim().allow('', null),
       message: 'Une itinérance doit obligatoirement être saisie'
     },
     {
@@ -182,7 +177,7 @@ function verifyFormulaire(form) {
           errors.push({
             principal_horaires: controleHoraires(form?.fields.filter(field => field.name === champ + accepte.nom)[0]?.value)
           });
-        } else if (accepte.nom !== 'itinerance') {
+        } else if (accepte.nom !== 'itinerant') {
           errors.push({
             [champ + accepte.nom]: (Joi.object({
               [champ + accepte.nom]: accepte.validation }).validate(
@@ -223,14 +218,13 @@ function controleHoraires(horaires) {
   return erreursHoraires;
 }
 
-function createPermanence(idConseiller, permanence, isEnded) {
-
+function createPermanence(idConseiller, permanence, isEnded, prefixId) {
   return dispatch => {
     dispatch(request());
     permanenceService.createPermanence(idConseiller, permanence)
     .then(
       result => {
-        dispatch(success(result.isCreated, isEnded));
+        dispatch(success(result.isCreated, isEnded, prefixId));
       },
       error => {
         dispatch(failure(error));
@@ -241,21 +235,21 @@ function createPermanence(idConseiller, permanence, isEnded) {
   function request() {
     return { type: 'POST_PERMANENCE_REQUEST' };
   }
-  function success(isCreated, isEnded) {
-    return { type: 'POST_PERMANENCE_SUCCESS', isCreated, isEnded };
+  function success(isCreated, isEnded, prefixId) {
+    return { type: 'POST_PERMANENCE_SUCCESS', isCreated, isEnded, prefixId };
   }
   function failure(error) {
     return { type: 'POST_PERMANENCE_FAILURE', error };
   }
 }
 
-function updatePermanence(idPermanence, idConseiller, permanence, isEnded) {
+function updatePermanence(idPermanence, idConseiller, permanence, isEnded, prefixId) {
   return dispatch => {
     dispatch(request());
     permanenceService.updatePermanence(idPermanence, idConseiller, permanence)
     .then(
       result => {
-        dispatch(success(result.isUpdated, isEnded));
+        dispatch(success(result.isUpdated, isEnded, prefixId));
       },
       error => {
         dispatch(failure(error));
@@ -266,8 +260,8 @@ function updatePermanence(idPermanence, idConseiller, permanence, isEnded) {
   function request() {
     return { type: 'UPDATE_PERMANENCE_REQUEST' };
   }
-  function success(isUpdated, isEnded) {
-    return { type: 'UPDATE_PERMANENCE_SUCCESS', isUpdated, isEnded };
+  function success(isUpdated, isEnded, prefixId) {
+    return { type: 'UPDATE_PERMANENCE_SUCCESS', isUpdated, isEnded, prefixId };
   }
   function failure(error) {
     return { type: 'UPDATE_PERMANENCE_FAILURE', error };

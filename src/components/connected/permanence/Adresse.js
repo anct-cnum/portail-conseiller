@@ -29,7 +29,7 @@ function Adresse({ codeDepartement, prefixId }) {
   return (
     <>
       {(prefixId !== 'principal_' ||
-      (prefixId === 'principal_' && fields?.filter(field => field.name === 'estLieuPrincipal')[0]?.value === false)) &&
+      (prefixId === 'principal_' && fields?.filter(field => field.name === 'principal_estStructure')[0]?.value === false)) &&
         <>
           <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
             <InputText disabled={estDisabled}
@@ -56,7 +56,7 @@ function Adresse({ codeDepartement, prefixId }) {
         </div>
       }
       {(prefixId !== 'principal_' ||
-       (prefixId === 'principal_' && fields?.filter(field => field.name === 'estLieuPrincipal')[0]?.value === false)) &&
+       (prefixId === 'principal_' && fields?.filter(field => field.name === 'principal_estStructure')[0]?.value === false)) &&
         <>
           {!fields?.filter(field => field.name === String(prefixId) + 'checkboxSiret')[0]?.value &&
             <>

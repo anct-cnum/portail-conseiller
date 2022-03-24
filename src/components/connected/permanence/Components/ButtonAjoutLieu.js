@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { permanenceActions } from '../../../../actions';
 import { useDispatch, useSelector } from 'react-redux';
-
+import horairesInitiales from '../../../../data/horairesInitiales.json';
 
 function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show }) {
   const dispatch = useDispatch();
@@ -21,11 +21,16 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show }) {
 
   useEffect(() => {
     const submit = fields?.filter(field => field.name === 'submit_and_next_' + secondaireId)[0]?.value;
+
     if (errorsForm?.lengthError === 0 && submit === true && clickSubmit === true) {
 
       const conseillers = fields?.filter(field => field.name === prefixId + 'conseillers')[0]?.value ?? [];
       if (!conseillers.includes(conseillerId)) {
         conseillers.push(conseillerId);
+      }
+      const itinerant = fields?.filter(field => field.name === prefixId + 'itinerant')[0]?.value ?? [];
+      if (!itinerant.includes(conseillerId)) {
+        itinerant.push(conseillerId);
       }
 
       const nouveauLieu = {
@@ -34,7 +39,7 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show }) {
         emailPro: fields.filter(field => field.name === 'emailPro')[0]?.value ?? null,
         telephonePro: fields.filter(field => field.name === 'telephonePro')[0]?.value ?? null,
         //Données du lieu d'activité
-        estLieuPrincipal: fields.filter(field => field.name === 'estLieuPrincipal')[0]?.value ?? false,
+        estStructure: fields.filter(field => field.name === prefixId + 'estStructure')[0]?.value ?? false,
         _id: fields.filter(field => field.name === prefixId + 'idPermanence')[0]?.value ?? null,
         nomEnseigne: fields.filter(field => field.name === prefixId + 'nomEnseigne')[0]?.value ?? null,
         numeroTelephone: fields.filter(field => field.name === prefixId + 'numeroTelephone')[0]?.value ?? null,
@@ -47,8 +52,8 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show }) {
           codePostal: fields.filter(field => field.name === prefixId + 'codePostal')[0]?.value ?? null,
           ville: fields.filter(field => field.name === prefixId + 'ville')[0]?.value ?? null,
         },
-        horaires: fields.filter(field => field.name === prefixId + 'horaires')[0]?.value ?? null,
-        estLieuItinerant: fields.filter(field => field.name === prefixId + 'itinerance')[0]?.value ?? false,
+        horaires: fields.filter(field => field.name === prefixId + 'horaires')[0]?.value ?? horairesInitiales,
+        conseillersItinerants: itinerant,
         typeAcces: fields.filter(field => field.name === prefixId + 'typeAcces')[0]?.value ?? null,
         conseillers: conseillers,
         structureId: structureId,
@@ -56,11 +61,12 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show }) {
       };
 
       if (nouveauLieu._id !== null) {
-        dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, false));
+        dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, false, 'secondaire_' + (secondaireId + 1) + '_'));
       } else {
-        dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, false));
+        dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, false, 'secondaire_' + (secondaireId + 1) + '_'));
       }
       show[secondaireId + 1] = true;
+      setClickSubmit(false);
       dispatch(permanenceActions.updateField('submit_and_next_' + (secondaireId + 1), true));
       dispatch(permanenceActions.montrerLieuSecondaire(show));
     } else if (errorsForm?.lengthError > 0 && submit === true && clickSubmit === true) {

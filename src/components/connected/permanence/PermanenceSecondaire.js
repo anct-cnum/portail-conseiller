@@ -8,6 +8,7 @@ import TypeAcces from './TypeAcces';
 import Horaires from './Horaires';
 import Adresse from './Adresse';
 
+import horairesInitiales from '../../../data/horairesInitiales.json';
 import { permanenceActions } from '../../../actions';
 
 function PermanenceSecondaire({ structure, structureId, conseillerId }) {
@@ -25,13 +26,21 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
     Array.from({ length: process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE }, () => (false))
   );
 
-  function handleSecondaire() {
-    dispatch(permanenceActions.verifyFormulaire(form));
+  const [clickSubmit, setClickSubmit] = useState(false);
+
+  function handleSecondaire(hasSecondaire) {
+    if (hasSecondaire) {
+      dispatch(permanenceActions.verifyFormulaire(form));
+      setClickSubmit(true);
+    } else {
+      show[0] = false;
+      dispatch(permanenceActions.updateField('submit_and_next_0', false));
+      dispatch(permanenceActions.montrerLieuSecondaire(show));
+    }
   }
 
   useEffect(() => {
-    if (errorsForm?.lengthError === 0) {
-
+    if (errorsForm?.lengthError === 0 && clickSubmit) {
       const conseillers = fields.filter(field => field.name === prefixId + 'conseillers')[0]?.value ?? [];
       if (!conseillers.includes(conseillerId)) {
         conseillers.push(conseillerId);
@@ -43,7 +52,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
         emailPro: fields.filter(field => field.name === 'emailPro')[0]?.value ?? null,
         telephonePro: fields.filter(field => field.name === 'telephonePro')[0]?.value ?? null,
         //Données du lieu d'activité
-        estLieuPrincipal: fields.filter(field => field.name === 'estLieuPrincipal')[0]?.value ?? false,
+        estStructure: fields.filter(field => field.name === prefixId + 'estStructure')[0]?.value ?? false,
         _id: fields.filter(field => field.name === prefixId + 'idPermanence')[0]?.value ?? null,
         nomEnseigne: fields.filter(field => field.name === prefixId + 'nomEnseigne')[0]?.value ?? null,
         numeroTelephone: fields.filter(field => field.name === prefixId + 'numeroTelephone')[0]?.value ?? null,
@@ -56,8 +65,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
           codePostal: fields.filter(field => field.name === prefixId + 'codePostal')[0]?.value ?? null,
           ville: fields.filter(field => field.name === prefixId + 'ville')[0]?.value ?? null,
         },
-        horaires: fields.filter(field => field.name === prefixId + 'horaires')[0]?.value ?? null,
-        estLieuItinerant: fields.filter(field => field.name === prefixId + 'itinerance')[0]?.value ?? false,
+        horaires: fields.filter(field => field.name === prefixId + 'horaires')[0]?.value ?? horairesInitiales,
         typeAcces: fields.filter(field => field.name === prefixId + 'typeAcces')[0]?.value ?? null,
         conseillers: conseillers,
         structureId: structureId,
@@ -65,18 +73,18 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
       };
 
       if (nouveauLieu._id !== null) {
-        dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, false));
+        dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, false, 'secondaire_0_'));
       } else {
-        dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, false));
+        dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, false, 'secondaire_0_'));
       }
       show[0] = true;
       dispatch(permanenceActions.updateField('submit_and_next_0', true));
       dispatch(permanenceActions.montrerLieuSecondaire(show));
-    } else {
+    } else if (errorsForm?.lengthError > 0 && clickSubmit) {
       window.scrollTo(0, 0);
     }
     setShow(show);
-
+    setClickSubmit(false);
   }, [errorsForm]);
 
   useEffect(() => {
@@ -107,14 +115,14 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
               <div className="rf-fieldset__content">
                 <div className="rf-radio-group">
                   <input type="radio" id="secondaire-Oui" name="secondaire" value="true" onClick={() => {
-                    handleSecondaire();
+                    handleSecondaire(true);
                   }} />
                   <label className="rf-label" htmlFor="secondaire-Oui">Oui</label>
                 </div>
                 <div className="rf-radio-group">
                   <input type="radio" id="secondaire-Non" name="secondaire" value="false"
                     defaultChecked={true} onClick={() => {
-                      handleSecondaire();
+                      handleSecondaire(false);
                     }} />
                   <label className="rf-label" htmlFor="secondaire-Non">Non</label>
                 </div>
