@@ -36,7 +36,7 @@ function ModalUpdateForm({ form, showModal, setShowModal, isSupHierarchique = fa
       dispatch(formInfoPersonnelActions.updateInfoPersonnel({
         telephone: form.telephone,
         telephonePro: form.telephonePro,
-        emailPro: form.emailPro ? form.emailPro.trim() : form.emailPro,
+        emailPro: form.emailPro?.trim(),
         email: form.email.trim(),
         dateDeNaissance: form.dateDeNaissance,
         sexe: form.sexe
