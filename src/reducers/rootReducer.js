@@ -13,6 +13,7 @@ import ressources from './ressourcesReducer';
 import ressourcesFiltres from './ressourcesFiltresReducer';
 import permanence from './permanenceReducer';
 import formulaireSupHierarchique from './supHierarchiqueReducer';
+import formulaireInfoPersonnel from './infoPersonnelReducer';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
@@ -30,7 +31,8 @@ const rootReducer = combineReducers({
   ressources: ressources,
   ressourcesFiltres: ressourcesFiltres,
   permanence: permanence,
-  formulaireSupHierarchique: formulaireSupHierarchique
+  formulaireSupHierarchique: formulaireSupHierarchique,
+  formulaireInfoPersonnel: formulaireInfoPersonnel
 
 });
 

@@ -12,7 +12,7 @@ export const conseillerService = {
   getStatistiquesCSV,
   getStatistiquesAdminCoopCSV,
   createSexeAge,
-  getExportDonneesCnfs,
+  getExportDonneesCnfs
 };
 
 function get(id) {
