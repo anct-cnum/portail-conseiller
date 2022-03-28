@@ -35,6 +35,11 @@ export default function filtersAndSorts(state = initialState, action) {
         ...state,
         certifie: action.dataCertifie
       };
+    case 'CHANGE_GROUPECRA':
+      return {
+        ...state,
+        groupeCRA: action.dataGroupeCRA
+      };
     case 'CHANGE_TERRITOIRE':
       return {
         ...state,

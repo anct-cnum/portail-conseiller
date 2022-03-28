@@ -24,7 +24,7 @@ function get(id) {
   return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
 }
 
-function cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreCertifie, idStructure) {
+function cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreGroupeCRA, filtreCertifie, idStructure) {
   const ordreColonne = nomOrdre ? '&$sort[' + nomOrdre + ']=' + ordre : '';
   const filterDateStart = (dayjs(new Date(dateDebut)).format('DD/MM/YYYY') !== dayjs(new Date()).format('DD/MM/YYYY') && dateDebut !== '') ?
     `&datePrisePoste[$gt]=${new Date(dateDebut).toISOString()}` : '';
@@ -58,10 +58,36 @@ function cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtrePr
     default:
       break;
   }
-  return { ordreColonne, filterDateStart, filterDateEnd, filterStructureId, profil, certifie };
+  let groupeCRA = '';
+  switch (filtreGroupeCRA) {
+    case 'tous':
+      groupeCRA = '';
+      break;
+    case 'groupe0':
+      groupeCRA = `&groupeCRA=0`;
+      break;
+    case 'groupe1':
+      groupeCRA = `&groupeCRA=1`;
+      break;
+    case 'groupe2':
+      groupeCRA = `&groupeCRA=2`;
+      break;
+    case 'groupe3':
+      groupeCRA = `&groupeCRA=3`;
+      break;
+    case 'groupe4':
+      groupeCRA = `&groupeCRA=4`;
+      break;
+    case 'groupe5':
+      groupeCRA = `&groupeCRA=5`;
+      break;
+    default:
+      break;
+  }
+  return { ordreColonne, filterDateStart, filterDateEnd, filterStructureId, profil, groupeCRA, certifie };
 }
 
-function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre, ordre, idStructure = null) {
+function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, nomOrdre, ordre, idStructure = null) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
@@ -72,11 +98,12 @@ function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre
     filterDateStart,
     filterDateEnd,
     profil,
+    groupeCRA,
     certifie,
     filterStructureId
-  } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreCertifie, idStructure);
-
-  let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${profil}${certifie}${filterDateStart}${filterDateEnd}${filterStructureId}${ordreColonne}`;
+  } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreGroupeCRA, filtreCertifie, idStructure);
+  // eslint-disable-next-line max-len
+  let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${profil}${certifie}${groupeCRA}${filterDateStart}${filterDateEnd}${filterStructureId}${ordreColonne}`;
 
   return fetch(uri, requestOptions).then(handleResponse);
 }
@@ -136,7 +163,7 @@ function createSexeAge(user) {
   return fetch(`${apiUrlRoot}/conseillers/createSexeAge`, requestOptions).then(handleResponse);
 }
 
-function getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre, ordre, idStructure = null) {
+function getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, nomOrdre, ordre, idStructure = null) {
   const requestOptions = {
     method: 'GET',
     headers: {
@@ -151,13 +178,15 @@ function getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, 
     filterDateStart,
     filterDateEnd,
     profil,
+    groupeCRA,
     certifie,
     filterStructureId
-  } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreCertifie, idStructure);
+  } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreGroupeCRA, filtreCertifie, idStructure);
 
   const exportCnfsRoute = '/exports/cnfs.csv';
 
-  return fetch(`${apiUrlRoot}${exportCnfsRoute}?statut=RECRUTE${profil}${certifie}${filterDateStart}${filterDateEnd}${filterStructureId}${ordreColonne}`,
+  // eslint-disable-next-line max-len
+  return fetch(`${apiUrlRoot}${exportCnfsRoute}?statut=RECRUTE${profil}${certifie}${groupeCRA}${filterDateStart}${filterDateEnd}${filterStructureId}${ordreColonne}`,
     requestOptions
   ).then(handleFileResponse);
 }
