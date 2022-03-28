@@ -186,7 +186,7 @@ function Conseillers() {
                             <li className={conseillers?.items?.data.length <= 2 ? 'no-result rf-nav__item' : 'rf-nav__item'}>
                               <span >
                                 <button className="rf-nav__btn admin-select" aria-expanded={basculerFiltreCRA}
-                                  aria-controls="menu-userActive" aria-current="true" id="groupeCRA" onClick={filtreClick}>
+                                  aria-controls="menu-userGroupeCra" aria-current="true" id="groupeCRA" onClick={filtreClick}>
                                   GroupeCRA
                                   {basculerFiltreCRA &&
                                     <i className="ri-arrow-up-s-line chevron icone"></i>
@@ -196,7 +196,7 @@ function Conseillers() {
                                   }
                                 </button>
                                 <div className={basculerFiltreCRA === true ? 'rf-collapse--expanded rf-menu' : 'rf-collapse rf-nav--expanded rf-menu'}
-                                  id="menu-userActive">
+                                  id="menu-userGroupeCra">
                                   <ul className="rf-menu__list">
                                     <li className={filtreGroupeCRA === 'tous' ? 'selected' : ''}>
                                       <button id="tous" className="admin-select-option border-no-result" onClick={handleGroupeCra}>
