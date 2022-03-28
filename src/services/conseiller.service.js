@@ -59,31 +59,11 @@ function cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtrePr
       break;
   }
   let groupeCRA = '';
-  switch (filtreGroupeCRA) {
-    case 'tous':
-      groupeCRA = '';
-      break;
-    case 'groupe0':
-      groupeCRA = `&groupeCRA=0`;
-      break;
-    case 'groupe1':
-      groupeCRA = `&groupeCRA=1`;
-      break;
-    case 'groupe2':
-      groupeCRA = `&groupeCRA=2`;
-      break;
-    case 'groupe3':
-      groupeCRA = `&groupeCRA=3`;
-      break;
-    case 'groupe4':
-      groupeCRA = `&groupeCRA=4`;
-      break;
-    case 'groupe5':
-      groupeCRA = `&groupeCRA=5`;
-      break;
-    default:
-      break;
+  if (filtreGroupeCRA !== 'tous' && filtreGroupeCRA !== undefined) {
+    const numeroGroupe = /\d/.exec(filtreGroupeCRA)[0];
+    groupeCRA = `&groupeCRA=${numeroGroupe}`;
   }
+  
   return { ordreColonne, filterDateStart, filterDateEnd, filterStructureId, profil, groupeCRA, certifie };
 }
 
