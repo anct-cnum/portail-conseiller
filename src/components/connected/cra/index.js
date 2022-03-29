@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import CodePostal from './CodePostal';
 import Canal from './Canal';
 import Activite from './Activite';
@@ -10,25 +10,25 @@ import Accompagnement from './Accompagnement';
 import ValidationButton from './Components/ValidationButton';
 import Footer from '../../Footer';
 import FlashMessage from 'react-flash-message';
-import { useLocation } from 'react-router';
 import Recurrence from './Recurrence';
+import { useSelector } from 'react-redux';
 
 function Cra() {
 
-  const location = useLocation();
   const urlAPropos =
   process.env.REACT_APP_AIDE_URL + '/article/comment-le-conseiller-numerique-rend-il-compte-de-ses-activites-et-a-quoi-cela-sert-il-16n3yhq/';
+  const printFlashbag = useSelector(state => state.cra.printFlashbag);
 
   //Forcer affichage en haut de la page pour voir le flashbag
-  if (location?.printFlashbag === true) {
-    useEffect(() => {
-      window.scrollTo(0, 0);
-    }, []);
+  useEffect(() => {
+    if (printFlashbag === true) {
+    window.scrollTo(0, 0);
   }
+    }, [printFlashbag]);
 
   return (
     <>
-      { location?.printFlashbag === true &&
+      { printFlashbag === true &&
         <FlashMessage duration={5000}>
           <p className="rf-label flashBag">
             Votre suivi d&rsquo;activit&eacute; a bien &eacute;t&eacute; enregistr&eacute;&nbsp;

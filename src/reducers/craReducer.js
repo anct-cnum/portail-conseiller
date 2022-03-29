@@ -194,15 +194,20 @@ export default function cra(state = initialState, action) {
       return {
         ...state,
         saveInProgress: true,
+        printFlashbag: false
       };
     case 'SUBMIT_CRA_SUCCESS':
       //retour à l'état initial
-      return initialState;
+      return {
+        ...initialState,
+        printFlashbag: true,
+      };
     case 'SUBMIT_CRA_FAILURE':
       return {
         ...state,
         error: action.error,
         saveInProgress: false,
+        printFlashbag: false
       };
     case 'SHOW_SELECT_REDIRECTION':
       return {
