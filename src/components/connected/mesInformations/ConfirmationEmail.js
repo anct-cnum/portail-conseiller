@@ -3,16 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { formInfoPersonnelActions } from '../../../actions/infoPersonnel.actions';
 import PropTypes from 'prop-types';
 import Header from '../../Header';
-import { useHistory } from 'react-router-dom';
 
 function EmailConfirmer({ match }) {
-  let history = useHistory();
   const token = match.params.token;
   const dispatch = useDispatch();
   const tokenVerified = useSelector(state => state.formulaireInfoPersonnel?.tokenError);
-  setTimeout(() => {
-    history.push(`/login`);
-  }, 7000);
 
   useEffect(() => {
     dispatch(formInfoPersonnelActions.confirmConseillerEmail(token));
@@ -31,7 +26,7 @@ function EmailConfirmer({ match }) {
                   &nbsp;
                   <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
                 </p>
-                <h4>Nous allons vous rediriger sur la page de connexion...</h4>
+                <h4>Vous pouvez fermer cette fen&ecirc;tre</h4>
               </div>
             }
             {tokenVerified === true &&
