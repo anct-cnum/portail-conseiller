@@ -40,7 +40,10 @@ function ValidationButton() {
   return (
     <div className="rf-grid-row rf-grid-row--center rf-pb-12w rf-mb-3w">
       <div className="rf-col-sm-10 rf-col-md-6 submitResponsive" style={{ textAlign: 'center' }}>
+        {saveInProgress ?
+          <button className="rf-btn rf-text--bold big-btn submitCra" disabled >Valider</button> :
         <button className="rf-btn rf-text--bold big-btn submitCra" onClick={sendCra}>Valider</button>
+        }
         <br/>
         {saveInProgress &&
           <span>Enregistrement en cours...</span>

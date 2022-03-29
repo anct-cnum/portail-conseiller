@@ -97,11 +97,6 @@ function submitCra(cra) {
     .then(
       cra => {
         dispatch(success(cra));
-        history.push({
-          pathname: '/compte-rendu-activite',
-          printFlashbag: true
-        });
-
       },
       error => {
         dispatch(failure(error));
