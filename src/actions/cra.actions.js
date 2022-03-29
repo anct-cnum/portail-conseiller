@@ -1,5 +1,4 @@
 import { craService } from '../services/cra.service.js';
-import { history } from '../helpers';
 
 export const craActions = {
   getSearchlist,
