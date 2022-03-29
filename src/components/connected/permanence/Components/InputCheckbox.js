@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { permanenceActions } from '../../../../actions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,10 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 function InputCheckbox({ textLabel, errorInput, nameInput, baselineInput, classBaseline }) {
   const dispatch = useDispatch();
-
+  const prefixId = nameInput.slice(0, -13);
   const fields = useSelector(state => state.permanence?.fields);
-
-  const [checked, setChecked] = useState(false);
+  const checked = fields.filter(field => field.name === nameInput)[0]?.value;
+  const siret = fields.filter(field => field.name === prefixId + 'siret')[0]?.value;
 
   const onClick = e => {
     const { name, checked } = e.target;
@@ -23,15 +23,11 @@ function InputCheckbox({ textLabel, errorInput, nameInput, baselineInput, classB
   };
 
   useEffect(() => {
-    if (nameInput.slice(-5) === 'Siret') {
-      const prefixId = nameInput.slice(0, -13);
-      const field = fields.filter(field => field.name === prefixId + 'siret')[0]?.value;
-      if (field === '') {
-        dispatch(permanenceActions.updateField(nameInput, true));
-        setChecked(true);
-      }
+    if (nameInput.slice(-5) === 'Siret' && siret === '') {
+      dispatch(permanenceActions.updateField(nameInput, true));
     }
-  }, [fields]);
+  }, [siret]);
+
   return (
     <>
       <div className="rf-checkbox-group">
