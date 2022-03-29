@@ -18,17 +18,24 @@ function Cra() {
   const urlAPropos =
   process.env.REACT_APP_AIDE_URL + '/article/comment-le-conseiller-numerique-rend-il-compte-de-ses-activites-et-a-quoi-cela-sert-il-16n3yhq/';
   const printFlashbag = useSelector(state => state.cra.printFlashbag);
+  const [activeFlashMessage, setActiveFlashMessage] = useState(false);
 
   //Forcer affichage en haut de la page pour voir le flashbag
   useEffect(() => {
     if (printFlashbag === true) {
-    window.scrollTo(0, 0);
-  }
-    }, [printFlashbag]);
+      window.scrollTo(0, 0);
+    }
+    if (printFlashbag === false) {
+      setActiveFlashMessage(true);
+    }
+    setTimeout(() => {
+      setActiveFlashMessage(false);
+    }, 5000);
+  }, [printFlashbag]);
 
   return (
     <>
-      { printFlashbag === true &&
+      { printFlashbag === true && activeFlashMessage === true &&
         <FlashMessage duration={5000}>
           <p className="rf-label flashBag">
             Votre suivi d&rsquo;activit&eacute; a bien &eacute;t&eacute; enregistr&eacute;&nbsp;
