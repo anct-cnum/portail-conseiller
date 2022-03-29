@@ -24,7 +24,7 @@ function ValidationButton() {
       // eslint-disable-next-line no-unused-vars
       let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error,
         // eslint-disable-next-line no-unused-vars
-        showSelectRedirection, nbParticipantsAge, nbParticipantsStatut, nbParticipantsAccompagnement, ...dataCraToSend } = cra;
+        showSelectRedirection, nbParticipantsAge, nbParticipantsStatut, nbParticipantsAccompagnement, printFlashbag, ...dataCraToSend } = cra;
 
       dispatch(craActions.submitCra(dataCraToSend));
     }
