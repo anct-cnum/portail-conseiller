@@ -128,6 +128,7 @@ export default function permanence(state = initialState, action) {
         fieldsAdresse.push({ name: action.champ + 'rueVoie', value: action.adresseParSiret?.type_voie + ' ' + action.adresseParSiret?.nom_voie });
         fieldsAdresse.push({ name: action.champ + 'codePostal', value: action.adresseParSiret?.code_postal });
         fieldsAdresse.push({ name: action.champ + 'ville', value: action.adresseParSiret?.localite.toUpperCase() });
+
         fieldsAdresse = nettoyageState(fieldsAdresse);
 
         delete disabledAdresse?.filter(field => field.id === action.champ)[0]?.value;
@@ -144,6 +145,22 @@ export default function permanence(state = initialState, action) {
         error: false,
       };
     case 'VERIFY_SIRET_FAILURE':
+      return {
+        ...state,
+        showError: true,
+        error: action.error,
+      };
+    case 'GEOCODE_ADRESSE_REQUEST':
+      return {
+        ...state,
+        showError: false,
+      };
+    case 'GEOCODE_ADRESSE_SUCCESS':
+      return {
+        ...state,
+        geocodeAdresse: action.geocodeAdresse
+      };
+    case 'GEOCODE_ADRESSE_FAILURE':
       return {
         ...state,
         showError: true,

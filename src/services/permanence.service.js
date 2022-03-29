@@ -9,6 +9,7 @@ export const permanenceService = {
   createPermanence,
   updatePermanence,
   verifySiret,
+  getGeocodeAdresse,
 };
 
 function get(idConseiller) {
@@ -62,6 +63,17 @@ function verifySiret(siret) {
   };
   return fetch(`${apiUrlRoot}/permanences/verifySiret`, requestOptions).then(handleResponse);
 
+}
+
+function getGeocodeAdresse(adresse) {
+  const requestOptions = {
+    method: 'POST',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+    body: JSON.stringify({
+      adresse
+    })
+  };
+  return fetch(`${apiUrlRoot}/permanences/verifyAdresse`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

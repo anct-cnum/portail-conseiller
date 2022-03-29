@@ -63,6 +63,8 @@ function Validation({ conseillerId, structureId }) {
       } else {
         dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, true, null));
       }
+    } else if (errorsForm?.lengthError > 0 && clickSubmit === true) {
+      window.scrollTo(0, 0);
     }
     setClickSubmit(false);
   }, [errorsForm]);

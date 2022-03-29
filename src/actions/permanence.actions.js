@@ -11,6 +11,7 @@ export const permanenceActions = {
   createPermanence,
   updatePermanence,
   verifySiret,
+  getGeocodeAdresse,
   updateLieuPrincipal,
   updateField,
   disabledField,
@@ -290,6 +291,31 @@ function verifySiret(champ, siret) {
   }
   function failure(error) {
     return { type: 'VERIFY_SIRET_FAILURE', error };
+  }
+}
+
+function getGeocodeAdresse(adresse) {
+  return dispatch => {
+    dispatch(request());
+    permanenceService.getGeocodeAdresse(adresse)
+    .then(
+      result => {
+        dispatch(success(result.geocodeAdresse));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'GEOCODE_ADRESSE_REQUEST' };
+  }
+  function success(geocodeAdresse) {
+    return { type: 'GEOCODE_ADRESSE_SUCCESS', geocodeAdresse };
+  }
+  function failure(error) {
+    return { type: 'GEOCODE_ADRESSE_FAILURE', error };
   }
 }
 

@@ -4,6 +4,8 @@ import { useSelector } from 'react-redux';
 import telephoneHorsMetropole from '../../../data/indicatifs.json';
 import InputText from './Components/InputText';
 import InputCheckbox from './Components/InputCheckbox';
+import CarteAdresse from './Components/CarteAdresse';
+import ButtonLocalisation from './Components/ButtonLocalisation';
 
 function Adresse({ codeDepartement, prefixId }) {
 
@@ -88,49 +90,56 @@ function Adresse({ codeDepartement, prefixId }) {
           </div>
         </>
       }
-      <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
+      <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5">
         <InputText disabled={estDisabled}
           textLabel="Num&eacute;ro de voie"
           errorInput={erreurNumeroVoie}
           nameInput= {prefixId + 'numeroVoie'}
           requiredInput={true}
           valueInput={fields?.filter(field => field.name === prefixId + 'numeroVoie')[0]?.value ?? ''}
+          classInput="rf-mb-6w"
         />
       </div>
+
       <div className="rf-col-4"></div>
 
-      <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
+      <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5">
         <InputText disabled={estDisabled}
           textLabel="Voie"
           errorInput={erreurRueVoie}
           nameInput= {prefixId + 'rueVoie'}
           requiredInput={true}
           valueInput={fields?.filter(field => field.name === prefixId + 'rueVoie')[0]?.value ?? ''}
+          classInput="rf-mb-6w"
         />
       </div>
+
       <div className="rf-col-4"></div>
 
-      <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
+      <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5">
         <InputText disabled={estDisabled}
           textLabel="Code postal"
           errorInput={erreurcodePostal}
           nameInput= {prefixId + 'codePostal'}
           requiredInput={true}
           valueInput={fields?.filter(field => field.name === prefixId + 'codePostal')[0]?.value ?? ''}
+          classInput="rf-mb-6w"
         />
-      </div>
-      <div className="rf-col-4"></div>
 
-      <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
         <InputText disabled={estDisabled}
           textLabel="Ville"
           errorInput={erreurVille}
           nameInput= {prefixId + 'ville'}
           requiredInput={true}
           valueInput={fields?.filter(field => field.name === prefixId + 'ville')[0]?.value ?? ''}
+          classInput="rf-mb-6w"
         />
+        <div className="localisation-btn-position">
+          <ButtonLocalisation prefixId={prefixId} />
+        </div>
       </div>
-      <div className="rf-col-4"></div>
+
+      <div className="rf-col-sm-12 rf-col-md-4"><CarteAdresse prefixId={prefixId} /></div>
 
       <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
         <InputText
@@ -165,6 +174,7 @@ function Adresse({ codeDepartement, prefixId }) {
         />
       </div>
       <div className="rf-col-4"></div>
+
     </>
   );
 }
