@@ -235,7 +235,7 @@ function Conseillers() {
                                       <hr className="admin-select-hr" />
                                     </li>
                                     <li className={filtreGroupeCRA === 'groupe5' ? 'selected' : ''}>
-                                      <button id="groupe5" className="admin-select-option border-no-result" onClick={handleGroupeCra}>
+                                      <button id="groupe5" className="admin-select-option" onClick={handleGroupeCra}>
                                         Groupe 5
                                       </button>
                                     </li>
