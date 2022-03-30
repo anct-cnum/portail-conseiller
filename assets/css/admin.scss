@@ -166,9 +166,13 @@
     margin: 23px 0px 0px -174px;
     width: 500px !important;
   }
-  .no-result #menu-userActive.rf-menu, .no-result #menu-userGroupeCra.rf-menu {
+  .no-result #menu-userActive.rf-menu {
     margin: 23px 0px 0px -330px;
     width: 500px !important;
+  }
+  .no-result #menu-userGroupeCra.rf-menu {
+    margin: 23px 0px 0px -470px;
+    width: 900px !important;
   }
   .no-result #menu-userActive ul.rf-menu__list, .no-result #menu-userCertife ul.rf-menu__list, .no-result #menu-userGroupeCra ul.rf-menu__list {
     display: flex;
@@ -213,6 +217,13 @@
       font-size: 1rem;
       cursor: pointer;
       border: none;
+    }
+  }
+  .no-result #menu-userGroupeCra ul.rf-menu__list {
+    .admin-select-option {
+      margin: 10px;
+      padding: 0 10px;
+      width: 110px;
     }
   }
   .selected button{
