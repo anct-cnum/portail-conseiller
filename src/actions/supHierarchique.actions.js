@@ -1,5 +1,7 @@
 import Joi from 'joi';
 import { supHierarchiqueService } from '../services/supHierarchique.service';
+import { userService } from '../services/user.service';
+import { history } from '../helpers';
 
 export const formSupHierarchiqueActions = {
   verifyFormulaire,
@@ -66,31 +68,39 @@ function initFormSupHierarchique(formSupHierarchique) {
   return { type: 'INIT_FORM_SUP_HIERARCHIQUE', formSupHierarchique };
 }
 
-function createSupHierarchique(supHierarchique, conseillerId) {
+function createSupHierarchique(supHierarchique, conseillerId, username, password) {
   return dispatch => {
     dispatch(request());
-    supHierarchiqueService.createSupHierarchique(supHierarchique, conseillerId)
-    .then(
-      result => {
-        dispatch(success());
-        dispatch(successConseiller(result));
+    userService.login(username, password).then(
+      () => {
+        supHierarchiqueService.createSupHierarchique(supHierarchique, conseillerId)
+        .then(
+          result => {
+            dispatch(success());
+            dispatch(successConseiller(result));
+          },
+          error => {
+            dispatch(failure(error));
+          }
+        );
       },
       error => {
-        dispatch(failure(error));
+        dispatch(failure(error.error));
+        history.push('/login');
       }
     );
   };
+}
 
-  function request() {
-    return { type: 'POST_SUP_HIERARCHIQUE_REQUEST' };
-  }
-  function success() {
-    return { type: 'POST_SUP_HIERARCHIQUE_SUCCESS' };
-  }
-  function successConseiller(conseiller) {
-    return { type: 'GET_CONSEILLER_SUCCESS', conseiller };
-  }
-  function failure(error) {
-    return { type: 'POST_SUP_HIERARCHIQUE_FAILURE', error };
-  }
+function request() {
+  return { type: 'POST_SUP_HIERARCHIQUE_REQUEST' };
+}
+function success() {
+  return { type: 'POST_SUP_HIERARCHIQUE_SUCCESS' };
+}
+function successConseiller(conseiller) {
+  return { type: 'GET_CONSEILLER_SUCCESS', conseiller };
+}
+function failure(error) {
+  return { type: 'POST_SUP_HIERARCHIQUE_FAILURE', error };
 }

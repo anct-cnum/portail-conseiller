@@ -12,7 +12,16 @@
     line-height: 32px;
     font-family: "Marianne-Bold", Arial, sans-serif;
   }
+  .react-datepicker-wrapper {
+    display: block;
+  }
   .desc-input {
+    color: #929292;
+  }
+  .modif-password {
+    box-shadow: none;
+  }
+  .modif-password:hover {
     color: #929292;
   }
   .contact-mail {

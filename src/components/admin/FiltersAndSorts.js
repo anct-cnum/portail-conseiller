@@ -22,6 +22,7 @@ function FiltersAndSorts({ resetPage, user }) {
   let ordreNom = useSelector(state => state.filtersAndSorts?.ordreNom);
   let filtreProfil = useSelector(state => state.filtersAndSorts?.profil);
   let filtreCertifie = useSelector(state => state.filtersAndSorts?.certifie);
+  let filtreGroupeCRA = useSelector(state => state.filtersAndSorts?.groupeCRA);
   const pagination = useSelector(state => state.pagination);
   const exportTerritoireFileBlob = useSelector(state => state.statistique?.exportTerritoireFileBlob);
   const exportTerritoireFileError = useSelector(state => state.statistique?.exportTerritoireFileError);
@@ -57,7 +58,7 @@ function FiltersAndSorts({ resetPage, user }) {
 
   useEffect(() => {
     if (location.pathname === '/accueil') {
-      dispatch(conseillerActions.getAll(0, dateDebut, dateFin, filtreProfil, filtreCertifie,
+      dispatch(conseillerActions.getAll(0, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA,
         ordreNom, ordre ? 1 : -1, user?.role === 'structure_coop' ? user?.entity.$id : null));
       resetPage(1);
     }
@@ -79,7 +80,7 @@ function FiltersAndSorts({ resetPage, user }) {
   };
 
   const exportDonneesCnfs = () => {
-    dispatch(conseillerActions.exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie,
+    dispatch(conseillerActions.exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA,
       ordreNom, ordre ? 1 : -1, user?.role === 'structure_coop' ? user?.entity.$id : null));
   };
 

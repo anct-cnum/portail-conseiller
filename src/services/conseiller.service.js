@@ -12,7 +12,7 @@ export const conseillerService = {
   getStatistiquesCSV,
   getStatistiquesAdminCoopCSV,
   createSexeAge,
-  getExportDonneesCnfs,
+  getExportDonneesCnfs
 };
 
 function get(id) {
@@ -24,7 +24,7 @@ function get(id) {
   return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
 }
 
-function cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreCertifie, idStructure) {
+function cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreGroupeCRA, filtreCertifie, idStructure) {
   const ordreColonne = nomOrdre ? '&$sort[' + nomOrdre + ']=' + ordre : '';
   const filterDateStart = (dayjs(new Date(dateDebut)).format('DD/MM/YYYY') !== dayjs(new Date()).format('DD/MM/YYYY') && dateDebut !== '') ?
     `&datePrisePoste[$gt]=${new Date(dateDebut).toISOString()}` : '';
@@ -58,10 +58,16 @@ function cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtrePr
     default:
       break;
   }
-  return { ordreColonne, filterDateStart, filterDateEnd, filterStructureId, profil, certifie };
+  let groupeCRA = '';
+  if (filtreGroupeCRA !== 'tous' && filtreGroupeCRA !== undefined) {
+    const numeroGroupe = /\d/.exec(filtreGroupeCRA)[0];
+    groupeCRA = `&groupeCRA=${numeroGroupe}`;
+  }
+  
+  return { ordreColonne, filterDateStart, filterDateEnd, filterStructureId, profil, groupeCRA, certifie };
 }
 
-function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre, ordre, idStructure = null) {
+function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, nomOrdre, ordre, idStructure = null) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
@@ -72,11 +78,12 @@ function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre
     filterDateStart,
     filterDateEnd,
     profil,
+    groupeCRA,
     certifie,
     filterStructureId
-  } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreCertifie, idStructure);
-
-  let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${profil}${certifie}${filterDateStart}${filterDateEnd}${filterStructureId}${ordreColonne}`;
+  } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreGroupeCRA, filtreCertifie, idStructure);
+  // eslint-disable-next-line max-len
+  let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${profil}${certifie}${groupeCRA}${filterDateStart}${filterDateEnd}${filterStructureId}${ordreColonne}`;
 
   return fetch(uri, requestOptions).then(handleResponse);
 }
@@ -136,7 +143,7 @@ function createSexeAge(user) {
   return fetch(`${apiUrlRoot}/conseillers/createSexeAge`, requestOptions).then(handleResponse);
 }
 
-function getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, nomOrdre, ordre, idStructure = null) {
+function getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, nomOrdre, ordre, idStructure = null) {
   const requestOptions = {
     method: 'GET',
     headers: {
@@ -151,13 +158,15 @@ function getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, 
     filterDateStart,
     filterDateEnd,
     profil,
+    groupeCRA,
     certifie,
     filterStructureId
-  } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreCertifie, idStructure);
+  } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreGroupeCRA, filtreCertifie, idStructure);
 
   const exportCnfsRoute = '/exports/cnfs.csv';
 
-  return fetch(`${apiUrlRoot}${exportCnfsRoute}?statut=RECRUTE${profil}${certifie}${filterDateStart}${filterDateEnd}${filterStructureId}${ordreColonne}`,
+  // eslint-disable-next-line max-len
+  return fetch(`${apiUrlRoot}${exportCnfsRoute}?statut=RECRUTE${profil}${certifie}${groupeCRA}${filterDateStart}${filterDateEnd}${filterStructureId}${ordreColonne}`,
     requestOptions
   ).then(handleFileResponse);
 }
