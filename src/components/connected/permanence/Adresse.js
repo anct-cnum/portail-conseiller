@@ -6,6 +6,7 @@ import InputText from './Components/InputText';
 import InputCheckbox from './Components/InputCheckbox';
 import CarteAdresse from './Components/CarteAdresse';
 import ButtonLocalisation from './Components/ButtonLocalisation';
+import SelectAdresse from './Components/SelectAdresse';
 
 function Adresse({ codeDepartement, prefixId }) {
 
@@ -79,7 +80,7 @@ function Adresse({ codeDepartement, prefixId }) {
             </>
           }
           <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-10 rf-mb-6w">
-            <InputCheckbox
+            <InputCheckbox disabled={estDisabled}
               textLabel="La structure n&rsquo;a pas de num&eacute;ro de Siret"
               errorInput={null}
               nameInput={ prefixId + 'checkboxSiret' }
@@ -136,6 +137,9 @@ function Adresse({ codeDepartement, prefixId }) {
         />
         <div className="localisation-btn-position">
           <ButtonLocalisation prefixId={prefixId} />
+        </div>
+        <div>
+          <SelectAdresse prefixId={prefixId}/>
         </div>
       </div>
 

@@ -294,13 +294,13 @@ function verifySiret(champ, siret) {
   }
 }
 
-function getGeocodeAdresse(adresse) {
+function getGeocodeAdresse(adresse, prefixId) {
   return dispatch => {
     dispatch(request());
     permanenceService.getGeocodeAdresse(adresse)
     .then(
       result => {
-        dispatch(success(result.geocodeAdresse));
+        dispatch(success(result.geocodeAdresse, prefixId));
       },
       error => {
         dispatch(failure(error));
@@ -311,8 +311,8 @@ function getGeocodeAdresse(adresse) {
   function request() {
     return { type: 'GEOCODE_ADRESSE_REQUEST' };
   }
-  function success(geocodeAdresse) {
-    return { type: 'GEOCODE_ADRESSE_SUCCESS', geocodeAdresse };
+  function success(geocodeAdresse, prefixId) {
+    return { type: 'GEOCODE_ADRESSE_SUCCESS', geocodeAdresse, prefixId };
   }
   function failure(error) {
     return { type: 'GEOCODE_ADRESSE_FAILURE', error };

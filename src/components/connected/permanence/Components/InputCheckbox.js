@@ -4,7 +4,7 @@ import { permanenceActions } from '../../../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-function InputCheckbox({ textLabel, errorInput, nameInput, baselineInput, classBaseline }) {
+function InputCheckbox({ textLabel, errorInput, nameInput, baselineInput, classBaseline, disabled }) {
   const dispatch = useDispatch();
   const prefixId = nameInput.slice(0, -13);
   const fields = useSelector(state => state.permanence?.fields);
@@ -12,11 +12,9 @@ function InputCheckbox({ textLabel, errorInput, nameInput, baselineInput, classB
   const siret = fields.filter(field => field.name === prefixId + 'siret')[0]?.value;
 
   const onClick = e => {
-    const { name, checked } = e.target;
-    const prefixId = name.slice(0, -13);
-
-    dispatch(permanenceActions.updateField(name, checked));
-    if (name.slice(-5) === 'Siret') {
+    const { checked } = e.target;
+    dispatch(permanenceActions.updateField(nameInput, checked));
+    if (nameInput.slice(-5) === 'Siret') {
       dispatch(permanenceActions.updateField(prefixId + 'siret', ''));
       dispatch(permanenceActions.disabledField(prefixId, false));
     }
@@ -32,12 +30,12 @@ function InputCheckbox({ textLabel, errorInput, nameInput, baselineInput, classB
     <>
       <div className="rf-checkbox-group">
         {checked &&
-        <input type="checkbox" id={ nameInput } name={ nameInput } value={true} defaultChecked={true} onClick={ e => {
+        <input type="checkbox" id={ nameInput } name={ nameInput } value={true} defaultChecked={true} disabled={disabled} onClick={ e => {
           onClick(e);
         }}/>
         }
         {!checked &&
-        <input type="checkbox" id={ nameInput } name={ nameInput } value={true} onClick={ e => {
+        <input type="checkbox" id={ nameInput } name={ nameInput } value={true} disabled={disabled} onClick={ e => {
           onClick(e);
         }}/>
         }
@@ -65,6 +63,7 @@ InputCheckbox.propTypes = {
   nameInput: PropTypes.string,
   baselineInput: PropTypes.string,
   classBaseline: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 export default InputCheckbox;

@@ -15,7 +15,7 @@ function ButtonAjoutLieu({ prefixId }) {
       codePostal: fields.filter(field => field.name === prefixId + 'codePostal')[0]?.value,
       ville: fields.filter(field => field.name === prefixId + 'ville')[0]?.value
     };
-    dispatch(permanenceActions.getGeocodeAdresse(adresse));
+    dispatch(permanenceActions.getGeocodeAdresse(adresse, prefixId));
   };
 
   return (

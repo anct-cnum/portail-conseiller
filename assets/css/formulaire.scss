@@ -67,6 +67,12 @@
   .toggle-siret {
     color:#FC5D00;
   }
+  .loading {
+    text-align: center;
+    font-style: italic;
+    color:#FC5D00;
+    font-weight: 600;
+  }
   .conditions, .astuce {
     font-weight: 400;
     font-size: 12px;
@@ -172,6 +178,7 @@
     width: 281px;
     height: 281px;
   }
+
   .leaflet-control-attribution {
     display: none;
   }
