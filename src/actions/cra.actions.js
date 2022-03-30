@@ -1,5 +1,4 @@
 import { craService } from '../services/cra.service.js';
-import { history } from '../helpers';
 
 export const craActions = {
   getSearchlist,
@@ -97,11 +96,6 @@ function submitCra(cra) {
     .then(
       cra => {
         dispatch(success(cra));
-        history.push({
-          pathname: '/compte-rendu-activite',
-          printFlashbag: true
-        });
-
       },
       error => {
         dispatch(failure(error));
