@@ -61,7 +61,7 @@ function ModalUpdateForm({ form, showModal, setShowModal, isSupHierarchique = fa
                   <div className="rf-modal__content">
                     <h1 id="rf-modal-2-title" className="rf-modal__title">
                       <span className="rf-fi-arrow-right-line rf-fi--lg" aria-hidden="true"></span>
-                      Pour confirmer vos modifications, merci de saisir votre mot de passe associé à votre espace COOP
+                      Pour confirmer vos modifications, merci de saisir votre mot de passe associ&eacute; &agrave; votre espace COOP
                     </h1>
                     <div className="rf-col-6">
                       <label htmlFor="password">Votre mot de passe :</label>
