@@ -61,9 +61,9 @@ function Thematiques() {
               </li>
               <li className="rf-mb-5v">
                 <a href="#accompagnement" className="lien-thematique">
-                  <img className="image-thematique" src="/logos/cra/logo-accompagner-enfant.svg" alt="Accompagner son enfant"
+                  <img className="image-thematique" src="/logos/cra/logo-accompagner-enfant.svg" alt="Accompagner un aidant"
                     style={{ height: '24px' }}/>
-                  Accompagner son enfant
+                  Accompagner un aidant
                 </a>
               </li>
               <li className="rf-mb-5v">

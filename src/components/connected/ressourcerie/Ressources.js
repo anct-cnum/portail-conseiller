@@ -136,7 +136,7 @@ function Ressources({ ressources }) {
       </>
       }
 
-      { ressourcesFiltredByCategory('Accompagner son enfant')?.length > 0 &&
+      { ressourcesFiltredByCategory('Accompagner un aidant')?.length > 0 &&
       <>
         <div className="rf-col-12">
           <hr className="sans-marge rf-mt-3w"/>
@@ -144,10 +144,10 @@ function Ressources({ ressources }) {
             onClick={() => setCacherAccompagner(!cacherAccompagner)}></div>
         </div>
         <h2 className="rf-col-12 titre-thematique rf-mb-9w" id="accompagnement">
-          <img className="image-thematique" src="/logos/cra/logo-accompagner-enfant.svg" alt="Accompagner son enfant"/>
-          Accompagner son enfant
+          <img className="image-thematique" src="/logos/cra/logo-accompagner-enfant.svg" alt="Accompagner un aidant"/>
+          Accompagner un aidant
         </h2>
-        {!cacherAccompagner && ressourcesFiltredByCategory('Accompagner son enfant')?.map((ressource, idx) => {
+        {!cacherAccompagner && ressourcesFiltredByCategory('Accompagner un aidant')?.map((ressource, idx) => {
           return (<Ressource key={idx} ressource={ressource}/>);
         })}
       </>
