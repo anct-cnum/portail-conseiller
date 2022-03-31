@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 import { MapContainer, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet';
 import { Icon } from 'leaflet';
-import 'leaflet/dist/leaflet.css';
 
 function CarteAdresse({ prefixId }) {
 
