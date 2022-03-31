@@ -17,8 +17,8 @@ function ContactProfessionel({ conseiller }) {
 
   const [inputs, setInputs] = useState({
     estCoordinateur: null,
-    emailPro: '',
-    telephonePro: '',
+    emailPro: conseiller.emailPro ?? '',
+    telephonePro: conseiller.telephonePro ?? '',
   });
 
   const { emailPro, telephonePro } = inputs;
