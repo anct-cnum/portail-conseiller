@@ -8,8 +8,8 @@ function InputCheckbox({ textLabel, errorInput, nameInput, baselineInput, classB
   const dispatch = useDispatch();
   const prefixId = nameInput.slice(0, -13);
   const fields = useSelector(state => state.permanence?.fields);
-  const checked = fields.filter(field => field.name === nameInput)[0]?.value;
-  const siret = fields.filter(field => field.name === prefixId + 'siret')[0]?.value;
+  const checked = fields?.filter(field => field.name === nameInput)[0]?.value;
+  const siret = fields?.filter(field => field.name === prefixId + 'siret')[0]?.value;
 
   const onClick = e => {
     const { checked } = e.target;
@@ -39,7 +39,6 @@ function InputCheckbox({ textLabel, errorInput, nameInput, baselineInput, classB
           onClick(e);
         }}/>
         }
-
         <label className={errorInput ? 'rf-label invalid' : 'rf-label' } htmlFor={ nameInput }>
           {textLabel}
         </label>

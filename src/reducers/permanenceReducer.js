@@ -27,6 +27,7 @@ export default function permanence(state = initialState, action) {
     case 'GET_PERMANENCE_REQUEST':
       return {
         ...state,
+        error: false,
         loading: true
       };
     case 'GET_PERMANENCE_SUCCESS':
@@ -44,6 +45,7 @@ export default function permanence(state = initialState, action) {
     case 'GET_PERMANENCES_REQUEST':
       return {
         ...state,
+        error: false,
         loading: true
       };
     case 'GET_PERMANENCES_SUCCESS':
@@ -132,7 +134,7 @@ export default function permanence(state = initialState, action) {
         fieldsAdresse.push({ name: action.champ + 'numeroVoie', value: action.adresseParSiret?.numero_voie });
         fieldsAdresse.push({ name: action.champ + 'rueVoie', value: action.adresseParSiret?.type_voie + ' ' + action.adresseParSiret?.nom_voie });
         fieldsAdresse.push({ name: action.champ + 'codePostal', value: action.adresseParSiret?.code_postal });
-        fieldsAdresse.push({ name: action.champ + 'ville', value: action.adresseParSiret?.localite.toUpperCase() });
+        fieldsAdresse.push({ name: action.champ + 'ville', value: action.adresseParSiret?.localite?.toUpperCase() });
 
         fieldsAdresse = nettoyageState(fieldsAdresse);
 

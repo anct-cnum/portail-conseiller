@@ -55,25 +55,20 @@ function updatePermanence(idPermanence, idConseiller, permanence) {
 
 function verifySiret(siret) {
   const requestOptions = {
-    method: 'POST',
+    method: 'GET',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
-    body: JSON.stringify({
-      siret
-    })
   };
-  return fetch(`${apiUrlRoot}/permanences/verifySiret`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/permanences/verifySiret/${siret}`, requestOptions).then(handleResponse);
 
 }
 
 function getGeocodeAdresse(adresse) {
   const requestOptions = {
-    method: 'POST',
+    method: 'GET',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
-    body: JSON.stringify({
-      adresse
-    })
   };
-  return fetch(`${apiUrlRoot}/permanences/verifyAdresse`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/permanences/verifyAdresse/${JSON.stringify({
+    numero: adresse.numero, rue: adresse.rue, ville: adresse.ville, codePostal: adresse.codePostal })}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
