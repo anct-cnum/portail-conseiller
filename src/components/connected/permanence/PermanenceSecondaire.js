@@ -27,11 +27,13 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
   );
 
   const [clickSubmit, setClickSubmit] = useState(false);
+  const [ouiBtn, setOuiBtn] = useState(false);
 
   function handleSecondaire(hasSecondaire) {
     if (hasSecondaire) {
       dispatch(permanenceActions.verifyFormulaire(form));
       setClickSubmit(true);
+      setOuiBtn(true);
     } else {
       show[0] = false;
       dispatch(permanenceActions.updateField('submit_and_next_0', false));
@@ -64,6 +66,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
           rue: fields.filter(field => field.name === prefixId + 'rueVoie')[0]?.value ?? null,
           codePostal: fields.filter(field => field.name === prefixId + 'codePostal')[0]?.value ?? null,
           ville: fields.filter(field => field.name === prefixId + 'ville')[0]?.value ?? null,
+          location: fields.filter(field => field.name === prefixId + 'location')[0]?.value ?? null,
         },
         horaires: fields.filter(field => field.name === prefixId + 'horaires')[0]?.value ?? horairesInitiales,
         typeAcces: fields.filter(field => field.name === prefixId + 'typeAcces')[0]?.value ?? null,
@@ -82,6 +85,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
       dispatch(permanenceActions.montrerLieuSecondaire(show));
     } else if (errorsForm?.lengthError > 0 && clickSubmit) {
       window.scrollTo(0, 0);
+      setOuiBtn(false);
     }
     setShow(show);
     setClickSubmit(false);
@@ -114,17 +118,33 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
             <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-2w">
               <div className="rf-fieldset__content">
                 <div className="rf-radio-group">
-                  <input type="radio" id="secondaire-Oui" name="secondaire" value="true" onClick={() => {
-                    handleSecondaire(true);
-                  }} />
+                  {ouiBtn === true &&
+                    <input type="radio" id="secondaire-Oui" name="secondaire" value="true" defaultChecked={true} onClick={() => {
+                      handleSecondaire(true);
+                    }} />
+                  }
+                  {ouiBtn === false &&
+                    <input type="radio" id="secondaire-Oui" name="secondaire" value="true" onClick={() => {
+                      handleSecondaire(true);
+                    }} />
+                  }
                   <label className="rf-label" htmlFor="secondaire-Oui">Oui</label>
                 </div>
+
                 <div className="rf-radio-group">
-                  <input type="radio" id="secondaire-Non" name="secondaire" value="false"
-                    defaultChecked={true} onClick={() => {
+                  {ouiBtn === true &&
+                    <input type="radio" id="secondaire-Non" name="secondaire" value="false" onClick={() => {
                       handleSecondaire(false);
                     }} />
+                  }
+                  {ouiBtn === false &&
+                    <input type="radio" id="secondaire-Non" name="secondaire" value="false" defaultChecked={true} onClick={() => {
+                      handleSecondaire(false);
+                    }} />
+                  }
                   <label className="rf-label" htmlFor="secondaire-Non">Non</label>
+
+
                 </div>
               </div>
             </fieldset>

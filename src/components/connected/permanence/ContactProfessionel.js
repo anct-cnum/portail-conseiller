@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import telephoneHorsMetropole from '../../../data/indicatifs.json';
@@ -17,8 +17,8 @@ function ContactProfessionel({ conseiller }) {
 
   const [inputs, setInputs] = useState({
     estCoordinateur: null,
-    emailPro: '',
-    telephonePro: '',
+    emailPro: conseiller.emailPro ?? '',
+    telephonePro: conseiller.telephonePro ?? '',
   });
 
   const { emailPro, telephonePro } = inputs;
@@ -28,6 +28,15 @@ function ContactProfessionel({ conseiller }) {
     setInputs(inputs => ({ ...inputs, [name]: value }));
     dispatch(permanenceActions.updateField(name, value));
   }
+
+  useEffect(() => {
+    if (conseiller?.emailPro) {
+      dispatch(permanenceActions.updateField('emailPro', conseiller.emailPro));
+    }
+    if (conseiller?.telephonePro) {
+      dispatch(permanenceActions.updateField('emailPro', conseiller.telephonePro));
+    }
+  }, [conseiller]);
 
   return (
     <div className="rf-container">

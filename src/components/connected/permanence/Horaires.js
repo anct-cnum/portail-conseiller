@@ -43,7 +43,7 @@ function Horaires({ prefixId }) {
         if (horaires.matin[1].length === 4) {
           horaires.matin[1] = '0' + horaires.matin[1];
         }
-        if (horaires.matin[1] === 'Fermé') {
+        if (horaires.matin[0] === 'Fermé' && horaires.matin[1] === 'Fermé') {
           horaires.fermeture[0] = true;
         }
         if (horaires.apresMidi[0].length === 4) {
@@ -52,7 +52,7 @@ function Horaires({ prefixId }) {
         if (horaires.apresMidi[1].length === 4) {
           horaires.apresMidi[1] = '0' + horaires.apresMidi[1];
         }
-        if (horaires.apresMidi[0] === 'Fermé') {
+        if (horaires.apresMidi[0] === 'Fermé' && horaires.apresMidi[1] === 'Fermé') {
           horaires.fermeture[1] = true;
         }
         newHoraires.push(horaires);

@@ -4,7 +4,7 @@ import { permanenceActions } from '../../../../actions';
 import { useDispatch } from 'react-redux';
 
 
-function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineInput, valueInput, placeholderInput, disabled }) {
+function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineInput, valueInput, placeholderInput, classInput, disabled }) {
   const dispatch = useDispatch();
 
   const reg = new RegExp('^[0-9]{14}$');
@@ -17,7 +17,7 @@ function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineIn
   };
 
   return (
-    <>
+    <div className={classInput}>
       <label className={errorInput ? 'rf-label invalid' : 'rf-label'} htmlFor={ nameInput }>
         {textLabel}
         {requiredInput &&
@@ -41,7 +41,7 @@ function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineIn
       { errorInput &&
         <p className="text-error rf-mb-n3w">{errorInput}</p>
       }
-    </>
+    </div>
   );
 }
 
@@ -62,6 +62,7 @@ InputText.propTypes = {
     PropTypes.number
   ]),
   placeholderInput: PropTypes.string,
+  classInput: PropTypes.string,
   disabled: PropTypes.bool,
 };
 

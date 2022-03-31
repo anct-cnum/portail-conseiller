@@ -67,6 +67,12 @@
   .toggle-siret {
     color:#FC5D00;
   }
+  .loading {
+    text-align: center;
+    font-style: italic;
+    color:#FC5D00;
+    font-weight: 600;
+  }
   .conditions, .astuce {
     font-weight: 400;
     font-size: 12px;
@@ -114,13 +120,16 @@
     width: 288px;
 
   }
-  .nouveau-btn {
+  .nouveau-btn, .localisation-btn {
     background: #1e1e1e;
     border: 1px solid #8585f6;
     line-height: 24px;
     text-align: center;
     font-size: 16px;
     color: #8585f6;
+  }
+  .localisation-btn-position {
+    text-align: right;
   }
   .emplacement-permanences {
     overflow: auto;
@@ -163,6 +172,15 @@
     color: #929292;
     cursor: pointer;
     width: 180px;
+  }
+  .map {
+    margin-left: 22px;
+    width: 281px;
+    height: 281px;
+  }
+
+  .leaflet-control-attribution {
+    display: none;
   }
   @media (min-width: 768px) and (max-width: 1102px){
     .banniere .col-logo .hexagone {

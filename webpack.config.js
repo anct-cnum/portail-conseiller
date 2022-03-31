@@ -37,6 +37,14 @@ let config = {
           }
         }
       ]
+    },
+    {
+      test: /\.(gif|svg|jpg|png)$/,
+      loader: 'file-loader',
+      options: {
+        outputPath: './logos/leaflet/',
+        publicPath: url => '../logos/leaflet/' + url
+      }
     }
     ]
   },
