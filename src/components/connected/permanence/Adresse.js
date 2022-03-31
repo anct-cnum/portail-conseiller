@@ -4,12 +4,16 @@ import { useSelector } from 'react-redux';
 import telephoneHorsMetropole from '../../../data/indicatifs.json';
 import InputText from './Components/InputText';
 import InputCheckbox from './Components/InputCheckbox';
+import CarteAdresse from './Components/CarteAdresse';
+import ButtonLocalisation from './Components/ButtonLocalisation';
+import SelectAdresse from './Components/SelectAdresse';
 
 function Adresse({ codeDepartement, prefixId }) {
 
-  const fields = useSelector(state => state.permanence.fields);
-  const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
+  const fields = useSelector(state => state.permanence?.fields);
+  const disabledFields = useSelector(state => state.permanence.disabledFields);
 
+  const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
   const erreurLieuActivite = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'nomEnseigne'])[0]?.[prefixId + 'nomEnseigne'];
   const erreurSiret = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'siret'])[0]?.[prefixId + 'siret'];
   const erreurNumeroVoie = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'numeroVoie'])[0]?.[prefixId + 'numeroVoie'];
@@ -20,41 +24,47 @@ function Adresse({ codeDepartement, prefixId }) {
   const erreurEmail = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'email'])[0]?.[prefixId + 'email'];
   const erreurSiteWeb = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'siteWeb'])[0]?.[prefixId + 'siteWeb'];
 
+  const estDisabled = disabledFields?.filter(field => field.id === prefixId)[0]?.value;
+
   let indicatif = codeDepartement?.length === 3 ?
     telephoneHorsMetropole?.find(item => item.codeDepartement === codeDepartement).indicatif : '+33';
+
   return (
     <>
       {(prefixId !== 'principal_' ||
-      (prefixId === 'principal_' && fields.filter(field => field.name === 'estLieuPrincipal')[0]?.value === false)) &&
+      (prefixId === 'principal_' && fields?.filter(field => field.name === 'principal_estStructure')[0]?.value === false)) &&
         <>
           <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
-            <InputText
+            <InputText disabled={estDisabled}
               textLabel={ prefixId === 'principal_' ? <Fragment>Nom de votre lieu d&rsquo;activit&eacute; principal</Fragment> :
                 <Fragment>Nom de votre lieu d&rsquo;activit&eacute;</Fragment> }
               errorInput={erreurLieuActivite}
               nameInput= {prefixId + 'nomEnseigne'}
               requiredInput={true}
               baselineInput="Il sera affich&eacute; sur la carte nationale des conseillers num&eacute;riques, et sera modifiable."
-              valueInput={fields.filter(field => field.name === prefixId + 'nomEnseigne')[0]?.value ?? ''}
+              valueInput={fields?.filter(field => field.name === prefixId + 'nomEnseigne')[0]?.value ?? ''}
             />
           </div>
           <div className="rf-col-4"></div>
         </>
       }
       {prefixId !== 'principal_' &&
+        <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-10 rf-mb-6w">
+          <InputCheckbox
+            textLabel="Lieu d&rsquo;activit&eacute; itin&eacute;rant (exemple&nbsp;: bus)"
+            errorInput={null}
+            nameInput={ prefixId + 'intinerant' }
+            baselineInput="Chaque point d&rsquo;itin&eacute;rance doit être enregistr&eacute; comme un nouveau lieu d&rsquo;activit&eacute;."
+          />
+        </div>
+      }
+      {(prefixId !== 'principal_' ||
+       (prefixId === 'principal_' && fields?.filter(field => field.name === 'principal_estStructure')[0]?.value === false)) &&
         <>
-          <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-10 rf-mb-6w">
-            <InputCheckbox
-              textLabel="Lieu d&rsquo;activit&eacute; itin&eacute;rant (exemple&nbsp;: bus)"
-              errorInput={null}
-              nameInput={ prefixId + 'intinerant' }
-              baselineInput="Chaque point d&rsquo;itin&eacute;rance doit être enregistr&eacute; comme un nouveau lieu d&rsquo;activit&eacute;."
-            />
-          </div>
-          {!fields.filter(field => field.name === String(prefixId) + 'checkboxSiret')[0]?.value &&
+          {!fields?.filter(field => field.name === String(prefixId) + 'checkboxSiret')[0]?.value &&
             <>
               <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
-                <InputText
+                <InputText disabled={estDisabled}
                   textLabel="Num&eacute;ro de Siret"
                   errorInput={erreurSiret}
                   nameInput= {prefixId + 'siret'}
@@ -63,14 +73,14 @@ function Adresse({ codeDepartement, prefixId }) {
                       O&ugrave; trouver un num&eacute;ro de Siret&nbsp;?
                     </a>
                   }
-                  valueInput={fields.filter(field => field.name === prefixId + 'siret')[0]?.value ?? ''}
+                  valueInput={fields?.filter(field => field.name === prefixId + 'siret')[0]?.value ?? ''}
                 />
               </div>
               <div className="rf-col-4"></div>
             </>
           }
           <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-10 rf-mb-6w">
-            <InputCheckbox
+            <InputCheckbox disabled={estDisabled}
               textLabel="La structure n&rsquo;a pas de num&eacute;ro de Siret"
               errorInput={null}
               nameInput={ prefixId + 'checkboxSiret' }
@@ -81,49 +91,59 @@ function Adresse({ codeDepartement, prefixId }) {
           </div>
         </>
       }
-      <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
-        <InputText
+      <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5">
+        <InputText disabled={estDisabled}
           textLabel="Num&eacute;ro de voie"
           errorInput={erreurNumeroVoie}
           nameInput= {prefixId + 'numeroVoie'}
           requiredInput={true}
-          valueInput={fields.filter(field => field.name === prefixId + 'numeroVoie')[0]?.value ?? ''}
+          valueInput={fields?.filter(field => field.name === prefixId + 'numeroVoie')[0]?.value ?? ''}
+          classInput="rf-mb-6w"
         />
       </div>
+
       <div className="rf-col-4"></div>
 
-      <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
-        <InputText
+      <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5">
+        <InputText disabled={estDisabled}
           textLabel="Voie"
           errorInput={erreurRueVoie}
           nameInput= {prefixId + 'rueVoie'}
           requiredInput={true}
-          valueInput={fields.filter(field => field.name === prefixId + 'rueVoie')[0]?.value ?? ''}
+          valueInput={fields?.filter(field => field.name === prefixId + 'rueVoie')[0]?.value ?? ''}
+          classInput="rf-mb-6w"
         />
       </div>
+
       <div className="rf-col-4"></div>
 
-      <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
-        <InputText
+      <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5">
+        <InputText disabled={estDisabled}
           textLabel="Code postal"
           errorInput={erreurcodePostal}
           nameInput= {prefixId + 'codePostal'}
           requiredInput={true}
-          valueInput={fields.filter(field => field.name === prefixId + 'codePostal')[0]?.value ?? ''}
+          valueInput={fields?.filter(field => field.name === prefixId + 'codePostal')[0]?.value ?? ''}
+          classInput="rf-mb-6w"
         />
-      </div>
-      <div className="rf-col-4"></div>
 
-      <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
-        <InputText
+        <InputText disabled={estDisabled}
           textLabel="Ville"
           errorInput={erreurVille}
           nameInput= {prefixId + 'ville'}
           requiredInput={true}
-          valueInput={fields.filter(field => field.name === prefixId + 'ville')[0]?.value ?? ''}
+          valueInput={fields?.filter(field => field.name === prefixId + 'ville')[0]?.value ?? ''}
+          classInput="rf-mb-6w"
         />
+        <div className="localisation-btn-position">
+          <ButtonLocalisation prefixId={prefixId} />
+        </div>
+        <div>
+          <SelectAdresse prefixId={prefixId}/>
+        </div>
       </div>
-      <div className="rf-col-4"></div>
+
+      <div className="rf-col-sm-12 rf-col-md-4"><CarteAdresse prefixId={prefixId} /></div>
 
       <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
         <InputText
@@ -131,8 +151,8 @@ function Adresse({ codeDepartement, prefixId }) {
           errorInput={erreurNumeroTelephone}
           nameInput= {prefixId + 'numeroTelephone'}
           baselineInput="Accueil. Vous pouvez laisser vide si la structure n&rsquo;a pas de t&eacute;l&eacute;phone d&rsquo;accueil."
-          valueInput={fields.filter(field => field.name === prefixId + 'numeroTelephone')[0]?.value ?? ''}
-          placeholderInput={indicatif + ' XXX XXX XXX'}
+          valueInput={fields?.filter(field => field.name === prefixId + 'numeroTelephone')[0]?.value ?? ''}
+          placeholderInput={indicatif + ' XXXXXXXXX'}
         />
       </div>
       <div className="rf-col-4"></div>
@@ -143,7 +163,7 @@ function Adresse({ codeDepartement, prefixId }) {
           errorInput={erreurEmail}
           nameInput= {prefixId + 'email'}
           baselineInput="Mail g&eacute;n&eacute;rique (accueil). Vous pouvez laisser vide si la structure n&rsquo;en a pas."
-          valueInput={fields.filter(field => field.name === prefixId + 'email')[0]?.value ?? ''}
+          valueInput={fields?.filter(field => field.name === prefixId + 'email')[0]?.value ?? ''}
         />
       </div>
       <div className="rf-col-4"></div>
@@ -154,10 +174,11 @@ function Adresse({ codeDepartement, prefixId }) {
           errorInput={erreurSiteWeb}
           nameInput= {prefixId + 'siteWeb'}
           baselineInput="Vous pouvez laisser vide la structure n&rsquo;en a pas."
-          valueInput={fields.filter(field => field.name === prefixId + 'siteWeb')[0]?.value ?? ''}
+          valueInput={fields?.filter(field => field.name === prefixId + 'siteWeb')[0]?.value ?? ''}
         />
       </div>
       <div className="rf-col-4"></div>
+
     </>
   );
 }

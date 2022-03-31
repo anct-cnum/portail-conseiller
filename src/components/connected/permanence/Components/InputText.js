@@ -4,16 +4,20 @@ import { permanenceActions } from '../../../../actions';
 import { useDispatch } from 'react-redux';
 
 
-function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineInput, valueInput, placeholderInput }) {
+function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineInput, valueInput, placeholderInput, classInput, disabled }) {
   const dispatch = useDispatch();
 
+  const reg = new RegExp('^[0-9]{14}$');
   const handleChange = e => {
     const { name, value } = e.target;
     dispatch(permanenceActions.updateField(name, value));
+    if (name.slice(-5) === 'siret' && value.length === 14 && reg.test(value)) {
+      dispatch(permanenceActions.verifySiret(name.slice(0, -5), value));
+    }
   };
 
   return (
-    <>
+    <div className={classInput}>
       <label className={errorInput ? 'rf-label invalid' : 'rf-label'} htmlFor={ nameInput }>
         {textLabel}
         {requiredInput &&
@@ -28,14 +32,16 @@ function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineIn
           value={ valueInput }
           required={ requiredInput }
           onChange={handleChange}
+          onPaste={handleChange}
           placeholder={placeholderInput}
+          disabled={disabled}
         />
 
       </label>
       { errorInput &&
         <p className="text-error rf-mb-n3w">{errorInput}</p>
       }
-    </>
+    </div>
   );
 }
 
@@ -56,6 +62,8 @@ InputText.propTypes = {
     PropTypes.number
   ]),
   placeholderInput: PropTypes.string,
+  classInput: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 export default InputText;

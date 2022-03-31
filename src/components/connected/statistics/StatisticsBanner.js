@@ -30,8 +30,9 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false
   function saveCSV() {
     if (user?.role === 'admin_coop' || user?.role === 'structure_coop') {
       const type = nationales === false ? typeTerritoire ?? 'user' : 'nationales';
-
-      dispatch(conseillerActions.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser));
+      const conseillerIds = territoire?.conseillerIds ?? undefined;
+      // eslint-disable-next-line max-len
+      dispatch(conseillerActions.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser, conseillerIds));
     } else {
       dispatch(conseillerActions.getStatistiquesCSV(dateDebut, dateFin, codePostal));
     }
@@ -55,7 +56,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false
 
   return (
     <>
-      <div className="rf-col-offset-2 rf-col-8 no-print">
+      <div className="rf-col-offset-2 rf-col-8 no-print rf-mt-md-n15w">
         <hr className="rf-mx-5w"/>
         <div className="rf-m-5w rf-m-md-4w rf-m-xs-to-md-7v"></div>
       </div>

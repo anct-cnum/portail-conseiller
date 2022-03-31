@@ -1,23 +1,45 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { permanenceActions } from '../../../../actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
-function InputCheckbox({ textLabel, errorInput, nameInput, baselineInput, classBaseline }) {
+function InputCheckbox({ textLabel, errorInput, nameInput, baselineInput, classBaseline, disabled }) {
   const dispatch = useDispatch();
+  const prefixId = nameInput.slice(0, -13);
+  const fields = useSelector(state => state.permanence?.fields);
+  const checked = fields?.filter(field => field.name === nameInput)[0]?.value;
+  const siret = fields?.filter(field => field.name === prefixId + 'siret')[0]?.value;
+
   const onClick = e => {
-    const { name, checked } = e.target;
-    dispatch(permanenceActions.updateField(name, checked));
+    const { checked } = e.target;
+    dispatch(permanenceActions.updateField(nameInput, checked));
+    if (nameInput.slice(-5) === 'Siret') {
+      dispatch(permanenceActions.updateField(prefixId + 'siret', ''));
+      dispatch(permanenceActions.disabledField(prefixId, false));
+    }
   };
+
+  useEffect(() => {
+    if (nameInput.slice(-5) === 'Siret' && siret === '') {
+      dispatch(permanenceActions.updateField(nameInput, true));
+    }
+  }, [siret]);
 
   return (
     <>
       <div className="rf-checkbox-group">
-        <input type="checkbox" id={ nameInput } name={ nameInput } value={true} onClick={ e => {
+        {checked &&
+        <input type="checkbox" id={ nameInput } name={ nameInput } value={true} defaultChecked={true} disabled={disabled} onClick={ e => {
           onClick(e);
         }}/>
-        <label className="rf-label" htmlFor={ nameInput }>
+        }
+        {!checked &&
+        <input type="checkbox" id={ nameInput } name={ nameInput } value={true} disabled={disabled} onClick={ e => {
+          onClick(e);
+        }}/>
+        }
+        <label className={errorInput ? 'rf-label invalid' : 'rf-label' } htmlFor={ nameInput }>
           {textLabel}
         </label>
         {baselineInput &&
@@ -40,6 +62,7 @@ InputCheckbox.propTypes = {
   nameInput: PropTypes.string,
   baselineInput: PropTypes.string,
   classBaseline: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 export default InputCheckbox;

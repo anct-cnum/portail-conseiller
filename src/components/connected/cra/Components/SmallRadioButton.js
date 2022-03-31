@@ -1,12 +1,15 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { craActions } from '../../../../actions';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+
+import { craActions } from '../../../../actions';
 import { getCraValue } from '../utils/CraFunctions';
 
 function SmallRadioButton({ type, label, value, image, imageSelected, heightImage }) {
 
   const dispatch = useDispatch();
+
+  const cra = useSelector(state => state.cra);
   let controlSelected = getCraValue(type);
 
   const onClickRadio = e => {
@@ -18,11 +21,18 @@ function SmallRadioButton({ type, label, value, image, imageSelected, heightImag
         dispatch(craActions.updateActivite(e.target.getAttribute('value')));
         break;
       case 'accompagnement':
-        //Optional case so deselection is possible
-        if (e.target.getAttribute('value') === controlSelected) {
-          dispatch(craActions.updateAccompagnement(null));
-        } else {
-          dispatch(craActions.updateAccompagnement(e.target.getAttribute('value')));
+        if (cra?.nbParticipants > cra?.nbParticipantsAccompagnement) {
+          const accompagnement = cra?.accompagnement;
+          for (let key in cra?.accompagnement) {
+            if (key === value) {
+              accompagnement[key] += 1;
+            }
+          }
+          dispatch(craActions.updateAccompagnement(accompagnement, cra?.nbParticipantsAccompagnement + 1));
+          if (value === 'redirection') {
+            dispatch(craActions.updateOrganisme(null));
+            dispatch(craActions.showSelectRedirection(true));
+          }
         }
         break;
       default:
@@ -34,7 +44,7 @@ function SmallRadioButton({ type, label, value, image, imageSelected, heightImag
     <div className="radioButton" onClick={onClickRadio} value={value}>
       <button id="radioRattachement"
         className={`radioRattachement ${controlSelected === value ? 'radioRattachement-selected' : ''}`}
-        style={{ height: '73px' }}
+        style={value === 'redirection' ? { height: '115px' } : { height: '73px' }}
         value={value}>
         <div value={value}>
           <img

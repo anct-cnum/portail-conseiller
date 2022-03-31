@@ -10,6 +10,7 @@ import { userEntityId } from '../../helpers';
 import FormulaireSexeAge from './FormulaireSexeAge';
 import Ressourcerie from './ressourcerie/Ressourcerie';
 import Permanence from './permanence/index';
+import MesInformations from './mesInformations';
 
 function Connected() {
 
@@ -22,11 +23,13 @@ function Connected() {
   const structure = useSelector(state => state?.structure?.structure);
   const permanence = useSelector(state => state?.permanence?.permanence);
   const voirPermanence = useSelector(state => state?.permanence?.showFormulairePermanence);
+  const suspendrePermanence = localStorage.getItem('suspension_permanence');
 
   useEffect(() => {
     if (conseiller) {
       dispatch(conseillerActions.isFormulaireChecked(conseiller.sexe, formulaireIsUpdated));
       dispatch(permanenceActions.isPermanenceChecked(conseiller?.hasPermanence));
+
       if (!structure) {
         dispatch(structureActions.get(conseiller.structureId));
       }
@@ -40,31 +43,33 @@ function Connected() {
 
   return (
     <>
-      <Header linkAccount={user?.name}/>
-      {voirFormulaire &&
-        <FormulaireSexeAge/>
-      }
+      <Header linkAccount={user?.name} />
       {!user.pdfGenerator &&
-      <>
-        {!voirPermanence &&
-          //<Route path={`/mes-informations`} component={Permanence} />
-          <>
-            <Route path={`/accueil`} component={Welcome} />
-            <Route path={`/compte-rendu-activite`} component={Cra} />
-            <Route path={`/statistiques`} component={Statistics} />
-            <Route path={`/ressourcerie`} component={Ressourcerie} />
-            <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
-          </>
-        }
-        {voirPermanence &&
         <>
-          <Route path={`/accueil`} component={Permanence} />
-          <Route path="/" render={() => (<Redirect to="/accueil" />)} />
+          {(!voirPermanence || suspendrePermanence) &&
+            <>
+              <Route path={`/accueil`} component={Welcome} />
+              <Route path={`/compte-rendu-activite`} component={Cra} />
+              <Route path={`/statistiques`} component={Statistics} />
+              <Route path={`/ressourcerie`} component={Ressourcerie} />
+              <Route path={'/mes-informations'} component={MesInformations} />
+              <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
+            </>
+          }
+
+          {(voirPermanence && !suspendrePermanence) &&
+            <>
+              <Route path={`/accueil`} component={Permanence} />
+              <Route path="/" render={() => (<Redirect to="/accueil" />)} />
+            </>
+          }
+
+          {voirFormulaire &&
+            <FormulaireSexeAge />
+          }
         </>
-        }
-      </>
       }
-      { user.pdfGenerator &&
+      {user.pdfGenerator &&
         <>
           <Route path={`/statistiques`} component={Statistics} />
         </>

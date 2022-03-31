@@ -8,6 +8,8 @@ export const permanenceService = {
   getListePermanences,
   createPermanence,
   updatePermanence,
+  verifySiret,
+  getGeocodeAdresse,
 };
 
 function get(idConseiller) {
@@ -16,7 +18,7 @@ function get(idConseiller) {
     headers: authHeader()
   };
 
-  return fetch(`${apiUrlRoot}/permanence-conseillers/conseiller/${idConseiller}`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/permanences/conseiller/${idConseiller}`, requestOptions).then(handleResponse);
 }
 
 function getListePermanences(idStructure) {
@@ -25,10 +27,10 @@ function getListePermanences(idStructure) {
     headers: authHeader()
   };
 
-  return fetch(`${apiUrlRoot}/permanence-conseillers/structure/${idStructure}`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/permanences/structure/${idStructure}`, requestOptions).then(handleResponse);
 }
 
-function createPermanence(permanence) {
+function createPermanence(idConseiller, permanence) {
 
   const requestOptions = {
     method: 'POST',
@@ -37,11 +39,10 @@ function createPermanence(permanence) {
       permanence
     })
   };
-
-  return fetch(`${apiUrlRoot}/permanence-conseillers/conseiller/${permanence.conseillerId}/create`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/permanences/conseiller/${idConseiller}/create`, requestOptions).then(handleResponse);
 }
 
-function updatePermanence(permanenceId, permanence) {
+function updatePermanence(idPermanence, idConseiller, permanence) {
   const requestOptions = {
     method: 'PATCH',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
@@ -49,7 +50,25 @@ function updatePermanence(permanenceId, permanence) {
       permanence
     })
   };
-  return fetch(`${apiUrlRoot}/permanence-conseillers/${permanenceId}`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/permanences/conseiller/${idConseiller}/update/${idPermanence}`, requestOptions).then(handleResponse);
+}
+
+function verifySiret(siret) {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader(),
+  };
+  return fetch(`${apiUrlRoot}/permanences/verifySiret/${siret}`, requestOptions).then(handleResponse);
+
+}
+
+function getGeocodeAdresse(adresse) {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader(),
+  };
+  return fetch(`${apiUrlRoot}/permanences/verifyAdresse/${JSON.stringify({
+    numero: adresse.numero, rue: adresse.rue, ville: adresse.ville, codePostal: adresse.codePostal })}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

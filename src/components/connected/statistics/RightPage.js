@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import ElementHighcharts from './Components/ElementHighcharts';
 
 function RightPage({ donneesStats, print }) {

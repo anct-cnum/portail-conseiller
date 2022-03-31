@@ -1,4 +1,6 @@
 const initialState = {
+  dateAccompagnement: new Date(),
+  nbParticipantsRecurrents: null,
   errorsRequired: {
     cp: true,
     canal: true,
@@ -6,8 +8,31 @@ const initialState = {
     age: true,
     statut: true,
     themes: true,
-    duree: true,
+    duree: true
   },
+  age: {
+    moins12ans: 0,
+    de12a18ans: 0,
+    de18a35ans: 0,
+    de35a60ans: 0,
+    plus60ans: 0,
+  },
+  nbParticipantsAge: 0,
+  statut: {
+    etudiant: 0,
+    sansEmploi: 0,
+    enEmploi: 0,
+    retraite: 0,
+    heterogene: 0
+  },
+  nbParticipantsStatut: 0,
+  accompagnement: {
+    individuel: 0,
+    atelier: 0,
+    redirection: 0,
+  },
+  nbParticipantsAccompagnement: 0,
+  organisme: null
 };
 
 export default function cra(state = initialState, action) {
@@ -45,30 +70,83 @@ export default function cra(state = initialState, action) {
         ...state,
         activite: action.activite,
         nbParticipants: action.activite === 'collectif' ? 5 : 1,
+        nbParticipantsAccompagnement: 0,
+        nbParticipantsAge: 0,
+        nbParticipantsStatut: 0,
+        age: {
+          moins12ans: 0,
+          de12a18ans: 0,
+          de18a35ans: 0,
+          de35a60ans: 0,
+          plus60ans: 0,
+        },
+        statut: {
+          etudiant: 0,
+          sansEmploi: 0,
+          enEmploi: 0,
+          retraite: 0,
+          heterogene: 0
+        },
+        accompagnement: {
+          individuel: 0,
+          atelier: 0,
+          redirection: 0,
+        },
         errorsRequired: {
           ...state.errorsRequired,
-          activite: false },
+          activite: false,
+          age: true,
+          statut: true },
       };
     case 'UPDATE_NB_PARTICIPANTS':
       return {
         ...state,
         nbParticipants: action.nbParticipants,
+        nbParticipantsAccompagnement: 0,
+        nbParticipantsAge: 0,
+        nbParticipantsStatut: 0,
+        age: {
+          moins12ans: 0,
+          de12a18ans: 0,
+          de18a35ans: 0,
+          de35a60ans: 0,
+          plus60ans: 0,
+        },
+        statut: {
+          etudiant: 0,
+          sansEmploi: 0,
+          enEmploi: 0,
+          retraite: 0,
+          heterogene: 0
+        },
+        accompagnement: {
+          individuel: 0,
+          atelier: 0,
+          redirection: 0,
+        },
+      };
+    case 'UPDATE_NB_RECURRENCE':
+      return {
+        ...state,
+        nbParticipantsRecurrents: action.nbParticipantsRecurrents
       };
     case 'UPDATE_AGE':
       return {
         ...state,
-        age: action.age,
+        age: action.data.age,
+        nbParticipantsAge: action.data.nbParticipantsAge,
         errorsRequired: {
           ...state.errorsRequired,
-          age: false },
+          age: action.data.nbParticipantsAge !== state.nbParticipants },
       };
     case 'UPDATE_STATUT':
       return {
         ...state,
-        statut: action.statut,
+        statut: action.data.statut,
+        nbParticipantsStatut: action.data.nbParticipantsStatut,
         errorsRequired: {
           ...state.errorsRequired,
-          statut: false },
+          statut: action.data.nbParticipantsStatut !== state.nbParticipants },
       };
     case 'UPDATE_THEMES':
       return {
@@ -90,6 +168,22 @@ export default function cra(state = initialState, action) {
       return {
         ...state,
         accompagnement: action.accompagnement,
+        nbParticipantsAccompagnement: action.nbParticipantsAccompagnement
+      };
+    case 'UPDATE_ORGAMNISME':
+      return {
+        ...state,
+        organisme: action.organisme
+      };
+    case 'UPDATE_DATE':
+      return {
+        ...state,
+        dateAccompagnement: action.date,
+      };
+    case 'UPDATE_DATEPICKER_STATUS':
+      return {
+        ...state,
+        datePickerStatus: action.status,
       };
     case 'VERIFY_CRA':
       return {
@@ -102,14 +196,18 @@ export default function cra(state = initialState, action) {
         saveInProgress: true,
       };
     case 'SUBMIT_CRA_SUCCESS':
-      return {
-        errorsRequired: initialState.errorsRequired //retour à l'état initial
-      };
+      //retour à l'état initial
+      return initialState;
     case 'SUBMIT_CRA_FAILURE':
       return {
         ...state,
         error: action.error,
         saveInProgress: false,
+      };
+    case 'SHOW_SELECT_REDIRECTION':
+      return {
+        ...state,
+        showSelectRedirection: action.show
       };
     default:
       return state;

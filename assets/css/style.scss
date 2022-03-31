@@ -187,13 +187,13 @@
   font-size: 16px;
 
 }
-.rf-header .rf-shortcuts__item.header-aide {
+.rf-header .rf-shortcuts__item.header-aide, .rf-shortcuts__item.header-user {
   border: none;
 }
 .rf-mt-15w {
   margin-top: 7.5rem !important;
 }
-.header-aide, .header-propos, .header-informations {
+.header-aide, .header-propos, .header-informations, .header-user {
   .rf-nav__list {
     margin: -28px -1rem;
     padding: 0 0 7px;
@@ -202,8 +202,8 @@
     }
   }
   .rf-nav__btn[aria-expanded="true"] {
-    background-color: #ae5dff;
-    color: #420095 !important;
+    background-color: #9A9AFF;
+    color: #000091 !important;
   }
   .rf-custom-link {
     padding: 2.5rem 1rem !important;
@@ -215,8 +215,8 @@
     cursor: pointer;
     border: none;
     &:hover{
-      background-color: #ae5dff;
-      color: #420095 !important;
+      background-color: #9A9AFF;
+      color: #000091 !important;
     }
     &:focus {
       outline-color: transparent;
@@ -228,14 +228,14 @@
   }
   .link-actif {
     background-color: #9A9AFF;
-    color: #000092 !important;
+    color: #000091 !important;
   }
   .logo-discussion {
     position: relative;
     width: 34px;
     top: 6px;
   }
-  .texte-aide, .texte-informations {
+  .texte-aide, .texte-informations, .texte-user {
     position: relative;
     margin-left: 10px;
     bottom: 4px;
@@ -244,10 +244,10 @@
       position: relative;
     }
   }
-  .texte-informations {
+  .texte-informations, .texte-user {
     bottom: -4px;
   }
-  .lien-aide, .lien-informations {
+  .lien-aide, .lien-informations, .lien-user {
     box-shadow: none !important;
     outline: none !important;
   }
@@ -256,14 +256,23 @@
     line-height: 24px;
     color: #fff;
   }
-  #menu-liens-aide, #menu-informations {
+  #menu-liens-aide, #menu-informations, #menu-liens-user {
     background-color: #1e1e1e;
     max-height: none;
     text-align: left;
+    border: 1px solid #9A9AFF;
     padding: 15px;
     left: 32px;
+    margin-top: -0.43rem;
     .rf-menu__list {
       background-color: #1e1e1e;
+    }
+  }
+  #menu-liens-user {
+    max-width: 11rem;
+    .rf-menu__list {
+      font-size: 14px;
+      line-height: 24px;
     }
   }
   .aide-coop {
@@ -272,6 +281,13 @@
   .aide-metier {
     border-top: 1px solid #bfbfe3;
     padding-top: 12px;
+  }
+  .user-disconnect {
+    border-top: 1px solid #6A6A6A;
+    padding-top: 12px;
+  }
+  .user-infos {
+    padding-bottom: 12px;
   }
 }
 
@@ -311,7 +327,7 @@
   opacity: 1;
   visibility: visible;
 }
-.modal-sexe-age, .modal-remerciement {
+.modal-sexe-age, .modal-remerciement, .modal-ouverture {
   background-color: #fff;
   padding: 4em 2.5em;
   color: #1e1e1e;
@@ -327,25 +343,41 @@
     margin-left: 60%;
     margin-top:60px;
   }
- p {
-  font-style: 'italic';
-    color: #383838;
- }
- .rf-modal__content {
+  p {
+    font-style: 'italic';
+      color: #383838;
+  }
+  .rf-modal__content {
     margin:0;
- }
- .rf-fieldset {
-    color: #1e1e1e;
- }
- .label {
+  }
+  .rf-fieldset {
+      color: #1e1e1e;
+  }
+  .label {
     font-weight: 600;
- }
+  }
   #date {
     background-color: #f0f0f0;
     border-bottom: 2px solid #6A6A6A;
     color:#a1a2a5;
   }
- .sexe-age-btn, .remerciement-btn {
+  .ouverture-link {
+    font-weight: 600;
+    color: #000091;
+
+  }
+  .remerciement-enregistrees {
+    line-height: 32px;
+    font-weight: 700;
+    font-size: 24px;
+    color: #18753C;
+  }
+  .enregistrees-check {
+    position: relative;
+    right: 10px;
+    top: 5px;
+  }
+ .sexe-age-btn {
     background-color: #fff;
     border: 1px solid #1e1e1e;
     display: inline-block;
@@ -359,6 +391,19 @@
     height: 64px;
     width: 318px;
   }
+  .ouverture-btn, .remerciement-btn {
+    background-color: #000091;
+    color: #fff;
+  }
+  .plus-tard-btn {
+    background-color: #fff;
+    border: 1px solid #000091;
+    color: #000091;
+  }
+}
+
+.modal-remerciement{
+  max-height: 85vh;
 }
 .contenu-vide{
   height: 445px;
@@ -403,7 +448,7 @@
 }
 
 @media (max-width: 988px) {
-  .modal-sexe-age, .modal-remerciement {
+  .modal-sexe-age {
     .element-gauche {
       float:right;
       width:100%;
@@ -538,7 +583,7 @@
   }
 }
 @media (max-width: 400px) {
-  .sexe-age-btn, .remerciement-btn {
+  .sexe-age-btn {
     width: 235px !important;
   }
 }
