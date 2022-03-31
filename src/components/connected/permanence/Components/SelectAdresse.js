@@ -28,7 +28,7 @@ function SelectAdresse({ prefixId }) {
           S&eacute;lectionnez la bonne adresse
         </label>
         <select id={prefixId + 'geolocalisation'} className="rf-input rf-mb-6w">
-          {geocodeAdresse && geocodeAdresse.map((adresse, idx) => {
+          {geocodeAdresse && geocodeAdresse?.map((adresse, idx) => {
             return (<option key={idx} value={idx} onClick={() => {
               onClick(idx);
             }}>{adresse.properties.label}</option>);
