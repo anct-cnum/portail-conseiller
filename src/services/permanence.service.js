@@ -56,7 +56,7 @@ function updatePermanence(idPermanence, idConseiller, permanence) {
 function verifySiret(siret) {
   const requestOptions = {
     method: 'GET',
-    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+    headers: authHeader(),
   };
   return fetch(`${apiUrlRoot}/permanences/verifySiret/${siret}`, requestOptions).then(handleResponse);
 
@@ -65,7 +65,7 @@ function verifySiret(siret) {
 function getGeocodeAdresse(adresse) {
   const requestOptions = {
     method: 'GET',
-    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+    headers: authHeader(),
   };
   return fetch(`${apiUrlRoot}/permanences/verifyAdresse/${JSON.stringify({
     numero: adresse.numero, rue: adresse.rue, ville: adresse.ville, codePostal: adresse.codePostal })}`, requestOptions).then(handleResponse);
