@@ -101,7 +101,7 @@ function ContactProfessionel({ conseiller }) {
           et pourront &eacute;galement &ecirc;tre utilis&eacute;es sur d&rsquo;autres supports num&eacute;riques ou imprim&eacute;s dans le cadre du dispositif.
           En cas de d&eacute;part, mes informations seront supprim&eacute;es de l&rsquo;annuaire et de sa base de donn&eacute;es.
         </div>
-        <div className="rf-col-offset-1 rf-col-10 rf-mb-3w astuce">
+        <div className="rf-col-offset-1 rf-col-10 rf-mb-9w astuce">
           Astuce : vous pourrez modifier vos informations de contact en cliquant sur votre nom en haut &agrave; droite de l&rsquo;&eacute;cran.
         </div>
       </div>

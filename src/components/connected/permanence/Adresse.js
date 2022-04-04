@@ -96,7 +96,7 @@ function Adresse({ codeDepartement, prefixId }) {
           textLabel="Num&eacute;ro de voie"
           errorInput={erreurNumeroVoie}
           nameInput= {prefixId + 'numeroVoie'}
-          requiredInput={true}
+          requiredInput={false}
           valueInput={fields?.filter(field => field.name === prefixId + 'numeroVoie')[0]?.value ?? ''}
           classInput="rf-mb-6w"
         />
@@ -135,12 +135,13 @@ function Adresse({ codeDepartement, prefixId }) {
           valueInput={fields?.filter(field => field.name === prefixId + 'ville')[0]?.value ?? ''}
           classInput="rf-mb-6w"
         />
-        <div className="localisation-btn-position">
-          <ButtonLocalisation prefixId={prefixId} />
-        </div>
         <div>
           <SelectAdresse prefixId={prefixId}/>
         </div>
+        <div className="localisation-btn-position">
+          <ButtonLocalisation prefixId={prefixId} />
+        </div>
+
       </div>
 
       <div className="rf-col-sm-12 rf-col-md-4"><CarteAdresse prefixId={prefixId} /></div>
@@ -152,7 +153,7 @@ function Adresse({ codeDepartement, prefixId }) {
           nameInput= {prefixId + 'numeroTelephone'}
           baselineInput="Accueil. Vous pouvez laisser vide si la structure n&rsquo;a pas de t&eacute;l&eacute;phone d&rsquo;accueil."
           valueInput={fields?.filter(field => field.name === prefixId + 'numeroTelephone')[0]?.value ?? ''}
-          placeholderInput={indicatif + ' XXXXXXXXX'}
+          placeholderInput={indicatif + 'XXXXXXXXX'}
         />
       </div>
       <div className="rf-col-4"></div>

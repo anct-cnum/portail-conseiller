@@ -10,7 +10,8 @@ function SelectAdresse({ prefixId }) {
   const geocodeAdresse = geocodeAdresses?.filter(geocode => geocode.prefixId === prefixId)[0]?.geocodeAdresse;
   const loadingGeocode = useSelector(state => state.permanence?.loadingGeocode);
 
-  const onClick = id => {
+  const onChange = e => {
+    const id = e.target.value;
     const adresse = geocodeAdresses[0]?.geocodeAdresse[id];
     dispatch(permanenceActions.updateField(prefixId + 'location', adresse?.geometry));
   };
@@ -27,11 +28,11 @@ function SelectAdresse({ prefixId }) {
         <label className="rf-label rf-mb-1w">
           S&eacute;lectionnez la bonne adresse
         </label>
-        <select id={prefixId + 'geolocalisation'} className="rf-input rf-mb-6w">
+        <select id={prefixId + 'geolocalisation'} className="rf-input rf-mb-6w" onChange={e => {
+          onChange(e);
+        }}>
           {geocodeAdresse && geocodeAdresse?.map((adresse, idx) => {
-            return (<option key={idx} value={idx} onClick={() => {
-              onClick(idx);
-            }}>{adresse.properties.label}</option>);
+            return (<option key={idx} value={idx} >{adresse.properties.label}</option>);
           })
           }
         </select>

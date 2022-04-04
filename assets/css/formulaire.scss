@@ -156,7 +156,7 @@
     color: #ffffff;
     font-size: 16px;
     height: 56px;
-    width: 90px;
+    width: 92px;
   }
   .horaires-debut {
     border-top-left-radius: 8px;
@@ -171,7 +171,10 @@
     padding-top: 14px;
     color: #929292;
     cursor: pointer;
-    width: 180px;
+    width: 184px;
+  }
+  input[type="time"]::-webkit-calendar-picker-indicator{
+    filter: brightness(0) invert(1);
   }
   .map {
     margin-left: 22px;

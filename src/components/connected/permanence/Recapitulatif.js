@@ -8,7 +8,7 @@ function Recapitulatif({ nomStructure, siret, adresseStructure }) {
     <div className="rf-col-offset-1 rf-col-11">
       <h2 className="sous-titre">
         Votre structure d&rsquo;accueil
-        <span className="baseline rf-mb-6w">Il s&rsquo;agit de votre employeur</span>
+        <span className="baseline rf-mb-6w rf-mt-1w">Il s&rsquo;agit de votre employeur</span>
       </h2>
 
       <p style={{ marginBottom: '0px' }}>
