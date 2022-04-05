@@ -68,7 +68,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
           ville: fields.filter(field => field.name === prefixId + 'ville')[0]?.value ?? null,
           location: fields.filter(field => field.name === prefixId + 'location')[0]?.value ?? null,
         },
-        horaires: fields.filter(field => field.name === prefixId + 'horaires')[0]?.value ?? horairesInitiales,
+        horaires: fields.filter(field => field.name === prefixId + 'horaires')[0]?.value[prefixId + 'horaires'] ?? horairesInitiales,
         typeAcces: fields.filter(field => field.name === prefixId + 'typeAcces')[0]?.value ?? null,
         conseillers: conseillers,
         structureId: structureId,
@@ -167,7 +167,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
                 islieuPrincipal={false}
               />
               <TypeAcces prefixId={ 'secondaire_' + idx + '_'} islieuPrincipal={false} />
-              <Horaires prefixId={ 'secondaire_' + idx + '_'} />
+              <Horaires prefixId={ 'secondaire_' + idx + '_'} horairesId={idx + 1}/>
               {idx < 14 &&
                 <AjouterAutrePermanence secondaireId={ idx } conseillerId={conseillerId} structureId={structureId} show={show} />
               }

@@ -53,7 +53,7 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show }) {
           ville: fields.filter(field => field.name === prefixId + 'ville')[0]?.value ?? null,
           location: fields.filter(field => field.name === prefixId + 'location')[0]?.value ?? null,
         },
-        horaires: fields.filter(field => field.name === prefixId + 'horaires')[0]?.value ?? horairesInitiales,
+        horaires: fields.filter(field => field.name === prefixId + 'horaires')[0]?.value[prefixId + 'horaires'] ?? horairesInitiales,
         conseillersItinerants: itinerant,
         typeAcces: fields.filter(field => field.name === prefixId + 'typeAcces')[0]?.value ?? null,
         conseillers: conseillers,

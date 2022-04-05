@@ -3,26 +3,31 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { permanenceActions } from '../../../actions/permanence.actions';
 import horairesInitiales from '../../../data/horairesInitiales.json';
-function Horaires({ prefixId }) {
+function Horaires({ prefixId, horairesId }) {
 
   const dispatch = useDispatch();
 
   const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
   const erreursHoraires = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'horaires'])[0]?.[prefixId + 'horaires'];
+  const loadingHoraires = useSelector(state => state.permanence?.loadingHoraires);
   const fields = useSelector(state => state.permanence?.fields);
+
   const horairesFields = fields?.filter(field => field.name === prefixId + 'horaires')[0]?.value;
   const idFields = fields?.filter(field => field.name === prefixId + 'idPermanence')[0]?.value;
 
   const jourSemaine = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
 
-  const [horaires, setHoraires] = useState(horairesInitiales);
+  const [horaires, setHoraires] = useState({ [prefixId + 'horaires']: horairesInitiales });
 
   function handleChange(e, idJour, jour, partie) {
     const { value } = e.target;
-    horaires[idJour][jour][partie] = value === '' ? 'Fermé' : value;
-    horaires[idJour].fermeture[jour === 'matin' ? 0 : 1] = horaires[idJour][jour][0] === 'Fermé' && horaires[idJour][jour][1] === 'Fermé';
-    setHoraires(horaires => [...horaires]);
+    horaires[prefixId + 'horaires'][idJour][jour][partie] = value === '' ? 'Fermé' : value;
+    horaires[prefixId + 'horaires'][idJour].fermeture[jour === 'matin' ? 0 : 1] =
+      horaires[prefixId + 'horaires'][idJour][jour][0] === 'Fermé' && horaires[prefixId + 'horaires'][idJour][jour][1] === 'Fermé';
+
+    setHoraires(horaires);
     dispatch(permanenceActions.updateField(prefixId + 'horaires', horaires));
+
     if (erreursHoraires) {
       erreursHoraires.forEach((erreur, idErreur) => {
         if (erreur === idJour) {
@@ -32,32 +37,43 @@ function Horaires({ prefixId }) {
     }
   }
 
+  const onCLick = (idx, fermer) => {
+    horaires[prefixId + 'horaires'][idx].fermeture[fermer] = false;
+    setHoraires(horaires);
+    dispatch(permanenceActions.updateField(prefixId + 'horaires', horaires));
+  };
+
   useEffect(() => {
-    if (horairesFields && idFields) {
+    if (horairesFields && idFields && loadingHoraires[horairesId] === true) {
+
       const newHoraires = [];
-      horairesFields?.forEach(horaires => {
-        horaires.fermeture = [false, false];
-        if (horaires.matin[0].length === 4) {
-          horaires.matin[0] = '0' + horaires.matin[0];
+      horairesFields[prefixId + 'horaires']?.forEach(horairesField => {
+        if (horairesField?.fermeture === undefined) {
+          horairesField.fermeture = [null, null];
         }
-        if (horaires.matin[1].length === 4) {
-          horaires.matin[1] = '0' + horaires.matin[1];
+        if (horairesField.matin[0].length === 4) {
+          horairesField.matin[0] = '0' + horairesField.matin[0];
         }
-        if (horaires.matin[0] === 'Fermé' && horaires.matin[1] === 'Fermé') {
-          horaires.fermeture[0] = true;
+        if (horairesField.matin[1].length === 4) {
+          horairesField.matin[1] = '0' + horairesField.matin[1];
         }
-        if (horaires.apresMidi[0].length === 4) {
-          horaires.apresMidi[0] = '0' + horaires.apresMidi[0];
+        if (horairesField.matin[0] === 'Fermé' && horairesField.matin[1] === 'Fermé') {
+          horairesField.fermeture[0] = true;
         }
-        if (horaires.apresMidi[1].length === 4) {
-          horaires.apresMidi[1] = '0' + horaires.apresMidi[1];
+        if (horairesField.apresMidi[0].length === 4) {
+          horairesField.apresMidi[0] = '0' + horairesField.apresMidi[0];
         }
-        if (horaires.apresMidi[0] === 'Fermé' && horaires.apresMidi[1] === 'Fermé') {
-          horaires.fermeture[1] = true;
+        if (horairesField.apresMidi[1].length === 4) {
+          horairesField.apresMidi[1] = '0' + horairesField.apresMidi[1];
         }
-        newHoraires.push(horaires);
+        if (horairesField.apresMidi[0] === 'Fermé' && horairesField.apresMidi[1] === 'Fermé') {
+          horairesField.fermeture[1] = true;
+        }
+        newHoraires.push(horairesField);
       });
-      setHoraires(newHoraires);
+      setHoraires({ [prefixId + 'horaires']: newHoraires });
+      loadingHoraires[horairesId] = false;
+      dispatch(permanenceActions.setHorairesLoading(loadingHoraires));
     }
   }, [horairesFields]);
 
@@ -81,42 +97,40 @@ function Horaires({ prefixId }) {
                     {jour.charAt(0).toUpperCase() + jour.substring(1)}
                   </td>
                   <td>
-                    {!horaires[idx].fermeture[0] &&
+                    {!horaires[prefixId + 'horaires'][idx]?.fermeture[0] &&
                       <>
-                        <input className="horaires-debut rf-mb-md-1w" type="time" value={horaires[idx].matin[0]}
-                          required name={prefixId + jour + 'MatinDebut'} onChange={e => {
+                        <input className="horaires-debut rf-mb-md-1w" type="time" value={horaires[prefixId + 'horaires'][idx]?.matin[0]}
+                          required name={prefixId + jour + 'MatinDebut'} min="6:00" max="13:00" onChange={e => {
                             handleChange(e, idx, 'matin', 0);
                           }}/>
-                        <input className="horaires-fin rf-mr-2w" type="time" value={horaires[idx].matin[1]}
-                          required name={prefixId + jour + 'MatinFin'} onChange={e => {
+                        <input className="horaires-fin rf-mr-2w" type="time" value={horaires[prefixId + 'horaires'][idx]?.matin[1]}
+                          required name={prefixId + jour + 'MatinFin'} min="6:00" max="13:00" onChange={e => {
                             handleChange(e, idx, 'matin', 1);
                           }}/>
                       </>
                     }
-                    {horaires[idx].fermeture[0] &&
+                    {horaires[prefixId + 'horaires'][idx]?.fermeture[0] &&
                       <div className="horaires-fermeture rf-mb-md-1w" onClick={() => {
-                        horaires[idx].fermeture[0] = false;
-                        setHoraires(horaires => [...horaires]);
+                        onCLick(idx, 0);
                       }} >Fermé</div>
                     }
                   </td>
                   <td>
-                    {!horaires[idx].fermeture[1] &&
+                    {!horaires[prefixId + 'horaires'][idx]?.fermeture[1] &&
                       <>
-                        <input className="horaires-debut rf-mb-md-1w" type="time" value={horaires[idx].apresMidi[0]}
-                          required name={prefixId + jour + 'ApresMidiDebut'} onChange={e => {
+                        <input className="horaires-debut rf-mb-md-1w" type="time" value={horaires[prefixId + 'horaires'][idx]?.apresMidi[0]}
+                          required name={prefixId + jour + 'ApresMidiDebut'} min="13:00" max="22:00" onChange={e => {
                             handleChange(e, idx, 'apresMidi', 0);
                           }}/>
-                        <input className="horaires-fin rf-mr-2w" type="time" value={horaires[idx].apresMidi[1]}
-                          required name={prefixId + jour + 'ApresMidiFin'} onChange={e => {
+                        <input className="horaires-fin rf-mr-2w" type="time" value={horaires[prefixId + 'horaires'][idx]?.apresMidi[1]}
+                          required name={prefixId + jour + 'ApresMidiFin'} min="13:00" max="22:00" onChange={e => {
                             handleChange(e, idx, 'apresMidi', 1);
                           }}/>
                       </>
-                    }
-                    {horaires[idx].fermeture[1] &&
+                    }{horaires[prefixId + 'horaires'][idx]?.fermeture[1]}
+                    {horaires[prefixId + 'horaires'][idx]?.fermeture[1] &&
                       <div className="horaires-fermeture rf-mb-md-1w" onClick={() => {
-                        horaires[idx].fermeture[1] = false;
-                        setHoraires(horaires => [...horaires]);
+                        onCLick(idx, 1);
                       }} >Fermé</div>
                     }
                   </td>
@@ -140,6 +154,7 @@ function Horaires({ prefixId }) {
 
 Horaires.propTypes = {
   prefixId: PropTypes.string,
+  horairesId: PropTypes.number,
 };
 
 export default Horaires;

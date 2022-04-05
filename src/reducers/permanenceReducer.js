@@ -3,6 +3,7 @@ const initialState = {
   fields: [{ name: 'principal_estStructure', value: null }],
   geocodeAdresses: [],
   showLieuSecondaire: Array.from({ length: process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE }, () => (false)),
+  loadingHoraires: Array.from({ length: Number(process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE) + 1 }, () => (false)),
   disabledFields: [],
   showSiret: [],
   prefixIdLieuEnregistrable: 'principal_',
@@ -108,6 +109,11 @@ export default function permanence(state = initialState, action) {
         showError: action.showError,
         showErrorMessage: action.errorMessage,
         errorsFormulaire: action.errorsForm
+      };
+    case 'LOADING_HORAIRES':
+      return {
+        ...state,
+        loadingHoraires: action.loadingHoraires,
       };
     case 'VERIFY_SIRET_REQUEST':
       return {

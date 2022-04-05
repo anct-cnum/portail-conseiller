@@ -7,6 +7,7 @@ function ListPermanences({ prefixId, conseillerId }) {
   const dispatch = useDispatch();
 
   const listPermanences = useSelector(state => state.permanence?.permanences);
+  const loadingHoraires = useSelector(state => state.permanence?.loadingHoraires);
   const fields = useSelector(state => state.permanence?.fields);
 
   const handleClick = e => {
@@ -23,9 +24,15 @@ function ListPermanences({ prefixId, conseillerId }) {
     dispatch(permanenceActions.updateField(prefixId + 'email', permanence?.email));
     dispatch(permanenceActions.updateField(prefixId + 'siteWeb', permanence?.siteWeb));
     dispatch(permanenceActions.updateField(prefixId + 'typeAcces', permanence?.typeAcces));
-    dispatch(permanenceActions.updateField(prefixId + 'horaires', permanence?.horaires));
+    dispatch(permanenceActions.updateField(prefixId + 'horaires', { [prefixId + 'horaires']: permanence?.horaires }));
     dispatch(permanenceActions.updateField(prefixId + 'conseillers', permanence?.conseillers));
-
+    if (prefixId === 'principal_') {
+      loadingHoraires[0] = true;
+    } else {
+      const id = 0;
+      loadingHoraires[id + 1] = true;
+    }
+    dispatch(permanenceActions.setHorairesLoading(loadingHoraires));
     dispatch(permanenceActions.disabledField(prefixId, e.target.value !== 'nouveau'));
 
   };

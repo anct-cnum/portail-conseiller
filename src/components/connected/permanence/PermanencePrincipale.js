@@ -15,12 +15,14 @@ function PermanencePrincipale({ structure, conseillerId }) {
   const dispatch = useDispatch();
 
   const listPermanences = useSelector(state => state.permanence?.permanences);
+  const loadingHoraires = useSelector(state => state.permanence?.loadingHoraires);
   const erreursFormulaire = useSelector(state => state.permanence?.errorsFormulaire?.errors);
+
   const erreurAdresseExact = erreursFormulaire?.filter(erreur => erreur?.estStructure)[0]?.estStructure;
   const adresseStructure = structure?.insee?.etablissement?.adresse;
   const fields = useSelector(state => state.permanence?.fields);
   const boolLieuPrincipal = fields?.filter(field => field.name === 'estStructure')[0]?.value === null;
-  
+
   function handleAdresse(estStructure) {
     dispatch(permanenceActions.updateField('principal_estStructure', estStructure));
     dispatch(permanenceActions.updateField('principal_idPermanence', null));
@@ -44,7 +46,8 @@ function PermanencePrincipale({ structure, conseillerId }) {
       dispatch(permanenceActions.updateField('principal_email', permanencePrincipale?.email ?? null));
       dispatch(permanenceActions.updateField('principal_siteWeb', permanencePrincipale?.siteWeb ?? null));
       dispatch(permanenceActions.updateField('principal_typeAcces', permanencePrincipale?.typeAcces ?? null));
-      dispatch(permanenceActions.updateField('principal_horaires', permanencePrincipale?.horaires ?? horairesInitiales));
+      const horaires = permanencePrincipale?.horaires ?? horairesInitiales;
+      dispatch(permanenceActions.updateField('principal_horaires', { principal_horaires: horaires }));
       dispatch(permanenceActions.updateField('principal_conseillers', permanencePrincipale?.conseillers ?? null));
       dispatch(permanenceActions.updateField('principal_nomEnseigne', permanencePrincipale?.nomEnseigne ?? structure?.nom));
       dispatch(permanenceActions.updateField('principal_siret', permanencePrincipale?.siret ?? structure?.siret));
@@ -56,6 +59,8 @@ function PermanencePrincipale({ structure, conseillerId }) {
         permanencePrincipale?.adresse?.codePostal ?? adresseStructure.code_postal));
       dispatch(permanenceActions.updateField('principal_ville',
         permanencePrincipale?.adresse?.ville.toUpperCase() ?? adresseStructure.localite.toUpperCase()));
+      loadingHoraires[0] = true;
+      dispatch(permanenceActions.setHorairesLoading(loadingHoraires));
     }
   }
 
@@ -118,7 +123,7 @@ function PermanencePrincipale({ structure, conseillerId }) {
 
       <TypeAcces prefixId="principal_" islieuPrincipal={true} />
 
-      <Horaires prefixId="principal_" />
+      <Horaires prefixId="principal_" horairesId={0}/>
     </>
   );
 }

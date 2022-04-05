@@ -16,6 +16,7 @@ export const permanenceActions = {
   updateField,
   disabledField,
   montrerLieuSecondaire,
+  setHorairesLoading,
   suspensionFormulaire
 };
 
@@ -158,7 +159,8 @@ function verifyFormulaire(form) {
           champsAcceptes.forEach(accepte => {
             if (accepte.nom === 'horaires') {
               errors.push({
-                [champ + id + '_' + accepte.nom]: controleHoraires(form?.fields.filter(field => field.name === champ + id + '_' + accepte.nom)[0]?.value)
+                [champ + id + '_' + accepte.nom]:
+                  controleHoraires(form?.fields.filter(field => field.name === champ + id + '_' + accepte.nom)[0]?.value[champ + id + '_horaires'])
               });
             } else {
               errors.push({
@@ -176,7 +178,7 @@ function verifyFormulaire(form) {
         if (accepte.nom === 'horaires') {
           /* Cohérence des horaires */
           errors.push({
-            principal_horaires: controleHoraires(form?.fields.filter(field => field.name === champ + accepte.nom)[0]?.value)
+            principal_horaires: controleHoraires(form?.fields.filter(field => field.name === champ + accepte.nom)[0]?.value?.principal_horaires)
           });
         } else if (accepte.nom !== 'itinerant') {
           errors.push({
@@ -211,6 +213,14 @@ function verifyFormulaire(form) {
 function controleHoraires(horaires) {
   let erreursHoraires = [];
   horaires?.forEach((jour, id) => {
+    if ((jour.matin[0] < '06:00' || jour.matin[0] > '13:00' && jour.matin[0] !== 'Fermé') ||
+        (jour.matin[1] < '06:00' || jour.matin[1] > '13:00' && jour.matin[1] !== 'Fermé')) {
+      erreursHoraires.push(id);
+    }
+    if ((jour.apresMidi[0] < '12:00' || jour.apresMidi[0] > '22:00' && jour.apresMidi[0] !== 'Fermé') ||
+        (jour.apresMidi[1] < '12:00' || jour.apresMidi[1] > '22:00' && jour.apresMidi[1] !== 'Fermé')) {
+      erreursHoraires.push(id);
+    }
     if (jour.matin[0] > jour.matin[1] || jour.apresMidi[0] > jour.apresMidi[1] ||
       (jour.matin[1] !== 'Fermé' && jour.apresMidi[0] !== 'Fermé' && jour.matin[1] > jour.apresMidi[0])) {
       erreursHoraires.push(id);
@@ -335,6 +345,10 @@ function updateField(name, value) {
 
 function disabledField(id, value) {
   return { type: 'DISABLED_FIELD', field: { id, value } };
+}
+
+function setHorairesLoading(loadingHoraires) {
+  return { type: 'LOADING_HORAIRES', loadingHoraires };
 }
 
 function suspensionFormulaire() {
