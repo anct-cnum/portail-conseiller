@@ -13,9 +13,9 @@ function StatisticsAccompaniment({ type, nbAccompagnement }) {
         classe={type ? 'numbers-' + type : 'numbers'}/></div>
       <div className={ type ? 'rf-col-12' : 'rf-col-9' }><ElementText textePluralize={
         <Pluralize
-          zero={'accompagnement enregistré'}
-          singular={'accompagnement enregistré'}
-          plural={'accompagnements enregistrés'}
+          zero={'accompagnement total enregistré (dont récurrent)'}
+          singular={'accompagnement total enregistré (dont récurrent)'}
+          plural={'accompagnements total enregistrés (dont récurrent)'}
           count={nbAccompagnement}
           showCount={false} />
       } classe={type ? 'text-' + type : 'text'}/></div>
