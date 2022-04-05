@@ -154,6 +154,7 @@ function Adresse({ codeDepartement, prefixId }) {
           baselineInput="Accueil. Vous pouvez laisser vide si la structure n&rsquo;a pas de t&eacute;l&eacute;phone d&rsquo;accueil."
           valueInput={fields?.filter(field => field.name === prefixId + 'numeroTelephone')[0]?.value ?? ''}
           placeholderInput={indicatif + 'XXXXXXXXX'}
+          indicatif={indicatif}
         />
       </div>
       <div className="rf-col-4"></div>

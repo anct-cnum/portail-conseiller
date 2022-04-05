@@ -13,7 +13,7 @@ function SelectAdresse({ prefixId }) {
   const onChange = e => {
     const id = e.target.value;
     const adresse = geocodeAdresses[0]?.geocodeAdresse[id];
-    dispatch(permanenceActions.updateField(prefixId + 'location', adresse?.geometry));
+    dispatch(permanenceActions.updateField(prefixId + 'location', adresse?.geometry ?? { type: 'Point', coordinates: [1.849121, 46.624100] }));
   };
 
   return (
@@ -31,6 +31,7 @@ function SelectAdresse({ prefixId }) {
         <select id={prefixId + 'geolocalisation'} className="rf-input rf-mb-6w" onChange={e => {
           onChange(e);
         }}>
+          <option>Choisir une adresse &agrave; afficher</option>
           {geocodeAdresse && geocodeAdresse?.map((adresse, idx) => {
             return (<option key={idx} value={idx} >{adresse.properties.label}</option>);
           })

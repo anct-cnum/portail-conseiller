@@ -142,7 +142,7 @@ function verifyFormulaire(form) {
     },
     {
       nom: 'siteWeb', validation: Joi.string().trim().allow('', null).pattern(regExpSiteWeb),
-      message: 'Une URL valide doit être saisie (exemple de format valide https://www.mon-site.fr)'
+      message: 'Une URL valide doit être saisie (exemple de format valide https://www.le-site-de-ma-structure.fr)'
     },
     {
       nom: 'typeAcces', validation: Joi.string().trim().required().valid('libre', 'rdv', 'prive'),

@@ -4,15 +4,25 @@ import { permanenceActions } from '../../../../actions';
 import { useDispatch } from 'react-redux';
 
 
-function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineInput, valueInput, placeholderInput, classInput, disabled }) {
+function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineInput, valueInput, placeholderInput, classInput, disabled, indicatif }) {
   const dispatch = useDispatch();
 
   const reg = new RegExp('^[0-9]{14}$');
+
   const handleChange = e => {
     const { name, value } = e.target;
     dispatch(permanenceActions.updateField(name, value));
     if (name.slice(-5) === 'siret' && value.length === 14 && reg.test(value)) {
       dispatch(permanenceActions.verifySiret(name.slice(0, -5), value));
+    }
+  };
+
+  const onFocus = e => {
+    if (nameInput.slice(-9) === 'Telephone') {
+      e.target.value = indicatif;
+    }
+    if (nameInput.slice(-7) === 'siteWeb') {
+      e.target.value = 'https://www.';
     }
   };
 
@@ -35,6 +45,9 @@ function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineIn
           onPaste={handleChange}
           placeholder={placeholderInput}
           disabled={disabled}
+          onFocus={e => {
+            onFocus(e);
+          }}
         />
 
       </label>
@@ -64,6 +77,7 @@ InputText.propTypes = {
   placeholderInput: PropTypes.string,
   classInput: PropTypes.string,
   disabled: PropTypes.bool,
+  indicatif: PropTypes.string,
 };
 
 export default InputText;

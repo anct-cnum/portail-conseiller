@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { permanenceActions } from '../../../../actions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,7 +9,6 @@ function InputCheckbox({ textLabel, errorInput, nameInput, baselineInput, classB
   const prefixId = nameInput.slice(0, -13);
   const fields = useSelector(state => state.permanence?.fields);
   const checked = fields?.filter(field => field.name === nameInput)[0]?.value;
-  const siret = fields?.filter(field => field.name === prefixId + 'siret')[0]?.value;
 
   const onClick = e => {
     const { checked } = e.target;
@@ -19,12 +18,6 @@ function InputCheckbox({ textLabel, errorInput, nameInput, baselineInput, classB
       dispatch(permanenceActions.disabledField(prefixId, false));
     }
   };
-
-  useEffect(() => {
-    if (nameInput.slice(-5) === 'Siret' && siret === '') {
-      dispatch(permanenceActions.updateField(nameInput, true));
-    }
-  }, [siret]);
 
   return (
     <>

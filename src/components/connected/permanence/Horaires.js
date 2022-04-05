@@ -119,11 +119,11 @@ function Horaires({ prefixId, horairesId }) {
                     {!horaires[prefixId + 'horaires'][idx]?.fermeture[1] &&
                       <>
                         <input className="horaires-debut rf-mb-md-1w" type="time" value={horaires[prefixId + 'horaires'][idx]?.apresMidi[0]}
-                          required name={prefixId + jour + 'ApresMidiDebut'} min="13:00" max="22:00" onChange={e => {
+                          required name={prefixId + jour + 'ApresMidiDebut'} min="12:00" max="22:00" onChange={e => {
                             handleChange(e, idx, 'apresMidi', 0);
                           }}/>
                         <input className="horaires-fin rf-mr-2w" type="time" value={horaires[prefixId + 'horaires'][idx]?.apresMidi[1]}
-                          required name={prefixId + jour + 'ApresMidiFin'} min="13:00" max="22:00" onChange={e => {
+                          required name={prefixId + jour + 'ApresMidiFin'} min="12:00" max="22:00" onChange={e => {
                             handleChange(e, idx, 'apresMidi', 1);
                           }}/>
                       </>

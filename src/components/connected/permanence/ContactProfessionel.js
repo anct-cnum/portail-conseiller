@@ -29,6 +29,10 @@ function ContactProfessionel({ conseiller }) {
     dispatch(permanenceActions.updateField(name, value));
   }
 
+  const onFocus = e => {
+    e.target.value = indicatif;
+  };
+
   useEffect(() => {
     if (conseiller?.emailPro) {
       dispatch(permanenceActions.updateField('emailPro', conseiller.emailPro));
@@ -90,20 +94,23 @@ function ContactProfessionel({ conseiller }) {
             T&eacute;l&eacute;phone professionel
             <span className="baseline">Si votre structure vous en a fourni un.</span>
             <input className={erreurTelephonePro ? 'rf-input rf-mt-2v input-error' : 'rf-input rf-mt-2v'} type="tel"
-              id="telephone-pro" name="telephonePro" placeholder={indicatif + 'XXXXXXXXX'} value={telephonePro} onChange={handleChange}/>
+              id="telephone-pro" name="telephonePro" placeholder={indicatif + 'XXXXXXXXX'} value={telephonePro}
+              onChange={handleChange} onFocus={onFocus} />
           </label>
           { erreurTelephonePro &&
             <p className="text-error rf-mb-n3w">{erreurTelephonePro}</p>
           }
         </div>
-        <div className="rf-col-offset-1 rf-col-10 rf-mb-3w conditions">
+        <div className="rf-col-offset-1 rf-col-10 rf-mb-9w conditions">
           Conform&eacute;ment aux CGU, mes informations de contact seront affich&eacute;es sur la carte nationale Conseillers num&eacute;rique Frances Services,
           et pourront &eacute;galement &ecirc;tre utilis&eacute;es sur d&rsquo;autres supports num&eacute;riques ou imprim&eacute;s dans le cadre du dispositif.
           En cas de d&eacute;part, mes informations seront supprim&eacute;es de l&rsquo;annuaire et de sa base de donn&eacute;es.
         </div>
+        {/* En attente de l'écran
         <div className="rf-col-offset-1 rf-col-10 rf-mb-9w astuce">
           Astuce : vous pourrez modifier vos informations de contact en cliquant sur votre nom en haut &agrave; droite de l&rsquo;&eacute;cran.
         </div>
+        */}
       </div>
     </div>
   );
