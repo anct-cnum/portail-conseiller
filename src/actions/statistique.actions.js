@@ -15,6 +15,8 @@ export const statistiqueActions = {
   resetExportDonneesTerritoire,
   getCodesPostauxCrasConseiller,
   updateListeAutresReorientations,
+  getStatsCraStructure,
+  getCodesPostauxCrasConseillerStructure
 };
 
 const formatDate = date => {
@@ -160,6 +162,33 @@ function getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, con
   }
 }
 
+function getStatsCraStructure(dateDebut, dateFin, idStructure, codePostal = null) {
+  return dispatch => {
+    const idUser = null;
+    dispatch(request(dateDebut, dateFin, idUser, codePostal));
+    statistiqueService.getStatsCraStructure(formatDate(dateDebut), formatDate(dateFin), idStructure, codePostal)
+    .then(
+      statsStructure => {
+        dispatch(success(statsStructure));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request(dateDebut, dateFin, idUser, codePostal) {
+    console.log(codePostal);
+    return { type: 'GET_STATS_CRA_STRUCTURE_REQUEST', dateDebut, dateFin, idUser, codePostal };
+  }
+  function success(statsStructure) {
+    return { type: 'GET_STATS_CRA_STRUCTURE_SUCCESS', statsStructure };
+  }
+  function failure(error) {
+    return { type: 'GET_STATS_CRA_STRUCTURE_FAILURE', error };
+  }
+}
+
 function getStatsCraNationale(dateDebutStats, dateFinStats) {
   return dispatch => {
     dispatch(request());
@@ -216,6 +245,33 @@ function getCodesPostauxCrasConseiller() {
     dispatch(request());
 
     statistiqueService.getCodesPostauxCrasConseiller()
+    .then(
+      listeCodesPostaux => {
+        dispatch(success(listeCodesPostaux));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'GET_CODE_POSTAUX_CRA_REQUEST' };
+  }
+  function success(listeCodesPostaux) {
+    return { type: 'GET_CODE_POSTAUX_CRA_SUCCESS', listeCodesPostaux };
+  }
+  function failure(error) {
+    return { type: 'GET_CODE_POSTAUX_CRA_FAILURE', error };
+  }
+}
+
+function getCodesPostauxCrasConseillerStructure(idStructure) {
+
+  return dispatch => {
+    dispatch(request());
+
+    statistiqueService.getCodesPostauxCrasConseillerStructure(idStructure)
     .then(
       listeCodesPostaux => {
         dispatch(success(listeCodesPostaux));

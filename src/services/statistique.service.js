@@ -10,6 +10,8 @@ export const statistiqueService = {
   getStatsCraNationale,
   getExportDonneesTerritoire,
   getCodesPostauxCrasConseiller,
+  getStatsCraStructure,
+  getCodesPostauxCrasConseillerStructure
 };
 
 function territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin, page) {
@@ -84,6 +86,16 @@ function getStatsCraTerritoire(dateDebut, dateFin, typeTerritoire, conseillerIds
     requestOptions).then(handleResponse);
 }
 
+function getStatsCraStructure(dateDebut, dateFin, idStructure, codePostal) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+  const requestOptions = {
+    method: 'GET',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+  };
+  return fetch(`${apiUrlRoot}/stats/structure/cra?dateDebut=${dateDebut}&dateFin=${dateFin}&idStructure=${idStructure}&codePostal=${codePostal}`,
+    requestOptions).then(handleResponse);
+}
+
 function getStatsCraNationale(dateDebut, dateFin) {
   const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
@@ -123,6 +135,15 @@ function getCodesPostauxCrasConseiller() {
   return fetch(`${apiUrlRoot}/stats/cra/codesPostaux/conseiller/${userEntityId()}`, requestOptions).then(handleResponse);
 }
 
+function getCodesPostauxCrasConseillerStructure(idStructure) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader(),
+  };
+
+  return fetch(`${apiUrlRoot}/stats/cra/codesPostaux/structure/${idStructure}`, requestOptions).then(handleResponse);
+}
 function handleResponse(response) {
   return response.text().then(text => {
     const data = text && JSON.parse(text);
