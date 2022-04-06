@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { permanenceActions } from '../../../actions';
@@ -10,6 +10,7 @@ function ListPermanences({ prefixId, conseillerId }) {
   const loadingHoraires = useSelector(state => state.permanence?.loadingHoraires);
   const fields = useSelector(state => state.permanence?.fields);
 
+  const [showList, setShowList] = useState(0);
   const handleClick = e => {
     const permanence = listPermanences.find(permanence => permanence._id === e.target.value);
 
@@ -38,26 +39,41 @@ function ListPermanences({ prefixId, conseillerId }) {
 
   };
 
+  useEffect(() => {
+    let nbPermanences = 0;
+    if (listPermanences !== undefined && listPermanences?.length > 0) {
+      listPermanences.forEach(permanence => {
+        if (permanence?.conseillers.includes(conseillerId) === false && permanence?.estStructure === false) {
+          nbPermanences++;
+        }
+      });
+    }
+    setShowList(nbPermanences);
+  }, [listPermanences]);
+
+
   return (
     <>
-      {((prefixId !== 'principal_') ||
-       (prefixId === 'principal_' && fields?.filter(field => field.name === 'principal_estStructure')[0]?.value === false)) &&
-        <>
-          <div className="rf-col-offset-1 rf-col-11">
-            S&eacute;lectionnez votre lieu d&rsquo;activit&eacute;, s&rsquo;il n&rsquo;apparaît pas dans cette liste,
-            cochez la puce &laquo;&nbsp;Ajouter un nouveau lieu d&rsquo;activit&eacute;&nbsp;&raquo;.
-            <span className="baseline">
-              Cette liste correspond aux lieux d&rsquo;activit&eacute; d&eacute;j&agrave; enregistr&eacute;s par les
-              conseillers num&eacute;riques de votre structure d&rsquo;accueil.
-            </span>
-          </div>
-          <div className="rf-col-offset-1 rf-col-8">
-            <fieldset className="rf-fieldset rf-mt-4w">
-              {listPermanences?.length > 0 &&
+      {showList > 0 &&
+      <>
+        {((prefixId !== 'principal_') ||
+        (prefixId === 'principal_' && fields?.filter(field => field.name === 'principal_estStructure')[0]?.value === false)) &&
+          <>
+            <div className="rf-col-offset-1 rf-col-11">
+              S&eacute;lectionnez votre lieu d&rsquo;activit&eacute;, s&rsquo;il n&rsquo;apparaît pas dans cette liste,
+              cochez la puce &laquo;&nbsp;Ajouter un nouveau lieu d&rsquo;activit&eacute;&nbsp;&raquo;.
+              <span className="baseline">
+                Cette liste correspond aux lieux d&rsquo;activit&eacute; d&eacute;j&agrave; enregistr&eacute;s par les
+                conseillers num&eacute;riques de votre structure d&rsquo;accueil.<br/>
+                En s&eacute;l&eacute;ctionnant un &eacute;l&eacute;ment existant, les champs seront remplis avec informations pr&eacute;-enregistr&eacute;es
+                par vos collaborateurs.
+              </span>
+            </div>
+            <div className="rf-col-offset-1 rf-col-8">
+              <fieldset className="rf-fieldset rf-mt-4w">
                 <div className="emplacement-permanences">
                   {listPermanences.map(((permanence, idx) => {
                     return (
-
                       <div key={idx}>
                         {permanence?.conseillers.includes(conseillerId) === false &&
                         <>
@@ -82,20 +98,22 @@ function ListPermanences({ prefixId, conseillerId }) {
                       </div>);
                   })) }
                 </div>
-              }
-              <hr />
-              <div className="rf-fieldset__content rf-mt-5w rf-mb-9w">
-                <div className="rf-radio-group">
-                  <input type="radio" id={prefixId + 'nouveau'} name={prefixId + 'permancenceSecondaire'} value="nouveau"
-                    defaultChecked={true} required="required" onClick={handleClick}/>
-                  <label className="rf-label rf-my-2w" htmlFor={prefixId + 'nouveau'} >
-                    Ajouter un nouveau lieu d&rsquo;activit&eacute;
-                  </label>
+
+                <hr />
+                <div className="rf-fieldset__content rf-mt-5w rf-mb-9w">
+                  <div className="rf-radio-group">
+                    <input type="radio" id={prefixId + 'nouveau'} name={prefixId + 'permancenceSecondaire'} value="nouveau"
+                      defaultChecked={true} required="required" onClick={handleClick}/>
+                    <label className="rf-label rf-my-2w" htmlFor={prefixId + 'nouveau'} >
+                      Ajouter un nouveau lieu d&rsquo;activit&eacute;
+                    </label>
+                  </div>
                 </div>
-              </div>
-            </fieldset>
-          </div>
-        </>
+              </fieldset>
+            </div>
+          </>
+        }
+      </>
       }
     </>
   );

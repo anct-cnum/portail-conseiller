@@ -22,14 +22,14 @@ function Ouverture() {
               <div className="rf-col-12 rf-col-sm-10 rf-col-md-7 rf-modal__body modal-ouverture">
                 <div className="rf-modal__content rf-mt-n4w">
                   <h1 className="rf-modal__title centre">À vous de jouer !</h1>
-                  <div className="rf-mb-6w centre">
+                  <div className="rf-mb-5w centre">
                     <img className="conseillers-carte" src="logos/permanences/carthographie-avec-conseillers.svg"/>
                     <div className="rf-mt-4w">
                       En cliquant sur enregistrer, vous renseignerez vos lieux d&rsquo;activit&eacute; et informations de contact,
                       afin qu&rsquo;ils soient affich&eacute;s sur la carte nationale des conseillers num&eacute;riques.
                       Comptez environ 2 &agrave; 3 minutes pour enregistrer un lieu d&rsquo;activit&eacute;.
                     </div>
-                    <div className="rf-mt-3w rf-mb-4w">
+                    <div className="rf-mt-3w">
                       Si vous &ecirc;tes install&eacute; dans des locaux situ&eacute;s hors du si&egrave;ge de la structure qui vous a recrut&eacute;,
                       nous vous recommandons de rechercher au pr&eacute;alable le <strong>SIRET</strong> de l&rsquo;&eacute;tablissement o&ugrave;
                       vous avez votre poste en vous renseignant aupr&egrave;s de vos collaborateurs, ou sur ce&nbsp;

@@ -58,9 +58,9 @@ function Validation({ conseillerId, structureId }) {
         structureId: structureId,
         hasPermanence: true,
       };
-
+      console.log(nouveauLieu);
       if (nouveauLieu._id !== null) {
-        dispatch(permanenceActions.updatePermanence(nouveauLieu._id, nouveauLieu, true, null));
+        dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, true, null));
       } else {
         dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, true, null));
       }
