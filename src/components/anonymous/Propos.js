@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import Footer from '../Footer';
 import Header from '../Header';
+import HeaderHub from '../hub/HeaderHub';
 
 function Propos() {
 
@@ -11,7 +12,7 @@ function Propos() {
 
   return (
     <div>
-      <Header linkAccount={user?.name}/>
+      { user?.role === 'hub_coop' ? <HeaderHub /> : <Header linkAccount={user?.name}/>}
       <div id="propos">
         <div className="rf-container">
           <div className="rf-grid-row">

@@ -64,8 +64,7 @@ function FiltersAndSorts({ resetPage, user }) {
     }
     if (location.pathname === '/territoires') {
       const page = currentPage(pagination, location);
-      dispatch(statistiqueActions.getStatsTerritoires(territoire, dateDebut, dateFin, page, ordreNom,
-        ordre ? 1 : -1, user?.role === 'structure_coop' ? user?.entity.$id : null));
+      dispatch(statistiqueActions.getStatsTerritoires(territoire, dateDebut, dateFin, page, ordreNom, ordre ? 1 : -1));
       resetPage(page);
     }
 

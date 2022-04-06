@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import Login from './components/anonymous/Login.js';
 import Home from './components/connected/Home';
 import Admin from './components/admin';
+import Hub from './components/hub';
 import ChoosePassword from './components/anonymous/ChoosePassword';
 import ChoosePasswordHub from './components/anonymous/ChoosePasswordHub';
 import ValidationAccount from './components/connected/ValidationAccount';
@@ -47,6 +48,9 @@ function App() {
           }
           {(user?.role === 'admin_coop' || user?.role === 'structure_coop') &&
             <PrivateRoute exact path="*" component={Admin}/>
+          }
+          {(user?.role === 'hub_coop') &&
+            <PrivateRoute exact path="*" component={Hub}/>
           }
           <Redirect from="/" to="/login"/>
         </Switch>
