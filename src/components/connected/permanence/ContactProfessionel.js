@@ -26,7 +26,7 @@ function ContactProfessionel({ conseiller }) {
   function handleChange(e) {
     const { name, value } = e.target;
     setInputs(inputs => ({ ...inputs, [name]: value }));
-    dispatch(permanenceActions.updateField(name, value));
+    dispatch(permanenceActions.updateField(name, value === 'true'));
   }
 
   const onFocus = e => {
@@ -46,19 +46,19 @@ function ContactProfessionel({ conseiller }) {
     <div className="rf-container">
       <div className="rf-grid-row">
         <div className="rf-col-offset-1 rf-col-11 rf-mt-9w">
-          Vous &ecirc;tes&nbsp;<span className="obligatoire">*</span>&nbsp;:
+          Vous &ecirc;tes&nbsp;<span className="obligatoire">*</span>&nbsp;
           <fieldset className="rf-fieldset rf-mt-2w">
             <div className="rf-fieldset__content">
               <div className="rf-radio-group">
                 <input type="radio" id="CnFS" name="estCoordinateur" value="false" required="required" onClick={handleChange}/>
                 <label className={erreurTypeCnFS ? 'rf-label invalid' : 'rf-label' } htmlFor="CnFS">
-                Conseiller.&egrave;re num&eacute;rique France Services
+                Conseiller·&egrave;re num&eacute;rique France Services
                 </label>
               </div>
               <div className="rf-radio-group">
                 <input type="radio" id="CnFSCoord" name="estCoordinateur" value="true" required="required" onClick={handleChange}/>
                 <label className={erreurTypeCnFS ? 'rf-label invalid' : 'rf-label' } htmlFor="CnFSCoord">
-                  Conseiller.&egrave;re num&eacute;rique France Services Coordinateur.ice
+                  Conseiller·&egrave;re num&eacute;rique France Services Coordinateur.ice
                 </label>
               </div>
             </div>
@@ -91,10 +91,10 @@ function ContactProfessionel({ conseiller }) {
         <div className="rf-col-5"></div>
         <div className="rf-col-offset-1 rf-col-10 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
           <label className={erreurTelephonePro ? 'rf-label invalid' : 'rf-label' } htmlFor="telephone-pro">
-            T&eacute;l&eacute;phone professionel
+            T&eacute;l&eacute;phone professionnel
             <span className="baseline">Si votre structure vous en a fourni un.</span>
             <input className={erreurTelephonePro ? 'rf-input rf-mt-2v input-error' : 'rf-input rf-mt-2v'} type="tel"
-              id="telephone-pro" name="telephonePro" placeholder={indicatif + 'XXXXXXXXX'} value={telephonePro}
+              id="telephone-pro" name="telephonePro" placeholder={indicatif} value={telephonePro}
               onChange={handleChange} onFocus={onFocus} />
           </label>
           { erreurTelephonePro &&

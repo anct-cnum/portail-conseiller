@@ -9,7 +9,6 @@ function CarteAdresse({ prefixId }) {
 
   const fields = useSelector(state => state.permanence?.fields);
   const location = fields?.filter(field => field.name === prefixId + 'location')[0]?.value;
-  const geocodeAdresses = useSelector(state => state.permanence?.geocodeAdresses);
 
   const [position, setPosition] = useState([1.849121, 46.624100]);
   const [zoom, setZoom] = useState(5);
@@ -26,8 +25,8 @@ function CarteAdresse({ prefixId }) {
   }, [location]);
 
   return (
-    <div style={geocodeAdresses?.length > 0 ? { marginTop: '121px' } : {} }>
-      <MapContainer className="map" zoomControl={false} tap={false}
+    <div className="map-container">
+      <MapContainer id={prefixId} className="map" zoomControl={false} tap={false}
         key={JSON.stringify({ lat: position[1], lng: position[0] })}
         center={{ lat: position[1], lng: position[0] }} zoom={zoom}>
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />

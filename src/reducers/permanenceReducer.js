@@ -1,6 +1,6 @@
 
 const initialState = {
-  fields: [{ name: 'principal_estStructure', value: null }],
+  fields: [{ name: 'estStructure', value: null }],
   geocodeAdresses: [],
   showLieuSecondaire: Array.from({ length: process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE }, () => (false)),
   loadingHoraires: Array.from({ length: Number(process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE) + 1 }, () => (false)),
@@ -189,6 +189,17 @@ export default function permanence(state = initialState, action) {
         showError: true,
         error: action.error,
         loadingGeocode: false,
+      };
+    case 'GEOCODE_ADRESSE_REBOOT':
+      let geocodeToDelete = state?.geocodeAdresses;
+      if (geocodeToDelete.length > 0) {
+        delete geocodeToDelete?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.geocodeAdresse;
+        delete geocodeToDelete?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.prefixId;
+      }
+      geocodeToDelete = nettoyageState(geocodeToDelete);
+      return {
+        ...state,
+        geocodeAdresses: geocodeToDelete,
       };
     case 'POST_PERMANENCE_REQUEST':
       return {

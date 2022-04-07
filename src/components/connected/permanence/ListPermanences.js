@@ -22,6 +22,7 @@ function ListPermanences({ prefixId, conseillerId }) {
     dispatch(permanenceActions.updateField(prefixId + 'rueVoie', permanence?.adresse.rue));
     dispatch(permanenceActions.updateField(prefixId + 'codePostal', permanence?.adresse.codePostal));
     dispatch(permanenceActions.updateField(prefixId + 'ville', permanence?.adresse.ville.toUpperCase()));
+    dispatch(permanenceActions.updateField(prefixId + 'location', permanence?.location));
     dispatch(permanenceActions.updateField(prefixId + 'numeroTelephone', permanence?.numeroTelephone));
     dispatch(permanenceActions.updateField(prefixId + 'email', permanence?.email));
     dispatch(permanenceActions.updateField(prefixId + 'siteWeb', permanence?.siteWeb));
@@ -57,7 +58,7 @@ function ListPermanences({ prefixId, conseillerId }) {
       {showList > 0 &&
       <>
         {((prefixId !== 'principal_') ||
-        (prefixId === 'principal_' && fields?.filter(field => field.name === 'principal_estStructure')[0]?.value === false)) &&
+        (prefixId === 'principal_' && fields?.filter(field => field.name === 'estStructure')[0]?.value === false)) &&
           <>
             <div className="rf-col-offset-1 rf-col-11">
               S&eacute;lectionnez votre lieu d&rsquo;activit&eacute;, s&rsquo;il n&rsquo;apparaît pas dans cette liste,

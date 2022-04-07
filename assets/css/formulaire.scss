@@ -28,6 +28,9 @@
         color: #bfe4b5;
       }
     }
+    .carte-banniere {
+      text-align: center;
+    }
   }
   .col-logo {
     text-align: right;
@@ -144,19 +147,32 @@
     line-height: 24px;
   }
   .jour {
-    font-weight: 600;
-    width: 78px;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  .without_ampm::-webkit-datetime-edit-ampm-field {
+    display: none;
+  }
+  input[type=time]::-webkit-clear-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    -ms-appearance:none;
+    appearance: none;
+    margin: -10px;
   }
   .horaires-debut, .horaires-fin, .horaires-fermeture {
     border: 1px solid #518FFF;
     background-color: #1e1e1e;
     box-sizing: border-box;
-    padding-left: 16px;
     text-align: center;
     color: #ffffff;
     font-size: 16px;
     height: 56px;
-    width: 92px;
+    width: 94px;
+  }
+  .horaires-debut, .horaires-fin {
+    padding-left: 16px;
   }
   .horaires-debut {
     border-top-left-radius: 8px;
@@ -171,10 +187,13 @@
     padding-top: 14px;
     color: #929292;
     cursor: pointer;
-    width: 184px;
+    width: 188px;
   }
   input[type="time"]::-webkit-calendar-picker-indicator{
     filter: brightness(0) invert(1);
+  }
+  .map-container {
+    margin-top: 141px;
   }
   .map {
     margin-left: 22px;
@@ -193,6 +212,11 @@
   @media (max-width: 767px) {
     .titre {
       font-size: 48px;
+    }
+    .map-container {
+      margin-top: 0px;
+      margin-bottom: 3rem;
+      margin-left: 38px;
     }
   }
   @media (max-width: 607px) {

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import telephoneHorsMetropole from '../../../data/indicatifs.json';
@@ -12,6 +12,7 @@ function Adresse({ codeDepartement, prefixId }) {
 
   const fields = useSelector(state => state.permanence?.fields);
   const disabledFields = useSelector(state => state.permanence.disabledFields);
+  const codePostal = fields?.filter(field => field.name === prefixId + 'codePostal')[0]?.value;
 
   const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
   const erreurLieuActivite = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'nomEnseigne'])[0]?.[prefixId + 'nomEnseigne'];
@@ -23,16 +24,57 @@ function Adresse({ codeDepartement, prefixId }) {
   const erreurNumeroTelephone = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'numeroTelephone'])[0]?.[prefixId + 'numeroTelephone'];
   const erreurEmail = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'email'])[0]?.[prefixId + 'email'];
   const erreurSiteWeb = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'siteWeb'])[0]?.[prefixId + 'siteWeb'];
+  const erreurLocation = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'location'])[0]?.[prefixId + 'location'];
 
   const estDisabled = disabledFields?.filter(field => field.id === prefixId)[0]?.value;
 
-  let indicatif = codeDepartement?.length === 3 ?
-    telephoneHorsMetropole?.find(item => item.codeDepartement === codeDepartement).indicatif : '+33';
+  const [indicatif, setIndicatif] = useState(codeDepartement?.length === 3 ?
+    telephoneHorsMetropole?.find(item => item.codeDepartement === codeDepartement).indicatif : '+33');
 
+  useEffect(() => {
+    if (codePostal?.length === 5) {
+      setIndicatif(telephoneHorsMetropole?.find(item => item.codeDepartement === codePostal.substr(0, 3))?.indicatif ?? '+33');
+    }
+  }, [codePostal]);
   return (
     <>
       {(prefixId !== 'principal_' ||
-      (prefixId === 'principal_' && fields?.filter(field => field.name === 'principal_estStructure')[0]?.value === false)) &&
+       (prefixId === 'principal_' && fields?.filter(field => field.name === 'estStructure')[0]?.value === false)) &&
+        <>
+          {!fields?.filter(field => field.name === String(prefixId) + 'checkboxSiret')[0]?.value &&
+            <>
+              <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
+                <InputText
+                  textLabel="Num&eacute;ro de Siret"
+                  errorInput={erreurSiret}
+                  nameInput= {prefixId + 'siret'}
+                  baselineInput={<>
+                    <a className="link" href="https://www.pappers.fr/" title="Liens vers https://www.pappers.fr/" target="blank" rel="noreferrer">
+                      O&ugrave; trouver un num&eacute;ro de Siret&nbsp;?
+                    </a><span>&nbsp;Pensez également à vous renseigner auprès de vos collaborateurs.</span></>
+                  }
+                  valueInput={fields?.filter(field => field.name === prefixId + 'siret')[0]?.value ?? ''}
+                  prefixId={prefixId}
+                />
+              </div>
+              <div className="rf-col-4"></div>
+            </>
+          }
+          <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-10 rf-mb-6w">
+            <InputCheckbox
+              textLabel="La structure n&rsquo;a pas de num&eacute;ro de Siret"
+              errorInput={null}
+              nameInput={ prefixId + 'checkboxSiret' }
+              baselineInput="Si l&rsquo;adresse pr&eacute;-remplie par le num&eacute;ro de Siret ne correspond pas &agrave;
+              votre lieu d&rsquo;activit&eacute;, vous pouvez cochez la case ci-dessus."
+              classBaseline="toggle-siret"
+            />
+          </div>
+        </>
+      }
+
+      {(prefixId !== 'principal_' ||
+      (prefixId === 'principal_' && fields?.filter(field => field.name === 'estStructure')[0]?.value === false)) &&
         <>
           <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
             <InputText disabled={estDisabled}
@@ -48,6 +90,7 @@ function Adresse({ codeDepartement, prefixId }) {
           <div className="rf-col-4"></div>
         </>
       }
+
       {prefixId !== 'principal_' &&
         <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-10 rf-mb-6w">
           <InputCheckbox
@@ -58,39 +101,7 @@ function Adresse({ codeDepartement, prefixId }) {
           />
         </div>
       }
-      {(prefixId !== 'principal_' ||
-       (prefixId === 'principal_' && fields?.filter(field => field.name === 'principal_estStructure')[0]?.value === false)) &&
-        <>
-          {!fields?.filter(field => field.name === String(prefixId) + 'checkboxSiret')[0]?.value &&
-            <>
-              <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
-                <InputText disabled={estDisabled}
-                  textLabel="Num&eacute;ro de Siret"
-                  errorInput={erreurSiret}
-                  nameInput= {prefixId + 'siret'}
-                  baselineInput={
-                    <a className="link" href="https://www.pappers.fr/" title="Liens vers https://www.pappers.fr/" target="blank" rel="noreferrer">
-                      O&ugrave; trouver un num&eacute;ro de Siret&nbsp;?
-                    </a>
-                  }
-                  valueInput={fields?.filter(field => field.name === prefixId + 'siret')[0]?.value ?? ''}
-                />
-              </div>
-              <div className="rf-col-4"></div>
-            </>
-          }
-          <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-10 rf-mb-6w">
-            <InputCheckbox disabled={estDisabled}
-              textLabel="La structure n&rsquo;a pas de num&eacute;ro de Siret"
-              errorInput={null}
-              nameInput={ prefixId + 'checkboxSiret' }
-              baselineInput="Si l&rsquo;adresse pr&eacute;-remplie par le num&eacute;ro de Siret ne correspond pas &agrave;
-              votre lieu d&rsquo;activit&eacute;, vous pouvez cochez la case ci-dessus."
-              classBaseline="toggle-siret"
-            />
-          </div>
-        </>
-      }
+
       <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5">
         <InputText disabled={estDisabled}
           textLabel="Num&eacute;ro de voie"
@@ -135,13 +146,16 @@ function Adresse({ codeDepartement, prefixId }) {
           valueInput={fields?.filter(field => field.name === prefixId + 'ville')[0]?.value ?? ''}
           classInput="rf-mb-6w"
         />
+
         <div>
-          <SelectAdresse prefixId={prefixId}/>
+          <SelectAdresse prefixId={prefixId}
+            errorInput={erreurLocation}
+            estStructure={fields?.filter(field => field.name === 'estStructure')[0]?.value ?? null}/>
         </div>
+
         <div className="localisation-btn-position">
           <ButtonLocalisation prefixId={prefixId} />
         </div>
-
       </div>
 
       <div className="rf-col-sm-12 rf-col-md-4"><CarteAdresse prefixId={prefixId} /></div>
@@ -153,7 +167,7 @@ function Adresse({ codeDepartement, prefixId }) {
           nameInput= {prefixId + 'numeroTelephone'}
           baselineInput="Accueil. Vous pouvez laisser vide si la structure n&rsquo;a pas de t&eacute;l&eacute;phone d&rsquo;accueil."
           valueInput={fields?.filter(field => field.name === prefixId + 'numeroTelephone')[0]?.value ?? ''}
-          placeholderInput={indicatif + 'XXXXXXXXX'}
+          placeholderInput={indicatif}
           indicatif={indicatif}
         />
       </div>

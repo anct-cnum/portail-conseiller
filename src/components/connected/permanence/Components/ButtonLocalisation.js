@@ -22,7 +22,7 @@ function ButtonLocalisation({ prefixId }) {
     <button id={'localisation_' + prefixId} className="rf-btn localisation-btn rf-mb-6w" style={{ textAlign: 'right' }} onClick={() => {
       onClick();
     }}>
-      Pr&eacute;visualiser la localisation
+      V&eacute;rifier la localisation
     </button>
   );
 }

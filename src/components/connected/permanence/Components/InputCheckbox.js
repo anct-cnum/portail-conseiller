@@ -14,7 +14,11 @@ function InputCheckbox({ textLabel, errorInput, nameInput, baselineInput, classB
     const { checked } = e.target;
     dispatch(permanenceActions.updateField(nameInput, checked));
     if (nameInput.slice(-5) === 'Siret') {
-      dispatch(permanenceActions.updateField(prefixId + 'siret', ''));
+      dispatch(permanenceActions.updateField(prefixId + 'nomEnseigne', ''));
+      dispatch(permanenceActions.updateField(prefixId + 'numeroVoie', ''));
+      dispatch(permanenceActions.updateField(prefixId + 'rueVoie', ''));
+      dispatch(permanenceActions.updateField(prefixId + 'codePostal', ''));
+      dispatch(permanenceActions.updateField(prefixId + 'ville', ''));
       dispatch(permanenceActions.disabledField(prefixId, false));
     }
   };

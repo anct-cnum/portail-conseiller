@@ -4,16 +4,28 @@ import { permanenceActions } from '../../../../actions';
 import { useDispatch } from 'react-redux';
 
 
-function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineInput, valueInput, placeholderInput, classInput, disabled, indicatif }) {
+function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineInput,
+  valueInput, placeholderInput, classInput, disabled, indicatif, prefixId }) {
+
   const dispatch = useDispatch();
 
   const reg = new RegExp('^[0-9]{14}$');
 
+  const filtreValue = value => {
+    //eslint-disable-next-line
+    return value.replace(/\s/g,'');
+  };
+
   const handleChange = e => {
     const { name, value } = e.target;
-    dispatch(permanenceActions.updateField(name, value));
-    if (name.slice(-5) === 'siret' && value.length === 14 && reg.test(value)) {
-      dispatch(permanenceActions.verifySiret(name.slice(0, -5), value));
+    if (name.slice(-5) === 'siret' && filtreValue(value).length === 14 && reg.test(filtreValue(value))) {
+      dispatch(permanenceActions.verifySiret(name.slice(0, -5), filtreValue(value)));
+      dispatch(permanenceActions.updateField(name, filtreValue(value)));
+    } else {
+      dispatch(permanenceActions.updateField(name, value));
+      if (prefixId) {
+        dispatch(permanenceActions.disabledField(prefixId, false));
+      }
     }
   };
 
@@ -78,6 +90,7 @@ InputText.propTypes = {
   classInput: PropTypes.string,
   disabled: PropTypes.bool,
   indicatif: PropTypes.string,
+  prefixId: PropTypes.string,
 };
 
 export default InputText;

@@ -85,25 +85,25 @@ function Horaires({ prefixId, horairesId }) {
           <thead>
             <tr>
               <th></th>
-              <th><div className="rf-mr-md-2w">Matin</div></th>
-              <th><div className="rf-mr-md-2w">Apr&egrave;s-midi</div></th>
+              <th><div className="rf-mr-md-2w jour">Matin</div></th>
+              <th><div className="rf-mr-md-2w jour">Apr&egrave;s-midi</div></th>
             </tr>
           </thead>
           {jourSemaine.map((jour, idx) => {
             return (
               <tbody key={idx}>
                 <tr>
-                  <td className={erreursHoraires?.includes(idx) ? 'invalid jour' : 'jour'} >
+                  <td className={erreursHoraires?.includes(idx) ? 'invalid jour' : 'jour'} style={{ width: '78px' }}>
                     {jour.charAt(0).toUpperCase() + jour.substring(1)}
                   </td>
                   <td>
                     {!horaires[prefixId + 'horaires'][idx]?.fermeture[0] &&
                       <>
-                        <input className="horaires-debut rf-mb-md-1w" type="time" value={horaires[prefixId + 'horaires'][idx]?.matin[0]}
+                        <input className="horaires-debut rf-mb-md-1w without_ampm" type="time" value={horaires[prefixId + 'horaires'][idx]?.matin[0]}
                           required name={prefixId + jour + 'MatinDebut'} min="6:00" max="13:00" onChange={e => {
                             handleChange(e, idx, 'matin', 0);
                           }}/>
-                        <input className="horaires-fin rf-mr-2w" type="time" value={horaires[prefixId + 'horaires'][idx]?.matin[1]}
+                        <input className="horaires-fin rf-mr-2w without_ampm" type="time" value={horaires[prefixId + 'horaires'][idx]?.matin[1]}
                           required name={prefixId + jour + 'MatinFin'} min="6:00" max="13:00" onChange={e => {
                             handleChange(e, idx, 'matin', 1);
                           }}/>
@@ -118,12 +118,12 @@ function Horaires({ prefixId, horairesId }) {
                   <td>
                     {!horaires[prefixId + 'horaires'][idx]?.fermeture[1] &&
                       <>
-                        <input className="horaires-debut rf-mb-md-1w" type="time" value={horaires[prefixId + 'horaires'][idx]?.apresMidi[0]}
-                          required name={prefixId + jour + 'ApresMidiDebut'} min="12:00" max="22:00" onChange={e => {
+                        <input className="horaires-debut rf-mb-md-1w without_ampm" type="time" value={horaires[prefixId + 'horaires'][idx]?.apresMidi[0]}
+                          required name={prefixId + jour + 'ApresMidiDebut'} min="13:00" max="22:00" onChange={e => {
                             handleChange(e, idx, 'apresMidi', 0);
                           }}/>
-                        <input className="horaires-fin rf-mr-2w" type="time" value={horaires[prefixId + 'horaires'][idx]?.apresMidi[1]}
-                          required name={prefixId + jour + 'ApresMidiFin'} min="12:00" max="22:00" onChange={e => {
+                        <input className="horaires-fin rf-mr-2w without_ampm" type="time" value={horaires[prefixId + 'horaires'][idx]?.apresMidi[1]}
+                          required name={prefixId + jour + 'ApresMidiFin'} min="13:00" max="22:00" onChange={e => {
                             handleChange(e, idx, 'apresMidi', 1);
                           }}/>
                       </>

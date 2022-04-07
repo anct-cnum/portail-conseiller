@@ -37,7 +37,7 @@ function Validation({ conseillerId, structureId }) {
         emailPro: fields.filter(field => field.name === 'emailPro')[0]?.value ?? null,
         telephonePro: fields.filter(field => field.name === 'telephonePro')[0]?.value ?? null,
         //Données du lieu d'activité
-        estStructure: fields.filter(field => field.name === prefixId + 'estStructure')[0]?.value ?? false,
+        estStructure: prefixId === 'principal_' ? fields.filter(field => field.name === 'estStructure')[0]?.value : false,
         _id: fields.filter(field => field.name === prefixId + 'idPermanence')[0]?.value ?? null,
         nomEnseigne: fields.filter(field => field.name === prefixId + 'nomEnseigne')[0]?.value ?? null,
         numeroTelephone: fields.filter(field => field.name === prefixId + 'numeroTelephone')[0]?.value ?? null,
@@ -49,8 +49,8 @@ function Validation({ conseillerId, structureId }) {
           rue: fields.filter(field => field.name === prefixId + 'rueVoie')[0]?.value ?? null,
           codePostal: fields.filter(field => field.name === prefixId + 'codePostal')[0]?.value ?? null,
           ville: fields.filter(field => field.name === prefixId + 'ville')[0]?.value ?? null,
-          location: fields.filter(field => field.name === prefixId + 'location')[0]?.value ?? null,
         },
+        location: fields.filter(field => field.name === prefixId + 'location')[0]?.value ?? null,
         horaires: fields.filter(field => field.name === prefixId + 'horaires')[0]?.value[prefixId + 'horaires'] ?? horairesInitiales,
         conseillersItinerants: itinerant,
         typeAcces: fields.filter(field => field.name === prefixId + 'typeAcces')[0]?.value ?? null,
@@ -58,7 +58,7 @@ function Validation({ conseillerId, structureId }) {
         structureId: structureId,
         hasPermanence: true,
       };
-      console.log(nouveauLieu);
+
       if (nouveauLieu._id !== null) {
         dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, true, null));
       } else {

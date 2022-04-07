@@ -12,6 +12,7 @@ export const permanenceActions = {
   updatePermanence,
   verifySiret,
   getGeocodeAdresse,
+  rebootGeocodeAdresse,
   updateLieuPrincipal,
   updateField,
   disabledField,
@@ -100,9 +101,9 @@ function verifyFormulaire(form) {
     emailPro: form?.fields.filter(field => field.name === 'emailPro')[0]?.value }).error) ?
     'Une adresse email valide doit être saisie' : null });
 
-  errors.push({ principal_estStructure: (Joi.object({
-    principal_estStructure: Joi.boolean().allow(true, false).required() }).validate({ principal_estStructure:
-    form?.fields.filter(field => field.name === 'principal_estStructure')[0]?.value }).error) ?
+  errors.push({ estStructure: (Joi.object({
+    estStructure: Joi.boolean().allow(true, false).required() }).validate({ estStructure:
+    form?.fields.filter(field => field.name === 'estStructure')[0]?.value }).error) ?
     'Vous devez indiquer si votre structure est votre lieu d\'activité principal ou non' : null });
 
   const champsAcceptes = [
@@ -131,10 +132,15 @@ function verifyFormulaire(form) {
       message: 'Une rue doit obligatoirement être saisie' },
     {
       nom: 'codePostal', validation: Joi.string().trim().required().min(5).max(5),
-      message: 'Un code postal doit obligatoirement être saisi' },
+      message: 'Un code postal doit obligatoirement être saisi'
+    },
     {
       nom: 'ville', validation: Joi.string().trim().required().min(3).max(60),
       message: 'Une ville doit obligatoirement être saisie'
+    },
+    {
+      nom: 'location', validation: Joi.required(),
+      message: 'La localisation du lieu d\'activité doit obligatoirement être saisie'
     },
     {
       nom: 'itinerant', validation: Joi.string().trim().allow('', null),
@@ -217,8 +223,8 @@ function controleHoraires(horaires) {
         (jour.matin[1] < '06:00' || jour.matin[1] > '13:00' && jour.matin[1] !== 'Fermé')) {
       erreursHoraires.push(id);
     }
-    if ((jour.apresMidi[0] < '12:00' || jour.apresMidi[0] > '22:00' && jour.apresMidi[0] !== 'Fermé') ||
-        (jour.apresMidi[1] < '12:00' || jour.apresMidi[1] > '22:00' && jour.apresMidi[1] !== 'Fermé')) {
+    if ((jour.apresMidi[0] < '13:00' || jour.apresMidi[0] > '22:00' && jour.apresMidi[0] !== 'Fermé') ||
+        (jour.apresMidi[1] < '13:00' || jour.apresMidi[1] > '22:00' && jour.apresMidi[1] !== 'Fermé')) {
       erreursHoraires.push(id);
     }
     if (jour.matin[0] > jour.matin[1] || jour.apresMidi[0] > jour.apresMidi[1] ||
@@ -327,6 +333,10 @@ function getGeocodeAdresse(adresse, prefixId) {
   function failure(error) {
     return { type: 'GEOCODE_ADRESSE_FAILURE', error };
   }
+}
+
+function rebootGeocodeAdresse(prefixId) {
+  return { type: 'GEOCODE_ADRESSE_REBOOT', prefixId };
 }
 
 function updateLieuPrincipal(hide) {

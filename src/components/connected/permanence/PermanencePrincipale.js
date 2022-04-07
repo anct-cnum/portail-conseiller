@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -17,14 +17,14 @@ function PermanencePrincipale({ structure, conseillerId }) {
   const listPermanences = useSelector(state => state.permanence?.permanences);
   const loadingHoraires = useSelector(state => state.permanence?.loadingHoraires);
   const erreursFormulaire = useSelector(state => state.permanence?.errorsFormulaire?.errors);
-
   const erreurAdresseExact = erreursFormulaire?.filter(erreur => erreur?.estStructure)[0]?.estStructure;
   const adresseStructure = structure?.insee?.etablissement?.adresse;
-  const fields = useSelector(state => state.permanence?.fields);
-  const boolLieuPrincipal = fields?.filter(field => field.name === 'estStructure')[0]?.value === null;
+
+  const [estClique, setEstClique] = useState(false);
 
   function handleAdresse(estStructure) {
-    dispatch(permanenceActions.updateField('principal_estStructure', estStructure));
+    setEstClique(true);
+    dispatch(permanenceActions.updateField('estStructure', estStructure));
     dispatch(permanenceActions.updateField('principal_idPermanence', null));
     dispatch(permanenceActions.updateField('principal_numeroTelephone', null));
     dispatch(permanenceActions.updateField('principal_email', null));
@@ -38,6 +38,7 @@ function PermanencePrincipale({ structure, conseillerId }) {
     dispatch(permanenceActions.updateField('principal_rueVoie', null));
     dispatch(permanenceActions.updateField('principal_codePostal', null));
     dispatch(permanenceActions.updateField('principal_ville', null));
+    dispatch(permanenceActions.updateField('principal_location', null));
 
     if (estStructure) {
       const permanencePrincipale = listPermanences.find(permanence => permanence.structure.$id === structure._id && permanence.estStructure === true);
@@ -59,8 +60,19 @@ function PermanencePrincipale({ structure, conseillerId }) {
         permanencePrincipale?.adresse?.codePostal ?? adresseStructure.code_postal));
       dispatch(permanenceActions.updateField('principal_ville',
         permanencePrincipale?.adresse?.ville.toUpperCase() ?? adresseStructure.localite.toUpperCase()));
+      dispatch(permanenceActions.updateField('principal_location', structure?.location));
       loadingHoraires[0] = true;
       dispatch(permanenceActions.setHorairesLoading(loadingHoraires));
+
+      const adresseGeoloc = {
+        numero: permanencePrincipale?.adresse?.numeroRue ?? adresseStructure.numero_voie,
+        rue: permanencePrincipale?.adresse?.rue ?? adresseStructure.type_voie + ' ' + adresseStructure.nom_voie,
+        codePostal: permanencePrincipale?.adresse?.codePostal ?? adresseStructure.code_postal,
+        ville: permanencePrincipale?.adresse?.ville.toUpperCase() ?? adresseStructure.localite.toUpperCase()
+      };
+      dispatch(permanenceActions.getGeocodeAdresse(adresseGeoloc, 'principal_'));
+    } else {
+      dispatch(permanenceActions.rebootGeocodeAdresse('principal_'));
     }
   }
 
@@ -80,7 +92,7 @@ function PermanencePrincipale({ structure, conseillerId }) {
       </div>
 
       <div className="rf-col-offset-1 rf-col-11">
-        <div className={(erreurAdresseExact && boolLieuPrincipal) ? 'rf-col-12 invalid rf-mb-7w' : 'rf-col-12 rf-mb-7w'}>
+        <div className={(erreurAdresseExact && !estClique) ? 'rf-col-12 invalid rf-mb-7w' : 'rf-col-12 rf-mb-7w'}>
             Votre structure d&rsquo;accueil mentionn&eacute;e ci-dessus est-elle votre <b>lieu d&rsquo;activit&eacute; principal</b> ?&nbsp;
           <span className="obligatoire">*</span>
           <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-2w">
@@ -89,7 +101,7 @@ function PermanencePrincipale({ structure, conseillerId }) {
                 <input type="radio" id="Oui" name="principalLieuActivite" value="Oui" required="required" onClick={() => {
                   handleAdresse(true);
                 }}/>
-                <label className={(erreurAdresseExact && boolLieuPrincipal) ? 'rf-label invalid' : 'rf-label' } htmlFor="Oui">
+                <label className={(erreurAdresseExact && !estClique) ? 'rf-label invalid' : 'rf-label' } htmlFor="Oui">
                   Oui
                 </label>
               </div>
@@ -99,31 +111,34 @@ function PermanencePrincipale({ structure, conseillerId }) {
                     handleAdresse(false);
                   }}
                 />
-                <label className={(erreurAdresseExact && boolLieuPrincipal) ? 'rf-label invalid' : 'rf-label' } htmlFor="Non">
+                <label className={(erreurAdresseExact && !estClique) ? 'rf-label invalid' : 'rf-label' } htmlFor="Non">
                   Non
                 </label>
               </div>
             </div>
           </fieldset>
-          { (erreurAdresseExact && boolLieuPrincipal === undefined) &&
+          { (erreurAdresseExact && !estClique) &&
             <p className="text-error rf-mb-n3w">{erreurAdresseExact}</p>
           }
         </div>
       </div>
+      {estClique &&
+        <>
+          <ListPermanences prefixId="principal_" conseillerId={conseillerId} />
 
-      <ListPermanences prefixId="principal_" conseillerId={conseillerId} />
+          <Adresse
+            codeDepartement={structure?.codeDepartement}
+            adressePermanence={adresseStructure}
+            nomEnseignePermanence={structure?.nom}
+            prefixId="principal_"
+            islieuPrincipal={true}
+          />
 
-      <Adresse
-        codeDepartement={structure?.codeDepartement}
-        adressePermanence={adresseStructure}
-        nomEnseignePermanence={structure?.nom}
-        prefixId="principal_"
-        islieuPrincipal={true}
-      />
+          <TypeAcces prefixId="principal_" islieuPrincipal={true} />
 
-      <TypeAcces prefixId="principal_" islieuPrincipal={true} />
-
-      <Horaires prefixId="principal_" horairesId={0}/>
+          <Horaires prefixId="principal_" horairesId={0}/>
+        </>
+      }
     </>
   );
 }

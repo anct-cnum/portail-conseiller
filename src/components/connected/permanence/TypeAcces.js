@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import InputRadio from './Components/InputRadio';
 
 function TypeAcces({ islieuPrincipal, prefixId }) {
-
+  const fields = useSelector(state => state.permanence?.fields);
+  const estCoordinateur = fields?.filter(field => field.name === 'estCoordinateur')[0]?.value;
   const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
   const erreurTypeAcces = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'typeAcces'])[0]?.[prefixId + 'typeAcces'];
 
@@ -23,7 +24,7 @@ function TypeAcces({ islieuPrincipal, prefixId }) {
               <InputRadio textLabel="Sur rendez-vous" errorInput={erreurTypeAcces}
                 idInput={prefixId + 'rdv'} nameInput={prefixId + 'typeAcces'} valueInput="rdv"/>
 
-              {!islieuPrincipal &&
+              {(!islieuPrincipal || estCoordinateur) &&
                 <InputRadio textLabel="La structure n&rsquo;accueille pas de public" errorInput={erreurTypeAcces}
                   idInput={prefixId + 'prive'} nameInput={prefixId + 'typeAcces'} valueInput="prive"/>
               }

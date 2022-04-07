@@ -21,7 +21,7 @@ function Ouverture() {
             <div className="rf-grid-row rf-grid-row--center">
               <div className="rf-col-12 rf-col-sm-10 rf-col-md-7 rf-modal__body modal-ouverture">
                 <div className="rf-modal__content rf-mt-n4w">
-                  <h1 className="rf-modal__title centre">À vous de jouer !</h1>
+                  <h1 className="rf-modal__title centre rf-mb-4w">À vous de jouer !</h1>
                   <div className="rf-mb-5w centre">
                     <img className="conseillers-carte" src="logos/permanences/carthographie-avec-conseillers.svg"/>
                     <div className="rf-mt-4w">

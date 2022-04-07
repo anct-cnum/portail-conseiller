@@ -21,7 +21,7 @@ function Banner() {
             vous donner de la visibilit&eacute; aupr&egrave;s de vos publics,
              celles-ci seront visibles sur la carte.
           </div>
-          <div className="rf-col-5 rf-mb-7w">
+          <div className="rf-col-12 rf-col-md-5 rf-mb-7w carte-banniere">
             <img src="logos/permanences/cartographie-cnfs.svg"/>
           </div>
         </div>
