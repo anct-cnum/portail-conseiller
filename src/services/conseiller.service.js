@@ -63,7 +63,7 @@ function cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtrePr
     const numeroGroupe = /\d/.exec(filtreGroupeCRA)[0];
     groupeCRA = `&groupeCRA=${numeroGroupe}`;
   }
-  
+
   return { ordreColonne, filterDateStart, filterDateEnd, filterStructureId, profil, groupeCRA, certifie };
 }
 
@@ -99,13 +99,14 @@ function getStatistiquesPDF(idConseiller, dateDebut, dateFin, codePostal) {
     requestOptions).then(response => !response.ok ? handleResponse(response) : handleFileResponse(response));
 }
 
-function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType) {
+function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType, codePostal) {
   const requestOptions = {
     method: 'GET',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
   };
 
-  return fetch(`${apiUrlRoot}/stats/admincoop/statistiques.pdf?dateDebut=${dateDebut}&dateFin=${dateFin}&type=${type}&idType=${idType}`,
+  // eslint-disable-next-line max-len
+  return fetch(`${apiUrlRoot}/stats/admincoop/statistiques.pdf?dateDebut=${dateDebut}&dateFin=${dateFin}&type=${type}&idType=${idType}&codePostal=${codePostal}`,
     requestOptions).then(response => !response.ok ? handleResponse(response) : handleFileResponse(response));
 }
 
@@ -119,14 +120,14 @@ function getStatistiquesCSV(dateDebut, dateFin, codePostal) {
     requestOptions).then(handleFileResponse);
 }
 
-function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, conseillerIds) {
+function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, codePostal, conseillerIds) {
   const requestOptions = {
     method: 'GET',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
   };
 
   // eslint-disable-next-line max-len
-  return fetch(`${apiUrlRoot}/stats/admincoop/statistiques.csv?dateDebut=${dateDebut}&dateFin=${dateFin}&type=${type}&idType=${idType}&conseillerIds=${conseillerIds}`,
+  return fetch(`${apiUrlRoot}/stats/admincoop/statistiques.csv?dateDebut=${dateDebut}&dateFin=${dateFin}&type=${type}&idType=${idType}&codePostal=${codePostal}&conseillerIds=${conseillerIds}`,
     requestOptions).then(handleFileResponse);
 }
 

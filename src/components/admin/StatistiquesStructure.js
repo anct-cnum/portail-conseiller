@@ -126,7 +126,13 @@ function StatistiquesStructure() {
           <h2 className="centrerTexte">Il n&rsquo;y a aucune statistique pour le moment</h2>
         }
       </div>
-      <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats} idTerritoire={territoire?.[typeTerritoire]} codePostal={codePostalStats} />
+      <StatisticsBanner
+        dateDebut={dateDebutStats}
+        dateFin={dateFinStats}
+        idTerritoire={territoire?.[typeTerritoire]}
+        codePostal={codePostalStats}
+        structure={true}
+      />
       <div className="rf-m-5w rf-m-md-9w rf-m-lg-15w"></div>
     </div>
   );

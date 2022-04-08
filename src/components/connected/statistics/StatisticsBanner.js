@@ -5,23 +5,25 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { conseillerActions } from '../../../actions';
 
-function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false, codePostal = null }) {
+function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false, codePostal = null, structure = false }) {
 
   const location = useLocation();
   const dispatch = useDispatch();
   const downloadError = useSelector(state => state.conseiller?.downloadError);
   const user = useSelector(state => state.authentication.user.user);
   const blob = useSelector(state => state.conseiller?.blob);
-
   const territoire = location?.territoire;
   let typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : null;
-
   function savePDF() {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     if (user?.role === 'admin_coop' || user?.role === 'structure_coop') {
-      const type = nationales === false ? typeTerritoire ?? 'user' : 'nationales';
-
-      dispatch(conseillerActions.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser));
+      let type = '';
+      if (structure === false) {
+        type = nationales === false ? typeTerritoire ?? 'user' : 'nationales';
+      } else {
+        type = 'structure';
+      }
+      dispatch(conseillerActions.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser, codePostal));
     } else {
       dispatch(conseillerActions.getStatistiquesPDF(user.entity.$id, dateDebut, dateFin, codePostal));
     }
@@ -32,7 +34,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false
       const type = nationales === false ? typeTerritoire ?? 'user' : 'nationales';
       const conseillerIds = territoire?.conseillerIds ?? undefined;
       // eslint-disable-next-line max-len
-      dispatch(conseillerActions.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser, conseillerIds));
+      dispatch(conseillerActions.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser, codePostal, conseillerIds));
     } else {
       dispatch(conseillerActions.getStatistiquesCSV(dateDebut, dateFin, codePostal));
     }
@@ -101,6 +103,7 @@ StatisticsBanner.propTypes = {
   idTerritoire: PropTypes.string,
   nationales: PropTypes.bool,
   codePostal: PropTypes.string,
+  structure: PropTypes.bool
 };
 
 export default StatisticsBanner;

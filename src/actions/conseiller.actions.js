@@ -108,10 +108,10 @@ function getStatistiquesPDF(idConseiller, dateDebut, dateFin, codePostal) {
   }
 }
 
-function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType) {
+function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType, codePostal) {
   return dispatch => {
     dispatch(request());
-    conseillerService.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType)
+    conseillerService.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType, codePostal)
     .then(
       data => dispatch(success(data, download(data, `${statistiquesAdminFileName(dateDebut, dateFin, type)}.pdf`))),
       error => dispatch(failure(error))
@@ -151,10 +151,10 @@ function getStatistiquesCSV(dateDebut, dateFin, codePostal) {
   }
 }
 
-function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, conseillerIds) {
+function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, codePostal, conseillerIds) {
   return dispatch => {
     dispatch(request());
-    conseillerService.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, conseillerIds)
+    conseillerService.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, codePostal, conseillerIds)
     .then(
       data => dispatch(success(data, download(data, `${statistiquesAdminFileName(dateDebut, dateFin, type, idType)}.csv`))),
       error => dispatch(failure(error))
