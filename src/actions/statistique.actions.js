@@ -164,8 +164,7 @@ function getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, con
 
 function getStatsCraStructure(dateDebut, dateFin, idStructure, codePostal = null) {
   return dispatch => {
-    const idUser = null;
-    dispatch(request(dateDebut, dateFin, idUser, codePostal));
+    dispatch(request());
     statistiqueService.getStatsCraStructure(formatDate(dateDebut), formatDate(dateFin), idStructure, codePostal)
     .then(
       statsStructure => {
@@ -177,9 +176,8 @@ function getStatsCraStructure(dateDebut, dateFin, idStructure, codePostal = null
     );
   };
 
-  function request(dateDebut, dateFin, idUser, codePostal) {
-    console.log(codePostal);
-    return { type: 'GET_STATS_CRA_STRUCTURE_REQUEST', dateDebut, dateFin, idUser, codePostal };
+  function request() {
+    return { type: 'GET_STATS_CRA_STRUCTURE_REQUEST' };
   }
   function success(statsStructure) {
     return { type: 'GET_STATS_CRA_STRUCTURE_SUCCESS', statsStructure };

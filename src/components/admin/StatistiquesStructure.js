@@ -26,17 +26,16 @@ function StatistiquesStructure() {
   const dateFinStats = useSelector(state => state.statistique?.dateFinStats);
   const codePostalStats = useSelector(state => state.statistique?.codePostalStats);
   const donneesStatistiques = useSelector(state => state.statistique?.statsData);
-  const user = useSelector(state => state?.authentication?.user?.user);
   const structure = useSelector(state => state.structure?.structure);
-
   const territoire = location?.territoire;
   const typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : '';
+
   useEffect(() => {
     dispatch(structureActions.get(userEntityId()));
   }, []);
+
   useEffect(() => {
     if (structure !== undefined) {
-      console.log(user._id);
       dispatch(statistiqueActions.getStatsCraStructure(dateDebutStats, dateFinStats, structure._id, codePostalStats));
       dispatch(paginationActions.resetPage(false));
     }
@@ -98,8 +97,8 @@ function StatistiquesStructure() {
           <div className="rf-col-xs-3 rf-col-sm-7 rf-col-md-6 rf-col-lg-4">
             <div className="rf-mb-4w rf-mb-md-6w">
               <StatisticsPeriod dateDebut={dateDebutStats} dateFin={dateFinStats} />
-              {statsDataLoading === false &&
-                <ElementCodePostal idStructure={structure?._id} />
+              {structure !== undefined &&
+                <ElementCodePostal idStructure={structure._id} />
               }
             </div>
           </div>
