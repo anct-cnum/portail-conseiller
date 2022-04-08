@@ -166,10 +166,10 @@ function Welcome() {
                       – Une mise &agrave; jour du kit de communication (troisi&egrave;me version), comprenant  en premier lieu la fourniture d&rsquo;un
                       d&eacute;pliant d&eacute;crivant le dispositif CnFS, adaptable en fonction de votre cadre de travail (structure et
                       coordonn&eacute;es).<br/>
-                      – un fil d&rsquo;actualit&eacute;s r&eacute;guli&egrave;res de la communaut&eacute; Conseiller num&eacute;rique France Services ;<br/>
-                      – des temps de rencontres d&eacute;di&eacute;s ;<br/>
-                      – une fonction de prise de rendez-vous ;<br/>
-                      – une visualisation nationale des lieux de m&eacute;diation num&eacute;rique accessible via le site vitrine des conseillers
+                      – Un fil d&rsquo;actualit&eacute;s r&eacute;guli&egrave;res de la communaut&eacute; Conseiller num&eacute;rique France Services ;<br/>
+                      – Des temps de rencontres d&eacute;di&eacute;s ;<br/>
+                      – Une fonction de prise de rendez-vous ;<br/>
+                      – Une visualisation nationale des lieux de m&eacute;diation num&eacute;rique accessible via le site vitrine des conseillers
                       num&eacute;riques France Services.<br/>
                       <br/>
                       <Link to="/a-propos" title="Acc&eacute;der &agrave; la page &agrave; propos" className="propos-btn">
