@@ -146,6 +146,11 @@
     font-size: 16px;
     line-height: 24px;
   }
+  .position-jour {
+    position: relative;
+    width: 78px;
+    top: -5px;
+  }
   .jour {
     font-size: 14px;
     font-weight: 400;
@@ -161,34 +166,57 @@
     appearance: none;
     margin: -10px;
   }
-  .horaires-debut, .horaires-fin, .horaires-fermeture {
+  .horaires-debut, .horaires-fin, .horaires-fermeture, .fermeture-btn, .dupliquer-btn {
     border: 1px solid #518FFF;
     background-color: #1e1e1e;
     box-sizing: border-box;
     text-align: center;
     color: #ffffff;
     font-size: 16px;
-    height: 56px;
-    width: 94px;
+    height: 40px;
+    width: 100px;
+  }
+  .fermeture-btn {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    margin-top: -1px;
+    cursor: pointer;
+    font-size: 14px;
+    display: block;
+    height: 40px;
+    width: 200px;
+  }
+  .dupliquer-btn {
+    display: none;
+    border-radius: 8px;
+    margin-top: -8px;
+    cursor: pointer;
+    font-size: 14px;
+    height: 79px;
+  }
+  .tr-horaires:hover, .tr-horaires td:hover {
+    .dupliquer-btn {
+      display: inline-block;
+    }
   }
   .horaires-debut, .horaires-fin {
     padding-left: 16px;
   }
   .horaires-debut {
     border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
   }
   .horaires-fin {
     border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
   }
   .horaires-fermeture {
     border-radius: 8px;
-    padding-top: 14px;
+    padding-top: 25px;
     color: #929292;
     cursor: pointer;
-    width: 188px;
+    height: 79px;
+    width: 200px;
   }
+
   input[type="time"]::-webkit-calendar-picker-indicator{
     filter: brightness(0) invert(1);
   }

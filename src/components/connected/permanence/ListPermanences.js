@@ -11,13 +11,14 @@ function ListPermanences({ prefixId, conseillerId }) {
   const fields = useSelector(state => state.permanence?.fields);
 
   const [showList, setShowList] = useState(0);
+
   const handleClick = e => {
     const permanence = listPermanences.find(permanence => permanence._id === e.target.value);
 
     dispatch(permanenceActions.updateField(prefixId + 'idPermanence', permanence?._id));
     dispatch(permanenceActions.updateField(prefixId + 'nomEnseigne', permanence?.nomEnseigne));
     dispatch(permanenceActions.updateField(prefixId + 'siret', permanence?.siret));
-    dispatch(permanenceActions.updateField(prefixId + 'checkboxSiret', !permanence?.siret));
+    dispatch(permanenceActions.updateField(prefixId + 'checkboxSiret', e.target.value === 'nouveau' ? false : !permanence?.siret));
     dispatch(permanenceActions.updateField(prefixId + 'numeroVoie', permanence?.adresse.numeroRue));
     dispatch(permanenceActions.updateField(prefixId + 'rueVoie', permanence?.adresse.rue));
     dispatch(permanenceActions.updateField(prefixId + 'codePostal', permanence?.adresse.codePostal));
@@ -26,18 +27,21 @@ function ListPermanences({ prefixId, conseillerId }) {
     dispatch(permanenceActions.updateField(prefixId + 'numeroTelephone', permanence?.numeroTelephone));
     dispatch(permanenceActions.updateField(prefixId + 'email', permanence?.email));
     dispatch(permanenceActions.updateField(prefixId + 'siteWeb', permanence?.siteWeb));
-    dispatch(permanenceActions.updateField(prefixId + 'typeAcces', permanence?.typeAcces));
     dispatch(permanenceActions.updateField(prefixId + 'horaires', { [prefixId + 'horaires']: permanence?.horaires }));
     dispatch(permanenceActions.updateField(prefixId + 'conseillers', permanence?.conseillers));
+    permanence?.typeAcces.forEach(type => {
+      dispatch(permanenceActions.updateField(prefixId + type, true));
+    });
+
     if (prefixId === 'principal_') {
       loadingHoraires[0] = true;
     } else {
       const id = 0;
       loadingHoraires[id + 1] = true;
     }
+
     dispatch(permanenceActions.setHorairesLoading(loadingHoraires));
     dispatch(permanenceActions.disabledField(prefixId, e.target.value !== 'nouveau'));
-
   };
 
   useEffect(() => {
@@ -51,7 +55,6 @@ function ListPermanences({ prefixId, conseillerId }) {
     }
     setShowList(nbPermanences);
   }, [listPermanences]);
-
 
   return (
     <>

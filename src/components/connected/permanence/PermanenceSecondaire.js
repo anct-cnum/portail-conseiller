@@ -31,6 +31,14 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
 
   function handleSecondaire(hasSecondaire) {
     if (hasSecondaire) {
+      
+      const typeAcces = [
+        fields.filter(field => field.name === prefixId + 'libre')[0]?.value ? 'libre' : null,
+        fields.filter(field => field.name === prefixId + 'rdv')[0]?.value ? 'rdv' : null,
+        fields.filter(field => field.name === prefixId + 'prive')[0]?.value ? 'prive' : null,
+      ].filter(n => n);
+      dispatch(permanenceActions.updateField(prefixId + 'typeAcces', typeAcces));
+
       dispatch(permanenceActions.verifyFormulaire(form));
       setClickSubmit(true);
       setOuiBtn(true);
@@ -42,6 +50,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
   }
 
   useEffect(() => {
+
     if (errorsForm?.lengthError === 0 && clickSubmit) {
       const conseillers = fields.filter(field => field.name === prefixId + 'conseillers')[0]?.value ?? [];
       if (!conseillers.includes(conseillerId)) {

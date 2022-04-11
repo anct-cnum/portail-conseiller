@@ -139,7 +139,7 @@ function verifyFormulaire(form) {
       message: 'Une ville doit obligatoirement être saisie'
     },
     {
-      nom: 'location', validation: Joi.required(),
+      nom: 'location', validation: Joi.object().required(),
       message: 'La localisation du lieu d\'activité doit obligatoirement être saisie'
     },
     {
@@ -151,8 +151,8 @@ function verifyFormulaire(form) {
       message: 'Une URL valide doit être saisie (exemple de format valide https://www.le-site-de-ma-structure.fr)'
     },
     {
-      nom: 'typeAcces', validation: Joi.string().trim().required().valid('libre', 'rdv', 'prive'),
-      message: 'Un type d\'accès doit obligatoirement être indiqué'
+      nom: 'typeAcces', validation: Joi.array().items(Joi.string().trim().valid('libre', 'rdv', 'prive')).min(1).required(),
+      message: 'Au moins un type d\'accès doit obligatoirement être indiqué'
     },
     {
       nom: 'horaires' }

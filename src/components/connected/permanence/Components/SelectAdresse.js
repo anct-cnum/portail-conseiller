@@ -41,7 +41,7 @@ function SelectAdresse({ prefixId, estStructure, errorInput }) {
         </select>
       }
       { (!loadingGeocode && (geocodeAdresse === undefined || geocodeAdresse?.length === 0)) &&
-          <select className="rf-input rf-mb-6w" >
+          <select className={errorInput ? 'rf-input rf-mb-6w input-error' : 'rf-input rf-mb-6w'} >
             <option>Cliquer sur le bouton V&eacute;rifier la localisation</option>
           </select>
       }

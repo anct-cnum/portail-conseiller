@@ -29,7 +29,9 @@ function PermanencePrincipale({ structure, conseillerId }) {
     dispatch(permanenceActions.updateField('principal_numeroTelephone', null));
     dispatch(permanenceActions.updateField('principal_email', null));
     dispatch(permanenceActions.updateField('principal_siteWeb', null));
-    dispatch(permanenceActions.updateField('principal_typeAcces', null));
+    dispatch(permanenceActions.updateField('principal_libre', null));
+    dispatch(permanenceActions.updateField('principal_rdv', null));
+    dispatch(permanenceActions.updateField('principal_prive', null));
     dispatch(permanenceActions.updateField('principal_horaires', horairesInitiales));
     dispatch(permanenceActions.updateField('principal_conseillers', null));
     dispatch(permanenceActions.updateField('principal_nomEnseigne', null));
@@ -46,7 +48,9 @@ function PermanencePrincipale({ structure, conseillerId }) {
       dispatch(permanenceActions.updateField('principal_numeroTelephone', permanencePrincipale?.numeroTelephone ?? null));
       dispatch(permanenceActions.updateField('principal_email', permanencePrincipale?.email ?? null));
       dispatch(permanenceActions.updateField('principal_siteWeb', permanencePrincipale?.siteWeb ?? null));
-      dispatch(permanenceActions.updateField('principal_typeAcces', permanencePrincipale?.typeAcces ?? null));
+      permanencePrincipale?.typeAcces.forEach(type => {
+        dispatch(permanenceActions.updateField('principal_' + type, true));
+      });
       const horaires = permanencePrincipale?.horaires ?? horairesInitiales;
       dispatch(permanenceActions.updateField('principal_horaires', { principal_horaires: horaires }));
       dispatch(permanenceActions.updateField('principal_conseillers', permanencePrincipale?.conseillers ?? null));
@@ -71,8 +75,12 @@ function PermanencePrincipale({ structure, conseillerId }) {
         ville: permanencePrincipale?.adresse?.ville.toUpperCase() ?? adresseStructure.localite.toUpperCase()
       };
       dispatch(permanenceActions.getGeocodeAdresse(adresseGeoloc, 'principal_'));
+      dispatch(permanenceActions.disabledField('principal_', true));
     } else {
       dispatch(permanenceActions.rebootGeocodeAdresse('principal_'));
+      dispatch(permanenceActions.disabledField('principal_', false));
+      dispatch(permanenceActions.updateField('principal_checkboxSiret', false));
+
     }
   }
 
@@ -93,7 +101,8 @@ function PermanencePrincipale({ structure, conseillerId }) {
 
       <div className="rf-col-offset-1 rf-col-11">
         <div className={(erreurAdresseExact && !estClique) ? 'rf-col-12 invalid rf-mb-7w' : 'rf-col-12 rf-mb-7w'}>
-            Votre structure d&rsquo;accueil mentionn&eacute;e ci-dessus est-elle votre <b>lieu d&rsquo;activit&eacute; principal</b> ?&nbsp;
+          Le nom et l&rsquo;adresse de la structure d&rsquo;accueil mentionn&eacute;e ci-dessus est-elle votre&nbsp;
+          <b>lieu d&rsquo;activit&eacute; principal</b> ?&nbsp;
           <span className="obligatoire">*</span>
           <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-2w">
             <div className="rf-fieldset__content">

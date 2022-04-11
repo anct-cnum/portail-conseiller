@@ -15,6 +15,14 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show }) {
   const [clickSubmit, setClickSubmit] = useState(false);
 
   const onClick = () => {
+
+    const typeAcces = [
+      fields.filter(field => field.name === prefixId + 'libre')[0]?.value ? 'libre' : null,
+      fields.filter(field => field.name === prefixId + 'rdv')[0]?.value ? 'rdv' : null,
+      fields.filter(field => field.name === prefixId + 'prive')[0]?.value ? 'prive' : null,
+    ].filter(n => n);
+    dispatch(permanenceActions.updateField(prefixId + 'typeAcces', typeAcces));
+
     dispatch(permanenceActions.verifyFormulaire(form));
     setClickSubmit(true);
   };
@@ -28,6 +36,7 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show }) {
       if (!conseillers.includes(conseillerId)) {
         conseillers.push(conseillerId);
       }
+
       const itinerant = fields?.filter(field => field.name === prefixId + 'itinerant')[0]?.value ?? [];
       if (!itinerant.includes(conseillerId)) {
         itinerant.push(conseillerId);
@@ -54,8 +63,8 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show }) {
         },
         location: fields.filter(field => field.name === prefixId + 'location')[0]?.value ?? null,
         horaires: fields.filter(field => field.name === prefixId + 'horaires')[0]?.value[prefixId + 'horaires'] ?? horairesInitiales,
-        conseillersItinerants: itinerant,
         typeAcces: fields.filter(field => field.name === prefixId + 'typeAcces')[0]?.value ?? null,
+        conseillersItinerants: itinerant,
         conseillers: conseillers,
         structureId: structureId,
         hasPermanence: false,

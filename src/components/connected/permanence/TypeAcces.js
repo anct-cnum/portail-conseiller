@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import InputRadio from './Components/InputRadio';
+import InputCheckbox from './Components/InputCheckbox';
 
 function TypeAcces({ islieuPrincipal, prefixId }) {
   const fields = useSelector(state => state.permanence?.fields);
@@ -18,15 +18,15 @@ function TypeAcces({ islieuPrincipal, prefixId }) {
 
           <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-2w">
             <div className="rf-fieldset__content">
-              <InputRadio textLabel="Acc&egrave;s libre" errorInput={erreurTypeAcces}
-                idInput={prefixId + 'libre'} nameInput={prefixId + 'typeAcces'} valueInput="libre"/>
+              <InputCheckbox textLabel="Acc&egrave;s libre" errorInput={erreurTypeAcces}
+                idInput={prefixId + 'libre'} prefixId={prefixId} nameInput="libre"/>
 
-              <InputRadio textLabel="Sur rendez-vous" errorInput={erreurTypeAcces}
-                idInput={prefixId + 'rdv'} nameInput={prefixId + 'typeAcces'} valueInput="rdv"/>
+              <InputCheckbox textLabel="Sur rendez-vous" errorInput={erreurTypeAcces}
+                idInput={prefixId + 'rdv'} prefixId={prefixId} nameInput="rdv"/>
 
               {(!islieuPrincipal || estCoordinateur) &&
-                <InputRadio textLabel="La structure n&rsquo;accueille pas de public" errorInput={erreurTypeAcces}
-                  idInput={prefixId + 'prive'} nameInput={prefixId + 'typeAcces'} valueInput="prive"/>
+              <InputCheckbox textLabel="La structure n&rsquo;accueille pas de public" errorInput={erreurTypeAcces}
+                idInput={prefixId + 'prive'} prefixId={prefixId} nameInput="prive" />
               }
             </div>
           </fieldset>

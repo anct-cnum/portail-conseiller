@@ -64,7 +64,8 @@ function Adresse({ codeDepartement, prefixId }) {
             <InputCheckbox
               textLabel="La structure n&rsquo;a pas de num&eacute;ro de Siret"
               errorInput={null}
-              nameInput={ prefixId + 'checkboxSiret' }
+              prefixId={prefixId}
+              nameInput="checkboxSiret"
               baselineInput="Si l&rsquo;adresse pr&eacute;-remplie par le num&eacute;ro de Siret ne correspond pas &agrave;
               votre lieu d&rsquo;activit&eacute;, vous pouvez cochez la case ci-dessus."
               classBaseline="toggle-siret"
@@ -96,7 +97,8 @@ function Adresse({ codeDepartement, prefixId }) {
           <InputCheckbox
             textLabel="Lieu d&rsquo;activit&eacute; itin&eacute;rant (exemple&nbsp;: bus)"
             errorInput={null}
-            nameInput={ prefixId + 'intinerant' }
+            prefixId={prefixId}
+            nameInput="intinerant"
             baselineInput="Chaque point d&rsquo;itin&eacute;rance doit être enregistr&eacute; comme un nouveau lieu d&rsquo;activit&eacute;."
           />
         </div>
@@ -189,7 +191,7 @@ function Adresse({ codeDepartement, prefixId }) {
           textLabel="Site web de la structure"
           errorInput={erreurSiteWeb}
           nameInput= {prefixId + 'siteWeb'}
-          baselineInput="Vous pouvez laisser vide la structure n&rsquo;en a pas."
+          baselineInput="Vous pouvez laisser vide si la structure n&rsquo;en a pas."
           valueInput={fields?.filter(field => field.name === prefixId + 'siteWeb')[0]?.value ?? ''}
         />
       </div>
