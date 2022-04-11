@@ -63,7 +63,6 @@ function cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtrePr
     const numeroGroupe = /\d/.exec(filtreGroupeCRA)[0];
     groupeCRA = `&groupeCRA=${numeroGroupe}`;
   }
-
   return { ordreColonne, filterDateStart, filterDateEnd, filterStructureId, profil, groupeCRA, certifie };
 }
 

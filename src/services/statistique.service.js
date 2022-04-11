@@ -144,6 +144,7 @@ function getCodesPostauxCrasConseillerStructure(idStructure) {
 
   return fetch(`${apiUrlRoot}/stats/cra/codesPostaux/structure/${idStructure}`, requestOptions).then(handleResponse);
 }
+
 function handleResponse(response) {
   return response.text().then(text => {
     const data = text && JSON.parse(text);
