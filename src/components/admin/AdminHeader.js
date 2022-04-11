@@ -23,7 +23,7 @@ function AdminHeader({ role }) {
         <div className="rf-grid-row rf-grid-row--right">
           <div className={`rf-col-xs-12 rf-col-md-4 ${role !== 'admin_coop' ? 'rf-mt-5w rf-mb-6w' : 'rf-mt-md-1w'}`}>
             <a className="statistiques_nationales-btn" href="statistiques-nationales">Statistiques Nationales</a>
-            {role === 'structure_coop' &&
+            { role === 'structure_coop' &&
               <a className="mes_statistiques-btn rf-ml-4w" href="mes-statistiques">Mes statistiques</a>
             }
           </div>
@@ -48,7 +48,7 @@ function AdminHeader({ role }) {
               <span className="ressourcerie-texte-btn">Ressourcerie</span>
             </a>
             }
-            {role === 'admin_coop' &&
+            { role === 'admin_coop' &&
             <a className="header-btn" href={lienMattermost}>
               <span className="discussion-logo-btn"></span>
               <span className="discussion-texte-btn">Espace de discussion</span>
