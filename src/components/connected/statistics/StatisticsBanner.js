@@ -31,7 +31,12 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false
 
   function saveCSV() {
     if (user?.role === 'admin_coop' || user?.role === 'structure_coop') {
-      const type = nationales === false ? typeTerritoire ?? 'user' : 'nationales';
+      let type = '';
+      if (structure === false) {
+        type = nationales === false ? typeTerritoire ?? 'user' : 'nationales';
+      } else {
+        type = 'structure';
+      }
       const conseillerIds = territoire?.conseillerIds ?? undefined;
       // eslint-disable-next-line max-len
       dispatch(conseillerActions.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser, codePostal, conseillerIds));

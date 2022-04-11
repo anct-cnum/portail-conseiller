@@ -400,3 +400,9 @@
   }
 
 }
+
+@media (max-width: 767px) {
+  .statistiques_nationales-btn, .mes_statistiques-btn {
+    font-size: 14px !important;
+  }
+}
