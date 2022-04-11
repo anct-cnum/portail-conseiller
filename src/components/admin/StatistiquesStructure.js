@@ -36,7 +36,7 @@ function StatistiquesStructure() {
 
   useEffect(() => {
     if (structure !== undefined) {
-      dispatch(statistiqueActions.getStatsCraStructure(dateDebutStats, dateFinStats, structure._id, codePostalStats));
+      dispatch(statistiqueActions.getStatsCraStructure(dateDebutStats, dateFinStats, structure?._id, codePostalStats));
       dispatch(paginationActions.resetPage(false));
     }
   }, [dateDebutStats, dateFinStats, location, codePostalStats, structure]);
@@ -131,7 +131,7 @@ function StatistiquesStructure() {
         dateFin={dateFinStats}
         idTerritoire={territoire?.[typeTerritoire]}
         codePostal={codePostalStats}
-        structure={true}
+        typeStats={'structure'}
       />
       <div className="rf-m-5w rf-m-md-9w rf-m-lg-15w"></div>
     </div>

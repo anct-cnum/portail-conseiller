@@ -27,7 +27,6 @@ function Admin() {
         <Route path={`/statistiques`} component={Statistics} />
         <Route path={`/ressourcerie`} component={Ressourcerie} />
         <Route path={`/mes-statistiques`} component={StatistiquesStructure} />
-        <Route path={`/ressourcerie`} component={Ressourcerie} />
         <Route path={`/conseiller/:id`} component={conseillerDetails} />
         <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
       </div>
