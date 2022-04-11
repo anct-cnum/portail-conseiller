@@ -30,6 +30,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
     }
     return typeTarget;
   }
+  
   function savePDF() {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     if (user?.role === 'admin_coop' || user?.role === 'structure_coop') {
