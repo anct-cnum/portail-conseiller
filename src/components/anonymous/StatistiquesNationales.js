@@ -11,6 +11,7 @@ import Spinner from 'react-loader-spinner';
 import FlashMessage from 'react-flash-message';
 import Header from '../Header';
 import AdminHeader from '../admin/AdminHeader';
+import HeaderHub from '../hub/HeaderHub';
 
 function StatistiquesNationales() {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ function StatistiquesNationales() {
 
   return (
     <div>
-      <Header linkAccount={user?.name}/>
+      {user?.role === 'hub_coop' ? <HeaderHub /> : <Header linkAccount={user?.name}/>}
       {user.role === 'admin_coop' &&
         <div className="admin">
           <AdminHeader />
