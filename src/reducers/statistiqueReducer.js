@@ -40,24 +40,6 @@ export default function statistique(state = initialState, action) {
         ...state,
         codePostalStats: action.codePostal,
       };
-    case 'GET_CODE_POSTAUX_CRA_REQUEST':
-      return {
-        ...state,
-        codesPostauxLoading: true,
-        codesPostauxError: false,
-      };
-    case 'GET_CODE_POSTAUX_CRA_SUCCESS':
-      return {
-        ...state,
-        listeCodesPostaux: action.listeCodesPostaux,
-        codesPostauxLoading: false,
-      };
-    case 'GET_CODE_POSTAUX_CRA_FAILURE':
-      return {
-        ...state,
-        codesPostauxLoading: false,
-        codesPostauxError: true,
-      };
     case 'GET_CODES_POSTAUX_CRA_REQUEST':
       return {
         ...state,

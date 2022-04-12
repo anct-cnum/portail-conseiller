@@ -254,13 +254,13 @@ function getCodesPostauxCrasConseiller() {
   };
 
   function request() {
-    return { type: 'GET_CODE_POSTAUX_CRA_REQUEST' };
+    return { type: 'GET_CODES_POSTAUX_CRA_REQUEST' };
   }
   function success(listeCodesPostaux) {
-    return { type: 'GET_CODE_POSTAUX_CRA_SUCCESS', listeCodesPostaux };
+    return { type: 'GET_CODES_POSTAUX_CRA_SUCCESS', listeCodesPostaux };
   }
   function failure(error) {
-    return { type: 'GET_CODE_POSTAUX_CRA_FAILURE', error };
+    return { type: 'GET_CODES_POSTAUX_CRA_FAILURE', error };
   }
 }
 
