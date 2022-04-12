@@ -48,7 +48,7 @@ function PermanencePrincipale({ structure, conseillerId }) {
       dispatch(permanenceActions.updateField('principal_numeroTelephone', permanencePrincipale?.numeroTelephone ?? null));
       dispatch(permanenceActions.updateField('principal_email', permanencePrincipale?.email ?? null));
       dispatch(permanenceActions.updateField('principal_siteWeb', permanencePrincipale?.siteWeb ?? null));
-      permanencePrincipale?.typeAcces.forEach(type => {
+      permanencePrincipale?.typeAcces?.forEach(type => {
         dispatch(permanenceActions.updateField('principal_' + type, true));
       });
       const horaires = permanencePrincipale?.horaires ?? horairesInitiales;

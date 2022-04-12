@@ -28,9 +28,9 @@ function Connected() {
   useEffect(() => {
     if (conseiller) {
       dispatch(conseillerActions.isFormulaireChecked(conseiller.sexe, formulaireIsUpdated));
-      dispatch(permanenceActions.isPermanenceChecked(conseiller?.hasPermanence));
+      dispatch(permanenceActions.isPermanenceChecked(conseiller?.showPermanenceForm));
 
-      if (!structure) {
+      if (!structure || structure === undefined) {
         dispatch(structureActions.get(conseiller.structureId));
       }
       if (permanence === undefined) {

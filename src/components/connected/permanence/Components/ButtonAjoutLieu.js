@@ -67,6 +67,7 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show }) {
         conseillersItinerants: itinerant,
         conseillers: conseillers,
         structureId: structureId,
+        showPermanenceForm: true,
         hasPermanence: false,
       };
 

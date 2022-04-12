@@ -6,6 +6,12 @@ import { useDispatch, useSelector } from 'react-redux';
 function SelectAdresse({ prefixId, estStructure, errorInput }) {
   const dispatch = useDispatch();
 
+  const fields = useSelector(state => state.permanence?.fields);
+  const numeroVoie = fields?.filter(field => field.name === prefixId + 'numeroVoie')[0]?.value;
+  const rueVoie = fields?.filter(field => field.name === prefixId + 'rueVoie')[0]?.value;
+  const codePostal = fields?.filter(field => field.name === prefixId + 'codePostal')[0]?.value;
+  const ville = fields?.filter(field => field.name === prefixId + 'ville')[0]?.value;
+
   const geocodeAdresses = useSelector(state => state.permanence?.geocodeAdresses);
   const geocodeAdresse = geocodeAdresses?.filter(geocode => geocode.prefixId === prefixId)[0]?.geocodeAdresse;
   const loadingGeocode = useSelector(state => state.permanence?.loadingGeocode);
@@ -42,7 +48,17 @@ function SelectAdresse({ prefixId, estStructure, errorInput }) {
       }
       { (!loadingGeocode && (geocodeAdresse === undefined || geocodeAdresse?.length === 0)) &&
           <select className={errorInput ? 'rf-input rf-mb-6w input-error' : 'rf-input rf-mb-6w'} >
-            <option>Cliquer sur le bouton V&eacute;rifier la localisation</option>
+
+            {(codePostal !== undefined && codePostal !== null) &&
+              <option>
+                {numeroVoie + ' ' + rueVoie + ' ' + codePostal + ' ' + ville}
+              </option>
+            }
+            {(codePostal === undefined || codePostal === null) &&
+              <option>
+                Cliquer sur le bouton V&eacute;rifier la localisation
+              </option>
+            }
           </select>
       }
     </>

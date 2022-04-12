@@ -65,6 +65,7 @@ function Validation({ conseillerId, structureId }) {
         conseillersItinerants: itinerant,
         conseillers: conseillers,
         structureId: structureId,
+        showPermanenceForm: false,
         hasPermanence: true,
       };
 

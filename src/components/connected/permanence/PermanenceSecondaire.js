@@ -31,7 +31,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
 
   function handleSecondaire(hasSecondaire) {
     if (hasSecondaire) {
-      
+
       const typeAcces = [
         fields.filter(field => field.name === prefixId + 'libre')[0]?.value ? 'libre' : null,
         fields.filter(field => field.name === prefixId + 'rdv')[0]?.value ? 'rdv' : null,
@@ -81,6 +81,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
         typeAcces: fields.filter(field => field.name === prefixId + 'typeAcces')[0]?.value ?? null,
         conseillers: conseillers,
         structureId: structureId,
+        showPermanenceForm: true,
         hasPermanence: false,
       };
 

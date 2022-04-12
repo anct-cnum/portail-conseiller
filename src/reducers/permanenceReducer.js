@@ -64,7 +64,7 @@ export default function permanence(state = initialState, action) {
     case 'SHOW_FORMULAIRE_PERMANENCE':
       return {
         ...state,
-        showFormulairePermanence: !action.hasPermanence
+        showFormulairePermanence: action.showPermanenceForm
       };
     case 'CLOSE_FORMULAIRE_PERMANENCE':
       return {
