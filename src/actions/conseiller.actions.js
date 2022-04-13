@@ -152,11 +152,11 @@ function getStatistiquesCSV(dateDebut, dateFin, codePostal) {
   }
 }
 
-function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, codePostal, conseillerIds) {
+function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, conseillerIds, codePostal) {
   return dispatch => {
     dispatch(request());
     console.log(codePostal);
-    conseillerService.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, codePostal, conseillerIds)
+    conseillerService.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, conseillerIds, codePostal)
     .then(
       data => dispatch(success(data, download(data, `${statistiquesAdminFileName(dateDebut, dateFin, type, idType, codePostal)}.csv`))),
       error => dispatch(failure(error))

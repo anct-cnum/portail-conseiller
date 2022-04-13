@@ -63,7 +63,7 @@ function cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtrePr
     const numeroGroupe = /\d/.exec(filtreGroupeCRA)[0];
     groupeCRA = `&groupeCRA=${numeroGroupe}`;
   }
-  
+
   return { ordreColonne, filterDateStart, filterDateEnd, filterStructureId, profil, groupeCRA, certifie };
 }
 
@@ -120,7 +120,7 @@ function getStatistiquesCSV(dateDebut, dateFin, codePostal) {
     requestOptions).then(handleFileResponse);
 }
 
-function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, codePostal, conseillerIds) {
+function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, conseillerIds, codePostal) {
   const requestOptions = {
     method: 'GET',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
