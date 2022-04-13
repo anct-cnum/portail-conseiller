@@ -79,6 +79,7 @@ function closePermanence() {
 
 function verifyFormulaire(form) {
   let errors = [];
+
   const showLieuSecondaire = form?.showLieuSecondaire;
   //eslint-disable-next-line max-len
   const regExpEmail = new RegExp(/^(([^<>()[\]\\.,;:\s@\\"]+(\.[^<>()[\]\\.,;:\s@\\"]+)*)|(\\".+\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
@@ -88,22 +89,22 @@ function verifyFormulaire(form) {
 
   errors.push({ estCoordinateur: (Joi.object({
     estCoordinateur: Joi.boolean().required().allow(true, false) }).validate({
-    estCoordinateur: form?.fields.filter(field => field.name === 'estCoordinateur')[0]?.value }).error) ?
+    estCoordinateur: form?.fields?.filter(field => field.name === 'estCoordinateur')[0]?.value }).error) ?
     'Votre rôle doit obligatoirement être saisie' : null });
 
   errors.push({ telephonePro: (Joi.object({
     telephonePro: Joi.string().allow('').pattern(regExpNumero) }).validate({
-    telephonePro: form?.fields.filter(field => field.name === 'telephonePro')[0]?.value }).error) ?
+    telephonePro: form?.fields?.filter(field => field.name === 'telephonePro')[0]?.value }).error) ?
     'Un numéro de téléphone valide doit être saisi' : null });
 
   errors.push({ emailPro: (Joi.object({
     emailPro: Joi.string().allow('').pattern(regExpEmail) }).validate({
-    emailPro: form?.fields.filter(field => field.name === 'emailPro')[0]?.value }).error) ?
+    emailPro: form?.fields?.filter(field => field.name === 'emailPro')[0]?.value }).error) ?
     'Une adresse email valide doit être saisie' : null });
 
   errors.push({ estStructure: (Joi.object({
     estStructure: Joi.boolean().allow(true, false).required() }).validate({ estStructure:
-    form?.fields.filter(field => field.name === 'estStructure')[0]?.value }).error) ?
+    form?.fields?.filter(field => field.name === 'estStructure')[0]?.value }).error) ?
     'Vous devez indiquer si votre structure est votre lieu d\'activité principal ou non' : null });
 
   const champsAcceptes = [
@@ -160,20 +161,20 @@ function verifyFormulaire(form) {
 
   ['principal_', 'secondaire_'].forEach(champ => {
     if (champ === 'secondaire_') {
-      showLieuSecondaire.forEach((show, id) => {
+      showLieuSecondaire?.forEach((show, id) => {
         if (show) {
           champsAcceptes.forEach(accepte => {
             if (accepte.nom === 'horaires') {
               errors.push({
                 [champ + id + '_' + accepte.nom]:
-                  controleHoraires(form?.fields.filter(field => field.name === champ + id + '_' + accepte.nom)[0]?.value[champ + id + '_horaires'])
+                  controleHoraires(form?.fields?.filter(field => field.name === champ + id + '_' + accepte.nom)[0]?.value[champ + id + '_horaires'])
               });
             } else {
               errors.push({
                 [champ + id + '_' + accepte.nom]: (Joi.object({
                   [champ + id + '_' + accepte.nom]: accepte.validation }).validate(
                   { [champ + id + '_' + accepte.nom]:
-                    form?.fields.filter(field => field.name === champ + id + '_' + accepte.nom)[0]?.value }).error) ? accepte.message : null
+                    form?.fields?.filter(field => field.name === champ + id + '_' + accepte.nom)[0]?.value }).error) ? accepte.message : null
               });
             }
           });
@@ -184,19 +185,20 @@ function verifyFormulaire(form) {
         if (accepte.nom === 'horaires') {
           /* Cohérence des horaires */
           errors.push({
-            principal_horaires: controleHoraires(form?.fields.filter(field => field.name === champ + accepte.nom)[0]?.value?.principal_horaires)
+            principal_horaires: controleHoraires(form?.fields?.filter(field => field.name === champ + accepte.nom)[0]?.value?.principal_horaires)
           });
         } else if (accepte.nom !== 'itinerant') {
           errors.push({
             [champ + accepte.nom]: (Joi.object({
               [champ + accepte.nom]: accepte.validation }).validate(
               { [champ + accepte.nom]:
-                form?.fields.filter(field => field.name === champ + accepte.nom)[0]?.value }).error) ? accepte.message : null
+                form?.fields?.filter(field => field.name === champ + accepte.nom)[0]?.value }).error) ? accepte.message : null
           });
         }
       });
     }
   });
+
 
   let nbErrors = 0;
   errors.forEach(error => {
