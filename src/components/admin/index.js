@@ -9,6 +9,7 @@ import Territoires from './Territoires';
 import Statistics from '../connected/statistics/Statistics';
 import Ressourcerie from '../connected/ressourcerie/Ressourcerie';
 import conseillerDetails from './ConseillerDetails';
+import StatistiquesStructure from './StatistiquesStructure';
 
 function Admin() {
   const location = useLocation();
@@ -25,6 +26,7 @@ function Admin() {
         <Route path={`/territoires`} component={Territoires} />
         <Route path={`/statistiques`} component={Statistics} />
         <Route path={`/ressourcerie`} component={Ressourcerie} />
+        <Route path={`/mes-statistiques`} component={StatistiquesStructure} />
         <Route path={`/conseiller/:id`} component={conseillerDetails} />
         <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
       </div>

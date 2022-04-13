@@ -40,19 +40,19 @@ export default function statistique(state = initialState, action) {
         ...state,
         codePostalStats: action.codePostal,
       };
-    case 'GET_CODE_POSTAUX_CRA_REQUEST':
+    case 'GET_CODES_POSTAUX_CRA_REQUEST':
       return {
         ...state,
         codesPostauxLoading: true,
         codesPostauxError: false,
       };
-    case 'GET_CODE_POSTAUX_CRA_SUCCESS':
+    case 'GET_CODES_POSTAUX_CRA_SUCCESS':
       return {
         ...state,
         listeCodesPostaux: action.listeCodesPostaux,
         codesPostauxLoading: false,
       };
-    case 'GET_CODE_POSTAUX_CRA_FAILURE':
+    case 'GET_CODES_POSTAUX_CRA_FAILURE':
       return {
         ...state,
         codesPostauxLoading: false,
@@ -122,6 +122,24 @@ export default function statistique(state = initialState, action) {
         statsDataLoading: false,
       };
     case 'GET_STATS_CRA_TERRITOIRE_FAILURE':
+      return {
+        ...state,
+        statsDataError: action.error,
+        statsDataLoading: false,
+      };
+    case 'GET_STATS_CRA_STRUCTURE_REQUEST':
+      return {
+        ...state,
+        statsDataLoading: true,
+        statsDataError: false,
+      };
+    case 'GET_STATS_CRA_STRUCTURE_SUCCESS':
+      return {
+        ...state,
+        statsData: action.statsStructure,
+        statsDataLoading: false,
+      };
+    case 'GET_STATS_CRA_STRUCTURE_FAILURE':
       return {
         ...state,
         statsDataError: action.error,

@@ -26,8 +26,9 @@ const statistiquesCnfsFileName = (dateDebut, dateFin) =>
 const removeCodePrefix = type =>
   type.startsWith('code') ? type.substring('code'.length) : type;
 
-const statistiquesAdminFileName = (dateDebut, dateFin, type, idType) =>
-  `Statistiques_${removeCodePrefix(type)}${idType ? `_${idType}` : ''}_${formatDate(dateDebut)}_${formatDate(dateFin)}`;
+const statistiquesAdminFileName = (dateDebut, dateFin, type, idType, codePostal) =>
+  // eslint-disable-next-line max-len
+  `Statistiques_${removeCodePrefix(type)}${codePostal ? `_${codePostal}` : ''}${idType ? `_${idType}` : ''}_${formatDate(dateDebut)}_${formatDate(dateFin)}`;
 
 function get(id) {
   return dispatch => {
@@ -108,12 +109,12 @@ function getStatistiquesPDF(idConseiller, dateDebut, dateFin, codePostal) {
   }
 }
 
-function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType) {
+function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType, codePostal) {
   return dispatch => {
     dispatch(request());
-    conseillerService.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType)
+    conseillerService.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType, codePostal)
     .then(
-      data => dispatch(success(data, download(data, `${statistiquesAdminFileName(dateDebut, dateFin, type)}.pdf`))),
+      data => dispatch(success(data, download(data, `${statistiquesAdminFileName(dateDebut, dateFin, type, codePostal)}.pdf`))),
       error => dispatch(failure(error))
     );
   };
@@ -151,12 +152,13 @@ function getStatistiquesCSV(dateDebut, dateFin, codePostal) {
   }
 }
 
-function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, conseillerIds) {
+function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, codePostal, conseillerIds) {
   return dispatch => {
     dispatch(request());
-    conseillerService.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, conseillerIds)
+    console.log(codePostal);
+    conseillerService.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, codePostal, conseillerIds)
     .then(
-      data => dispatch(success(data, download(data, `${statistiquesAdminFileName(dateDebut, dateFin, type, idType)}.csv`))),
+      data => dispatch(success(data, download(data, `${statistiquesAdminFileName(dateDebut, dateFin, type, idType, codePostal)}.csv`))),
       error => dispatch(failure(error))
     );
   };
