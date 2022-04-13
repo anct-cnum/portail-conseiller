@@ -46,6 +46,13 @@ function Thematiques() {
                   Mobile
                 </a>
               </li>
+              <li className="rf-mb-5v">
+                <a href="#productionCnFs" className="lien-thematique">
+                  <img className="image-thematique" src="/logos/picto-espace-conseiller.svg" alt="Production"
+                    style={{ marginBottom: '0px', marginRight: '20px' }}/>
+                    Production des CnFS
+                </a>
+              </li>
             </ul>
           </div>
           <div className="rf-col-12 rf-col-sm-6 rf-mb-5v">
