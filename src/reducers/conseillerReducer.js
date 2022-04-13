@@ -104,6 +104,7 @@ export default function conseiller(state = initState, action) {
       };
     case 'POST_SEXE_AGE_REQUEST':
       return {
+        ...state,
         loading: true
       };
     case 'POST_SEXE_AGE_SUCCESS':
