@@ -18,7 +18,7 @@ function Remerciement() {
                 <img className="conseillers-carte" src="logos/permanences/carthographie-avec-conseillers-fin.svg"/>
                 <div className="remerciement-enregistrees rf-mt-4w">
                   <img className="enregistrees-check" src="logos/permanences/check.svg"/>
-                  Vos informations ont été enregistrées.
+                  Vos informations ont &eacute;t&eacute; enregistr&eacute;es.
                 </div>
                 <div className="rf-mt-4w">
                   Une interface de gestion sera prochainement attribu&eacute;e &agrave; votre responsable via son espace Structure,

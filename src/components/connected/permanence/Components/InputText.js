@@ -12,8 +12,7 @@ function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineIn
   const reg = new RegExp('^[0-9]{14}$');
 
   const filtreValue = value => {
-    //eslint-disable-next-line
-    return value.replace(/\s/g,'');
+    return value.replace(/\s/g, '');
   };
 
   const handleChange = e => {

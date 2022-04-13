@@ -11,7 +11,7 @@ import SelectAdresse from './Components/SelectAdresse';
 function Adresse({ codeDepartement, prefixId }) {
 
   const fields = useSelector(state => state.permanence?.fields);
-  const disabledFields = useSelector(state => state.permanence.disabledFields);
+  const disabledFields = useSelector(state => state.permanence?.disabledFields);
   const codePostal = fields?.filter(field => field.name === prefixId + 'codePostal')[0]?.value;
 
   const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);

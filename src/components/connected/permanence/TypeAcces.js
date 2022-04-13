@@ -13,7 +13,7 @@ function TypeAcces({ islieuPrincipal, prefixId }) {
     <>
       <div className="rf-col-offset-1 rf-col-11">
         <div className={erreurTypeAcces ? 'rf-col-12 invalid rf-mb-6w' : 'rf-col-12 rf-mb-6w'}>
-          Type d’acc&egrave;s <span className="obligatoire">*</span>
+          Type d&rsquo;acc&egrave;s <span className="obligatoire">*</span>
           <span className="baseline">Comment les usagers acc&egrave;dent-ils &agrave; la structure ?</span>
 
           <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-2w">

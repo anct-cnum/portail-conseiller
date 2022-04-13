@@ -96,7 +96,7 @@ function PermanencePrincipale({ structure, conseillerId }) {
         <img className="pin" src="logos/permanences/pin.svg"/>
       </div>
       <div className="rf-col-11">
-        <h2 className="sous-titre rf-mt-9w rf-mb-7w">Votre lieu d’activité principal</h2>
+        <h2 className="sous-titre rf-mt-9w rf-mb-7w">Votre lieu d&rsquo;activit&eacute; principal</h2>
       </div>
 
       <div className="rf-col-offset-1 rf-col-11">
