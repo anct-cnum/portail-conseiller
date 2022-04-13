@@ -1,4 +1,43 @@
 #formulaire-horaires-adresse {
+  .hide {
+    display: none;
+  }
+  .banniere {
+    background-color: #1B1B35;
+    .col-logo {
+      .pin {
+        margin-top: 5px;
+      }
+      .hexagone {
+        margin-top: 14px;
+      }
+    }
+    .texte-banniere {
+      color: #9177dd;
+      font-size: 12px;
+      .important {
+        font-weight: 600;
+      }
+      .violet {
+        color: #9177dd;
+      }
+      .blanc {
+        color: #ffffff;
+      }
+      .vert {
+        color: #bfe4b5;
+      }
+    }
+    .carte-banniere {
+      text-align: center;
+    }
+  }
+  .col-logo {
+    text-align: right;
+    .pin, .hexagone {
+      margin-right: 25px;
+    }
+  }
   a {
     box-shadow: none;
     &:hover {
@@ -13,15 +52,50 @@
     font-size: 56px;
   }
   .sous-titre {
-    line-height: 40px;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 32px;
+    color: #8585F6;
+  }
+  .baseline {
+    display: block;
+    font-weight: normal;
+    line-height: 20px;
+    color: #929292;
+    font-size: 12px;
+    .link {
+      color: #518FFF;
+    }
+  }
+  .toggle-siret {
+    color:#FC5D00;
+  }
+  .loading {
+    text-align: center;
+    font-style: italic;
+    color:#FC5D00;
     font-weight: 600;
-    font-size: 32px;
+  }
+  .conditions, .astuce {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    color:#929292;
+    /* or 167% */
+    text-align: justify;
   }
   .derniere-modification {
     line-height: 20px;
     font-weight: 300;
     color: #929292;
     font-size: 12px;
+  }
+  .nom-structure {
+    display: block;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 24px;
+    color: #cecece;
   }
   .libelle-adresse, .info-adresse {
     display: inline-block;
@@ -41,46 +115,141 @@
     position: relative;
   }
   .validation-btn {
-    background-color: #FFFFFF;
-    padding: 13px 35px 19px;
-    border-radius: 28px;
+    background-color: #8585F6;
+    padding: 8px 24px;
     text-align: center;
-    color: #161616;
-    height: 56px;
-    width: 282px;
+    color: #000091;
+    height: 40px;
+    width: 288px;
+
+  }
+  .nouveau-btn, .localisation-btn {
+    background: #1e1e1e;
+    border: 1px solid #8585f6;
+    line-height: 24px;
+    text-align: center;
+    font-size: 16px;
+    color: #8585f6;
+  }
+  .localisation-btn-position {
+    text-align: right;
+  }
+  .emplacement-permanences {
+    overflow: auto;
+    max-height: 240px;
+  }
+  .permanence-existante {
+    margin-left: 4px;
+  }
+  .horaires-titre {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .position-jour {
+    position: relative;
+    width: 78px;
+    top: -5px;
   }
   .jour {
-    font-weight: 600;
-    width: 78px;
+    font-size: 14px;
+    font-weight: 400;
   }
-  .horaires-debut, .horaires-fin, .horaires-fermeture {
-    border: 1px solid #FFFFFF;
+  .without_ampm::-webkit-datetime-edit-ampm-field {
+    display: none;
+  }
+  input[type=time]::-webkit-clear-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    -ms-appearance:none;
+    appearance: none;
+    margin: -10px;
+  }
+  .horaires-debut, .horaires-fin, .horaires-fermeture, .fermeture-btn, .dupliquer-btn {
+    border: 1px solid #518FFF;
     background-color: #1e1e1e;
     box-sizing: border-box;
-    padding-left: 16px;
     text-align: center;
     color: #ffffff;
     font-size: 16px;
-    height: 56px;
-    width: 90px;
+    height: 40px;
+    width: 100px;
+  }
+  .fermeture-btn {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    margin-top: -1px;
+    cursor: pointer;
+    font-size: 14px;
+    display: block;
+    height: 40px;
+    width: 200px;
+  }
+  .dupliquer-btn {
+    display: none;
+    border-radius: 8px;
+    margin-top: -8px;
+    cursor: pointer;
+    font-size: 14px;
+    height: 79px;
+  }
+  .tr-horaires:hover, .tr-horaires td:hover {
+    .dupliquer-btn {
+      display: inline-block;
+    }
+  }
+  .horaires-debut, .horaires-fin {
+    padding-left: 16px;
   }
   .horaires-debut {
     border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
   }
   .horaires-fin {
     border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
   }
   .horaires-fermeture {
     border-radius: 8px;
-    padding-top: 14px;
+    padding-top: 25px;
+    color: #929292;
     cursor: pointer;
-    width: 180px;
+    height: 79px;
+    width: 200px;
+  }
+
+  input[type="time"]::-webkit-calendar-picker-indicator{
+    filter: brightness(0) invert(1);
+  }
+  .map-container {
+    margin-top: 141px;
+  }
+  .map {
+    margin-left: 22px;
+    width: 281px;
+    height: 281px;
+  }
+
+  .leaflet-control-attribution {
+    display: none;
+  }
+  @media (min-width: 768px) and (max-width: 1102px){
+    .banniere .col-logo .hexagone {
+      margin-top: 39px;
+    }
   }
   @media (max-width: 767px) {
     .titre {
       font-size: 48px;
+    }
+    .map-container {
+      margin-top: 0px;
+      margin-bottom: 3rem;
+      margin-left: 38px;
+    }
+  }
+  @media (max-width: 607px) {
+    .banniere .col-logo .hexagone {
+      margin-top: 39px;
     }
   }
   @media (max-width: 576px) {

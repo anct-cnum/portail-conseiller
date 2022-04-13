@@ -33,22 +33,22 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
   
   function savePDF() {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-    if (user?.role === 'admin_coop' || user?.role === 'structure_coop') {
+    if (user?.role === 'conseiller') {
+      dispatch(conseillerActions.getStatistiquesPDF(user.entity.$id, dateDebut, dateFin, codePostal));
+    } else {
       const type = getTypeStatistique(typeStats);
       dispatch(conseillerActions.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser, codePostal));
-    } else {
-      dispatch(conseillerActions.getStatistiquesPDF(user.entity.$id, dateDebut, dateFin, codePostal));
     }
   }
 
   function saveCSV() {
-    if (user?.role === 'admin_coop' || user?.role === 'structure_coop') {
+    if (user?.role === 'conseiller') {
+      dispatch(conseillerActions.getStatistiquesCSV(dateDebut, dateFin, codePostal));
+    } else {
       const type = getTypeStatistique(typeStats);
       const conseillerIds = territoire?.conseillerIds ?? undefined;
       // eslint-disable-next-line max-len
-      dispatch(conseillerActions.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser, codePostal, conseillerIds));
-    } else {
-      dispatch(conseillerActions.getStatistiquesCSV(dateDebut, dateFin, codePostal));
+      dispatch(conseillerActions.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser, conseillerIds, codePostal));
     }
   }
 
