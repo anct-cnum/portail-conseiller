@@ -1,0 +1,9 @@
+[
+  { "matin": ["Fermé", "Fermé"], "apresMidi": ["Fermé", "Fermé"], "fermeture": [false, false] },
+  { "matin": ["Fermé", "Fermé"], "apresMidi": ["Fermé", "Fermé"], "fermeture": [false, false] },
+  { "matin": ["Fermé", "Fermé"], "apresMidi": ["Fermé", "Fermé"], "fermeture": [false, false] },
+  { "matin": ["Fermé", "Fermé"], "apresMidi": ["Fermé", "Fermé"], "fermeture": [false, false] },
+  { "matin": ["Fermé", "Fermé"], "apresMidi": ["Fermé", "Fermé"], "fermeture": [false, false] },
+  { "matin": ["Fermé", "Fermé"], "apresMidi": ["Fermé", "Fermé"], "fermeture": [true, true] },
+  { "matin": ["Fermé", "Fermé"], "apresMidi": ["Fermé", "Fermé"], "fermeture": [true, true] }
+]

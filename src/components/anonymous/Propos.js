@@ -73,7 +73,7 @@ function Propos() {
 
               <h2 className="rf-mt-6w titre2">Vous aussi, vous pouvez contribuer si vous le souhaitez</h2>
               <p className="rf-mb-3w">Pour cela, rejoignez les canaux correspondants sur votre espace de discussion&nbsp;:</p>
-              <p className="rf-mb-3w">
+              <div className="rf-mb-3w">
                 <a className="lien-footer" href={aideMetier} target="blank" rel="noreferrer">
                   <img src="logos/bulle-ressourcerie.svg" className="bulle-ressourcerie"/>
                   <p className="lien-a-propos" >
@@ -81,7 +81,7 @@ function Propos() {
                     rejoignez le canal Atelier NEC.
                   </p>
                 </a>
-              </p>
+              </div>
               <p className="rf-mb-15w">
                 <a className="lien-footer" href={aideCoop} target="blank" rel="noreferrer">
                   <img src="logos/bulle-ressourcerie.svg" className="bulle-ressourcerie"/>
