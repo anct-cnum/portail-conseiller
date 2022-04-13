@@ -82,7 +82,10 @@ function Validation({ conseillerId, structureId }) {
 
   return (
     <div className="rf-col-offset-1 rf-col-4">
-      <button className="rf-btn validation-btn rf-mb-12w" onClick={handleSubmit}>Enregistrer et revenir &agrave; l&rsquo;accueil</button>
+      <button className="rf-btn validation-btn rf-mb-4w" onClick={handleSubmit}>Enregistrer et revenir &agrave; l&rsquo;accueil</button>
+      <div className="rf-mb-12w">
+        ( <span className="obligatoire">*</span> ) champs obligatoires
+      </div>
     </div>
   );
 }
