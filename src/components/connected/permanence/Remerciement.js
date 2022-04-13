@@ -5,6 +5,7 @@ import { permanenceActions } from '../../../actions';
 function Remerciement() {
   const dispatch = useDispatch();
   function closeModal() {
+    dispatch(permanenceActions.suspensionFormulaire());
     dispatch(permanenceActions.closePermanence());
   }
   return (
