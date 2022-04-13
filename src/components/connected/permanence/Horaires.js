@@ -51,14 +51,7 @@ function Horaires({ prefixId, horairesId }) {
     setHoraires(horaires);
     dispatch(permanenceActions.updateField(prefixId + 'horaires', horaires));
   };
-  /*
-    const onCLickDuplication = (horairesPrefixe, id) => {
-      horairesPrefixe[id + 1] = horairesPrefixe[id];
-      setHoraires({ [prefixId + 'horaires']: horairesPrefixe });
-      dispatch(permanenceActions.updateField(prefixId + 'horaires', { [prefixId + 'horaires']: horairesPrefixe }));
-    };
-  */
- 
+
   useEffect(() => {
     if (horairesFields && idFields && loadingHoraires[horairesId] === true) {
 
@@ -156,11 +149,6 @@ function Horaires({ prefixId, horairesId }) {
                       }} >Fermé</div>
                     }
                   </td>
-                  {/*
-                  <td><button className="dupliquer-btn" onClick={() => {
-                    onCLickDuplication(horaires[prefixId + 'horaires'], idx);
-                  }}>Dupliquer</button></td>
-                   */}
                 </tr>
                 <tr>
                   { erreursHoraires?.includes(idx) &&
