@@ -38,16 +38,16 @@ function Welcome() {
               </div>
             </div>
 
-            <div className="rf-col-12">
+            <div className="rf-col-offset-3 rf-col-6">
               <div className="rf-container">
                 <div className="rf-grid-row rf-grid-row--center">
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-4 menu-btn rf-mb-3w">
                     <Link to="/compte-rendu-activite" title="Acc&eacute;der &agrave; mon outil de suivi d&rsquo;activit&eacute;">
                       <img src="/logos/home-connected/icone-cra.svg" className="icone-btn icone-cra"/>
                       Suivi d&rsquo;activit&eacute;
                     </Link>
                   </div>
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-4 menu-btn rf-mb-3w">
                     <a href={lienMattermost} target="blank" title="Acc&egrave;s espace discussion">
                       <img src="/logos/home-connected/icone-discussion.svg" className="icone-btn icone-mattermost"/>
                       Espace de discussion
@@ -66,19 +66,26 @@ function Welcome() {
                       </span>
                     </a>
                   </div>
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-4 menu-btn rf-mb-3w">
                     <Link to="/ressourcerie" title="Acc&eacute;der &agrave; la ressourcerie">
                       <img src="/logos/home-connected/icone-ressourcerie.svg" className="icone-btn icone-ressourcerie"/>
                       Ressourcerie
                     </Link>
                   </div>
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-4 menu-btn rf-mb-3w">
                     <a href={lienPix} target="blank" title="Acc&eacute;der &agrave; Pix">
                       <img src="/logos/home-connected/icone-pix.svg" className="icone-btn icone-pix"/>
                       Pix
                     </a>
                   </div>
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-4 menu-btn rf-mb-3w">
+
+                    <Link to="/lieux-activite" title="Acc&eacute;der &agrave; mes lieux d&rsquo;activit&eacute;">
+                      <img src="/logos/home-connected/icone-lieux.svg" className="icone-btn icone-lieux"/>
+                      Lieux d&rsquo;activit&eacute;
+                    </Link>
+                  </div>
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-4 menu-btn rf-mb-3w">
                     <a href={lienWebmail} target="blank" title="Acc&eacute;der &agrave; ma boîte mail">
                       <img src="/logos/home-connected/icone-courriel.svg" className="icone-btn icone-mail"/>
                       Acc&eacute;der au web mail

@@ -53,6 +53,7 @@ function Connected() {
               <Route path={`/statistiques`} component={Statistics} />
               <Route path={`/ressourcerie`} component={Ressourcerie} />
               <Route path={'/mes-informations'} component={MesInformations} />
+              <Route path={`/lieux-activite`} component={Permanence} />
               <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
             </>
           }
