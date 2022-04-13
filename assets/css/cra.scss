@@ -94,6 +94,7 @@ $errorDarkMode: #FF3333;
 
   .dropdown {
     position: relative;
+    z-index: 1;
   }
 
   .dropdown-content {
