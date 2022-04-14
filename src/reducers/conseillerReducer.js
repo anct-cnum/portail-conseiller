@@ -105,17 +105,20 @@ export default function conseiller(state = initState, action) {
     case 'POST_SEXE_AGE_REQUEST':
       return {
         ...state,
+        error: false,
         loading: true
       };
     case 'POST_SEXE_AGE_SUCCESS':
       return {
         ...state,
-        isUpdated: action.isUpdated
+        isUpdated: action.isUpdated,
+        loading: false
       };
     case 'POST_SEXE_AGE_FAILURE':
       return {
         error: action.error,
-        isUpdated: false
+        isUpdated: false,
+        loading: false
       };
     case 'SHOW_FORMULAIRE_SEXE_AGE':
       return {
