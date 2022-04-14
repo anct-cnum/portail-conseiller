@@ -37,9 +37,10 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show }) {
         conseillers.push(conseillerId);
       }
 
-      const itinerant = fields?.filter(field => field.name === prefixId + 'itinerant')[0]?.value ?? [];
-      if (!itinerant.includes(conseillerId)) {
-        itinerant.push(conseillerId);
+      const itinerant = fields?.filter(field => field.name === prefixId + 'itinerant')[0]?.value;
+      const conseillersItinerants = fields?.filter(field => field.name === prefixId + 'conseillersItinerants')[0]?.value ?? [];
+      if (!conseillersItinerants.includes(conseillerId) && itinerant) {
+        conseillersItinerants.push(conseillerId);
       }
 
       const nouveauLieu = {
@@ -64,7 +65,7 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show }) {
         location: fields.filter(field => field.name === prefixId + 'location')[0]?.value ?? null,
         horaires: fields.filter(field => field.name === prefixId + 'horaires')[0]?.value[prefixId + 'horaires'] ?? horairesInitiales,
         typeAcces: fields.filter(field => field.name === prefixId + 'typeAcces')[0]?.value ?? null,
-        conseillersItinerants: itinerant,
+        conseillersItinerants: conseillersItinerants,
         conseillers: conseillers,
         structureId: structureId,
         showPermanenceForm: true,

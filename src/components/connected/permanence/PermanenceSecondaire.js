@@ -57,6 +57,11 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
         conseillers.push(conseillerId);
       }
 
+      const lieuPrincipalPour = fields.filter(field => field.name === 'lieuPrincipalPour')[0]?.value ?? [];
+      if (!lieuPrincipalPour.includes(conseillerId)) {
+        lieuPrincipalPour.push(conseillerId);
+      }
+
       const nouveauLieu = {
         //Données du CNFS
         estCoordinateur: fields.filter(field => field.name === 'estCoordinateur')[0]?.value ?? null,
@@ -83,6 +88,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
         structureId: structureId,
         showPermanenceForm: true,
         hasPermanence: false,
+        lieuPrincipalPour: lieuPrincipalPour,
       };
 
       if (nouveauLieu._id !== null) {

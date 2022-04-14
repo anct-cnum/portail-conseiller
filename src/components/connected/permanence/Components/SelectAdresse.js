@@ -48,17 +48,17 @@ function SelectAdresse({ prefixId, estStructure, errorInput }) {
       }
       { (!loadingGeocode && (geocodeAdresse === undefined || geocodeAdresse?.length === 0)) &&
           <select className={errorInput ? 'rf-input rf-mb-6w input-error' : 'rf-input rf-mb-6w'} >
-
-            {(codePostal !== undefined && codePostal !== null) &&
+            {/*
+              Fonctionnement à paufiné
+             * {(codePostal !== undefined && codePostal !== null) &&
               <option>
-                {numeroVoie + ' ' + rueVoie + ' ' + codePostal + ' ' + ville}
+                {numeroVoie ?? ' ' + rueVoie + ' ' + codePostal + ' ' + ville}
               </option>
             }
-            {(codePostal === undefined || codePostal === null) &&
-              <option>
-                Cliquer sur le bouton V&eacute;rifier la localisation
-              </option>
-            }
+             */}
+            <option>
+              Cliquer sur le bouton V&eacute;rifier la localisation
+            </option>
           </select>
       }
     </>

@@ -98,7 +98,7 @@ function Adresse({ codeDepartement, prefixId }) {
             textLabel="Lieu d&rsquo;activit&eacute; itin&eacute;rant (exemple&nbsp;: bus)"
             errorInput={null}
             prefixId={prefixId}
-            nameInput="intinerant"
+            nameInput="itinerant"
             baselineInput="Chaque point d&rsquo;itin&eacute;rance doit être enregistr&eacute; comme un nouveau lieu d&rsquo;activit&eacute;."
           />
         </div>
