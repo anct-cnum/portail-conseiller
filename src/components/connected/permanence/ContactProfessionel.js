@@ -12,7 +12,7 @@ function ContactProfessionel({ conseiller }) {
   const erreurTelephonePro = erreursFormulaire?.filter(erreur => erreur?.telephonePro)[0]?.telephonePro;
   const erreurEmailPro = erreursFormulaire?.filter(erreur => erreur?.emailPro)[0]?.emailPro;
 
-  let indicatif = conseiller.codeDepartement?.length === 3 ?
+  let indicatif = conseiller?.codeDepartement?.length === 3 ?
     telephoneHorsMetropole?.find(item => item.codeDepartement === conseiller.codeDepartement).indicatif : '+33';
 
   const [inputs, setInputs] = useState({
