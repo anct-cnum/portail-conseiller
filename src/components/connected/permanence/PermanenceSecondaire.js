@@ -52,12 +52,12 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
   useEffect(() => {
 
     if (errorsForm?.lengthError === 0 && clickSubmit) {
-      const conseillers = fields.filter(field => field.name === prefixId + 'conseillers')[0]?.value ?? [];
+      const conseillers = fields?.filter(field => field.name === prefixId + 'conseillers')[0]?.value ?? [];
       if (!conseillers.includes(conseillerId)) {
         conseillers.push(conseillerId);
       }
 
-      const lieuPrincipalPour = fields.filter(field => field.name === 'lieuPrincipalPour')[0]?.value ?? [];
+      const lieuPrincipalPour = fields?.filter(field => field.name === 'lieuPrincipalPour')[0]?.value ?? [];
       if (!lieuPrincipalPour.includes(conseillerId)) {
         lieuPrincipalPour.push(conseillerId);
       }

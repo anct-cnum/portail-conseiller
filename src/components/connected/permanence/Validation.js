@@ -64,7 +64,7 @@ function Validation({ conseillerId, structureId }) {
       };
 
       if (prefixId === 'principal_') {
-        const lieuPrincipalPour = fields.filter(field => field.name === 'lieuPrincipalPour')[0]?.value ?? [];
+        const lieuPrincipalPour = fields?.filter(field => field.name === 'lieuPrincipalPour')[0]?.value ?? [];
         if (!lieuPrincipalPour.includes(conseillerId)) {
           lieuPrincipalPour.push(conseillerId);
         }
