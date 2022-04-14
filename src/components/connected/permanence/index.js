@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { permanenceActions } from '../../../actions';
+import { conseillerActions, permanenceActions } from '../../../actions';
+import { userEntityId } from '../../../helpers';
 
 import ContactProfessionel from './ContactProfessionel';
 import PermanenceSecondaire from './PermanenceSecondaire';
@@ -22,6 +23,9 @@ function Permanence() {
   const isEnded = useSelector(state => state.permanence?.isEnded);
 
   useEffect(() => {
+    if (!conseiller) {
+      dispatch(conseillerActions.get(userEntityId()));
+    }
     if (structure?._id) {
       dispatch(permanenceActions.getListePermanences(structure?._id));
     }
@@ -30,35 +34,38 @@ function Permanence() {
 
   return (
     <>
+      {conseiller &&
+      <>
+        <Ouverture />
 
-      <Ouverture />
-
-      { (isEnded && location.pathname === '/accueil') &&
-        <Remerciement/>
-      }
-      <div id="formulaire-horaires-adresse" >
-        <Banner />
-
-        {showError &&
-          <p className="rf-label flashBag invalid">
-            {showErrorMessage ?? 'Une erreur est survenue lors du traitement de vos informations'}
-          </p>
+        { (isEnded && location.pathname === '/accueil') &&
+          <Remerciement/>
         }
+        <div id="formulaire-horaires-adresse" >
+          <Banner />
 
-        <ContactProfessionel conseiller={conseiller}/>
-        <div className="rf-container">
-          <div className="rf-grid-row">
-            <PermanencePrincipale structure={structure} conseillerId={conseiller?._id}/>
+          {showError &&
+            <p className="rf-label flashBag invalid">
+              {showErrorMessage ?? 'Une erreur est survenue lors du traitement de vos informations'}
+            </p>
+          }
+
+          <ContactProfessionel conseiller={conseiller}/>
+          <div className="rf-container">
+            <div className="rf-grid-row">
+              <PermanencePrincipale structure={structure} conseillerId={conseiller?._id}/>
+            </div>
+          </div>
+          <PermanenceSecondaire structure={structure} conseillerId={conseiller?._id} structureId={structure?._id} />
+          <div className="rf-container">
+            <div className="rf-grid-row">
+              <Validation conseillerId={conseiller?._id} structureId={structure?._id} />
+            </div>
           </div>
         </div>
-        <PermanenceSecondaire structure={structure} conseillerId={conseiller?._id} structureId={structure?._id} />
-        <div className="rf-container">
-          <div className="rf-grid-row">
-            <Validation conseillerId={conseiller?._id} structureId={structure?._id} />
-          </div>
-        </div>
-      </div>
-      <Footer type="support"/>
+        <Footer type="support"/>
+      </>
+      }
     </>
   );
 }
