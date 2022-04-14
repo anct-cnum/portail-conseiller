@@ -35,11 +35,6 @@ function Validation({ conseillerId, structureId }) {
         conseillers.push(conseillerId);
       }
 
-      const itinerant = fields?.filter(field => field.name === prefixId + 'itinerant')[0]?.value ?? [];
-      if (!itinerant.includes(conseillerId)) {
-        itinerant.push(conseillerId);
-      }
-
       const nouveauLieu = {
         //Données du CNFS
         estCoordinateur: fields.filter(field => field.name === 'estCoordinateur')[0]?.value ?? null,
@@ -62,12 +57,26 @@ function Validation({ conseillerId, structureId }) {
         location: fields.filter(field => field.name === prefixId + 'location')[0]?.value ?? null,
         horaires: fields.filter(field => field.name === prefixId + 'horaires')[0]?.value[prefixId + 'horaires'] ?? horairesInitiales,
         typeAcces: fields.filter(field => field.name === prefixId + 'typeAcces')[0]?.value ?? null,
-        conseillersItinerants: itinerant,
         conseillers: conseillers,
         structureId: structureId,
         showPermanenceForm: false,
         hasPermanence: true,
       };
+
+      if (prefixId === 'principal_') {
+        const lieuPrincipalPour = fields?.filter(field => field.name === 'lieuPrincipalPour')[0]?.value ?? [];
+        if (!lieuPrincipalPour.includes(conseillerId)) {
+          lieuPrincipalPour.push(conseillerId);
+        }
+        nouveauLieu.lieuPrincipalPour = lieuPrincipalPour;
+      } else {
+        const itinerant = fields?.filter(field => field.name === prefixId + 'itinerant')[0]?.value;
+        const conseillersItinerants = fields?.filter(field => field.name === prefixId + 'conseillersItinerants')[0]?.value ?? [];
+        if (!conseillersItinerants.includes(conseillerId) && itinerant) {
+          conseillersItinerants.push(conseillerId);
+          nouveauLieu.conseillersItinerants = conseillersItinerants;
+        }
+      }
 
       if (nouveauLieu._id !== null) {
         dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, true, null));

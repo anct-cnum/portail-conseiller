@@ -34,8 +34,10 @@ function ListPermanences({ prefixId, conseillerId }) {
     });
 
     if (prefixId === 'principal_') {
+      dispatch(permanenceActions.updateField('lieuPrincipalPour', permanence?.lieuPrincipalPour));
       loadingHoraires[0] = true;
     } else {
+      dispatch(permanenceActions.updateField(prefixId + 'conseillersItinerants', permanence?.conseillersItinerants));
       const id = 0;
       loadingHoraires[id + 1] = true;
     }
