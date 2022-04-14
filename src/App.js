@@ -6,7 +6,9 @@ import { useSelector } from 'react-redux';
 import Login from './components/anonymous/Login.js';
 import Home from './components/connected/Home';
 import Admin from './components/admin';
+import Hub from './components/hub';
 import ChoosePassword from './components/anonymous/ChoosePassword';
+import ChoosePasswordHub from './components/anonymous/ChoosePasswordHub';
 import ValidationAccount from './components/connected/ValidationAccount';
 import ForgottenPassword from './components/anonymous/ForgottenPassword';
 import EnregistrerStatistiquesPdf from './components/anonymous/EnregistrerStatistiquesPdf';
@@ -33,6 +35,7 @@ function App() {
           <Route path="/mot-de-passe-oublie" component={ForgottenPassword} />
           <Route path="/renouveler-mot-de-passe/:token" component={ForgottenPassword} />
           <Route path="/inscription/:token" component={ChoosePassword} />
+          <Route path="/inscription-hub/:token" component={ChoosePasswordHub} />
           <Route path="/conseillers/confirmation-email/:token" component={EmailConfirmer} />
           <Route path="/changer-email/:token" component={choosePasswordChangeMailbox} />
           <Route path="/validation" component={ValidationAccount} />
@@ -45,6 +48,9 @@ function App() {
           }
           {(user?.role === 'admin_coop' || user?.role === 'structure_coop') &&
             <PrivateRoute exact path="*" component={Admin}/>
+          }
+          {(user?.role === 'hub_coop') &&
+            <PrivateRoute exact path="*" component={Hub}/>
           }
           <Redirect from="/" to="/login"/>
         </Switch>

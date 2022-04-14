@@ -56,6 +56,7 @@ jobs:
           envkey_REACT_APP_PIX_URL: "https://pix.fr/abc-pix-cnfs/"
           envkey_REACT_APP_RESSOURCERIE_URL: "https://ressourcerie.conseiller-numerique.gouv.fr"
           envkey_REACT_APP_AIDE_URL: "https://aide.conseiller-numerique.gouv.fr/fr"
+          envkey_REACT_APP_NOMBRE_LIEU_SECONDAIRE: 15
           file_name: .env
       - name: Build application
         run: yarn run build

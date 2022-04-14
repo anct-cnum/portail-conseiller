@@ -22,10 +22,10 @@ function EnregistrerStatistiquesPdf({ match }) {
   const codePostalStats = useSelector(state => state.statistique?.codePostalStats);
   const donneesStatistiques = useSelector(state => state.statistique?.statsData);
   const territoire = useSelector(state => state.statistique?.territoire);
-  const typeTerritoire = (type !== 'user' && type !== 'conseiller') ? type : '';
+  const typeTerritoire = (type !== 'user' && type !== 'conseiller' && type !== 'structure') ? type : '';
 
   useEffect(() => {
-    if ((type !== 'user' && type !== 'conseiller' && type !== 'nationales') && territoire === undefined) {
+    if ((type !== 'user' && type !== 'conseiller' && type !== 'nationales' && type !== 'structure') && territoire === undefined) {
       dispatch(statistiqueActions.getTerritoire(type, id, dateFin));
     }
   });
@@ -40,6 +40,8 @@ function EnregistrerStatistiquesPdf({ match }) {
       dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, territoire?.conseillerIds));
     } else if (type === 'nationales') {
       dispatch(statistiqueActions.getStatsCraNationale(dateDebutStats, dateFinStats));
+    } else if (type === 'structure') {
+      dispatch(statistiqueActions.getStatsCraStructure(dateDebutStats, dateFinStats, id, codePostal));
     }
   }, [territoire, codePostalStats]);
 
@@ -53,7 +55,7 @@ function EnregistrerStatistiquesPdf({ match }) {
           <div className="rf-col-12">
             <div className="rf-mt-2w rf-mt-md-9w rf-mt-lg-13w"></div>
             <h1 className={(type !== 'user' && type !== 'conseiller') ? 'title title-print-territoire' : 'title'}>
-              {(type !== 'user' && type !== 'conseiller') &&
+              {(type !== 'user' && type !== 'conseiller' && type !== 'structure') &&
               <>
                 Statistiques - { territoire?.nomDepartement ?? territoire?.nomRegion }
               </>
@@ -67,6 +69,9 @@ function EnregistrerStatistiquesPdf({ match }) {
               {type === 'conseiller' &&
                 <>Mes Statistiques</>
               }
+              {type === 'structure' &&
+                <>Statistiques structure</>
+              }
             </h1>
             <div className="rf-mb-5w rf-mt-md-4w"></div>
           </div>
@@ -76,7 +81,7 @@ function EnregistrerStatistiquesPdf({ match }) {
           <div className="rf-col-xs-3 rf-col-sm-7 rf-col-md-6 rf-col-lg-4">
             <div className="rf-mb-4w rf-mb-md-6w">
               <StatisticsPeriod dateDebut={dateDebutStats} dateFin={dateFinStats} />
-              {type === 'conseiller' &&
+              {(type === 'conseiller' || type === 'structure') &&
                 <select className="rf-select code-postal-select rf-my-2w">
                   <option value="">{codePostal !== 'null' ? codePostal : 'Tous codes postaux' }</option>
                 </select>

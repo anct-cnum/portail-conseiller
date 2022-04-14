@@ -11,6 +11,7 @@ import Spinner from 'react-loader-spinner';
 import FlashMessage from 'react-flash-message';
 import Header from '../Header';
 import AdminHeader from '../admin/AdminHeader';
+import HeaderHub from '../hub/HeaderHub';
 
 function StatistiquesNationales() {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ function StatistiquesNationales() {
 
   return (
     <div>
-      <Header linkAccount={user?.name}/>
+      {user?.role === 'hub_coop' ? <HeaderHub /> : <Header linkAccount={user?.name}/>}
       {user.role === 'admin_coop' &&
         <div className="admin">
           <AdminHeader />
@@ -110,7 +111,7 @@ function StatistiquesNationales() {
             <h2 className="centrerTexte">Il n&rsquo;y a aucune statistique pour le moment</h2>
           }
         </div>
-        <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats} nationales={true}/>
+        <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats} typeStats={'nationales'}/>
         <div className="rf-m-5w rf-m-md-9w rf-m-lg-15w"></div>
         <Footer type="support" role={user.role}/>
       </div>

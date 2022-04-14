@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Footer from '../Footer';
 import Header from '../Header';
+import HeaderHub from '../hub/HeaderHub';
 
 function Propos() {
 
@@ -9,9 +10,13 @@ function Propos() {
   const aideCoop = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide_espace_coop';
   const aideMetier = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide-metier';
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
+
   return (
     <div>
-      <Header linkAccount={user?.name}/>
+      { user?.role === 'hub_coop' ? <HeaderHub /> : <Header linkAccount={user?.name}/>}
       <div id="propos">
         <div className="rf-container">
           <div className="rf-grid-row">
@@ -68,7 +73,7 @@ function Propos() {
 
               <h2 className="rf-mt-6w titre2">Vous aussi, vous pouvez contribuer si vous le souhaitez</h2>
               <p className="rf-mb-3w">Pour cela, rejoignez les canaux correspondants sur votre espace de discussion&nbsp;:</p>
-              <p className="rf-mb-3w">
+              <div className="rf-mb-3w">
                 <a className="lien-footer" href={aideMetier} target="blank" rel="noreferrer">
                   <img src="logos/bulle-ressourcerie.svg" className="bulle-ressourcerie"/>
                   <p className="lien-a-propos" >
@@ -76,7 +81,7 @@ function Propos() {
                     rejoignez le canal Atelier NEC.
                   </p>
                 </a>
-              </p>
+              </div>
               <p className="rf-mb-15w">
                 <a className="lien-footer" href={aideCoop} target="blank" rel="noreferrer">
                   <img src="logos/bulle-ressourcerie.svg" className="bulle-ressourcerie"/>

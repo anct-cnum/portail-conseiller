@@ -22,13 +22,15 @@ function Connected() {
 
   const structure = useSelector(state => state?.structure?.structure);
   const permanence = useSelector(state => state?.permanence?.permanence);
-  const voirPermanence = false; //useSelector(state => state?.permanence?.showFormulairePermanence);
+  const voirPermanence = useSelector(state => state?.permanence?.showFormulairePermanence);
+  const suspendrePermanence = localStorage.getItem('suspension_permanence');
 
   useEffect(() => {
     if (conseiller) {
       dispatch(conseillerActions.isFormulaireChecked(conseiller.sexe, formulaireIsUpdated));
-      dispatch(permanenceActions.isPermanenceChecked(conseiller?.hasPermanence));
-      if (!structure) {
+      dispatch(permanenceActions.isPermanenceChecked(user?.showPermanenceForm));
+
+      if (!structure || structure === undefined) {
         dispatch(structureActions.get(conseiller.structureId));
       }
       if (permanence === undefined) {
@@ -42,13 +44,9 @@ function Connected() {
   return (
     <>
       <Header linkAccount={user?.name} />
-      {voirFormulaire &&
-        <FormulaireSexeAge />
-      }
       {!user.pdfGenerator &&
         <>
-          {!voirPermanence &&
-            //<Route path={`/mes-informations`} component={Permanence} />
+          {(!voirPermanence || suspendrePermanence) &&
             <>
               <Route path={`/accueil`} component={Welcome} />
               <Route path={`/compte-rendu-activite`} component={Cra} />
@@ -58,11 +56,16 @@ function Connected() {
               <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
             </>
           }
-          {voirPermanence &&
+
+          {(voirPermanence && !suspendrePermanence) &&
             <>
               <Route path={`/accueil`} component={Permanence} />
               <Route path="/" render={() => (<Redirect to="/accueil" />)} />
             </>
+          }
+
+          {voirFormulaire &&
+            <FormulaireSexeAge />
           }
         </>
       }

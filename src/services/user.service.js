@@ -34,6 +34,7 @@ function login(username, password) {
 
 function logout() {
   localStorage.removeItem('user');
+  localStorage.removeItem('suspension_permanence');
 }
 
 function handleResponse(response) {
@@ -69,7 +70,7 @@ function handleResponse(response) {
     if (data?.roles) {
       roles = data?.roles;
     }
-    const rolesAllowed = ['conseiller', 'admin_coop', 'structure_coop'];
+    const rolesAllowed = ['conseiller', 'admin_coop', 'structure_coop', 'hub_coop'];
     if (rolesAllowed.filter(role => roles.includes(role)).length === 0) {
       logout();
       return Promise.reject({ error: 'Identifiants incorrects' });

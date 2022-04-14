@@ -5,36 +5,50 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { conseillerActions } from '../../../actions';
 
-function StatisticsBanner({ dateDebut, dateFin, idTerritoire, nationales = false, codePostal = null }) {
+function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePostal = null }) {
 
   const location = useLocation();
   const dispatch = useDispatch();
   const downloadError = useSelector(state => state.conseiller?.downloadError);
   const user = useSelector(state => state.authentication.user.user);
   const blob = useSelector(state => state.conseiller?.blob);
-
   const territoire = location?.territoire;
   let typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : null;
 
+  function getTypeStatistique(type) {
+    let typeTarget = '';
+    switch (type) {
+      case 'nationales':
+        typeTarget = type;
+        break;
+      case 'structure':
+        typeTarget = type;
+        break;
+      default:
+        typeTarget = typeTerritoire ?? 'user';
+        break;
+    }
+    return typeTarget;
+  }
+  
   function savePDF() {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-    if (user?.role === 'admin_coop' || user?.role === 'structure_coop') {
-      const type = nationales === false ? typeTerritoire ?? 'user' : 'nationales';
-
-      dispatch(conseillerActions.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser));
-    } else {
+    if (user?.role === 'conseiller') {
       dispatch(conseillerActions.getStatistiquesPDF(user.entity.$id, dateDebut, dateFin, codePostal));
+    } else {
+      const type = getTypeStatistique(typeStats);
+      dispatch(conseillerActions.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser, codePostal));
     }
   }
 
   function saveCSV() {
-    if (user?.role === 'admin_coop' || user?.role === 'structure_coop') {
-      const type = nationales === false ? typeTerritoire ?? 'user' : 'nationales';
+    if (user?.role === 'conseiller') {
+      dispatch(conseillerActions.getStatistiquesCSV(dateDebut, dateFin, codePostal));
+    } else {
+      const type = getTypeStatistique(typeStats);
       const conseillerIds = territoire?.conseillerIds ?? undefined;
       // eslint-disable-next-line max-len
-      dispatch(conseillerActions.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser, conseillerIds));
-    } else {
-      dispatch(conseillerActions.getStatistiquesCSV(dateDebut, dateFin, codePostal));
+      dispatch(conseillerActions.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser, conseillerIds, codePostal));
     }
   }
 
@@ -99,7 +113,7 @@ StatisticsBanner.propTypes = {
   dateDebut: PropTypes.instanceOf(Date),
   dateFin: PropTypes.instanceOf(Date),
   idTerritoire: PropTypes.string,
-  nationales: PropTypes.bool,
+  typeStats: PropTypes.string,
   codePostal: PropTypes.string,
 };
 
