@@ -32,11 +32,15 @@ function Permanence() {
 
   }, [structure?._id]);
 
+  console.log(conseiller);
+
   return (
     <>
       {conseiller &&
       <>
-        <Ouverture />
+        { location.pathname !== '/lieux-activite' &&
+          <Ouverture />
+        }
 
         { (isEnded && location.pathname === '/accueil') &&
           <Remerciement/>
@@ -50,16 +54,18 @@ function Permanence() {
             </p>
           }
 
-          <ContactProfessionel conseiller={conseiller}/>
+          <ContactProfessionel conseiller={conseiller} />
           <div className="rf-container">
             <div className="rf-grid-row">
-              <PermanencePrincipale structure={structure} conseillerId={conseiller?._id}/>
+              <PermanencePrincipale structure={structure} conseillerId={conseiller?._id} isUpdate={conseiller?.hasPermanence}/>
             </div>
           </div>
-          <PermanenceSecondaire structure={structure} conseillerId={conseiller?._id} structureId={structure?._id} />
+          <PermanenceSecondaire structure={structure}
+            conseillerId={conseiller?._id} structureId={structure?._id}
+            isUpdate={location.pathname === '/lieux-activite'}/>
           <div className="rf-container">
             <div className="rf-grid-row">
-              <Validation conseillerId={conseiller?._id} structureId={structure?._id} />
+              <Validation conseillerId={conseiller?._id} structureId={structure?._id} isUpdate={conseiller?.hasPermanence}/>
             </div>
           </div>
         </div>

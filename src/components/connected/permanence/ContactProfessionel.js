@@ -16,9 +16,9 @@ function ContactProfessionel({ conseiller }) {
     telephoneHorsMetropole?.find(item => item.codeDepartement === conseiller.codeDepartement).indicatif : '+33';
 
   const [inputs, setInputs] = useState({
-    estCoordinateur: null,
-    emailPro: conseiller.emailPro ?? '',
-    telephonePro: conseiller.telephonePro ?? '',
+    estCoordinateur: String(conseiller?.estCoordinateur) ?? null,
+    emailPro: conseiller?.emailPro ?? '',
+    telephonePro: conseiller?.telephonePro ?? '',
   });
 
   const { emailPro, telephonePro } = inputs;
@@ -50,13 +50,15 @@ function ContactProfessionel({ conseiller }) {
           <fieldset className="rf-fieldset rf-mt-2w">
             <div className="rf-fieldset__content">
               <div className="rf-radio-group">
-                <input type="radio" id="CnFS" name="estCoordinateur" value="false" required="required" onClick={handleChange}/>
+                <input type="radio" id="CnFS" name="estCoordinateur" value="false" required="required"
+                  defaultChecked={conseiller?.estCoordinateur} onClick={handleChange}/>
                 <label className={erreurTypeCnFS ? 'rf-label invalid' : 'rf-label' } htmlFor="CnFS">
                 Conseiller·&egrave;re num&eacute;rique France Services
                 </label>
               </div>
               <div className="rf-radio-group">
-                <input type="radio" id="CnFSCoord" name="estCoordinateur" value="true" required="required" onClick={handleChange}/>
+                <input type="radio" id="CnFSCoord" name="estCoordinateur" value="true" required="required"
+                  defaultChecked={!conseiller?.estCoordinateur} onClick={handleChange}/>
                 <label className={erreurTypeCnFS ? 'rf-label invalid' : 'rf-label' } htmlFor="CnFSCoord">
                   Conseiller·&egrave;re num&eacute;rique France Services Coordinateur.ice
                 </label>
@@ -106,17 +108,14 @@ function ContactProfessionel({ conseiller }) {
           et pourront &eacute;galement &ecirc;tre utilis&eacute;es sur d&rsquo;autres supports num&eacute;riques ou imprim&eacute;s dans le cadre du dispositif.
           En cas de d&eacute;part, mes informations seront supprim&eacute;es de l&rsquo;annuaire et de sa base de donn&eacute;es.
         </div>
-        {/* En attente de l'écran
         <div className="rf-col-offset-1 rf-col-10 rf-mb-9w astuce">
           Astuce : vous pourrez modifier vos informations de contact en cliquant sur votre nom en haut &agrave; droite de l&rsquo;&eacute;cran.
         </div>
-        */}
       </div>
     </div>
   );
 }
 ContactProfessionel.propTypes = {
-  codeDepartement: PropTypes.string,
-  conseiller: PropTypes.object,
+  conseiller: PropTypes.object
 };
 export default ContactProfessionel;

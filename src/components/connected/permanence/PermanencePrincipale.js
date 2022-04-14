@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -11,7 +11,7 @@ import Horaires from './Horaires';
 import Adresse from './Adresse';
 import TypeAcces from './TypeAcces';
 
-function PermanencePrincipale({ structure, conseillerId }) {
+function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
   const dispatch = useDispatch();
 
   const listPermanences = useSelector(state => state.permanence?.permanences);
@@ -21,6 +21,41 @@ function PermanencePrincipale({ structure, conseillerId }) {
   const adresseStructure = structure?.insee?.etablissement?.adresse;
 
   const [estClique, setEstClique] = useState(false);
+
+  const fillPermanencePrincipale = permanencePrincipale => {
+    dispatch(permanenceActions.updateField('principal_idPermanence', permanencePrincipale?._id ?? null));
+    dispatch(permanenceActions.updateField('principal_numeroTelephone', permanencePrincipale?.numeroTelephone ?? null));
+    dispatch(permanenceActions.updateField('principal_email', permanencePrincipale?.email ?? null));
+    dispatch(permanenceActions.updateField('principal_siteWeb', permanencePrincipale?.siteWeb ?? null));
+    permanencePrincipale?.typeAcces?.forEach(type => {
+      dispatch(permanenceActions.updateField('principal_' + type, true));
+    });
+    const horaires = permanencePrincipale?.horaires ?? horairesInitiales;
+    dispatch(permanenceActions.updateField('principal_horaires', { principal_horaires: horaires }));
+    dispatch(permanenceActions.updateField('principal_conseillers', permanencePrincipale?.conseillers ?? null));
+    dispatch(permanenceActions.updateField('principal_nomEnseigne', permanencePrincipale?.nomEnseigne ?? structure?.nom));
+    dispatch(permanenceActions.updateField('principal_siret', permanencePrincipale?.siret ?? structure?.siret));
+    dispatch(permanenceActions.updateField('principal_numeroVoie',
+      permanencePrincipale?.adresse?.numeroRue ?? adresseStructure.numero_voie));
+    dispatch(permanenceActions.updateField('principal_rueVoie',
+      permanencePrincipale?.adresse?.rue ?? adresseStructure.type_voie + ' ' + adresseStructure.nom_voie));
+    dispatch(permanenceActions.updateField('principal_codePostal',
+      permanencePrincipale?.adresse?.codePostal ?? adresseStructure.code_postal));
+    dispatch(permanenceActions.updateField('principal_ville',
+      permanencePrincipale?.adresse?.ville.toUpperCase() ?? adresseStructure.localite.toUpperCase()));
+    dispatch(permanenceActions.updateField('principal_location', structure?.location));
+    loadingHoraires[0] = true;
+    dispatch(permanenceActions.setHorairesLoading(loadingHoraires));
+
+    const adresseGeoloc = {
+      numero: permanencePrincipale?.adresse?.numeroRue ?? adresseStructure.numero_voie,
+      rue: permanencePrincipale?.adresse?.rue ?? adresseStructure.type_voie + ' ' + adresseStructure.nom_voie,
+      codePostal: permanencePrincipale?.adresse?.codePostal ?? adresseStructure.code_postal,
+      ville: permanencePrincipale?.adresse?.ville.toUpperCase() ?? adresseStructure.localite.toUpperCase()
+    };
+    dispatch(permanenceActions.getGeocodeAdresse(adresseGeoloc, 'principal_'));
+    dispatch(permanenceActions.disabledField('principal_', true));
+  };
 
   function handleAdresse(estStructure) {
     setEstClique(true);
@@ -83,6 +118,15 @@ function PermanencePrincipale({ structure, conseillerId }) {
 
     }
   }
+
+  useEffect(() => {
+    if (isUpdate && listPermanences) {
+      const permanencePrincipale = listPermanences.find(permanence => permanence.structure.$id === structure._id && permanence.estStructure === true);
+      fillPermanencePrincipale(permanencePrincipale);
+
+    }
+  }, [listPermanences]);
+
 
   return (
     <>
@@ -156,6 +200,7 @@ PermanencePrincipale.propTypes = {
   permanence: PropTypes.object,
   structure: PropTypes.object,
   conseillerId: PropTypes.string,
+  isUpdate: PropTypes.bool,
 };
 
 export default PermanencePrincipale;
