@@ -144,7 +144,7 @@ function verifyFormulaire(form) {
       message: 'La localisation du lieu d\'activité doit obligatoirement être saisie'
     },
     {
-      nom: 'itinerant', validation: Joi.string().trim().allow('', null),
+      nom: 'itinerant', validation: Joi.boolean(),
       message: 'Une itinérance doit obligatoirement être saisie'
     },
     {
