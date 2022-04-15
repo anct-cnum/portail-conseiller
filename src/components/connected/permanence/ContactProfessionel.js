@@ -103,7 +103,7 @@ function ContactProfessionel({ conseiller }) {
             <p className="text-error rf-mb-n3w">{erreurTelephonePro}</p>
           }
         </div>
-        <div className="rf-col-offset-1 rf-col-10 rf-mb-9w conditions">
+        <div className="rf-col-offset-1 rf-col-10 rf-mb-3w conditions">
           Conform&eacute;ment aux CGU, mes informations de contact seront affich&eacute;es sur la carte nationale Conseillers num&eacute;rique Frances Services,
           et pourront &eacute;galement &ecirc;tre utilis&eacute;es sur d&rsquo;autres supports num&eacute;riques ou imprim&eacute;s dans le cadre du dispositif.
           En cas de d&eacute;part, mes informations seront supprim&eacute;es de l&rsquo;annuaire et de sa base de donn&eacute;es.

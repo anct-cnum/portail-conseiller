@@ -32,7 +32,6 @@ function Permanence() {
 
   }, [structure?._id]);
 
-  console.log(conseiller);
 
   return (
     <>

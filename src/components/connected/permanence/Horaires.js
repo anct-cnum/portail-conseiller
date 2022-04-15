@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { permanenceActions } from '../../../actions/permanence.actions';
 import horairesInitiales from '../../../data/horairesInitiales.json';
+
 function Horaires({ prefixId, horairesId }) {
 
   const dispatch = useDispatch();
@@ -112,7 +113,7 @@ function Horaires({ prefixId, horairesId }) {
                           required name={prefixId + jour + 'MatinDebut'} min="06:00" max="13:00" onChange={e => {
                             handleChange(e, idx, 'matin', 0);
                           }}/>
-                        <input className="horaires-fin without_ampm" type="time" value={horaires[prefixId + 'horaires'][idx]?.matin[1]}
+                        <input className="horaires-fin without_ampm" type="time" timeformat="24h" value={horaires[prefixId + 'horaires'][idx]?.matin[1]}
                           required name={prefixId + jour + 'MatinFin'} min="06:00" max="13:00" onChange={e => {
                             handleChange(e, idx, 'matin', 1);
                           }}/>

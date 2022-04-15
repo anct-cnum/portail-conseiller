@@ -20,6 +20,8 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
   const erreurAdresseExact = erreursFormulaire?.filter(erreur => erreur?.estStructure)[0]?.estStructure;
   const adresseStructure = structure?.insee?.etablissement?.adresse;
 
+  const [defaultCheckedOui, setDefaultCheckedOui] = useState(false);
+  const [defaultCheckedNon, setDefaultCheckedNon] = useState(false);
   const [estClique, setEstClique] = useState(false);
 
   const fillPermanencePrincipale = permanencePrincipale => {
@@ -123,12 +125,19 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
 
   useEffect(() => {
     if (isUpdate && listPermanences) {
-      const permanencePrincipale = listPermanences.find(permanence => permanence.structure.$id === structure._id && permanence.estStructure === true);
+      const permanencePrincipale = listPermanences.find(permanence => permanence.lieuPrincipalPour.includes(conseillerId));
+      console.log(permanencePrincipale.estStructure);
       fillPermanencePrincipale(permanencePrincipale);
-
+      if (permanencePrincipale?.estStructure === true) {
+        setDefaultCheckedOui(true);
+      } else {
+        setDefaultCheckedNon(true);
+      }
+      setEstClique(true);
     }
   }, [listPermanences]);
 
+  console.log(defaultCheckedOui);
 
   return (
     <>
@@ -153,15 +162,16 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
           <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-2w">
             <div className="rf-fieldset__content">
               <div className="rf-radio-group">
-                <input type="radio" id="Oui" name="principalLieuActivite" value="Oui" required="required" onClick={() => {
-                  handleAdresse(true);
-                }}/>
+                <input type="radio" id="Oui" name="principalLieuActivite" value="Oui" defaultChecked={{ defaultCheckedOui }}
+                  required="required" onClick={() => {
+                    handleAdresse(true);
+                  }}/>
                 <label className={(erreurAdresseExact && !estClique) ? 'rf-label invalid' : 'rf-label' } htmlFor="Oui">
                   Oui
                 </label>
               </div>
               <div className="rf-radio-group">
-                <input type="radio" id="Non" name="principalLieuActivite" value="Non"
+                <input type="radio" id="Non" name="principalLieuActivite" value="Non" defaultChecked={defaultCheckedNon}
                   required="required" onClick={() => {
                     handleAdresse(false);
                   }}
