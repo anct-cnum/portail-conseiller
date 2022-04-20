@@ -18,7 +18,9 @@ export const permanenceActions = {
   disabledField,
   montrerLieuSecondaire,
   setHorairesLoading,
-  suspensionFormulaire
+  suspensionFormulaire,
+  deletePermanence,
+  deleteConseillerPermanence
 };
 
 function get(idConseiller) {
@@ -368,3 +370,52 @@ function suspensionFormulaire() {
   history.push('/accueil');
   return { type: 'SUSPENSION_FORM' };
 }
+
+function deletePermanence(idPermanence) {
+  return dispatch => {
+    dispatch(request());
+
+    permanenceService.deletePermanence(idPermanence)
+    .then(
+      result => dispatch(success(result.isDeleted)),
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'DELETE_PERMANENCE_REQUEST' };
+  }
+  function success(isDeleted) {
+    return { type: 'DELETE_PERMANENCE_SUCCESS', isDeleted };
+  }
+  function failure(error) {
+    return { type: 'DELETE_PERMANENCE_FAILURE', error };
+  }
+}
+
+function deleteConseillerPermanence(idPermanence) {
+  return dispatch => {
+    dispatch(request());
+
+    permanenceService.deleteConseillerPermanence(idPermanence)
+    .then(
+      result => dispatch(success(result.isConseillerDeleted)),
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'DELETE_CONSEILLER_PERMANENCE_REQUEST' };
+  }
+  function success(isConseillerDeleted) {
+    return { type: 'DELETE_CONSEILLER_PERMANENCE_SUCCESS', isConseillerDeleted };
+  }
+  function failure(error) {
+    return { type: 'DELETE_CONSEILLER_PERMANENCE_FAILURE', error };
+  }
+}
+

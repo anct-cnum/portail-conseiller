@@ -123,16 +123,23 @@
     width: 288px;
 
   }
-  .nouveau-btn, .localisation-btn {
+  .nouveau-btn, .localisation-btn, .supprimer-btn {
     background: #1e1e1e;
     border: 1px solid #8585f6;
     line-height: 24px;
     text-align: center;
     font-size: 16px;
     color: #8585f6;
+    cursor: pointer;
   }
   .localisation-btn-position {
     text-align: right;
+  }
+  .supprimer-btn {
+    margin-left: 125px;
+    margin-top: 3.2rem;
+    padding: 8px 24px;
+    height: 40px;
   }
   .emplacement-permanences {
     overflow: auto;
@@ -232,6 +239,19 @@
   .leaflet-control-attribution {
     display: none;
   }
+
+  /* Partie Mise à jour*/
+  .suppression-definitive {
+    font-family: 'Marianne';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    background: #E0000F;
+    text-align: center;
+    color: #F5F5FE;
+  }
+
   @media (min-width: 768px) and (max-width: 1102px){
     .banniere .col-logo .hexagone {
       margin-top: 39px;

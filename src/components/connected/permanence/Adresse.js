@@ -7,8 +7,9 @@ import InputCheckbox from './Components/InputCheckbox';
 import CarteAdresse from './Components/CarteAdresse';
 import ButtonLocalisation from './Components/ButtonLocalisation';
 import SelectAdresse from './Components/SelectAdresse';
+import SupprimerPermanence from './SupprimerPermanence';
 
-function Adresse({ codeDepartement, prefixId }) {
+function Adresse({ codeDepartement, prefixId, isUpdate, permanence }) {
 
   const fields = useSelector(state => state.permanence?.fields);
   const disabledFields = useSelector(state => state.permanence?.disabledFields);
@@ -88,7 +89,12 @@ function Adresse({ codeDepartement, prefixId }) {
               valueInput={fields?.filter(field => field.name === prefixId + 'nomEnseigne')[0]?.value ?? ''}
             />
           </div>
-          <div className="rf-col-4"></div>
+
+          <div className="rf-col-5">
+            { isUpdate &&
+              <SupprimerPermanence permanence={permanence}/>
+            }
+          </div>
         </>
       }
 
@@ -203,10 +209,9 @@ function Adresse({ codeDepartement, prefixId }) {
 
 Adresse.propTypes = {
   codeDepartement: PropTypes.string,
-  adressePermanence: PropTypes.object,
-  nomEnseignePermanence: PropTypes.string,
   prefixId: PropTypes.string,
-  secondaireId: PropTypes.number,
+  isUpdate: PropTypes.bool,
+  permanence: PropTypes.object,
 };
 
 export default Adresse;

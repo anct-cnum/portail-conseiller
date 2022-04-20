@@ -245,6 +245,54 @@ export default function permanence(state = initialState, action) {
       };
     case 'SUSPENSION_FORM':
       return { };
+    case 'DELETE_PERMANENCE_REQUEST':
+      return {
+        ...state,
+        isDeleted: false,
+        loadingDeleted: true,
+        showErrorDeleted: false,
+        errorDeleted: false,
+      };
+    case 'DELETE_PERMANENCE_SUCCESS':
+      return {
+        ...state,
+        isDeleted: action.isDeleted,
+        loadingDeleted: false,
+        showErrorDeleted: false,
+        errorDeleted: false,
+      };
+    case 'DELETE_PERMANENCE_FAILURE':
+      return {
+        ...state,
+        isDeleted: false,
+        loadingDeleted: false,
+        showErrorDeleted: true,
+        errorDeleted: action.error,
+      };
+    case 'DELETE_CONSEILLER_PERMANENCE_REQUEST' :
+      return {
+        ...state,
+        isConseillerDeleted: false,
+        loadingConseillerDeleted: true,
+        showErrorConseillerDeleted: false,
+        errorConseillerDeleted: false,
+      };
+    case 'DELETE_CONSEILLER_PERMANENCE_SUCCESS' :
+      return {
+        ...state,
+        isConseillerDeleted: action.isConseillerDeleted,
+        loadingConseillerDeleted: false,
+        showErrorConseillerDeleted: false,
+        errorConseillerDeleted: false,
+      };
+    case 'DELETE_CONSEILLER_PERMANENCE_FAILURE' :
+      return {
+        ...state,
+        isConseillerDeleted: false,
+        loadingConseillerDeleted: false,
+        showErrorConseillerDeleted: true,
+        errorConseillerDeleted: action.error,
+      };
     default:
       return state;
   }

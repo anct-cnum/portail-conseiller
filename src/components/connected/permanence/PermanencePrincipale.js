@@ -114,7 +114,7 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
         ville: permanencePrincipale?.adresse?.ville.toUpperCase() ?? adresseStructure.localite.toUpperCase()
       };
       dispatch(permanenceActions.getGeocodeAdresse(adresseGeoloc, 'principal_'));
-      dispatch(permanenceActions.disabledField('principal_', true));
+      dispatch(permanenceActions.disabledField('principal_', !isUpdate));
     } else {
       dispatch(permanenceActions.rebootGeocodeAdresse('principal_'));
       dispatch(permanenceActions.disabledField('principal_', false));
@@ -126,7 +126,6 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
   useEffect(() => {
     if (isUpdate && listPermanences) {
       const permanencePrincipale = listPermanences.find(permanence => permanence.lieuPrincipalPour.includes(conseillerId));
-      console.log(permanencePrincipale.estStructure);
       fillPermanencePrincipale(permanencePrincipale);
       if (permanencePrincipale?.estStructure === true) {
         setDefaultCheckedOui(true);
@@ -136,8 +135,6 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
       setEstClique(true);
     }
   }, [listPermanences]);
-
-  console.log(defaultCheckedOui);
 
   return (
     <>
@@ -193,10 +190,7 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
 
           <Adresse
             codeDepartement={structure?.codeDepartement}
-            adressePermanence={adresseStructure}
-            nomEnseignePermanence={structure?.nom}
             prefixId="principal_"
-            islieuPrincipal={true}
           />
 
           <TypeAcces prefixId="principal_" islieuPrincipal={true} />

@@ -10,6 +10,8 @@ export const permanenceService = {
   updatePermanence,
   verifySiret,
   getGeocodeAdresse,
+  deletePermanence,
+  deleteConseillerPermanence,
 };
 
 function get(idConseiller) {
@@ -69,6 +71,24 @@ function getGeocodeAdresse(adresse) {
   };
   return fetch(`${apiUrlRoot}/permanences/verifyAdresse/${JSON.stringify({
     numero: adresse.numero, rue: adresse.rue, ville: adresse.ville, codePostal: adresse.codePostal })}`, requestOptions).then(handleResponse);
+}
+
+function deletePermanence(idPermanence) {
+  const requestOptions = {
+    method: 'DELETE',
+    headers: authHeader()
+  };
+
+  return fetch(`${apiUrlRoot}/permanence/${idPermanence}`, requestOptions).then(handleResponse);
+}
+
+function deleteConseillerPermanence(idPermanence) {
+  const requestOptions = {
+    method: 'DELETE',
+    headers: authHeader()
+  };
+
+  return fetch(`${apiUrlRoot}/permanence/${idPermanence}/conseiller`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
