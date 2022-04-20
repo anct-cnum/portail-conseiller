@@ -230,8 +230,9 @@ function controleHoraires(horaires) {
         (jour.apresMidi[1] < '13:00' || jour.apresMidi[1] > '22:00' && jour.apresMidi[1] !== 'Fermé')) {
       erreursHoraires.push(id);
     }
-    if (jour.matin[0] > jour.matin[1] || jour.apresMidi[0] > jour.apresMidi[1] ||
-      (jour.matin[1] !== 'Fermé' && jour.apresMidi[0] !== 'Fermé' && jour.matin[1] > jour.apresMidi[0])) {
+    if ((jour.matin[0] > jour.matin[1] && jour.matin[1] !== 'Fermé') ||
+        (jour.apresMidi[0] > jour.apresMidi[1] && jour.apresMidi[0] !== 'Fermé') ||
+        (jour.matin[1] === 'Fermé' && jour.apresMidi[0] === 'Fermé' && jour.matin[0] > jour.apresMidi[1])) {
       erreursHoraires.push(id);
     }
   });
