@@ -1,17 +1,26 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { permanenceActions } from '../../../actions';
 
 function Ouverture() {
   const dispatch = useDispatch();
+  const isReporter = useSelector(state => state.permanence?.isReporter);
+  const showErrorReporter = useSelector(state => state.permanence?.showErrorReporter);
+  const errorReporter = useSelector(state => state.permanence?.errorReporter);
 
   const [show, setShow] = useState(true);
   function closeModal(plusTard) {
     setShow(false);
     if (plusTard) {
-      dispatch(permanenceActions.suspensionFormulaire());
+      dispatch(permanenceActions.reporterPermanence());
     }
   }
+
+  useEffect(() => {
+    if (isReporter) {
+      dispatch(permanenceActions.suspensionFormulaire());
+    }
+  }, [isReporter]);
 
   return (
     <>
@@ -23,6 +32,9 @@ function Ouverture() {
                 <div className="rf-modal__content rf-mt-n4w">
                   <h1 className="rf-modal__title centre rf-mb-4w">À vous de jouer !</h1>
                   <div className="rf-mb-5w centre">
+                    {showErrorReporter &&
+                      <div className="invalid">{errorReporter}</div>
+                    }
                     <img className="conseillers-carte" src="logos/permanences/carthographie-avec-conseillers.svg"/>
                     <div className="rf-mt-4w">
                       En cliquant sur enregistrer, vous renseignerez vos lieux d&rsquo;activit&eacute; et informations de contact,

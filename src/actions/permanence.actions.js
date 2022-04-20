@@ -18,7 +18,8 @@ export const permanenceActions = {
   disabledField,
   montrerLieuSecondaire,
   setHorairesLoading,
-  suspensionFormulaire
+  suspensionFormulaire,
+  reporterPermanence
 };
 
 function get(idConseiller) {
@@ -367,4 +368,29 @@ function suspensionFormulaire() {
   localStorage.setItem('suspension_permanence', true);
   history.push('/accueil');
   return { type: 'SUSPENSION_FORM' };
+}
+
+function reporterPermanence() {
+  return dispatch => {
+    dispatch(request());
+    permanenceService.reporterPermanence()
+    .then(
+      result => {
+        dispatch(success(result.isReporter));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'REPORTER_PERMANENCE_REQUEST' };
+  }
+  function success(isReporter) {
+    return { type: 'REPORTER_PERMANENCE_SUCCESS', isReporter };
+  }
+  function failure(error) {
+    return { type: 'REPORTER_PERMANENCE_FAILURE', error };
+  }
 }
