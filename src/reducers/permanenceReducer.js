@@ -245,6 +245,25 @@ export default function permanence(state = initialState, action) {
       };
     case 'SUSPENSION_FORM':
       return { };
+    case 'REPORTER_PERMANENCE_REQUEST':
+      return {
+        ...state,
+        showErrorReporter: false,
+      };
+    case 'REPORTER_PERMANENCE_SUCCESS':
+      return {
+        ...state,
+        isReporter: action.isReporter,
+        showErrorReporter: false,
+        errorReporter: false,
+      };
+    case 'REPORTER_PERMANENCE_FAILURE':
+      return {
+        ...state,
+        isReporter: false,
+        showErrorReporter: true,
+        errorReporter: action.error,
+      };
     default:
       return state;
   }
