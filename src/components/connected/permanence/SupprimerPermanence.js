@@ -14,6 +14,8 @@ function SupprimerPermanence({ permanence }) {
   const deleteConseillerPermanence = idPermanence => {
     dispatch(permanenceActions.deleteConseillerPermanence(idPermanence));
   };
+
+
   return (
     <>
       <button className="supprimer-btn" onClick={() => {

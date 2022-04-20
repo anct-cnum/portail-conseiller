@@ -15,7 +15,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, isUpdate }
   const dispatch = useDispatch();
 
   const listPermanences = useSelector(state => state.permanence?.permanences);
-  const listSecondaires = listPermanences?.filter(field => field.estStructure === false);
+  const listSecondaires = listPermanences?.filter(field => field.estStructure === false && field.conseillers.includes(conseillerId));
   const loadingHoraires = useSelector(state => state.permanence?.loadingHoraires);
   const form = useSelector(state => state.permanence);
   const lieuxSecondaires = Array.from({ length: process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE }, () => ({}));

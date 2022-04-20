@@ -95,8 +95,8 @@ function Horaires({ prefixId, horairesId }) {
           <thead>
             <tr>
               <th></th>
-              <th><div className="rf-mx-md-2w jour">Matin</div></th>
-              <th><div className="rf-mx-md-2w jour">Apr&egrave;s-midi</div></th>
+              <th><div className="rf-mx-md-2w jour">Matin (06:00 - 13:00)</div></th>
+              <th><div className="rf-mx-md-2w jour">Apr&egrave;s-midi (13:00 - 22:00)</div></th>
             </tr>
           </thead>
           {jourSemaine.map((jour, idx) => {

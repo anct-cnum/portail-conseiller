@@ -1,6 +1,7 @@
 import { permanenceService } from '../services/permanence.service';
 import { history } from '../helpers';
 import Joi from 'joi';
+import permanence from '../reducers/permanenceReducer';
 
 export const permanenceActions = {
   get,
@@ -20,7 +21,8 @@ export const permanenceActions = {
   setHorairesLoading,
   suspensionFormulaire,
   deletePermanence,
-  deleteConseillerPermanence
+  deleteConseillerPermanence,
+  fillPermanenceForm
 };
 
 function get(idConseiller) {
@@ -354,6 +356,8 @@ function montrerLieuSecondaire(show) {
 }
 
 function updateField(name, value) {
+  console.log(name);
+  console.log(value);
   return { type: 'UPDATE_FIELD', field: { name, value } };
 }
 
@@ -419,3 +423,42 @@ function deleteConseillerPermanence(idPermanence) {
   }
 }
 
+function fillPermanenceForm(permanences, conseillerId) {
+
+  const permanencePrincipale = permanences?.find(permanence => permanence.lieuPrincipalPour.includes(conseillerId));
+  const permanenceSecondaire = permanences?.find(permanence => !permanence.lieuPrincipalPour.includes(conseillerId));
+
+  console.log(permanencePrincipale);
+  console.log(permanenceSecondaire);
+  updateField('principal_idPermanence', permanencePrincipale?._id ?? null);
+  updateField('principal_numeroTelephone', permanencePrincipale?.numeroTelephone ?? null);
+  updateField('principal_email', permanencePrincipale?.email ?? null);
+  updateField('principal_siteWeb', permanencePrincipale?.siteWeb ?? null);
+  permanencePrincipale?.typeAcces?.forEach(type => {
+    updateField('principal_' + type, true);
+  });
+  updateField('principal_horaires', { principal_horaires: permanencePrincipale?.horaires });
+  updateField('principal_conseillers', permanencePrincipale?.conseillers);
+  updateField('principal_nomEnseigne', permanencePrincipale?.nomEnseigne);
+  updateField('principal_siret', permanencePrincipale?.siret);
+  updateField('principal_numeroVoie', permanencePrincipale?.adresse?.numeroRue);
+  updateField('principal_rueVoie', permanencePrincipale?.adresse?.rue);
+  updateField('principal_codePostal', permanencePrincipale?.adresse?.codePostal);
+  updateField('principal_ville', permanencePrincipale?.adresse?.ville.toUpperCase());
+  updateField('principal_location', permanencePrincipale?.location);
+  const adresseGeoloc = {
+    numero: permanencePrincipale?.adresse?.numeroRue,
+    rue: permanencePrincipale?.adresse?.rue,
+    codePostal: permanencePrincipale?.adresse?.codePostal,
+    ville: permanencePrincipale?.adresse?.ville.toUpperCase()
+  };
+  getGeocodeAdresse(adresseGeoloc, 'principal_');
+  disabledField('principal_', true);
+
+  permanences.forEach(permanence, id => {
+    if (permanence.estStructure === false) {
+
+    }
+  });
+  return { type: 'FILL_PERMANENCE_SUCCESS' };
+}

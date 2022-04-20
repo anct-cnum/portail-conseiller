@@ -17,6 +17,7 @@ function Permanence() {
 
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const structure = useSelector(state => state.structure?.structure);
+  const listPermanences = useSelector(state => state.permanence?.permanences);
 
   const showError = useSelector(state => state.permanence?.showError);
   const showErrorMessage = useSelector(state => state.permanence?.showErrorMessage);
@@ -29,9 +30,13 @@ function Permanence() {
     if (structure?._id) {
       dispatch(permanenceActions.getListePermanences(structure?._id));
     }
-
   }, [structure?._id]);
 
+  useEffect(() => {
+    if (conseiller?.hasPermanence && listPermanences) {
+      dispatch(permanenceActions.fillPermanenceForm(listPermanences, conseiller._id));
+    }
+  });
 
   return (
     <>
