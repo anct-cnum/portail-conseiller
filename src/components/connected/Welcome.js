@@ -84,10 +84,10 @@ function Welcome() {
                       Acc&eacute;der au web mail
                       <span data-tip="
                         <div><b>Astuce:</b> pour configurer votre adresse prenom.nom@conseiller-numerique.com sur votre client
-                        mail (Outlook, Thinderbird, etc.), voici les param&egrave;tres IMAP:</div>
+                        mail (Outlook, Thinderbird, etc.), voici les param&egrave;tres IMAP/POP:</div>
                        <ul>
                         <li>Serveur de courrier entrant : mail.gandi.net</li>
-                        <li>Port : 993</li>
+                        <li>Port : 993 pour IMAP en SSL (ou 995 pour POP en SSL)</li>
                         <li>M&eacute;thode de chiffrement : SSL/TLS</li>
                         <li>Serveur de courrier sortant : mail.gandi.net</li>
                         <li>Port : 465</li>
