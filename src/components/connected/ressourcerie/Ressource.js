@@ -29,7 +29,7 @@ function Ressource({ ressource }) {
       <div className="telechargement">
         <a className="pdf-btn" href={process.env.REACT_APP_RESSOURCERIE_URL + '/' + ressource?.lien}>
           <img className="pdf-image" src="/logos/bouton-fichier.svg" />
-          <span className="pdf-texte">PDF</span>
+          <span className="pdf-texte">{ressource?.lien ? ressource?.lien.split('.').pop().toUpperCase() : ''}</span>
         </a>
         <div className="lien-btn">
           <img className="lien-image" src="/logos/partager-lien.svg" />
