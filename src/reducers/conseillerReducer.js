@@ -1,6 +1,8 @@
 const initState = {
+  loadingCSV: false,
   loadingPDF: false,
-  errorPDF: false
+  errorPDF: false,
+  errorCSV: false
 };
 
 export default function conseiller(state = initState, action) {
@@ -64,7 +66,7 @@ export default function conseiller(state = initState, action) {
       return {
         ...state,
         loadingCSV: true,
-        error: false
+        errorCSV: false
       };
     case 'GET_STATS_CSV_SUCCESS':
       return {
@@ -76,13 +78,14 @@ export default function conseiller(state = initState, action) {
     case 'GET_STATS_CSV_FAILURE':
       return {
         ...state,
-        error: action.error
+        errorCSV: action.error,
+        loadingCSV: false
       };
     case 'GET_STATS_ADMINCOOP_CSV_REQUEST':
       return {
         ...state,
         loadingCSV: true,
-        error: false
+        errorCSV: false
       };
     case 'GET_STATS_ADMINCOOP_CSV_SUCCESS':
       return {
@@ -94,7 +97,7 @@ export default function conseiller(state = initState, action) {
     case 'GET_STATS_ADMINCOOP_CSV_FAILURE':
       return {
         ...state,
-        error: action.error,
+        errorCSV: action.error,
         loadingCSV: false
       };
     case 'RESET_FILE':
