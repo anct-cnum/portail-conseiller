@@ -3,7 +3,7 @@ const initState = {
   loadingPDF: false,
   errorPDF: false,
   errorCSV: false,
-  downloading: false
+  downloadingExportCnfs: false
 };
 
 export default function conseiller(state = initState, action) {
@@ -153,19 +153,19 @@ export default function conseiller(state = initState, action) {
     case 'GET_EXPORT_CNFS_REQUEST':
       return {
         ...state,
-        downloading: true,
+        downloadingExportCnfs: true,
       };
     case 'GET_EXPORT_CNFS_SUCCESS':
       return {
         ...state,
         exportCnfsFileBlob: action.exportCnfsFileBlob,
-        downloading: false
+        downloadingExportCnfs: false
       };
     case 'GET_EXPORT_CNFS_FAILURE':
       return {
         ...state,
         exporCnfsFileError: action.error,
-        downloading: false
+        downloadingExportCnfs: false
       };
     case 'EXPORT_CNFS_RESET': {
       const {

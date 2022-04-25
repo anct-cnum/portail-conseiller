@@ -29,7 +29,7 @@ function FiltersAndSorts({ resetPage, user }) {
   const exportCnfsFileBlob = useSelector(state => state.conseiller?.exportCnfsFileBlob);
   const exportCnfsFileError = useSelector(state => state.conseiller?.exportCnfsFileError);
   const downloading = useSelector(state => state.statistique?.downloading);
-  const downloadingConseiller = useSelector(state => state.conseiller?.downloading);
+  const downloadingExportCnfs = useSelector(state => state.conseiller?.downloadingExportCnfs);
 
 
   const [toggleFiltre, setToggleFiltre] = useState(false);
@@ -151,7 +151,7 @@ function FiltersAndSorts({ resetPage, user }) {
           color="#00BFFF"
           height={100}
           width={100}
-          visible={downloading === true || downloadingConseiller === true}
+          visible={downloading === true || downloadingExportCnfs === true}
         />
       </div>
     </div>
