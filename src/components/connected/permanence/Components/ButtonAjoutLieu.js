@@ -83,7 +83,7 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show }) {
       dispatch(permanenceActions.montrerLieuSecondaire(show));
     } else if (errorsForm?.lengthError > 0 && submit === true && clickSubmit === true) {
       dispatch(permanenceActions.montrerLieuSecondaire(show));
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [errorsForm]);
 

@@ -10,11 +10,12 @@ function SupprimerPermanence({ permanence }) {
 
   const deletePermanence = idPermanence => {
     dispatch(permanenceActions.deletePermanence(idPermanence));
+    setModalOpenClose(false);
   };
   const deleteConseillerPermanence = idPermanence => {
     dispatch(permanenceActions.deleteConseillerPermanence(idPermanence));
+    setModalOpenClose(false);
   };
-
 
   return (
     <>

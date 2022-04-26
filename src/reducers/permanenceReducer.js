@@ -53,6 +53,8 @@ export default function permanence(state = initialState, action) {
       return {
         ...state,
         permanences: action?.permanences,
+        isDeleted: false,
+        isConseillerDeleted: false,
         loading: false
       };
     case 'GET_PERMANENCES_FAILURE':
@@ -292,6 +294,11 @@ export default function permanence(state = initialState, action) {
         loadingConseillerDeleted: false,
         showErrorConseillerDeleted: true,
         errorConseillerDeleted: action.error,
+      };
+    case 'UPDATE_ALL_TYPE_ACCES':
+      return {
+        ...state,
+        fields: action.fields
       };
     default:
       return state;

@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions, permanenceActions } from '../../../actions';
 import { userEntityId } from '../../../helpers';
 
+
+import PermanenceSecondaireUpdate from './PermanenceSecondaireUpdate';
 import ContactProfessionel from './ContactProfessionel';
-import PermanenceSecondaire from './PermanenceSecondaire';
 import PermanencePrincipale from './PermanencePrincipale';
+import PermanenceSecondaire from './PermanenceSecondaire';
 import Remerciement from './Remerciement';
 import Validation from './Validation';
 import Ouverture from './Ouverture';
@@ -23,6 +25,9 @@ function Permanence() {
   const showErrorMessage = useSelector(state => state.permanence?.showErrorMessage);
   const isEnded = useSelector(state => state.permanence?.isEnded);
 
+  const isDeleted = useSelector(state => state.permanence.isDeleted);
+  const isConseillerDeleted = useSelector(state => state.permanence.isConseillerDeleted);
+
   useEffect(() => {
     if (!conseiller) {
       dispatch(conseillerActions.get(userEntityId()));
@@ -33,10 +38,13 @@ function Permanence() {
   }, [structure?._id]);
 
   useEffect(() => {
-    if (conseiller?.hasPermanence && listPermanences) {
-      dispatch(permanenceActions.fillPermanenceForm(listPermanences, conseiller._id));
+    if (isConseillerDeleted || isDeleted) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => {
+        dispatch(permanenceActions.getListePermanences(structure?._id));
+      }, 3000);
     }
-  });
+  }, [isDeleted, isConseillerDeleted]);
 
   return (
     <>
@@ -58,18 +66,36 @@ function Permanence() {
             </p>
           }
 
+          {isDeleted &&
+            <p className="rf-label flashBag">
+              Le lieu d&rsquo;activit&eacute; &agrave; bien &eacute;t&eacute; supprim&eacute;.
+            </p>
+          }
+
+          {isConseillerDeleted &&
+            <p className="rf-label flashBag">
+              Vous avez bien &eacute;t&eacute; retir&eacute; du lieu d&rsquo;activit&eacute;.
+            </p>
+          }
+
           <ContactProfessionel conseiller={conseiller} />
           <div className="rf-container">
             <div className="rf-grid-row">
               <PermanencePrincipale structure={structure} conseillerId={conseiller?._id} isUpdate={conseiller?.hasPermanence}/>
             </div>
           </div>
+          {!conseiller?.hasPermanence &&
           <PermanenceSecondaire structure={structure}
             conseillerId={conseiller?._id} structureId={structure?._id}
             isUpdate={location.pathname === '/lieux-activite'}/>
+          }
+          {(conseiller?.hasPermanence && listPermanences) &&
+            <PermanenceSecondaireUpdate conseillerId={conseiller?._id} permanences={listPermanences}/>
+          }
           <div className="rf-container">
             <div className="rf-grid-row">
-              <Validation conseillerId={conseiller?._id} structureId={structure?._id} isUpdate={conseiller?.hasPermanence}/>
+              <Validation conseillerId={conseiller?._id} structureId={structure?._id}
+                isUpdate={conseiller?.hasPermanence} permanences={listPermanences}/>
             </div>
           </div>
         </div>

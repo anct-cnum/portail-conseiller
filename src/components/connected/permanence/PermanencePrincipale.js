@@ -127,6 +127,7 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
     if (isUpdate && listPermanences) {
       const permanencePrincipale = listPermanences.find(permanence => permanence.lieuPrincipalPour.includes(conseillerId));
       fillPermanencePrincipale(permanencePrincipale);
+      dispatch(permanenceActions.updateField('estStructure', permanencePrincipale?.estStructure));
       if (permanencePrincipale?.estStructure === true) {
         setDefaultCheckedOui(true);
       } else {

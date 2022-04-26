@@ -40,6 +40,8 @@ function ContactProfessionel({ conseiller }) {
     if (conseiller?.telephonePro) {
       dispatch(permanenceActions.updateField('emailPro', conseiller.telephonePro));
     }
+    dispatch(permanenceActions.updateField('estCoordinateur', conseiller?.estCoordinateur ? 'true' : 'false'));
+
   }, [conseiller]);
 
   return (
@@ -51,14 +53,14 @@ function ContactProfessionel({ conseiller }) {
             <div className="rf-fieldset__content">
               <div className="rf-radio-group">
                 <input type="radio" id="CnFS" name="estCoordinateur" value="false" required="required"
-                  defaultChecked={conseiller?.estCoordinateur} onClick={handleChange}/>
+                  defaultChecked={!conseiller?.estCoordinateur ?? false} onClick={handleChange}/>
                 <label className={erreurTypeCnFS ? 'rf-label invalid' : 'rf-label' } htmlFor="CnFS">
                 Conseiller·&egrave;re num&eacute;rique France Services
                 </label>
               </div>
               <div className="rf-radio-group">
                 <input type="radio" id="CnFSCoord" name="estCoordinateur" value="true" required="required"
-                  defaultChecked={!conseiller?.estCoordinateur} onClick={handleChange}/>
+                  defaultChecked={conseiller?.estCoordinateur ?? false} onClick={handleChange}/>
                 <label className={erreurTypeCnFS ? 'rf-label invalid' : 'rf-label' } htmlFor="CnFSCoord">
                   Conseiller·&egrave;re num&eacute;rique France Services Coordinateur.ice
                 </label>

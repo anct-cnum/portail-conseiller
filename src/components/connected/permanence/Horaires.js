@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { permanenceActions } from '../../../actions/permanence.actions';
 import horairesInitiales from '../../../data/horairesInitiales.json';
 
-function Horaires({ prefixId, horairesId }) {
+function Horaires({ prefixId, horairesId, isUpdate, permanence }) {
 
   const dispatch = useDispatch();
 
@@ -86,6 +86,14 @@ function Horaires({ prefixId, horairesId }) {
       dispatch(permanenceActions.setHorairesLoading(loadingHoraires));
     }
   }, [horairesFields]);
+
+  useEffect(() => {
+    if (permanence && isUpdate) {
+      dispatch(permanenceActions.updateField(prefixId + 'horaires', { [prefixId + 'horaires']: permanence?.horaires }));
+      loadingHoraires[horairesId] = true;
+      dispatch(permanenceActions.setHorairesLoading(loadingHoraires));
+    }
+  }, [permanence]);
 
   return (
     <>
@@ -171,6 +179,8 @@ function Horaires({ prefixId, horairesId }) {
 Horaires.propTypes = {
   prefixId: PropTypes.string,
   horairesId: PropTypes.number,
+  isUpdate: PropTypes.bool,
+  permanence: PropTypes.object,
 };
 
 export default Horaires;

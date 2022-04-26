@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import horairesInitiales from '../../../data/horairesInitiales.json';
 import { permanenceActions } from '../../../actions/permanence.actions';
 
-function Validation({ conseillerId, structureId }) {
+function Validation({ conseillerId, structureId, isUpdate, permanences }) {
   const dispatch = useDispatch();
   const form = useSelector(state => state.permanence);
   const fields = useSelector(state => state.permanence?.fields);
@@ -15,20 +15,23 @@ function Validation({ conseillerId, structureId }) {
   const [clickSubmit, setClickSubmit] = useState(false);
 
   function handleSubmit() {
-
-    const typeAcces = [
-      fields?.filter(field => field.name === prefixId + 'libre')[0]?.value ? 'libre' : null,
-      fields?.filter(field => field.name === prefixId + 'rdv')[0]?.value ? 'rdv' : null,
-      fields?.filter(field => field.name === prefixId + 'prive')[0]?.value ? 'prive' : null,
-    ].filter(n => n);
-    dispatch(permanenceActions.updateField(prefixId + 'typeAcces', typeAcces));
-
-    dispatch(permanenceActions.verifyFormulaire(form));
+    if (isUpdate) {
+      dispatch(permanenceActions.verifyFormulaireUpdate(permanences, fields, form));
+    } else {
+      const typeAcces = [
+        fields?.filter(field => field.name === prefixId + 'libre')[0]?.value ? 'libre' : null,
+        fields?.filter(field => field.name === prefixId + 'rdv')[0]?.value ? 'rdv' : null,
+        fields?.filter(field => field.name === prefixId + 'prive')[0]?.value ? 'prive' : null,
+      ].filter(n => n);
+      dispatch(permanenceActions.updateField(prefixId + 'typeAcces', typeAcces));
+      dispatch(permanenceActions.verifyFormulaire(form));
+    }
     setClickSubmit(true);
+
   }
 
   useEffect(() => {
-    if (errorsForm?.lengthError === 0 && clickSubmit) {
+    if (errorsForm?.lengthError === 0 && clickSubmit && !isUpdate) {
 
       const conseillers = fields.filter(field => field.name === prefixId + 'conseillers')[0]?.value ?? [];
       if (!conseillers.includes(conseillerId)) {
@@ -83,8 +86,10 @@ function Validation({ conseillerId, structureId }) {
       } else {
         dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, true, null));
       }
+    } else if (errorsForm?.lengthError === 0 && clickSubmit && isUpdate) {
+      dispatch(permanenceActions.updatePermanences(fields, conseillerId, permanences));
     } else if (errorsForm?.lengthError > 0 && clickSubmit === true) {
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     setClickSubmit(false);
   }, [errorsForm]);
@@ -103,6 +108,8 @@ Validation.propTypes = {
   permanence: PropTypes.object,
   conseillerId: PropTypes.string,
   structureId: PropTypes.string,
+  isUpdate: PropTypes.bool,
+  permanences: PropTypes.array,
 };
 
 export default Validation;

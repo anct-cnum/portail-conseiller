@@ -1,7 +1,6 @@
 import { permanenceService } from '../services/permanence.service';
 import { history } from '../helpers';
 import Joi from 'joi';
-import permanence from '../reducers/permanenceReducer';
 
 export const permanenceActions = {
   get,
@@ -11,6 +10,7 @@ export const permanenceActions = {
   verifyFormulaire,
   createPermanence,
   updatePermanence,
+  updatePermanences,
   verifySiret,
   getGeocodeAdresse,
   rebootGeocodeAdresse,
@@ -22,7 +22,9 @@ export const permanenceActions = {
   suspensionFormulaire,
   deletePermanence,
   deleteConseillerPermanence,
-  fillPermanenceForm
+  verifyFormulaireUpdate,
+  nettoyageFields,
+  extractPermanencesFromField
 };
 
 function get(idConseiller) {
@@ -186,6 +188,7 @@ function verifyFormulaire(form) {
       });
     } else {
       champsAcceptes.forEach(accepte => {
+
         if (accepte.nom === 'horaires') {
           /* Cohérence des horaires */
           errors.push({
@@ -291,6 +294,32 @@ function updatePermanence(idPermanence, idConseiller, permanence, isEnded, prefi
   }
 }
 
+function updatePermanences(fields, idConseiller, permanences) {
+  const permanencesUpdate = extractPermanencesFromField(fields, permanences, idConseiller);
+  return dispatch => {
+    dispatch(request());
+    permanenceService.updatePermanences(permanencesUpdate, idConseiller)
+    .then(
+      result => {
+        dispatch(success(result.isUpdated));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'UPDATE_PERMANENCES_REQUEST' };
+  }
+  function success(isUpdated) {
+    return { type: 'UPDATE_PERMANENCES_SUCCESS', isUpdated };
+  }
+  function failure(error) {
+    return { type: 'UPDATE_PERMANENCES_FAILURE', error };
+  }
+}
+
 function verifySiret(champ, siret) {
   return dispatch => {
     dispatch(request());
@@ -356,8 +385,6 @@ function montrerLieuSecondaire(show) {
 }
 
 function updateField(name, value) {
-  console.log(name);
-  console.log(value);
   return { type: 'UPDATE_FIELD', field: { name, value } };
 }
 
@@ -423,42 +450,112 @@ function deleteConseillerPermanence(idPermanence) {
   }
 }
 
-function fillPermanenceForm(permanences, conseillerId) {
+function verifyFormulaireUpdate(permanences, fields, form) {
 
-  const permanencePrincipale = permanences?.find(permanence => permanence.lieuPrincipalPour.includes(conseillerId));
-  const permanenceSecondaire = permanences?.find(permanence => !permanence.lieuPrincipalPour.includes(conseillerId));
+  const principalTypeAcces = [
+    fields?.filter(field => field.name === 'principal_libre')[0]?.value ? 'libre' : null,
+    fields?.filter(field => field.name === 'principal_rdv')[0]?.value ? 'rdv' : null,
+  ].filter(n => n);
+  delete fields?.filter(field => field.name === 'principal_typeAcces')[0]?.value;
+  delete fields?.filter(field => field.name === 'principal_typeAcces')[0]?.name;
+  fields = [...fields, { name: 'principal_typeAcces', value: principalTypeAcces }];
 
-  console.log(permanencePrincipale);
-  console.log(permanenceSecondaire);
-  updateField('principal_idPermanence', permanencePrincipale?._id ?? null);
-  updateField('principal_numeroTelephone', permanencePrincipale?.numeroTelephone ?? null);
-  updateField('principal_email', permanencePrincipale?.email ?? null);
-  updateField('principal_siteWeb', permanencePrincipale?.siteWeb ?? null);
-  permanencePrincipale?.typeAcces?.forEach(type => {
-    updateField('principal_' + type, true);
+  const nbPermanencesSecondaires = permanences.length - 1;
+  for (let i = 0; i < nbPermanencesSecondaires; i++) {
+    const secondaireTypeAcces = [
+      fields?.filter(field => field.name === 'secondaire_' + i + '_libre')[0]?.value ? 'libre' : null,
+      fields?.filter(field => field.name === 'secondaire_' + i + '_rdv')[0]?.value ? 'rdv' : null,
+      fields?.filter(field => field.name === 'secondaire_' + i + '_prive')[0]?.value ? 'prive' : null,
+    ].filter(n => n);
+    delete fields?.filter(field => field.name === 'secondaire_' + i + '_typeAcces')[0]?.value;
+    delete fields?.filter(field => field.name === 'secondaire_' + i + '_typeAcces')[0]?.name;
+    fields = [...fields, { name: 'secondaire_' + i + '_typeAcces', value: secondaireTypeAcces }];
+  }
+
+  fields = nettoyageFields(fields);
+  form.fields = fields;
+
+  return verifyFormulaire(form);
+}
+
+function nettoyageFields(fields) {
+  return fields?.filter(field => {
+    if (Object.keys(field).length !== 0) {
+      return true;
+    }
+    return false;
   });
-  updateField('principal_horaires', { principal_horaires: permanencePrincipale?.horaires });
-  updateField('principal_conseillers', permanencePrincipale?.conseillers);
-  updateField('principal_nomEnseigne', permanencePrincipale?.nomEnseigne);
-  updateField('principal_siret', permanencePrincipale?.siret);
-  updateField('principal_numeroVoie', permanencePrincipale?.adresse?.numeroRue);
-  updateField('principal_rueVoie', permanencePrincipale?.adresse?.rue);
-  updateField('principal_codePostal', permanencePrincipale?.adresse?.codePostal);
-  updateField('principal_ville', permanencePrincipale?.adresse?.ville.toUpperCase());
-  updateField('principal_location', permanencePrincipale?.location);
-  const adresseGeoloc = {
-    numero: permanencePrincipale?.adresse?.numeroRue,
-    rue: permanencePrincipale?.adresse?.rue,
-    codePostal: permanencePrincipale?.adresse?.codePostal,
-    ville: permanencePrincipale?.adresse?.ville.toUpperCase()
-  };
-  getGeocodeAdresse(adresseGeoloc, 'principal_');
-  disabledField('principal_', true);
+}
 
-  permanences.forEach(permanence, id => {
-    if (permanence.estStructure === false) {
+function extractPermanencesFromField(fields, permanences, conseillerId) {
 
+  //convertir les champs du formulaire en permanence principal
+  const principal = fields.filter(field => field.name.split('_')[0] === 'principal');
+  let permanencePrincipal = {};
+  principal.forEach(principal => {
+    const split = principal.name.split('_');
+    permanencePrincipal[split[split.length - 1]] = principal.value;
+  });
+
+  permanences.forEach(permanence => {
+    if (permanence._id === permanencePrincipal.idPermanence) {
+      permanence.siret = permanencePrincipal.siret;
+      permanence.nomEnseigne = permanencePrincipal.nomEnseigne;
+      permanence.adresse.numeroRue = permanencePrincipal.numeroVoie;
+      permanence.adresse.rue = permanencePrincipal.rueVoie;
+      permanence.adresse.codePostal = permanencePrincipal.codePostal;
+      permanence.adresse.ville = permanencePrincipal.ville;
+      permanence.location = permanencePrincipal.location;
+      permanence.numeroTelephone = permanencePrincipal.numeroTelephone;
+      permanence.siteWeb = permanencePrincipal.siteWeb;
+      permanence.email = permanencePrincipal.email;
+      permanence.horaires = permanencePrincipal.horaires.principal_horaires;
     }
   });
-  return { type: 'FILL_PERMANENCE_SUCCESS' };
+
+  //convertir les champs du formulaire en permanences secondaires
+  const nbPermanences = permanences.length - 1;
+  const permanencesFields = [];
+  const secondaires = fields.filter(field => field.name.split('_')[0] === 'secondaire');
+  if (secondaires?.length > 0) {
+    for (let i = 0; i < nbPermanences; i++) {
+      let permanence = {};
+      secondaires.forEach(secondaire => {
+        const split = secondaire.name.split('_');
+        if (Number(split[1]) === i) {
+          permanence[split[split.length - 1]] = secondaire.value;
+        }
+      });
+      permanencesFields.push(permanence);
+    }
+    permanencesFields.forEach((secondaire, id) => {
+      permanences.forEach(permanence => {
+        if (permanence._id === secondaire.idPermanence) {
+          permanence.siret = secondaire.siret;
+          permanence.nomEnseigne = secondaire.nomEnseigne;
+          permanence.adresse.numeroRue = secondaire.numeroVoie;
+          permanence.adresse.rue = secondaire.rueVoie;
+          permanence.adresse.codePostal = secondaire.codePostal;
+          permanence.adresse.ville = secondaire.ville;
+          permanence.location = secondaire.location;
+          permanence.numeroTelephone = secondaire.numeroTelephone;
+          permanence.siteWeb = secondaire.siteWeb;
+          permanence.email = secondaire.email;
+          permanence.horaires = secondaire.horaires['secondaire_' + id + '_horaires'];
+
+          console.log(permanence.conseillersItinerants.includes(conseillerId));
+          console.log(secondaire.itinerant);
+
+          if (!permanence.conseillersItinerants.includes(conseillerId) && secondaire.itinerant) {
+            permanence.conseillersItinerants.push(conseillerId);
+          } else if (permanence.conseillersItinerants.includes(conseillerId) && !secondaire.itinerant) {
+            const index = permanence.conseillersItinerants.indexOf(conseillerId);
+            permanence.conseillersItinerants.splice(index, 1);
+          }
+        }
+      });
+    });
+  }
+
+  return permanences;
 }
