@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { permanenceActions } from '../../../actions';
 import PropTypes from 'prop-types';
 
-function SupprimerPermanence({ permanence }) {
+function SupprimerPermanence({ permanence, secondaireId }) {
   const dispatch = useDispatch();
 
   const [modalOpenClose, setModalOpenClose] = useState(false);
@@ -14,6 +14,8 @@ function SupprimerPermanence({ permanence }) {
   };
   const deleteConseillerPermanence = idPermanence => {
     dispatch(permanenceActions.deleteConseillerPermanence(idPermanence));
+    dispatch(permanenceActions.updateField('submit_and_next_' + secondaireId, false));
+    dispatch(permanenceActions.updateField('submit_and_next_' + (secondaireId - 1), true));
     setModalOpenClose(false);
   };
 
@@ -67,6 +69,7 @@ function SupprimerPermanence({ permanence }) {
 SupprimerPermanence.propTypes = {
   permanence: PropTypes.object,
   idConseiller: PropTypes.string,
+  secondaireId: PropTypes.string,
 };
 
 export default SupprimerPermanence;

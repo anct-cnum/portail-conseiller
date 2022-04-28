@@ -1,6 +1,7 @@
 import { permanenceService } from '../services/permanence.service';
 import { history } from '../helpers';
 import Joi from 'joi';
+import horairesInitiales from '../data/horairesInitiales.json';
 
 export const permanenceActions = {
   get,
@@ -24,7 +25,8 @@ export const permanenceActions = {
   deleteConseillerPermanence,
   verifyFormulaireUpdate,
   nettoyageFields,
-  extractPermanencesFromField
+  extractPermanencesFromField,
+  updateLieuEnregistrable,
 };
 
 function get(idConseiller) {
@@ -296,6 +298,7 @@ function updatePermanence(idPermanence, idConseiller, permanence, isEnded, prefi
 
 function updatePermanences(fields, idConseiller, permanences) {
   const permanencesUpdate = extractPermanencesFromField(fields, permanences, idConseiller);
+  console.log(permanencesUpdate);
   return dispatch => {
     dispatch(request());
     permanenceService.updatePermanences(permanencesUpdate, idConseiller)
@@ -488,11 +491,10 @@ function nettoyageFields(fields) {
 }
 
 function extractPermanencesFromField(fields, permanences, conseillerId) {
-
   //convertir les champs du formulaire en permanence principal
-  const principal = fields.filter(field => field.name.split('_')[0] === 'principal');
+  const principalFields = fields.filter(field => field?.name?.split('_')[0] === 'principal');
   let permanencePrincipal = {};
-  principal.forEach(principal => {
+  principalFields.forEach(principal => {
     const split = principal.name.split('_');
     permanencePrincipal[split[split.length - 1]] = principal.value;
   });
@@ -516,11 +518,12 @@ function extractPermanencesFromField(fields, permanences, conseillerId) {
   //convertir les champs du formulaire en permanences secondaires
   const nbPermanences = permanences.length - 1;
   const permanencesFields = [];
-  const secondaires = fields.filter(field => field.name.split('_')[0] === 'secondaire');
-  if (secondaires?.length > 0) {
-    for (let i = 0; i < nbPermanences; i++) {
+  const secondairesFields = fields.filter(field => field.name?.split('_')[0] === 'secondaire');
+
+  if (secondairesFields?.length > 0) {
+    for (let i = 0; i < nbPermanences + 1; i++) {
       let permanence = {};
-      secondaires.forEach(secondaire => {
+      secondairesFields.forEach(secondaire => {
         const split = secondaire.name.split('_');
         if (Number(split[1]) === i) {
           permanence[split[split.length - 1]] = secondaire.value;
@@ -528,6 +531,7 @@ function extractPermanencesFromField(fields, permanences, conseillerId) {
       });
       permanencesFields.push(permanence);
     }
+
     permanencesFields.forEach((secondaire, id) => {
       permanences.forEach(permanence => {
         if (permanence._id === secondaire.idPermanence) {
@@ -543,9 +547,6 @@ function extractPermanencesFromField(fields, permanences, conseillerId) {
           permanence.email = secondaire.email;
           permanence.horaires = secondaire.horaires['secondaire_' + id + '_horaires'];
 
-          console.log(permanence.conseillersItinerants.includes(conseillerId));
-          console.log(secondaire.itinerant);
-
           if (!permanence.conseillersItinerants.includes(conseillerId) && secondaire.itinerant) {
             permanence.conseillersItinerants.push(conseillerId);
           } else if (permanence.conseillersItinerants.includes(conseillerId) && !secondaire.itinerant) {
@@ -554,8 +555,36 @@ function extractPermanencesFromField(fields, permanences, conseillerId) {
           }
         }
       });
+      //cas où un nouveau lieu d'activité est entré
+      if (secondaire.idPermanence === undefined && secondaire?.nomEnseigne) {
+        const nouvellePermanence = {};
+        nouvellePermanence._id = null;
+        nouvellePermanence.estStructure = false;
+        nouvellePermanence.nomEnseigne = secondaire.nomEnseigne;
+        nouvellePermanence.numeroTelephone = secondaire.numeroTelephone ?? null;
+        nouvellePermanence.email = secondaire.email ?? null;
+        nouvellePermanence.siteWeb = secondaire.siteWeb ?? null;
+        nouvellePermanence.siret = secondaire.siret ?? null;
+        nouvellePermanence.adresse = {};
+        nouvellePermanence.adresse.numeroRue = secondaire.numeroVoie;
+        nouvellePermanence.adresse.rue = secondaire.rueVoie;
+        nouvellePermanence.adresse.codePostal = secondaire.codePostal;
+        nouvellePermanence.adresse.ville = secondaire.ville;
+        nouvellePermanence.location = secondaire.location;
+        nouvellePermanence.horaires = secondaire?.horaires ? secondaire?.horaires['secondaire_' + id + '_horaires'] : horairesInitiales;
+        nouvellePermanence.typeAcces = secondaire.typeAcces;
+        nouvellePermanence.conseillersItinerants = secondaire.itinerant ? [conseillerId] : [];
+        nouvellePermanence.conseillers = [conseillerId];
+        nouvellePermanence.lieuPrincipalPour = [];
+        nouvellePermanence.structure = permanences[0].structure;
+        permanences.push(nouvellePermanence);
+      }
     });
   }
 
   return permanences;
+}
+
+function updateLieuEnregistrable(prefixId) {
+  return { type: 'UPDATE_LIEU_ENREGISTRABLE', prefixId };
 }

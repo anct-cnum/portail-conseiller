@@ -25,8 +25,7 @@ function Horaires({ prefixId, horairesId, isUpdate, permanence }) {
 
     horaires[prefixId + 'horaires'][idJour][jour][partie] = value === '' ? 'Fermé' : value;
     horaires[prefixId + 'horaires'][idJour].fermeture[jour === 'matin' ? 0 : 1] =
-      horaires[prefixId + 'horaires'][idJour][jour][0] === 'Fermé' && horaires[prefixId + 'horaires'][idJour][jour][1] === 'Fermé';
-
+    horaires[prefixId + 'horaires'][idJour][jour][0] === 'Fermé' && horaires[prefixId + 'horaires'][idJour][jour][1] === 'Fermé';
     setHoraires(horaires);
     dispatch(permanenceActions.updateField(prefixId + 'horaires', horaires));
 

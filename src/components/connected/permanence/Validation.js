@@ -15,15 +15,16 @@ function Validation({ conseillerId, structureId, isUpdate, permanences }) {
   const [clickSubmit, setClickSubmit] = useState(false);
 
   function handleSubmit() {
+    const typeAcces = [
+      fields?.filter(field => field.name === prefixId + 'libre')[0]?.value ? 'libre' : null,
+      fields?.filter(field => field.name === prefixId + 'rdv')[0]?.value ? 'rdv' : null,
+      fields?.filter(field => field.name === prefixId + 'prive')[0]?.value ? 'prive' : null,
+    ].filter(n => n);
+    dispatch(permanenceActions.updateField(prefixId + 'typeAcces', typeAcces));
+
     if (isUpdate) {
       dispatch(permanenceActions.verifyFormulaireUpdate(permanences, fields, form));
     } else {
-      const typeAcces = [
-        fields?.filter(field => field.name === prefixId + 'libre')[0]?.value ? 'libre' : null,
-        fields?.filter(field => field.name === prefixId + 'rdv')[0]?.value ? 'rdv' : null,
-        fields?.filter(field => field.name === prefixId + 'prive')[0]?.value ? 'prive' : null,
-      ].filter(n => n);
-      dispatch(permanenceActions.updateField(prefixId + 'typeAcces', typeAcces));
       dispatch(permanenceActions.verifyFormulaire(form));
     }
     setClickSubmit(true);

@@ -300,6 +300,33 @@ export default function permanence(state = initialState, action) {
         ...state,
         fields: action.fields
       };
+    case 'UPDATE_LIEU_ENREGISTRABLE':
+      return {
+        ...state,
+        prefixIdLieuEnregistrable: action.prefixId,
+      };
+    case 'UPDATE_PERMANENCES_REQUEST':
+      return {
+        ...state,
+        showError: false,
+        loadingAllUpdated: true,
+      };
+    case 'UPDATE_PERMANENCES_SUCCESS':
+      return {
+        ...state,
+        isAllUpdated: action.isUpdated,
+        loadingAllUpdated: false,
+        showError: false,
+        errorAllUpdated: false,
+      };
+    case 'UPDATE_PERMANENCES_FAILURE':
+      return {
+        ...state,
+        isAllUpdated: false,
+        loadingAllUpdated: false,
+        showError: true,
+        errorAllUpdated: action.error,
+      };
     default:
       return state;
   }

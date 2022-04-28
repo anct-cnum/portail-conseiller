@@ -10,12 +10,13 @@ function TypeAcces({ islieuPrincipal, prefixId, isUpdate, permanence }) {
   const estCoordinateur = fields?.filter(field => field.name === 'estCoordinateur')[0]?.value;
   const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
   const erreurTypeAcces = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'typeAcces'])[0]?.[prefixId + 'typeAcces'];
-  
+
   useEffect(() => {
     if (permanence && isUpdate) {
       permanence?.typeAcces?.forEach(type => {
         dispatch(permanenceActions.updateField(prefixId + type, true));
       });
+      dispatch(permanenceActions.updateField(prefixId + 'typeAcces', permanence?.typeAcces));
     }
   }, [permanence]);
 

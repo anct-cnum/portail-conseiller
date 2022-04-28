@@ -57,7 +57,6 @@ function updatePermanence(idPermanence, idConseiller, permanence) {
 }
 
 function updatePermanences(permanences, idConseiller) {
-  console.log(permanences);
   const requestOptions = {
     method: 'PATCH',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
