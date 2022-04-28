@@ -19,14 +19,15 @@ import Propos from './components/anonymous/Propos';
 import EmailConfirmer from './components/connected/mesInformations/ConfirmationEmail';
 
 function App() {
-
   let statsDataLoading = useSelector(state => state.statistique?.statsDataLoading);
   let pdfLoading = useSelector(state => state.conseiller?.loadingPDF);
+  let loadingCSV = useSelector(state => state.conseiller?.loadingCSV);
+  let downloadingExportCnfs = useSelector(state => state.conseiller?.downloadingExportCnfs);
   const user = useSelector(state => state?.authentication?.user?.user);
 
   return (
     <div className="App">
-      { (statsDataLoading === true || pdfLoading === true) &&
+      { (statsDataLoading === true || pdfLoading === true || loadingCSV === true || downloadingExportCnfs === true) &&
         <div className="wrapperModal"></div>
       }
       <Router history={history}>
