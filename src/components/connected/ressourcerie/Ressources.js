@@ -21,6 +21,23 @@ function Ressources({ ressources }) {
 
   return (
     <>
+      { ressourcesFiltredByCategory('Production des CnFs')?.length > 0 &&
+      <>
+        <div className="rf-col-12">
+          <hr className="sans-marge rf-mt-3w"/>
+          <div className={cacherProductionConseiller ? 'aggrandir rf-mt-2w rf-mb-2w' : 'reduire rf-mt-2w rf-mb-2w'}
+            onClick={() => setCacherProductionConseiller(!cacherProductionConseiller)}></div>
+        </div>
+        <h2 className="rf-col-12 titre-thematique rf-mb-9w" id="productionCnFs">
+          <img className="image-thematique" src="/logos/cra/logo-production-cnfs.svg" alt="Conseiller" style={{ height: '42px', marginBottom: '0px' }}/>
+          Production des CnFs
+        </h2>
+        {!cacherCNIL && ressourcesFiltredByCategory('Production des CnFs')?.map((ressource, idx) => {
+          return (<Ressource key={idx} ressource={ressource}/>);
+        })}
+      </>
+      }
+
       { ressourcesFiltredByCategory('Courriel')?.length > 0 &&
       <>
         <div className="rf-col-12">
@@ -200,23 +217,6 @@ function Ressources({ ressources }) {
           Espace Conseiller
         </h2>
         {!cacherCNIL && ressourcesFiltredByCategory('Espace Conseiller')?.map((ressource, idx) => {
-          return (<Ressource key={idx} ressource={ressource}/>);
-        })}
-      </>
-      }
-
-      { ressourcesFiltredByCategory('Production des CnFs')?.length > 0 &&
-      <>
-        <div className="rf-col-12">
-          <hr className="sans-marge rf-mt-3w"/>
-          <div className={cacherProductionConseiller ? 'aggrandir rf-mt-2w rf-mb-2w' : 'reduire rf-mt-2w rf-mb-2w'}
-            onClick={() => setCacherProductionConseiller(!cacherProductionConseiller)}></div>
-        </div>
-        <h2 className="rf-col-12 titre-thematique rf-mb-9w" id="productionCnFs">
-          <img className="image-thematique" src="/logos/picto-espace-conseiller.svg" alt="Conseiller" style={{ height: '42px', marginBottom: '0px' }}/>
-          Production des CnFs
-        </h2>
-        {!cacherCNIL && ressourcesFiltredByCategory('Production des CnFs')?.map((ressource, idx) => {
           return (<Ressource key={idx} ressource={ressource}/>);
         })}
       </>

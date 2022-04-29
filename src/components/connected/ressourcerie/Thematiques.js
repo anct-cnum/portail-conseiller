@@ -10,6 +10,12 @@ function Thematiques() {
           <div className="rf-col-12 rf-col-sm-6">
             <ul className="liste-thematiques">
               <li className="rf-mb-5v">
+                <a href="#productionCnFs" className="lien-thematique">
+                  <img className="image-thematique" src="/logos/cra/logo-production-cnfs.svg" alt="Production"/>
+                    Production des CnFS
+                </a>
+              </li>
+              <li className="rf-mb-5v">
                 <a href="#mail" className="lien-thematique">
                   <img className="image-thematique" src="/logos/cra/logo-courriel.svg" alt="Mail" />
                   Courriel
@@ -39,6 +45,12 @@ function Thematiques() {
                   Bureautique
                 </a>
               </li>
+
+
+            </ul>
+          </div>
+          <div className="rf-col-12 rf-col-sm-6 rf-mb-5v">
+            <ul className="liste-thematiques">
               <li className="rf-mb-5v">
                 <a href="#smartphone" className="lien-thematique">
                   <img className="image-thematique" src="/logos/cra/logo-telephone-portable.svg" alt="Utiliser des applications utiles sur son smartphone"
@@ -46,17 +58,6 @@ function Thematiques() {
                   Mobile
                 </a>
               </li>
-              <li className="rf-mb-5v">
-                <a href="#productionCnFs" className="lien-thematique">
-                  <img className="image-thematique" src="/logos/picto-espace-conseiller.svg" alt="Production"
-                    style={{ marginBottom: '0px', marginRight: '20px' }}/>
-                    Production des CnFS
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="rf-col-12 rf-col-sm-6 rf-mb-5v">
-            <ul className="liste-thematiques">
               <li className="rf-mb-5v">
                 <a href="#contenus" className="lien-thematique">
                   <div className="image-lien">
