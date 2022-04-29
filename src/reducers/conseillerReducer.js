@@ -1,6 +1,9 @@
 const initState = {
+  loadingCSV: false,
   loadingPDF: false,
-  errorPDF: false
+  errorPDF: false,
+  errorCSV: false,
+  downloadingExportCnfs: false
 };
 
 export default function conseiller(state = initState, action) {
@@ -64,7 +67,7 @@ export default function conseiller(state = initState, action) {
       return {
         ...state,
         loadingCSV: true,
-        error: false
+        errorCSV: false
       };
     case 'GET_STATS_CSV_SUCCESS':
       return {
@@ -76,13 +79,14 @@ export default function conseiller(state = initState, action) {
     case 'GET_STATS_CSV_FAILURE':
       return {
         ...state,
-        error: action.error
+        errorCSV: action.error,
+        loadingCSV: false
       };
     case 'GET_STATS_ADMINCOOP_CSV_REQUEST':
       return {
         ...state,
         loadingCSV: true,
-        error: false
+        errorCSV: false
       };
     case 'GET_STATS_ADMINCOOP_CSV_SUCCESS':
       return {
@@ -94,7 +98,7 @@ export default function conseiller(state = initState, action) {
     case 'GET_STATS_ADMINCOOP_CSV_FAILURE':
       return {
         ...state,
-        error: action.error,
+        errorCSV: action.error,
         loadingCSV: false
       };
     case 'RESET_FILE':
@@ -104,17 +108,21 @@ export default function conseiller(state = initState, action) {
       };
     case 'POST_SEXE_AGE_REQUEST':
       return {
+        ...state,
+        error: false,
         loading: true
       };
     case 'POST_SEXE_AGE_SUCCESS':
       return {
         ...state,
-        isUpdated: action.isUpdated
+        isUpdated: action.isUpdated,
+        loading: false
       };
     case 'POST_SEXE_AGE_FAILURE':
       return {
         error: action.error,
-        isUpdated: false
+        isUpdated: false,
+        loading: false
       };
     case 'SHOW_FORMULAIRE_SEXE_AGE':
       return {
@@ -145,19 +153,19 @@ export default function conseiller(state = initState, action) {
     case 'GET_EXPORT_CNFS_REQUEST':
       return {
         ...state,
-        downloading: true,
+        downloadingExportCnfs: true,
       };
     case 'GET_EXPORT_CNFS_SUCCESS':
       return {
         ...state,
         exportCnfsFileBlob: action.exportCnfsFileBlob,
-        downloading: false,
+        downloadingExportCnfs: false
       };
     case 'GET_EXPORT_CNFS_FAILURE':
       return {
         ...state,
         exporCnfsFileError: action.error,
-        downloading: false,
+        downloadingExportCnfs: false
       };
     case 'EXPORT_CNFS_RESET': {
       const {

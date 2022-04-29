@@ -18,7 +18,8 @@ export const permanenceActions = {
   disabledField,
   montrerLieuSecondaire,
   setHorairesLoading,
-  suspensionFormulaire
+  suspensionFormulaire,
+  reporterPermanence
 };
 
 function get(idConseiller) {
@@ -144,7 +145,7 @@ function verifyFormulaire(form) {
       message: 'La localisation du lieu d\'activité doit obligatoirement être saisie'
     },
     {
-      nom: 'itinerant', validation: Joi.string().trim().allow('', null),
+      nom: 'itinerant', validation: Joi.boolean(),
       message: 'Une itinérance doit obligatoirement être saisie'
     },
     {
@@ -229,8 +230,9 @@ function controleHoraires(horaires) {
         (jour.apresMidi[1] < '13:00' || jour.apresMidi[1] > '22:00' && jour.apresMidi[1] !== 'Fermé')) {
       erreursHoraires.push(id);
     }
-    if (jour.matin[0] > jour.matin[1] || jour.apresMidi[0] > jour.apresMidi[1] ||
-      (jour.matin[1] !== 'Fermé' && jour.apresMidi[0] !== 'Fermé' && jour.matin[1] > jour.apresMidi[0])) {
+    if ((jour.matin[0] > jour.matin[1] && jour.matin[1] !== 'Fermé') ||
+        (jour.apresMidi[0] > jour.apresMidi[1] && jour.apresMidi[0] !== 'Fermé') ||
+        (jour.matin[1] === 'Fermé' && jour.apresMidi[0] === 'Fermé' && jour.matin[0] > jour.apresMidi[1])) {
       erreursHoraires.push(id);
     }
   });
@@ -367,4 +369,29 @@ function suspensionFormulaire() {
   localStorage.setItem('suspension_permanence', true);
   history.push('/accueil');
   return { type: 'SUSPENSION_FORM' };
+}
+
+function reporterPermanence() {
+  return dispatch => {
+    dispatch(request());
+    permanenceService.reporterPermanence()
+    .then(
+      result => {
+        dispatch(success(result.isReporter));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'REPORTER_PERMANENCE_REQUEST' };
+  }
+  function success(isReporter) {
+    return { type: 'REPORTER_PERMANENCE_SUCCESS', isReporter };
+  }
+  function failure(error) {
+    return { type: 'REPORTER_PERMANENCE_FAILURE', error };
+  }
 }

@@ -18,6 +18,8 @@ function StatistiquesNationales() {
 
   const user = useSelector(state => state.authentication.user.user);
   let statsDataLoading = useSelector(state => state.statistique?.statsDataLoading);
+  const loadingCSV = useSelector(state => state.conseiller?.loadingCSV);
+  const errorCSV = useSelector(state => state.conseiller?.errorCSV);
   const loadingPDF = useSelector(state => state.conseiller?.loadingPDF);
   const errorPDF = useSelector(state => state.conseiller?.errorPDF);
   const isPDFDownloaded = useSelector(state => state.conseiller?.statistiquesPDF);
@@ -48,7 +50,7 @@ function StatistiquesNationales() {
               color="#00BFFF"
               height={100}
               width={100}
-              visible={statsDataLoading === true || loadingPDF === true}
+              visible={statsDataLoading === true || loadingPDF === true || loadingCSV === true}
             />
           </div>
 
@@ -63,6 +65,13 @@ function StatistiquesNationales() {
             <FlashMessage duration={5000}>
               <p className="flashBag invalid">
                 {errorPDF}
+              </p>
+            </FlashMessage>
+          }
+          {errorCSV &&
+            <FlashMessage duration={5000}>
+              <p className="flashBag invalid">
+                {errorCSV}
               </p>
             </FlashMessage>
           }
