@@ -23,7 +23,7 @@ function SupprimerPermanence({ permanence, secondaireId }) {
     <>
       <button className="supprimer-btn" onClick={() => {
         setModalOpenClose(true);
-      }}>Supprimer le lieu d’activité secondaire</button>
+      }}>Supprimer le lieu d&rsquo;activit&eacute; secondaire</button>
       {modalOpenClose &&
         <dialog aria-labelledby="rf-modal-suppression" role="dialog" id="rf-modal-suppression" className="rf-modal modalOpened">
           <div className="rf-container">

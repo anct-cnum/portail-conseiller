@@ -55,6 +55,7 @@ export default function permanence(state = initialState, action) {
         permanences: action?.permanences,
         isDeleted: false,
         isConseillerDeleted: false,
+        isAllUpdated: false,
         loading: false
       };
     case 'GET_PERMANENCES_FAILURE':
@@ -207,6 +208,7 @@ export default function permanence(state = initialState, action) {
       return {
         ...state,
         showError: false,
+        error: false,
       };
     case 'POST_PERMANENCE_SUCCESS':
       return {
@@ -214,8 +216,6 @@ export default function permanence(state = initialState, action) {
         isCreated: action.isCreated,
         prefixIdLieuEnregistrable: action.prefixId,
         isEnded: action.isEnded,
-        showError: false,
-        error: false,
       };
     case 'POST_PERMANENCE_FAILURE':
       return {
@@ -228,6 +228,7 @@ export default function permanence(state = initialState, action) {
       return {
         ...state,
         showError: false,
+        error: false,
       };
     case 'UPDATE_PERMANENCE_SUCCESS':
       return {
@@ -235,8 +236,6 @@ export default function permanence(state = initialState, action) {
         isUpdated: action.isUpdated,
         prefixIdLieuEnregistrable: action.prefixId,
         isEnded: action.isEnded,
-        showError: false,
-        error: false,
       };
     case 'UPDATE_PERMANENCE_FAILURE':
       return {
@@ -259,14 +258,11 @@ export default function permanence(state = initialState, action) {
       return {
         ...state,
         isDeleted: action.isDeleted,
-        loadingDeleted: false,
-        showErrorDeleted: false,
-        errorDeleted: false,
+        loadingDeleted: false
       };
     case 'DELETE_PERMANENCE_FAILURE':
       return {
         ...state,
-        isDeleted: false,
         loadingDeleted: false,
         showErrorDeleted: true,
         errorDeleted: action.error,
@@ -284,13 +280,10 @@ export default function permanence(state = initialState, action) {
         ...state,
         isConseillerDeleted: action.isConseillerDeleted,
         loadingConseillerDeleted: false,
-        showErrorConseillerDeleted: false,
-        errorConseillerDeleted: false,
       };
     case 'DELETE_CONSEILLER_PERMANENCE_FAILURE' :
       return {
         ...state,
-        isConseillerDeleted: false,
         loadingConseillerDeleted: false,
         showErrorConseillerDeleted: true,
         errorConseillerDeleted: action.error,
@@ -309,6 +302,7 @@ export default function permanence(state = initialState, action) {
       return {
         ...state,
         showError: false,
+        errorAllUpdated: false,
         loadingAllUpdated: true,
       };
     case 'UPDATE_PERMANENCES_SUCCESS':
@@ -316,8 +310,6 @@ export default function permanence(state = initialState, action) {
         ...state,
         isAllUpdated: action.isUpdated,
         loadingAllUpdated: false,
-        showError: false,
-        errorAllUpdated: false,
       };
     case 'UPDATE_PERMANENCES_FAILURE':
       return {

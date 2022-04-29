@@ -35,9 +35,7 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpda
   };
 
   useEffect(() => {
-    if (isUpdate) {
-
-    } else {
+    if (!isUpdate) {
       const submit = fields?.filter(field => field.name === 'submit_and_next_' + secondaireId)[0]?.value;
       if (errorsForm?.lengthError === 0 && submit === true && clickSubmit === true) {
 

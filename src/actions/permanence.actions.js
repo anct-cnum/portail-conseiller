@@ -298,7 +298,6 @@ function updatePermanence(idPermanence, idConseiller, permanence, isEnded, prefi
 
 function updatePermanences(fields, idConseiller, permanences) {
   const permanencesUpdate = extractPermanencesFromField(fields, permanences, idConseiller);
-  console.log(permanencesUpdate);
   return dispatch => {
     dispatch(request());
     permanenceService.updatePermanences(permanencesUpdate, idConseiller)

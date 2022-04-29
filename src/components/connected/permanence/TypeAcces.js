@@ -13,7 +13,7 @@ function TypeAcces({ islieuPrincipal, prefixId, isUpdate, permanence }) {
 
   useEffect(() => {
     if (permanence && isUpdate) {
-      permanence?.typeAcces?.forEach(type => {
+      permanence.typeAcces?.forEach(type => {
         dispatch(permanenceActions.updateField(prefixId + type, true));
       });
       dispatch(permanenceActions.updateField(prefixId + 'typeAcces', permanence?.typeAcces));

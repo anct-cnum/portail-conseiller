@@ -91,7 +91,7 @@ function Permanence() {
             }
             {isAllUpdated &&
               <p className="rf-label flashBag">
-                Vos lieux d&rsquo;activit&eacute; ont bien &eacute;t&eacute; mis à jour.
+                Vos lieux d&rsquo;activit&eacute; ont bien &eacute;t&eacute; mis &agrave; jour.
               </p>
             }
             <ContactProfessionel conseiller={conseiller} />
