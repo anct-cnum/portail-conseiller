@@ -553,6 +553,9 @@ function extractPermanencesFromField(fields, permanences, conseillerId) {
             const index = permanence.conseillersItinerants.indexOf(conseillerId);
             permanence.conseillersItinerants.splice(index, 1);
           }
+          if (!permanence.conseillers.includes(conseillerId)) {
+            permanence.conseillers.push(conseillerId);
+          }
         }
       });
       //cas où un nouveau lieu d'activité est entré
