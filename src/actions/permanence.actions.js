@@ -27,6 +27,7 @@ export const permanenceActions = {
   nettoyageFields,
   extractPermanencesFromField,
   updateLieuEnregistrable,
+  reporterPermanence,
 };
 
 function get(idConseiller) {
@@ -586,4 +587,28 @@ function extractPermanencesFromField(fields, permanences, conseillerId) {
 
 function updateLieuEnregistrable(prefixId) {
   return { type: 'UPDATE_LIEU_ENREGISTRABLE', prefixId };
+}
+
+function reporterPermanence() {
+  return dispatch => {
+    dispatch(request());
+    permanenceService.reporterPermanence()
+    .then(
+      result => {
+        dispatch(success(result.isReporter));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+  function request() {
+    return { type: 'REPORTER_PERMANENCE_REQUEST' };
+  }
+  function success(isReporter) {
+    return { type: 'REPORTER_PERMANENCE_SUCCESS', isReporter };
+  }
+  function failure(error) {
+    return { type: 'REPORTER_PERMANENCE_FAILURE', error };
+  }
 }

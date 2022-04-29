@@ -13,6 +13,7 @@ export const permanenceService = {
   getGeocodeAdresse,
   deletePermanence,
   deleteConseillerPermanence,
+  reporterPermanence,
 };
 
 function get(idConseiller) {
@@ -101,6 +102,14 @@ function deleteConseillerPermanence(idPermanence) {
   };
 
   return fetch(`${apiUrlRoot}/permanence/${idPermanence}/conseiller`, requestOptions).then(handleResponse);
+}
+
+function reporterPermanence() {
+  const requestOptions = {
+    method: 'POST',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+  };
+  return fetch(`${apiUrlRoot}/permanences/reporter`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
