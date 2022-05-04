@@ -26,7 +26,7 @@ function Ressource({ ressource }) {
         })}
         <div className="description">{ressource.description}</div>
       </div>
-      <div className="telechargement">
+      <div className="telechargement rf-mb-2w">
         <a className="pdf-btn" href={process.env.REACT_APP_RESSOURCERIE_URL + '/' + ressource?.lien}>
           <img className="pdf-image" src="/logos/bouton-fichier.svg" />
           <span className="pdf-texte">{ressource?.lien ? ressource?.lien.split('.').pop().toUpperCase() : ''}</span>
@@ -35,7 +35,6 @@ function Ressource({ ressource }) {
           <img className="lien-image" src="/logos/partager-lien.svg" />
           <a className="lien-texte" title="copier le lien" onClick={copierLien}>lien</a>
         </div>
-        <div className="date">{dayjs(ressource.created_at).format('DD / MM / YY')}</div>
         {lienCopie &&
         <FlashMessage duration={3000} >
           <span className="succes-lien-copie">
@@ -44,7 +43,7 @@ function Ressource({ ressource }) {
         </FlashMessage>
         }
       </div>
-
+      <div className="date">Modifi&eacute; {dayjs(ressource.created_at).format('DD / MM / YY')}</div>
     </div>
   );
 }
