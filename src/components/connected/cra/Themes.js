@@ -28,7 +28,7 @@ function Themes() {
         <BigCheckboxButton
           type="themes"
           label="Culture num&eacute;rique"
-          baseline="Vocabulaire, réglementations, etc. "
+          baseline="Vocabulaire, r&eacute;glementations, etc. "
           value="vocabulaire"
           image="/logos/cra/logo-vocabulaire-info.svg"
           imageSelected="/logos/cra/logo-vocabulaire-info-n.svg"
@@ -152,7 +152,7 @@ function Themes() {
         <BigCheckboxButton
           type="themes"
           label="Sant&eacute;"
-          baseline="création de compte Ameli, etc."
+          baseline="cr&eacute;ation de compte Ameli, etc."
           value="sante"
           image="/logos/cra/logo-sante.svg"
           imageSelected="/logos/cra/logo-sante-n.svg"
