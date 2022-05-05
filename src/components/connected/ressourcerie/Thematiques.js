@@ -75,10 +75,10 @@ function Thematiques() {
               <li className="rf-mb-3w">
                 <a href="#equipement" className="lien-thematique">
                   <div className="image-lien">
-                    <img className="image-thematique" src="/logos/cra/logo-equip-info.svg" alt="Prendre en main un &eacute;quipement informatique"
+                    <img className="image-thematique" src="/logos/cra/logo-equip-info.svg" alt="Prendre en main du mat&eacute;riel informatique"
                       style={{ height: '25px' }}/>
                   </div>
-                  <div className="texte-lien">Prendre en main un &eacute;quipement informatique</div>
+                  <div className="texte-lien">Prendre en main du mat&eacute;riel informatique</div>
                 </a>
               </li>
               <li className="rf-mb-3w">

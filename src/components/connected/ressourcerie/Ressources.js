@@ -179,8 +179,8 @@ function Ressources({ ressources }) {
             onClick={() => setCacherEquipement(!cacherEquipement)}></div>
         </div>
         <h2 className="rf-col-12 titre-thematique rf-mb-9w" id="equipement">
-          <img className="image-thematique" src="/logos/cra/logo-equip-info.svg" alt="Prendre en main un &eacute;quipement informatique"/>
-          Prendre en main un &eacute;quipement informatique
+          <img className="image-thematique" src="/logos/cra/logo-equip-info.svg" alt="Prendre en main du mat&eacute;riel informatique"/>
+          Prendre en main du mat&eacute;riel informatique
         </h2>
         {!cacherEquipement && ressourcesFiltredByCategory('Prendre en main un équipement informatique')?.map((ressource, idx) => {
           return (<Ressource key={idx} ressource={ressource}/>);
