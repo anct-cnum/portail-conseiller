@@ -15,11 +15,29 @@ function Ressources({ ressources }) {
   const [cacherEquipement, setCacherEquipement] = useState(false);
   const [cacherCNIL, setCacherCNIL] = useState(false);
   const [cacherEspaceConseiller, setCacherEspaceConseiller] = useState(false);
+  const [cacherProductionConseiller, setCacherProductionConseiller] = useState(false);
 
   const ressourcesFiltredByCategory = (category => ressources?.filter(ressource => ressource.categorie === category));
 
   return (
     <>
+      { ressourcesFiltredByCategory('Production des CnFs')?.length > 0 &&
+      <>
+        <div className="rf-col-12">
+          <hr className="sans-marge"/>
+          <div className={cacherProductionConseiller ? 'aggrandir rf-mt-2w rf-mb-2w' : 'reduire rf-mt-2w rf-mb-2w'}
+            onClick={() => setCacherProductionConseiller(!cacherProductionConseiller)}></div>
+        </div>
+        <h2 className="rf-col-12 titre-thematique rf-mb-9w" id="productionCnFs">
+          <img className="image-thematique" src="/logos/cra/logo-production-cnfs.svg" alt="Conseiller" style={{ height: '42px', marginBottom: '0px' }}/>
+          Production des CnFs
+        </h2>
+        {!cacherCNIL && ressourcesFiltredByCategory('Production des CnFs')?.map((ressource, idx) => {
+          return (<Ressource key={idx} ressource={ressource}/>);
+        })}
+      </>
+      }
+
       { ressourcesFiltredByCategory('Courriel')?.length > 0 &&
       <>
         <div className="rf-col-12">
@@ -39,7 +57,7 @@ function Ressources({ ressources }) {
       { ressourcesFiltredByCategory('Échanger avec ses proches')?.length > 0 &&
       <>
         <div className="rf-col-12">
-          <hr className="sans-marge rf-mt-3w"/>
+          <hr className="sans-marge"/>
           <div className={cacherEchanger ? 'aggrandir rf-mt-2w rf-mb-2w' : 'reduire rf-mt-2w rf-mb-2w'}
             onClick={() => setCacherEchanger(!cacherEchanger)}></div>
         </div>
@@ -56,7 +74,7 @@ function Ressources({ ressources }) {
       { ressourcesFiltredByCategory('Emploi')?.length > 0 &&
       <>
         <div className="rf-col-12">
-          <hr className="sans-marge rf-mt-3w"/>
+          <hr className="sans-marge"/>
           <div className={cacherEmploi ? 'aggrandir rf-mt-2w rf-mb-2w' : 'reduire rf-mt-2w rf-mb-2w'} onClick={() => setCacherEmploi(!cacherEmploi)}></div>
         </div>
         <h2 className="rf-col-12 titre-thematique rf-mb-9w" id="emploi">
@@ -72,7 +90,7 @@ function Ressources({ ressources }) {
       { ressourcesFiltredByCategory('Démarches en ligne')?.length > 0 &&
       <>
         <div className="rf-col-12">
-          <hr className="sans-marge rf-mt-3w"/>
+          <hr className="sans-marge"/>
           <div className={cacherDemarches ? 'aggrandir rf-mt-2w rf-mb-2w' : 'reduire rf-mt-2w rf-mb-2w'}
             onClick={() => setCacherDemarches(!cacherDemarches)}></div>
         </div>
@@ -89,7 +107,7 @@ function Ressources({ ressources }) {
       { ressourcesFiltredByCategory('Bureautique')?.length > 0 &&
       <>
         <div className="rf-col-12">
-          <hr className="sans-marge rf-mt-3w"/>
+          <hr className="sans-marge"/>
           <div className={cacherTraitement ? 'aggrandir rf-mt-2w rf-mb-2w' : 'reduire rf-mt-2w rf-mb-2w'}
             onClick={() => setCacherTraitement(!cacherTraitement)}></div>
         </div>
@@ -106,7 +124,7 @@ function Ressources({ ressources }) {
       { ressourcesFiltredByCategory('Smartphone, applications mobile')?.length > 0 &&
       <>
         <div className="rf-col-12">
-          <hr className="sans-marge rf-mt-3w"/>
+          <hr className="sans-marge"/>
           <div className={cacherSmartphone ? 'aggrandir rf-mt-2w rf-mb-2w' : 'reduire rf-mt-2w rf-mb-2w'}
             onClick={() => setCacherSmartphone(!cacherSmartphone)}></div>
         </div>
@@ -123,7 +141,7 @@ function Ressources({ ressources }) {
       { ressourcesFiltredByCategory('Créer et gérer ses contenus numériques')?.length > 0 &&
       <>
         <div className="rf-col-12">
-          <hr className="sans-marge rf-mt-3w"/>
+          <hr className="sans-marge"/>
           <div className={cacherContenus ? 'aggrandir rf-mt-2w rf-mb-2w' : 'reduire rf-mt-2w rf-mb-2w'}
             onClick={() => setCacherContenus(!cacherContenus)}></div>
         </div>
@@ -139,7 +157,7 @@ function Ressources({ ressources }) {
       { ressourcesFiltredByCategory('Accompagner son enfant')?.length > 0 &&
       <>
         <div className="rf-col-12">
-          <hr className="sans-marge rf-mt-3w"/>
+          <hr className="sans-marge"/>
           <div className={cacherAccompagner ? 'aggrandir rf-mt-2w rf-mb-2w' : 'reduire rf-mt-2w rf-mb-2w'}
             onClick={() => setCacherAccompagner(!cacherAccompagner)}></div>
         </div>
@@ -156,13 +174,13 @@ function Ressources({ ressources }) {
       { ressourcesFiltredByCategory('Prendre en main un équipement informatique')?.length > 0 &&
       <>
         <div className="rf-col-12">
-          <hr className="sans-marge rf-mt-3w"/>
+          <hr className="sans-marge"/>
           <div className={cacherEquipement ? 'aggrandir rf-mt-2w rf-mb-2w' : 'reduire rf-mt-2w rf-mb-2w'}
             onClick={() => setCacherEquipement(!cacherEquipement)}></div>
         </div>
         <h2 className="rf-col-12 titre-thematique rf-mb-9w" id="equipement">
-          <img className="image-thematique" src="/logos/cra/logo-equip-info.svg" alt="Prendre en main un &eacute;quipement informatique"/>
-          Prendre en main un &eacute;quipement informatique
+          <img className="image-thematique" src="/logos/cra/logo-equip-info.svg" alt="Prendre en main du mat&eacute;riel informatique"/>
+          Prendre en main du mat&eacute;riel informatique
         </h2>
         {!cacherEquipement && ressourcesFiltredByCategory('Prendre en main un équipement informatique')?.map((ressource, idx) => {
           return (<Ressource key={idx} ressource={ressource}/>);
@@ -173,7 +191,7 @@ function Ressources({ ressources }) {
       { ressourcesFiltredByCategory('Fiches CNIL')?.length > 0 &&
       <>
         <div className="rf-col-12">
-          <hr className="sans-marge rf-mt-3w"/>
+          <hr className="sans-marge"/>
           <div className={cacherCNIL ? 'aggrandir rf-mt-2w rf-mb-2w' : 'reduire rf-mt-2w rf-mb-2w'}
             onClick={() => setCacherCNIL(!cacherCNIL)}></div>
         </div>
@@ -190,7 +208,7 @@ function Ressources({ ressources }) {
       { ressourcesFiltredByCategory('Espace Conseiller')?.length > 0 &&
       <>
         <div className="rf-col-12">
-          <hr className="sans-marge rf-mt-3w"/>
+          <hr className="sans-marge"/>
           <div className={cacherEspaceConseiller ? 'aggrandir rf-mt-2w rf-mb-2w' : 'reduire rf-mt-2w rf-mb-2w'}
             onClick={() => setCacherEspaceConseiller(!cacherEspaceConseiller)}></div>
         </div>
