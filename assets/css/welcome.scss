@@ -122,11 +122,15 @@
   }
   .div-info-rappel-hierarchique {
     background: #3b3b3c;
-    padding: 0.5rem;
     padding-inline: 2rem;
     display: flex;
     justify-content: space-around;
     border: solid 1px
+  }
+  .icone-info-header {
+    font-size: 1rem;
+    color: orange;
+    padding: 4px
   }
 
   @media (max-width:  1436px) {
