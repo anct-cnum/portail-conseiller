@@ -115,6 +115,19 @@
     font-size: 16px;
     height: 40px;
   }
+  .icone-info-rappel {
+    font-size: 2rem;
+    padding-inline-end: 11px;
+    color: orange
+  }
+  .div-info-rappel-hierarchique {
+    background: #3b3b3c;
+    padding: 0.5rem;
+    padding-inline: 2rem;
+    display: flex;
+    justify-content: space-around;
+    border: solid 1px
+  }
 
   @media (max-width:  1436px) {
     .img-home-futur {

@@ -29,6 +29,16 @@ function Welcome() {
               <div className="rf-container">
                 <div className="rf-grid-row rf-grid-row--center">
                   <div className="rf-col-12 rf-mt-12w rf-mb-3w">
+                  { !conseiller?.supHierarchique &&
+                    <div className="div-info-rappel-hierarchique">
+                      <i className="ri-information-line information icone-info-rappel"></i>
+                      <p>
+                        Afin que votre responsable hiérarchique puisse recevoir toutes les informations concernant le dispositif et vous accompagner au mieux,
+                        merci de nous indiquer ses coordonnées en complétant le formulaire dans l&apos;onglet Mes informations, contact hiérarchique sur la page d&apos;accueil
+                        en haut gauche de votre Espace Coop.
+                      </p>
+                    </div>
+                  }
                     <h2 className="titre">
                       <img src="/logos/home-connected/hexagone-1.svg" className="hexagone"/>
                       Services
