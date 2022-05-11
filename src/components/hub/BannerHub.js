@@ -3,6 +3,7 @@ import { useLocation } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions } from '../../actions';
 import Spinner from 'react-loader-spinner';
+import FlashMessage from 'react-flash-message';
 
 function BannerHub() {
   const location = useLocation();
@@ -10,10 +11,18 @@ function BannerHub() {
   const hub = useSelector(state => state.authentication?.user?.user?.hub);
   const dispatch = useDispatch();
   const loadingCSV = useSelector(state => state.conseiller?.loadingCSV);
+  const errorCSV = useSelector(state => state.conseiller?.errorCSV);
   const exportConseiller = () => dispatch(conseillerActions.getStatistiquesHubCSV(hub));
 
   return (
     <div className="rf-container">
+      {errorCSV &&
+        <FlashMessage duration={5000}>
+          <p className="flashBag invalid">
+            {errorCSV}
+          </p>
+        </FlashMessage>
+      }
       <div className="spinnerCustom">
         <Spinner
           type="Oval"
