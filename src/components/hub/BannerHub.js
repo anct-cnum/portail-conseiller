@@ -35,7 +35,7 @@ function BannerHub() {
       <div className="rf-grid-row rf-grid-row--right">
         <div className="rf-col-xs-12 rf-col-md-6 'rf-mt-5w rf-mb-6w">
           <a className="statistiques_nationales-btn" href="statistiques-nationales">Statistiques Nationales</a>
-          <button className="export_conseillers-btn rf-ml-4w" onClick={exportConseiller}>Exporter mes conseillers</button>
+          <button className="export_conseillers-btn rf-ml-4w" onClick={exportConseiller}>Exporter les conseillers</button>
         </div>
         <div
           className="rf-col-xs-12 rf-mt-7w rf-col-md-6 'rf-mt-5w rf-mb-6w"
