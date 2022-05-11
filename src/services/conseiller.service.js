@@ -132,13 +132,13 @@ function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, conseille
     requestOptions).then(handleFileResponse);
 }
 
-function getStatistiquesHubCSV(hub) {
+function getStatistiquesHubCSV() {
   const requestOptions = {
     method: 'GET',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
   };
 
-  return fetch(`${apiUrlRoot}/stats/hubcoop/statistiques.csv?hub=${hub}`,
+  return fetch(`${apiUrlRoot}/exports/hubcoop/cnfs.csv`,
     requestOptions).then(handleFileResponse);
 }
 

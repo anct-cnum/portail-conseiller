@@ -31,8 +31,6 @@ const statistiquesAdminFileName = (dateDebut, dateFin, type, idType, codePostal)
   // eslint-disable-next-line max-len
   `Statistiques_${removeCodePrefix(type)}${codePostal ? `_${codePostal}` : ''}${idType ? `_${idType}` : ''}_${formatDate(dateDebut)}_${formatDate(dateFin)}`;
 
-const statistiquesHubFileName = hub => `Statistiques_${hub}`;
-
 function get(id) {
   return dispatch => {
     dispatch(request());
@@ -179,9 +177,9 @@ function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, conseille
 function getStatistiquesHubCSV(hub) {
   return dispatch => {
     dispatch(request());
-    conseillerService.getStatistiquesHubCSV(hub)
+    conseillerService.getStatistiquesHubCSV()
     .then(
-      data => dispatch(success(data, download(data, `${statistiquesHubFileName(hub)}.csv`))),
+      data => dispatch(success(data, download(data, `export-cnfs_${hub}.csv`))),
       error => dispatch(failure(error))
     );
   };
