@@ -138,7 +138,6 @@ function getStatistiquesHubCSV(hub) {
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
   };
 
-  // eslint-disable-next-line max-len
   return fetch(`${apiUrlRoot}/stats/hubcoop/statistiques.csv?hub=${hub}`,
     requestOptions).then(handleFileResponse);
 }
