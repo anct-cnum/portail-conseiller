@@ -2,21 +2,31 @@ import React from 'react';
 import { useLocation } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions } from '../../actions';
+import Spinner from 'react-loader-spinner';
 
 function BannerHub() {
   const location = useLocation();
   const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
   const hub = useSelector(state => state.authentication?.user?.user?.hub);
   const dispatch = useDispatch();
-
+  const loadingCSV = useSelector(state => state.conseiller?.loadingCSV);
   const exportConseiller = () => dispatch(conseillerActions.getStatistiquesHubCSV(hub));
 
   return (
     <div className="rf-container">
+      <div className="spinnerCustom">
+        <Spinner
+          type="Oval"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          visible={loadingCSV === true}
+        />
+      </div>
       <div className="rf-grid-row rf-grid-row--right">
         <div className="rf-col-xs-12 rf-col-md-6 'rf-mt-5w rf-mb-6w">
           <a className="statistiques_nationales-btn" href="statistiques-nationales">Statistiques Nationales</a>
-          <button className="mes_statistiques-btn rf-ml-4w" onClick={exportConseiller}>Exporter mes conseillers</button>
+          <button className="export_conseillers-btn rf-ml-4w" onClick={exportConseiller}>Exporter mes conseillers</button>
         </div>
         <div
           className="rf-col-xs-12 rf-mt-7w rf-col-md-6 'rf-mt-5w rf-mb-6w"

@@ -63,25 +63,25 @@ export default function conseiller(state = initState, action) {
         errorPDF: action.error,
         loadingPDF: false
       };
-    case 'GET_STATS_HUB_PDF_REQUEST':
+    case 'GET_STATS_HUB_CSV_REQUEST':
       return {
         ...state,
-        loadingPDF: true,
-        errorPDF: false
+        loadingCSV: true,
+        errorCSV: false
       };
-    case 'GET_STATS_HUB_PDF_SUCCESS':
+    case 'GET_STATS_HUB_CSV_SUCCESS':
       return {
         ...state,
         blob: action.data,
-        statistiquesPDF: action.download,
-        loadingPDF: false,
-        errorPDF: false
+        statistiquesCSV: action.download,
+        loadingCSV: false,
+        errorCSV: false
       };
-    case 'GET_STATS_HUB_PDF_FAILURE':
+    case 'GET_STATS_HUB_CSV_FAILURE':
       return {
         ...state,
-        errorPDF: action.error,
-        loadingPDF: false
+        errorCSV: action.error,
+        loadingCSV: false
       };
     case 'GET_STATS_CSV_REQUEST':
       return {
