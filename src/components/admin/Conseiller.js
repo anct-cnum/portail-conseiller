@@ -31,7 +31,7 @@ function Conseiller({ conseiller, currentPage, trClass, role }) {
           {conseiller?.certifie ? <img src="logos/icone-check.svg"/> : <img src="logos/icone-croix.svg" /> }
         </td>
         <td><div data-tip="Activé" className={isUserActif ? 'circle-true' : 'circle-false'}></div></td>
-        { role === 'admin_coop' && <td data-tip="CRA saisis">{conseiller?.craCount}</td> }
+        {(role === 'admin_coop' || role === 'structure_coop') && <td data-tip="CRA saisis">{conseiller?.craCount}</td> }
         <td>
           <Link className="rf-btn details-btn" style={{ boxShadow: 'none' }} to={{
             pathname: `/conseiller/${conseiller?._id}`,
