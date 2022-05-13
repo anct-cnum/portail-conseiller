@@ -179,7 +179,7 @@ function getStatistiquesHubCSV(hub) {
     dispatch(request());
     conseillerService.getStatistiquesHubCSV()
     .then(
-      data => dispatch(success(data, download(data, `export-cnfs_${hub}.csv`))),
+      data => dispatch(success(data, download(data, `export-cnfs_${dayjs(new Date()).format('YYYY-MM-DD')}_${hub}.csv`))),
       error => dispatch(failure(error))
     );
   };
