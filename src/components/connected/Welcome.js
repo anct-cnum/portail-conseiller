@@ -32,7 +32,7 @@ function Welcome() {
                     { !conseiller?.supHierarchique &&
                       <div className="div-info-rappel-hierarchique rf-mb-3w rf-py-1w">
                         <i className="ri-information-line information icone-info-rappel"></i>
-                        <p>
+                        <p className="margin-info">
                           Afin que votre responsable hi&eacute;rarchique puisse recevoir toutes les informations concernant le dispositif et vous accompagner
                           au mieux, merci de nous indiquer ses coordonn&eacute;es en compl&eacute;tant le formulaire dans l&apos;onglet Mes informations,
                           contact hi&eacute;rarchique sur la page d&apos;accueil en haut gauche de votre Espace Coop.
