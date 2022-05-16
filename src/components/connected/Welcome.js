@@ -35,7 +35,7 @@ function Welcome() {
                         <p className="margin-info">
                           Afin que votre responsable hi&eacute;rarchique puisse recevoir toutes les informations concernant le dispositif et vous accompagner
                           au mieux, merci de nous indiquer ses coordonn&eacute;es en compl&eacute;tant le formulaire dans l&apos;onglet Mes informations,
-                          contact hi&eacute;rarchique sur la page d&apos;accueil en haut à droite de votre Espace Coop.
+                          contact hi&eacute;rarchique sur la page d&apos;accueil en haut &agrave; droite de votre Espace Coop.
                         </p>
                       </div>
                     }
