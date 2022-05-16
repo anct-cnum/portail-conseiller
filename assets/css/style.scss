@@ -451,7 +451,11 @@
 .bulle-ressourcerie {
   height: 29px;
 }
-
+.icone-info-header {
+  font-size: 1rem;
+  color: orange;
+  padding: 4px
+}
 @media (max-width: 988px) {
   .modal-sexe-age {
     .element-gauche {

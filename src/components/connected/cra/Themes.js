@@ -10,13 +10,14 @@ function Themes() {
     <div className="rf-grid-row rf-grid-row--gutters rf-grid-row--middle espacement">
       <div className="rf-col-xs-11 rf-col-sm-11 rf-col-md-2 questionCheckboxResponsive">
         <span className={`question ${cra?.printError && cra?.errorsRequired?.themes ? 'questionRequired' : ''}`}>
-          Quelle a / ont &eacute;t&eacute; la / les th&eacute;matique(s) de l&rsquo;accompagnement&nbsp;? (choix multiple)
+          Quelle(s) a / ont &eacute;t&eacute; la / les th&eacute;matique(s) de l&rsquo;accompagnement&nbsp;? (choix multiple)
         </span>
       </div>
       <div className="responsiveCheckbox1">
         <BigCheckboxButton
           type="themes"
-          label="Prendre en main un &eacute;quipement"
+          label="Prendre en main du mat&eacute;riel"
+          baseline="Installer des applications, etc."
           value="equipement informatique"
           image="/logos/cra/logo-equip-info.svg"
           imageSelected="/logos/cra/logo-equip-info-n.svg"
@@ -26,7 +27,8 @@ function Themes() {
       <div className="responsiveCheckbox2">
         <BigCheckboxButton
           type="themes"
-          label="Connaître le vocabulaire num&eacute;rique"
+          label="Culture num&eacute;rique"
+          baseline="Vocabulaire, r&eacute;glementations, etc. "
           value="vocabulaire"
           image="/logos/cra/logo-vocabulaire-info.svg"
           imageSelected="/logos/cra/logo-vocabulaire-info-n.svg"
@@ -141,8 +143,8 @@ function Themes() {
           type="themes"
           label="Pr&eacute;venir les fraudes et/ou le harc&egrave;lement"
           value="fraude et harcelement"
-          image="/logos/cra/logo-accompagner-enfant.svg"
-          imageSelected="/logos/cra/logo-accompagner-enfant-n.svg"
+          image="/logos/cra/logo-fraude.svg"
+          imageSelected="/logos/cra/logo-fraude-n.svg"
           heightImage="56px" />
       </div>
 
@@ -150,7 +152,7 @@ function Themes() {
         <BigCheckboxButton
           type="themes"
           label="Sant&eacute;"
-          baseline="création de compte Ameli, etc."
+          baseline="cr&eacute;ation de compte Ameli, etc."
           value="sante"
           image="/logos/cra/logo-sante.svg"
           imageSelected="/logos/cra/logo-sante-n.svg"

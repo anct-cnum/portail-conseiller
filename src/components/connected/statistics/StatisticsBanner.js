@@ -30,7 +30,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
     }
     return typeTarget;
   }
-  
+
   function savePDF() {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     if (user?.role === 'conseiller') {
@@ -42,6 +42,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
   }
 
   function saveCSV() {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     if (user?.role === 'conseiller') {
       dispatch(conseillerActions.getStatistiquesCSV(dateDebut, dateFin, codePostal));
     } else {

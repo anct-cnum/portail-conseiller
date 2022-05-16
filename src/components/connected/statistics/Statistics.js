@@ -17,6 +17,8 @@ function Statistics() {
   const location = useLocation();
 
   const statsDataLoading = useSelector(state => state.statistique?.statsDataLoading);
+  const loadingCSV = useSelector(state => state.conseiller?.loadingCSV);
+  const errorCSV = useSelector(state => state.conseiller?.errorCSV);
   const loadingPDF = useSelector(state => state.conseiller?.loadingPDF);
   const errorPDF = useSelector(state => state.conseiller?.errorPDF);
   const isPDFDownloaded = useSelector(state => state.conseiller?.statistiquesPDF);
@@ -49,7 +51,7 @@ function Statistics() {
             color="#00BFFF"
             height={100}
             width={100}
-            visible={statsDataLoading === true || loadingPDF === true}
+            visible={statsDataLoading === true || loadingPDF === true || loadingCSV === true}
           />
         </div>
 
@@ -64,6 +66,13 @@ function Statistics() {
           <FlashMessage duration={5000}>
             <p className="flashBag invalid">
               {errorPDF}
+            </p>
+          </FlashMessage>
+        }
+        {errorCSV &&
+          <FlashMessage duration={5000}>
+            <p className="flashBag invalid">
+              {errorCSV}
             </p>
           </FlashMessage>
         }
