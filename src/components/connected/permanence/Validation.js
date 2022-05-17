@@ -13,8 +13,9 @@ function Validation({ conseillerId, structureId, isUpdate, permanences }) {
   const prefixId = useSelector(state => state.permanence?.prefixIdLieuEnregistrable);
 
   const [clickSubmit, setClickSubmit] = useState(false);
+  const [redirection, setRedirection] = useState('accueil');
 
-  function handleSubmit() {
+  function handleSubmit(redirection = '/accueil') {
     const typeAcces = [
       fields?.filter(field => field.name === prefixId + 'libre')[0]?.value ? 'libre' : null,
       fields?.filter(field => field.name === prefixId + 'rdv')[0]?.value ? 'rdv' : null,
@@ -28,7 +29,7 @@ function Validation({ conseillerId, structureId, isUpdate, permanences }) {
       dispatch(permanenceActions.verifyFormulaire(form));
     }
     setClickSubmit(true);
-
+    setRedirection(redirection);
   }
 
   useEffect(() => {
@@ -83,12 +84,12 @@ function Validation({ conseillerId, structureId, isUpdate, permanences }) {
       }
 
       if (nouveauLieu._id !== null) {
-        dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, true, null));
+        dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, true, null, redirection));
       } else {
-        dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, true, null));
+        dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, true, null, redirection));
       }
     } else if (errorsForm?.lengthError === 0 && clickSubmit && isUpdate) {
-      dispatch(permanenceActions.updatePermanences(fields, conseillerId, permanences));
+      dispatch(permanenceActions.updatePermanences(fields, conseillerId, permanences, redirection));
     } else if (errorsForm?.lengthError > 0 && clickSubmit === true) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -96,12 +97,29 @@ function Validation({ conseillerId, structureId, isUpdate, permanences }) {
   }, [errorsForm]);
 
   return (
-    <div className="rf-col-offset-1 rf-col-4">
-      <button className="rf-btn validation-btn rf-mb-4w" onClick={handleSubmit}>Enregistrer et revenir &agrave; l&rsquo;accueil</button>
-      <div className="rf-mb-12w">
-        ( <span className="obligatoire">*</span> ) champs obligatoires
+    <>
+      <div className="rf-col-offset-1 rf-col-4">
+        <button className="rf-link rf-fi-external-link-line rf-link--icon-right validation-extern-btn" onClick={() => {
+          handleSubmit('cartographie');
+        }}>
+          Enregistrer et afficher sur la carte nationale
+        </button>
+        <div className="rf-mb-12w rf-mt-4w">
+          ( <span className="obligatoire">*</span> ) champs obligatoires
+        </div>
       </div>
-    </div>
+
+      <div className="rf-col-5">
+        <button className="rf-btn validation-btn rf-mb-4w" onClick={() => {
+          handleSubmit();
+        }}>
+          Enregistrer&nbsp;{isUpdate && <>les modifications&nbsp;</>}et revenir &agrave; l&rsquo;accueil
+        </button>
+      </div>
+
+
+    </>
+
   );
 }
 

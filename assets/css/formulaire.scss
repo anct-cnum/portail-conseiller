@@ -117,16 +117,17 @@
     top: 5px;
     position: relative;
   }
-  .validation-btn {
+  .validation-extern-btn {
     background-color: #8585F6;
-    padding: 8px 24px;
+    border-radius: 0px;
+    padding: 8px 26px;
     text-align: center;
     color: #000091;
     height: 40px;
-    width: 288px;
+    width: 407px;
 
   }
-  .nouveau-btn, .localisation-btn, .supprimer-btn {
+  .nouveau-btn, .localisation-btn, .supprimer-btn, .validation-btn {
     background: #1e1e1e;
     border: 1px solid #8585f6;
     line-height: 24px;
@@ -134,6 +135,10 @@
     font-size: 16px;
     color: #8585f6;
     cursor: pointer;
+  }
+  .validation-btn {
+    line-height: 22px;
+    margin-left: 47px;
   }
   .localisation-btn-position {
     text-align: right;

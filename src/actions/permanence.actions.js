@@ -247,13 +247,13 @@ function controleHoraires(horaires) {
   return erreursHoraires;
 }
 
-function createPermanence(idConseiller, permanence, isEnded, prefixId) {
+function createPermanence(idConseiller, permanence, isEnded, prefixId, redirection) {
   return dispatch => {
     dispatch(request());
     permanenceService.createPermanence(idConseiller, permanence)
     .then(
       result => {
-        dispatch(success(result.isCreated, isEnded, prefixId));
+        dispatch(success(result.isCreated, isEnded, prefixId, redirection));
       },
       error => {
         dispatch(failure(error));
@@ -264,21 +264,21 @@ function createPermanence(idConseiller, permanence, isEnded, prefixId) {
   function request() {
     return { type: 'POST_PERMANENCE_REQUEST' };
   }
-  function success(isCreated, isEnded, prefixId) {
-    return { type: 'POST_PERMANENCE_SUCCESS', isCreated, isEnded, prefixId };
+  function success(isCreated, isEnded, prefixId, redirection) {
+    return { type: 'POST_PERMANENCE_SUCCESS', isCreated, isEnded, prefixId, redirection };
   }
   function failure(error) {
     return { type: 'POST_PERMANENCE_FAILURE', error };
   }
 }
 
-function updatePermanence(idPermanence, idConseiller, permanence, isEnded, prefixId) {
+function updatePermanence(idPermanence, idConseiller, permanence, isEnded, prefixId, redirection) {
   return dispatch => {
     dispatch(request());
     permanenceService.updatePermanence(idPermanence, idConseiller, permanence)
     .then(
       result => {
-        dispatch(success(result.isUpdated, isEnded, prefixId));
+        dispatch(success(result.isUpdated, isEnded, prefixId, redirection));
       },
       error => {
         dispatch(failure(error));
@@ -289,22 +289,22 @@ function updatePermanence(idPermanence, idConseiller, permanence, isEnded, prefi
   function request() {
     return { type: 'UPDATE_PERMANENCE_REQUEST' };
   }
-  function success(isUpdated, isEnded, prefixId) {
-    return { type: 'UPDATE_PERMANENCE_SUCCESS', isUpdated, isEnded, prefixId };
+  function success(isUpdated, isEnded, prefixId, redirection) {
+    return { type: 'UPDATE_PERMANENCE_SUCCESS', isUpdated, isEnded, prefixId, redirection };
   }
   function failure(error) {
     return { type: 'UPDATE_PERMANENCE_FAILURE', error };
   }
 }
 
-function updatePermanences(fields, idConseiller, permanences) {
+function updatePermanences(fields, idConseiller, permanences, redirection) {
   const permanencesUpdate = extractPermanencesFromField(fields, permanences, idConseiller);
   return dispatch => {
     dispatch(request());
     permanenceService.updatePermanences(permanencesUpdate, idConseiller)
     .then(
       result => {
-        dispatch(success(result.isUpdated));
+        dispatch(success(result.isUpdated, redirection));
       },
       error => {
         dispatch(failure(error));
@@ -315,8 +315,8 @@ function updatePermanences(fields, idConseiller, permanences) {
   function request() {
     return { type: 'UPDATE_PERMANENCES_REQUEST' };
   }
-  function success(isUpdated) {
-    return { type: 'UPDATE_PERMANENCES_SUCCESS', isUpdated };
+  function success(isUpdated, redirection) {
+    return { type: 'UPDATE_PERMANENCES_SUCCESS', isUpdated, redirection };
   }
   function failure(error) {
     return { type: 'UPDATE_PERMANENCES_FAILURE', error };
@@ -492,8 +492,9 @@ function nettoyageFields(fields) {
 
 function extractPermanencesFromField(fields, permanences, conseillerId) {
   //convertir les champs du formulaire en permanence principal
-  const principalFields = fields.filter(field => field?.name?.split('_')[0] === 'principal');
+  const permanencesToUpdate = [];
   let permanencePrincipal = {};
+  const principalFields = fields.filter(field => field?.name?.split('_')[0] === 'principal');
   principalFields.forEach(principal => {
     const split = principal.name.split('_');
     permanencePrincipal[split[split.length - 1]] = principal.value;
@@ -512,6 +513,7 @@ function extractPermanencesFromField(fields, permanences, conseillerId) {
       permanence.siteWeb = permanencePrincipal.siteWeb;
       permanence.email = permanencePrincipal.email;
       permanence.horaires = permanencePrincipal.horaires.principal_horaires;
+      permanencesToUpdate.push(permanence);
     }
   });
 
@@ -556,6 +558,7 @@ function extractPermanencesFromField(fields, permanences, conseillerId) {
           if (!permanence.conseillers.includes(conseillerId)) {
             permanence.conseillers.push(conseillerId);
           }
+          permanencesToUpdate.push(permanence);
         }
       });
       //cas où un nouveau lieu d'activité est entré
@@ -580,12 +583,12 @@ function extractPermanencesFromField(fields, permanences, conseillerId) {
         nouvellePermanence.conseillers = [conseillerId];
         nouvellePermanence.lieuPrincipalPour = [];
         nouvellePermanence.structure = permanences[0].structure;
-        permanences.push(nouvellePermanence);
+        permanencesToUpdate.push(nouvellePermanence);
       }
     });
   }
 
-  return permanences;
+  return permanencesToUpdate;
 }
 
 function updateLieuEnregistrable(prefixId) {

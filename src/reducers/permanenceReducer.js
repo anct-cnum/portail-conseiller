@@ -209,6 +209,7 @@ export default function permanence(state = initialState, action) {
         ...state,
         showError: false,
         error: false,
+        redirection: null,
       };
     case 'POST_PERMANENCE_SUCCESS':
       return {
@@ -216,6 +217,7 @@ export default function permanence(state = initialState, action) {
         isCreated: action.isCreated,
         prefixIdLieuEnregistrable: action.prefixId,
         isEnded: action.isEnded,
+        redirection: action.redirection,
       };
     case 'POST_PERMANENCE_FAILURE':
       return {
@@ -229,6 +231,7 @@ export default function permanence(state = initialState, action) {
         ...state,
         showError: false,
         error: false,
+        redirection: null,
       };
     case 'UPDATE_PERMANENCE_SUCCESS':
       return {
@@ -236,6 +239,7 @@ export default function permanence(state = initialState, action) {
         isUpdated: action.isUpdated,
         prefixIdLieuEnregistrable: action.prefixId,
         isEnded: action.isEnded,
+        redirection: action.redirection,
       };
     case 'UPDATE_PERMANENCE_FAILURE':
       return {
@@ -304,12 +308,14 @@ export default function permanence(state = initialState, action) {
         showError: false,
         errorAllUpdated: false,
         loadingAllUpdated: true,
+        redirection: null,
       };
     case 'UPDATE_PERMANENCES_SUCCESS':
       return {
         ...state,
         isAllUpdated: action.isUpdated,
         loadingAllUpdated: false,
+        redirection: action.redirection,
       };
     case 'UPDATE_PERMANENCES_FAILURE':
       return {

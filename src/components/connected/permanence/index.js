@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions, permanenceActions } from '../../../actions';
-import { userEntityId } from '../../../helpers';
-
+import { userEntityId, history } from '../../../helpers';
 
 import PermanenceSecondaireUpdate from './PermanenceSecondaireUpdate';
 import ContactProfessionel from './ContactProfessionel';
@@ -16,7 +15,7 @@ import Banner from './Banner';
 
 function Permanence() {
   const dispatch = useDispatch();
-
+  const urlCartographie = process.env.REACT_APP_CARTOGRAPHIE_URL;
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const structure = useSelector(state => state.structure?.structure);
   const listPermanences = useSelector(state => state.permanence?.permanences);
@@ -29,6 +28,7 @@ function Permanence() {
   const isDeleted = useSelector(state => state.permanence.isDeleted);
   const isConseillerDeleted = useSelector(state => state.permanence.isConseillerDeleted);
   const isAllUpdated = useSelector(state => state.permanence.isAllUpdated);
+  const redirection = useSelector(state => state.permanence?.redirection);
 
   useEffect(() => {
     if (!conseiller) {
@@ -49,6 +49,11 @@ function Permanence() {
     if (isAllUpdated) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       setTimeout(() => {
+        if (redirection === '/accueil') {
+          history.push(redirection);
+        } else {
+          window.open(urlCartographie + '/' + conseiller._id + '/details', '_blank');
+        }
         dispatch(permanenceActions.getListePermanences(structure?._id));
       }, 3000);
     }
@@ -73,7 +78,7 @@ function Permanence() {
             {showError &&
               <p className="rf-label flashBag invalid">
                 {showErrorMessage ?? errorAllUpdated ?
-                  'Une erreur est survenue lors de la mise &agrave; jour de vos lieux d&rsquo;activit&eacute;' :
+                  'Une erreur est survenue lors de la mise à jour de vos lieux d’activité' :
                   'Une erreur est survenue lors du traitement de vos informations'}
               </p>
             }

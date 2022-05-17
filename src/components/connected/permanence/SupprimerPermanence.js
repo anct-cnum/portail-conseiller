@@ -40,7 +40,7 @@ function SupprimerPermanence({ permanence, secondaireId }) {
                     <div className="rf-mb-3w">
                       <button className="rf-btn suppression-btn" onClick={() => {
                         deleteConseillerPermanence(permanence._id);
-                      }} >Supprimer et garder les informations du lieu engistr&eacute;es</button>
+                      }} >Masquer les informations du lieu engistr&eacute;es</button>
                     </div>
                     <div className="rf-mb-6w">
                       Si vous &ecirc;tes la seule personne assign&eacute;e &agrave; ce lieu, ce dernier ne sera plus affich&eacute; sur la carte nationale.

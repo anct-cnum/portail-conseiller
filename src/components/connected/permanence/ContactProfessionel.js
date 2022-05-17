@@ -38,7 +38,7 @@ function ContactProfessionel({ conseiller }) {
       dispatch(permanenceActions.updateField('emailPro', conseiller.emailPro));
     }
     if (conseiller?.telephonePro) {
-      dispatch(permanenceActions.updateField('emailPro', conseiller.telephonePro));
+      dispatch(permanenceActions.updateField('telephonePro', conseiller.telephonePro));
     }
     dispatch(permanenceActions.updateField('estCoordinateur', conseiller?.estCoordinateur ? 'true' : 'false'));
 
