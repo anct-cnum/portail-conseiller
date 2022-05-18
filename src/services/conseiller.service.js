@@ -12,7 +12,8 @@ export const conseillerService = {
   getStatistiquesCSV,
   getStatistiquesAdminCoopCSV,
   createSexeAge,
-  getExportDonneesCnfs
+  getExportDonneesCnfs,
+  getStatistiquesHubCSV
 };
 
 function get(id) {
@@ -128,6 +129,16 @@ function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, conseille
 
   // eslint-disable-next-line max-len
   return fetch(`${apiUrlRoot}/stats/admincoop/statistiques.csv?dateDebut=${dateDebut}&dateFin=${dateFin}&type=${type}&idType=${idType}&codePostal=${codePostal}&conseillerIds=${conseillerIds}`,
+    requestOptions).then(handleFileResponse);
+}
+
+function getStatistiquesHubCSV() {
+  const requestOptions = {
+    method: 'GET',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+  };
+
+  return fetch(`${apiUrlRoot}/exports/hubcoop/cnfs.csv`,
     requestOptions).then(handleFileResponse);
 }
 

@@ -10,6 +10,7 @@ export const conseillerActions = {
   getStatistiquesAdminCoopPDF,
   getStatistiquesCSV,
   getStatistiquesAdminCoopCSV,
+  getStatistiquesHubCSV,
   resetStatistiquesPDFFile,
   exportDonneesCnfs,
   resetExportDonneesCnfs,
@@ -173,6 +174,26 @@ function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, conseille
   }
 }
 
+function getStatistiquesHubCSV(hub) {
+  return dispatch => {
+    dispatch(request());
+    conseillerService.getStatistiquesHubCSV()
+    .then(
+      data => dispatch(success(data, download(data, `export-cnfs_${dayjs(new Date()).format('YYYY-MM-DD')}_${hub}.csv`))),
+      error => dispatch(failure(error))
+    );
+  };
+
+  function request() {
+    return { type: 'GET_STATS_HUB_CSV_REQUEST' };
+  }
+  function success(data, download) {
+    return { type: 'GET_STATS_HUB_CSV_SUCCESS', data, download };
+  }
+  function failure(error) {
+    return { type: 'GET_STATS_HUB_CSV_FAILURE', error };
+  }
+}
 
 function exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, nomOrdre = 'prenom', ordre = 1, idStructure = null) {
   return dispatch => {
