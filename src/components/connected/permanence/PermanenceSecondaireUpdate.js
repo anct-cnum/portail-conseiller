@@ -26,7 +26,7 @@ function PermanenceSecondaireUpdate({ structure, structureId, conseillerId, perm
                 <img className="pin rf-mt-8w" src="logos/permanences/pin.svg"/>
               </div>
               <div className="rf-col-8 ">
-                <h2 className="sous-titre rf-mt-7w rf-mb-4w">
+                <h2 className="sous-titre rf-mt-7w rf-mb-4w" id={'titre_secondaire_' + idx} >
                   Lieu d&rsquo;activit&eacute; secondaire
                   <span className="baseline rf-mt-1w">
                     Un lieu d&rsquo;activit&eacute; secondaire correspond &agrave; une permanence o&ugrave; vous avez &eacute;t&eacute;
@@ -66,7 +66,7 @@ function PermanenceSecondaireUpdate({ structure, structureId, conseillerId, perm
                   <img className="pin rf-mt-8w" src="logos/permanences/pin.svg"/>
                 </div>
                 <div className="rf-col-8 ">
-                  <h2 className="sous-titre rf-mt-7w rf-mb-4w">
+                  <h2 className="sous-titre rf-mt-7w rf-mb-4w" id={'titre_secondaire_' + idx}>
                     Lieu d&rsquo;activit&eacute; secondaire
                     <span className="baseline rf-mt-1w">
                       Un lieu d&rsquo;activit&eacute; secondaire correspond &agrave; une permanence o&ugrave; vous avez &eacute;t&eacute;

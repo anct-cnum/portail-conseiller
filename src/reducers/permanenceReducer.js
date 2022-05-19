@@ -12,6 +12,8 @@ const initialState = {
   isUpdated: false,
   showError: false,
   suspensionPermanence: false,
+  permanencesReservees: [],
+  reserver: false,
 };
 
 const nettoyageState = form => {
@@ -296,6 +298,13 @@ export default function permanence(state = initialState, action) {
       return {
         ...state,
         fields: action.fields
+      };
+    case 'RESERVE_LIEU_ACTIVITE':
+      state.permanencesReservees.push(action.idPermanence);
+      const reserver = state.permanencesReservees.length > 0;
+      return {
+        ...state,
+        reserver: reserver
       };
     case 'UPDATE_LIEU_ENREGISTRABLE':
       return {

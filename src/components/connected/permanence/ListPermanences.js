@@ -7,6 +7,8 @@ function ListPermanences({ prefixId, conseillerId }) {
   const dispatch = useDispatch();
 
   const listPermanences = useSelector(state => state.permanence?.permanences);
+  const permanencesReservees = useSelector(state => state.permanence?.permanencesReservees);
+  const reserver = useSelector(state => state.permanence?.reserver);
   const loadingHoraires = useSelector(state => state.permanence?.loadingHoraires);
   const fields = useSelector(state => state.permanence?.fields);
 
@@ -15,6 +17,9 @@ function ListPermanences({ prefixId, conseillerId }) {
   const handleClick = e => {
     const permanence = listPermanences.find(permanence => permanence._id === e.target.value);
 
+    if (permanence?._id) {
+      dispatch(permanenceActions.reserverPermanence({ [prefixId]: permanence?._id }));
+    }
     dispatch(permanenceActions.updateField(prefixId + 'idPermanence', permanence?._id));
     dispatch(permanenceActions.updateField(prefixId + 'nomEnseigne', permanence?.nomEnseigne));
     dispatch(permanenceActions.updateField(prefixId + 'siret', permanence?.siret));
@@ -81,7 +86,8 @@ function ListPermanences({ prefixId, conseillerId }) {
                   {listPermanences.map(((permanence, idx) => {
                     return (
                       <div key={idx}>
-                        {permanence?.conseillers.includes(conseillerId) === false &&
+                        {(permanence?.conseillers.includes(conseillerId) === false &&
+                          (!reserver || permanencesReservees.filter(perm => perm[prefixId] === permanence._id).length > 0)) &&
                         <>
                           <hr />
                           <div className="rf-fieldset__content">

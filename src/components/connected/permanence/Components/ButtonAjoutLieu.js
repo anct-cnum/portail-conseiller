@@ -17,6 +17,8 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpda
   const [clickSubmit, setClickSubmit] = useState(false);
 
   const onClick = () => {
+
+    window.scrollTo({ top: document.body.scrollHeight - 1000, behavior: 'smooth' });
     if (isUpdate) {
       show[secondaireId] = true;
       dispatch(permanenceActions.updateField('submit_and_next_' + secondaireId, true));
