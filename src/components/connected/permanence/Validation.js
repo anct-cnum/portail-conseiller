@@ -13,7 +13,7 @@ function Validation({ conseillerId, structureId, isUpdate, permanences }) {
   const prefixId = useSelector(state => state.permanence?.prefixIdLieuEnregistrable);
 
   const [clickSubmit, setClickSubmit] = useState(false);
-  const [redirection, setRedirection] = useState('accueil');
+  const [redirection, setRedirection] = useState('/accueil');
 
   function handleSubmit(redirection = '/accueil') {
     const typeAcces = [
