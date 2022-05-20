@@ -15,6 +15,7 @@ function PermanenceSecondaireUpdate({ structure, structureId, conseillerId, perm
   const lieuxSecondaires = Array.from({ length: process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE }, () => ({}));
   const adresseStructure = structure?.insee?.etablissement?.adresse;
   const fields = useSelector(state => state.permanence?.fields);
+  const showLieuSecondaire = useSelector(state => state.permanence?.showLieuSecondaire);
 
   return (
     <>
@@ -54,14 +55,15 @@ function PermanenceSecondaireUpdate({ structure, structureId, conseillerId, perm
 
       </div>
       {lieuxSecondaires && lieuxSecondaires.map((lieuSecondaire, idx) => {
+
         return (
           <div key={idx} className="rf-container">
             {idx >= listSecondaires.length &&
             <>
-              <div className={(idx === 0 && show[0]) ||
-                (idx > 0 &&
-                  fields?.filter(field => field.name === 'submit_and_next_' + idx)[0]?.value) ? 'rf-grid-row' : 'hide'}>
-
+              <div className={(idx === 0 && showLieuSecondaire[0]) ||
+                  (idx > 0 &&
+                  fields?.filter(field => field.name === 'submit_and_next_' + idx)[0]?.value) ? 'rf-grid-row' : 'hide'}
+              >
                 <div className="rf-col-1 col-logo">
                   <img className="pin rf-mt-8w" src="logos/permanences/pin.svg"/>
                 </div>

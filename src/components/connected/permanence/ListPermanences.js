@@ -8,9 +8,9 @@ function ListPermanences({ prefixId, conseillerId }) {
 
   const listPermanences = useSelector(state => state.permanence?.permanences);
   const permanencesReservees = useSelector(state => state.permanence?.permanencesReservees);
-  const reserver = useSelector(state => state.permanence?.reserver);
   const loadingHoraires = useSelector(state => state.permanence?.loadingHoraires);
   const fields = useSelector(state => state.permanence?.fields);
+  const geocodeAdresses = useSelector(state => state.permanence?.geocodeAdresses);
 
   const [showList, setShowList] = useState(0);
 
@@ -18,8 +18,9 @@ function ListPermanences({ prefixId, conseillerId }) {
     const permanence = listPermanences.find(permanence => permanence._id === e.target.value);
 
     if (permanence?._id) {
-      dispatch(permanenceActions.reserverPermanence({ [prefixId]: permanence?._id }));
+      dispatch(permanenceActions.reserverPermanence({ prefixId: prefixId, idPermanence: permanence?._id }));
     }
+
     dispatch(permanenceActions.updateField(prefixId + 'idPermanence', permanence?._id));
     dispatch(permanenceActions.updateField(prefixId + 'nomEnseigne', permanence?.nomEnseigne));
     dispatch(permanenceActions.updateField(prefixId + 'siret', permanence?.siret));
@@ -47,6 +48,14 @@ function ListPermanences({ prefixId, conseillerId }) {
       loadingHoraires[id + 1] = true;
     }
 
+    const adresse = {
+      numero: permanence?.adresse.numeroRue,
+      rue: permanence?.adresse.rue,
+      codePostal: permanence?.adresse.codePostal,
+      ville: permanence?.adresse.ville
+    };
+    dispatch(permanenceActions.getGeocodeAdresse(adresse, prefixId));
+
     dispatch(permanenceActions.setHorairesLoading(loadingHoraires));
     dispatch(permanenceActions.disabledField(prefixId, e.target.value !== 'nouveau'));
   };
@@ -62,6 +71,15 @@ function ListPermanences({ prefixId, conseillerId }) {
     }
     setShowList(nbPermanences);
   }, [listPermanences]);
+
+  useEffect(() => {
+    if (geocodeAdresses) {
+      const geocodeAdresse = geocodeAdresses?.filter(geocode => geocode.prefixId === prefixId)[0]?.geocodeAdresse;
+      if (geocodeAdresse) {
+        dispatch(permanenceActions.updateField(prefixId + 'location', geocodeAdresse[0]?.geometry ?? { type: 'Point', coordinates: [1.849121, 46.624100] }));
+      }
+    }
+  }, [geocodeAdresses]);
 
   return (
     <>
@@ -86,23 +104,42 @@ function ListPermanences({ prefixId, conseillerId }) {
                   {listPermanences.map(((permanence, idx) => {
                     return (
                       <div key={idx}>
-                        {(permanence?.conseillers.includes(conseillerId) === false &&
-                          (!reserver || permanencesReservees.filter(perm => perm[prefixId] === permanence._id).length > 0)) &&
+                        {permanence?.conseillers.includes(conseillerId) === false &&
                         <>
                           <hr />
                           <div className="rf-fieldset__content">
                             <div className="rf-radio-group">
-                              <input type="radio" id={prefixId + permanence?._id} className="permanence-existante"
-                                name={prefixId + 'permancenceSecondaire'} value={permanence?._id} required="required" onClick={handleClick}/>
-                              <label className="rf-label rf-my-2w permanence-existante" htmlFor={prefixId + permanence?._id}>
-                                <span className="rf-container rf-container--fluid">
-                                  <span className="rf-grid-row">
-                                    <span className="rf-col-3">{permanence?.adresse.ville.toUpperCase()}</span>
-                                    <span className="rf-col-2">{permanence?.adresse.codePostal}</span>
-                                    <span className="rf-col-7">{permanence?.nomEnseigne}</span>
-                                  </span>
-                                </span>
-                              </label>
+                              {(permanencesReservees.filter(perm => perm.idPermanence === permanence._id).length > 0 &&
+                               permanencesReservees.filter(perm => perm.idPermanence === permanence._id)[0]?.prefixId !== prefixId) &&
+                                <>
+                                  <input type="radio" disabled/>
+                                  <label className="rf-label rf-my-2w permanence-existante" htmlFor={prefixId + permanence?._id}>
+                                    <span className="rf-container rf-container--fluid">
+                                      <span className="rf-grid-row">
+                                        <span className="rf-col-3">{permanence?.adresse.ville.toUpperCase()}</span>
+                                        <span className="rf-col-2">{permanence?.adresse.codePostal}</span>
+                                        <span className="rf-col-7">{permanence?.nomEnseigne}</span>
+                                      </span>
+                                    </span>
+                                  </label>
+                                </>
+                              }
+                              {(permanencesReservees.filter(perm => perm.idPermanence === permanence._id).length === 0 ||
+                               permanencesReservees.filter(perm => perm.idPermanence === permanence._id)[0]?.prefixId === prefixId) &&
+                                <>
+                                  <input type="radio" id={prefixId + permanence?._id} className="permanence-existante"
+                                    name={prefixId + 'permancenceSecondaire'} value={permanence?._id} required="required" onClick={handleClick}/>
+                                  <label className="rf-label rf-my-2w permanence-existante" htmlFor={prefixId + permanence?._id}>
+                                    <span className="rf-container rf-container--fluid">
+                                      <span className="rf-grid-row">
+                                        <span className="rf-col-3">{permanence?.adresse.ville.toUpperCase()}</span>
+                                        <span className="rf-col-2">{permanence?.adresse.codePostal}</span>
+                                        <span className="rf-col-7">{permanence?.nomEnseigne}</span>
+                                      </span>
+                                    </span>
+                                  </label>
+                                </>
+                              }
                             </div>
                           </div>
                         </>

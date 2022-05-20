@@ -641,8 +641,8 @@ function extractPermanencesFromField(fields, permanences, conseillerId) {
   return permanencesToUpdate;
 }
 
-function reserverPermanence(idPermanence) {
-  return { type: 'RESERVE_LIEU_ACTIVITE', idPermanence };
+function reserverPermanence(reservationPermanence) {
+  return { type: 'RESERVE_LIEU_ACTIVITE', reservationPermanence };
 }
 
 function updateLieuEnregistrable(prefixId) {

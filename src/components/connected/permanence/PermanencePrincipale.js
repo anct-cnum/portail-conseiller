@@ -20,8 +20,8 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
   const erreurAdresseExact = erreursFormulaire?.filter(erreur => erreur?.estStructure)[0]?.estStructure;
   const adresseStructure = structure?.insee?.etablissement?.adresse;
 
-  const [defaultCheckedOui, setDefaultCheckedOui] = useState(false);
-  const [defaultCheckedNon, setDefaultCheckedNon] = useState(false);
+  const [defaultCheckedOui, setDefaultCheckedOui] = useState(null);
+  const [defaultCheckedNon, setDefaultCheckedNon] = useState(null);
   const [estClique, setEstClique] = useState(false);
 
   const fillPermanencePrincipale = permanencePrincipale => {
@@ -131,7 +131,8 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
           <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-2w">
             <div className="rf-fieldset__content">
               <div className="rf-radio-group">
-                <input type="radio" id="Oui" name="principalLieuActivite" value="Oui" defaultChecked={{ defaultCheckedOui }}
+                <input type="radio" id="Oui" name="principalLieuActivite" value="Oui"
+                  defaultChecked={defaultCheckedOui}
                   required="required" onClick={() => {
                     handleAdresse(true);
                   }}/>
