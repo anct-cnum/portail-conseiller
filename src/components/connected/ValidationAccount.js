@@ -78,7 +78,7 @@ function ValidationAccount() {
             <p>
               <strong>
                 <span style={{ textTransform: 'capitalize' }}>
-                  {conseiller?.prenom}&nbsp;{conseiller?.nom}
+                  {conseiller?.mattermost?.login}
                 </span>
               </strong>
             </p>
