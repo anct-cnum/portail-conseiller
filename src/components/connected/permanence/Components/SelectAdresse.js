@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { permanenceActions } from '../../../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 
-function SelectAdresse({ prefixId, errorInput }) {
+function SelectAdresse({ prefixId, errorInput, isUpdate }) {
   const dispatch = useDispatch();
 
   const geocodeAdresses = useSelector(state => state.permanence?.geocodeAdresses);
@@ -31,7 +31,7 @@ function SelectAdresse({ prefixId, errorInput }) {
         <select id={prefixId + 'geolocalisation'} className={errorInput ? 'rf-input rf-mb-6w input-error' : 'rf-input rf-mb-6w'} onChange={e => {
           onChange(e);
         }}>
-          {(prefixId !== 'principal_') &&
+          {(prefixId !== 'principal_' && !isUpdate) &&
             <option>Choisir une adresse &agrave; pr&eacute;visualiser</option>
           }
           {geocodeAdresse && geocodeAdresse?.map((adresse, idx) => {
@@ -55,6 +55,7 @@ SelectAdresse.propTypes = {
   prefixId: PropTypes.string,
   estStructure: PropTypes.bool,
   errorInput: PropTypes.string,
+  isUpdate: PropTypes.bool,
 };
 
 export default SelectAdresse;

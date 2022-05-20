@@ -85,6 +85,7 @@ function PermanenceSecondaireUpdate({ structure, structureId, conseillerId, perm
                   prefixId={ 'secondaire_' + idx + '_'}
                   secondaireId={ idx }
                   islieuPrincipal={false}
+                  isUpdate={true}
                   conseillerId={conseillerId}
                 />
                 <TypeAcces prefixId={ 'secondaire_' + idx + '_'} islieuPrincipal={false} />

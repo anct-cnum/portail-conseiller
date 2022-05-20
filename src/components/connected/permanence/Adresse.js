@@ -187,6 +187,7 @@ function Adresse({ codeDepartement, prefixId, isUpdate, permanence, conseillerId
         <div>
           <SelectAdresse prefixId={prefixId}
             errorInput={erreurLocation}
+            isUpdate={isUpdate}
             estStructure={fields?.filter(field => field.name === 'estStructure')[0]?.value ?? null}/>
         </div>
 
