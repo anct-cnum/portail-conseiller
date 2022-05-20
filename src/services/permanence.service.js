@@ -9,6 +9,7 @@ export const permanenceService = {
   createPermanence,
   updatePermanence,
   updatePermanences,
+  validationFormulaire,
   verifySiret,
   getGeocodeAdresse,
   deletePermanence,
@@ -66,6 +67,14 @@ function updatePermanences(permanences, idConseiller) {
     })
   };
   return fetch(`${apiUrlRoot}/permanences/conseiller/${idConseiller}/updateAll`, requestOptions).then(handleResponse);
+}
+
+function validationFormulaire(idConseiller) {
+  const requestOptions = {
+    method: 'PATCH',
+    headers: authHeader()
+  };
+  return fetch(`${apiUrlRoot}/permanences/conseiller/${idConseiller}/statut`, requestOptions).then(handleResponse);
 }
 
 function verifySiret(siret) {

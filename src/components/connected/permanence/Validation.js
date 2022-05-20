@@ -85,9 +85,12 @@ function Validation({ conseillerId, structureId, isUpdate, permanences }) {
 
       if (nouveauLieu._id !== null) {
         dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, true, null, redirection));
-      } else {
+      } else if (prefixId) {
         dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, true, null, redirection));
+      } else if (prefixId === null) {
+        dispatch(permanenceActions.validerPermanenceForm(conseillerId));
       }
+
     } else if (errorsForm?.lengthError === 0 && clickSubmit && isUpdate) {
       dispatch(permanenceActions.updatePermanences(fields, conseillerId, permanences, redirection));
     } else if (errorsForm?.lengthError > 0 && clickSubmit === true) {

@@ -41,7 +41,8 @@ function InputCheckbox({ textLabel, errorInput, prefixId, nameInput, baselineInp
           onClick(e);
         }}/>
         }
-        <label className={errorInput ? 'rf-label invalid' : 'rf-label' } htmlFor={ prefixId + nameInput }>
+        <label className={errorInput ? 'rf-label invalid' : 'rf-label' } htmlFor={ prefixId + nameInput }
+          style={nameInput === 'checkboxSiret' ? { 'width': '350px' } : {}}>
           {textLabel}
         </label>
         {baselineInput &&

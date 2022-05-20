@@ -84,7 +84,6 @@ export default function permanence(state = initialState, action) {
       fields?.push(action.field);
 
       fields = nettoyageState(fields);
-
       return {
         ...state,
         fields: fields
@@ -354,6 +353,27 @@ export default function permanence(state = initialState, action) {
         isReporter: false,
         showErrorReporter: true,
         errorReporter: action.error,
+      };
+    case 'UPDATE_STATUT_FORM_REQUEST':
+      return {
+        ...state,
+        showError: false,
+        error: false
+      };
+    case 'UPDATE_STATUT_FORM_SUCCESS':
+      return {
+        ...state,
+        isUpdated: action.isUpdated,
+        isEnded: true,
+        redirection: '/accueil'
+      };
+    case 'UPDATE_STATUT_FORM_FAILURE':
+      return {
+        ...state,
+        error: action.error,
+        isUpdated: false,
+        showError: true,
+        isEnded: false
       };
     default:
       return state;

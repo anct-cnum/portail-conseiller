@@ -12,6 +12,7 @@ export const permanenceActions = {
   createPermanence,
   updatePermanence,
   updatePermanences,
+  validerPermanenceForm,
   verifySiret,
   getGeocodeAdresse,
   rebootGeocodeAdresse,
@@ -91,6 +92,7 @@ function verifyFormulaire(form) {
   let errors = [];
 
   const showLieuSecondaire = form?.showLieuSecondaire;
+
   //eslint-disable-next-line max-len
   const regExpEmail = new RegExp(/^(([^<>()[\]\\.,;:\s@\\"]+(\.[^<>()[\]\\.,;:\s@\\"]+)*)|(\\".+\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
   const regExpNumero = new RegExp(/^(?:(?:\+)(33|590|596|594|262|269))(?:[\s.-]*\d{3}){3,4}$/);
@@ -322,6 +324,31 @@ function updatePermanences(fields, idConseiller, permanences, redirection) {
   }
   function failure(error) {
     return { type: 'UPDATE_PERMANENCES_FAILURE', error };
+  }
+}
+
+function validerPermanenceForm(idConseiller) {
+  return dispatch => {
+    dispatch(request());
+    permanenceService.validationFormulaire(idConseiller)
+    .then(
+      result => {
+        dispatch(success(result.isUpdated));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'UPDATE_STATUT_FORM_REQUEST' };
+  }
+  function success(isUpdated) {
+    return { type: 'UPDATE_STATUT_FORM_SUCCESS', isUpdated };
+  }
+  function failure(error) {
+    return { type: 'UPDATE_STATUT_FORM_FAILURE', error };
   }
 }
 

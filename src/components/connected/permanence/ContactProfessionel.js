@@ -40,7 +40,7 @@ function ContactProfessionel({ conseiller }) {
     if (conseiller?.telephonePro) {
       dispatch(permanenceActions.updateField('telephonePro', conseiller.telephonePro));
     }
-    dispatch(permanenceActions.updateField('estCoordinateur', conseiller?.estCoordinateur ? 'true' : 'false'));
+    dispatch(permanenceActions.updateField('estCoordinateur', conseiller?.estCoordinateur ?? false));
 
   }, [conseiller]);
 
