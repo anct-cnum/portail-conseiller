@@ -49,7 +49,8 @@ function Adresse({ codeDepartement, prefixId }) {
                   errorInput={erreurSiret}
                   nameInput= {prefixId + 'siret'}
                   baselineInput={<>
-                    <a className="link" href="https://annuaire-entreprises.data.gouv.fr/?mtm_campaign=Conseiller_numériqueFS" title="Lien vers https://annuaire-entreprises.data.gouv.fr/" target="blank" rel="noreferrer">
+                    <a className="link" href="https://annuaire-entreprises.data.gouv.fr/?mtm_campaign=Conseiller_numériqueFS"
+                      title="Lien vers https://annuaire-entreprises.data.gouv.fr/" target="blank" rel="noreferrer">
                       O&ugrave; trouver un num&eacute;ro de Siret&nbsp;?
                     </a><span>&nbsp;Pensez également à vous renseigner auprès de vos collaborateurs.</span></>
                   }
