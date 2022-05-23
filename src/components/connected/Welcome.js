@@ -58,7 +58,7 @@ function Welcome() {
                       Suivi d&rsquo;activit&eacute;
                     </Link>
                   </div>
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-3 menu-btn rf-mb-3w">
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-ml-md-7w rf-mr-md-7w">
                     <a href={lienMattermost} target="blank" title="Acc&egrave;s espace discussion">
                       <img src="/logos/home-connected/icone-discussion.svg" className="icone-btn icone-mattermost"/>
                       Espace de discussion
@@ -91,7 +91,7 @@ function Welcome() {
                       Pix
                     </a>
                   </div>
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-3 menu-btn rf-mb-3w">
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-ml-md-7w rf-mr-md-7w">
                     <a href={lienRdvSolidarites} target="blank" title="Acc&eacute;der &agrave; RDV Solidarit&eacute;s">
                       <img src="/logos/home-connected/logo-rdv-solidarites.svg" className="icone-btn icone-rdv-solidarites"/>
                       RDV Solidarit&eacute;s
