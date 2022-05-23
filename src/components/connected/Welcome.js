@@ -19,6 +19,7 @@ function Welcome() {
   const lienPix = `${process.env.REACT_APP_PIX_URL}?control1714940=${conseiller?.prenom}&control1714939=${conseiller?.nom}&control1714941=${user?.name}`;
   const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
   const lienWebmail = process.env.REACT_APP_WEBMAIL_URL;
+  const lienRdvSolidarites = process.env.REACT_APP_RDV_SOLIDARITES_URL;
 
   return (
     <>
@@ -50,14 +51,14 @@ function Welcome() {
 
             <div className="rf-col-12">
               <div className="rf-container">
-                <div className="rf-grid-row rf-grid-row--center">
+                <div className="rf-grid-row espacement-centre-groupe-icon">
                   <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
                     <Link to="/compte-rendu-activite" title="Acc&eacute;der &agrave; mon outil de suivi d&rsquo;activit&eacute;">
                       <img src="/logos/home-connected/icone-cra.svg" className="icone-btn icone-cra"/>
                       Suivi d&rsquo;activit&eacute;
                     </Link>
                   </div>
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-3 menu-btn rf-mb-3w">
                     <a href={lienMattermost} target="blank" title="Acc&egrave;s espace discussion">
                       <img src="/logos/home-connected/icone-discussion.svg" className="icone-btn icone-mattermost"/>
                       Espace de discussion
@@ -82,10 +83,19 @@ function Welcome() {
                       Ressourcerie
                     </Link>
                   </div>
+                  <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
+                </div>
+                <div className="rf-grid-row espacement-centre-groupe-icon rf-mt-8w">
                   <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
                     <a href={lienPix} target="blank" title="Acc&eacute;der &agrave; Pix">
                       <img src="/logos/home-connected/icone-pix.svg" className="icone-btn icone-pix"/>
                       Pix
+                    </a>
+                  </div>
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-3 menu-btn rf-mb-3w">
+                    <a href={lienRdvSolidarites} target="blank" title="Acc&eacute;der &agrave; RDV Solidarit&eacute;s">
+                      <img src="/logos/home-connected/logo-rdv-solidarites.svg" className="icone-btn icone-rdv-solidarites"/>
+                      RDV Solidarit&eacute;s
                     </a>
                   </div>
                   <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">

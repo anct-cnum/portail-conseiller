@@ -73,6 +73,11 @@
     width: 86px;
     margin-bottom: 13px;
   }
+  .icone-rdv-solidarites {
+    height: 64px;
+    width: 86px;
+    margin-bottom: 13px;
+  }
   .icone-mail {
     height: 64px;
     width: 84px;
@@ -132,6 +137,10 @@
     border: solid 1px
   }
 
+  .espacement-centre-groupe-icon {
+    justify-content: center;
+  }
+
   @media (max-width:  1436px) {
     .img-home-futur {
       width: 100%;
@@ -155,6 +164,9 @@
   @media (max-width: 767px) {
     .img-home, .document-btn, .kit-communication-btn {
       width: 100%;
+    }
+    .espacement-centre-groupe-icon {
+      justify-content: normal;
     }
   }
   @media (max-width: 700px) {
