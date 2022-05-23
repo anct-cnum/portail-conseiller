@@ -48,7 +48,7 @@ function Welcome() {
                 </div>
               </div>
             </div>
-
+            <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
             <div className="rf-col-12">
               <div className="rf-container">
                 <div className="rf-grid-row espacement-centre-groupe-icon">
@@ -83,7 +83,6 @@ function Welcome() {
                       Ressourcerie
                     </Link>
                   </div>
-                  <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
                 </div>
                 <div className="rf-grid-row espacement-centre-groupe-icon rf-mt-8w">
                   <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
@@ -117,7 +116,6 @@ function Welcome() {
                       </span>
                     </a>
                   </div>
-                  <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
                 </div>
               </div>
             </div>
