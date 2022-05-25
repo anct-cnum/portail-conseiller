@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import horairesInitiales from '../../../data/horairesInitiales.json';
 import { permanenceActions } from '../../../actions/permanence.actions';
 
-function Validation({ conseillerId, structureId, statut, redirectionValidation = null }) {
+function Validation({ conseillerId, structureId, statut = null, redirectionValidation = null }) {
   const dispatch = useDispatch();
   const form = useSelector(state => state.permanence);
   const fields = useSelector(state => state.permanence?.fields);

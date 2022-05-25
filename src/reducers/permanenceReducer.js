@@ -366,7 +366,7 @@ export default function permanence(state = initialState, action) {
         isEnded: false
       };
     case 'FILL_CHAMPS_MA_PERMANENCE':
-      const loadingHoraires = state.loadingHoraires;
+      const loadingHoraires = state?.loadingHoraires ?? Array.from({ length: 1 }, () => (false));
       loadingHoraires[0] = true;
       return {
         ...state,
