@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 
 function Banner() {
   const location = useLocation();
-  console.log(location);
   return (
     <div className="banniere">
       <div className="rf-container">

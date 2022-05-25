@@ -18,6 +18,7 @@ function Header({ linkAccount, printClass }) {
   const nom = useSelector(state => state.authentication?.user?.user?.nom);
   const prenom = useSelector(state => state.authentication?.user?.user?.prenom);
   const email = useSelector(state => state.authentication?.user?.user?.name);
+  const conseiller = useSelector(state => state.conseiller?.conseiller);
 
   const toggleBurgerMenu = () => {
     dispatch(menuActions.toggleMenu());
@@ -161,6 +162,9 @@ function Header({ linkAccount, printClass }) {
                                     }}>
                                     <span className="texte-user">{prenom ? prenom + ' ' + nom : email}&nbsp;
                                       {!menuUserShow ? <i className="ri-arrow-down-s-line"></i> : <i className="ri-arrow-up-s-line"></i>}
+                                      { role === 'conseiller' && !conseiller?.supHierarchique &&
+                                        <i className="ri-information-line information icone-info-header" ></i>
+                                      }
                                     </span>
                                   </button>
                                   <div
@@ -174,7 +178,10 @@ function Header({ linkAccount, printClass }) {
                                             onClick={() => {
                                               setMenuUserShow(false);
                                             }}>
-                                            Mes informations, Contact hi&eacute;rarchique<br />
+                                            { !conseiller?.supHierarchique &&
+                                              <i className="ri-information-line information icone-info-header"></i>
+                                            }
+                                                Mes informations, Contact hi&eacute;rarchique<br />
                                           </Link>
                                         </li>
                                       }

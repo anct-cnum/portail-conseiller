@@ -76,7 +76,7 @@ function Tags({ rechercheParTag, rechercheParTexte }) {
         </button>
       </div>
 
-      <div className="rf-my-5w rf-mt-md-9w rf-mb-md-6w">
+      <div className="rf-my-5w rf-mt-md-8w rf-mb-md-7w">
         <a className="tous-documents" title="Zip de tous les documents de la ressourcerie" target="blank" rel="noreferrer"
           href="https://ressourcerie.conseiller-numerique.gouv.fr/ressourcerie.zip">
           <i className="ri-file-zip-line" style={{ marginRight: '18px' }}></i>
@@ -85,7 +85,7 @@ function Tags({ rechercheParTag, rechercheParTexte }) {
       </div>
 
       <hr/>
-      <div className="rf-my-md-4w">
+      <div className="rf-my-md-3w">
         <span className="bulle-discussion"></span>
         <span className="canal"><a href={aideRessourcerie} className="lien-aide"> Canal #ressourcerie-provisoire</a></span><br/>
         <span className="texte-canal">Une question ? un &eacute;l&eacute;ment &agrave; partager ? Rendez-vous sur votre espace de
