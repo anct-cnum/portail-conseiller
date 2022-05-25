@@ -1,7 +1,6 @@
 import { permanenceService } from '../services/permanence.service';
 import { history } from '../helpers';
 import Joi from 'joi';
-import horairesInitiales from '../data/horairesInitiales.json';
 
 export const permanenceActions = {
   getMaPermanence,
@@ -12,7 +11,6 @@ export const permanenceActions = {
   verifyFormulaire,
   createPermanence,
   updatePermanence,
-  updatePermanences,
   validerPermanenceForm,
   verifySiret,
   getGeocodeAdresse,
@@ -25,9 +23,6 @@ export const permanenceActions = {
   suspensionFormulaire,
   deletePermanence,
   deleteConseillerPermanence,
-  verifyFormulaireUpdate,
-  nettoyageFields,
-  extractPermanencesFromField,
   reserverPermanence,
   updateLieuEnregistrable,
   reporterPermanence,
@@ -325,33 +320,6 @@ function updatePermanence(idPermanence, idConseiller, permanence, isEnded, prefi
   }
 }
 
-function updatePermanences(fields, idConseiller, permanences, redirection) {
-  const permanencesUpdate = extractPermanencesFromField(fields, permanences, idConseiller);
-
-  return dispatch => {
-    dispatch(request());
-    permanenceService.updatePermanences(permanencesUpdate, idConseiller)
-    .then(
-      result => {
-        dispatch(success(result.isUpdated, redirection));
-      },
-      error => {
-        dispatch(failure(error));
-      }
-    );
-  };
-
-  function request() {
-    return { type: 'UPDATE_PERMANENCES_REQUEST' };
-  }
-  function success(isUpdated, redirection) {
-    return { type: 'UPDATE_PERMANENCES_SUCCESS', isUpdated, redirection };
-  }
-  function failure(error) {
-    return { type: 'UPDATE_PERMANENCES_FAILURE', error };
-  }
-}
-
 function validerPermanenceForm(idConseiller) {
   return dispatch => {
     dispatch(request());
@@ -505,192 +473,6 @@ function deleteConseillerPermanence(idPermanence) {
   function failure(error) {
     return { type: 'DELETE_CONSEILLER_PERMANENCE_FAILURE', error };
   }
-}
-
-function verifyFormulaireUpdate(permanences, fields, form) {
-
-  const principalTypeAcces = [
-    fields?.filter(field => field.name === 'principal_libre')[0]?.value ? 'libre' : null,
-    fields?.filter(field => field.name === 'principal_rdv')[0]?.value ? 'rdv' : null,
-  ].filter(n => n);
-  delete fields?.filter(field => field.name === 'principal_typeAcces')[0]?.value;
-  delete fields?.filter(field => field.name === 'principal_typeAcces')[0]?.name;
-  fields = [...fields, { name: 'principal_typeAcces', value: principalTypeAcces }];
-
-  const nbPermanencesSecondaires = permanences.length - 1;
-  for (let i = 0; i < nbPermanencesSecondaires; i++) {
-    const secondaireTypeAcces = [
-      fields?.filter(field => field.name === 'secondaire_' + i + '_libre')[0]?.value ? 'libre' : null,
-      fields?.filter(field => field.name === 'secondaire_' + i + '_rdv')[0]?.value ? 'rdv' : null,
-      fields?.filter(field => field.name === 'secondaire_' + i + '_prive')[0]?.value ? 'prive' : null,
-    ].filter(n => n);
-    delete fields?.filter(field => field.name === 'secondaire_' + i + '_typeAcces')[0]?.value;
-    delete fields?.filter(field => field.name === 'secondaire_' + i + '_typeAcces')[0]?.name;
-    fields = [...fields, { name: 'secondaire_' + i + '_typeAcces', value: secondaireTypeAcces }];
-  }
-
-  fields = nettoyageFields(fields);
-  form.fields = fields;
-
-  return verifyFormulaire(form);
-}
-
-function nettoyageFields(fields) {
-  return fields?.filter(field => {
-    if (Object.keys(field).length !== 0) {
-      return true;
-    }
-    return false;
-  });
-}
-
-function fillPermanence(permanence, permanenceField, isPrincipal, conseillerId, id = null, isNew = false) {
-
-  if (isNew) {
-    permanence.adresse = {};
-    permanence.lieuPrincipalPour = [];
-    permanence.conseillersItinerants = [];
-    permanence.conseillers = [];
-  }
-
-  permanence.siret = permanenceField.siret ?? null;
-  permanence.nomEnseigne = permanenceField.nomEnseigne;
-  permanence.adresse.numeroRue = permanenceField.numeroVoie;
-  permanence.adresse.rue = permanenceField.rueVoie;
-  permanence.adresse.codePostal = permanenceField.codePostal;
-  permanence.adresse.ville = permanenceField.ville;
-  permanence.location = permanenceField.location;
-  permanence.numeroTelephone = permanenceField.numeroTelephone ?? null;
-  permanence.siteWeb = permanenceField.siteWeb ?? null;
-  permanence.email = permanenceField.email ?? null;
-
-  if (!permanence.conseillers.includes(conseillerId)) {
-    permanence.conseillers.push(conseillerId);
-  }
-
-  const typeAcces = [
-    permanenceField.libre ? 'libre' : null,
-    permanenceField.rdv ? 'rdv' : null,
-    permanenceField.prive ? 'prive' : null,
-  ].filter(n => n);
-  permanence.typeAcces = typeAcces;
-
-  if (isPrincipal) {
-    permanence.horaires = permanenceField.horaires.principal_horaires;
-    if (!permanence.lieuPrincipalPour.includes(conseillerId)) {
-      permanence.lieuPrincipalPour.push(conseillerId);
-    }
-  } else {
-    permanence.horaires = permanenceField?.horaires ? permanenceField?.horaires['secondaire_' + id + '_horaires'] : horairesInitiales;
-
-    if (!permanence.conseillersItinerants.includes(conseillerId) && permanenceField.itinerant) {
-      permanence.conseillersItinerants.push(conseillerId);
-    } else if (permanence.conseillersItinerants.includes(conseillerId) && !permanenceField.itinerant) {
-      const index = permanence.conseillersItinerants.indexOf(conseillerId);
-      permanence.conseillersItinerants.splice(index, 1);
-    }
-  }
-
-  return permanence;
-}
-
-function removeIdConseiller(conseillerIds, idConseiller) {
-  return conseillerIds.filter(function(id) {
-    return id !== idConseiller;
-  });
-}
-
-function extractPermanencesFromField(fields, permanences, conseillerId) {
-  //preparation de la liste à envoyer
-  const permanencesToUpdate = [];
-
-  //convertir les champs du formulaire en permanence principal
-  let permanencePrincipale = {};
-  const principalFields = fields.filter(field => field?.name?.split('_')[0] === 'principal');
-  principalFields.forEach(principale => {
-    const split = principale.name.split('_');
-    permanencePrincipale[split[split.length - 1]] = principale.value;
-  });
-
-  let cas = null;
-  // cas 1 : la permanence principale appartient à la liste existante des lieux d'activité
-  if (permanencePrincipale?.idPermanence) {
-    permanences.forEach(permanence => {
-      //cas 1.A : la permanence principale est déjà le lieu principal
-      if (permanence.lieuPrincipalPour.includes(conseillerId) && permanence._id === permanencePrincipale.idPermanence) {
-        let nouvellePermPrincipale = fillPermanence(permanence, permanencePrincipale, true, conseillerId);
-        permanencesToUpdate.push(nouvellePermPrincipale);
-      //cas 1.B : la permanence principale fait partie des lieux secondaires
-      } else if (!permanence.lieuPrincipalPour.includes(conseillerId) && permanence._id === permanencePrincipale.idPermanence) {
-        let nouvellePermPrincipale = fillPermanence(permanence, permanencePrincipale, true, conseillerId);
-        permanencesToUpdate.push(nouvellePermPrincipale);
-        cas = 'switchPrincipal';
-      }
-    });
-  //cas 2 : la permanence principale est nouvelle
-  } else {
-    let nouvellePermanencePrincipale = {};
-    nouvellePermanencePrincipale._id = null;
-    nouvellePermanencePrincipale.estStructure = false;
-    nouvellePermanencePrincipale.structure = permanences[0].structure;
-    nouvellePermanencePrincipale = fillPermanence(nouvellePermanencePrincipale, permanencePrincipale, true, conseillerId, null, true);
-    permanencesToUpdate.push(nouvellePermanencePrincipale);
-    cas = 'switchPrincipal';
-  }
-
-  //cas 1.B.a et 2: update de l'ancien lieu principal
-  if (cas === 'switchPrincipal') {
-    permanencesToUpdate.forEach(permanenceToUpdate => {
-      permanences.forEach(permanence => {
-        if (permanence.lieuPrincipalPour.includes(conseillerId) && permanence._id !== permanenceToUpdate._id) {
-          permanence.lieuPrincipalPour = removeIdConseiller(permanence.lieuPrincipalPour, conseillerId);
-          permanence.conseillers = removeIdConseiller(permanence.conseillers, conseillerId);
-          permanencesToUpdate.push(permanence);
-        }
-      });
-    });
-  }
-
-  //convertir les champs du formulaire en permanences secondaires
-  const nbPermanencesSecondaires = permanences.filter(permanence => permanence.conseillers.includes(conseillerId)).length - 1;
-  const permanencesFields = [];
-  const secondairesFields = fields.filter(field => field.name?.split('_')[0] === 'secondaire');
-
-  //Il existe au moins un lieu d'activité secondaire
-  if (secondairesFields?.length > 0) {
-    for (let i = 0; i <= nbPermanencesSecondaires; i++) {
-      let permanence = {};
-      secondairesFields.forEach(secondaire => {
-        const split = secondaire.name.split('_');
-        if (Number(split[1]) === i) {
-          permanence[split[split.length - 1]] = secondaire.value;
-        }
-      });
-      permanencesFields.push(permanence);
-    }
-
-    permanencesFields.forEach((secondaire, id) => {
-      // cas 1 : les informations du lieu d'activité sont modififées ou ajouté depuis la liste
-      permanences.forEach(permanence => {
-        if (permanence._id === secondaire.idPermanence) {
-          let nouvellePermSecondaire = fillPermanence(permanence, secondaire, false, conseillerId, id);
-          permanencesToUpdate.push(nouvellePermSecondaire);
-        }
-      });
-
-      // cas 2 : un nouveau lieu d'activité est créé
-      if (secondaire.idPermanence === undefined && secondaire?.nomEnseigne) {
-        let nouvellePermanence = {};
-        nouvellePermanence._id = null;
-        nouvellePermanence.estStructure = false;
-        nouvellePermanence.structure = permanences[0].structure;
-        nouvellePermanence = fillPermanence(nouvellePermanence, secondaire, false, conseillerId, id, true);
-        permanencesToUpdate.push(nouvellePermanence);
-      }
-    });
-  }
-
-  return permanencesToUpdate;
 }
 
 function reserverPermanence(reservationPermanence) {

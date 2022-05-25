@@ -9,7 +9,6 @@ export const permanenceService = {
   getListePermanences,
   createPermanence,
   updatePermanence,
-  updatePermanences,
   validationFormulaire,
   verifySiret,
   getGeocodeAdresse,
@@ -66,17 +65,6 @@ function updatePermanence(idPermanence, idConseiller, permanence) {
     })
   };
   return fetch(`${apiUrlRoot}/permanences/conseiller/${idConseiller}/update/${idPermanence}`, requestOptions).then(handleResponse);
-}
-
-function updatePermanences(permanences, idConseiller) {
-  const requestOptions = {
-    method: 'PATCH',
-    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
-    body: JSON.stringify({
-      permanences
-    })
-  };
-  return fetch(`${apiUrlRoot}/permanences/conseiller/${idConseiller}/updateAll`, requestOptions).then(handleResponse);
 }
 
 function validationFormulaire(idConseiller) {

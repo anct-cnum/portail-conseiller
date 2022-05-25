@@ -72,7 +72,6 @@ function PermanenceUpdate({ match }) {
         conseiller)
       );
     } else {
-      console.log(maPermanence.lieuPrincipalPour.includes(conseiller?._id));
       dispatch(permanenceActions.rebootGeocodeAdresse(maPermanence.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_'));
       dispatch(permanenceActions.disabledField(maPermanence.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_', false));
       dispatch(permanenceActions.updateLieuEnregistrable(maPermanence.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_'));

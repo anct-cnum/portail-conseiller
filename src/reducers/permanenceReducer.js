@@ -310,11 +310,6 @@ export default function permanence(state = initialState, action) {
         showErrorConseillerDeleted: true,
         errorConseillerDeleted: action.error,
       };
-    case 'UPDATE_ALL_TYPE_ACCES':
-      return {
-        ...state,
-        fields: action.fields
-      };
     case 'RESERVE_LIEU_ACTIVITE':
       const reservation = action.reservationPermanence;
       delete state.permanencesReservees.filter(perm => perm.prefixId === reservation.prefixId)[0]?.idPermanence;
@@ -329,29 +324,6 @@ export default function permanence(state = initialState, action) {
       return {
         ...state,
         prefixIdLieuEnregistrable: action.prefixId,
-      };
-    case 'UPDATE_PERMANENCES_REQUEST':
-      return {
-        ...state,
-        showError: false,
-        errorAllUpdated: false,
-        loadingAllUpdated: true,
-        redirection: null,
-      };
-    case 'UPDATE_PERMANENCES_SUCCESS':
-      return {
-        ...state,
-        isAllUpdated: action.isUpdated,
-        loadingAllUpdated: false,
-        redirection: action.redirection,
-      };
-    case 'UPDATE_PERMANENCES_FAILURE':
-      return {
-        ...state,
-        isAllUpdated: false,
-        loadingAllUpdated: false,
-        showError: true,
-        errorAllUpdated: action.error,
       };
     case 'REPORTER_PERMANENCE_REQUEST':
       return {

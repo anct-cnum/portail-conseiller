@@ -30,6 +30,7 @@ function Validation({ conseillerId, structureId, statut, redirectionValidation =
   }
 
   useEffect(() => {
+
     if (errorsForm?.lengthError === 0 && clickSubmit) {
 
       const conseillers = fields.filter(field => field.name === prefixId + 'conseillers')[0]?.value ?? [];
