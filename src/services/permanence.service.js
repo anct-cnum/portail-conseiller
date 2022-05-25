@@ -4,7 +4,8 @@ import { userService } from './user.service';
 const apiUrlRoot = process.env.REACT_APP_API;
 
 export const permanenceService = {
-  get,
+  getMaPermanence,
+  getMesPermanences,
   getListePermanences,
   createPermanence,
   updatePermanence,
@@ -17,7 +18,16 @@ export const permanenceService = {
   reporterPermanence,
 };
 
-function get(idConseiller) {
+function getMaPermanence(idPermanence) {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  };
+
+  return fetch(`${apiUrlRoot}/permanences/${idPermanence}`, requestOptions).then(handleResponse);
+}
+
+function getMesPermanences(idConseiller) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()

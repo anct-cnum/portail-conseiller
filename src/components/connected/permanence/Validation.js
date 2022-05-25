@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import horairesInitiales from '../../../data/horairesInitiales.json';
 import { permanenceActions } from '../../../actions/permanence.actions';
 
-function Validation({ conseillerId, structureId, isUpdate, permanences }) {
+function Validation({ conseillerId, structureId, statut, redirectionValidation = null }) {
   const dispatch = useDispatch();
   const form = useSelector(state => state.permanence);
   const fields = useSelector(state => state.permanence?.fields);
@@ -13,7 +13,7 @@ function Validation({ conseillerId, structureId, isUpdate, permanences }) {
   const prefixId = useSelector(state => state.permanence?.prefixIdLieuEnregistrable);
 
   const [clickSubmit, setClickSubmit] = useState(false);
-  const [redirection, setRedirection] = useState('/accueil');
+  const [redirection, setRedirection] = useState(redirectionValidation !== null ? redirectionValidation : '/accueil');
 
   function handleSubmit(redirection = '/accueil') {
     const typeAcces = [
@@ -21,19 +21,16 @@ function Validation({ conseillerId, structureId, isUpdate, permanences }) {
       fields?.filter(field => field.name === prefixId + 'rdv')[0]?.value ? 'rdv' : null,
       fields?.filter(field => field.name === prefixId + 'prive')[0]?.value ? 'prive' : null,
     ].filter(n => n);
-    dispatch(permanenceActions.updateField(prefixId + 'typeAcces', typeAcces));
 
-    if (isUpdate) {
-      dispatch(permanenceActions.verifyFormulaireUpdate(permanences, fields, form));
-    } else {
-      dispatch(permanenceActions.verifyFormulaire(form));
-    }
+    dispatch(permanenceActions.updateField(prefixId + 'typeAcces', typeAcces));
+    dispatch(permanenceActions.verifyFormulaire(form, statut));
+
     setClickSubmit(true);
     setRedirection(redirection);
   }
 
   useEffect(() => {
-    if (errorsForm?.lengthError === 0 && clickSubmit && !isUpdate) {
+    if (errorsForm?.lengthError === 0 && clickSubmit) {
 
       const conseillers = fields.filter(field => field.name === prefixId + 'conseillers')[0]?.value ?? [];
       if (!conseillers.includes(conseillerId)) {
@@ -84,6 +81,7 @@ function Validation({ conseillerId, structureId, isUpdate, permanences }) {
       }
 
       if (nouveauLieu._id !== null) {
+        nouveauLieu.idOldPermanence = fields?.filter(field => field.name === 'idOldPermanence')[0]?.value ?? null;
         dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, true, null, redirection));
       } else if (prefixId) {
         dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, true, null, redirection));
@@ -91,11 +89,10 @@ function Validation({ conseillerId, structureId, isUpdate, permanences }) {
         dispatch(permanenceActions.validerPermanenceForm(conseillerId));
       }
 
-    } else if (errorsForm?.lengthError === 0 && clickSubmit && isUpdate) {
-      dispatch(permanenceActions.updatePermanences(fields, conseillerId, permanences, redirection));
     } else if (errorsForm?.lengthError > 0 && clickSubmit === true) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
     setClickSubmit(false);
   }, [errorsForm]);
 
@@ -114,9 +111,15 @@ function Validation({ conseillerId, structureId, isUpdate, permanences }) {
 
       <div className="rf-col-5">
         <button className="rf-btn validation-btn rf-mb-4w" onClick={() => {
-          handleSubmit();
+          handleSubmit(redirection);
         }}>
-          Enregistrer&nbsp;{isUpdate && <>les modifications&nbsp;</>}et revenir &agrave; l&rsquo;accueil
+          Enregistrer&nbsp;
+          {
+            statut === 'update' && <>les modifications</>
+          }
+          et revenir &agrave;&nbsp;
+          {statut === null && <>l&rsquo;accueil</>}
+          {statut !== null && <>la liste</>}
         </button>
       </div>
 
@@ -127,11 +130,10 @@ function Validation({ conseillerId, structureId, isUpdate, permanences }) {
 }
 
 Validation.propTypes = {
-  permanence: PropTypes.object,
   conseillerId: PropTypes.string,
   structureId: PropTypes.string,
-  isUpdate: PropTypes.bool,
-  permanences: PropTypes.array,
+  redirectionValidation: PropTypes.string,
+  statut: PropTypes.string,
 };
 
 export default Validation;

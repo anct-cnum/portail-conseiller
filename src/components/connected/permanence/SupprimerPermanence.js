@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { permanenceActions } from '../../../actions';
 import PropTypes from 'prop-types';
+import ReactTooltip from 'react-tooltip';
 
-function SupprimerPermanence({ permanence, secondaireId }) {
+function SupprimerPermanence({ permanence, isDisabled }) {
   const dispatch = useDispatch();
 
   const [modalOpenClose, setModalOpenClose] = useState(false);
@@ -14,16 +15,30 @@ function SupprimerPermanence({ permanence, secondaireId }) {
   };
   const deleteConseillerPermanence = idPermanence => {
     dispatch(permanenceActions.deleteConseillerPermanence(idPermanence));
-    dispatch(permanenceActions.updateField('submit_and_next_' + secondaireId, false));
-    dispatch(permanenceActions.updateField('submit_and_next_' + (secondaireId - 1), true));
     setModalOpenClose(false);
   };
 
   return (
     <>
-      <button className="supprimer-btn" onClick={() => {
-        setModalOpenClose(true);
-      }}>Supprimer le lieu d&rsquo;activit&eacute; secondaire</button>
+      { isDisabled &&
+        <button className="supprimer-btn disabled-btn"
+          disabled={true} data-tip="Ne peut pas être supprimer si c'est votre lieu principal d'activité"
+          onClick={() => {
+            setModalOpenClose(false);
+          }}>
+            Supprimer
+        </button>
+      }
+      { !isDisabled &&
+        <button className="supprimer-btn"
+          onClick={() => {
+            setModalOpenClose(true);
+          }}>
+            Supprimer
+        </button>
+      }
+      <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
+
       {modalOpenClose &&
         <dialog aria-labelledby="rf-modal-suppression" role="dialog" id="rf-modal-suppression" className="rf-modal modalOpened">
           <div className="rf-container">
@@ -68,8 +83,7 @@ function SupprimerPermanence({ permanence, secondaireId }) {
 
 SupprimerPermanence.propTypes = {
   permanence: PropTypes.object,
-  idConseiller: PropTypes.string,
-  secondaireId: PropTypes.string,
+  isDisabled: PropTypes.bool,
 };
 
 export default SupprimerPermanence;

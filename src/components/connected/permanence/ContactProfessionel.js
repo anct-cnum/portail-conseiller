@@ -40,7 +40,7 @@ function ContactProfessionel({ conseiller }) {
     if (conseiller?.telephonePro) {
       dispatch(permanenceActions.updateField('telephonePro', conseiller.telephonePro));
     }
-    dispatch(permanenceActions.updateField('estCoordinateur', conseiller?.estCoordinateur ?? false));
+    dispatch(permanenceActions.updateField('estCoordinateur', conseiller?.estCoordinateur === 'true'));
 
   }, [conseiller]);
 
@@ -73,7 +73,7 @@ function ContactProfessionel({ conseiller }) {
         </div>
 
         <div className="rf-col-1 rf-mt-10w col-logo">
-          <img className="hexagone" src="logos/permanences/hexagone.svg"/>
+          <img className="hexagone" src="/logos/permanences/hexagone.svg"/>
         </div>
         <div className="rf-col-11">
           <h2 className="sous-titre rf-mt-9w rf-mb-5w">Informations de contact professionnel</h2>

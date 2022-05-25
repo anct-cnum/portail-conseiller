@@ -1,24 +1,14 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import InputCheckbox from './Components/InputCheckbox';
-import { permanenceActions } from '../../../actions';
 
-function TypeAcces({ islieuPrincipal, prefixId, isUpdate, permanence }) {
-  const dispatch = useDispatch();
+function TypeAcces({ islieuPrincipal, prefixId }) {
+
   const fields = useSelector(state => state.permanence?.fields);
   const estCoordinateur = fields?.filter(field => field.name === 'estCoordinateur')[0]?.value;
   const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
   const erreurTypeAcces = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'typeAcces'])[0]?.[prefixId + 'typeAcces'];
-
-  useEffect(() => {
-    if (permanence && isUpdate) {
-      permanence.typeAcces?.forEach(type => {
-        dispatch(permanenceActions.updateField(prefixId + type, true));
-      });
-      dispatch(permanenceActions.updateField(prefixId + 'typeAcces', permanence?.typeAcces));
-    }
-  }, [permanence]);
 
   return (
     <>

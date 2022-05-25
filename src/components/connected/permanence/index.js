@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions, permanenceActions } from '../../../actions';
 import { userEntityId, history } from '../../../helpers';
 
-import PermanenceSecondaireUpdate from './PermanenceSecondaireUpdate';
 import ContactProfessionel from './ContactProfessionel';
 import PermanencePrincipale from './PermanencePrincipale';
 import PermanenceSecondaire from './PermanenceSecondaire';
@@ -94,25 +93,26 @@ function Permanence() {
                 Vous avez bien &eacute;t&eacute; retir&eacute; du lieu d&rsquo;activit&eacute;.
               </p>
             }
+            
             {isAllUpdated &&
               <p className="rf-label flashBag">
                 Vos lieux d&rsquo;activit&eacute; ont bien &eacute;t&eacute; mis &agrave; jour.
               </p>
             }
+
             <ContactProfessionel conseiller={conseiller} />
+
             <div className="rf-container">
               <div className="rf-grid-row">
                 <PermanencePrincipale structure={structure} conseillerId={conseiller?._id} isUpdate={conseiller?.hasPermanence}/>
               </div>
             </div>
-            {!conseiller?.hasPermanence &&
+
             <PermanenceSecondaire structure={structure}
               conseillerId={conseiller?._id} structureId={structure?._id}
-              isUpdate={location.pathname === '/lieux-activite'}/>
-            }
-            {(conseiller?.hasPermanence && listPermanences) &&
-              <PermanenceSecondaireUpdate conseillerId={conseiller?._id} permanences={listPermanences} structure={structure} structureId={structure?._id}/>
-            }
+              isUpdate={location.pathname === '/lieux-activite'}
+            />
+
             <div className="rf-container">
               <div className="rf-grid-row">
                 <Validation conseillerId={conseiller?._id} structureId={structure?._id}

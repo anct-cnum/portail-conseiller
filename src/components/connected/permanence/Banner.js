@@ -9,9 +9,9 @@ function Banner() {
             <h1 className="titre rf-mt-9w rf-mb-6w">Donn&eacute;es de localisation et contacts</h1>
           </div>
           <div className="rf-col-1 col-logo"><br/><br/>
-            <img className="pin" src="logos/permanences/pin.svg"/>
+            <img className="pin" src="/logos/permanences/pin.svg"/>
             <br/>
-            <img className="hexagone" src="logos/permanences/hexagone.svg"/>
+            <img className="hexagone" src="/logos/permanences/hexagone.svg"/>
           </div>
           <div className="rf-col-11 rf-col-md-6 texte-banniere rf-mb-7w">
             <span className="important violet">Dans cette page, vous renseignez :</span><br/><br/>
@@ -22,7 +22,7 @@ function Banner() {
              celles-ci seront visibles sur la carte.
           </div>
           <div className="rf-col-12 rf-col-md-5 rf-mb-7w carte-banniere">
-            <img src="logos/permanences/cartographie-cnfs.svg"/>
+            <img src="/logos/permanences/cartographie-cnfs.svg"/>
           </div>
         </div>
       </div>

@@ -26,19 +26,38 @@ const nettoyageState = form => {
 
 export default function permanence(state = initialState, action) {
   switch (action.type) {
-    case 'GET_PERMANENCE_REQUEST':
+    case 'GET_MA_PERMANENCE_REQUEST':
+      return {
+        ...state,
+        maPermanenceError: false,
+        maPermanenceLoading: true,
+        isUpdated: false
+      };
+    case 'GET_MA_PERMANENCE_SUCCESS':
+      return {
+        ...state,
+        maPermanence: action?.maPermanence,
+        maPermanenceLoading: false
+      };
+    case 'GET_MA_PERMANENCE_FAILURE':
+      return {
+        ...state,
+        maPermanenceError: action.error,
+        maPermanenceLoading: false
+      };
+    case 'GET_MES_PERMANENCES_REQUEST':
       return {
         ...state,
         error: false,
         loading: true
       };
-    case 'GET_PERMANENCE_SUCCESS':
+    case 'GET_MES_PERMANENCES_SUCCESS':
       return {
         ...state,
-        permanence: action?.permanence,
+        mesPermanences: action?.mesPermanences,
         loading: false
       };
-    case 'GET_PERMANENCE_FAILURE':
+    case 'GET_MES_PERMANENCES_FAILURE':
       return {
         ...state,
         error: action.error,
@@ -54,8 +73,6 @@ export default function permanence(state = initialState, action) {
       return {
         ...state,
         permanences: action?.permanences,
-        isDeleted: false,
-        isConseillerDeleted: false,
         isAllUpdated: false,
         loading: false
       };
@@ -230,6 +247,7 @@ export default function permanence(state = initialState, action) {
       return {
         ...state,
         showError: false,
+        isUpdated: false,
         error: false,
         redirection: null,
       };
@@ -374,6 +392,27 @@ export default function permanence(state = initialState, action) {
         isUpdated: false,
         showError: true,
         isEnded: false
+      };
+    case 'FILL_CHAMPS_MA_PERMANENCE':
+      const loadingHoraires = state.loadingHoraires;
+      loadingHoraires[0] = true;
+      return {
+        ...state,
+        fields: action.fields,
+        loadingHoraires: loadingHoraires
+      };
+    case 'REINITIALISER_STATUT_PERMANENCE':
+      return {
+        ...state,
+        isUpdated: false,
+        isCreated: false,
+        isEnded: false,
+        error: false,
+        showError: true,
+        isDeleted: false,
+        isConseillerDeleted: false,
+        maPermanence: null,
+        permanencesReservees: [],
       };
     default:
       return state;

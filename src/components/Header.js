@@ -99,7 +99,7 @@ function Header({ linkAccount, printClass }) {
                                     setMenuUserShow(menuUserShow ? !menuUserShow : menuUserShow);
                                     //setMenuInformationsShow(false);
                                   }}>
-                                  <img className="logo-discussion" src="logos/bulle-ressourcerie.svg" />
+                                  <img className="logo-discussion" src="/logos/bulle-ressourcerie.svg" />
                                   <span className="texte-aide">Aide&nbsp;
                                     {!menuAideShow ? <i className="ri-arrow-down-s-line"></i> : <i className="ri-arrow-up-s-line"></i>}
                                   </span>

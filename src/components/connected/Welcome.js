@@ -80,7 +80,7 @@ function Welcome() {
                   </div>
                   <div className="rf-col-6 rf-col-sm-3 rf-col-md-4 menu-btn rf-mb-3w">
 
-                    <Link to="/lieux-activite" title="Acc&eacute;der &agrave; mes lieux d&rsquo;activit&eacute;">
+                    <Link to="/mes-lieux-activite" title="Acc&eacute;der &agrave; mes lieux d&rsquo;activit&eacute;">
                       <img src="/logos/home-connected/icone-lieux.svg" className="icone-btn icone-lieux"/>
                       Lieux d&rsquo;activit&eacute;
                     </Link>

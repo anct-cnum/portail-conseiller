@@ -1,18 +1,15 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import telephoneHorsMetropole from '../../../data/indicatifs.json';
 import InputText from './Components/InputText';
 import InputCheckbox from './Components/InputCheckbox';
 import CarteAdresse from './Components/CarteAdresse';
 import ButtonLocalisation from './Components/ButtonLocalisation';
 import SelectAdresse from './Components/SelectAdresse';
-import SupprimerPermanence from './SupprimerPermanence';
-import { permanenceActions } from '../../../actions';
 
-function Adresse({ codeDepartement, prefixId, isUpdate, permanence, conseillerId }) {
+function Adresse({ codeDepartement, prefixId, isUpdate }) {
 
-  const dispatch = useDispatch();
   const fields = useSelector(state => state.permanence?.fields);
   const disabledFields = useSelector(state => state.permanence?.disabledFields);
   const codePostal = fields?.filter(field => field.name === prefixId + 'codePostal')[0]?.value;
@@ -40,32 +37,6 @@ function Adresse({ codeDepartement, prefixId, isUpdate, permanence, conseillerId
     }
   }, [codePostal]);
 
-  useEffect(() => {
-    if (permanence && isUpdate) {
-      dispatch(permanenceActions.updateField(prefixId + 'idPermanence', permanence._id));
-      dispatch(permanenceActions.updateField(prefixId + 'numeroTelephone', permanence.numeroTelephone));
-      dispatch(permanenceActions.updateField(prefixId + 'email', permanence.email));
-      dispatch(permanenceActions.updateField(prefixId + 'siteWeb', permanence.siteWeb));
-      dispatch(permanenceActions.updateField(prefixId + 'rueVoie', permanence?.adresse?.rue));
-      dispatch(permanenceActions.updateField(prefixId + 'conseillers', permanence?.conseillers));
-      dispatch(permanenceActions.updateField(prefixId + 'nomEnseigne', permanence?.nomEnseigne));
-      dispatch(permanenceActions.updateField(prefixId + 'siret', permanence?.siret));
-      dispatch(permanenceActions.updateField(prefixId + 'numeroVoie', permanence?.adresse?.numeroRue));
-      dispatch(permanenceActions.updateField(prefixId + 'rueVoie', permanence?.adresse?.rue));
-      dispatch(permanenceActions.updateField(prefixId + 'codePostal', permanence?.adresse?.codePostal));
-      dispatch(permanenceActions.updateField(prefixId + 'ville', permanence?.adresse?.ville.toUpperCase()));
-      dispatch(permanenceActions.updateField(prefixId + 'location', permanence?.location));
-      dispatch(permanenceActions.updateField(prefixId + 'itinerant', permanence.conseillersItinerants.includes(conseillerId)));
-      const adresseGeoloc = {
-        numero: permanence?.adresse?.numeroRue,
-        rue: permanence?.adresse?.rue,
-        codePostal: permanence?.adresse?.codePostal,
-        ville: permanence?.adresse?.ville.toUpperCase()
-      };
-      dispatch(permanenceActions.getGeocodeAdresse(adresseGeoloc, prefixId));
-    }
-  }, [permanence]);
-
   return (
     <>
       {(prefixId !== 'principal_' ||
@@ -87,11 +58,6 @@ function Adresse({ codeDepartement, prefixId, isUpdate, permanence, conseillerId
                   prefixId={prefixId}
                 />
               </div>
-              <div className="rf-col-5">
-                { isUpdate &&
-                  <SupprimerPermanence permanence={permanence}/>
-                }
-              </div>
             </>
           }
           <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-10 rf-mb-6w">
@@ -101,7 +67,7 @@ function Adresse({ codeDepartement, prefixId, isUpdate, permanence, conseillerId
               prefixId={prefixId}
               nameInput="checkboxSiret"
               baselineInput="Si l&rsquo;adresse pr&eacute;-remplie par le num&eacute;ro de Siret ne correspond pas &agrave;
-              votre lieu d&rsquo;activit&eacute;, vous pouvez cochez la case ci-dessus."
+              votre lieu d&rsquo;activit&eacute;, vous pouvez cocher la case ci-dessus."
               classBaseline="toggle-siret"
             />
           </div>

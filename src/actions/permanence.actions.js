@@ -4,7 +4,8 @@ import Joi from 'joi';
 import horairesInitiales from '../data/horairesInitiales.json';
 
 export const permanenceActions = {
-  get,
+  getMaPermanence,
+  getMesPermanences,
   getListePermanences,
   isPermanenceChecked,
   closePermanence,
@@ -30,13 +31,15 @@ export const permanenceActions = {
   reserverPermanence,
   updateLieuEnregistrable,
   reporterPermanence,
+  setChampsMaPermanence,
+  reinitiliserStatut,
 };
 
-function get(idConseiller) {
+function getMaPermanence(idPermanence) {
   return dispatch => {
     dispatch(request());
 
-    permanenceService.get(idConseiller)
+    permanenceService.getMaPermanence(idPermanence)
     .then(
       result => dispatch(success(result.permanence)),
       error => {
@@ -46,13 +49,37 @@ function get(idConseiller) {
   };
 
   function request() {
-    return { type: 'GET_PERMANENCE_REQUEST' };
+    return { type: 'GET_MA_PERMANENCE_REQUEST' };
   }
-  function success(permanence) {
-    return { type: 'GET_PERMANENCE_SUCCESS', permanence };
+  function success(maPermanence) {
+    return { type: 'GET_MA_PERMANENCE_SUCCESS', maPermanence };
   }
   function failure(error) {
-    return { type: 'GET_PERMANENCE_FAILURE', error };
+    return { type: 'GET_MA_PERMANENCE_FAILURE', error };
+  }
+}
+
+function getMesPermanences(idConseiller) {
+  return dispatch => {
+    dispatch(request());
+
+    permanenceService.getMesPermanences(idConseiller)
+    .then(
+      result => dispatch(success(result.permanences)),
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'GET_MES_PERMANENCES_REQUEST' };
+  }
+  function success(mesPermanences) {
+    return { type: 'GET_MES_PERMANENCES_SUCCESS', mesPermanences };
+  }
+  function failure(error) {
+    return { type: 'GET_MES_PERMANENCES_FAILURE', error };
   }
 }
 
@@ -88,7 +115,7 @@ function closePermanence() {
   return { type: 'CLOSE_FORMULAIRE_PERMANENCE' };
 }
 
-function verifyFormulaire(form) {
+function verifyFormulaire(form, statut) {
   let errors = [];
 
   const showLieuSecondaire = form?.showLieuSecondaire;
@@ -192,9 +219,8 @@ function verifyFormulaire(form) {
           });
         }
       });
-    } else {
+    } else if (statut === 'principal_') {
       champsAcceptes.forEach(accepte => {
-
         if (accepte.nom === 'horaires') {
           /* Cohérence des horaires */
           errors.push({
@@ -211,7 +237,6 @@ function verifyFormulaire(form) {
       });
     }
   });
-
 
   let nbErrors = 0;
   errors.forEach(error => {
@@ -698,4 +723,37 @@ function reporterPermanence() {
   function failure(error) {
     return { type: 'REPORTER_PERMANENCE_FAILURE', error };
   }
+}
+
+function setChampsMaPermanence(permanence, prefixId, conseiller) {
+  const fields = [
+    { name: prefixId + 'idPermanence', value: permanence._id },
+    { name: 'estStructure', value: permanence.estStructure },
+    { name: 'estCoordinateur', value: conseiller?.estCoordinateur },
+    { name: 'emailPro', value: conseiller?.emailPro },
+    { name: 'telephonePro', value: conseiller?.telephonePro },
+    { name: prefixId + 'nomEnseigne', value: permanence.nomEnseigne },
+    { name: prefixId + 'numeroTelephone', value: permanence.numeroTelephone },
+    { name: prefixId + 'email', value: permanence.email },
+    { name: prefixId + 'siteWeb', value: permanence.siteWeb },
+    { name: prefixId + 'siret', value: permanence.siret },
+    { name: prefixId + 'numeroVoie', value: permanence.adresse.numeroRue },
+    { name: prefixId + 'rueVoie', value: permanence.adresse?.rue },
+    { name: prefixId + 'codePostal', value: permanence.adresse.codePostal },
+    { name: prefixId + 'ville', value: permanence.adresse.ville.toUpperCase() },
+    { name: prefixId + 'location', value: permanence.location },
+    { name: prefixId + 'conseillers', value: permanence.conseillers },
+    { name: prefixId + 'itinerant', value: permanence.conseillersItinerants.includes(conseiller?._id) },
+    { name: prefixId + 'horaires', value: { [prefixId + 'horaires']: permanence?.horaires } },
+  ];
+
+  permanence.typeAcces?.forEach(type => {
+    fields.push({ name: prefixId + type, value: true });
+  });
+
+  return { type: 'FILL_CHAMPS_MA_PERMANENCE', fields };
+}
+
+function reinitiliserStatut() {
+  return { type: 'REINITIALISER_STATUT_PERMANENCE' };
 }
