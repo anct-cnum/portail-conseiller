@@ -19,6 +19,7 @@ function Conseillers() {
   let filtreProfil = useSelector(state => state.filtersAndSorts?.profil);
   let filtreCertifie = useSelector(state => state.filtersAndSorts?.certifie);
   let filtreGroupeCRA = useSelector(state => state.filtersAndSorts?.groupeCRA);
+  let filtreParNom = useSelector(state => state.filtersAndSorts?.nom);
   let ordre = useSelector(state => state.filtersAndSorts?.ordre);
   let ordreNom = useSelector(state => state.filtersAndSorts?.ordreNom);
   const user = useSelector(state => state?.authentication?.user?.user);
@@ -39,6 +40,7 @@ function Conseillers() {
       filtreProfil,
       filtreCertifie,
       filtreGroupeCRA,
+      filtreParNom,
       ordreNom,
       ordre ? 1 : -1,
       user.role === 'structure_coop' ? user.entity.$id : null
@@ -53,9 +55,9 @@ function Conseillers() {
   }, [conseillers]);
 
   useEffect(() => {
-    dispatch(conseillerActions.getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, ordreNom,
+    dispatch(conseillerActions.getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, ordreNom,
       ordre ? 1 : -1, user.role === 'structure_coop' ? user.entity.$id : null));
-  }, [ordre, ordreNom, filtreProfil, filtreGroupeCRA]);
+  }, [ordre, ordreNom, filtreProfil, filtreGroupeCRA, filtreParNom]);
 
   const filtreClick = e => {
     if (e.target.id === 'activer') {

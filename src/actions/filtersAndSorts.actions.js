@@ -6,7 +6,8 @@ export const filtersAndSortsActions = {
   changeProfil,
   changeCertifie,
   changeTerritoire,
-  changeGroupeCRA
+  changeGroupeCRA,
+  changeNom
 };
 
 function updateOrder(order) {
@@ -38,9 +39,15 @@ function changeProfil(dataProfil) {
 function changeCertifie(dataCertifie) {
   return { type: 'CHANGE_CERTIFIE', dataCertifie };
 }
+
 function changeGroupeCRA(dataGroupeCRA) {
   return { type: 'CHANGE_GROUPECRA', dataGroupeCRA };
 }
+
+function changeNom(nom) {
+  return { type: 'CHANGE_NOM', nom };
+}
+
 function changeTerritoire(territoire) {
   return { type: 'CHANGE_TERRITOIRE', territoire };
 }

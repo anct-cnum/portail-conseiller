@@ -23,6 +23,7 @@ function FiltersAndSorts({ resetPage, user }) {
   let filtreProfil = useSelector(state => state.filtersAndSorts?.profil);
   let filtreCertifie = useSelector(state => state.filtersAndSorts?.certifie);
   let filtreGroupeCRA = useSelector(state => state.filtersAndSorts?.groupeCRA);
+  let filtreParNom = useSelector(state => state.filtersAndSorts?.nom);
   const pagination = useSelector(state => state.pagination);
   const exportTerritoireFileBlob = useSelector(state => state.statistique?.exportTerritoireFileBlob);
   const exportTerritoireFileError = useSelector(state => state.statistique?.exportTerritoireFileError);
@@ -60,13 +61,13 @@ function FiltersAndSorts({ resetPage, user }) {
 
   useEffect(() => {
     if (location.pathname === '/accueil') {
-      dispatch(conseillerActions.getAll(0, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA,
+      dispatch(conseillerActions.getAll(0, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom,
         ordreNom, ordre ? 1 : -1, user?.role === 'structure_coop' ? user?.entity.$id : null));
       resetPage(1);
     }
     if (location.pathname === '/territoires') {
       const page = currentPage(pagination, location);
-      dispatch(statistiqueActions.getStatsTerritoires(territoire, dateDebut, dateFin, page, ordreNom, ordre ? 1 : -1));
+      dispatch(statistiqueActions.getStatsTerritoires(territoire, dateDebut, dateFin, page, ordreNom, filtreParNom, ordre ? 1 : -1));
       resetPage(page);
     }
 
@@ -81,8 +82,12 @@ function FiltersAndSorts({ resetPage, user }) {
   };
 
   const exportDonneesCnfs = () => {
-    dispatch(conseillerActions.exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA,
+    dispatch(conseillerActions.exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom,
       ordreNom, ordre ? 1 : -1, user?.role === 'structure_coop' ? user?.entity.$id : null));
+  };
+
+  const rechercheParTexte = e => {
+    dispatch(filtersAndSortsActions.changeNom(e.target.previousSibling.value));
   };
 
   return (
@@ -131,10 +136,18 @@ function FiltersAndSorts({ resetPage, user }) {
             </span>
           </b>
         </div>
-        { location.pathname === '/accueil' &&
-        <div className="rf-ml-auto">
-          <button className="rf-btn rf-btn--secondary" onClick={exportDonneesCnfs}>Exporter les donn&eacute;es</button>
+        <div className="rf-ml-auto rf-col-4">
+          <div className="rf-search-bar rf-search-bar" id="search" role="search" >
+            <input className="rf-input" placeholder="Rechercher par nom" type="search" id="search-input" name="search-input" />
+            <button className="rf-btn" onClick={rechercheParTexte} title="Rechercher par nom">
+              Rechercher
+            </button>
+          </div>
         </div>
+        {location.pathname === '/accueil' &&
+          <div className="rf-ml-auto">
+            <button className="rf-btn rf-btn--secondary" onClick={exportDonneesCnfs}>Exporter les donn&eacute;es</button>
+          </div>
         }
         { location.pathname === '/territoires' &&
           <div className="rf-ml-auto">
