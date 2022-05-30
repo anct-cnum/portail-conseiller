@@ -110,7 +110,9 @@ function ChoosePassword({ match }) {
                         ainsi que sur le service de discussion en ligne, gardez-le pr&eacute;cieusement !
                       </p>
                       <p className="rf-mb-3w">
-                        Une boîte mail {emailCnfs} sera automatiquement cr&eacute;&eacute;e lorsque vous cliquerez sur Valider.
+
+                        Une boîte mail {emailCnfs}&nbsp;
+                        sera automatiquement cr&eacute;&eacute;e lorsque vous cliquerez sur Valider.
                       </p>
                       <p className="rf-mb-md-3w">Acc&eacute;dez ensuite &agrave; cette derni&egrave;re afin de pouvoir effectuer votre
                         premi&egrave;re connexion &agrave; l’espace Coop.

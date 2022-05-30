@@ -45,7 +45,8 @@ function Ouverture() {
                       Si vous &ecirc;tes install&eacute; dans des locaux situ&eacute;s hors du si&egrave;ge de la structure qui vous a recrut&eacute;,
                       nous vous recommandons de rechercher au pr&eacute;alable le <strong>SIRET</strong> de l&rsquo;&eacute;tablissement o&ugrave;
                       vous avez votre poste en vous renseignant aupr&egrave;s de vos collaborateurs, ou sur ce&nbsp;
-                      <a className="ouverture-link" href="https://www.pappers.fr/" title="Liens vers https://www.pappers.fr/" target="blank" rel="noreferrer">
+                      <a className="ouverture-link" href="https://annuaire-entreprises.data.gouv.fr/?mtm_campaign=Conseiller_numériqueFS"
+                        title="Lien vers https://annuaire-entreprises.data.gouv.fr/" target="blank" rel="noreferrer">
                         site
                       </a>.
                     </div>
