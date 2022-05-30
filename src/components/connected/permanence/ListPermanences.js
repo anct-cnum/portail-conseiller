@@ -20,9 +20,10 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null }) 
     const permanence = listPermanences.find(permanence => permanence._id === e.target.value);
     if (permanence?._id) {
       dispatch(permanenceActions.reserverPermanence({ prefixId: prefixId, idPermanence: permanence?._id }));
-      if (permanence?._id !== permanenceActuelId) {
-        dispatch(permanenceActions.updateField('idOldPermanence', permanenceActuelId));
-      }
+    }
+
+    if (permanence?._id !== permanenceActuelId) {
+      dispatch(permanenceActions.updateField('idOldPermanence', permanenceActuelId));
     }
 
     dispatch(permanenceActions.updateField(prefixId + 'idPermanence', permanence?._id ?? 'nouveau'));

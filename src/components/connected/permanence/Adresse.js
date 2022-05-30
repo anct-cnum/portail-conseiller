@@ -53,7 +53,7 @@ function Adresse({ codeDepartement, prefixId, isUpdate }) {
                     <a className="link" href="https://annuaire-entreprises.data.gouv.fr/?mtm_campaign=Conseiller_numériqueFS"
                       title="Lien vers https://annuaire-entreprises.data.gouv.fr/" target="blank" rel="noreferrer">
                       O&ugrave; trouver un num&eacute;ro de Siret&nbsp;?
-                    </a><span>&nbsp;Pensez également à vous renseigner auprès de vos collaborateurs.</span></>
+                    </a><span>&nbsp;Pensez &eacute;galement &agrave; vous renseigner aupr&egrave;s de vos collaborateurs.</span></>
                   }
                   valueInput={fields?.filter(field => field.name === prefixId + 'siret')[0]?.value ?? ''}
                   prefixId={prefixId}

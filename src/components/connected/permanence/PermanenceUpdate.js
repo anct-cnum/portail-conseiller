@@ -23,9 +23,10 @@ function PermanenceUpdate({ match }) {
 
   const idPermanence = match.params.idPermanence;
 
+  const listPermanences = useSelector(state => state.permanence?.permanences);
   const maPermanenceError = useSelector(state => state.permanence?.maPermanenceError);
   const maPermanenceLoading = useSelector(state => state.permanence?.maPermanenceLoading);
-  const maPermanence = useSelector(state => state.permanence?.maPermanence);
+  let maPermanence = useSelector(state => state.permanence?.maPermanence);
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const structure = useSelector(state => state.structure?.structure);
   const loadingHoraires = useSelector(state => state.permanence?.loadingHoraires);
@@ -34,6 +35,7 @@ function PermanenceUpdate({ match }) {
   const showErrorMessage = useSelector(state => state.permanence?.showErrorMessage);
   const errorUpdated = useSelector(state => state.permanence?.error);
   const isUpdated = useSelector(state => state.permanence?.isUpdated);
+  const isCreated = useSelector(state => state.permanence?.isCreated);
   const redirection = useSelector(state => state.permanence?.redirection);
 
   const adresseStructure = structure?.insee?.etablissement?.adresse;
@@ -43,6 +45,20 @@ function PermanenceUpdate({ match }) {
   const [estlieuPrincipal, setEstLieuPrincipal] = useState(null);
   const [defaultCheckedOui, setDefaultCheckedOui] = useState(null);
   const [defaultCheckedNon, setDefaultCheckedNon] = useState(null);
+
+  const updateGeocodeAdress = (maPermanence, prefixId) => {
+    const adresseGeoloc = {
+      numero: maPermanence?.adresse?.numeroRue,
+      rue: maPermanence?.adresse?.rue,
+      codePostal: maPermanence?.adresse?.codePostal,
+      ville: maPermanence?.adresse?.ville.toUpperCase()
+    };
+
+    dispatch(permanenceActions.getGeocodeAdresse(
+      adresseGeoloc,
+      prefixId)
+    );
+  };
 
   function handleAdresse(estStructure) {
     loadingHoraires[0] = true;
@@ -66,11 +82,13 @@ function PermanenceUpdate({ match }) {
     dispatch(permanenceActions.setHorairesLoading(loadingHoraires));
 
     if (estStructure) {
+      maPermanence = listPermanences.filter(permanence => permanence?.estStructure === true)[0];
       dispatch(permanenceActions.setChampsMaPermanence(
         maPermanence,
         'principal_',
         conseiller)
       );
+      updateGeocodeAdress(maPermanence, 'principal_');
     } else {
       dispatch(permanenceActions.rebootGeocodeAdresse(maPermanence.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_'));
       dispatch(permanenceActions.disabledField(maPermanence.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_', false));
@@ -78,10 +96,13 @@ function PermanenceUpdate({ match }) {
       dispatch(permanenceActions.updateField(
         maPermanence.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_checkboxSiret' : 'secondaire_0_checkboxSiret', false
       ));
+
       if (!maPermanence.lieuPrincipalPour.includes(conseiller?._id)) {
         const show = [true];
         dispatch(permanenceActions.montrerLieuSecondaire(show));
       }
+
+      updateGeocodeAdress(maPermanence, maPermanence.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_');
     }
   }
 
@@ -130,7 +151,7 @@ function PermanenceUpdate({ match }) {
   }, [maPermanence, conseiller, structure]);
 
   useEffect(() => {
-    if (isUpdated) {
+    if (isCreated || isUpdated) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       setTimeout(() => {
         if (redirection === '/mes-lieux-activite') {
@@ -142,7 +163,7 @@ function PermanenceUpdate({ match }) {
         dispatch(permanenceActions.getListePermanences(structure?._id));
       }, 3000);
     }
-  }, [isUpdated]);
+  }, [isUpdated, isCreated]);
 
   return (
     <>
@@ -151,13 +172,15 @@ function PermanenceUpdate({ match }) {
           <div id="formulaire-horaires-adresse" >
             <Banner/>
 
-            {isUpdated &&
+            {(isCreated || isUpdated) &&
               <p className="rf-label flashBag">
-                Votre lieu d&rsquo;activit&eacute; a bien &eacute;t&eacute; mis &agrave; jour {!redirection !== '/mes-lieux-activite' && <>.</>}
+                Votre lieu d&rsquo;activit&eacute; a bien &eacute;t&eacute;&nbsp;
+                {isCreated && <>cr&eacute;&eacute;</>}
+                {isUpdated && <>mis &agrave; jour</>},
                 {redirection === '/mes-lieux-activite' &&
-                  <>
-                    ,&nbsp;vous allez &ecirc;tre redirig&eacute; vers votre liste de lieux d&rsquo;activit&eacute;.
-                  </>
+                <>
+                  &nbsp;vous allez &ecirc;tre redirig&eacute; vers votre liste de lieux d&rsquo;activit&eacute;.
+                </>
                 }
               </p>
             }
@@ -175,7 +198,7 @@ function PermanenceUpdate({ match }) {
                 <ContactProfessionel conseiller={conseiller} />
                 <div className="rf-container">
                   <div className="rf-grid-row">
-                    {maPermanence.estStructure &&
+                    {maPermanence.lieuPrincipalPour.includes(conseiller?._id) &&
                       <Recapitulatif
                         nomStructure={structure?.nom}
                         siret={structure?.siret}

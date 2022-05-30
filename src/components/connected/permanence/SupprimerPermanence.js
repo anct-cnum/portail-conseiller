@@ -59,7 +59,7 @@ function SupprimerPermanence({ permanence, isDisabled }) {
                     </div>
                     <div className="rf-mb-6w">
                       Si vous &ecirc;tes la seule personne assign&eacute;e &agrave; ce lieu, ce dernier ne sera plus affich&eacute; sur la carte nationale.
-                      Si vous &ecirc;tes plusieurs, votre nom ne sera plus affiché&eacute;. Vous pourrez à nouveau s&eacute;lectionner ce lieu
+                      Si vous &ecirc;tes plusieurs, votre nom ne sera plus affich&eacute;. Vous pourrez à nouveau s&eacute;lectionner ce lieu
                       d&rsquo;activit&eacute; dans les &eacute;l&eacute;ments pr&eacute;-enregistr&eacute;s.
                     </div>
 
