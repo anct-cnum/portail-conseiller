@@ -11,7 +11,8 @@ import ValidationButton from './Components/ValidationButton';
 import Footer from '../../Footer';
 import FlashMessage from 'react-flash-message';
 import Recurrence from './Recurrence';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { statistiqueActions } from '../../../actions';
 
 function Cra() {
 
@@ -19,11 +20,13 @@ function Cra() {
   process.env.REACT_APP_AIDE_URL + '/article/comment-le-conseiller-numerique-rend-il-compte-de-ses-activites-et-a-quoi-cela-sert-il-16n3yhq/';
   const printFlashbag = useSelector(state => state.cra.printFlashbag);
   const [activeFlashMessage, setActiveFlashMessage] = useState(false);
+  const dispatch = useDispatch();
 
   //Forcer affichage en haut de la page pour voir le flashbag
   useEffect(() => {
     if (printFlashbag === true) {
       window.scrollTo(0, 0);
+      dispatch(statistiqueActions.getCodesPostauxCrasConseiller());
     }
     if (printFlashbag === false) {
       setActiveFlashMessage(true);
