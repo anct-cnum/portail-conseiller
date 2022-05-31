@@ -21,7 +21,7 @@ function SupprimerPermanence({ permanence, isDisabled }) {
   return (
     <>
       { isDisabled &&
-        <button className="supprimer-btn disabled-btn"
+        <button className="rf-btn supprimer-btn disabled-btn"
           disabled={true} data-tip="Ne peut pas être supprimer si c'est votre lieu principal d'activité"
           onClick={() => {
             setModalOpenClose(false);

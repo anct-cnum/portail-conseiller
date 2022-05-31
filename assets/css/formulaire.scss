@@ -159,9 +159,8 @@
   .creer-btn, .modifier-btn {
     background-color: #8585F6;
     border: 1px solid #000091;
-    margin-right: 15px;
     text-align: center;
-    padding: 8px 26px;
+    padding: 8px 28px;
     color: #000091;
     cursor: pointer;
     height: 42px;
@@ -170,6 +169,10 @@
       border-color: #8989cb;
     }
   }
+  .modifier-btn {
+    width: 127px;
+    margin: 1px 15px 15px 15px;
+  }
   .creer-btn {
     float: right;
     margin: 20px 0;
@@ -177,8 +180,10 @@
   .supprimer-btn {
     padding: 8px 24px;
     height: 40px;
+    margin: 0 15px 15px 15px;
   }
   .disabled-btn {
+    width: 127px;
     border-color: #929292;
     color: #929292;
   }
