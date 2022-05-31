@@ -12,9 +12,21 @@ function MesPermanences() {
   const dispatch = useDispatch();
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const listPermanences = useSelector(state => state.permanence?.mesPermanences);
+  const mesPermanences = Array.from({ length: listPermanences?.length }, () => ({}));
 
   const isDeleted = useSelector(state => state.permanence.isDeleted);
   const isConseillerDeleted = useSelector(state => state.permanence.isConseillerDeleted);
+
+  //Tri pour obtenir le lieu principal en premier
+  if (listPermanences) {
+    for (let i = 0; i < listPermanences.length; i++) {
+      if (listPermanences[i].lieuPrincipalPour.includes(conseiller._id) === true) {
+        mesPermanences[0] = listPermanences[i];
+      } else {
+        mesPermanences[i + 1] = listPermanences[i];
+      }
+    }
+  }
 
   useEffect(() => {
     if (!conseiller) {
@@ -72,7 +84,7 @@ function MesPermanences() {
                         </tr>
                       </thead>
                       <tbody>
-                        {listPermanences?.length > 0 && listPermanences?.map((permanence, idx) => {
+                        {listPermanences?.length > 0 && mesPermanences?.map((permanence, idx) => {
                           return (<MaPermanence key={idx} permanence={permanence} conseillerId={conseiller._id} trClass ={idx % 2 === 0 ? 'pair' : 'impair'}/>);
                         })}
                       </tbody>
