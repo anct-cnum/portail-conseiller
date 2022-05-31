@@ -110,7 +110,6 @@ function ChoosePassword({ match }) {
                         ainsi que sur le service de discussion en ligne, gardez-le pr&eacute;cieusement !
                       </p>
                       <p className="rf-mb-3w">
-
                         Une boîte mail {emailCnfs}&nbsp;
                         sera automatiquement cr&eacute;&eacute;e lorsque vous cliquerez sur Valider.
                       </p>
