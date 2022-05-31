@@ -14,7 +14,7 @@ export const statistiqueService = {
   getCodesPostauxCrasConseillerStructure
 };
 
-function territoireQueryString(nomOrdre, filtreParNom, territoire, ordre, dateDebut, dateFin, page) {
+function territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin, page) {
   if (nomOrdre === 'code') {
     nomOrdre = territoire;
   } else if (nomOrdre === 'nom') {
@@ -24,7 +24,7 @@ function territoireQueryString(nomOrdre, filtreParNom, territoire, ordre, dateDe
   const ordreColonne = nomOrdre ? '&nomOrdre=' + nomOrdre + '&ordre=' + ordre : '';
   const pageIfDefined = page ? '&page=' + page : '';
 
-  return `?territoire=${territoire}&nom=${filtreParNom}&dateDebut=${dateDebut}&dateFin=${dateFin}${pageIfDefined}${ordreColonne}`;
+  return `?territoire=${territoire}&dateDebut=${dateDebut}&dateFin=${dateFin}${pageIfDefined}${ordreColonne}`;
 }
 
 function getStatsCra(dateDebut, dateFin, idUser, codePostal) {
@@ -62,7 +62,7 @@ function getTerritoire(typeTerritoire, idTerritoire, date) {
   ).then(handleResponse);
 }
 
-function getStatsTerritoires(territoire, dateDebut, dateFin, page, nomOrdre, filtreParNom, ordre) {
+function getStatsTerritoires(territoire, dateDebut, dateFin, page, nomOrdre, ordre) {
   const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
     method: 'GET',
@@ -70,7 +70,7 @@ function getStatsTerritoires(territoire, dateDebut, dateFin, page, nomOrdre, fil
   };
 
   return fetch(
-    `${apiUrlRoot}/stats/admincoop/territoires${territoireQueryString(nomOrdre, filtreParNom, territoire, ordre, dateDebut, dateFin, page)}`,
+    `${apiUrlRoot}/stats/admincoop/territoires${territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin, page)}`,
     requestOptions
   ).then(handleResponse);
 }

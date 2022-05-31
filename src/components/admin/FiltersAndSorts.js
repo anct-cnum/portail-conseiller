@@ -24,6 +24,7 @@ function FiltersAndSorts({ resetPage, user }) {
   let filtreCertifie = useSelector(state => state.filtersAndSorts?.certifie);
   let filtreGroupeCRA = useSelector(state => state.filtersAndSorts?.groupeCRA);
   let filtreParNom = useSelector(state => state.filtersAndSorts?.nom);
+  let filtreParStructureId = useSelector(state => state.filtersAndSorts?.structureId);
   const pagination = useSelector(state => state.pagination);
   const exportTerritoireFileBlob = useSelector(state => state.statistique?.exportTerritoireFileBlob);
   const exportTerritoireFileError = useSelector(state => state.statistique?.exportTerritoireFileError);
@@ -31,6 +32,7 @@ function FiltersAndSorts({ resetPage, user }) {
   const exportCnfsFileError = useSelector(state => state.conseiller?.exportCnfsFileError);
   const downloading = useSelector(state => state.statistique?.downloading);
   const downloadingExportCnfs = useSelector(state => state.conseiller?.downloadingExportCnfs);
+  const conseillers = useSelector(state => state.conseiller);
 
 
   const [toggleFiltre, setToggleFiltre] = useState(false);
@@ -61,13 +63,16 @@ function FiltersAndSorts({ resetPage, user }) {
 
   useEffect(() => {
     if (location.pathname === '/accueil') {
+      if (user?.role === 'structure_coop') {
+        dispatch(filtersAndSortsActions.changeStructureId(user?.entity.$id));
+      }
       dispatch(conseillerActions.getAll(0, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom,
-        ordreNom, ordre ? 1 : -1, user?.role === 'structure_coop' ? user?.entity.$id : null));
+        ordreNom, ordre ? 1 : -1, filtreParStructureId));
       resetPage(1);
     }
     if (location.pathname === '/territoires') {
       const page = currentPage(pagination, location);
-      dispatch(statistiqueActions.getStatsTerritoires(territoire, dateDebut, dateFin, page, ordreNom, filtreParNom, ordre ? 1 : -1));
+      dispatch(statistiqueActions.getStatsTerritoires(territoire, dateDebut, dateFin, page, ordreNom, ordre ? 1 : -1));
       resetPage(page);
     }
 
@@ -83,11 +88,23 @@ function FiltersAndSorts({ resetPage, user }) {
 
   const exportDonneesCnfs = () => {
     dispatch(conseillerActions.exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom,
-      ordreNom, ordre ? 1 : -1, user?.role === 'structure_coop' ? user?.entity.$id : null));
+      ordreNom, ordre ? 1 : -1, filtreParStructureId));
   };
 
+  const formatNomStructure = nomStructure => nomStructure
+  .replaceAll('.', '')
+  .replaceAll('-', ' ')
+  .replaceAll('è', 'e')
+  .replaceAll('é', 'e');
+
   const rechercheParTexte = e => {
-    dispatch(filtersAndSortsActions.changeNom(e.target.previousSibling.value));
+    // eslint-disable-next-line max-len
+    const conseillerByStructure = conseillers.items.data.find(conseiller => formatNomStructure(conseiller.nomStructure.toLowerCase()) === formatNomStructure(e.target.previousSibling.value.toLowerCase()));
+    if (conseillerByStructure) {
+      dispatch(filtersAndSortsActions.changeStructureId(conseillerByStructure?.structureId));
+    } else {
+      dispatch(filtersAndSortsActions.changeNom(e.target.previousSibling.value));
+    }
   };
 
   return (

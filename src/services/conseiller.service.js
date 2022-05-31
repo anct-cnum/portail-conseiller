@@ -31,7 +31,7 @@ function cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtrePr
     `&datePrisePoste[$gt]=${new Date(dateDebut).toISOString()}` : '';
   const filterDateEnd = (dateFin !== '') ? `&datePrisePoste[$lt]=${new Date(dateFin).toISOString()}` : '';
   const filterStructureId = idStructure ? `&structureId=${idStructure}` : '';
-  const filterByName = filtreParNom ? `&nom=${filtreParNom.toUpperCase()}` : '';
+  const filterByName = filtreParNom ? `&$search=${filtreParNom}` : '';
   let profil = '';
   switch (filtreProfil) {
     case 'tous':
