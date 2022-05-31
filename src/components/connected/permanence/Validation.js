@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import horairesInitiales from '../../../data/horairesInitiales.json';
 import { permanenceActions } from '../../../actions/permanence.actions';
 
-function Validation({ conseillerId, structureId }) {
+function Validation({ conseillerId, structureId, statut = null, redirectionValidation = null }) {
   const dispatch = useDispatch();
   const form = useSelector(state => state.permanence);
   const fields = useSelector(state => state.permanence?.fields);
@@ -13,21 +13,24 @@ function Validation({ conseillerId, structureId }) {
   const prefixId = useSelector(state => state.permanence?.prefixIdLieuEnregistrable);
 
   const [clickSubmit, setClickSubmit] = useState(false);
+  const [redirection, setRedirection] = useState(redirectionValidation !== null ? redirectionValidation : '/accueil');
 
-  function handleSubmit() {
-
+  function handleSubmit(redirection = '/accueil') {
     const typeAcces = [
       fields?.filter(field => field.name === prefixId + 'libre')[0]?.value ? 'libre' : null,
       fields?.filter(field => field.name === prefixId + 'rdv')[0]?.value ? 'rdv' : null,
       fields?.filter(field => field.name === prefixId + 'prive')[0]?.value ? 'prive' : null,
     ].filter(n => n);
-    dispatch(permanenceActions.updateField(prefixId + 'typeAcces', typeAcces));
 
-    dispatch(permanenceActions.verifyFormulaire(form));
+    dispatch(permanenceActions.updateField(prefixId + 'typeAcces', typeAcces));
+    dispatch(permanenceActions.verifyFormulaire(form, statut));
+
     setClickSubmit(true);
+    setRedirection(redirection);
   }
 
   useEffect(() => {
+
     if (errorsForm?.lengthError === 0 && clickSubmit) {
 
       const conseillers = fields.filter(field => field.name === prefixId + 'conseillers')[0]?.value ?? [];
@@ -78,31 +81,60 @@ function Validation({ conseillerId, structureId }) {
         }
       }
 
+      nouveauLieu.idOldPermanence = fields?.filter(field => field.name === 'idOldPermanence')[0]?.value ?? null;
       if (nouveauLieu._id !== null) {
-        dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, true, null));
-      } else {
-        dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, true, null));
+        dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, true, null, redirection));
+      } else if (prefixId) {
+        dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, true, null, redirection));
+      } else if (prefixId === null) {
+        dispatch(permanenceActions.validerPermanenceForm(conseillerId));
       }
+
     } else if (errorsForm?.lengthError > 0 && clickSubmit === true) {
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
     setClickSubmit(false);
   }, [errorsForm]);
 
   return (
-    <div className="rf-col-offset-1 rf-col-4">
-      <button className="rf-btn validation-btn rf-mb-4w" onClick={handleSubmit}>Enregistrer et revenir &agrave; l&rsquo;accueil</button>
-      <div className="rf-mb-12w">
-        ( <span className="obligatoire">*</span> ) champs obligatoires
+    <>
+      <div className="rf-col-offset-1 rf-col-4">
+        <button className="rf-link rf-fi-external-link-line rf-link--icon-right validation-extern-btn" onClick={() => {
+          handleSubmit('cartographie');
+        }}>
+          Enregistrer et afficher sur la carte nationale
+        </button>
+        <div className="rf-mb-12w rf-mt-4w">
+          ( <span className="obligatoire">*</span> ) champs obligatoires
+        </div>
       </div>
-    </div>
+
+      <div className="rf-col-5">
+        <button className="rf-btn validation-btn rf-mb-4w" onClick={() => {
+          handleSubmit(redirection);
+        }}>
+          Enregistrer&nbsp;
+          {
+            statut === 'update' && <>les modifications</>
+          }
+          et revenir &agrave;&nbsp;
+          {statut === null && <>l&rsquo;accueil</>}
+          {statut !== null && <>la liste</>}
+        </button>
+      </div>
+
+
+    </>
+
   );
 }
 
 Validation.propTypes = {
-  permanence: PropTypes.object,
   conseillerId: PropTypes.string,
   structureId: PropTypes.string,
+  redirectionValidation: PropTypes.string,
+  statut: PropTypes.string,
 };
 
 export default Validation;

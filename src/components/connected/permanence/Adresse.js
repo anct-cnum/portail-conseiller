@@ -8,7 +8,7 @@ import CarteAdresse from './Components/CarteAdresse';
 import ButtonLocalisation from './Components/ButtonLocalisation';
 import SelectAdresse from './Components/SelectAdresse';
 
-function Adresse({ codeDepartement, prefixId }) {
+function Adresse({ codeDepartement, prefixId, isUpdate }) {
 
   const fields = useSelector(state => state.permanence?.fields);
   const disabledFields = useSelector(state => state.permanence?.disabledFields);
@@ -36,6 +36,7 @@ function Adresse({ codeDepartement, prefixId }) {
       setIndicatif(telephoneHorsMetropole?.find(item => item.codeDepartement === codePostal.substr(0, 3))?.indicatif ?? '+33');
     }
   }, [codePostal]);
+
   return (
     <>
       {(prefixId !== 'principal_' ||
@@ -52,13 +53,12 @@ function Adresse({ codeDepartement, prefixId }) {
                     <a className="link" href="https://annuaire-entreprises.data.gouv.fr/?mtm_campaign=Conseiller_numériqueFS"
                       title="Lien vers https://annuaire-entreprises.data.gouv.fr/" target="blank" rel="noreferrer">
                       O&ugrave; trouver un num&eacute;ro de Siret&nbsp;?
-                    </a><span>&nbsp;Pensez également à vous renseigner auprès de vos collaborateurs.</span></>
+                    </a><span>&nbsp;Pensez &eacute;galement &agrave; vous renseigner aupr&egrave;s de vos collaborateurs.</span></>
                   }
                   valueInput={fields?.filter(field => field.name === prefixId + 'siret')[0]?.value ?? ''}
                   prefixId={prefixId}
                 />
               </div>
-              <div className="rf-col-4"></div>
             </>
           }
           <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-10 rf-mb-6w">
@@ -68,7 +68,7 @@ function Adresse({ codeDepartement, prefixId }) {
               prefixId={prefixId}
               nameInput="checkboxSiret"
               baselineInput="Si l&rsquo;adresse pr&eacute;-remplie par le num&eacute;ro de Siret ne correspond pas &agrave;
-              votre lieu d&rsquo;activit&eacute;, vous pouvez cochez la case ci-dessus."
+              votre lieu d&rsquo;activit&eacute;, vous pouvez cocher la case ci-dessus."
               classBaseline="toggle-siret"
             />
           </div>
@@ -89,7 +89,8 @@ function Adresse({ codeDepartement, prefixId }) {
               valueInput={fields?.filter(field => field.name === prefixId + 'nomEnseigne')[0]?.value ?? ''}
             />
           </div>
-          <div className="rf-col-4"></div>
+
+          <div className="rf-col-5"></div>
         </>
       }
 
@@ -153,6 +154,7 @@ function Adresse({ codeDepartement, prefixId }) {
         <div>
           <SelectAdresse prefixId={prefixId}
             errorInput={erreurLocation}
+            isUpdate={isUpdate}
             estStructure={fields?.filter(field => field.name === 'estStructure')[0]?.value ?? null}/>
         </div>
 
@@ -204,10 +206,10 @@ function Adresse({ codeDepartement, prefixId }) {
 
 Adresse.propTypes = {
   codeDepartement: PropTypes.string,
-  adressePermanence: PropTypes.object,
-  nomEnseignePermanence: PropTypes.string,
   prefixId: PropTypes.string,
-  secondaireId: PropTypes.number,
+  isUpdate: PropTypes.bool,
+  permanence: PropTypes.object,
+  conseillerId: PropTypes.string,
 };
 
 export default Adresse;

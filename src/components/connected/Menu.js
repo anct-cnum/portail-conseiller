@@ -22,7 +22,7 @@ function Menu() {
     }
   };
 
-  const exclusionPages = ['/ressourcerie', '/a-propos', '/mes-informations'];
+  const exclusionPages = ['/ressourcerie', '/a-propos', '/mes-informations', '/lieux-activite'];
 
   return (
     <>

@@ -25,12 +25,6 @@ function Remerciement() {
                   Une interface de gestion sera prochainement attribu&eacute;e &agrave; votre responsable via son espace Structure,
                   elle permettra d&rsquo;administrer les lieux d&rsquo;activit&eacute; Conseiller num&eacute;rique France Services cl&eacute;s en main.
                 </div>
-                <div className="rf-mt-3w">
-                  &Agrave; terme, un outil similaire sera mis &agrave; votre disposition sur la Coop. En outre, une version enrichie du formulaire vous
-                  permettra de renseigner vos lieux d&rsquo;activit&eacute;s de mani&egrave;re plus pr&eacute;cise, et ainsi d&rsquo;&ecirc;tre mieux
-                  identifi&eacute; par vos usagers.
-                </div>
-
               </div>
               <div className="centre">
                 <button className="rf-btn remerciement-btn" onClick={closeModal} >J&rsquo;ai compris</button>

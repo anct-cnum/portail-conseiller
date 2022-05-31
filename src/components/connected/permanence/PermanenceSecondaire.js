@@ -44,6 +44,8 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
       setOuiBtn(true);
     } else {
       show[0] = false;
+
+      dispatch(permanenceActions.updateLieuEnregistrable(null));
       dispatch(permanenceActions.updateField('submit_and_next_0', false));
       dispatch(permanenceActions.montrerLieuSecondaire(show));
     }
@@ -93,15 +95,16 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
 
       if (nouveauLieu._id !== null) {
         dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, false, 'secondaire_0_'));
-      } else {
+      } else if (prefixId) {
         dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, false, 'secondaire_0_'));
       }
+
       show[0] = true;
       dispatch(permanenceActions.updateField('submit_and_next_0', true));
       dispatch(permanenceActions.montrerLieuSecondaire(show));
 
     } else if (errorsForm?.lengthError > 0 && clickSubmit) {
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       setOuiBtn(false);
     }
     setShow(show);
@@ -173,6 +176,22 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
           <div key={idx} className="rf-container">
             <div className={(idx === 0 && show[0]) ||
               (idx > 0 && fields?.filter(field => field.name === 'submit_and_next_' + idx)[0]?.value) ? 'rf-grid-row' : 'hide'}>
+              {idx >= 1 &&
+                <>
+                  <div className="rf-col-1 col-logo">
+                    <img className="pin rf-mt-8w" src="logos/permanences/pin.svg"/>
+                  </div>
+                  <div className="rf-col-8 ">
+                    <h2 className="sous-titre rf-mt-7w rf-mb-4w">
+                      Lieu d&rsquo;activit&eacute; secondaire
+                      <span className="baseline rf-mt-1w">
+                        Un lieu d&rsquo;activit&eacute; secondaire correspond &agrave; une permanence o&ugrave; vous avez &eacute;t&eacute;
+                        d&eacute;l&eacute;gu&eacute;(e) et o&ugrave; vous exercez votre activit&eacute; de mani&egrave;re hebdomadaire.
+                      </span>
+                    </h2>
+                  </div>
+                </>
+              }
 
               <ListPermanences prefixId={ 'secondaire_' + idx + '_'} conseillerId={conseillerId}/>
               <Adresse
@@ -182,6 +201,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
                 prefixId={ 'secondaire_' + idx + '_'}
                 secondaireId={ idx }
                 islieuPrincipal={false}
+                conseillerId={conseillerId}
               />
               <TypeAcces prefixId={ 'secondaire_' + idx + '_'} islieuPrincipal={false} />
               <Horaires prefixId={ 'secondaire_' + idx + '_'} horairesId={idx + 1}/>

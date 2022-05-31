@@ -64,18 +64,18 @@ function Footer({ type, role }) {
                           <div className="rf-col-12 rf-mb-2w">
                             {role === 'structure_coop' &&
                               <a className="lien-footer" href={aideStructure} target="blank" rel="noreferrer">
-                                <img src="logos/bulle-ressourcerie.svg" className="bulle-ressourcerie" alt="liens aide vers Mattermost"/>
+                                <img src="/logos/bulle-ressourcerie.svg" className="bulle-ressourcerie" alt="liens aide vers Mattermost"/>
                                 <span >Aide espace Coop</span>
                               </a>
                             }
                             {role !== 'structure_coop' &&
                             <>
                               <a className="lien-footer" href={aideCoop} target="blank" rel="noreferrer">
-                                <img src="logos/bulle-ressourcerie.svg" className="bulle-ressourcerie" alt="liens aide vers Mattermost"/>
+                                <img src="/logos/bulle-ressourcerie.svg" className="bulle-ressourcerie" alt="liens aide vers Mattermost"/>
                                 <span >Aide espace Coop</span>
                               </a>
                               <a className="lien-footer" href={aideMetier} target="blank" rel="noreferrer">
-                                <img src="logos/bulle-ressourcerie.svg" className="bulle-ressourcerie" alt="liens aide vers Mattermost"/>
+                                <img src="/logos/bulle-ressourcerie.svg" className="bulle-ressourcerie" alt="liens aide vers Mattermost"/>
                                 <span>Aide m&eacute;tier</span>
                               </a>
                             </>
