@@ -63,11 +63,8 @@ function FiltersAndSorts({ resetPage, user }) {
 
   useEffect(() => {
     if (location.pathname === '/accueil') {
-      if (user?.role === 'structure_coop') {
-        dispatch(filtersAndSortsActions.changeStructureId(user?.entity.$id));
-      }
       dispatch(conseillerActions.getAll(0, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom,
-        ordreNom, ordre ? 1 : -1, filtreParStructureId));
+        ordreNom, ordre ? 1 : -1, user.role === 'structure_coop' ? user.entity.$id : filtreParStructureId));
       resetPage(1);
     }
     if (location.pathname === '/territoires') {
@@ -88,7 +85,7 @@ function FiltersAndSorts({ resetPage, user }) {
 
   const exportDonneesCnfs = () => {
     dispatch(conseillerActions.exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom,
-      ordreNom, ordre ? 1 : -1, filtreParStructureId));
+      ordreNom, ordre ? 1 : -1, user.role === 'structure_coop' ? user.entity.$id : filtreParStructureId));
   };
 
   const formatNomStructure = nomStructure => nomStructure
@@ -156,14 +153,16 @@ function FiltersAndSorts({ resetPage, user }) {
             </span>
           </b>
         </div>
-        <div className="rf-ml-auto rf-col-4">
-          <div className="rf-search-bar rf-search-bar" id="search" role="search" >
-            <input className="rf-input" placeholder="Rechercher par nom" type="search" id="search-input" name="search-input" />
-            <button className="rf-btn" onClick={rechercheParNomOuNomStructure} title="Rechercher par nom">
-              Rechercher
-            </button>
+        {user?.role === 'admin_coop' &&
+          <div className="rf-ml-auto rf-col-4">
+            <div className="rf-search-bar rf-search-bar" id="search" role="search" >
+              <input className="rf-input" placeholder="Rechercher par nom" type="search" id="search-input" name="search-input" />
+              <button className="rf-btn" onClick={rechercheParNomOuNomStructure} title="Rechercher par nom">
+                Rechercher
+              </button>
+            </div>
           </div>
-        </div>
+        }
         {location.pathname === '/accueil' &&
           <div className="rf-ml-auto">
             <button className="rf-btn rf-btn--secondary" onClick={exportDonneesCnfs}>Exporter les donn&eacute;es</button>
