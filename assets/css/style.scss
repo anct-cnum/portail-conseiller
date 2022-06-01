@@ -210,6 +210,7 @@
     background-color: #9A9AFF;
     color: #000091 !important;
   }
+
   .rf-custom-link {
     padding: 2.5rem 1rem !important;
     background-color: #2e2e2e;
@@ -332,7 +333,7 @@
   opacity: 1;
   visibility: visible;
 }
-.modal-sexe-age, .modal-remerciement, .modal-ouverture {
+.modal-sexe-age, .modal-remerciement, .modal-ouverture, .modal-suppression {
   background-color: #fff;
   padding: 4em 2.5em;
   color: #1e1e1e;
@@ -396,11 +397,11 @@
     height: 64px;
     width: 318px;
   }
-  .ouverture-btn, .remerciement-btn {
+  .ouverture-btn, .remerciement-btn, .suppression-btn {
     background-color: #000091;
     color: #fff;
   }
-  .plus-tard-btn {
+  .plus-tard-btn, .annuler-btn {
     background-color: #fff;
     border: 1px solid #000091;
     color: #000091;

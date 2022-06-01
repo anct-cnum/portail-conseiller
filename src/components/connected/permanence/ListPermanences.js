@@ -3,19 +3,30 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { permanenceActions } from '../../../actions';
 
-function ListPermanences({ prefixId, conseillerId }) {
+import horairesInitiales from '../../../data/horairesInitiales.json';
+
+function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null }) {
   const dispatch = useDispatch();
 
   const listPermanences = useSelector(state => state.permanence?.permanences);
+  const permanencesReservees = useSelector(state => state.permanence?.permanencesReservees);
   const loadingHoraires = useSelector(state => state.permanence?.loadingHoraires);
   const fields = useSelector(state => state.permanence?.fields);
+  const geocodeAdresses = useSelector(state => state.permanence?.geocodeAdresses);
 
   const [showList, setShowList] = useState(0);
 
   const handleClick = e => {
     const permanence = listPermanences.find(permanence => permanence._id === e.target.value);
+    if (permanence?._id) {
+      dispatch(permanenceActions.reserverPermanence({ prefixId: prefixId, idPermanence: permanence?._id }));
+    }
 
-    dispatch(permanenceActions.updateField(prefixId + 'idPermanence', permanence?._id));
+    if (permanence?._id !== permanenceActuelId) {
+      dispatch(permanenceActions.updateField('idOldPermanence', permanenceActuelId));
+    }
+
+    dispatch(permanenceActions.updateField(prefixId + 'idPermanence', permanence?._id ?? 'nouveau'));
     dispatch(permanenceActions.updateField(prefixId + 'nomEnseigne', permanence?.nomEnseigne));
     dispatch(permanenceActions.updateField(prefixId + 'siret', permanence?.siret));
     dispatch(permanenceActions.updateField(prefixId + 'checkboxSiret', e.target.value === 'nouveau' ? false : !permanence?.siret));
@@ -27,21 +38,25 @@ function ListPermanences({ prefixId, conseillerId }) {
     dispatch(permanenceActions.updateField(prefixId + 'numeroTelephone', permanence?.numeroTelephone));
     dispatch(permanenceActions.updateField(prefixId + 'email', permanence?.email));
     dispatch(permanenceActions.updateField(prefixId + 'siteWeb', permanence?.siteWeb));
-    dispatch(permanenceActions.updateField(prefixId + 'horaires', { [prefixId + 'horaires']: permanence?.horaires }));
+    dispatch(permanenceActions.updateField(prefixId + 'horaires', { [prefixId + 'horaires']: permanence?.horaires ?? horairesInitiales }));
     dispatch(permanenceActions.updateField(prefixId + 'conseillers', permanence?.conseillers));
     permanence?.typeAcces.forEach(type => {
       dispatch(permanenceActions.updateField(prefixId + type, true));
     });
-
+    loadingHoraires[0] = true;
     if (prefixId === 'principal_') {
       dispatch(permanenceActions.updateField('lieuPrincipalPour', permanence?.lieuPrincipalPour));
-      loadingHoraires[0] = true;
     } else {
       dispatch(permanenceActions.updateField(prefixId + 'conseillersItinerants', permanence?.conseillersItinerants));
-      const id = 0;
-      loadingHoraires[id + 1] = true;
     }
 
+    const adresse = {
+      numero: permanence?.adresse.numeroRue,
+      rue: permanence?.adresse.rue,
+      codePostal: permanence?.adresse.codePostal,
+      ville: permanence?.adresse.ville
+    };
+    dispatch(permanenceActions.getGeocodeAdresse(adresse, prefixId));
     dispatch(permanenceActions.setHorairesLoading(loadingHoraires));
     dispatch(permanenceActions.disabledField(prefixId, e.target.value !== 'nouveau'));
   };
@@ -57,6 +72,15 @@ function ListPermanences({ prefixId, conseillerId }) {
     }
     setShowList(nbPermanences);
   }, [listPermanences]);
+
+  useEffect(() => {
+    if (geocodeAdresses) {
+      const geocodeAdresse = geocodeAdresses?.filter(geocode => geocode.prefixId === prefixId)[0]?.geocodeAdresse;
+      if (geocodeAdresse) {
+        dispatch(permanenceActions.updateField(prefixId + 'location', geocodeAdresse[0]?.geometry ?? { type: 'Point', coordinates: [1.849121, 46.624100] }));
+      }
+    }
+  }, [geocodeAdresses]);
 
   return (
     <>
@@ -81,22 +105,43 @@ function ListPermanences({ prefixId, conseillerId }) {
                   {listPermanences.map(((permanence, idx) => {
                     return (
                       <div key={idx}>
-                        {permanence?.conseillers.includes(conseillerId) === false &&
+                        {(permanence?.conseillers.includes(conseillerId) === false || permanenceActuelId === String(permanence._id)) &&
                         <>
                           <hr />
                           <div className="rf-fieldset__content">
                             <div className="rf-radio-group">
-                              <input type="radio" id={prefixId + permanence?._id} className="permanence-existante"
-                                name={prefixId + 'permancenceSecondaire'} value={permanence?._id} required="required" onClick={handleClick}/>
-                              <label className="rf-label rf-my-2w permanence-existante" htmlFor={prefixId + permanence?._id}>
-                                <span className="rf-container rf-container--fluid">
-                                  <span className="rf-grid-row">
-                                    <span className="rf-col-3">{permanence?.adresse.ville.toUpperCase()}</span>
-                                    <span className="rf-col-2">{permanence?.adresse.codePostal}</span>
-                                    <span className="rf-col-7">{permanence?.nomEnseigne}</span>
-                                  </span>
-                                </span>
-                              </label>
+                              {(permanencesReservees.filter(perm => perm.idPermanence === permanence._id).length > 0 &&
+                               permanencesReservees.filter(perm => perm.idPermanence === permanence._id)[0]?.prefixId !== prefixId) &&
+                                <>
+                                  <input type="radio" disabled/>
+                                  <label className="rf-label rf-my-2w permanence-existante" htmlFor={prefixId + permanence?._id}>
+                                    <span className="rf-container rf-container--fluid">
+                                      <span className="rf-grid-row">
+                                        <span className="rf-col-3">{permanence?.adresse.ville.toUpperCase()}</span>
+                                        <span className="rf-col-2">{permanence?.adresse.codePostal}</span>
+                                        <span className="rf-col-7">{permanence?.nomEnseigne}</span>
+                                      </span>
+                                    </span>
+                                  </label>
+                                </>
+                              }
+                              {(permanencesReservees.filter(perm => perm.idPermanence === permanence._id).length === 0 ||
+                               permanencesReservees.filter(perm => perm.idPermanence === permanence._id)[0]?.prefixId === prefixId) &&
+                                <>
+                                  <input type="radio" id={prefixId + permanence?._id} className="permanence-existante"
+                                    defaultChecked={permanenceActuelId === String(permanence._id)}
+                                    name={prefixId + 'permancenceSecondaire'} value={permanence?._id} required="required" onClick={handleClick}/>
+                                  <label className="rf-label rf-my-2w permanence-existante" htmlFor={prefixId + permanence?._id}>
+                                    <span className="rf-container rf-container--fluid">
+                                      <span className="rf-grid-row">
+                                        <span className="rf-col-3">{permanence?.adresse.ville.toUpperCase()}</span>
+                                        <span className="rf-col-2">{permanence?.adresse.codePostal}</span>
+                                        <span className="rf-col-7">{permanence?.nomEnseigne}</span>
+                                      </span>
+                                    </span>
+                                  </label>
+                                </>
+                              }
                             </div>
                           </div>
                         </>
@@ -109,7 +154,7 @@ function ListPermanences({ prefixId, conseillerId }) {
                 <div className="rf-fieldset__content rf-mt-5w rf-mb-9w">
                   <div className="rf-radio-group">
                     <input type="radio" id={prefixId + 'nouveau'} name={prefixId + 'permancenceSecondaire'} value="nouveau"
-                      defaultChecked={true} required="required" onClick={handleClick}/>
+                      defaultChecked={permanenceActuelId === null} required="required" onClick={handleClick}/>
                     <label className="rf-label rf-my-2w" htmlFor={prefixId + 'nouveau'} >
                       Ajouter un nouveau lieu d&rsquo;activit&eacute;
                     </label>
@@ -128,6 +173,7 @@ function ListPermanences({ prefixId, conseillerId }) {
 ListPermanences.propTypes = {
   prefixId: PropTypes.string,
   conseillerId: PropTypes.string,
+  permanenceActuelId: PropTypes.string,
 };
 
 export default ListPermanences;

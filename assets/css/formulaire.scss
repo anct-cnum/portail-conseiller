@@ -46,10 +46,13 @@
   }
   letter-spacing: 0;
   line-height: 24px;
-  .titre {
+  .titre, .titre-acces {
     line-height: 64px;
     font-weight: 100;
     font-size: 56px;
+  }
+  .titre-acces {
+    font-size: 36px;
   }
   .sous-titre {
     font-weight: bold;
@@ -114,25 +117,84 @@
     top: 5px;
     position: relative;
   }
-  .validation-btn {
+  .validation-extern-btn {
     background-color: #8585F6;
-    padding: 8px 24px;
+    border-radius: 0px;
+    padding: 8px 26px;
     text-align: center;
     color: #000091;
     height: 40px;
-    width: 288px;
+    width: 407px;
 
   }
-  .nouveau-btn, .localisation-btn {
+  .nouveau-btn, .localisation-btn, .supprimer-btn, .validation-btn {
     background: #1e1e1e;
     border: 1px solid #8585f6;
     line-height: 24px;
     text-align: center;
     font-size: 16px;
     color: #8585f6;
+    cursor: pointer;
+  }
+  .validation-btn {
+    line-height: 22px;
+    margin-left: 47px;
   }
   .localisation-btn-position {
     text-align: right;
+  }
+  .circle-true, .circle-false {
+    display: block;
+    border-radius: 100%;
+    height: 12px;
+    width: 12px;
+    margin: auto;
+  }
+  .circle-true {
+    background: #169b62;
+  }
+  .circle-false {
+    background: #ff6f4c;
+  }
+  .creer-btn, .modifier-btn {
+    background-color: #8585F6;
+    border: 1px solid #000091;
+    text-align: center;
+    padding: 8px 28px;
+    color: #000091;
+    cursor: pointer;
+    height: 42px;
+    &:hover {
+      background-color: #1e1e1e;
+      border-color: #8989cb;
+    }
+  }
+  .modifier-btn {
+    width: 127px;
+    margin: 1px 15px 15px 15px;
+  }
+  .creer-btn {
+    float: right;
+    margin: 20px 0;
+  }
+  .supprimer-btn {
+    padding: 8px 24px;
+    height: 40px;
+    margin: 0 15px 15px 15px;
+  }
+  .disabled-btn {
+    width: 127px;
+    border-color: #929292;
+    color: #929292;
+  }
+  .infobulle {
+    padding: 10px !important;
+    background-color: #fff;
+    border-radius: 6px;
+    text-align: left;
+    line-height: 22px;
+    color: #1e1e1e;
+    font-size: 16px;
   }
   .emplacement-permanences {
     overflow: auto;
@@ -232,6 +294,19 @@
   .leaflet-control-attribution {
     display: none;
   }
+
+  /* Partie Mise à jour*/
+  .suppression-definitive {
+    font-family: 'Marianne';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    background: #E0000F;
+    text-align: center;
+    color: #F5F5FE;
+  }
+
   @media (min-width: 768px) and (max-width: 1102px){
     .banniere .col-logo .hexagone {
       margin-top: 39px;

@@ -11,6 +11,9 @@ import FormulaireSexeAge from './FormulaireSexeAge';
 import Ressourcerie from './ressourcerie/Ressourcerie';
 import Permanence from './permanence/index';
 import MesInformations from './mesInformations';
+import MesPermanences from './permanence/MesPermanences';
+import PermanenceUpdate from './permanence/PermanenceUpdate';
+import PermanenceCreate from './permanence/PermanenceCreate';
 
 function Connected() {
 
@@ -21,7 +24,7 @@ function Connected() {
   const formulaireIsUpdated = useSelector(state => state?.conseiller?.isUpdated);
 
   const structure = useSelector(state => state?.structure?.structure);
-  const permanence = useSelector(state => state?.permanence?.permanence);
+  const mesPermanences = useSelector(state => state?.permanence?.mesPermanences);
   const voirPermanence = useSelector(state => state?.permanence?.showFormulairePermanence);
   const suspendrePermanence = localStorage.getItem('suspension_permanence');
 
@@ -33,8 +36,8 @@ function Connected() {
       if (!structure || structure === undefined) {
         dispatch(structureActions.get(conseiller.structureId));
       }
-      if (permanence === undefined) {
-        dispatch(permanenceActions.get(conseiller._id));
+      if (mesPermanences === undefined) {
+        dispatch(permanenceActions.getMesPermanences(conseiller._id));
       }
     } else {
       dispatch(conseillerActions.get(userEntityId()));
@@ -53,6 +56,10 @@ function Connected() {
               <Route path={`/statistiques`} component={Statistics} />
               <Route path={`/ressourcerie`} component={Ressourcerie} />
               <Route path={'/mes-informations'} component={MesInformations} />
+              <Route path={`/lieux-activite`} component={Permanence} />
+              <Route path={'/mes-lieux-activite'} component={MesPermanences} />
+              <Route path={'/mon-lieu-activite/:idPermanence'} component={PermanenceUpdate} />
+              <Route path={'/mon-nouveau-lieu-activite'} component={PermanenceCreate} />
               <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
             </>
           }

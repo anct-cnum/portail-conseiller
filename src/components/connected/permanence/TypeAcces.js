@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import InputCheckbox from './Components/InputCheckbox';
 
 function TypeAcces({ islieuPrincipal, prefixId }) {
+
   const fields = useSelector(state => state.permanence?.fields);
   const estCoordinateur = fields?.filter(field => field.name === 'estCoordinateur')[0]?.value;
   const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
@@ -43,6 +44,8 @@ function TypeAcces({ islieuPrincipal, prefixId }) {
 TypeAcces.propTypes = {
   islieuPrincipal: PropTypes.bool,
   prefixId: PropTypes.string,
+  isUpdate: PropTypes.bool,
+  permanence: PropTypes.object,
 };
 
 export default TypeAcces;
