@@ -100,11 +100,11 @@ function FiltersAndSorts({ resetPage, user }) {
   .replaceAll('è', 'e')
   .replaceAll('é', 'e');
 
-  const rechercheParTexte = e => {
+  const rechercheParNomOuNomStructure = e => {
     // eslint-disable-next-line max-len
     const conseillerByStructure = conseillers.items.data.find(conseiller => formatNomStructure(conseiller.nomStructure.toLowerCase()) === formatNomStructure(e.target.previousSibling.value.toLowerCase()));
     if (conseillerByStructure) {
-      dispatch(filtersAndSortsActions.changeStructureId(conseillerByStructure?.structureId));
+      dispatch(filtersAndSortsActions.changeStructureId(conseillerByStructure.structureId));
     } else {
       dispatch(filtersAndSortsActions.changeNom(e.target.previousSibling.value));
     }
@@ -159,7 +159,7 @@ function FiltersAndSorts({ resetPage, user }) {
         <div className="rf-ml-auto rf-col-4">
           <div className="rf-search-bar rf-search-bar" id="search" role="search" >
             <input className="rf-input" placeholder="Rechercher par nom" type="search" id="search-input" name="search-input" />
-            <button className="rf-btn" onClick={rechercheParTexte} title="Rechercher par nom">
+            <button className="rf-btn" onClick={rechercheParNomOuNomStructure} title="Rechercher par nom">
               Rechercher
             </button>
           </div>
