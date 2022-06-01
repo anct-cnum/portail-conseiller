@@ -94,6 +94,9 @@ function FiltersAndSorts({ resetPage, user }) {
   const formatNomStructure = nomStructure => nomStructure
   .replaceAll('.', '')
   .replaceAll('-', ' ')
+  .replaceAll('à', 'a')
+  .replaceAll('ù', 'u')
+  .replaceAll('ç', 'c')
   .replaceAll('è', 'e')
   .replaceAll('é', 'e');
 
