@@ -103,7 +103,7 @@ function MesPermanences() {
             <div className="rf-container">
               <div className="rf-grid-row">
                 <div className="rf-col-12 rf-ml-12w">
-                  <h2 className="titre-acces rf-my-9w ">Vous n&rsquo;avez pas acc&egrave;s &agrave; ce formlaire pour le moment !</h2>
+                  <h2 className="titre-acces rf-my-9w ">Vous n&rsquo;avez pas acc&egrave;s &agrave; ce formulaire pour le moment !</h2>
                 </div>
               </div>
             </div>

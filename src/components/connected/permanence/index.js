@@ -93,7 +93,7 @@ function Permanence() {
                 Vous avez bien &eacute;t&eacute; retir&eacute; du lieu d&rsquo;activit&eacute;.
               </p>
             }
-            
+
             {isAllUpdated &&
               <p className="rf-label flashBag">
                 Vos lieux d&rsquo;activit&eacute; ont bien &eacute;t&eacute; mis &agrave; jour.
@@ -128,7 +128,7 @@ function Permanence() {
             <div className="rf-container">
               <div className="rf-grid-row">
                 <div className="rf-col-12 rf-ml-12w">
-                  <h2 className="titre-acces rf-my-9w ">Vous n&rsquo;avez pas acc&egrave;s &agrave; ce formlaire pour le moment !</h2>
+                  <h2 className="titre-acces rf-my-9w ">Vous n&rsquo;avez pas acc&egrave;s &agrave; ce formulaire pour le moment !</h2>
                 </div>
               </div>
             </div>
