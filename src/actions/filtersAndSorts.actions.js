@@ -8,7 +8,8 @@ export const filtersAndSortsActions = {
   changeTerritoire,
   changeGroupeCRA,
   changeNom,
-  changeStructureId
+  changeStructureId,
+  resetFiltre
 };
 
 function updateOrder(order) {
@@ -57,3 +58,6 @@ function changeTerritoire(territoire) {
   return { type: 'CHANGE_TERRITOIRE', territoire };
 }
 
+function resetFiltre() {
+  return { type: 'RESET_FILTER_AND_SORTS' };
+}

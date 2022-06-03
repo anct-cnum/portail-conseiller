@@ -59,6 +59,10 @@ export default function filtersAndSorts(state = initialState, action) {
         ...state,
         territoire: action.territoire
       };
+    case 'RESET_FILTER_AND_SORTS':
+      return {
+        ...initialState,
+      };
     default:
       return state;
   }

@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Menu from './connected/Menu';
 import MenuAdmin from './admin/MenuAdmin';
-import { menuActions } from '../actions';
+import { filtersAndSortsActions, menuActions } from '../actions';
 
 function Header({ linkAccount, printClass }) {
 
@@ -20,6 +20,7 @@ function Header({ linkAccount, printClass }) {
   const email = useSelector(state => state.authentication?.user?.user?.name);
   const conseiller = useSelector(state => state.conseiller?.conseiller);
 
+  const resetFiltreListeConseillers = () => dispatch(filtersAndSortsActions.resetFiltre());
   const toggleBurgerMenu = () => {
     dispatch(menuActions.toggleMenu());
     dispatch(menuActions.toggleNav());
@@ -198,6 +199,7 @@ function Header({ linkAccount, printClass }) {
                                           {role !== 'conseiller' &&
                                             <Link className="rf-nav__link lien-user" to="/login?role=admin"
                                               onClick={() => {
+                                                resetFiltreListeConseillers();
                                                 setMenuUserShow(false);
                                               }}>
                                               D&eacute;connexion<br />
