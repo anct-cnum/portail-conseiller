@@ -35,7 +35,7 @@ function EnregistrerStatistiquesPdf({ match }) {
     dispatch(statistiqueActions.changeDateStatsFin(dateFin));
     dispatch(statistiqueActions.changeCodePostalStats(codePostal));
     if ((type === 'user' || type === 'conseiller') && type !== 'nationales') {
-      dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, id, codePostal));
+      dispatch(statistiqueActions.getStatsCra(dateDebut, dateFin, id, codePostal));
     } else if (((type !== 'user' && type !== 'conseiller') && type !== 'nationales') && territoire?.conseillerIds) {
       dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, territoire?.conseillerIds));
     } else if (type === 'nationales') {
