@@ -5,7 +5,7 @@ const initialState = {
   nom: undefined,
   ordre: true,
   ordreNom: undefined,
-  structureId: undefined,
+  structureId: null,
   territoire: 'codeDepartement',
 };
 

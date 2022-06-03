@@ -11,7 +11,7 @@ function currentPage(pagination, location) {
   return pagination?.resetPage === false && location.currentPage !== undefined ? location.currentPage : 1;
 }
 
-function FiltersAndSorts({ resetPage, user }) {
+function FiltersAndSorts({ resetPage, user, conseillersSearch }) {
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -32,8 +32,6 @@ function FiltersAndSorts({ resetPage, user }) {
   const exportCnfsFileError = useSelector(state => state.conseiller?.exportCnfsFileError);
   const downloading = useSelector(state => state.statistique?.downloading);
   const downloadingExportCnfs = useSelector(state => state.conseiller?.downloadingExportCnfs);
-  const conseillers = useSelector(state => state.conseiller);
-
 
   const [toggleFiltre, setToggleFiltre] = useState(false);
 
@@ -64,7 +62,7 @@ function FiltersAndSorts({ resetPage, user }) {
   useEffect(() => {
     if (location.pathname === '/accueil') {
       dispatch(conseillerActions.getAll(0, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom,
-        ordreNom, ordre ? 1 : -1, user.role === 'structure_coop' ? user.entity.$id : filtreParStructureId));
+        ordreNom, ordre ? 1 : -1, user?.role === 'structure_coop' ? user?.entity.$id : filtreParStructureId));
       resetPage(1);
     }
     if (location.pathname === '/territoires') {
@@ -85,7 +83,7 @@ function FiltersAndSorts({ resetPage, user }) {
 
   const exportDonneesCnfs = () => {
     dispatch(conseillerActions.exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom,
-      ordreNom, ordre ? 1 : -1, user.role === 'structure_coop' ? user.entity.$id : filtreParStructureId));
+      ordreNom, ordre ? 1 : -1, user?.role === 'structure_coop' ? user?.entity.$id : filtreParStructureId));
   };
 
   const formatNomStructure = nomStructure => nomStructure
@@ -99,7 +97,7 @@ function FiltersAndSorts({ resetPage, user }) {
 
   const rechercheParNomOuNomStructure = e => {
     // eslint-disable-next-line max-len
-    const conseillerByStructure = conseillers.items.data.find(conseiller => formatNomStructure(conseiller.nomStructure.toLowerCase()) === formatNomStructure(e.target.previousSibling.value.toLowerCase()));
+    const conseillerByStructure = conseillersSearch.find(conseiller => formatNomStructure(conseiller.nomStructure.toLowerCase()) === formatNomStructure(e.target.previousSibling.value.toLowerCase()));
     if (conseillerByStructure) {
       dispatch(filtersAndSortsActions.changeStructureId(conseillerByStructure.structureId));
     } else {
@@ -141,7 +139,7 @@ function FiltersAndSorts({ resetPage, user }) {
           </div>
         }
 
-        <div className="rf-col-4">
+        <div className="rf-col-12 rf-col-md-4 rf-mb-4w rf-mb-md-0">
           <b>
             <span>P&eacute;riode du &nbsp;</span>
             <span id="span-datePickerDebut" >
@@ -154,7 +152,7 @@ function FiltersAndSorts({ resetPage, user }) {
           </b>
         </div>
         {user?.role === 'admin_coop' &&
-          <div className="rf-ml-auto rf-col-4">
+          <div className="rf-ml-auto rf-col-12 rf-col-md-4 rf-mb-4w rf-mb-md-0">
             <div className="rf-search-bar rf-search-bar" id="search" role="search" >
               <input className="rf-input" placeholder="Rechercher par nom" type="search" id="search-input" name="search-input" />
               <button className="rf-btn" onClick={rechercheParNomOuNomStructure} title="Rechercher par nom">
@@ -192,7 +190,8 @@ function FiltersAndSorts({ resetPage, user }) {
 
 FiltersAndSorts.propTypes = {
   resetPage: PropTypes.func,
-  user: PropTypes.object
+  user: PropTypes.object,
+  conseillersSearch: PropTypes.array
 };
 
 export default FiltersAndSorts;
