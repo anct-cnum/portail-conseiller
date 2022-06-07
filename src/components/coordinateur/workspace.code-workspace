@@ -1,0 +1,36 @@
+{
+	"folders": [
+		{
+			"name": "api-conseiller-numerique",
+			"path": "../../../../api-conseiller-numerique"
+		},
+		{
+			"name": "portail-conseiller",
+			"path": "../../.."
+		},
+		{
+			"name": "portail-backoffice",
+			"path": "../../../../portail-backoffice"
+		},
+		{
+			"name": "portail-candidat",
+			"path": "../../../../portail-candidat"
+		},
+		{
+			"name": "www-conseiller-numerique",
+			"path": "../../../../www-conseiller-numerique"
+		},
+		{
+			"name": "conseiller-numerique",
+			"path": "../../../../conseiller-numerique"
+		},
+		{
+			"path": "../../../../portail-usager"
+		},
+		{
+			"path": "../../../../site-vitrine"
+		}
+	],
+	"settings": {
+	}
+}
