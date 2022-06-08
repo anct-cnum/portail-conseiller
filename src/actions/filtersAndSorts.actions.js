@@ -50,8 +50,8 @@ function changeNom(nom) {
   return { type: 'CHANGE_NOM', nom };
 }
 
-function changeStructureId(structureId) {
-  return { type: 'CHANGE_STRUCTURE_ID', structureId };
+function changeStructureId(structureId, nomStructure) {
+  return { type: 'CHANGE_STRUCTURE_ID', structureId, nomStructure };
 }
 
 function changeTerritoire(territoire) {

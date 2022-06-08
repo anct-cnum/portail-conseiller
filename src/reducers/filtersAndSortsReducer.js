@@ -6,6 +6,7 @@ const initialState = {
   ordre: true,
   ordreNom: undefined,
   structureId: null,
+  nomStructure: undefined,
   territoire: 'codeDepartement',
 };
 
@@ -20,12 +21,14 @@ export default function filtersAndSorts(state = initialState, action) {
       return {
         ...state,
         nom: action.nom,
-        structureId: undefined
+        structureId: undefined,
+        nomStructure: undefined
       };
     case 'CHANGE_STRUCTURE_ID':
       return {
         ...state,
         structureId: action.structureId,
+        nomStructure: action.nomStructure,
         nom: undefined
       };
     case 'CHANGE_DATE_FIN':
