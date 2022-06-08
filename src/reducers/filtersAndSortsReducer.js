@@ -6,7 +6,7 @@ const initialState = {
   ordre: true,
   ordreNom: undefined,
   structureId: null,
-  nomStructure: undefined,
+  searchInput: undefined,
   territoire: 'codeDepartement',
 };
 
@@ -21,14 +21,12 @@ export default function filtersAndSorts(state = initialState, action) {
       return {
         ...state,
         nom: action.nom,
-        structureId: undefined,
-        nomStructure: undefined
+        structureId: undefined
       };
     case 'CHANGE_STRUCTURE_ID':
       return {
         ...state,
         structureId: action.structureId,
-        nomStructure: action.nomStructure,
         nom: undefined
       };
     case 'CHANGE_DATE_FIN':
@@ -61,6 +59,11 @@ export default function filtersAndSorts(state = initialState, action) {
       return {
         ...state,
         territoire: action.territoire
+      };
+    case 'SAVE_SEARCH_INPUT':
+      return {
+        ...state,
+        searchInput: action.searchInput
       };
     case 'RESET_FILTER_AND_SORTS':
       return {

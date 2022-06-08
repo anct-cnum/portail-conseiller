@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useEffect, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,7 +26,7 @@ function FiltersAndSorts({ resetPage, user, conseillersSearch }) {
   let filtreGroupeCRA = useSelector(state => state.filtersAndSorts?.groupeCRA);
   let filtreParNom = useSelector(state => state.filtersAndSorts?.nom);
   let filtreParStructureId = useSelector(state => state.filtersAndSorts?.structureId);
-  const filtreNomStructure = useSelector(state => state.filtersAndSorts?.nomStructure);
+  const searchInput = useSelector(state => state.filtersAndSorts?.searchInput);
   const pagination = useSelector(state => state.pagination);
   const exportTerritoireFileBlob = useSelector(state => state.statistique?.exportTerritoireFileBlob);
   const exportTerritoireFileError = useSelector(state => state.statistique?.exportTerritoireFileError);
@@ -33,7 +34,6 @@ function FiltersAndSorts({ resetPage, user, conseillersSearch }) {
   const exportCnfsFileError = useSelector(state => state.conseiller?.exportCnfsFileError);
   const downloading = useSelector(state => state.statistique?.downloading);
   const downloadingExportCnfs = useSelector(state => state.conseiller?.downloadingExportCnfs);
-  const inputRef = useRef(null);
 
   const [toggleFiltre, setToggleFiltre] = useState(false);
 
@@ -66,12 +66,6 @@ function FiltersAndSorts({ resetPage, user, conseillersSearch }) {
       dispatch(conseillerActions.getAll(0, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom,
         ordreNom, ordre ? 1 : -1, user?.role === 'structure_coop' ? user?.entity.$id : filtreParStructureId));
       resetPage(1);
-      if (filtreParNom !== undefined) {
-        inputRef.current.value = filtreParNom;
-      }
-      if (filtreNomStructure !== undefined) {
-        inputRef.current.value = filtreNomStructure;
-      }
     }
     if (location.pathname === '/territoires') {
       const page = currentPage(pagination, location);
@@ -107,10 +101,11 @@ function FiltersAndSorts({ resetPage, user, conseillersSearch }) {
     // eslint-disable-next-line max-len
     const conseillerByStructure = conseillersSearch.find(conseiller => formatNomStructure(conseiller.nomStructure.toLowerCase()) === formatNomStructure(e.target.previousSibling.value.toLowerCase()));
     if (conseillerByStructure) {
-      dispatch(filtersAndSortsActions.changeStructureId(conseillerByStructure.structureId, e.target.previousSibling.value));
+      dispatch(filtersAndSortsActions.changeStructureId(conseillerByStructure.structureId));
     } else {
       dispatch(filtersAndSortsActions.changeNom(e.target.previousSibling.value));
     }
+    dispatch(filtersAndSortsActions.saveSearchInput(e.target.previousSibling.value));
   };
 
   return (
@@ -162,7 +157,7 @@ function FiltersAndSorts({ resetPage, user, conseillersSearch }) {
         {user?.role === 'admin_coop' &&
           <div className="rf-ml-auto rf-col-12 rf-col-md-4 rf-mb-4w rf-mb-md-0">
             <div className="rf-search-bar rf-search-bar" id="search" role="search" >
-              <input className="rf-input" ref={inputRef} placeholder="Rechercher par nom" type="search" id="search-input" name="search-input" />
+              <input className="rf-input" defaultValue={searchInput ?? ''} placeholder="Rechercher par nom" type="search" id="search-input" name="search-input" />
               <button className="rf-btn" onClick={rechercheParNomOuNomStructure} title="Rechercher par nom">
                 Rechercher
               </button>

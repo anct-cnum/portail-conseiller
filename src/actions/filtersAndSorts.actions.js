@@ -9,6 +9,7 @@ export const filtersAndSortsActions = {
   changeGroupeCRA,
   changeNom,
   changeStructureId,
+  saveSearchInput,
   resetFiltre
 };
 
@@ -50,12 +51,16 @@ function changeNom(nom) {
   return { type: 'CHANGE_NOM', nom };
 }
 
-function changeStructureId(structureId, nomStructure) {
-  return { type: 'CHANGE_STRUCTURE_ID', structureId, nomStructure };
+function changeStructureId(structureId) {
+  return { type: 'CHANGE_STRUCTURE_ID', structureId };
 }
 
 function changeTerritoire(territoire) {
   return { type: 'CHANGE_TERRITOIRE', territoire };
+}
+
+function saveSearchInput(searchInput) {
+  return { type: 'SAVE_SEARCH_INPUT', searchInput };
 }
 
 function resetFiltre() {
