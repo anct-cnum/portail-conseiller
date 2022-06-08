@@ -1,5 +1,4 @@
-/* eslint-disable max-len */
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import FilterDate from './FilterDate';
@@ -26,7 +25,7 @@ function FiltersAndSorts({ resetPage, user, conseillersSearch }) {
   let filtreGroupeCRA = useSelector(state => state.filtersAndSorts?.groupeCRA);
   let filtreParNom = useSelector(state => state.filtersAndSorts?.nom);
   let filtreParStructureId = useSelector(state => state.filtersAndSorts?.structureId);
-  const searchInput = useSelector(state => state.filtersAndSorts?.searchInput);
+  let searchInput = useSelector(state => state.filtersAndSorts?.searchInput);
   const pagination = useSelector(state => state.pagination);
   const exportTerritoireFileBlob = useSelector(state => state.statistique?.exportTerritoireFileBlob);
   const exportTerritoireFileError = useSelector(state => state.statistique?.exportTerritoireFileError);
@@ -157,7 +156,8 @@ function FiltersAndSorts({ resetPage, user, conseillersSearch }) {
         {user?.role === 'admin_coop' &&
           <div className="rf-ml-auto rf-col-12 rf-col-md-4 rf-mb-4w rf-mb-md-0">
             <div className="rf-search-bar rf-search-bar" id="search" role="search" >
-              <input className="rf-input" defaultValue={searchInput ?? ''} placeholder="Rechercher par nom" type="search" id="search-input" name="search-input" />
+              <input className="rf-input" defaultValue={searchInput ?? ''}
+                placeholder="Rechercher par nom" type="search" id="search-input" name="search-input" />
               <button className="rf-btn" onClick={rechercheParNomOuNomStructure} title="Rechercher par nom">
                 Rechercher
               </button>
