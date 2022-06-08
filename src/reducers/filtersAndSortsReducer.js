@@ -2,8 +2,11 @@ const initialState = {
   dateDebut: new Date(1605571200000),
   dateFin: new Date(),
   profil: 'tous',
+  nom: undefined,
   ordre: true,
   ordreNom: undefined,
+  structureId: null,
+  searchInput: undefined,
   territoire: 'codeDepartement',
 };
 
@@ -13,6 +16,18 @@ export default function filtersAndSorts(state = initialState, action) {
       return {
         ...state,
         dateDebut: action.dateDebut,
+      };
+    case 'CHANGE_NOM':
+      return {
+        ...state,
+        nom: action.nom,
+        structureId: undefined
+      };
+    case 'CHANGE_STRUCTURE_ID':
+      return {
+        ...state,
+        structureId: action.structureId,
+        nom: undefined
       };
     case 'CHANGE_DATE_FIN':
       return {
@@ -44,6 +59,15 @@ export default function filtersAndSorts(state = initialState, action) {
       return {
         ...state,
         territoire: action.territoire
+      };
+    case 'SAVE_SEARCH_INPUT':
+      return {
+        ...state,
+        searchInput: action.searchInput
+      };
+    case 'RESET_FILTER_AND_SORTS':
+      return {
+        ...initialState,
       };
     default:
       return state;

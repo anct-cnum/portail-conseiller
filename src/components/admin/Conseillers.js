@@ -19,6 +19,8 @@ function Conseillers() {
   let filtreProfil = useSelector(state => state.filtersAndSorts?.profil);
   let filtreCertifie = useSelector(state => state.filtersAndSorts?.certifie);
   let filtreGroupeCRA = useSelector(state => state.filtersAndSorts?.groupeCRA);
+  let filtreParNom = useSelector(state => state.filtersAndSorts?.nom);
+  let filtreParStructureId = useSelector(state => state.filtersAndSorts?.structureId);
   let ordre = useSelector(state => state.filtersAndSorts?.ordre);
   let ordreNom = useSelector(state => state.filtersAndSorts?.ordreNom);
   const user = useSelector(state => state?.authentication?.user?.user);
@@ -30,6 +32,7 @@ function Conseillers() {
   const [basculerFiltreCertifie, setBasculerFiltreCertifie] = useState(false);
 
   const [pageCount, setPageCount] = useState(0);
+  const [conseillersSearch, setConseillersSearch] = useState(undefined);
 
   const navigate = page => {
     setPage(page);
@@ -39,9 +42,10 @@ function Conseillers() {
       filtreProfil,
       filtreCertifie,
       filtreGroupeCRA,
+      filtreParNom,
       ordreNom,
       ordre ? 1 : -1,
-      user.role === 'structure_coop' ? user.entity.$id : null
+      user.role === 'structure_coop' ? user.entity.$id : filtreParStructureId,
     ));
   };
 
@@ -49,13 +53,16 @@ function Conseillers() {
     if (conseillers?.items) {
       const count = Math.floor(conseillers.items.total / conseillers.items.limit);
       setPageCount(conseillers.items.total % conseillers.items.limit === 0 ? count : count + 1);
+      if (conseillersSearch === undefined) {
+        setConseillersSearch(conseillers.items.data);
+      }
     }
   }, [conseillers]);
 
   useEffect(() => {
-    dispatch(conseillerActions.getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, ordreNom,
-      ordre ? 1 : -1, user.role === 'structure_coop' ? user.entity.$id : null));
-  }, [ordre, ordreNom, filtreProfil, filtreGroupeCRA]);
+    dispatch(conseillerActions.getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, ordreNom,
+      ordre ? 1 : -1, user.role === 'structure_coop' ? user.entity.$id : filtreParStructureId));
+  }, [ordre, ordreNom, filtreProfil, filtreGroupeCRA, filtreParNom, filtreParStructureId]);
 
   const filtreClick = e => {
     if (e.target.id === 'activer') {
@@ -92,7 +99,7 @@ function Conseillers() {
   return (
     <>
       <div className="conseillers">
-        <FiltersAndSorts resetPage={setPage} user={user} />
+        <FiltersAndSorts resetPage={setPage} user={user} conseillersSearch={conseillersSearch} />
         <div className="rf-container rf-mt-2w">
           <div className="rf-grid-row rf-grid-row--center">
             <div className="rf-col-12">

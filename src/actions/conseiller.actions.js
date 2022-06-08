@@ -16,7 +16,7 @@ export const conseillerActions = {
   resetExportDonneesCnfs,
   isFormulaireChecked,
   closeFormulaire,
-  isUserActif,
+  isUserActif
 };
 
 const formatDate = date => dayjs(date).format('DD-MM-YYYY');
@@ -55,11 +55,12 @@ function get(id) {
   }
 }
 
-function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, nomOrdre = 'prenom', ordre = 1, idStructure = null) {
+function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre = 'prenom', ordre = 1, filtreParStructureId) {
   return dispatch => {
     dispatch(request());
     let promises = [];
-    let promise = conseillerService.getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, nomOrdre, ordre, idStructure);
+    // eslint-disable-next-line max-len
+    let promise = conseillerService.getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre, ordre, filtreParStructureId);
     promises.push(promise);
 
     let conseillers = null;
@@ -195,11 +196,12 @@ function getStatistiquesHubCSV(hub) {
   }
 }
 
-function exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, nomOrdre = 'prenom', ordre = 1, idStructure = null) {
+// eslint-disable-next-line max-len
+function exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre = 'prenom', ordre = 1, idStructure) {
   return dispatch => {
     dispatch(request());
 
-    conseillerService.getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, nomOrdre, ordre, idStructure).then(
+    conseillerService.getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre, ordre, idStructure).then(
       exportCnfsFileBlob => dispatch(success(exportCnfsFileBlob)),
       exportCnfsFileError => dispatch(failure(exportCnfsFileError))
     );
