@@ -24,6 +24,7 @@ function Conseillers() {
   let ordre = useSelector(state => state.filtersAndSorts?.ordre);
   let ordreNom = useSelector(state => state.filtersAndSorts?.ordreNom);
   const user = useSelector(state => state?.authentication?.user?.user);
+  const initConseiller = useSelector(state => state.conseiller?.initConseiller);
 
   let location = useLocation();
   let [page, setPage] = (pagination?.resetPage === false && location.currentPage !== undefined) ? useState(location.currentPage) : useState(1);
@@ -52,6 +53,9 @@ function Conseillers() {
     if (conseillers?.items) {
       const count = Math.floor(conseillers.items.total / conseillers.items.limit);
       setPageCount(conseillers.items.total % conseillers.items.limit === 0 ? count : count + 1);
+      if (initConseiller === false) {
+        dispatch(conseillerActions.saveConseillerBeforeFilter(conseillers.items));
+      }
     }
   }, [conseillers]);
 
