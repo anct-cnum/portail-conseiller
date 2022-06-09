@@ -33,9 +33,7 @@ function FiltersAndSorts({ resetPage, user }) {
   const exportCnfsFileError = useSelector(state => state.conseiller?.exportCnfsFileError);
   const downloading = useSelector(state => state.statistique?.downloading);
   const downloadingExportCnfs = useSelector(state => state.conseiller?.downloadingExportCnfs);
-  const initConseiller = useSelector(state => state.conseiller?.initConseiller);
   const conseillerBeforeFilter = useSelector(state => state.conseiller?.conseillersBeforeFilter);
-  const conseillers = useSelector(state => state?.conseiller?.items);
 
   const [toggleFiltre, setToggleFiltre] = useState(false);
 
@@ -100,9 +98,6 @@ function FiltersAndSorts({ resetPage, user }) {
   .replaceAll('é', 'e');
 
   const rechercheParNomOuNomStructure = e => {
-    if (initConseiller === false) {
-      dispatch(conseillerActions.saveConseillerBeforeFilter(conseillers));
-    }
     // eslint-disable-next-line max-len
     const conseillerByStructure = conseillerBeforeFilter.find(conseiller => formatNomStructure(conseiller.nomStructure.toLowerCase()) === formatNomStructure(e.target.previousSibling.value.toLowerCase()));
     if (conseillerByStructure) {
