@@ -32,7 +32,6 @@ function Conseillers() {
   const [basculerFiltreCertifie, setBasculerFiltreCertifie] = useState(false);
 
   const [pageCount, setPageCount] = useState(0);
-  const [conseillersSearch, setConseillersSearch] = useState(undefined);
 
   const navigate = page => {
     setPage(page);
@@ -53,9 +52,6 @@ function Conseillers() {
     if (conseillers?.items) {
       const count = Math.floor(conseillers.items.total / conseillers.items.limit);
       setPageCount(conseillers.items.total % conseillers.items.limit === 0 ? count : count + 1);
-      if (conseillersSearch === undefined) {
-        setConseillersSearch(conseillers.items.data);
-      }
     }
   }, [conseillers]);
 
@@ -99,7 +95,7 @@ function Conseillers() {
   return (
     <>
       <div className="conseillers">
-        <FiltersAndSorts resetPage={setPage} user={user} conseillersSearch={conseillersSearch} />
+        <FiltersAndSorts resetPage={setPage} user={user} />
         <div className="rf-container rf-mt-2w">
           <div className="rf-grid-row rf-grid-row--center">
             <div className="rf-col-12">

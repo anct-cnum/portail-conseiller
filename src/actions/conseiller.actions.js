@@ -16,7 +16,8 @@ export const conseillerActions = {
   resetExportDonneesCnfs,
   isFormulaireChecked,
   closeFormulaire,
-  isUserActif
+  isUserActif,
+  saveConseillerBeforeFilter
 };
 
 const formatDate = date => dayjs(date).format('DD-MM-YYYY');
@@ -224,6 +225,10 @@ function resetExportDonneesCnfs() {
 
 function resetStatistiquesPDFFile() {
   return { type: 'RESET_FILE' };
+}
+
+function saveConseillerBeforeFilter(conseillers) {
+  return { type: 'GET_ALL_CONSEILLER_SEARCH_BAR', conseillers };
 }
 
 function isFormulaireChecked(sexe, isUpdated) {
