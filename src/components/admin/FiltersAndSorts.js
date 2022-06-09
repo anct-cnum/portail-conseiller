@@ -11,7 +11,7 @@ function currentPage(pagination, location) {
   return pagination?.resetPage === false && location.currentPage !== undefined ? location.currentPage : 1;
 }
 
-function FiltersAndSorts({ resetPage, user, conseillersSearch }) {
+function FiltersAndSorts({ resetPage, user }) {
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -33,6 +33,9 @@ function FiltersAndSorts({ resetPage, user, conseillersSearch }) {
   const exportCnfsFileError = useSelector(state => state.conseiller?.exportCnfsFileError);
   const downloading = useSelector(state => state.statistique?.downloading);
   const downloadingExportCnfs = useSelector(state => state.conseiller?.downloadingExportCnfs);
+  const initConseiller = useSelector(state => state.conseiller?.initConseiller);
+  const conseillerBeforeFilter = useSelector(state => state.conseiller?.conseillersBeforeFilter);
+  const conseillers = useSelector(state => state?.conseiller?.items);
 
   const [toggleFiltre, setToggleFiltre] = useState(false);
 
@@ -97,8 +100,11 @@ function FiltersAndSorts({ resetPage, user, conseillersSearch }) {
   .replaceAll('é', 'e');
 
   const rechercheParNomOuNomStructure = e => {
+    if (initConseiller === false) {
+      dispatch(conseillerActions.saveConseillerBeforeFilter(conseillers));
+    }
     // eslint-disable-next-line max-len
-    const conseillerByStructure = conseillersSearch.find(conseiller => formatNomStructure(conseiller.nomStructure.toLowerCase()) === formatNomStructure(e.target.previousSibling.value.toLowerCase()));
+    const conseillerByStructure = conseillerBeforeFilter.find(conseiller => formatNomStructure(conseiller.nomStructure.toLowerCase()) === formatNomStructure(e.target.previousSibling.value.toLowerCase()));
     if (conseillerByStructure) {
       dispatch(filtersAndSortsActions.changeStructureId(conseillerByStructure.structureId));
     } else {
