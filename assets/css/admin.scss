@@ -300,6 +300,9 @@
       bottom: unset !important;
     }
   }
+  .react-datepicker-popper {
+    z-index: 2;
+  }
   .react-datepicker__tab-loop {
     position: absolute;
     top: 0px;
@@ -399,10 +402,36 @@
     }
   }
 
-}
+  @media (max-width: 825px) {
+    .react-datepicker-popper {
+      transform: none !important;
+    }
+  }
 
-@media (max-width: 767px) {
-  .statistiques_nationales-btn, .export_conseillers-btn {
-    font-size: 14px !important;
+  @media (max-width: 767px) {
+    .statistiques_nationales-btn, .export_conseillers-btn {
+      font-size: 14px !important;
+    }
+  }
+
+  @media  (min-width: 381px) and(max-width: 447px) {
+    .react-datepicker-popper {
+      left: 8rem !important;
+      top: 52rem !important;
+    }
+  }
+
+  @media  (min-width: 688px) and (max-width: 825px) {
+    .react-datepicker-popper {
+      left: 10rem !important;
+      top: 35rem !important;
+    }
+  }
+
+  @media  (min-width: 360px) and(max-width: 380px) {
+    .react-datepicker-popper {
+      left: 8rem !important;
+      top: 53rem !important;
+    }
   }
 }

@@ -3,7 +3,9 @@ const initState = {
   loadingPDF: false,
   errorPDF: false,
   errorCSV: false,
-  downloadingExportCnfs: false
+  downloadingExportCnfs: false,
+  initConseiller: false,
+  conseillersBeforeFilter: []
 };
 
 export default function conseiller(state = initState, action) {
@@ -17,6 +19,12 @@ export default function conseiller(state = initState, action) {
       return {
         ...state,
         conseiller: action.conseiller
+      };
+    case 'GET_ALL_CONSEILLER_SEARCH_BAR':
+      return {
+        ...state,
+        initConseiller: true,
+        conseillersBeforeFilter: action.conseillers?.data
       };
     case 'GET_CONSEILLER_FAILURE':
       return {
