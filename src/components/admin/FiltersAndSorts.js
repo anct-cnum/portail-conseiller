@@ -60,8 +60,12 @@ function FiltersAndSorts({ resetPage, user }) {
 
   useEffect(() => {
     if (location.pathname === '/accueil') {
-      dispatch(conseillerActions.getAll(0, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA,
-        ordreNom, ordre ? 1 : -1, user?.role === 'structure_coop' ? user?.entity.$id : null));
+      if (user?.role !== 'coordinateur_coop') {
+        dispatch(conseillerActions.getAll(0, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA,
+          ordreNom, ordre ? 1 : -1, user?.role === 'structure_coop' ? user?.entity.$id : null));
+      } else {
+        dispatch(conseillerActions.getConseillersSubordonnes(0, dateDebut, dateFin, filtreProfil, ordreNom, ordre ? 1 : -1, user.entity.$id));
+      }
       resetPage(1);
     }
     if (location.pathname === '/territoires') {
@@ -81,8 +85,14 @@ function FiltersAndSorts({ resetPage, user }) {
   };
 
   const exportDonneesCnfs = () => {
-    dispatch(conseillerActions.exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA,
-      ordreNom, ordre ? 1 : -1, user?.role === 'structure_coop' ? user?.entity.$id : null));
+    if (user?.role === 'coordinateur_coop') {
+      dispatch(conseillerActions.exportDonneesSubordonnes(dateDebut, dateFin, filtreProfil,
+        ordreNom, ordre ? 1 : -1, user?.entity.$id));
+    } else {
+      dispatch(conseillerActions.exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA,
+        ordreNom, ordre ? 1 : -1, user?.role === 'structure_coop' ? user?.entity.$id : null));
+    }
+
   };
 
   return (

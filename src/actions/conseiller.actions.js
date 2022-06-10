@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 export const conseillerActions = {
   get,
   getAll,
+  getConseillersSubordonnes,
   getStatistiquesPDF,
   getStatistiquesAdminCoopPDF,
   getStatistiquesCSV,
@@ -13,6 +14,7 @@ export const conseillerActions = {
   getStatistiquesHubCSV,
   resetStatistiquesPDFFile,
   exportDonneesCnfs,
+  exportDonneesSubordonnes,
   resetExportDonneesCnfs,
   isFormulaireChecked,
   closeFormulaire,
@@ -82,6 +84,30 @@ function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGr
   }
   function failure(error) {
     return { type: 'GETALL_FAILURE', error };
+  }
+}
+function getConseillersSubordonnes(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, ordreNom, ordre, idCoordinateur) {
+  return dispatch => {
+    dispatch(request());
+    conseillerService.getConseillersSubordonnes(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, ordreNom, ordre, idCoordinateur)
+    .then(
+      data => {
+        dispatch(success(data));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'GET_SUBORDONES_REQUEST' };
+  }
+  function success(conseillers) {
+    return { type: 'GET_SUBORDONES_SUCCESS', conseillers };
+  }
+  function failure(error) {
+    return { type: 'GET_SUBORDONES_FAILURE', error };
   }
 }
 
@@ -200,6 +226,27 @@ function exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, fil
     dispatch(request());
 
     conseillerService.getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, nomOrdre, ordre, idStructure).then(
+      exportCnfsFileBlob => dispatch(success(exportCnfsFileBlob)),
+      exportCnfsFileError => dispatch(failure(exportCnfsFileError))
+    );
+  };
+
+  function request() {
+    return { type: 'GET_EXPORT_CNFS_REQUEST' };
+  }
+  function success(exportCnfsFileBlob) {
+    return { type: 'GET_EXPORT_CNFS_SUCCESS', exportCnfsFileBlob };
+  }
+  function failure(exportCnfsFileError) {
+    return { type: 'GET_EXPORT_CNFS_FAILURE', exportCnfsFileError };
+  }
+}
+
+function exportDonneesSubordonnes(dateDebut, dateFin, filtreProfil, nomOrdre = 'prenom', ordre = 1, idCoordinateur) {
+  return dispatch => {
+    dispatch(request());
+
+    conseillerService.exportDonneesSubordonnes(dateDebut, dateFin, filtreProfil, nomOrdre, ordre, idCoordinateur).then(
       exportCnfsFileBlob => dispatch(success(exportCnfsFileBlob)),
       exportCnfsFileError => dispatch(failure(exportCnfsFileError))
     );

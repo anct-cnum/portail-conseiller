@@ -170,6 +170,23 @@ export default function conseiller(state = initState, action) {
         ...state,
         error: action.error
       };
+    case 'GET_SUBORDONES_REQUEST':
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+    case 'GET_SUBORDONES_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        subordonnes: action.conseillers
+      };
+    case 'GET_SUBORDONES_FAILURE':
+      return {
+        ...state,
+        error: action.error
+      };
     case 'GET_EXPORT_CNFS_REQUEST':
       return {
         ...state,

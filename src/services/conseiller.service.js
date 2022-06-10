@@ -7,12 +7,14 @@ const apiUrlRoot = process.env.REACT_APP_API;
 export const conseillerService = {
   get,
   getAll,
+  getConseillersSubordonnes,
   getStatistiquesPDF,
   getStatistiquesAdminCoopPDF,
   getStatistiquesCSV,
   getStatistiquesAdminCoopCSV,
   createSexeAge,
   getExportDonneesCnfs,
+  exportDonneesSubordonnes,
   getStatistiquesHubCSV
 };
 
@@ -25,12 +27,14 @@ function get(id) {
   return fetch(`${apiUrlRoot}/conseillers/${id}`, requestOptions).then(handleResponse);
 }
 
-function cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreGroupeCRA, filtreCertifie, idStructure) {
+function cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreGroupeCRA, filtreCertifie, idStructure, idCoordinateur = null) {
   const ordreColonne = nomOrdre ? '&$sort[' + nomOrdre + ']=' + ordre : '';
   const filterDateStart = (dayjs(new Date(dateDebut)).format('DD/MM/YYYY') !== dayjs(new Date()).format('DD/MM/YYYY') && dateDebut !== '') ?
     `&datePrisePoste[$gt]=${new Date(dateDebut).toISOString()}` : '';
   const filterDateEnd = (dateFin !== '') ? `&datePrisePoste[$lt]=${new Date(dateFin).toISOString()}` : '';
   const filterStructureId = idStructure ? `&structureId=${idStructure}` : '';
+  const filterCoordinateurId = idCoordinateur ? `&coordinateurId=${idCoordinateur}` : '';
+
   let profil = '';
   switch (filtreProfil) {
     case 'tous':
@@ -60,12 +64,12 @@ function cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtrePr
       break;
   }
   let groupeCRA = '';
-  if (filtreGroupeCRA !== 'tous' && filtreGroupeCRA !== undefined) {
+  if (filtreGroupeCRA !== 'tous' && filtreGroupeCRA !== undefined && filtreGroupeCRA !== null) {
     const numeroGroupe = /\d/.exec(filtreGroupeCRA)[0];
     groupeCRA = `&groupeCRA=${numeroGroupe}`;
   }
 
-  return { ordreColonne, filterDateStart, filterDateEnd, filterStructureId, profil, groupeCRA, certifie };
+  return { ordreColonne, filterDateStart, filterDateEnd, filterStructureId, profil, groupeCRA, certifie, filterCoordinateurId };
 }
 
 function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, nomOrdre, ordre, idStructure = null) {
@@ -85,6 +89,18 @@ function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGr
   } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreGroupeCRA, filtreCertifie, idStructure);
   // eslint-disable-next-line max-len
   let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${profil}${certifie}${groupeCRA}${filterDateStart}${filterDateEnd}${filterStructureId}${ordreColonne}`;
+
+  return fetch(uri, requestOptions).then(handleResponse);
+}
+
+function getConseillersSubordonnes(page, dateDebut, dateFin, filtreProfil, ordreNom, ordre, idCoordinateur) {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  };
+
+  // eslint-disable-next-line max-len
+  let uri = `${apiUrlRoot}/conseillers/subordonnes?page=${page}&dateDebut=${dateDebut}&dateFin=${dateFin}&filtreProfil=${filtreProfil}&ordreNom=${ordreNom}&ordre=${ordre}&idCoordinateur=${idCoordinateur}`;
 
   return fetch(uri, requestOptions).then(handleResponse);
 }
@@ -179,6 +195,32 @@ function getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, 
 
   // eslint-disable-next-line max-len
   return fetch(`${apiUrlRoot}${exportCnfsRoute}?statut=RECRUTE${profil}${certifie}${groupeCRA}${filterDateStart}${filterDateEnd}${filterStructureId}${ordreColonne}`,
+    requestOptions
+  ).then(handleFileResponse);
+}
+
+function exportDonneesSubordonnes(dateDebut, dateFin, filtreProfil, nomOrdre, ordre, idCoordinateur) {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      ...authHeader(),
+      'Accept': 'text/plain',
+      'Content-Type': 'text/plain'
+    }
+  };
+
+  let {
+    ordreColonne,
+    filterDateStart,
+    filterDateEnd,
+    profil,
+    filterCoordinateurId
+  } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, null, null, null, idCoordinateur);
+
+  const exportCnfsRoute = '/exports/subordonnes.csv';
+
+  // eslint-disable-next-line max-len
+  return fetch(`${apiUrlRoot}${exportCnfsRoute}?statut=RECRUTE${profil}${filterDateStart}${filterDateEnd}${filterCoordinateurId}${ordreColonne}`,
     requestOptions
   ).then(handleFileResponse);
 }

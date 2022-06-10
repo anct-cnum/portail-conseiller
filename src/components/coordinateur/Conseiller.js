@@ -7,7 +7,7 @@ import ReactTooltip from 'react-tooltip';
 
 function Conseiller({ conseiller, currentPage, trClass, role }) {
 
-  const isUserActif = conseiller?.emailCNError !== undefined && conseiller?.mattermost !== undefined;
+  const isUserActif = conseiller?.mattermost?.length > 0 || conseiller?.mattermost?.error === false;
 
   return (
     <>
@@ -24,14 +24,8 @@ function Conseiller({ conseiller, currentPage, trClass, role }) {
         <td data-tip="Date Fin Formation">
           {conseiller?.dateFinFormation ? dayjs(conseiller?.dateFinFormation).format('DD/MM/YYYY') : 'Non renseign&eacute;e'}
         </td>
-        <td className="center-text" data-tip="Groupe CRA">
-          {conseiller?.groupeCRA}
-        </td>
-        <td className="center-text" data-tip="Certification">
-          {conseiller?.certifie ? <img src="logos/icone-check.svg"/> : <img src="logos/icone-croix.svg" /> }
-        </td>
         <td><div data-tip="Activ&eacute;" className={isUserActif ? 'circle-true' : 'circle-false'}></div></td>
-        <td data-tip="CRA saisis sur la p&eacute;riode">{conseiller?.craCount}</td>
+        <td data-tip="CRA saisis">{conseiller?.craCount}</td>
         <td>
           <Link className="rf-btn details-btn" style={{ boxShadow: 'none' }} to={{
             pathname: `/conseiller/${conseiller?._id}`,
