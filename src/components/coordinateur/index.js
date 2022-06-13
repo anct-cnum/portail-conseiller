@@ -12,6 +12,7 @@ import conseillerDetails from '../admin/ConseillerDetails';
 function Coordinateur() {
 
   const user = useSelector(state => state.authentication.user.user);
+
   return (
     <>
       <Header linkAccount={user?.name}/>

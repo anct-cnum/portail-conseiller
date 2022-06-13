@@ -176,6 +176,7 @@ export default function conseiller(state = initState, action) {
     case 'GETALL_FAILURE':
       return {
         ...state,
+        loading: false,
         error: action.error
       };
     case 'GET_SUBORDONES_REQUEST':
@@ -193,6 +194,25 @@ export default function conseiller(state = initState, action) {
     case 'GET_SUBORDONES_FAILURE':
       return {
         ...state,
+        loading: false,
+        error: action.error
+      };
+    case 'IS_SUBORDONE_REQUEST':
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+    case 'IS_SUBORDONE_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        isSubordonne: action.bool
+      };
+    case 'IS_SUBORDONE_FAILURE':
+      return {
+        ...state,
+        loading: false,
         error: action.error
       };
     case 'GET_EXPORT_CNFS_REQUEST':
@@ -226,6 +246,7 @@ export default function conseiller(state = initState, action) {
         ...state,
         isUserActif: action.isUserActif,
       };
+
     default:
       return state;
   }

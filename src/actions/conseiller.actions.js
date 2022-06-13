@@ -19,6 +19,7 @@ export const conseillerActions = {
   isFormulaireChecked,
   closeFormulaire,
   isUserActif,
+  isSubordonne,
   saveConseillerBeforeFilter
 };
 
@@ -292,3 +293,30 @@ function isUserActif(conseiller) {
   const isUserActif = conseiller?.emailCNError !== undefined && conseiller?.mattermost !== undefined;
   return { type: 'IS_USER_ACTIF', isUserActif };
 }
+
+function isSubordonne(coordinateurId, conseillerId) {
+  return dispatch => {
+    dispatch(request());
+    conseillerService.isSubordonne(coordinateurId, conseillerId)
+    .then(
+      data => {
+        dispatch(success(data));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'IS_SUBORDONE_REQUEST' };
+  }
+  function success(bool) {
+    return { type: 'IS_SUBORDONE_SUCCESS', bool };
+  }
+  function failure(error) {
+    return { type: 'IS_SUBORDONE_FAILURE', error };
+  }
+}
+
+

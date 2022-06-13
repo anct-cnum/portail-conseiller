@@ -15,7 +15,8 @@ export const conseillerService = {
   createSexeAge,
   getExportDonneesCnfs,
   exportDonneesSubordonnes,
-  getStatistiquesHubCSV
+  getStatistiquesHubCSV,
+  isSubordonne
 };
 
 function get(id) {
@@ -206,9 +207,7 @@ function exportDonneesSubordonnes(dateDebut, dateFin, filtreProfil, nomOrdre, or
   const requestOptions = {
     method: 'GET',
     headers: {
-      ...authHeader(),
-      'Accept': 'text/plain',
-      'Content-Type': 'text/plain'
+      ...authHeader()
     }
   };
 
@@ -226,6 +225,17 @@ function exportDonneesSubordonnes(dateDebut, dateFin, filtreProfil, nomOrdre, or
   return fetch(`${apiUrlRoot}${exportCnfsRoute}?statut=RECRUTE${profil}${filterDateStart}${filterDateEnd}${filterCoordinateurId}${ordreColonne}`,
     requestOptions
   ).then(handleFileResponse);
+}
+
+function isSubordonne(coordinateurId, conseillerId) {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  };
+
+  let uri = `${apiUrlRoot}/conseiller/isSubordonne?idCoordinateur=${coordinateurId}&idConseiller=${conseillerId}`;
+
+  return fetch(uri, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
