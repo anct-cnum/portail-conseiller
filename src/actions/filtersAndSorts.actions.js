@@ -6,7 +6,11 @@ export const filtersAndSortsActions = {
   changeProfil,
   changeCertifie,
   changeTerritoire,
-  changeGroupeCRA
+  changeGroupeCRA,
+  changeNom,
+  changeStructureId,
+  saveSearchInput,
+  resetFiltre
 };
 
 function updateOrder(order) {
@@ -38,10 +42,27 @@ function changeProfil(dataProfil) {
 function changeCertifie(dataCertifie) {
   return { type: 'CHANGE_CERTIFIE', dataCertifie };
 }
+
 function changeGroupeCRA(dataGroupeCRA) {
   return { type: 'CHANGE_GROUPECRA', dataGroupeCRA };
 }
+
+function changeNom(nom) {
+  return { type: 'CHANGE_NOM', nom };
+}
+
+function changeStructureId(structureId) {
+  return { type: 'CHANGE_STRUCTURE_ID', structureId };
+}
+
 function changeTerritoire(territoire) {
   return { type: 'CHANGE_TERRITOIRE', territoire };
 }
 
+function saveSearchInput(searchInput) {
+  return { type: 'SAVE_SEARCH_INPUT', searchInput };
+}
+
+function resetFiltre() {
+  return { type: 'RESET_FILTER_AND_SORTS' };
+}
