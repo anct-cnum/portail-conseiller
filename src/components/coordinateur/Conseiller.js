@@ -7,7 +7,7 @@ import ReactTooltip from 'react-tooltip';
 
 function Conseiller({ conseiller, currentPage, trClass, role }) {
 
-  const isUserActif = conseiller?.mattermost?.length > 0 || conseiller?.mattermost?.error === false;
+  const isUserActif = conseiller?.mattermost?.error === false;
 
   return (
     <>
