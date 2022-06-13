@@ -165,6 +165,7 @@ export default function conseiller(state = initState, action) {
     case 'GETALL_REQUEST':
       return {
         ...state,
+        error: false,
         loading: true
       };
     case 'GETALL_SUCCESS':
