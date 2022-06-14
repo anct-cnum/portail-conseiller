@@ -49,6 +49,18 @@ function Ressourcerie() {
         <div className="rf-grid-row">
           <div className="rf-col-12 rf-col-md-10">
             <h1 className="titre rf-mt-2w rf-mb-1w rf-mt-md-5w rf-mb-md-6w">Ressourcerie</h1>
+            <div className="div-info-annonce-ressourcerie rf-mb-3w rf-py-1w">
+              <i className="ri-information-line information icone-info-annonce"></i>
+              <p className="margin-info">
+                  A partir du 27 juin, la ressourcerie sera intégrée à La Base, nouvelle plateforme développée par l&apos;ANCT pour
+                  favoriser la mise en réseau des ressources de l&apos;inclusion et de la médiation numériques.
+                  En plus d&apos;y retrouver les tutoriels déjà présents sur la ressourcerie, vous pourrez en découvrir d&apos;autres
+                  publiés par les acteurs et actrices du secteur (Hubs territoriaux pour un numérique inclusif, administrations,
+                  collectivités, associations, entreprises de l&apos;ESS).
+                  Un mail contenant un lien d&apos;inscription à La Base vous sera très prochainement envoyés, restez connecté-e !
+                  Pour plus d&apos;informations sur La Base : La Base - Societé Numérique (societenumerique.gouv.fr)
+              </p>
+            </div>
           </div>
           <div className="rf-col-12 rf-col-md-6">
             <Thematiques />
