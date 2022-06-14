@@ -157,24 +157,22 @@ function Welcome() {
                       className="document-btn rf-mt-5w rf-mb-4w" title="Kit bien d&eacute;marrer ma mission">
                       T&eacute;l&eacute;chargez le kit « Bien d&eacute;marrer ma mission »
                     </a>
-                    <p className="rf-mb-8w rf-mr-md-1w">
-                      Ce document contient tout ce qu&rsquo;il faut savoir pour bien commencer votre activit&eacute; de Conseiller
-                      num&eacute;rique France Services depuis votre inscription jusqu&rsquo;&agrave; votre entr&eacute;e en poste : les bons r&eacute;flexes
-                      &agrave; avoir, les outils d&rsquo;inclusion num&eacute;rique &agrave; connaître,
-                      l&rsquo;organisation des structures de m&eacute;diation num&eacute;rique sur les territoires ainsi que leurs contacts.
+                    <p className="rf-mb-8w rf-ml-md-3w document-text">
+                      Ce document contient tout ce qu’il faut savoir pour bien commencer votre activité de
+                      Conseiller numérique France Services depuis votre inscription jusqu’à votre entrée
+                      en poste.
                     </p>
                   </div>
                   <div className="rf-col-12 rf-col-md-6 rf-mt-7w">
-                    <img src="/logos/home-connected/pres-kit-communication.png" className="rf-ml-md-3v img-home"/>
+                    <img src="/logos/home-connected/previews-elements-communication.png" className="rf-ml-md-3v img-home"/>
                     <a href="https://www.conseiller-numerique.gouv.fr/kit-communication" title="kit de communication" target="blank"
-                      className="kit-communication-btn rf-ml-md-3v rf-mt-5w rf-mb-4w">
+                      className="kit-communication-btn rf-mt-5w rf-mb-4w">
                         Acc&eacute;der au kit de communication
                     </a>
-                    <p className="rf-mb-8w rf-ml-md-3v">
-                      Pour votre communication interne ou externe : papeterie, r&eacute;seaux sociaux, signal&eacute;tiques, etc, un kit
-                      de communication est mis &agrave; votre disposition. Cette seconde version comprend notamment la mise &agrave; jour de ces
-                      &eacute;l&eacute;ments :
-                      illustrations, signature mail, cartes de visites imprimables, charte graphique, supports pour les r&eacute;seaux sociaux, etc.
+                    <p className="rf-mb-8w rf-ml-md-5w kit-communication-text">
+                    Pour votre communication interne ou externe : papeterie, réseaux sociaux, signalétiques,
+                    etc, cette seconde mise à jour du kit de communication est mis à votre disposition
+                    (illustrations, charte graphique, cartes de visite, etc).
                     </p>
                   </div>
                 </div>
@@ -191,29 +189,30 @@ function Welcome() {
                   <div className="rf-col-12 rf-col-lg-6">
                     <h2 className="titre rf-my-7w">
                       <img src="/logos/home-connected/hexagone-3.svg" className="hexagone"/>
-                      &Agrave; venir sur l&rsquo;espace Coop
+                      Nouveaut&eacute;s Coop et am&eacute;liorations à venir
                     </h2>
-
-                    <p>
-                      – Une mise &agrave; jour de l&rsquo;outil de suivi d&rsquo;activit&eacute; (version 2).<br/>
-                      – Une mise &agrave; jour du kit de communication (troisi&egrave;me version), comprenant  en premier lieu la fourniture d&rsquo;un
-                      d&eacute;pliant d&eacute;crivant le dispositif CnFS, adaptable en fonction de votre cadre de travail (structure et
-                      coordonn&eacute;es).<br/>
-                      – Un fil d&rsquo;actualit&eacute;s r&eacute;guli&egrave;res de la communaut&eacute; Conseiller num&eacute;rique France Services ;<br/>
-                      – Des temps de rencontres d&eacute;di&eacute;s ;<br/>
-                      – Une fonction de prise de rendez-vous ;<br/>
-                      – Une visualisation nationale des lieux de m&eacute;diation num&eacute;rique accessible via le site vitrine des conseillers
-                      num&eacute;riques France Services.<br/>
-                      <br/>
-                      <Link to="/a-propos" title="Acc&eacute;der &agrave; la page &agrave; propos" className="propos-btn">
-                        &Agrave; propos des services en ligne des conseillers num&eacute;riques
-                      </Link>
-                      <a></a>
+                    <span>Nouveaut&eacute;s :</span>
+                    <p style={{ 'max-width': '588px' }}>
+                      – Publication de la troisième édition du kit de communication<br/>
+                      – Outil d’enregistrement de vos lieux d’activité de médiation numérique pour leur
+                      affichage sur la carte nationale Conseiller numérique France Services.<br/>
                     </p>
+                    <span>Améliorations à venir :</span>
+                    <p>
+                      – Outil de suivi d’activité<br/>
+                      – Kit Bien démarrer ma mission<br/>
+                      - Mise à disposition d’un outil de prise de rendez-vous en ligne.<br/>
+                      - Création d’un fil d’actualité sur la Coop<br/>
+                      - Création d’un wiki de la médiation numérique<br/>
+                    </p>
+                    <Link to="/a-propos" title="Acc&eacute;der &agrave; la page &agrave; propos" className="propos-btn">
+                        &Agrave; propos des services en ligne des conseillers num&eacute;riques
+                    </Link>
+                    <a></a>
                   </div>
 
                   <div className="rf-col-12 rf-col-lg-6 rf-my-7w">
-                    <img src="/logos/home-connected/illustration-bas-de-page.svg" className="rf-ml-md-3v img-home-futur"/>
+                    <img src="/logos/home-connected/utilisateurs.svg" className="rf-ml-md-3v img-home-futur"/>
                   </div>
 
                   <div className="rf-col-12 rf-mb-12w"></div>
