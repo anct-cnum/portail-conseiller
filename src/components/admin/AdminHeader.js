@@ -27,19 +27,17 @@ function AdminHeader({ role }) {
       <div className="rf-container">
         {errorCSV &&
           <FlashMessage duration={5000}>
-            <p className="flashBag invalid">
-            Aucun conseillers n&rsquo;est actuellement à M+2
-            </p>
+            <p className="flashBag invalid">Aucun conseillers n&rsquo;est actuellement à M+2</p>
           </FlashMessage>
         }
         <div className="rf-grid-row rf-grid-row--right">
-          <div className={`rf-col-xs-12 rf-col-md-4 ${role !== 'admin_coop' ? 'rf-mt-5w rf-mb-6w' : 'rf-mt-md-1w'}`}>
+          <div className={`rf-col-xs-12 rf-col-md-4 ${role !== 'admin_coop' ? 'rf-mt-5w rf-mb-6w' : ''}`}>
             <a className="statistiques_nationales-btn" href="statistiques-nationales">Statistiques Nationales</a>
             { role === 'structure_coop' &&
               <a className="mes_statistiques-btn rf-ml-4w" href="mes-statistiques">Mes statistiques</a>
             }
             { role === 'admin_coop' &&
-              <button className="mes_statistiques-btn rf-ml-4w" onClick={exportDonneesCnfs}>Export CnFS M+2</button>
+              <button className="export_cnfs-btn rf-ml-4w" onClick={exportDonneesCnfs}>Export CnFS M+2</button>
             }
           </div>
           <div
