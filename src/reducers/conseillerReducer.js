@@ -201,19 +201,26 @@ export default function conseiller(state = initState, action) {
       return {
         ...state,
         loading: true,
+        loaded: false,
         error: false,
       };
     case 'IS_SUBORDONE_SUCCESS':
       return {
         ...state,
         loading: false,
+        loaded: true,
         isSubordonne: action.bool
       };
     case 'IS_SUBORDONE_FAILURE':
       return {
         ...state,
         loading: false,
+        loaded: true,
         error: action.error
+      };
+    case 'RESET_IS_SUBORDONE':
+      return {
+        loaded: false
       };
     case 'GET_EXPORT_CNFS_REQUEST':
       return {

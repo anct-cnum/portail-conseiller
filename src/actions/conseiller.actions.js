@@ -20,7 +20,8 @@ export const conseillerActions = {
   closeFormulaire,
   isUserActif,
   isSubordonne,
-  saveConseillerBeforeFilter
+  saveConseillerBeforeFilter,
+  resetIsSubordonne
 };
 
 const formatDate = date => dayjs(date).format('DD-MM-YYYY');
@@ -300,7 +301,7 @@ function isSubordonne(coordinateurId, conseillerId) {
     conseillerService.isSubordonne(coordinateurId, conseillerId)
     .then(
       data => {
-        dispatch(success(data));
+        dispatch(success(data.isSubordonne));
       },
       error => {
         dispatch(failure(error));
@@ -317,6 +318,11 @@ function isSubordonne(coordinateurId, conseillerId) {
   function failure(error) {
     return { type: 'IS_SUBORDONE_FAILURE', error };
   }
+}
+
+function resetIsSubordonne() {
+  return { type: 'RESET_IS_SUBORDONE' };
+
 }
 
 

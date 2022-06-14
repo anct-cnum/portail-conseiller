@@ -15,6 +15,7 @@ function ConseillerDetails({ location }) {
   const isUserActif = useSelector(state => state.conseiller?.isUserActif);
   const user = useSelector(state => state?.authentication?.user?.user);
   const isSubordonne = useSelector(state => state?.conseiller?.isSubordonne);
+  const loadedIsSubordonee = useSelector(state => state?.conseiller?.loaded);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -32,10 +33,11 @@ function ConseillerDetails({ location }) {
   }, [conseiller]);
 
   useEffect(() => {
-    if (user?.role === 'coordinateur_coop' && !isSubordonne) {
+    if (loadedIsSubordonee && user?.role === 'coordinateur_coop' && !isSubordonne) {
+      dispatch(conseillerActions.resetIsSubordonne());
       dispatch(userActions.logout());
     }
-  }, [isSubordonne]);
+  }, [isSubordonne, loadedIsSubordonee]);
 
   return (
     <div className="rf-container conseillerDetails">
