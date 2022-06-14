@@ -184,6 +184,26 @@ export default function conseiller(state = initState, action) {
         ...state,
         downloadingExportCnfs: true,
       };
+    case 'GET_EXPORT_CNFS_WITHOUT_CRA_REQUEST':
+      return {
+        ...state,
+        loadingCSV: true,
+        errorCSV: false
+      };
+    case 'GET_EXPORT_CNFS_WITHOUT_CRA_SUCCESS':
+      return {
+        ...state,
+        blob: action.data,
+        exportCnfsFileWithoutCRA: action.download,
+        loadingCSV: false,
+        errorCSV: false
+      };
+    case 'GET_EXPORT_CNFS_WITHOUT_CRA_FAILURE':
+      return {
+        ...state,
+        errorCSV: action.error,
+        loadingCSV: false
+      };
     case 'GET_EXPORT_CNFS_SUCCESS':
       return {
         ...state,

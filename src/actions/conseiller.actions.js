@@ -17,7 +17,8 @@ export const conseillerActions = {
   isFormulaireChecked,
   closeFormulaire,
   isUserActif,
-  saveConseillerBeforeFilter
+  saveConseillerBeforeFilter,
+  exportDonneesCnfsWithoutCRA
 };
 
 const formatDate = date => dayjs(date).format('DD-MM-YYYY');
@@ -216,6 +217,27 @@ function exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, fil
   }
   function failure(exportCnfsFileError) {
     return { type: 'GET_EXPORT_CNFS_FAILURE', exportCnfsFileError };
+  }
+}
+
+function exportDonneesCnfsWithoutCRA() {
+  return dispatch => {
+    dispatch(request());
+
+    conseillerService.getExportDonneesCnfsWithoutCRA().then(
+      data => dispatch(success(data, download(data, 'export_cnfs_m2.csv'))),
+      error => dispatch(failure(error))
+    );
+  };
+
+  function request() {
+    return { type: 'GET_EXPORT_CNFS_WITHOUT_CRA_REQUEST' };
+  }
+  function success(data, download) {
+    return { type: 'GET_EXPORT_CNFS_WITHOUT_CRA_SUCCESS', data, download };
+  }
+  function failure(error) {
+    return { type: 'GET_EXPORT_CNFS_WITHOUT_CRA_FAILURE', error };
   }
 }
 

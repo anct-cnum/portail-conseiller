@@ -13,7 +13,8 @@ export const conseillerService = {
   getStatistiquesAdminCoopCSV,
   createSexeAge,
   getExportDonneesCnfs,
-  getStatistiquesHubCSV
+  getStatistiquesHubCSV,
+  getExportDonneesCnfsWithoutCRA
 };
 
 function get(id) {
@@ -183,6 +184,17 @@ function getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, 
   return fetch(`${apiUrlRoot}${exportCnfsRoute}?statut=RECRUTE${profil}${certifie}${groupeCRA}${filterByName}${filterDateStart}${filterDateEnd}${filterStructureId}${ordreColonne}`,
     requestOptions
   ).then(handleFileResponse);
+}
+
+function getExportDonneesCnfsWithoutCRA() {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  };
+
+  const exportCnfsRoute = '/exports_without_cra/cnfs.csv';
+
+  return fetch(`${apiUrlRoot}${exportCnfsRoute}`, requestOptions).then(handleFileResponse);
 }
 
 function handleResponse(response) {
