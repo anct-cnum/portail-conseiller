@@ -18,15 +18,18 @@ function MesPermanences() {
   const isConseillerDeleted = useSelector(state => state.permanence.isConseillerDeleted);
 
   //Tri pour obtenir le lieu principal en premier
-  if (listPermanences) {
-    for (let i = 0; i < listPermanences.length; i++) {
-      if (listPermanences[i].lieuPrincipalPour.includes(conseiller._id) === true) {
-        mesPermanences[0] = listPermanences[i];
-      } else {
-        mesPermanences[i + 1] = listPermanences[i];
+  useEffect(() => {
+    if (listPermanences) {
+      console.log(listPermanences);
+      for (let i = 0; i < listPermanences.length; i++) {
+        if (listPermanences[i]?.lieuPrincipalPour.includes(conseiller._id) === true) {
+          mesPermanences[0] = listPermanences[i];
+        } else {
+          mesPermanences[i + 1] = listPermanences[i];
+        }
       }
     }
-  }
+  }, [listPermanences]);
 
   useEffect(() => {
     if (!conseiller) {

@@ -14,7 +14,6 @@ import Validation from './Validation';
 import Footer from '../../Footer';
 
 function PermanenceCreate() {
-
   const dispatch = useDispatch();
 
   const urlCartographie = process.env.REACT_APP_CARTOGRAPHIE_URL;
@@ -58,12 +57,11 @@ function PermanenceCreate() {
       }, 3000);
     }
   }, [isCreated, isUpdated]);
-
+  console.log(conseiller?.hasPermanence);
   return (
     <>
       <div id="formulaire-horaires-adresse" >
         <Banner/>
-
         {(isCreated || isUpdated) &&
           <p className="rf-label flashBag">
             Votre lieu d&rsquo;activit&eacute; a bien &eacute;t&eacute;&nbsp;
@@ -84,7 +82,17 @@ function PermanenceCreate() {
               'Une erreur est survenue lors du traitement de vos informations'}
           </p>
         }
-        {(conseiller && structure) &&
+
+        {(conseiller && !conseiller?.hasPermanence && structure) &&
+          <div className="rf-container">
+            <div className="rf-grid-row">
+              <div className="rf-col-12 rf-ml-12w">
+                <h2 className="titre-acces rf-my-9w ">Vous n&rsquo;avez pas acc&egrave;s &agrave; ce formulaire pour le moment !</h2>
+              </div>
+            </div>
+          </div>
+        }
+        {(conseiller && conseiller?.hasPermanence && structure) &&
           <>
             <ContactProfessionel conseiller={conseiller} />
             <div className="rf-container">
