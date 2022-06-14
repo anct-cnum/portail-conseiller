@@ -57,7 +57,7 @@ function PermanenceCreate() {
       }, 3000);
     }
   }, [isCreated, isUpdated]);
-  console.log(conseiller?.hasPermanence);
+  
   return (
     <>
       <div id="formulaire-horaires-adresse" >
