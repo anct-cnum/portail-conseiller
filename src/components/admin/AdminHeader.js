@@ -19,9 +19,10 @@ function AdminHeader({ role }) {
     }
   });
 
-  const exportDonneesCnfs = () => {
+  const exportDonneesCnfsWithoutCRA = () => {
     dispatch(conseillerActions.exportDonneesCnfsWithoutCRA());
   };
+
   return (
     <>
       <div className="rf-container">
@@ -37,7 +38,7 @@ function AdminHeader({ role }) {
               <a className="mes_statistiques-btn rf-ml-4w" href="mes-statistiques">Mes statistiques</a>
             }
             { role === 'admin_coop' &&
-              <button className="export_cnfs-btn rf-ml-4w" onClick={exportDonneesCnfs}>Export CnFS M+2</button>
+              <button className="export_cnfs-btn rf-ml-4w" onClick={exportDonneesCnfsWithoutCRA}>Export CnFS M+2</button>
             }
           </div>
           <div
