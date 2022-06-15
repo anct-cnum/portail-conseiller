@@ -38,7 +38,7 @@ function AdminHeader({ role }) {
               <a className="mes_statistiques-btn rf-ml-4w" href="mes-statistiques">Mes statistiques</a>
             }
             { role === 'admin_coop' &&
-              <button className="export_cnfs-btn rf-ml-4w" onClick={exportDonneesCnfsWithoutCRA}>Export CnFS M+2</button>
+              <button className="export_cnfs_without_cra-btn rf-ml-2w" onClick={exportDonneesCnfsWithoutCRA}>Export CnFS 0 CRA M+2</button>
             }
           </div>
           <div

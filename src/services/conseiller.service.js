@@ -192,7 +192,7 @@ function getExportDonneesCnfsWithoutCRA() {
     headers: authHeader()
   };
 
-  const exportCnfsRoute = '/exports_without_cra/cnfs.csv';
+  const exportCnfsRoute = '/exports-without-cra/cnfs.csv';
 
   return fetch(`${apiUrlRoot}${exportCnfsRoute}`, requestOptions).then(handleFileResponse);
 }
