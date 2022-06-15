@@ -76,7 +76,6 @@ function Conseillers() {
   return (
     <>
       <div className="conseillers">
-
         <FiltersAndSorts resetPage={setPage} user={user} />
         <div className="rf-container rf-mt-2w">
           <div className="rf-grid-row rf-grid-row--center">

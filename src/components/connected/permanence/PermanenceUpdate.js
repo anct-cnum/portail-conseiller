@@ -165,8 +165,6 @@ function PermanenceUpdate({ match }) {
     }
   }, [isUpdated, isCreated]);
 
-  console.log(structure);
-
   return (
     <>
       {(!maPermanenceLoading && !maPermanenceError) &&

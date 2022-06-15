@@ -206,12 +206,10 @@ function getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, 
 function exportDonneesSubordonnes(dateDebut, dateFin, filtreProfil, nomOrdre, ordre, idCoordinateur) {
   const requestOptions = {
     method: 'GET',
-    headers: {
-      ...authHeader()
-    }
+    headers: authHeader()
   };
 
-  let {
+  const {
     ordreColonne,
     filterDateStart,
     filterDateEnd,
