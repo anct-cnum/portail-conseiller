@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { conseillerActions, permanenceActions } from '../../../actions';
@@ -12,7 +12,8 @@ function MesPermanences() {
   const dispatch = useDispatch();
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const listPermanences = useSelector(state => state.permanence?.mesPermanences);
-  const mesPermanences = Array.from({ length: listPermanences?.length }, () => ({}));
+
+  const [mesPermanences, setMesPermanences] = useState([]);
 
   const isDeleted = useSelector(state => state.permanence.isDeleted);
   const isConseillerDeleted = useSelector(state => state.permanence.isConseillerDeleted);
@@ -20,6 +21,7 @@ function MesPermanences() {
   //Tri pour obtenir le lieu principal en premier
   useEffect(() => {
     if (listPermanences) {
+      setMesPermanences(Array.from({ length: listPermanences?.length }, () => ({})));
       for (let i = 0; i < listPermanences.length; i++) {
         if (listPermanences[i]?.lieuPrincipalPour.includes(conseiller._id) === true) {
           mesPermanences[0] = listPermanences[i];
@@ -27,6 +29,7 @@ function MesPermanences() {
           mesPermanences[i + 1] = listPermanences[i];
         }
       }
+      setMesPermanences(mesPermanences);
     }
   }, [listPermanences]);
 
