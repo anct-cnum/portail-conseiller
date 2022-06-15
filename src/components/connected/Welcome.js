@@ -212,7 +212,7 @@ function Welcome() {
                   </div>
 
                   <div className="rf-col-12 rf-col-lg-6 rf-my-7w">
-                    <img src="/logos/home-connected/utilisateurs.png" className="img-home-futur"/>
+                    <img src="/logos/home-connected/utilisateurs.svg" className="img-home-futur"/>
                   </div>
 
                   <div className="rf-col-12 rf-mb-12w"></div>
