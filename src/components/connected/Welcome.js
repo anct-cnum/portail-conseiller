@@ -155,11 +155,11 @@ function Welcome() {
                     <img src="/logos/home-connected/pres-guide-bien-demarrer-ma-mission.png" className="rf-mr-md-1w img-home"/>
                     <a href="https://cdn.conseiller-numerique.gouv.fr/les-conseils-pour-bien-demarrer.pdf" target="blank"
                       className="document-btn rf-mt-5w rf-mb-4w" title="Kit bien d&eacute;marrer ma mission">
-                      T&eacute;l&eacute;chargez le kit « Bien d&eacute;marrer ma mission »
+                      T&eacute;l&eacute;chargez le kit &laquo; Bien d&eacute;marrer ma mission &raquo;
                     </a>
                     <p className="rf-mb-8w rf-ml-md-3w document-text">
-                      Ce document contient tout ce qu’il faut savoir pour bien commencer votre activité de
-                      Conseiller numérique France Services depuis votre inscription jusqu’à votre entrée
+                      Ce document contient tout ce qu&rsquo;il faut savoir pour bien commencer votre activit&eacute; de
+                      Conseiller num&eacute;rique France Services depuis votre inscription jusqu&rsquo;&agrave; votre entr&eacute;e
                       en poste.
                     </p>
                   </div>
@@ -170,8 +170,8 @@ function Welcome() {
                         Acc&eacute;der au kit de communication
                     </a>
                     <p className="rf-mb-8w rf-ml-md-5w kit-communication-text">
-                    Pour votre communication interne ou externe : papeterie, réseaux sociaux, signalétiques,
-                    etc, cette seconde mise à jour du kit de communication est mis à votre disposition
+                    Pour votre communication interne ou externe : papeterie, r&eacute;seaux sociaux, signal&eacute;tiques,
+                    etc, cette seconde mise &agrave; jour du kit de communication est mis &agrave; votre disposition
                     (illustrations, charte graphique, cartes de visite, etc).
                     </p>
                   </div>
@@ -189,21 +189,21 @@ function Welcome() {
                   <div className="rf-col-12 rf-col-lg-6">
                     <h2 className="titre rf-my-7w">
                       <img src="/logos/home-connected/hexagone-3.svg" className="hexagone"/>
-                      Nouveaut&eacute;s Coop et am&eacute;liorations à venir
+                      Nouveaut&eacute;s Coop et am&eacute;liorations &agrave; venir
                     </h2>
                     <span>Nouveaut&eacute;s :</span>
                     <p style={{ 'max-width': '588px' }}>
-                      – Publication de la troisième édition du kit de communication<br/>
-                      – Outil d’enregistrement de vos lieux d’activité de médiation numérique pour leur
-                      affichage sur la carte nationale Conseiller numérique France Services.<br/>
+                      – Publication de la troisi&egrave;me &eacute;dition du kit de communication<br/>
+                      – Outil d&rsquo;enregistrement de vos lieux d&rsquo;activit&eacute; de m&eacute;diation num&eacute;rique pour leur
+                      affichage sur la carte nationale Conseiller num&eacute;rique France Services.<br/>
                     </p>
-                    <span>Améliorations à venir :</span>
+                    <span>Am&eacute;liorations à venir :</span>
                     <p>
-                      – Outil de suivi d’activité<br/>
-                      – Kit Bien démarrer ma mission<br/>
-                      - Mise à disposition d’un outil de prise de rendez-vous en ligne.<br/>
-                      - Création d’un fil d’actualité sur la Coop<br/>
-                      - Création d’un wiki de la médiation numérique<br/>
+                      – Outil de suivi d&rsquo;activit&eacute;<br/>
+                      – Kit Bien d&eacute;marrer ma mission<br/>
+                      – Mise &agrave; disposition d&rsquo;un outil de prise de rendez-vous en ligne.<br/>
+                      – Cr&eacute;ation d&rsquo;un fil d&rsquo;actualit&eacute; sur la Coop<br/>
+                      – Cr&eacute;ation d&rsquo;un wiki de la m&eacute;diation num&eacute;rique<br/>
                     </p>
                     <Link to="/a-propos" title="Acc&eacute;der &agrave; la page &agrave; propos" className="propos-btn">
                         &Agrave; propos des services en ligne des conseillers num&eacute;riques
