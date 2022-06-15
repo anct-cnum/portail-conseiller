@@ -155,7 +155,7 @@ function Welcome() {
                     <img src="/logos/home-connected/pres-guide-bien-demarrer-ma-mission.png" className="rf-mr-md-1w img-home"/>
                     <a href="https://cdn.conseiller-numerique.gouv.fr/les-conseils-pour-bien-demarrer.pdf" target="blank"
                       className="document-btn rf-mt-5w rf-mb-4w" title="Kit bien d&eacute;marrer ma mission">
-                      T&eacute;l&eacute;chargez le kit &laquo; Bien d&eacute;marrer ma mission &raquo;
+                      T&eacute;l&eacute;chargez le kit &laquo;&nbsp; Bien d&eacute;marrer ma mission &nbsp;&raquo;
                     </a>
                     <p className="rf-mb-8w rf-ml-md-3w document-text">
                       Ce document contient tout ce qu&rsquo;il faut savoir pour bien commencer votre activit&eacute; de
@@ -170,9 +170,9 @@ function Welcome() {
                         Acc&eacute;der au kit de communication
                     </a>
                     <p className="rf-mb-8w rf-ml-md-5w kit-communication-text">
-                    Pour votre communication interne ou externe : papeterie, r&eacute;seaux sociaux, signal&eacute;tiques,
-                    etc, cette seconde mise &agrave; jour du kit de communication est mis &agrave; votre disposition
-                    (illustrations, charte graphique, cartes de visite, etc).
+                      Pour votre communication interne ou externe : papeterie, r&eacute;seaux sociaux, signal&eacute;tiques,
+                      etc, cette seconde mise &agrave; jour du kit de communication est mis &agrave; votre disposition
+                      (illustrations, charte graphique, cartes de visite, etc).
                     </p>
                   </div>
                 </div>
@@ -191,13 +191,13 @@ function Welcome() {
                       <img src="/logos/home-connected/hexagone-3.svg" className="hexagone"/>
                       Nouveaut&eacute;s Coop et am&eacute;liorations &agrave; venir
                     </h2>
-                    <span>Nouveaut&eacute;s :</span>
+                    <span>Nouveaut&eacute;s&nbsp;:</span>
                     <p style={{ 'max-width': '588px' }}>
                       – Publication de la troisi&egrave;me &eacute;dition du kit de communication<br/>
                       – Outil d&rsquo;enregistrement de vos lieux d&rsquo;activit&eacute; de m&eacute;diation num&eacute;rique pour leur
-                      affichage sur la carte nationale Conseiller num&eacute;rique France Services.<br/>
+                        affichage sur la carte nationale Conseiller num&eacute;rique France Services.<br/>
                     </p>
-                    <span>Am&eacute;liorations à venir :</span>
+                    <span>Am&eacute;liorations à venir&nbsp;:</span>
                     <p>
                       – Outil de suivi d&rsquo;activit&eacute;<br/>
                       – Kit Bien d&eacute;marrer ma mission<br/>
