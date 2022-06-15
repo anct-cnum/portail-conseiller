@@ -152,6 +152,11 @@
     justify-content: space-around;
     border: solid 1px
   }
+  .img-home-futur {
+    width: 707.8px;
+    height: 414.72px;
+    margin-left: 8.3rem;
+  }
 
   .espacement-centre-groupe-icon {
     justify-content: center;
@@ -159,7 +164,7 @@
 
   @media (max-width:  1436px) {
     .img-home-futur {
-      width: 100%;
+      width: 90%;
     }
   }
   @media (min-width: 768px) and (max-width: 1220px ) {
@@ -173,13 +178,44 @@
    }
   }
   @media (max-width:  978px) {
+    // .document-btn, .kit-communication-btn {
+    //   width: 90%;
+    // }
     .document-btn, .kit-communication-btn {
-      width: 90%;
+      font-size: 11px;
+      width: 77%;
+    }
+    .kit-communication-btn {
+      margin-left: 2.2rem;
+    }
+    .document-btn {
+      margin-left: 1.5rem;
+    }
+    .document-text, .kit-communication-text {
+      font-size: 11px;
+      max-width: 282px;
+    }
+    .img-home-futur {
+      width: 92%;
+      margin-left: 2rem;
     }
   }
   @media (max-width: 767px) {
     .img-home, .document-btn, .kit-communication-btn {
       width: 100%;
+    }
+    .document-btn, .kit-communication-btn {
+      font-size: 13px;
+      width: 95%;
+      margin-left: 0.5rem;
+    }
+    .document-text, .kit-communication-text {
+      font-size: 11px;
+      max-width: 350px;
+    }
+    .img-home-futur {
+      width: 100%;
+      margin-left: 0;
     }
     .espacement-centre-groupe-icon {
       justify-content: normal;
