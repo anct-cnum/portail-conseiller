@@ -241,6 +241,23 @@
     left: 47% !important;
     border-bottom-width: 8px !important;
   }
+  .icone-info-annonce {
+    font-size: 2rem;
+    padding-inline-end: 11px;
+    color: rgb(41, 159, 49);
+    margin-block: 20px;
+  }
+  .margin-info {
+    margin-block: 20px;
+  }
+  .div-info-annonce-ressourcerie {
+    background: #3b3b3c;
+    padding-inline: 2rem;
+    display: flex;
+    justify-content: space-around;
+    border: solid 1px
+  }
+
   @media (min-width: 992px) and (max-width: 1170px) {
     .hauteur-texte .description {
       width: 230px;

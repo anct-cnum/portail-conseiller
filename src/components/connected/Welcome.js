@@ -30,7 +30,7 @@ function Welcome() {
               <div className="rf-container">
                 <div className="rf-grid-row rf-grid-row--center">
                   <div className="rf-col-12 rf-mt-12w rf-mb-3w">
-                    { !conseiller?.supHierarchique &&
+                    { conseiller && !conseiller?.supHierarchique &&
                       <div className="div-info-rappel-hierarchique rf-mb-3w rf-py-1w">
                         <i className="ri-information-line information icone-info-rappel"></i>
                         <p className="margin-info">
