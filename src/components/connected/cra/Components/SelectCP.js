@@ -4,10 +4,22 @@ import { craActions } from '.././../../../actions';
 import codesPostaux from '../../../../data/codesPostaux.json';
 
 function SelectCP() {
-
   const [codePostalList, setCodePostalList] = useState([]);
   const dispatch = useDispatch();
   let cra = useSelector(state => state.cra);
+
+  //Tri
+  const tri = codesPostaux => {
+    return codesPostaux.sort(function compare(a, b) {
+      if (a.Nom_commune < b.Nom_commune) {
+        return -1;
+      }
+      if (a.Nom_commune > b.Nom_commune) {
+        return 1;
+      }
+      return 0;
+    });
+  };
 
   //Remove doublons if necessary
   const removeDuplicatesFromArray = arr => [...new Set(
@@ -16,9 +28,9 @@ function SelectCP() {
 
   //filter array with search
   const filterArray = text => {
-    return removeDuplicatesFromArray(codesPostaux).filter(
+    return tri(removeDuplicatesFromArray(codesPostaux).filter(
       codePostal => String(codePostal.Code_postal).startsWith(text) || String(codePostal.Nom_commune.toLowerCase()).startsWith(text.toLowerCase())
-    );
+    ));
   };
 
   //Select Option and set value
@@ -49,6 +61,9 @@ function SelectCP() {
   //OnClick button
   const onClickButton = () => {
     dispatch(craActions.getSearchlist());
+    setTimeout(() => {
+      document.getElementById('searchCP').focus();
+    }, 100);
   };
 
   //Focus input
@@ -77,7 +92,8 @@ function SelectCP() {
           className={`searchCP ${cra?.searchInput === true ? 'dropdown-expanded' : ''}`}
           style={cra?.searchCP === true && codePostalList.length > 0 ? { borderRadius: '20px 20px 0 0' } : {}}
           placeholder="Saisissez au moins 3 caract&egrave;res"
-          onKeyUp={onKeyUp}/>
+          onKeyUp={onKeyUp}
+          autoFocus={true}/>
         <div className="scrollOptions">{codePostalList}</div>
       </div>
     </div>
