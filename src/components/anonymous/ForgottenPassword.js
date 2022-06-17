@@ -138,7 +138,7 @@ function ForgottenPassword({ match = null }) {
                       }
                       <button className="btn-connexion rf-mb-6w rf-mb-md-7w" onClick={handleSubmitEmail}>Rechercher</button>
                     </div>
-                    <div className="rf-col-12" style={{textAlign: 'center' }}>
+                    <div className="rf-col-12" style={{ textAlign: 'center' }}>
                       <a className="btn-besoin-aide rf-mb-6w rf-mb-md-7w"
                         href="https://aide.conseiller-numerique.gouv.fr/fr/category/espace-coop-1q1nuga/" target="blank" rel="noopener">
                         J&rsquo;ai besoin d&rsquo;aide <span className="rf-fi-external-link-line rf-link--icon"></span>
