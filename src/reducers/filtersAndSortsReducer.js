@@ -8,6 +8,7 @@ const initialState = {
   structureId: null,
   searchInput: undefined,
   territoire: 'codeDepartement',
+  region: 'tous',
 };
 
 export default function filtersAndSorts(state = initialState, action) {
@@ -63,7 +64,13 @@ export default function filtersAndSorts(state = initialState, action) {
     case 'SAVE_SEARCH_INPUT':
       return {
         ...state,
+        region: action.region,
         searchInput: action.searchInput
+      };
+    case 'CHANGE_REGION':
+      return {
+        ...state,
+        region: action.region
       };
     case 'RESET_FILTER_AND_SORTS':
       return {
