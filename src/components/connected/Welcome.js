@@ -52,13 +52,13 @@ function Welcome() {
             <div className="rf-col-12">
               <div className="rf-container">
                 <div className="rf-grid-row espacement-centre-groupe-icon">
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-mr-md-5w">
                     <Link to="/compte-rendu-activite" title="Acc&eacute;der &agrave; mon outil de suivi d&rsquo;activit&eacute;">
                       <img src="/logos/home-connected/icone-cra.svg" className="icone-btn icone-cra"/>
                       Suivi d&rsquo;activit&eacute;
                     </Link>
                   </div>
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-mr-3w">
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-mr-md-4w">
                     <a href={lienMattermost} target="blank" title="Acc&egrave;s espace discussion">
                       <img src="/logos/home-connected/icone-discussion.svg" className="icone-btn icone-mattermost"/>
                       Espace de discussion
@@ -77,13 +77,13 @@ function Welcome() {
                       </span>
                     </a>
                   </div>
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-mr-3w">
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-mr-md-4w">
                     <Link to="/ressourcerie" title="Acc&eacute;der &agrave; la ressourcerie">
                       <img src="/logos/home-connected/icone-ressourcerie.svg" className="icone-btn icone-ressourcerie"/>
                       Ressourcerie
                     </Link>
                   </div>
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-mr-3w">
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-mr-md-1w">
                     <a href={lienPix} target="blank" title="Acc&eacute;der &agrave; Pix">
                       <img src="/logos/home-connected/icone-pix.svg" className="icone-btn icone-pix"/>
                       Pix
@@ -92,27 +92,27 @@ function Welcome() {
                 </div>
                 <div className="rf-grid-row espacement-centre-groupe-icon rf-mt-8w">
 
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-mr-3w">
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-mr-md-5w rf-ml-md-2w">
                     <Link to="/statistiques" title="Acc&eacute;der &agrave; aux statistiques">
                       <img src="/logos/home-connected/icone-statistiques.svg" className="icone-btn icone-statistiques"/>
                       Gestion, statistiques
                     </Link>
                   </div>
 
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-mr-3w">
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-mr-md-4w">
                     <Link to="/mes-lieux-activite" title="Acc&eacute;der &agrave; la ressourcerie">
                       <img src="/logos/home-connected/icone-lieux.svg" className="icone-btn icone-ressourcerie"/>
                       Lieux d&rsquo;activit&eacute;
                     </Link>
                   </div>
 
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-mr-3w">
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-mr-md-4w">
                     <a href={lienRdvSolidarites} target="blank" title="Acc&eacute;der &agrave; RDV Solidarit&eacute;s">
                       <img src="/logos/home-connected/logo-rdv-solidarites.svg" className="icone-btn icone-rdv-solidarites"/>
                       RDV Solidarit&eacute;s
                     </a>
                   </div>
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-mr-3w">
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-mr-md-3w">
                     <a href={lienWebmail} target="blank" title="Acc&eacute;der &agrave; ma boîte mail">
                       <img src="/logos/home-connected/icone-courriel.svg" className="icone-btn icone-mail"/>
                       Acc&eacute;der au web mail
@@ -140,7 +140,7 @@ function Welcome() {
                 <div className="rf-grid-row rf-grid-row--center">
                   <div className="rf-col-12 rf-mt-9w rf-mb-3w">
                     <h2 className="titre">
-                      <img src="/logos/home-connected/hexagone-2.svg" className="hexagone"/>
+                      <img src="/logos/home-connected/hexagone-4.svg" className="hexagone"/>
                       Supports
                     </h2>
                   </div>
@@ -170,7 +170,7 @@ function Welcome() {
                         Acc&eacute;der au kit de communication
                     </a>
                     <p className="rf-mb-8w rf-ml-md-5w kit-communication-text">
-                      Pour votre communication interne ou externe : papeterie, r&eacute;seaux sociaux, signal&eacute;tiques,
+                      Pour votre communication interne ou externe&nbsp;:&nbsp;papeterie, r&eacute;seaux sociaux, signal&eacute;tiques,
                       etc, cette seconde mise &agrave; jour du kit de communication est mis &agrave; votre disposition
                       (illustrations, charte graphique, cartes de visite, etc).
                     </p>
@@ -181,7 +181,7 @@ function Welcome() {
           </div>
         </div>
 
-        <div className="rf-container rf-container--fluid">
+        <div className="rf-container rf-container--fluid fond-sombre">
           <div className="rf-grid-row">
             <div className="rf-col-12">
               <div className="rf-container">
@@ -191,31 +191,32 @@ function Welcome() {
                       <img src="/logos/home-connected/hexagone-3.svg" className="hexagone"/>
                       Nouveaut&eacute;s Coop et am&eacute;liorations &agrave; venir
                     </h2>
-                    <span>Nouveaut&eacute;s&nbsp;:</span>
-                    <p style={{ 'max-width': '588px' }}>
-                      – Publication de la troisi&egrave;me &eacute;dition du kit de communication<br/>
-                      – Outil d&rsquo;enregistrement de vos lieux d&rsquo;activit&eacute; de m&eacute;diation num&eacute;rique pour leur
-                        affichage sur la carte nationale Conseiller num&eacute;rique France Services.<br/>
-                    </p>
-                    <span>Am&eacute;liorations à venir&nbsp;:</span>
+                    <span><b>Nouveaut&eacute;s&nbsp; de juin 2022&nbsp;:&nbsp;</b></span>
                     <p>
-                      – Outil de suivi d&rsquo;activit&eacute;<br/>
-                      – Kit Bien d&eacute;marrer ma mission<br/>
-                      – Mise &agrave; disposition d&rsquo;un outil de prise de rendez-vous en ligne.<br/>
-                      – Cr&eacute;ation d&rsquo;un fil d&rsquo;actualit&eacute; sur la Coop<br/>
-                      – Cr&eacute;ation d&rsquo;un wiki de la m&eacute;diation num&eacute;rique<br/>
+                      – Interface des lieux d&rsquo;activit&eacute; pour la carte nationale des conseillers<br/>
                     </p>
-                    <Link to="/a-propos" title="Acc&eacute;der &agrave; la page &agrave; propos" className="propos-btn">
-                        &Agrave; propos des services en ligne des conseillers num&eacute;riques
-                    </Link>
+                    <span><b>Mai 2022&nbsp;:&nbsp;</b></span>
+                    <p>
+                      – Publication de la troisi&egrave;me &eacute;dition du kit de communication<br/>
+                    </p>
+                    <span><b>Am&eacute;liorations à venir&nbsp;:&nbsp;</b></span>
+                    <p style={{ maxWidth: '570px' }}>
+                      – Blog d&rsquo;actualit&eacute;s de la communaut&eacute; des conseillers num&eacute;riques<br/>
+                      – Outil de suivi d&rsquo;activit&eacute;&nbsp;:&nbsp;am&eacute;lioration des statistiques, guides
+                        utilisateur, nouvelle interface de saisie<br/>
+                      – Campagne de communication Conseiller num&eacute;rique France Services dans la presse
+                        r&eacute;gionale sur l&rsquo;ensemble du territoire<br/>
+                    </p>
                     <a></a>
                   </div>
-
                   <div className="rf-col-12 rf-col-lg-6 rf-my-7w">
                     <img src="/logos/home-connected/utilisateurs.svg" className="img-home-futur"/>
                   </div>
-
-                  <div className="rf-col-12 rf-mb-12w"></div>
+                  <div className="rf-col-12 rf-mt-2w rf-mb-12w center-button">
+                    <Link to="/a-propos" title="Acc&eacute;der &agrave; la page &agrave; propos" className="propos-btn">
+                      &Agrave; propos des services en ligne des conseillers num&eacute;riques
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

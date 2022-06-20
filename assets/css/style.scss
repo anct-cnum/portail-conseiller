@@ -57,9 +57,6 @@
 .rf-header__navbar button:not(#burgerMenu) {
   display: none;
 }
-.rf-header__navbar {
-  margin-left: 40px;
-}
 /** End trick**/
 
 /** Header **/
@@ -67,11 +64,29 @@
   font-size: 0.75rem !important;
   line-height: 1.25rem !important;
 }
+.rf-header .header-grid {
+  justify-content: center;
+}
+.rf-header .title-feuillet {
+  font-weight: 800 !important;
+  font-size: 32px !important;
+  line-height: 56px !important;
+  font-family: 'MarianneExtraBold' !important;
+}
+.rf-header .logo-conseiller-numerique {
+  height: 48px;
+}
+.rf-header .block-feuillet {
+  margin: -2.5rem -2rem -2rem -2rem !important;
+}
 .rf-header .feuillet {
-  background-image: url(/public/logos/feuillets-couleurs.svg);
+  background-image: url(/public/logos/feuillets.svg);
   background-repeat: no-repeat;
-  background-position-x: right;
-  background-position-y: top;
+  background-position-x: 5.3rem;
+  background-position-y: -1rem;
+  background-size: 210px 82px;
+  width: 325px;
+  height: 80px;
 }
 .rf-fi-user-line {
   color:var(--bf500);
@@ -470,6 +485,23 @@
       width: 80%;
     }
   }
+  .rf-header .header-grid {
+    justify-content: flex-start;
+  }
+  .rf-header .feuillet {
+    background-position-x: 4rem;
+    background-position-y: -1.3rem;
+    background-size: 150px 82px;
+  }
+  .rf-header .title-feuillet {
+    font-size: 25px !important;
+  }
+  .rf-header .logo-conseiller-numerique {
+    height: 42px;
+  }
+  .rf-header .block-feuillet {
+    margin: -2.3rem -2rem -2rem -2.3rem !important;
+  }
 }
 
  /* Ajustement du header */
@@ -484,10 +516,6 @@
  @media  (max-width: 1135px) {
   .cacher-baseline {
     display: none;
-  }
-  .feuillet {
-    width: 155px;
-    height: 45px;
   }
 }
 /* custom point de rupture md du DS */
@@ -507,6 +535,19 @@
     height: auto;
   }
 }
+
+/* Ajustement du header md*/
+@media  (min-width: 688px) and (max-width: 770px) {
+  .rf-header .feuillet {
+    width: 249px;
+  }
+}
+@media  (min-width: 800px) and (max-width: 1023px) {
+  .rf-header .feuillet {
+    width: 300px;
+  }
+}
+
  /* Ajustement du footer md*/
 @media  (min-width: 933px) and (max-width: 1059px) {
   .marge-cgu {
@@ -558,6 +599,18 @@
     .support-btn {
       width: 90%;
     }
+  }
+  .rf-header .feuillet {
+    background-position-x: 4.2rem;
+    background-position-y: -1.2rem;
+    background-size: 150px 82px;
+  }
+  .rf-header .title-feuillet {
+    font-size: 23px !important;
+    margin-left: 0.5rem !important;
+  }
+  .rf-header .block-feuillet {
+    margin: -1.4rem -0.5rem -2.5rem !important;
   }
 
   /* Ajustement du footer xs*/
