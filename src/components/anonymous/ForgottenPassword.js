@@ -110,7 +110,7 @@ function ForgottenPassword({ match = null }) {
               <div className="rf-container">
                 <div className="rf-grid-row rf-grid-row--center">
 
-                  <div className="rf-col-6 fr-col-offset-3 fr-col-offset-3--right rf-mt-7w">
+                  <div className="rf-col-6 rf-mt-7w">
                     <div className="rf-mt-11v">
                       <p className="titre rf-mb-4v">Entrez votre adresse e-mail prenom.nom@conseiller-numerique.fr</p>
                       <label className="rf-label rf-mt-4w rf-mb-2w">
@@ -138,8 +138,13 @@ function ForgottenPassword({ match = null }) {
                       }
                       <button className="btn-connexion rf-mb-6w rf-mb-md-7w" onClick={handleSubmitEmail}>Rechercher</button>
                     </div>
+                    <div className="rf-col-12" style={{ textAlign: 'center' }}>
+                      <a className="btn-besoin-aide rf-mb-6w rf-mb-md-7w"
+                        href="https://aide.conseiller-numerique.gouv.fr/fr/category/espace-coop-1q1nuga/" target="blank" rel="noopener">
+                        J&rsquo;ai besoin d&rsquo;aide <span className="rf-fi-external-link-line rf-link--icon"></span>
+                      </a>
+                    </div>
                   </div>
-
                 </div>
               </div>
             </div>

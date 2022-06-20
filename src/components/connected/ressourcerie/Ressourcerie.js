@@ -49,6 +49,22 @@ function Ressourcerie() {
         <div className="rf-grid-row">
           <div className="rf-col-12 rf-col-md-10">
             <h1 className="titre rf-mt-2w rf-mb-1w rf-mt-md-5w rf-mb-md-6w">Ressourcerie</h1>
+            <div className="div-info-annonce-ressourcerie rf-mb-3w rf-py-1w">
+              <i className="ri-information-line information icone-info-annonce"></i>
+              <p className="margin-info">
+                  &Agrave; partir du 27 juin, la ressourcerie sera int&eacute;gr&eacute;e &agrave; La Base,
+                  nouvelle plateforme d&eacute;velopp&eacute;e par l&apos;ANCT pour
+                  favoriser la mise en r&eacute;seau des ressources de l&apos;inclusion et de la m&eacute;diation num&eacute;riques.
+                  En plus d&apos;y retrouver les tutoriels d&eacute;j&agrave; pr&eacute;sents sur la ressourcerie,
+                  vous pourrez en d&eacute;couvrir d&apos;autres publi&eacute;s par les acteurs et actrices du secteur
+                  (Hubs territoriaux pour un num&eacute;rique inclusif, administrations,
+                  collectivit&eacute;s, associations, entreprises de l&apos;ESS).
+                  Un mail contenant un lien d&apos;inscription &agrave; La Base vous sera tr&egrave;s prochainement
+                  envoy&eacute;, restez connect&eacute;-e !
+                  Pour plus d&apos;informations sur La Base : La Base - Societ&eacute; Num&eacute;rique
+                  ( <a href="https://societenumerique.gouv.fr">societenumerique.gouv.fr</a> )
+              </p>
+            </div>
           </div>
           <div className="rf-col-12 rf-col-md-6">
             <Thematiques />

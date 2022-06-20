@@ -36,6 +36,7 @@ function FiltersAndSorts({ resetPage, user }) {
   const downloading = useSelector(state => state.statistique?.downloading);
   const downloadingExportCnfs = useSelector(state => state.conseiller?.downloadingExportCnfs);
   const conseillerBeforeFilter = useSelector(state => state.conseiller?.conseillersBeforeFilter);
+  const loadingCSV = useSelector(state => state.conseiller?.loadingCSV);
 
   const [toggleFiltre, setToggleFiltre] = useState(false);
 
@@ -207,7 +208,7 @@ function FiltersAndSorts({ resetPage, user }) {
           color="#00BFFF"
           height={100}
           width={100}
-          visible={downloading === true || downloadingExportCnfs === true}
+          visible={downloading === true || downloadingExportCnfs === true || loadingCSV === true}
         />
       </div>
     </div>
