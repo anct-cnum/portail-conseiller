@@ -103,7 +103,8 @@ function FiltersAndSorts({ resetPage, user }) {
 
   const rechercheParNomOuNomStructure = e => {
     const value = (e.key === 'Enter' ? e.target?.value : e.target.previousSibling?.value) ?? '';
-    const conseillerByStructure = conseillerBeforeFilter.find(conseiller => formatNomStructure(conseiller.nomStructure.toLowerCase()) === formatNomStructure(value.toLowerCase()));
+    const conseillerByStructure = conseillerBeforeFilter.find(conseiller =>
+      formatNomStructure(conseiller.nomStructure.toLowerCase()) === formatNomStructure(value.toLowerCase()));
     if (conseillerByStructure) {
       dispatch(filtersAndSortsActions.changeStructureId(conseillerByStructure.structureId));
     } else {
@@ -122,14 +123,14 @@ function FiltersAndSorts({ resetPage, user }) {
   return (
     <div className="rf-container">
       {user?.role === 'admin_coop' &&
-       <div className="rf-grid-row">
-        <div className="rf-select-group" id="filtre-region">
-          <select className="rf-select" onChange={selectFiltreRegion}>
+        <div className="rf-grid-row">
+          <div className="rf-select-group" id="filtre-region">
+            <select className="rf-select" onChange={selectFiltreRegion}>
               <option value={'tous'}>Tous</option>
-                {codeRegions.map((region, idx) =>
-                  <option key={idx} value={region.code}>{region.code} - {region.nom}</option>
-                )}
-          </select>
+              {codeRegions.map((region, idx) =>
+                <option key={idx} value={region.code}>{region.code} - {region.nom}</option>
+              )}
+            </select>
           </div>
           <div className="rf-ml-auto rf-col-12 rf-col-md-4 rf-mb-4w rf-mb-md-0">
             <div className="rf-search-bar rf-search-bar" id="search" role="search" >
@@ -140,8 +141,8 @@ function FiltersAndSorts({ resetPage, user }) {
               </button>
             </div>
           </div>
-       </div>
-        }
+        </div>
+      }
       <div className="rf-grid-row rf-grid-row--end">
         { location.pathname === '/territoires' &&
           <div className="rf-col-4">
