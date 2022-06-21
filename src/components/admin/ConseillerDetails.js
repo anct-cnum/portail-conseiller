@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
-import { conseillerActions, structureActions } from '../../actions';
+import { conseillerActions, structureActions, userActions } from '../../actions';
 import Footer from '../Footer';
 
 function ConseillerDetails({ location }) {
@@ -13,6 +13,9 @@ function ConseillerDetails({ location }) {
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const structure = useSelector(state => state.structure?.structure);
   const isUserActif = useSelector(state => state.conseiller?.isUserActif);
+  const user = useSelector(state => state?.authentication?.user?.user);
+  const isSubordonne = useSelector(state => state?.conseiller?.isSubordonne);
+  const loadedIsSubordonee = useSelector(state => state?.conseiller?.loaded);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -23,8 +26,18 @@ function ConseillerDetails({ location }) {
     if (conseiller !== undefined) {
       dispatch(structureActions.get(conseiller?.structureId));
       dispatch(conseillerActions.isUserActif(conseiller));
+      if (user?.role === 'coordinateur_coop') {
+        dispatch(conseillerActions.isSubordonne(user.entity.$id, conseiller?._id));
+      }
     }
   }, [conseiller]);
+
+  useEffect(() => {
+    if (loadedIsSubordonee && user?.role === 'coordinateur_coop' && !isSubordonne) {
+      dispatch(conseillerActions.resetIsSubordonne());
+      dispatch(userActions.logout());
+    }
+  }, [isSubordonne, loadedIsSubordonee]);
 
   return (
     <div className="rf-container conseillerDetails">

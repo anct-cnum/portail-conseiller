@@ -19,7 +19,7 @@ function SelectAdresse({ prefixId, errorInput, isUpdate }) {
   return (
     <>
       <label className={errorInput ? 'rf-label rf-mb-1w invalid' : 'rf-mb-1w rf-label'}>
-        S&eacute;lectionnez l&rsquo;adresse du lieu d&rsquo;activi&eacute; &agrave; pr&eacute;visualiser <span className="obligatoire">&nbsp;*</span>
+        S&eacute;lectionnez l&rsquo;adresse du lieu d&rsquo;activit&eacute; &agrave; pr&eacute;visualiser <span className="obligatoire">&nbsp;*</span>
         <span className="baseline">Merci de remplir les champs d&rsquo;adresse (Num&eacute;ro de rue, Rue, Code Postal, Ville</span>
       </label>
       {(loadingGeocode) &&
