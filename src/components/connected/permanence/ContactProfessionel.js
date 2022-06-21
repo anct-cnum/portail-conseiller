@@ -25,6 +25,7 @@ function ContactProfessionel({ conseiller }) {
 
   function handleChange(e) {
     const { name, value } = e.target;
+    console.log(name);
     setInputs(inputs => ({ ...inputs, [name]: value }));
     dispatch(permanenceActions.updateField(name, name === 'estCoordinateur' ? value === 'true' : value));
   }

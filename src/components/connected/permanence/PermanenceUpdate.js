@@ -279,7 +279,7 @@ function PermanenceUpdate({ match }) {
                       prefixId={estlieuPrincipal ? 'principal_' : 'secondaire_0_' }
                       horairesId={0}
                       permanence={maPermanence}
-                      isUpdate={true}
+                      isNew={false}
                     />
                     <div className="rf-col-12 rf-mt-8w"></div>
                     <Validation

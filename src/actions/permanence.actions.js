@@ -126,9 +126,13 @@ function verifyFormulaire(form, statut) {
     estCoordinateur: form?.fields?.filter(field => field.name === 'estCoordinateur')[0]?.value }).error) ?
     'Votre rôle doit obligatoirement être saisie' : null });
 
+  let telephonePro = form?.fields?.filter(field => field.name === 'telephonePro')[0]?.value;
+  if (form?.fields?.filter(field => field.name === 'telephonePro')[0]?.value.length < 12) {
+    telephonePro = null;
+  }
   errors.push({ telephonePro: (Joi.object({
-    telephonePro: Joi.string().allow('').pattern(regExpNumero) }).validate({
-    telephonePro: form?.fields?.filter(field => field.name === 'telephonePro')[0]?.value }).error) ?
+    telephonePro: Joi.string().allow('', null).pattern(regExpNumero) }).validate({
+    telephonePro: telephonePro }).error) ?
     'Un numéro de téléphone valide doit être saisi' : null });
 
   errors.push({ emailPro: (Joi.object({

@@ -9,10 +9,12 @@ function InputCheckbox({ textLabel, errorInput, prefixId, nameInput, baselineInp
 
   const fields = useSelector(state => state.permanence?.fields);
   const checked = fields?.filter(field => field.name === prefixId + nameInput)[0]?.value;
+
   const types = ['libre', 'rdv', 'prive'];
 
   const onClick = e => {
     const { checked } = e.target;
+    
     dispatch(permanenceActions.updateField(prefixId + nameInput, checked));
 
     if (nameInput.slice(-5) === 'Siret') {
@@ -23,8 +25,14 @@ function InputCheckbox({ textLabel, errorInput, prefixId, nameInput, baselineInp
       dispatch(permanenceActions.updateField(prefixId + 'ville', ''));
       dispatch(permanenceActions.disabledField(prefixId, false));
     }
+
     if (types.includes(nameInput)) {
-      dispatch(permanenceActions.updateField(prefixId + 'typeAcces', ''));
+      const typeAcces = [
+        fields?.filter(field => field.name === prefixId + 'libre')[0]?.value ? 'libre' : null,
+        fields?.filter(field => field.name === prefixId + 'rdv')[0]?.value ? 'rdv' : null,
+        fields?.filter(field => field.name === prefixId + 'prive')[0]?.value ? 'prive' : null,
+      ].filter(n => n);
+      dispatch(permanenceActions.updateField(prefixId + 'typeAcces', typeAcces));
     }
   };
 

@@ -82,6 +82,7 @@ function Validation({ conseillerId, structureId, statut = null, redirectionValid
       }
 
       nouveauLieu.idOldPermanence = fields?.filter(field => field.name === 'idOldPermanence')[0]?.value ?? null;
+
       if (nouveauLieu._id !== null) {
         dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, true, null, redirection));
       } else if (prefixId) {

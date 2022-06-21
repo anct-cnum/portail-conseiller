@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { permanenceActions } from '../../../actions/permanence.actions';
 import horairesInitiales from '../../../data/horairesInitiales.json';
 
-function Horaires({ prefixId, horairesId }) {
+function Horaires({ prefixId, horairesId, isNew }) {
 
   const dispatch = useDispatch();
 
@@ -24,7 +24,6 @@ function Horaires({ prefixId, horairesId }) {
 
   function handleChange(e, idJour, jour, partie) {
     const { value } = e.target;
-
     horaires[prefixId + 'horaires'][idJour][jour][partie] = value === '' ? 'Fermé' : value;
     horaires[prefixId + 'horaires'][idJour].fermeture[jour === 'matin' ? 0 : 1] =
     horaires[prefixId + 'horaires'][idJour][jour][0] === 'Fermé' && horaires[prefixId + 'horaires'][idJour][jour][1] === 'Fermé';
@@ -55,7 +54,9 @@ function Horaires({ prefixId, horairesId }) {
   };
 
   useEffect(() => {
+
     if (horairesFields && idFields && loadingHoraires[horairesId] === true) {
+
       const newHoraires = [];
       horairesFields[prefixId + 'horaires']?.forEach(horairesField => {
         if (horairesField?.fermeture === undefined) {
@@ -83,8 +84,10 @@ function Horaires({ prefixId, horairesId }) {
       });
       setHoraires({ [prefixId + 'horaires']: newHoraires });
       loadingHoraires[horairesId] = false;
+
       dispatch(permanenceActions.setHorairesLoading(loadingHoraires));
       dispatch(permanenceActions.updateField(prefixId + 'idPermanence', idFields === 'nouveau' ? null : idFields));
+
     }
   }, [loadingHoraires, idFields, horairesFields]);
 
@@ -112,11 +115,13 @@ function Horaires({ prefixId, horairesId }) {
                       <td>
                         {!horaires[prefixId + 'horaires'][idx]?.fermeture[0] &&
                           <>
-                            <input className="horaires-debut without_ampm" type="time" value={horaires[prefixId + 'horaires'][idx]?.matin[0]}
+                            <input className="horaires-debut without_ampm" type="time"
+                              value={!isNew ? horaires[prefixId + 'horaires'][idx]?.matin[0] : null}
                               required name={prefixId + jour + 'MatinDebut'} min="06:00" max="13:00" onChange={e => {
                                 handleChange(e, idx, 'matin', 0);
                               }}/>
-                            <input className="horaires-fin without_ampm" type="time" timeformat="24h" value={horaires[prefixId + 'horaires'][idx]?.matin[1]}
+                            <input className="horaires-fin without_ampm" type="time" timeformat="24h"
+                              value={!isNew ? horaires[prefixId + 'horaires'][idx]?.matin[1] : null}
                               required name={prefixId + jour + 'MatinFin'} min="06:00" max="13:00" onChange={e => {
                                 handleChange(e, idx, 'matin', 1);
                               }}/>
@@ -134,11 +139,13 @@ function Horaires({ prefixId, horairesId }) {
                       <td>
                         {!horaires[prefixId + 'horaires'][idx]?.fermeture[1] &&
                           <>
-                            <input className="horaires-debut without_ampm" type="time" value={horaires[prefixId + 'horaires'][idx]?.apresMidi[0]}
+                            <input className="horaires-debut without_ampm" type="time"
+                              value={!isNew ? horaires[prefixId + 'horaires'][idx]?.apresMidi[0] : null}
                               required name={prefixId + jour + 'ApresMidiDebut'} min="13:00" max="22:00" onChange={e => {
                                 handleChange(e, idx, 'apresMidi', 0);
                               }}/>
-                            <input className="horaires-fin without_ampm" type="time" value={horaires[prefixId + 'horaires'][idx]?.apresMidi[1]}
+                            <input className="horaires-fin without_ampm" type="time"
+                              value={!isNew ? horaires[prefixId + 'horaires'][idx]?.apresMidi[1] : null}
                               required name={prefixId + jour + 'ApresMidiFin'} min="13:00" max="22:00" onChange={e => {
                                 handleChange(e, idx, 'apresMidi', 1);
                               }}/>
@@ -176,8 +183,7 @@ function Horaires({ prefixId, horairesId }) {
 Horaires.propTypes = {
   prefixId: PropTypes.string,
   horairesId: PropTypes.number,
-  isUpdate: PropTypes.bool,
-  permanence: PropTypes.object,
+  isNew: PropTypes.bool,
 };
 
 export default Horaires;

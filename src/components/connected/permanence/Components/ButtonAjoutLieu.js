@@ -30,6 +30,7 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpda
         fields.filter(field => field.name === prefixId + 'rdv')[0]?.value ? 'rdv' : null,
         fields.filter(field => field.name === prefixId + 'prive')[0]?.value ? 'prive' : null,
       ].filter(n => n);
+
       dispatch(permanenceActions.updateField(prefixId + 'typeAcces', typeAcces));
       dispatch(permanenceActions.verifyFormulaire(form));
     }
@@ -82,7 +83,7 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpda
         };
 
         if (nouveauLieu._id !== null) {
-          dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, false, 'secondaire_' + (secondaireId + 1) + '_'));
+          //dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, false, 'secondaire_' + (secondaireId + 1) + '_'));
         } else {
           dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, false, 'secondaire_' + (secondaireId + 1) + '_'));
         }
