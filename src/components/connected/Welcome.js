@@ -157,7 +157,7 @@ function Welcome() {
                       className="document-btn rf-mt-5w rf-mb-4w" title="Kit bien d&eacute;marrer ma mission">
                       T&eacute;l&eacute;chargez le kit &laquo;&nbsp; Bien d&eacute;marrer ma mission &nbsp;&raquo;
                     </a>
-                    <p className="rf-mb-8w rf-ml-md-3w document-text">
+                    <p className="rf-mb-8w rf-ml-md-7w document-text">
                       Ce document contient tout ce qu&rsquo;il faut savoir pour bien commencer votre activit&eacute; de
                       Conseiller num&eacute;rique France Services depuis votre inscription jusqu&rsquo;&agrave; votre entr&eacute;e
                       en poste.
@@ -169,7 +169,7 @@ function Welcome() {
                       className="kit-communication-btn rf-mt-5w rf-mb-4w">
                         Acc&eacute;der au kit de communication
                     </a>
-                    <p className="rf-mb-8w rf-ml-md-5w kit-communication-text">
+                    <p className="rf-mb-8w rf-ml-md-7w kit-communication-text">
                       Pour votre communication interne ou externe&nbsp;:&nbsp;papeterie, r&eacute;seaux sociaux, signal&eacute;tiques,
                       etc, cette seconde mise &agrave; jour du kit de communication est mis &agrave; votre disposition
                       (illustrations, charte graphique, cartes de visite, etc).

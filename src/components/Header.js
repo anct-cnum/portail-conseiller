@@ -81,16 +81,16 @@ function Header({ linkAccount, printClass }) {
                   <div className="rf-header__tools headerCustom">
                     <div className="rf-shortcuts" style={!menu.hiddenMenu ? { display: 'none' } : {} }>
                       <ul className="rf-shortcuts__list">
-                        <li className="rf-shortcuts__item header-propos">
+                        <li className="rf-shortcuts__item header-propos rf-mr-md-2w">
                           <ul className="rf-nav__list">
                             <li className="rf-nav__item">
                               <Link className="rf-nav__btn rf-custom-link" to="/a-propos" title="&Agrave; propos de votre espace Coop" >
-                                <i className="ri-compasses-2-fill"></i>&Agrave; propos
+                                &Agrave; propos
                               </Link>
                             </li>
                           </ul>
                         </li>
-                        <li className="rf-shortcuts__item header-aide">
+                        <li className="rf-shortcuts__item header-aide rf-mr-md-2w">
                           <div className="" role="navigation" aria-label="aide">
                             <ul className="rf-nav__list">
                               <li className="rf-nav__item">
@@ -101,7 +101,6 @@ function Header({ linkAccount, printClass }) {
                                     setMenuUserShow(menuUserShow ? !menuUserShow : menuUserShow);
                                     //setMenuInformationsShow(false);
                                   }}>
-                                  <img className="logo-discussion" src="/logos/bulle-ressourcerie.svg" />
                                   <span className="texte-aide">Aide&nbsp;
                                     {!menuAideShow ? <i className="ri-arrow-down-s-line"></i> : <i className="ri-arrow-up-s-line"></i>}
                                   </span>
@@ -151,7 +150,7 @@ function Header({ linkAccount, printClass }) {
                           </div>
                         </li>
                         {linkAccount !== 'noConnected' &&
-                          <li className="rf-shortcuts__item header-user">
+                          <li className="rf-shortcuts__item header-user rf-mr-md-2w">
                             <div className="" role="navigation" aria-label="user">
                               <ul className="rf-nav__list">
                                 <li className="rf-nav__item">

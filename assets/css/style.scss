@@ -265,7 +265,7 @@
       position: relative;
     }
   }
-  .texte-informations, .texte-user {
+  .texte-informations, .texte-user, .texte-aide {
     bottom: -4px;
   }
   .lien-aide, .lien-informations, .lien-user {
@@ -315,7 +315,7 @@
 .header-propos {
   font-size: 0.88rem;
   .rf-custom-link {
-    padding: 2.8rem 1.5rem 2.8rem 0.3rem !important;
+    padding: 3rem 1.5rem 2.8rem 0.3rem !important;
     .ri-compasses-2-fill {
       margin: 10px;
     }
