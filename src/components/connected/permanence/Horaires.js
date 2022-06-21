@@ -13,7 +13,7 @@ function Horaires({ prefixId, horairesId, isNew }) {
 
   const loadingHoraires = useSelector(state => state.permanence?.loadingHoraires);
   const fields = useSelector(state => state.permanence?.fields);
-
+console.log(loadingHoraires);
   let horairesFields = fields?.filter(field => field.name === prefixId + 'horaires')[0]?.value;
   const idFields = fields?.filter(field => field.name === prefixId + 'idPermanence')[0]?.value;
 
@@ -116,12 +116,12 @@ function Horaires({ prefixId, horairesId, isNew }) {
                         {!horaires[prefixId + 'horaires'][idx]?.fermeture[0] &&
                           <>
                             <input className="horaires-debut without_ampm" type="time"
-                              value={!isNew ? horaires[prefixId + 'horaires'][idx]?.matin[0] : null}
+                              value={!isNew ? horaires[prefixId + 'horaires'][idx]?.matin[0] : '00:00'}
                               required name={prefixId + jour + 'MatinDebut'} min="06:00" max="13:00" onChange={e => {
                                 handleChange(e, idx, 'matin', 0);
                               }}/>
                             <input className="horaires-fin without_ampm" type="time" timeformat="24h"
-                              value={!isNew ? horaires[prefixId + 'horaires'][idx]?.matin[1] : null}
+                              value={!isNew ? horaires[prefixId + 'horaires'][idx]?.matin[1] : '00:00'}
                               required name={prefixId + jour + 'MatinFin'} min="06:00" max="13:00" onChange={e => {
                                 handleChange(e, idx, 'matin', 1);
                               }}/>
@@ -140,12 +140,12 @@ function Horaires({ prefixId, horairesId, isNew }) {
                         {!horaires[prefixId + 'horaires'][idx]?.fermeture[1] &&
                           <>
                             <input className="horaires-debut without_ampm" type="time"
-                              value={!isNew ? horaires[prefixId + 'horaires'][idx]?.apresMidi[0] : null}
+                              value={!isNew ? horaires[prefixId + 'horaires'][idx]?.apresMidi[0] : '00:00'}
                               required name={prefixId + jour + 'ApresMidiDebut'} min="13:00" max="22:00" onChange={e => {
                                 handleChange(e, idx, 'apresMidi', 0);
                               }}/>
                             <input className="horaires-fin without_ampm" type="time"
-                              value={!isNew ? horaires[prefixId + 'horaires'][idx]?.apresMidi[1] : null}
+                              value={!isNew ? horaires[prefixId + 'horaires'][idx]?.apresMidi[1] : '00:00'}
                               required name={prefixId + jour + 'ApresMidiFin'} min="13:00" max="22:00" onChange={e => {
                                 handleChange(e, idx, 'apresMidi', 1);
                               }}/>

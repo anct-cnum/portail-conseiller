@@ -22,7 +22,6 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
   const validForms = useSelector(state => state.permanence.formulairesValides);
   const prefixId = useSelector(state => state.permanence?.prefixIdLieuEnregistrable);
 
-  const [isNew, setIsNew] = useState(true);
   const [show, setShow] = useState(
     Array.from({ length: process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE }, () => (false))
   );
@@ -194,7 +193,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
                 </>
               }
 
-              <ListPermanences prefixId={ 'secondaire_' + idx + '_'} conseillerId={conseillerId} setIsNew={setIsNew}/>
+              <ListPermanences prefixId={ 'secondaire_' + idx + '_'} conseillerId={conseillerId} />
               <Adresse
                 codeDepartement={structure?.codeDepartement}
                 adressePermanence={adresseStructure}
@@ -205,7 +204,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
                 conseillerId={conseillerId}
               />
               <TypeAcces prefixId={ 'secondaire_' + idx + '_'} islieuPrincipal={false} />
-              <Horaires prefixId={ 'secondaire_' + idx + '_'} horairesId={idx + 1} isNew={isNew}/>
+              <Horaires prefixId={ 'secondaire_' + idx + '_'} horairesId={idx + 1} />
               {idx < 14 &&
                 <AjouterAutrePermanence secondaireId={ idx } conseillerId={conseillerId} structureId={structureId} show={show} />
               }
