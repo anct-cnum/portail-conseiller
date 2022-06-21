@@ -11,7 +11,7 @@ function MaPermanence({ permanence, conseillerId, trClass }) {
     prive: 'Accès fermé au public'
   };
 
-  const islieuPrincipal = permanence?.lieuPrincipalPour.includes(conseillerId);
+  const islieuPrincipal = permanence?.lieuPrincipalPour?.includes(conseillerId);
 
   return (
     <tr className={trClass + ' permanence'}>
@@ -20,12 +20,12 @@ function MaPermanence({ permanence, conseillerId, trClass }) {
         <span className={islieuPrincipal ? 'circle-true' : 'circle-false'}/>
       </td>
       <td>
-        {(permanence?.adresse.numeroRue ?? '') + ' ' + permanence?.adresse.rue }<br/>
-        {permanence?.adresse.codePostal + ' ' + permanence?.adresse.ville}
+        {(permanence?.adresse?.numeroRue ?? '') + ' ' + permanence?.adresse?.rue }<br/>
+        {permanence?.adresse?.codePostal + ' ' + permanence?.adresse?.ville}
       </td>
       <td>
         <ul>
-          {permanence?.typeAcces.map((type, idx) => {
+          {permanence?.typeAcces?.map((type, idx) => {
             return (<li key={idx}>{typeAcces[type]}</li>);
           })}
         </ul>

@@ -16,7 +16,8 @@ export const conseillerService = {
   getExportDonneesCnfs,
   exportDonneesSubordonnes,
   getStatistiquesHubCSV,
-  isSubordonne
+  isSubordonne,
+  getExportDonneesCnfsWithoutCRA
 };
 
 function get(id) {
@@ -208,7 +209,6 @@ function exportDonneesSubordonnes(dateDebut, dateFin, filtreProfil, nomOrdre, or
     method: 'GET',
     headers: authHeader()
   };
-
   const {
     ordreColonne,
     filterDateStart,
@@ -234,6 +234,16 @@ function isSubordonne(coordinateurId, conseillerId) {
   let uri = `${apiUrlRoot}/conseiller/isSubordonne?idCoordinateur=${coordinateurId}&idConseiller=${conseillerId}`;
 
   return fetch(uri, requestOptions).then(handleResponse);
+}
+function getExportDonneesCnfsWithoutCRA() {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  };
+
+  const exportCnfsRoute = '/exports-without-cra/cnfs.csv';
+
+  return fetch(`${apiUrlRoot}${exportCnfsRoute}`, requestOptions).then(handleFileResponse);
 }
 
 function handleResponse(response) {

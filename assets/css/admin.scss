@@ -17,7 +17,7 @@
       color: #9a9aff;
     }
   }
-  .statistiques_nationales-btn, .mes_statistiques-btn, .export_conseillers-btn {
+  .statistiques_nationales-btn, .mes_statistiques-btn, .export_conseillers-btn, .export_cnfs_without_cra-btn {
     background-color: transparent;
     border: 1px solid #fff;
     line-height: 1.25rem;
@@ -25,15 +25,21 @@
     text-align: center;
     position: relative;
     box-shadow: none;
-    font-size: 16px;
+    font-size: 14.5px;
     cursor: pointer;
     color: #fff;
     padding: 12px;
     top: 15px;
   }
+
   .stats-logo-btn, .discussion-logo-btn, .conseillers-logo-btn, .ressourcerie-logo-btn, .lieu-logo-btn {
     display: inline-block;
   }
+
+  .export_cnfs_without_cra-btn, .statistiques_nationales-btn {
+    margin-top: -0.2rem;
+  }
+
   .stats-logo-btn {
     background: url(../../public/logos/icones-stats.svg) no-repeat;
     width:42px;

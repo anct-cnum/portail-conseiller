@@ -165,6 +165,7 @@ export default function conseiller(state = initState, action) {
     case 'GETALL_REQUEST':
       return {
         ...state,
+        error: false,
         loading: true
       };
     case 'GETALL_SUCCESS':
@@ -226,6 +227,25 @@ export default function conseiller(state = initState, action) {
       return {
         ...state,
         downloadingExportCnfs: true,
+      };
+    case 'GET_EXPORT_CNFS_WITHOUT_CRA_REQUEST':
+      return {
+        ...state,
+        loadingCSV: true,
+        errorCSV: false
+      };
+    case 'GET_EXPORT_CNFS_WITHOUT_CRA_SUCCESS':
+      return {
+        ...state,
+        blob: action.data,
+        exportCnfsFileWithoutCRA: action.download,
+        loadingCSV: false
+      };
+    case 'GET_EXPORT_CNFS_WITHOUT_CRA_FAILURE':
+      return {
+        ...state,
+        errorCSV: action.error,
+        loadingCSV: false
       };
     case 'GET_EXPORT_CNFS_SUCCESS':
       return {
