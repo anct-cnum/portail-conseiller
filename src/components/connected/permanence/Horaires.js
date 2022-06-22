@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { permanenceActions } from '../../../actions/permanence.actions';
 import horairesInitiales from '../../../data/horairesInitiales.json';
 
-function Horaires({ prefixId, horairesId, isNew }) {
+function Horaires({ prefixId, horairesId }) {
 
   const dispatch = useDispatch();
 
@@ -13,7 +13,7 @@ function Horaires({ prefixId, horairesId, isNew }) {
 
   const loadingHoraires = useSelector(state => state.permanence?.loadingHoraires);
   const fields = useSelector(state => state.permanence?.fields);
-console.log(loadingHoraires);
+
   let horairesFields = fields?.filter(field => field.name === prefixId + 'horaires')[0]?.value;
   const idFields = fields?.filter(field => field.name === prefixId + 'idPermanence')[0]?.value;
 
@@ -82,6 +82,7 @@ console.log(loadingHoraires);
         }
         newHoraires.push(horairesField);
       });
+
       setHoraires({ [prefixId + 'horaires']: newHoraires });
       loadingHoraires[horairesId] = false;
 
@@ -116,12 +117,12 @@ console.log(loadingHoraires);
                         {!horaires[prefixId + 'horaires'][idx]?.fermeture[0] &&
                           <>
                             <input className="horaires-debut without_ampm" type="time"
-                              value={!isNew ? horaires[prefixId + 'horaires'][idx]?.matin[0] : '00:00'}
+                              value={ horaires[prefixId + 'horaires'][idx]?.matin[0] }
                               required name={prefixId + jour + 'MatinDebut'} min="06:00" max="13:00" onChange={e => {
                                 handleChange(e, idx, 'matin', 0);
                               }}/>
                             <input className="horaires-fin without_ampm" type="time" timeformat="24h"
-                              value={!isNew ? horaires[prefixId + 'horaires'][idx]?.matin[1] : '00:00'}
+                              value={ horaires[prefixId + 'horaires'][idx]?.matin[1] }
                               required name={prefixId + jour + 'MatinFin'} min="06:00" max="13:00" onChange={e => {
                                 handleChange(e, idx, 'matin', 1);
                               }}/>
@@ -140,12 +141,12 @@ console.log(loadingHoraires);
                         {!horaires[prefixId + 'horaires'][idx]?.fermeture[1] &&
                           <>
                             <input className="horaires-debut without_ampm" type="time"
-                              value={!isNew ? horaires[prefixId + 'horaires'][idx]?.apresMidi[0] : '00:00'}
+                              value={ horaires[prefixId + 'horaires'][idx]?.apresMidi[0] }
                               required name={prefixId + jour + 'ApresMidiDebut'} min="13:00" max="22:00" onChange={e => {
                                 handleChange(e, idx, 'apresMidi', 0);
                               }}/>
                             <input className="horaires-fin without_ampm" type="time"
-                              value={!isNew ? horaires[prefixId + 'horaires'][idx]?.apresMidi[1] : '00:00'}
+                              value={ horaires[prefixId + 'horaires'][idx]?.apresMidi[1] }
                               required name={prefixId + jour + 'ApresMidiFin'} min="13:00" max="22:00" onChange={e => {
                                 handleChange(e, idx, 'apresMidi', 1);
                               }}/>
@@ -183,7 +184,6 @@ console.log(loadingHoraires);
 Horaires.propTypes = {
   prefixId: PropTypes.string,
   horairesId: PropTypes.number,
-  isNew: PropTypes.bool,
 };
 
 export default Horaires;

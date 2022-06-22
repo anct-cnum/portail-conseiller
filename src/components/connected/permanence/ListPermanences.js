@@ -5,7 +5,7 @@ import { permanenceActions } from '../../../actions';
 
 import horairesInitiales from '../../../data/horairesInitiales.json';
 
-function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null }) {
+function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, firstTime }) {
   const dispatch = useDispatch();
 
   const listPermanences = useSelector(state => state.permanence?.permanences);
@@ -43,8 +43,11 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null }) 
     permanence?.typeAcces.forEach(type => {
       dispatch(permanenceActions.updateField(prefixId + type, true));
     });
-
-    loadingHoraires[0] = true;
+    if (firstTime) {
+      loadingHoraires[Number(prefixId.split('_')[1]) + 1] = true;
+    } else {
+      loadingHoraires[0] = true;
+    }
     if (prefixId === 'principal_') {
       dispatch(permanenceActions.updateField('lieuPrincipalPour', permanence?.lieuPrincipalPour));
     } else {
@@ -175,6 +178,7 @@ ListPermanences.propTypes = {
   prefixId: PropTypes.string,
   conseillerId: PropTypes.string,
   permanenceActuelId: PropTypes.string,
+  firstTime: PropTypes.bool
 };
 
 export default ListPermanences;

@@ -193,7 +193,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
                 </>
               }
 
-              <ListPermanences prefixId={ 'secondaire_' + idx + '_'} conseillerId={conseillerId} />
+              <ListPermanences prefixId={ 'secondaire_' + idx + '_'} conseillerId={conseillerId} firstTime={true}/>
               <Adresse
                 codeDepartement={structure?.codeDepartement}
                 adressePermanence={adresseStructure}

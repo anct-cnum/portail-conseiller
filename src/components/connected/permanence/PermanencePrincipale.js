@@ -169,7 +169,7 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
 
           <TypeAcces prefixId="principal_" islieuPrincipal={true}/>
 
-          <Horaires prefixId="principal_" horairesId={0} isNew={false}/>
+          <Horaires prefixId="principal_" horairesId={0}/>
         </>
       }
     </>
