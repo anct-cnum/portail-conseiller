@@ -30,9 +30,9 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpda
         fields.filter(field => field.name === prefixId + 'rdv')[0]?.value ? 'rdv' : null,
         fields.filter(field => field.name === prefixId + 'prive')[0]?.value ? 'prive' : null,
       ].filter(n => n);
-
+      
       dispatch(permanenceActions.updateField(prefixId + 'typeAcces', typeAcces));
-      dispatch(permanenceActions.verifyFormulaire(form));
+      dispatch(permanenceActions.verifyFormulaire(form, 'secondaire_'));
     }
     setClickSubmit(true);
   };
@@ -82,9 +82,10 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpda
           hasPermanence: location.pathname === '/lieux-activite',
         };
 
-        if (nouveauLieu._id !== null) {
-          //dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, false, 'secondaire_' + (secondaireId + 1) + '_'));
+        if (nouveauLieu._id !== null && nouveauLieu._id !== 'nouveau') {
+          dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, false, 'secondaire_' + (secondaireId + 1) + '_'));
         } else {
+          nouveauLieu._id = null;
           dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, false, 'secondaire_' + (secondaireId + 1) + '_'));
         }
         show[secondaireId + 1] = true;

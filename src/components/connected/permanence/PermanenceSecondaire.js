@@ -39,7 +39,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
       ].filter(n => n);
       dispatch(permanenceActions.updateField(prefixId + 'typeAcces', typeAcces));
 
-      dispatch(permanenceActions.verifyFormulaire(form));
+      dispatch(permanenceActions.verifyFormulaire(form, prefixId));
       setClickSubmit(true);
       setOuiBtn(true);
     } else {
@@ -93,9 +93,10 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
         lieuPrincipalPour: lieuPrincipalPour,
       };
 
-      if (nouveauLieu._id !== null) {
+      if (nouveauLieu._id !== null && nouveauLieu._id !== 'nouveau') {
         dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, false, 'secondaire_0_'));
       } else if (prefixId) {
+        nouveauLieu._id = null;
         dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, false, 'secondaire_0_'));
       }
 
