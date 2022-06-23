@@ -76,9 +76,12 @@ function Permanence() {
 
             {showError &&
               <p className="rf-label flashBag invalid">
-                {showErrorMessage ?? errorAllUpdated ?
-                  'Une erreur est survenue lors de la mise à jour de vos lieux d’activité' :
-                  'Une erreur est survenue lors du traitement de vos informations'}
+                {showErrorMessage &&
+                  showErrorMessage
+                }
+                {errorAllUpdated &&
+                  'Une erreur est survenue lors de la mise à jour de vos lieux d’activité'
+                }
               </p>
             }
 

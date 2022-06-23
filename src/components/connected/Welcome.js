@@ -192,7 +192,7 @@ function Welcome() {
                       Nouveaut&eacute;s Coop et am&eacute;liorations &agrave; venir
                     </h2>
                     <span>Nouveaut&eacute;s&nbsp;:</span>
-                    <p style={{ 'max-width': '588px' }}>
+                    <p style={{ 'maxWidth': '588px' }}>
                       – Publication de la troisi&egrave;me &eacute;dition du kit de communication<br/>
                       – Outil d&rsquo;enregistrement de vos lieux d&rsquo;activit&eacute; de m&eacute;diation num&eacute;rique pour leur
                         affichage sur la carte nationale Conseiller num&eacute;rique France Services.<br/>

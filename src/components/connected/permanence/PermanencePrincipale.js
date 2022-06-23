@@ -82,6 +82,7 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
     dispatch(permanenceActions.updateField('principal_codePostal', null));
     dispatch(permanenceActions.updateField('principal_ville', null));
     dispatch(permanenceActions.updateField('principal_location', null));
+    dispatch(permanenceActions.reserverPermanence({ prefixId: 'principal_', idPermanence: null }));
 
     if (estStructure) {
       const permanencePrincipale = listPermanences.find(permanence => permanence.structure.$id === structure._id && permanence.estStructure === true);
