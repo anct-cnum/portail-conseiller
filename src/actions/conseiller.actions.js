@@ -62,12 +62,12 @@ function get(id) {
 }
 
 // eslint-disable-next-line max-len
-function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre = 'prenom', ordre = 1, filtreParStructureId, filtreRegion) {
+function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre = 'prenom', ordre = 1, filtreParStructureId, idCoordinateur, filtreRegion) {
   return dispatch => {
     dispatch(request());
     let promises = [];
     // eslint-disable-next-line max-len
-    let promise = conseillerService.getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre, ordre, filtreParStructureId, filtreRegion);
+    let promise = conseillerService.getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre, ordre, filtreParStructureId, idCoordinateur, filtreRegion);
     promises.push(promise);
 
     let conseillers = null;
