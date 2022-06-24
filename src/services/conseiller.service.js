@@ -79,7 +79,8 @@ function cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtrePr
 
 }
 
-function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre, ordre, idStructure = null, region = 'tous') {
+// eslint-disable-next-line max-len
+function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre, ordre, idStructure = null, idCoordinateur = null, region) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
@@ -94,7 +95,8 @@ function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGr
     certifie,
     filterStructureId,
     filterRegion
-  } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreGroupeCRA, filtreParNom, filtreCertifie, idStructure, region);
+  // eslint-disable-next-line max-len
+  } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreGroupeCRA, filtreParNom, filtreCertifie, idStructure, idCoordinateur, region);
   // eslint-disable-next-line max-len
   let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${profil}${certifie}${groupeCRA}${filterByName}${filterDateStart}${filterDateEnd}${filterStructureId}${ordreColonne}${filterRegion}`;
 
