@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import horairesInitiales from '../../../data/horairesInitiales.json';
 import { permanenceActions } from '../../../actions/permanence.actions';
 
-function Validation({ conseillerId, structureId, statut = null, redirectionValidation = null }) {
+function Validation({ conseillerId, structureId, statut = 'principal_', redirectionValidation = null }) {
   const dispatch = useDispatch();
   const form = useSelector(state => state.permanence);
   const fields = useSelector(state => state.permanence?.fields);
@@ -82,9 +82,11 @@ function Validation({ conseillerId, structureId, statut = null, redirectionValid
       }
 
       nouveauLieu.idOldPermanence = fields?.filter(field => field.name === 'idOldPermanence')[0]?.value ?? null;
-      if (nouveauLieu._id !== null) {
+
+      if (nouveauLieu._id !== null && nouveauLieu._id !== 'nouveau') {
         dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, true, null, redirection));
       } else if (prefixId) {
+        nouveauLieu._id = null;
         dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, true, null, redirection));
       } else if (prefixId === null) {
         dispatch(permanenceActions.validerPermanenceForm(conseillerId));
