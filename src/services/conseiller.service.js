@@ -80,7 +80,7 @@ function cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtrePr
 }
 
 // eslint-disable-next-line max-len
-function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre, ordre, idStructure = null, idCoordinateur = null, region) {
+function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre, ordre, idStructure = null, region) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
@@ -96,7 +96,7 @@ function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGr
     filterStructureId,
     filterRegion
   // eslint-disable-next-line max-len
-  } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreGroupeCRA, filtreParNom, filtreCertifie, idStructure, idCoordinateur, region);
+  } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreGroupeCRA, filtreParNom, filtreCertifie, idStructure, null, region);
   // eslint-disable-next-line max-len
   let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${profil}${certifie}${groupeCRA}${filterByName}${filterDateStart}${filterDateEnd}${filterStructureId}${ordreColonne}${filterRegion}`;
 
@@ -202,7 +202,7 @@ function getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, 
     certifie,
     filterStructureId,
     filterRegion
-  } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreGroupeCRA, filtreParNom, filtreCertifie, idStructure, region);
+  } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreGroupeCRA, filtreParNom, filtreCertifie, idStructure, null, region);
 
   const exportCnfsRoute = '/exports/cnfs.csv';
   // eslint-disable-next-line max-len
@@ -222,7 +222,7 @@ function exportDonneesSubordonnes(dateDebut, dateFin, filtreProfil, nomOrdre, or
     filterDateEnd,
     profil,
     filterCoordinateurId
-  } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, null, null, null, null, idCoordinateur);
+  } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, null, null, null, null, idCoordinateur, null);
 
   const exportCnfsRoute = '/exports/subordonnes.csv';
 
