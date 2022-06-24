@@ -137,7 +137,7 @@ function verifyFormulaire(form, statut) {
     'Un numéro de téléphone valide doit être saisi' : null });
 
   errors.push({ emailPro: (Joi.object({
-    emailPro: Joi.string().allow('').pattern(regExpEmail) }).validate({
+    emailPro: Joi.string().allow('', null).pattern(regExpEmail) }).validate({
     emailPro: form?.fields?.filter(field => field.name === 'emailPro')[0]?.value }).error) ?
     'Une adresse email valide doit être saisie' : null });
 
