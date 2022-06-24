@@ -194,7 +194,7 @@ function Welcome() {
                     <span><b>Nouveaut&eacute;s&nbsp; de juin 2022&nbsp;:&nbsp;</b></span>
                     <p>
                       – Interface des lieux d&rsquo;activit&eacute; pour la carte nationale des conseillers<br/>
-                    </p> 
+                    </p>
                     <span><b>Mai 2022&nbsp;:&nbsp;</b></span>
                     <p>
                       – Publication de la troisi&egrave;me &eacute;dition du kit de communication<br/>
