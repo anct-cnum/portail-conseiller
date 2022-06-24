@@ -62,7 +62,7 @@ function Conseillers() {
   useEffect(() => {
     dispatch(conseillerActions.getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, ordreNom,
       ordre ? 1 : -1, user.role === 'structure_coop' ? user.entity.$id : filtreParStructureId));
-  }, [ordre, ordreNom, filtreProfil, filtreGroupeCRA, filtreParNom, filtreParStructureId]);
+  }, [ordre, ordreNom, filtreProfil, filtreGroupeCRA, filtreParNom, filtreParStructureId, filtreCertifie]);
 
   const filtreClick = e => {
     if (e.target.id === 'activer') {

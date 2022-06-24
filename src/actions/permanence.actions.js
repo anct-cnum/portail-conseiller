@@ -111,8 +111,9 @@ function closePermanence() {
 }
 
 function verifyFormulaire(form, statut) {
-  let errors = [];
 
+  let errors = [];
+  const errorsMessageTab = ['Merci de remplir le formulaire.', 'Vous devez impérativement corriger les erreurs avant de passer à la suite.'];
   const showLieuSecondaire = form?.showLieuSecondaire;
 
   //eslint-disable-next-line max-len
@@ -126,9 +127,13 @@ function verifyFormulaire(form, statut) {
     estCoordinateur: form?.fields?.filter(field => field.name === 'estCoordinateur')[0]?.value }).error) ?
     'Votre rôle doit obligatoirement être saisie' : null });
 
+  let telephonePro = form?.fields?.filter(field => field.name === 'telephonePro')[0]?.value;
+  if (form?.fields?.filter(field => field.name === 'telephonePro')[0]?.value?.length < 12) {
+    telephonePro = null;
+  }
   errors.push({ telephonePro: (Joi.object({
-    telephonePro: Joi.string().allow('').pattern(regExpNumero) }).validate({
-    telephonePro: form?.fields?.filter(field => field.name === 'telephonePro')[0]?.value }).error) ?
+    telephonePro: Joi.string().allow('', null).pattern(regExpNumero) }).validate({
+    telephonePro: telephonePro }).error) ?
     'Un numéro de téléphone valide doit être saisi' : null });
 
   errors.push({ emailPro: (Joi.object({
@@ -232,7 +237,6 @@ function verifyFormulaire(form, statut) {
       });
     }
   });
-
   let nbErrors = 0;
   errors.forEach(error => {
     if (error[Object.keys(error)[0]]) {
@@ -243,9 +247,10 @@ function verifyFormulaire(form, statut) {
     }
   });
 
-  const errorsForm = { errors: errors, lengthError: nbErrors };
-  const errorMessage = 'Vous devez impérativement corriger les erreurs avant de passer à la suite';
-  const showError = nbErrors > 0;
+  const errorsForm = { errors: errors, lengthError: errors.length <= 4 ? 1 : nbErrors };
+  const idMessage = errors.length <= 4 ? 0 : 1;
+  const errorMessage = errorsMessageTab[idMessage];
+  const showError = errors.length <= 4 || nbErrors > 0;
 
   return { type: 'VERIFY_FORMULAIRE', errorsForm, errorMessage, showError };
 }

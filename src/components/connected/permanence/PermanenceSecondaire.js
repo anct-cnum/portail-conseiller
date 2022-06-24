@@ -39,7 +39,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
       ].filter(n => n);
       dispatch(permanenceActions.updateField(prefixId + 'typeAcces', typeAcces));
 
-      dispatch(permanenceActions.verifyFormulaire(form));
+      dispatch(permanenceActions.verifyFormulaire(form, prefixId));
       setClickSubmit(true);
       setOuiBtn(true);
     } else {
@@ -93,9 +93,10 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
         lieuPrincipalPour: lieuPrincipalPour,
       };
 
-      if (nouveauLieu._id !== null) {
+      if (nouveauLieu._id !== null && nouveauLieu._id !== 'nouveau') {
         dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, false, 'secondaire_0_'));
       } else if (prefixId) {
+        nouveauLieu._id = null;
         dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, false, 'secondaire_0_'));
       }
 
@@ -193,7 +194,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
                 </>
               }
 
-              <ListPermanences prefixId={ 'secondaire_' + idx + '_'} conseillerId={conseillerId}/>
+              <ListPermanences prefixId={ 'secondaire_' + idx + '_'} conseillerId={conseillerId} firstTime={true}/>
               <Adresse
                 codeDepartement={structure?.codeDepartement}
                 adressePermanence={adresseStructure}
@@ -204,7 +205,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
                 conseillerId={conseillerId}
               />
               <TypeAcces prefixId={ 'secondaire_' + idx + '_'} islieuPrincipal={false} />
-              <Horaires prefixId={ 'secondaire_' + idx + '_'} horairesId={idx + 1}/>
+              <Horaires prefixId={ 'secondaire_' + idx + '_'} horairesId={idx + 1} />
               {idx < 14 &&
                 <AjouterAutrePermanence secondaireId={ idx } conseillerId={conseillerId} structureId={structureId} show={show} />
               }

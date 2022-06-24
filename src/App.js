@@ -7,6 +7,7 @@ import Login from './components/anonymous/Login.js';
 import Home from './components/connected/Home';
 import Admin from './components/admin';
 import Hub from './components/hub';
+import Coordinateur from './components/coordinateur';
 import ChoosePassword from './components/anonymous/ChoosePassword';
 import ChoosePasswordHub from './components/anonymous/ChoosePasswordHub';
 import ValidationAccount from './components/connected/ValidationAccount';
@@ -52,6 +53,9 @@ function App() {
           }
           {(user?.role === 'hub_coop') &&
             <PrivateRoute exact path="*" component={Hub}/>
+          }
+          {user?.role === 'coordinateur_coop' &&
+          <PrivateRoute exact path="*" component={Coordinateur}/>
           }
           <Redirect from="/" to="/login"/>
         </Switch>
