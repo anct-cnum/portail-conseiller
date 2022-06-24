@@ -14,6 +14,8 @@ import PermanenceUpdate from '../connected/permanence/PermanenceUpdate';
 import PermanenceCreate from '../connected/permanence/PermanenceCreate';
 import { conseillerActions, structureActions } from '../../actions';
 import { userEntityId } from '../../helpers';
+import MesInformations from '../connected/mesInformations';
+import Cra from '../connected/cra';
 
 function Coordinateur() {
   const dispatch = useDispatch();
@@ -38,6 +40,8 @@ function Coordinateur() {
       <Header linkAccount={user?.name}/>
       <div className="admin">
         <CoordinateurHeader linkAccount={user?.name}/>
+        <Route path={'/mes-informations'} component={MesInformations} />
+        <Route path={`/compte-rendu-activite`} component={Cra} />
         <Route path={'/mes-lieux-activite'} component={MesPermanences} />
         <Route path={'/mon-lieu-activite/:idPermanence'} component={PermanenceUpdate} />
         <Route path={'/mon-nouveau-lieu-activite'} component={PermanenceCreate} />

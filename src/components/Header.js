@@ -173,7 +173,7 @@ function Header({ linkAccount, printClass }) {
                                     style={!menuUserShow ? { display: 'none' } : {}}
                                     id="menu-liens-user">
                                     <ul className="rf-menu__list">
-                                      {role === 'conseiller' &&
+                                      {['conseiller', 'coordinateur_coop'].includes(role) &&
                                         <li className="user-infos">
                                           <Link className="rf-nav__link lien-user" to="/mes-informations"
                                             onClick={() => {
