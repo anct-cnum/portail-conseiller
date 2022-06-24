@@ -33,7 +33,6 @@ function Conseillers() {
   const [basculerFiltreCRA, setBasculerFiltreCRA] = useState(false);
   const [basculerFiltreCertifie, setBasculerFiltreCertifie] = useState(false);
   const [pageCount, setPageCount] = useState(0);
-  const idCoordinateur = null;
 
   const navigate = page => {
     setPage(page);
@@ -47,7 +46,6 @@ function Conseillers() {
       ordreNom,
       ordre ? 1 : -1,
       user.role === 'structure_coop' ? user.entity.$id : filtreParStructureId,
-      idCoordinateur,
       filtreRegion
     ));
   };
@@ -64,7 +62,7 @@ function Conseillers() {
 
   useEffect(() => {
     dispatch(conseillerActions.getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, ordreNom,
-      ordre ? 1 : -1, user.role === 'structure_coop' ? user.entity.$id : filtreParStructureId, idCoordinateur, filtreRegion));
+      ordre ? 1 : -1, user.role === 'structure_coop' ? user.entity.$id : filtreParStructureId, filtreRegion));
   }, [ordre, ordreNom, filtreProfil, filtreGroupeCRA, filtreParNom, filtreParStructureId, filtreCertifie, filtreRegion]);
 
   const filtreClick = e => {
