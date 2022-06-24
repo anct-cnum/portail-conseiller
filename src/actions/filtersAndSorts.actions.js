@@ -10,6 +10,7 @@ export const filtersAndSortsActions = {
   changeNom,
   changeStructureId,
   saveSearchInput,
+  changeFiltreRegion,
   resetFiltre
 };
 
@@ -59,8 +60,12 @@ function changeTerritoire(territoire) {
   return { type: 'CHANGE_TERRITOIRE', territoire };
 }
 
-function saveSearchInput(searchInput) {
-  return { type: 'SAVE_SEARCH_INPUT', searchInput };
+function saveSearchInput(searchInput, region) {
+  return { type: 'SAVE_SEARCH_INPUT', searchInput, region };
+}
+
+function changeFiltreRegion(region) {
+  return { type: 'CHANGE_REGION', region };
 }
 
 function resetFiltre() {
