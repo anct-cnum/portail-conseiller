@@ -22,8 +22,6 @@ function Menu() {
     }
   };
 
-  const exclusionPages = ['/ressourcerie', '/a-propos', '/mes-informations', '/lieux-activite'];
-
   return (
     <>
       { (!voirPermanence || suspendrePermanence) &&
