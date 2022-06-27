@@ -125,7 +125,10 @@ function FiltersAndSorts({ resetPage, user }) {
   };
 
   function handleKeyDown(e) {
-    if (e.key === 'Enter' || (e.type === 'click' && searchInput !== '')) {
+    if (e.target.value === '') {
+      dispatch(filtersAndSortsActions.changeNom(e.target.value));
+    }
+    if (e.key === 'Enter' || (e.type === 'click' && searchInput === '')) {
       rechercheParNomOuNomStructure(e);
     }
     return;
@@ -146,7 +149,7 @@ function FiltersAndSorts({ resetPage, user }) {
           <div className="rf-ml-auto rf-col-12 rf-col-md-4 rf-mb-4w rf-mb-md-0">
             <div className="rf-search-bar rf-search-bar" id="search" role="search" >
               <input className="rf-input" defaultValue={searchInput ?? ''} onKeyDown={handleKeyDown}
-                placeholder="Rechercher par nom" type="search" id="search-input" name="search-input" onClick={handleKeyDown} />
+                placeholder="Rechercher par nom" type="search" id="search-input" name="search-input" onChange={handleKeyDown} />
               <button className="rf-btn" onClick={rechercheParNomOuNomStructure} title="Rechercher par nom">
                 Rechercher
               </button>
