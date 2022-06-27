@@ -29,7 +29,7 @@ function Welcome() {
             <div className="rf-col-12">
               <div className="rf-container">
                 <div className="rf-grid-row rf-grid-row--center">
-                  <div className="rf-col-12 rf-mt-12w rf-mb-3w">
+                  <div className="rf-col-12 rf-mt-15w rf-mb-3w">
                     { conseiller && !conseiller?.supHierarchique &&
                       <div className="div-info-rappel-hierarchique rf-mb-3w rf-py-1w">
                         <i className="ri-information-line information icone-info-rappel"></i>
@@ -51,14 +51,14 @@ function Welcome() {
             <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
             <div className="rf-col-12">
               <div className="rf-container">
-                <div className="rf-grid-row espacement-centre-groupe-icon">
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-mr-md-5w">
+                <div className="rf-grid-row espacement-centre-groupe-icon rf-mt-6w">
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-3 menu-btn rf-mb-3w">
                     <Link to="/compte-rendu-activite" title="Acc&eacute;der &agrave; mon outil de suivi d&rsquo;activit&eacute;">
                       <img src="/logos/home-connected/icone-cra.svg" className="icone-btn icone-cra"/>
                       Suivi d&rsquo;activit&eacute;
                     </Link>
                   </div>
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-mr-md-4w">
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
                     <a href={lienMattermost} target="blank" title="Acc&egrave;s espace discussion">
                       <img src="/logos/home-connected/icone-discussion.svg" className="icone-btn icone-mattermost"/>
                       Espace de discussion
@@ -77,13 +77,13 @@ function Welcome() {
                       </span>
                     </a>
                   </div>
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-mr-md-4w">
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-3 menu-btn rf-mb-3w">
                     <Link to="/ressourcerie" title="Acc&eacute;der &agrave; la ressourcerie">
                       <img src="/logos/home-connected/icone-ressourcerie.svg" className="icone-btn icone-ressourcerie"/>
                       Ressourcerie
                     </Link>
                   </div>
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-mr-md-1w">
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
                     <a href={lienPix} target="blank" title="Acc&eacute;der &agrave; Pix">
                       <img src="/logos/home-connected/icone-pix.svg" className="icone-btn icone-pix"/>
                       Pix
@@ -92,27 +92,27 @@ function Welcome() {
                 </div>
                 <div className="rf-grid-row espacement-centre-groupe-icon rf-mt-8w">
 
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-mr-md-5w rf-ml-md-2w">
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-3 menu-btn rf-mb-3w">
                     <Link to="/statistiques" title="Acc&eacute;der &agrave; aux statistiques">
                       <img src="/logos/home-connected/icone-statistiques.svg" className="icone-btn icone-statistiques"/>
                       Gestion, statistiques
                     </Link>
                   </div>
 
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-mr-md-4w">
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
                     <Link to="/mes-lieux-activite" title="Acc&eacute;der &agrave; la ressourcerie">
                       <img src="/logos/home-connected/icone-lieux.svg" className="icone-btn icone-ressourcerie"/>
                       Lieux d&rsquo;activit&eacute;
                     </Link>
                   </div>
 
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-mr-md-4w">
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-3 menu-btn rf-mb-3w">
                     <a href={lienRdvSolidarites} target="blank" title="Acc&eacute;der &agrave; RDV Solidarit&eacute;s">
                       <img src="/logos/home-connected/logo-rdv-solidarites.svg" className="icone-btn icone-rdv-solidarites"/>
                       RDV Solidarit&eacute;s
                     </a>
                   </div>
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w rf-mr-md-3w">
+                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
                     <a href={lienWebmail} target="blank" title="Acc&eacute;der &agrave; ma boîte mail">
                       <img src="/logos/home-connected/icone-courriel.svg" className="icone-btn icone-mail"/>
                       Acc&eacute;der au web mail
@@ -138,7 +138,7 @@ function Welcome() {
             <div className="rf-col-12">
               <div className="rf-container">
                 <div className="rf-grid-row rf-grid-row--center">
-                  <div className="rf-col-12 rf-mt-9w rf-mb-3w">
+                  <div className="rf-col-12 rf-mt-15w rf-mb-3w">
                     <h2 className="titre">
                       <img src="/logos/home-connected/hexagone-4.svg" className="hexagone"/>
                       Supports
@@ -151,28 +151,27 @@ function Welcome() {
             <div className="rf-col-12 fond-sombre">
               <div className="rf-container">
                 <div className="rf-grid-row rf-grid-row--center">
-                  <div className="rf-col-12 rf-col-md-6 rf-mt-7w">
+                  <div className="rf-col-12 rf-col-md-6 rf-mt-6w">
                     <img src="/logos/home-connected/pres-guide-bien-demarrer-ma-mission.png" className="rf-mr-md-1w img-home"/>
                     <a href="https://cdn.conseiller-numerique.gouv.fr/les-conseils-pour-bien-demarrer.pdf" target="blank"
                       className="document-btn rf-mt-5w rf-mb-4w" title="Kit bien d&eacute;marrer ma mission">
                       T&eacute;l&eacute;chargez le kit &laquo;&nbsp; Bien d&eacute;marrer ma mission &nbsp;&raquo;
                     </a>
-                    <p className="rf-mb-8w rf-ml-md-7w document-text">
+                    <p className="document-text">
                       Ce document contient tout ce qu&rsquo;il faut savoir pour bien commencer votre activit&eacute; de
                       Conseiller num&eacute;rique France Services depuis votre inscription jusqu&rsquo;&agrave; votre entr&eacute;e
                       en poste.
                     </p>
                   </div>
-                  <div className="rf-col-12 rf-col-md-6 rf-mt-7w">
+                  <div className="rf-col-12 rf-col-md-6 rf-mt-6w">
                     <img src="/logos/home-connected/previews-elements-communication.png" className="rf-ml-md-3v img-home"/>
                     <a href="https://www.conseiller-numerique.gouv.fr/kit-communication" title="kit de communication" target="blank"
                       className="kit-communication-btn rf-mt-5w rf-mb-4w">
                         Acc&eacute;der au kit de communication
                     </a>
-                    <p className="rf-mb-8w rf-ml-md-7w kit-communication-text">
+                    <p className="kit-communication-text">
                       Pour votre communication interne ou externe&nbsp;:&nbsp;papeterie, r&eacute;seaux sociaux, signal&eacute;tiques,
-                      etc, cette seconde mise &agrave; jour du kit de communication est mis &agrave; votre disposition
-                      (illustrations, charte graphique, cartes de visite, etc).
+                      etc, cette seconde mise &agrave; jour du kit de communication est mis &agrave; votre disposition.
                     </p>
                   </div>
                 </div>
@@ -187,7 +186,7 @@ function Welcome() {
               <div className="rf-container">
                 <div className="rf-grid-row rf-grid-row--center">
                   <div className="rf-col-12 rf-col-lg-6">
-                    <h2 className="titre rf-my-7w">
+                    <h2 className="titre rf-my-7w rf-mt-15w">
                       <img src="/logos/home-connected/hexagone-3.svg" className="hexagone"/>
                       Nouveaut&eacute;s Coop et am&eacute;liorations &agrave; venir
                     </h2>
@@ -209,7 +208,7 @@ function Welcome() {
                     </p>
                     <a></a>
                   </div>
-                  <div className="rf-col-12 rf-col-lg-6 rf-my-7w">
+                  <div className="rf-col-12 rf-col-lg-6 rf-my-7w rf-mt-15w">
                     <img src="/logos/home-connected/utilisateurs.svg" className="img-home-futur"/>
                   </div>
                   <div className="rf-col-12 rf-mt-2w rf-mb-12w center-button">

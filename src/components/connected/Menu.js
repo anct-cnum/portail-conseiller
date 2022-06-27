@@ -36,38 +36,6 @@ function Menu() {
                 aria-label="Menu principal"
                 style={{ boxShadow: 'none', zIndex: 1 }}>
                 <ul className="rf-nav__list" style={{ paddingBottom: '15px' }}>
-                  { !exclusionPages.includes(location.pathname) &&
-                  <>
-                    <li className="rf-nav__item">
-                      <Link
-                        className={`rf-nav__link linkCustom ${location.pathname === '/accueil' ? 'linkActive' : ''}`}
-                        to="/accueil" onClick={toggleBurgerMenu}>
-                          Accueil
-                      </Link>
-                    </li>
-                    <li className="rf-nav__item">
-                      <Link
-                        className={`rf-nav__link linkCustom ${location.pathname === '/statistiques' ? 'linkActive' : ''}`}
-                        to="/statistiques" onClick={toggleBurgerMenu}>
-                          Statistiques
-                      </Link>
-                    </li>
-                    <li className="rf-nav__item">
-                      <Link
-                        className={`rf-nav__link linkCustom ${location.pathname === '/compte-rendu-activite' ? 'linkActive' : ''}`}
-                        to="/compte-rendu-activite" onClick={toggleBurgerMenu}>
-                          Enregistrer un nouvel accompagnement
-                      </Link>
-                    </li>
-                    <li className="rf-nav__item">
-                      <Link
-                        className={`rf-nav__link linkCustom ${location.pathname === '/ressourcerie' ? 'linkActive' : ''}`}
-                        to="/ressourcerie" onClick={toggleBurgerMenu}>
-                          Ressourcerie
-                      </Link>
-                    </li>
-                  </>
-                  }
                   {!menu.hiddenMenu && menu.expandNav &&
                   <>
                     <li className="rf-shortcuts__item">

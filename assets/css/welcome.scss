@@ -113,10 +113,7 @@
     margin-left: 8.5rem;
   }
   .kit-communication-text {
-    max-width: 495px;
-  }
-  .document-text {
-    max-width: 460px;
+    margin-left: 1rem;
   }
   .kit-communication-text, .document-text {
     font-family: Helvetica;
@@ -125,7 +122,6 @@
     font-weight: 400;
     line-height: 24px;
     letter-spacing: 0px;
-    text-align: center;
   }
   .img-home {
     width: 588px;
@@ -191,6 +187,7 @@
     .document-btn, .kit-communication-btn {
       font-size: 11px;
       width: 77%;
+      height: 10%;
     }
     .kit-communication-btn {
       margin-left: 2.2rem;
@@ -200,7 +197,7 @@
     }
     .document-text, .kit-communication-text {
       font-size: 11px;
-      max-width: 282px;
+      max-width: 360px;
     }
     .img-home-futur {
       width: 92%;
@@ -219,6 +216,7 @@
     .document-text, .kit-communication-text {
       font-size: 11px;
       max-width: 350px;
+      margin-left: 0;
     }
     .img-home-futur {
       width: 100%;
