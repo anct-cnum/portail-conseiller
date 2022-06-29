@@ -57,17 +57,15 @@ function AdminHeader({ role, linkAccount }) {
               <span className="stats-texte-btn">Statistiques par territoire</span>
             </a>
             }
+            <a className="header-btn" href={lienLaBase}>
+              <span className="ressourcerie-logo-btn"></span>
+              <span className="ressourcerie-texte-btn">Ressourcerie</span>
+            </a>
             { role === 'admin_coop' &&
-            <>
-              <a className="header-btn" href={lienLaBase}>
-                <span className="ressourcerie-logo-btn"></span>
-                <span className="ressourcerie-texte-btn">Ressourcerie</span>
-              </a>
               <a className="header-btn" href={lienMattermost}>
                 <span className="discussion-logo-btn"></span>
                 <span className="discussion-texte-btn">Espace de discussion</span>
               </a>
-            </>
             }
           </div>
         </div>
