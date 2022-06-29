@@ -52,13 +52,13 @@ function Welcome() {
             <div className="rf-col-12">
               <div className="rf-container">
                 <div className="rf-grid-row espacement-centre-groupe-icon rf-mt-6w">
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-3 menu-btn rf-mb-3w">
+                  <div className="rf-col-12 rf-col-sm-3 rf-col-md-3 menu-btn rf-mb-3w">
                     <Link to="/compte-rendu-activite" title="Acc&eacute;der &agrave; mon outil de suivi d&rsquo;activit&eacute;">
                       <img src="/logos/home-connected/icone-cra.svg" className="icone-btn icone-cra"/>
                       Suivi d&rsquo;activit&eacute;
                     </Link>
                   </div>
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
+                  <div className="rf-col-12 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
                     <a href={lienMattermost} target="blank" title="Acc&egrave;s espace discussion">
                       <img src="/logos/home-connected/icone-discussion.svg" className="icone-btn icone-mattermost"/>
                       Espace de discussion
@@ -77,13 +77,13 @@ function Welcome() {
                       </span>
                     </a>
                   </div>
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-3 menu-btn rf-mb-3w">
+                  <div className="rf-col-12 rf-col-sm-3 rf-col-md-3 menu-btn rf-mb-3w">
                     <Link to="/ressourcerie" title="Acc&eacute;der &agrave; la ressourcerie">
                       <img src="/logos/home-connected/icone-ressourcerie.svg" className="icone-btn icone-ressourcerie"/>
                       Ressourcerie
                     </Link>
                   </div>
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
+                  <div className="rf-col-12 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
                     <a href={lienPix} target="blank" title="Acc&eacute;der &agrave; Pix">
                       <img src="/logos/home-connected/icone-pix.svg" className="icone-btn icone-pix"/>
                       Pix
@@ -92,27 +92,27 @@ function Welcome() {
                 </div>
                 <div className="rf-grid-row espacement-centre-groupe-icon rf-mt-8w">
 
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-3 menu-btn rf-mb-3w">
+                  <div className="rf-col-12 rf-col-sm-3 rf-col-md-3 menu-btn rf-mb-3w">
                     <Link to="/statistiques" title="Acc&eacute;der &agrave; aux statistiques">
                       <img src="/logos/home-connected/icone-statistiques.svg" className="icone-btn icone-statistiques"/>
                       Gestion, statistiques
                     </Link>
                   </div>
 
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
+                  <div className="rf-col-12 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
                     <Link to="/mes-lieux-activite" title="Acc&eacute;der &agrave; la ressourcerie">
                       <img src="/logos/home-connected/icone-lieux.svg" className="icone-btn icone-ressourcerie"/>
                       Lieux d&rsquo;activit&eacute;
                     </Link>
                   </div>
 
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-3 menu-btn rf-mb-3w">
+                  <div className="rf-col-12 rf-col-sm-3 rf-col-md-3 menu-btn rf-mb-3w">
                     <a href={lienRdvSolidarites} target="blank" title="Acc&eacute;der &agrave; RDV Solidarit&eacute;s">
                       <img src="/logos/home-connected/logo-rdv-solidarites.svg" className="icone-btn icone-rdv-solidarites"/>
                       RDV Solidarit&eacute;s
                     </a>
                   </div>
-                  <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
+                  <div className="rf-col-12 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
                     <a href={lienWebmail} target="blank" title="Acc&eacute;der &agrave; ma boîte mail">
                       <img src="/logos/home-connected/icone-courriel.svg" className="icone-btn icone-mail"/>
                       Acc&eacute;der au web mail
