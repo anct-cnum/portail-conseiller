@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 export const conseillerActions = {
   get,
   getAll,
+  getConseillersSubordonnes,
   getStatistiquesPDF,
   getStatistiquesAdminCoopPDF,
   getStatistiquesCSV,
@@ -13,11 +14,15 @@ export const conseillerActions = {
   getStatistiquesHubCSV,
   resetStatistiquesPDFFile,
   exportDonneesCnfs,
+  exportDonneesSubordonnes,
   resetExportDonneesCnfs,
   isFormulaireChecked,
   closeFormulaire,
   isUserActif,
-  saveConseillerBeforeFilter
+  isSubordonne,
+  saveConseillerBeforeFilter,
+  resetIsSubordonne,
+  exportDonneesCnfsWithoutCRA
 };
 
 const formatDate = date => dayjs(date).format('DD-MM-YYYY');
@@ -56,12 +61,13 @@ function get(id) {
   }
 }
 
-function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre = 'prenom', ordre = 1, filtreParStructureId) {
+// eslint-disable-next-line max-len
+function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre = 'prenom', ordre = 1, filtreParStructureId, filtreRegion) {
   return dispatch => {
     dispatch(request());
     let promises = [];
     // eslint-disable-next-line max-len
-    let promise = conseillerService.getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre, ordre, filtreParStructureId);
+    let promise = conseillerService.getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre, ordre, filtreParStructureId, filtreRegion);
     promises.push(promise);
 
     let conseillers = null;
@@ -84,6 +90,30 @@ function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGr
   }
   function failure(error) {
     return { type: 'GETALL_FAILURE', error };
+  }
+}
+function getConseillersSubordonnes(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, ordreNom, ordre, idCoordinateur) {
+  return dispatch => {
+    dispatch(request());
+    conseillerService.getConseillersSubordonnes(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, ordreNom, ordre, idCoordinateur)
+    .then(
+      data => {
+        dispatch(success(data));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'GET_SUBORDONES_REQUEST' };
+  }
+  function success(conseillers) {
+    return { type: 'GET_SUBORDONES_SUCCESS', conseillers };
+  }
+  function failure(error) {
+    return { type: 'GET_SUBORDONES_FAILURE', error };
   }
 }
 
@@ -198,11 +228,12 @@ function getStatistiquesHubCSV(hub) {
 }
 
 // eslint-disable-next-line max-len
-function exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre = 'prenom', ordre = 1, idStructure) {
+function exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre = 'prenom', ordre = 1, idStructure, region) {
   return dispatch => {
     dispatch(request());
 
-    conseillerService.getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre, ordre, idStructure).then(
+    // eslint-disable-next-line max-len
+    conseillerService.getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre, ordre, idStructure, region).then(
       exportCnfsFileBlob => dispatch(success(exportCnfsFileBlob)),
       exportCnfsFileError => dispatch(failure(exportCnfsFileError))
     );
@@ -216,6 +247,47 @@ function exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, fil
   }
   function failure(exportCnfsFileError) {
     return { type: 'GET_EXPORT_CNFS_FAILURE', exportCnfsFileError };
+  }
+}
+
+function exportDonneesSubordonnes(dateDebut, dateFin, filtreProfil, nomOrdre = 'prenom', ordre = 1, idCoordinateur) {
+  return dispatch => {
+    dispatch(request());
+
+    conseillerService.exportDonneesSubordonnes(dateDebut, dateFin, filtreProfil, nomOrdre, ordre, idCoordinateur).then(
+      exportCnfsFileBlob => dispatch(success(exportCnfsFileBlob)),
+      exportCnfsFileError => dispatch(failure(exportCnfsFileError))
+    );
+  };
+  function request() {
+    return { type: 'GET_EXPORT_CNFS_REQUEST' };
+  }
+  function success(exportCnfsFileBlob) {
+    return { type: 'GET_EXPORT_CNFS_SUCCESS', exportCnfsFileBlob };
+  }
+  function failure(exportCnfsFileError) {
+    return { type: 'GET_EXPORT_CNFS_FAILURE', exportCnfsFileError };
+  }
+}
+
+function exportDonneesCnfsWithoutCRA() {
+  return dispatch => {
+    dispatch(request());
+
+    conseillerService.getExportDonneesCnfsWithoutCRA().then(
+      data => dispatch(success(data, download(data, 'export_cnfs_m2.csv'))),
+      error => dispatch(failure(error))
+    );
+  };
+
+  function request() {
+    return { type: 'GET_EXPORT_CNFS_WITHOUT_CRA_REQUEST' };
+  }
+  function success(data, download) {
+    return { type: 'GET_EXPORT_CNFS_WITHOUT_CRA_SUCCESS', data, download };
+  }
+  function failure(error) {
+    return { type: 'GET_EXPORT_CNFS_WITHOUT_CRA_FAILURE', error };
   }
 }
 
@@ -245,3 +317,35 @@ function isUserActif(conseiller) {
   const isUserActif = conseiller?.emailCNError !== undefined && conseiller?.mattermost !== undefined;
   return { type: 'IS_USER_ACTIF', isUserActif };
 }
+
+function isSubordonne(coordinateurId, conseillerId) {
+  return dispatch => {
+    dispatch(request());
+    conseillerService.isSubordonne(coordinateurId, conseillerId)
+    .then(
+      data => {
+        dispatch(success(data.isSubordonne));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'IS_SUBORDONE_REQUEST' };
+  }
+  function success(bool) {
+    return { type: 'IS_SUBORDONE_SUCCESS', bool };
+  }
+  function failure(error) {
+    return { type: 'IS_SUBORDONE_FAILURE', error };
+  }
+}
+
+function resetIsSubordonne() {
+  return { type: 'RESET_IS_SUBORDONE' };
+
+}
+
+

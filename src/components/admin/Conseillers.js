@@ -21,6 +21,7 @@ function Conseillers() {
   let filtreGroupeCRA = useSelector(state => state.filtersAndSorts?.groupeCRA);
   let filtreParNom = useSelector(state => state.filtersAndSorts?.nom);
   let filtreParStructureId = useSelector(state => state.filtersAndSorts?.structureId);
+  let filtreRegion = useSelector(state => state.filtersAndSorts?.region);
   let ordre = useSelector(state => state.filtersAndSorts?.ordre);
   let ordreNom = useSelector(state => state.filtersAndSorts?.ordreNom);
   const user = useSelector(state => state?.authentication?.user?.user);
@@ -31,7 +32,6 @@ function Conseillers() {
   const [basculerFiltreProfil, setBasculerFiltreProfil] = useState(false);
   const [basculerFiltreCRA, setBasculerFiltreCRA] = useState(false);
   const [basculerFiltreCertifie, setBasculerFiltreCertifie] = useState(false);
-
   const [pageCount, setPageCount] = useState(0);
 
   const navigate = page => {
@@ -46,6 +46,7 @@ function Conseillers() {
       ordreNom,
       ordre ? 1 : -1,
       user.role === 'structure_coop' ? user.entity.$id : filtreParStructureId,
+      filtreRegion
     ));
   };
 
@@ -61,8 +62,8 @@ function Conseillers() {
 
   useEffect(() => {
     dispatch(conseillerActions.getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, ordreNom,
-      ordre ? 1 : -1, user.role === 'structure_coop' ? user.entity.$id : filtreParStructureId));
-  }, [ordre, ordreNom, filtreProfil, filtreGroupeCRA, filtreParNom, filtreParStructureId]);
+      ordre ? 1 : -1, user.role === 'structure_coop' ? user.entity.$id : filtreParStructureId, filtreRegion));
+  }, [ordre, ordreNom, filtreProfil, filtreGroupeCRA, filtreParNom, filtreParStructureId, filtreCertifie, filtreRegion]);
 
   const filtreClick = e => {
     if (e.target.id === 'activer') {

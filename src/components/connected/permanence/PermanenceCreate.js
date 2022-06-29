@@ -57,7 +57,7 @@ function PermanenceCreate() {
       }, 3000);
     }
   }, [isCreated, isUpdated]);
-  
+
   return (
     <>
       <div id="formulaire-horaires-adresse" >
@@ -132,7 +132,6 @@ function PermanenceCreate() {
                   prefixId="secondaire_0_"
                   horairesId={0}
                   permanence={null}
-                  isUpdate={true}
                 />
                 <div className="rf-col-12 rf-mt-8w"></div>
                 <Validation

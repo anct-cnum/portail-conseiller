@@ -26,8 +26,8 @@ function Territoire({ territoire, currentPage, trClass }) {
             origin: '/territoires' }}>
               D&eacute;tails
           </Link>
+          <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
         </td>
-        <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
       </tr>
     </>
   );

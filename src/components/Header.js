@@ -34,26 +34,26 @@ function Header({ linkAccount, printClass }) {
       <div className="rf-container">
         <div
           // eslint-disable-next-line max-len
-          className={`rf-grid-row rf-grid-row--top rf-grid-row--center ${location.pathname === '/validation' || location.pathname.startsWith('/inscription') ? 'headerRow' : ''}`}>
+          className={`rf-grid-row rf-grid-row--top header-grid ${location.pathname === '/validation' || location.pathname.startsWith('/inscription') ? 'headerRow' : ''}`}>
           <div className="rf-col-xs-10 rf-col-sm-10 rf-col-md-10 rf-col-xl-12">
             <div className="rf-header__body">
-              <a className="rf-header__operator" href="/" style={{ boxShadow: 'none' }}>
+              <a className="rf-header__operator" href="/" style={{ boxShadow: 'none', marginRight: '0.5rem' }}>
                 {printClass ?
                   <img src="/logos/logo-conseiller-numerique.svg" alt="logo Conseiller Num&eacute;rique France Services" style={{ height: '48px' }}/> :
-                  <img src="/logos/logo-conseiller-numerique-nb.svg" alt="logo Conseiller Num&eacute;rique France Services" style={{ height: '48px' }}/>
+                  // eslint-disable-next-line max-len
+                  <img src="/logos/logo-conseiller-numerique-nb.svg" className="logo-conseiller-numerique" alt="logo Conseiller Num&eacute;rique France Services" />
                 }
 
               </a>
               <div className={`rf-header__navbar ${location.pathname === '/validation' || location.pathname.startsWith('/inscription') ? 'headerCustom' : ''}`}>
-                <div className="rf-service">
+                <div className="rf-service block-feuillet">
                   {role !== 'admin_coop' &&
                     <div className="feuillet">
-                      <a className="rf-service__title" href="/" title="Coop">
-                        Coop&nbsp;<span style={{ fontSize: '20px', fontWeight: '300' }}>v {process.env.REACT_APP_VERSION}</span>
+                      <a className="rf-service__title title-feuillet" href="/" title="Coop">
+                        Coop
                       </a>
-                      <p className="rf-service__tagline cacher-baseline">
-                        Bienvenue sur le r&eacute;seau
-                        <br />des conseillers num&eacute;riques France Services
+                      <p className="rf-service__tagline cacher-baseline" style={{ fontSize: '12px', fontWeight: '400', lineHeight: '20px', color: '#929292' }}>
+                        Bienvenue sur le r&eacute;seau des conseillers num&eacute;riques
                       </p>
                     </div>
                   }
@@ -81,16 +81,16 @@ function Header({ linkAccount, printClass }) {
                   <div className="rf-header__tools headerCustom">
                     <div className="rf-shortcuts" style={!menu.hiddenMenu ? { display: 'none' } : {} }>
                       <ul className="rf-shortcuts__list">
-                        <li className="rf-shortcuts__item header-propos">
+                        <li className="rf-shortcuts__item header-propos rf-mr-md-2w">
                           <ul className="rf-nav__list">
                             <li className="rf-nav__item">
                               <Link className="rf-nav__btn rf-custom-link" to="/a-propos" title="&Agrave; propos de votre espace Coop" >
-                                <i className="ri-compasses-2-fill"></i>&Agrave; propos
+                                &Agrave; propos
                               </Link>
                             </li>
                           </ul>
                         </li>
-                        <li className="rf-shortcuts__item header-aide">
+                        <li className="rf-shortcuts__item header-aide rf-mr-md-2w">
                           <div className="" role="navigation" aria-label="aide">
                             <ul className="rf-nav__list">
                               <li className="rf-nav__item">
@@ -101,7 +101,6 @@ function Header({ linkAccount, printClass }) {
                                     setMenuUserShow(menuUserShow ? !menuUserShow : menuUserShow);
                                     //setMenuInformationsShow(false);
                                   }}>
-                                  <img className="logo-discussion" src="/logos/bulle-ressourcerie.svg" />
                                   <span className="texte-aide">Aide&nbsp;
                                     {!menuAideShow ? <i className="ri-arrow-down-s-line"></i> : <i className="ri-arrow-up-s-line"></i>}
                                   </span>
@@ -151,7 +150,7 @@ function Header({ linkAccount, printClass }) {
                           </div>
                         </li>
                         {linkAccount !== 'noConnected' &&
-                          <li className="rf-shortcuts__item header-user">
+                          <li className="rf-shortcuts__item header-user rf-mr-md-2w">
                             <div className="" role="navigation" aria-label="user">
                               <ul className="rf-nav__list">
                                 <li className="rf-nav__item">
@@ -173,7 +172,7 @@ function Header({ linkAccount, printClass }) {
                                     style={!menuUserShow ? { display: 'none' } : {}}
                                     id="menu-liens-user">
                                     <ul className="rf-menu__list">
-                                      {role === 'conseiller' &&
+                                      {['conseiller', 'coordinateur_coop'].includes(role) &&
                                         <li className="user-infos">
                                           <Link className="rf-nav__link lien-user" to="/mes-informations"
                                             onClick={() => {

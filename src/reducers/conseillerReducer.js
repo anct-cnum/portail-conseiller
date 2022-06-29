@@ -177,12 +177,75 @@ export default function conseiller(state = initState, action) {
     case 'GETALL_FAILURE':
       return {
         ...state,
+        loading: false,
         error: action.error
+      };
+    case 'GET_SUBORDONES_REQUEST':
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+    case 'GET_SUBORDONES_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        subordonnes: action.conseillers
+      };
+    case 'GET_SUBORDONES_FAILURE':
+      return {
+        ...state,
+        loading: false,
+        error: action.error
+      };
+    case 'IS_SUBORDONE_REQUEST':
+      return {
+        ...state,
+        loading: true,
+        loaded: false,
+        error: false,
+      };
+    case 'IS_SUBORDONE_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        loaded: true,
+        isSubordonne: action.bool
+      };
+    case 'IS_SUBORDONE_FAILURE':
+      return {
+        ...state,
+        loading: false,
+        loaded: true,
+        error: action.error
+      };
+    case 'RESET_IS_SUBORDONE':
+      return {
+        loaded: false
       };
     case 'GET_EXPORT_CNFS_REQUEST':
       return {
         ...state,
         downloadingExportCnfs: true,
+      };
+    case 'GET_EXPORT_CNFS_WITHOUT_CRA_REQUEST':
+      return {
+        ...state,
+        loadingCSV: true,
+        errorCSV: false
+      };
+    case 'GET_EXPORT_CNFS_WITHOUT_CRA_SUCCESS':
+      return {
+        ...state,
+        blob: action.data,
+        exportCnfsFileWithoutCRA: action.download,
+        loadingCSV: false
+      };
+    case 'GET_EXPORT_CNFS_WITHOUT_CRA_FAILURE':
+      return {
+        ...state,
+        errorCSV: action.error,
+        loadingCSV: false
       };
     case 'GET_EXPORT_CNFS_SUCCESS':
       return {
@@ -210,6 +273,7 @@ export default function conseiller(state = initState, action) {
         ...state,
         isUserActif: action.isUserActif,
       };
+
     default:
       return state;
   }

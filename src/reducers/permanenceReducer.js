@@ -224,6 +224,7 @@ export default function permanence(state = initialState, action) {
     case 'POST_PERMANENCE_REQUEST':
       return {
         ...state,
+        showErrorMessage: false,
         showError: false,
         error: false,
         redirection: null,
