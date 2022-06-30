@@ -79,7 +79,7 @@ function Welcome() {
                     </a>
                   </div>
                   <div className="rf-col-12 rf-col-sm-3 rf-col-md-3 menu-btn rf-mb-3w">
-                    <a href={lienLaBase} target="blank" title="Acc&eacute;der &agrave; la ressourcerie">
+                    <a href={lienLaBase} rel="noreferrer" target="blank" title="Acc&eacute;der &agrave; la ressourcerie">
                       <img src="/logos/home-connected/icone-ressourcerie.svg" className="icone-btn icone-ressourcerie"/>
                       Ressourcerie
                     </a>
