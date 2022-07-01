@@ -39,7 +39,7 @@ function cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtrePr
   const filterStructureId = idStructure ? `&structureId=${idStructure}` : '';
   const filterCoordinateurId = idCoordinateur ? `&coordinateurId=${idCoordinateur}` : '';
   const filterByName = filtreParNom ? `&$search=${filtreParNom}` : '';
-  const filterRegion = region !== null && region !== 'tous' ? `&codeRegion=${region}` : '';
+  const filterRegion = region !== null && region !== 'tous' ? `&codeRegionStructure=${region}` : '';
 
   let profil = '';
   switch (filtreProfil) {
