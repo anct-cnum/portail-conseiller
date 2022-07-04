@@ -20,7 +20,7 @@ function Admin() {
       <Header linkAccount={user?.name}/>
       <div className="admin">
         { !location.pathname.startsWith('/statistiques') && !location.pathname.startsWith('/conseiller') &&
-          <AdminHeader role={ user.role } />
+          <AdminHeader role={ user.role } linkAccount={user?.name} />
         }
         <Route path={`/accueil`} component={Conseillers} />
         <Route path={`/territoires`} component={Territoires} />

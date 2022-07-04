@@ -55,6 +55,7 @@ jobs:
           envkey_REACT_APP_API: ${{ secrets.REACT_APP_API_DEMO }}
           envkey_REACT_APP_PIX_URL: "https://pix.fr/abc-pix-cnfs/"
           envkey_REACT_APP_RESSOURCERIE_URL: "https://ressourcerie.conseiller-numerique.gouv.fr"
+          envkey_REACT_APP_LABASE_URL: "https://labase.anct.gouv.fr/base/3"
           envkey_REACT_APP_AIDE_URL: "https://aide.conseiller-numerique.gouv.fr/fr"
           envkey_REACT_APP_CARTOGRAPHIE_URL: "https://cartographie.conseiller-numerique.gouv.fr"
           envkey_REACT_APP_RDV_SOLIDARITES_URL: "https://www.rdv-solidarites.fr/agents/sign_in"

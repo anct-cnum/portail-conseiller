@@ -7,7 +7,8 @@ function MenuAdmin() {
   const dispatch = useDispatch();
   const location = useLocation();
   const role = useSelector(state => state.authentication?.user?.user?.role);
-
+  const linkAccount = useSelector(state => state.authentication?.user?.user?.name);
+  const lienLaBase = `${process.env.REACT_APP_LABASE_URL}?email=${linkAccount}`;
   const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
   const aideCoop = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide_espace_coop';
   const aideMetier = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide-metier';
@@ -62,15 +63,6 @@ function MenuAdmin() {
               </li>
               <li className="rf-shortcuts__item">
                 <Link
-                  className={`rf-nav__link linkCustom ${location.pathname === '/ressourcerie' ? 'linkActive' : ''}`}
-                  to="/ressourcerie"
-                  title="Ressourcerie"
-                  onClick={toggleBurgerMenu}>
-                    Ressourcerie
-                </Link>
-              </li>
-              <li className="rf-shortcuts__item">
-                <Link
                   className={`rf-nav__link linkCustom ${location.pathname === '/a-propos' ? 'linkActive' : ''}`}
                   to="/a-propos"
                   title="&Agrave; propos du site"
@@ -80,6 +72,11 @@ function MenuAdmin() {
               </li>
               { role === 'admin_coop' &&
               <>
+                <li className="rf-shortcuts__item">
+                  <a className="rf-nav__link linkCustom" href={lienLaBase} target="blank" rel="noreferrer">
+                    Ressourcerie
+                  </a>
+                </li>
                 <li className="rf-shortcuts__item">
                   <a className="rf-nav__link linkCustom" href={lienMattermost} target="blank" rel="noreferrer">
                     Espace de discussion

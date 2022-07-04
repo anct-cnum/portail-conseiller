@@ -5,10 +5,11 @@ import { conseillerActions, statistiqueActions } from '../../actions';
 import PropTypes from 'prop-types';
 import FlashMessage from 'react-flash-message';
 
-function AdminHeader({ role }) {
+function AdminHeader({ role, linkAccount }) {
   const location = useLocation();
   const dispatch = useDispatch();
   const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
+  const lienLaBase = `${process.env.REACT_APP_LABASE_URL}?email=${linkAccount}`;
   let statsTerritoiresError = useSelector(state => state.statistique.statsTerritoiresError);
   const statistiques = useSelector(state => state.statistique.statsAdmin);
   const errorCSV = useSelector(state => state.conseiller?.errorCSV);
@@ -44,7 +45,7 @@ function AdminHeader({ role }) {
           <div
             className={`'rf-col-xs-12 rf-mt-7w rf-col-md-8 ${role !== 'admin_coop' ? 'rf-mt-5w rf-mb-6w' : 'rf-mt-md-1w'}`}
             style={{ textAlign: 'right' }}>
-            {(location.pathname === '/territoires' || location.pathname === '/ressourcerie') &&
+            {(location.pathname === '/territoires') &&
             <a className="header-btn" href="accueil">
               <span className="conseillers-logo-btn"></span>
               <span className="conseillers-texte-btn">Liste des conseillers</span>
@@ -56,12 +57,10 @@ function AdminHeader({ role }) {
               <span className="stats-texte-btn">Statistiques par territoire</span>
             </a>
             }
-            {location.pathname !== '/ressourcerie' &&
-            <a className="header-btn" href="ressourcerie">
+            <a className="header-btn" href={lienLaBase}>
               <span className="ressourcerie-logo-btn"></span>
               <span className="ressourcerie-texte-btn">Ressourcerie</span>
             </a>
-            }
             { role === 'admin_coop' &&
             <a className="header-btn" href={lienMattermost}>
               <span className="discussion-logo-btn"></span>
@@ -123,6 +122,7 @@ function AdminHeader({ role }) {
 }
 
 AdminHeader.propTypes = {
-  role: PropTypes.string
+  role: PropTypes.string,
+  linkAccount: PropTypes.string
 };
 export default AdminHeader;
