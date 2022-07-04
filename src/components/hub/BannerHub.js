@@ -48,7 +48,7 @@ function BannerHub() {
             <span className="stats-texte-btn">Statistiques par territoire</span>
           </a>
           }
-          <a className="header-btn" href={lienLaBase}>
+          <a className="header-btn" href={lienLaBase} target="blank" rel="noreferrer">
             <span className="ressourcerie-logo-btn"></span>
             <span className="ressourcerie-texte-btn">Ressourcerie</span>
           </a>
