@@ -1,19 +1,27 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "CnFS",
+  "name": "Conseiller numérique France Services",
   "icons": [
     {
-      "src": "favicon-64.ico",
+      "src": "./pwaIcons/favicon-64.png",
       "sizes": "64x64",
-      "type": "image/x-icon"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
-      "src": "favicon-32.ico",
-      "sizes": "32x32",
-      "type": "image/x-icon"
+      "src": "./pwaIcons/favicon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./pwaIcons/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
     }
   ],
-  "start_url": ".",
+  "start_url": "../compte-rendu-activite",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
