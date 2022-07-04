@@ -8,6 +8,8 @@ function MenuHub() {
   const location = useLocation();
 
   const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
+  const linkAccount = useSelector(state => state.authentication?.user?.user?.name);
+  const lienLaBase = `${process.env.REACT_APP_LABASE_URL}?email=${linkAccount}`;
 
   let menu = useSelector(state => state.menu);
   const toggleBurgerMenu = () => {
@@ -48,13 +50,13 @@ function MenuHub() {
                 </Link>
               </li>
               <li className="rf-shortcuts__item">
-                <Link
-                  className={`rf-nav__link linkCustom ${location.pathname === '/ressourcerie' ? 'linkActive' : ''}`}
-                  to="/ressourcerie"
+                <a
+                  className="rf-nav__link linkCustom"
+                  href={lienLaBase} rel="noreferrer" target="blank"
                   title="Ressourcerie"
                   onClick={toggleBurgerMenu}>
                     Ressourcerie
-                </Link>
+                </a>
               </li>
               <li className="rf-shortcuts__item">
                 <Link

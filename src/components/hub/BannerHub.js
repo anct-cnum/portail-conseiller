@@ -8,6 +8,8 @@ import FlashMessage from 'react-flash-message';
 function BannerHub() {
   const location = useLocation();
   const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
+  const linkAccount = useSelector(state => state.authentication?.user?.user?.name);
+  const lienLaBase = `${process.env.REACT_APP_LABASE_URL}?email=${linkAccount}`;
   const hub = useSelector(state => state.authentication?.user?.user?.hub);
   const dispatch = useDispatch();
   const loadingCSV = useSelector(state => state.conseiller?.loadingCSV);
@@ -46,12 +48,10 @@ function BannerHub() {
             <span className="stats-texte-btn">Statistiques par territoire</span>
           </a>
           }
-          {location.pathname !== '/ressourcerie' &&
-          <a className="header-btn" href="ressourcerie">
+          <a className="header-btn" href={lienLaBase} target="blank" rel="noreferrer">
             <span className="ressourcerie-logo-btn"></span>
             <span className="ressourcerie-texte-btn">Ressourcerie</span>
           </a>
-          }
           <a className="header-btn" href={lienMattermost}>
             <span className="discussion-logo-btn"></span>
             <span className="discussion-texte-btn">Espace de discussion</span>

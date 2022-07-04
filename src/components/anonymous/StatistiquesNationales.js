@@ -39,7 +39,7 @@ function StatistiquesNationales() {
       {user?.role === 'hub_coop' ? <HeaderHub /> : <Header linkAccount={user?.name}/>}
       {user.role === 'admin_coop' &&
         <div className="admin">
-          <AdminHeader />
+          <AdminHeader linkAccount={user?.name} />
         </div>
       }
       <div className="statistics">

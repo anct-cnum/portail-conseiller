@@ -17,6 +17,7 @@ function CoordinateurHeader() {
   const lienWebmail = process.env.REACT_APP_WEBMAIL_URL;
   const lienRdvSolidarites = process.env.REACT_APP_RDV_SOLIDARITES_URL;
   const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
+  const lienLaBase = `${process.env.REACT_APP_LABASE_URL}?email=${conseiller?.emailCN?.address}`;
 
   useEffect(() => {
     dispatch(conseillerActions.get(userEntityId()));
@@ -73,10 +74,10 @@ function CoordinateurHeader() {
                   </div>
 
                   <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
-                    <Link to="/ressourcerie" title="Acc&eacute;der &agrave; la ressourcerie">
+                    <a href={lienLaBase} rel="noreferrer" target="blank" title="Acc&eacute;der &agrave; la ressourcerie">
                       <img src="/logos/home-connected/icone-ressourcerie.svg" className="icone-btn icone-ressourcerie"/>
                       Ressourcerie
-                    </Link>
+                    </a>
                   </div>
 
                   <div className="rf-col-6 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
