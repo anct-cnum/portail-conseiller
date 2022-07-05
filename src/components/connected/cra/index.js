@@ -79,7 +79,7 @@ function Cra() {
       <AddToHomeScreen translate={{
         safariTapShare: `Pour installer l'icône sur votre écran d'accueil cliquer sur`,
         safariAddHomeScreen: `"Sur l'écran d'accueil"`,
-        chromiumAddHomeScreen: `Pour installer l'icône sur votre écran d'accueil allez dans le menu du navigateur  et "Ajouter à l'écran d'accueil"`
+        chromiumAddHomeScreen: `Pour installer l'icône sur votre écran d'accueil allez dans le menu du navigateur et "Ajouter à l'écran d'accueil"`
       }}/>
     </>
   );
