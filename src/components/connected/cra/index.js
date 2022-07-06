@@ -13,6 +13,7 @@ import FlashMessage from 'react-flash-message';
 import Recurrence from './Recurrence';
 import { useSelector, useDispatch } from 'react-redux';
 import { statistiqueActions } from '../../../actions';
+import { AddToHomeScreen } from 'react-pwa-add-to-homescreen';
 
 function Cra() {
 
@@ -75,6 +76,11 @@ function Cra() {
         <ValidationButton/>
       </div>
       <Footer type="support"/>
+      <AddToHomeScreen translate={{
+        safariTapShare: `Pour installer l'icône sur votre écran d'accueil cliquer sur`,
+        safariAddHomeScreen: `"Sur l'écran d'accueil"`,
+        chromiumAddHomeScreen: `Pour installer l'icône sur votre écran d'accueil allez dans le menu du navigateur et "Ajouter à l'écran d'accueil"`
+      }}/>
     </>
   );
 }

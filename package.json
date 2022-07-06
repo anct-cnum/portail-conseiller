@@ -27,6 +27,7 @@
     "react-leaflet": "^3.2.5",
     "react-loader-spinner": "^4.0.0",
     "react-pluralize": "^1.6.3",
+    "react-pwa-add-to-homescreen": "^1.1.7",
     "react-redux": "^7.2.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.0",
