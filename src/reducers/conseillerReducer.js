@@ -221,6 +221,7 @@ export default function conseiller(state = initState, action) {
       };
     case 'RESET_IS_SUBORDONE':
       return {
+        ...state,
         loaded: false
       };
     case 'GET_EXPORT_CNFS_REQUEST':
