@@ -71,6 +71,7 @@ function Conseillers() {
       const count = Math.floor(conseillers.total / conseillers.limit);
       setPageCount(conseillers.total % conseillers.limit === 0 ? count : count + 1);
     }
+    dispatch(conseillerActions.resetIsSubordonne());
   }, [conseillers, refresh]);
 
   return (

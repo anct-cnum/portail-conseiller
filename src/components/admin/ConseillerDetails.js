@@ -19,8 +19,10 @@ function ConseillerDetails({ location }) {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    dispatch(conseillerActions.get(id));
-  }, []);
+    if (conseiller?._id !== id) {
+      dispatch(conseillerActions.get(id));
+    }
+  }, [conseiller]);
 
   useEffect(() => {
     if (conseiller !== undefined) {
@@ -33,11 +35,11 @@ function ConseillerDetails({ location }) {
   }, [conseiller]);
 
   useEffect(() => {
-    if (loadedIsSubordonee && user?.role === 'coordinateur_coop' && !isSubordonne) {
+    if (loadedIsSubordonee && user?.role === 'coordinateur_coop' && conseiller?._id !== id && !isSubordonne) {
       dispatch(conseillerActions.resetIsSubordonne());
       dispatch(userActions.logout());
     }
-  }, [isSubordonne, loadedIsSubordonee]);
+  }, [isSubordonne, loadedIsSubordonee, conseiller]);
 
   return (
     <div className="rf-container conseillerDetails">
