@@ -25,10 +25,10 @@ function CoordinateurHeader() {
   return (
     <>
       <div className="welcome rf-mb-5w">
-        <div className="rf-container rf-container--fluid fond-sombre rf-mt-5w">
+        <div className="rf-container rf-container--fluid fond-sombre">
           <div className="rf-grid-row">
             <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
-            <div className="rf-col-12">
+            <div className="rf-col-12 rf-mt-5w">
               <div className="rf-container">
                 <div className="rf-grid-row espacement-centre-groupe-icon">
 
