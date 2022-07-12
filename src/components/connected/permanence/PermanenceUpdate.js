@@ -190,6 +190,7 @@ function PermanenceUpdate({ match }) {
                 {showErrorMessage ?? errorUpdated ?
                   'Une erreur est survenue lors de la mise à jour de votre lieu d’activité' :
                   'Une erreur est survenue lors du traitement de vos informations'}
+                  &nbsp;{errorUpdated}
               </p>
             }
 

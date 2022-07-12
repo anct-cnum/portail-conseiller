@@ -53,7 +53,7 @@ function createPermanence(idConseiller, permanence) {
       permanence
     })
   };
-  
+
   return fetch(`${apiUrlRoot}/permanences/conseiller/${idConseiller}/create`, requestOptions).then(handleResponse);
 }
 
