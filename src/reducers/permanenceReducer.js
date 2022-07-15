@@ -85,11 +85,11 @@ export default function permanence(state = initialState, action) {
     case 'SHOW_FORMULAIRE_PERMANENCE':
       return {
         ...state,
-        showFormulairePermanence: action.showPermanenceForm
+        showFormular: action.isPermanenceChecked
       };
     case 'CLOSE_FORMULAIRE_PERMANENCE':
       return {
-        showFormulairePermanence: false,
+        hasPermanence: false,
         isUpdated: false
       };
     case 'UPDATE_FIELD':

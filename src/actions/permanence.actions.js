@@ -102,8 +102,9 @@ function getListePermanences(idStructure) {
   }
 }
 
-function isPermanenceChecked(showPermanenceForm) {
-  return { type: 'SHOW_FORMULAIRE_PERMANENCE', showPermanenceForm };
+function isPermanenceChecked(hasPermanence) {
+  const isPermanenceChecked = hasPermanence === undefined ? true : !hasPermanence;
+  return { type: 'SHOW_FORMULAIRE_PERMANENCE', isPermanenceChecked };
 }
 
 function closePermanence() {

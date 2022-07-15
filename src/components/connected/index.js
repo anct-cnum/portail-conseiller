@@ -21,17 +21,17 @@ function Connected() {
   const user = useSelector(state => state.authentication.user.user);
   const conseiller = useSelector(state => state?.conseiller?.conseiller);
   const voirFormulaire = useSelector(state => state?.conseiller?.showFormular);
+  const voirPermanence = useSelector(state => state?.permanence?.showFormular);
   const formulaireIsUpdated = useSelector(state => state?.conseiller?.isUpdated);
 
   const structure = useSelector(state => state?.structure?.structure);
   const mesPermanences = useSelector(state => state?.permanence?.mesPermanences);
-  const voirPermanence = useSelector(state => state?.permanence?.showFormulairePermanence);
   const suspendrePermanence = localStorage.getItem('suspension_permanence');
 
   useEffect(() => {
     if (conseiller) {
       dispatch(conseillerActions.isFormulaireChecked(conseiller.sexe, formulaireIsUpdated));
-      dispatch(permanenceActions.isPermanenceChecked(user?.showPermanenceForm));
+      dispatch(permanenceActions.isPermanenceChecked(conseiller?.hasPermanence));
 
       if (!structure || structure === undefined) {
         dispatch(structureActions.get(conseiller.structureId));
