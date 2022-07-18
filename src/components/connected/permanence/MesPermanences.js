@@ -12,6 +12,7 @@ function MesPermanences() {
   const dispatch = useDispatch();
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const listPermanences = useSelector(state => state.permanence?.mesPermanences);
+  const reloadList = useSelector(state => state.permanence?.reloadList);
 
   const [mesPermanences, setMesPermanences] = useState([]);
 
@@ -53,6 +54,15 @@ function MesPermanences() {
       }, 2000);
     }
   }, [isDeleted, isConseillerDeleted]);
+
+  useEffect(() => {
+    if (reloadList && conseiller) {
+      dispatch(permanenceActions.getMesPermanences(conseiller._id));
+      dispatch(permanenceActions.reloadList(false));
+      setMesPermanences([]);
+    }
+  }, [reloadList]);
+
   return (
     <>
       {conseiller &&

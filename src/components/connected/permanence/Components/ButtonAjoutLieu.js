@@ -30,7 +30,7 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpda
         fields.filter(field => field.name === prefixId + 'rdv')[0]?.value ? 'rdv' : null,
         fields.filter(field => field.name === prefixId + 'prive')[0]?.value ? 'prive' : null,
       ].filter(n => n);
-      
+
       dispatch(permanenceActions.updateField(prefixId + 'typeAcces', typeAcces));
       dispatch(permanenceActions.verifyFormulaire(form, 'secondaire_'));
     }
@@ -78,7 +78,6 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpda
           conseillersItinerants: conseillersItinerants,
           conseillers: conseillers,
           structureId: structureId,
-          showPermanenceForm: location.pathname === '/accueil',
           hasPermanence: location.pathname === '/lieux-activite',
         };
 

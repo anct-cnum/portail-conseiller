@@ -155,6 +155,7 @@ function PermanenceUpdate({ match }) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       setTimeout(() => {
         if (redirection === '/mes-lieux-activite') {
+          dispatch(permanenceActions.reloadList(true));
           history.push(redirection);
         } else {
           window.open(urlCartographie + '/' + conseiller._id + '/details', '_blank');

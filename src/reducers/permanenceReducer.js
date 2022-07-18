@@ -12,7 +12,8 @@ const initialState = {
   isUpdated: false,
   showError: false,
   suspensionPermanence: false,
-  permanencesReservees: []
+  permanencesReservees: [],
+  reloadList: true,
 };
 
 const nettoyageState = form => {
@@ -85,11 +86,11 @@ export default function permanence(state = initialState, action) {
     case 'SHOW_FORMULAIRE_PERMANENCE':
       return {
         ...state,
-        showFormulairePermanence: action.showPermanenceForm
+        showFormular: action.isPermanenceChecked
       };
     case 'CLOSE_FORMULAIRE_PERMANENCE':
       return {
-        showFormulairePermanence: false,
+        hasPermanence: false,
         isUpdated: false
       };
     case 'UPDATE_FIELD':
@@ -386,6 +387,11 @@ export default function permanence(state = initialState, action) {
         isConseillerDeleted: false,
         maPermanence: null,
         permanencesReservees: [],
+      };
+    case 'RELOAD_LIST_PERMANENCE':
+      return {
+        ...state,
+        reloadList: action.bool,
       };
     default:
       return state;
