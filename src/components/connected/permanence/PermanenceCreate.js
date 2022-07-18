@@ -30,6 +30,7 @@ function PermanenceCreate() {
 
   useEffect(() => {
     const show = [true];
+    dispatch(permanenceActions.reloadList(true));
     dispatch(permanenceActions.montrerLieuSecondaire(show));
     dispatch(permanenceActions.updateField('estStructure', false));
     dispatch(permanenceActions.updateLieuEnregistrable('secondaire_0_'));

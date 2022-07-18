@@ -28,6 +28,7 @@ export const permanenceActions = {
   reporterPermanence,
   setChampsMaPermanence,
   reinitiliserStatut,
+  reloadList,
 };
 
 function getMaPermanence(idPermanence) {
@@ -546,4 +547,8 @@ function setChampsMaPermanence(permanence, prefixId, conseiller) {
 
 function reinitiliserStatut() {
   return { type: 'REINITIALISER_STATUT_PERMANENCE' };
+}
+
+function reloadList(bool) {
+  return { type: 'RELOAD_LIST_PERMANENCE', bool };
 }

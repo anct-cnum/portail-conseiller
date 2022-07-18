@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { history } from './helpers';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Login from './components/anonymous/Login.js';
 import Home from './components/connected/Home';
@@ -18,6 +18,7 @@ import PrivateRoute from './components/connected/PrivateRoute';
 import choosePasswordChangeMailbox from './components/anonymous/choosePasswordChangeMailbox';
 import Propos from './components/anonymous/Propos';
 import EmailConfirmer from './components/connected/mesInformations/ConfirmationEmail';
+import { permanenceActions } from './actions';
 
 function App() {
   let statsDataLoading = useSelector(state => state.statistique?.statsDataLoading);
@@ -26,6 +27,9 @@ function App() {
   let downloadingExportCnfs = useSelector(state => state.conseiller?.downloadingExportCnfs);
   const user = useSelector(state => state?.authentication?.user?.user);
 
+  const dispatch = useDispatch();
+  dispatch(permanenceActions.reloadList(true));
+  
   return (
     <div className="App">
       { (statsDataLoading === true || pdfLoading === true || loadingCSV === true || downloadingExportCnfs === true) &&

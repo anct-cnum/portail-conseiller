@@ -12,7 +12,8 @@ const initialState = {
   isUpdated: false,
   showError: false,
   suspensionPermanence: false,
-  permanencesReservees: []
+  permanencesReservees: [],
+  reloadList: true,
 };
 
 const nettoyageState = form => {
@@ -386,6 +387,11 @@ export default function permanence(state = initialState, action) {
         isConseillerDeleted: false,
         maPermanence: null,
         permanencesReservees: [],
+      };
+    case 'RELOAD_LIST_PERMANENCE':
+      return {
+        ...state,
+        reloadList: action.bool,
       };
     default:
       return state;
