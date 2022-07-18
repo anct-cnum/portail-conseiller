@@ -18,6 +18,9 @@ function MesPermanences() {
   const isDeleted = useSelector(state => state.permanence.isDeleted);
   const isConseillerDeleted = useSelector(state => state.permanence.isConseillerDeleted);
 
+  const isCreated = useSelector(state => state.permanence?.isCreated);
+  const isUpdated = useSelector(state => state.permanence?.isUpdated);
+
   //Tri pour obtenir le lieu principal en premier
   useEffect(() => {
     if (listPermanences) {
@@ -39,7 +42,7 @@ function MesPermanences() {
     } else {
       dispatch(permanenceActions.getMesPermanences(conseiller._id));
     }
-  }, [conseiller]);
+  }, [conseiller, isCreated, isUpdated]);
 
   useEffect(() => {
     if (isConseillerDeleted || isDeleted) {

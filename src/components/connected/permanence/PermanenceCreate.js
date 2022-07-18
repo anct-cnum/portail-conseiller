@@ -80,6 +80,7 @@ function PermanenceCreate() {
             {showErrorMessage ?? errorCreate ?
               'Une erreur est survenue lors de la création de votre lieu d’activité' :
               'Une erreur est survenue lors du traitement de vos informations'}
+              &nbsp;{errorCreate}
           </p>
         }
 

@@ -101,7 +101,7 @@ function Welcome() {
                   </div>
 
                   <div className="rf-col-12 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
-                    <Link to="/mes-lieux-activite" title="Acc&eacute;der &agrave; la ressourcerie">
+                    <Link to="/mes-lieux-activite" title="Acc&eacute;der aux lieux d&rsquo;activit&eacute;">
                       <img src="/logos/home-connected/icone-lieux.svg" className="icone-btn icone-ressourcerie"/>
                       Lieux d&rsquo;activit&eacute;
                     </Link>
