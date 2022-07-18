@@ -225,7 +225,9 @@ function Conseillers() {
                 </table>
               </div>
             </div>
-            <Pagination current={page} pageCount={pageCount} navigate={navigate} />
+            {pageCount > 0 &&
+              <Pagination current={page} pageCount={pageCount} navigate={navigate} />
+            }
           </div>
         </div>
       </div>
