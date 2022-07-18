@@ -104,6 +104,7 @@ function getListePermanences(idStructure) {
 
 function isPermanenceChecked(hasPermanence) {
   const isPermanenceChecked = hasPermanence === undefined ? true : !hasPermanence;
+  console.log(isPermanenceChecked);
   return { type: 'SHOW_FORMULAIRE_PERMANENCE', isPermanenceChecked };
 }
 
