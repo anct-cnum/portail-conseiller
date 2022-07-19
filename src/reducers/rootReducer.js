@@ -9,8 +9,6 @@ import motDePasseOublieReducer from './motDePasseOublieReducer';
 import statistiqueReducer from './statistiqueReducer';
 import filtersAndSortsReducer from './filtersAndSortsReducer';
 import pagination from './paginationReducer';
-import ressources from './ressourcesReducer';
-import ressourcesFiltres from './ressourcesFiltresReducer';
 import permanence from './permanenceReducer';
 import formulaireSupHierarchique from './supHierarchiqueReducer';
 import formulaireInfoPersonnel from './infoPersonnelReducer';
@@ -28,8 +26,6 @@ const rootReducer = combineReducers({
   statistique: statistiqueReducer,
   filtersAndSorts: filtersAndSortsReducer,
   pagination: pagination,
-  ressources: ressources,
-  ressourcesFiltres: ressourcesFiltres,
   permanence: permanence,
   formulaireSupHierarchique: formulaireSupHierarchique,
   formulaireInfoPersonnel: formulaireInfoPersonnel
