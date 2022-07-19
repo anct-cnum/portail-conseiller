@@ -78,10 +78,10 @@ function Conseillers() {
     <>
       <div className="conseillers">
         <FiltersAndSorts resetPage={setPage} user={user} />
-        <div className="rf-container rf-mt-2w">
-          <div className="rf-grid-row rf-grid-row--center">
-            <div className="rf-col-12">
-              <div className="rf-table" style={{ overflow: 'auto' }}>
+        <div className="fr-container fr-mt-2w">
+          <div className="fr-grid-row fr-grid-row--center">
+            <div className="fr-col-12">
+              <div className="fr-table" style={{ overflow: 'auto' }}>
                 <table >
                   <thead className="conseillers-thead">
                     <tr>
@@ -166,11 +166,11 @@ function Conseillers() {
                         </button>
                       </th>
                       <th>
-                        <nav className="rf-nav" id="navigation-sort-profil" role="navigation">
-                          <ul className="rf-nav__list">
-                            <li className={conseillers?.items?.data.length <= 2 ? 'no-result rf-nav__item' : 'rf-nav__item'}>
+                        <nav className="fr-nav" id="navigation-sort-profil" role="navigation">
+                          <ul className="fr-nav__list">
+                            <li className={conseillers?.items?.data.length <= 2 ? 'no-result fr-nav__item' : 'fr-nav__item'}>
                               <span >
-                                <button className="rf-nav__btn admin-select" aria-expanded={basculerFiltreProfil}
+                                <button className="fr-nav__btn admin-select" aria-expanded={basculerFiltreProfil}
                                   aria-controls="menu-userActive" aria-current="true" id="activer" onClick={filtreClick}>
                                   Activ&eacute;
                                   {basculerFiltreProfil &&
@@ -180,9 +180,9 @@ function Conseillers() {
                                     <i className="ri-arrow-down-s-line chevron icone"></i>
                                   }
                                 </button>
-                                <div className={basculerFiltreProfil === true ? 'rf-collapse--expanded rf-menu' : 'rf-collapse rf-nav--expanded rf-menu'}
+                                <div className={basculerFiltreProfil === true ? 'fr-collapse--expanded fr-menu' : 'fr-collapse fr-nav--expanded fr-menu'}
                                   id="menu-userActive">
-                                  <ul className="rf-menu__list">
+                                  <ul className="fr-menu__list">
                                     <li className={filtreProfil === 'tous' ? 'selected' : ''}>
                                       <button id="tous" className="admin-select-option border-no-result" onClick={handleSortProfil}>
                                         Afficher tout

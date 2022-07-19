@@ -50,16 +50,16 @@ function ChoosePasswordMailBox({ match }) {
     <div className="choosePassword">
       <Header />
 
-      <div className="rf-container-fluid">
-        <div className="rf-grid-row rf-grid-row--center">
-          <div className="rf-col-12 zone-titre">
-            <div className="rf-container">
-              <div className="rf-grid-row rf-grid-row--center">
-                <div className="rf-col-12 rf-col-md-10">
-                  <h1 className="titre rf-my-2w rf-mb-md-5w ">Cr&eacute;ation de votre boîte mail<br className="br-titre" />
+      <div className="fr-container-fluid">
+        <div className="fr-grid-row fr-grid-row--center">
+          <div className="fr-col-12 zone-titre">
+            <div className="fr-container">
+              <div className="fr-grid-row fr-grid-row--center">
+                <div className="fr-col-12 fr-col-md-10">
+                  <h1 className="titre fr-my-2w fr-mb-md-5w ">Cr&eacute;ation de votre boîte mail<br className="br-titre" />
                   et acc&egrave;s &agrave; l&rsquo;Espace coop</h1>
                   {tokenVerified && !changeMailboxMessage &&
-                    <p className="sous-titre rf-mb-2w rf-mb-md-4w">
+                    <p className="sous-titre fr-mb-2w fr-mb-md-4w">
                       Bonjour <b>{user?.prenom} {user?.nom}</b>, vous &ecirc;tes sur le point de cr&eacute;er un nouvel acc&egrave;s &agrave; vos services en
                       ligne
                       <br />Conseiller num&eacute;rique France Services : <b>{user.support_cnfs.nouveauEmail}</b>
@@ -70,12 +70,12 @@ function ChoosePasswordMailBox({ match }) {
             </div>
           </div>
 
-          <div className="rf-col-12 zone-mot-de-passe">
-            <div className="rf-container">
-              <div className="rf-grid-row rf-grid-row--center">
+          <div className="fr-col-12 zone-mot-de-passe">
+            <div className="fr-container">
+              <div className="fr-grid-row fr-grid-row--center">
 
                 {tokenVerified === false &&
-                <div className="rf-mb-10w">
+                <div className="fr-mb-10w">
                   <div className="erreur-token">
                     <div className="invalid">
                       D&eacute;sol&eacute; mais le lien est invalide ou a d&eacute;j&agrave; &eacute;t&eacute; utilis&eacute;.
@@ -85,7 +85,7 @@ function ChoosePasswordMailBox({ match }) {
                 </div>
                 }
                 {verifyingToken &&
-                <div className="rf-mb-10w">
+                <div className="fr-mb-10w">
                   <div className="erreur-token">
                     <div className="chargement">Chargement...</div>
                   </div>
@@ -94,13 +94,13 @@ function ChoosePasswordMailBox({ match }) {
                 {tokenVerified &&
                 <>
                   { loadingChangeMailbox === true &&
-                <p className="rf-mt-10w">Veuillez patientez quelques secondes, cette action peut prendre un certain temps</p>
+                <p className="fr-mt-10w">Veuillez patientez quelques secondes, cette action peut prendre un certain temps</p>
                   }
                   { changeMailboxMessageError &&
                   <h2 style={{ color: 'red' }}>{changeMailboxMessageError}</h2>
                   }
                   <Spinner
-                    className="rf-mt-10w rf-mb-10w"
+                    className="fr-mt-10w fr-mb-10w"
                     type="Oval"
                     color="#00BFFF"
                     height="100"
@@ -109,7 +109,7 @@ function ChoosePasswordMailBox({ match }) {
                   />
 
                   {changeMailboxMessage && !changeMailboxMessageError &&
-                  <div className="rf-my-5w" style={{ textAlign: 'center' }}>
+                  <div className="fr-my-5w" style={{ textAlign: 'center' }}>
                     <h2><b>F&eacute;licitations ! Votre nouvelle adresse mail vient d&apos;&ecirc;tre cr&eacute;&eacute;e&nbsp;:&nbsp;<br/>
                       {user.support_cnfs.nouveauEmail}</b>
                     </h2>
@@ -119,67 +119,67 @@ function ChoosePasswordMailBox({ match }) {
                   }
                   { loadingChangeMailbox !== true && !changeMailboxMessage && !changeMailboxMessageError &&
                   <>
-                    <div className="rf-col-12 rf-col-md-5 rf-mt-2w rf-mt-md-4w">
-                      <h2 className="titre rf-mb-4v">Saisissez un mot de passe <img className="cle" src="/logos/cle.svg" /></h2>
-                      <p className="sous-titre rf-mb-3w">
+                    <div className="fr-col-12 fr-col-md-5 fr-mt-2w fr-mt-md-4w">
+                      <h2 className="titre fr-mb-4v">Saisissez un mot de passe <img className="cle" src="/logos/cle.svg" /></h2>
+                      <p className="sous-titre fr-mb-3w">
                       Vous pouvez garder votre ancien mot de passe ou en choisir un nouveau.
                       </p>
-                      <p className="sous-titre rf-mb-3w">
+                      <p className="sous-titre fr-mb-3w">
                       Celui-ci servira &agrave; la fois pour votre connexion au mail, et pour vous identifier sur l&rsquo;espace Coop
                       ainsi que sur le service de discussion en ligne, gardez-le pr&eacute;cieusement !
                       </p>
-                      <p className="rf-mb-3w">
+                      <p className="fr-mb-3w">
                       Une boîte mail {user.support_cnfs.nouveauEmail}&nbsp;
                       sera automatiquement cr&eacute;&eacute;e lorsque vous cliquerez sur Supprimer mon adresse actuelle et cr&eacute;er ma nouvelle adresse
                       </p>
-                      <p className="rf-mb-md-3w">Acc&eacute;dez ensuite &agrave; cette derni&egrave;re afin de pouvoir effectuer votre premi&egrave;re
+                      <p className="fr-mb-md-3w">Acc&eacute;dez ensuite &agrave; cette derni&egrave;re afin de pouvoir effectuer votre premi&egrave;re
                         connexion &agrave; l&rsquo;espace Coop.
                       </p>
                     </div>
 
-                    <div className="rf-col-12 rf-col-md-5">
+                    <div className="fr-col-12 fr-col-md-5">
 
                       { tokenVerified &&
-                      <div className="rf-mt-11v">
+                      <div className="fr-mt-11v">
                         {/* Form */}
                         <div>
                           {error && <div className="invalid">{error.error}</div>}
                         </div>
-                        <p className="rf-label rf-mb-5v rf-mb-12v">Veuillez &eacute;crire votre mot de passe.</p>
+                        <p className="fr-label fr-mb-5v fr-mb-12v">Veuillez &eacute;crire votre mot de passe.</p>
 
-                        <label className="rf-label">
+                        <label className="fr-label">
                           Celui-ci doit contenir au moins 8 caract&egrave;res dont une minuscule, une majuscule, un chiffre et un caract&egrave;re
                           sp&eacute;cial(!@#$%^&amp;*)
                         </label>
                         <input name="password" type="password" value={password}
-                          onChange={handleChange} className={(submitted && !password ? ' is-invalid rf-input' : 'rf-input')}
+                          onChange={handleChange} className={(submitted && !password ? ' is-invalid fr-input' : 'fr-input')}
                         />
 
                         {submitted && !password &&
-                        <div className="rf-mb-n2w">
+                        <div className="fr-mb-n2w">
                           <div className="invalid">Mot de passe requis</div>
                         </div>
                         }
                         { password && !checkComplexity.test(password) &&
-                          <div className="rf-mt-4w rf-mb-n2w">
+                          <div className="fr-mt-4w fr-mb-n2w">
                             <div className="invalid">Le mot de passe ne correspond pas aux exigences de s&eacute;curit&eacute;.</div>
                           </div>
                         }
 
-                        <label className="rf-label rf-my-2w">
+                        <label className="fr-label fr-my-2w">
                           Confirmer le mot de passe
                         </label>
                         <input name="passwordConfirm" type="password" value={passwordConfirm}
-                          onChange={handleChange} className={(submitted && passwordConfirm !== password ? 'is-invalid rf-input' : 'rf-input')}
+                          onChange={handleChange} className={(submitted && passwordConfirm !== password ? 'is-invalid fr-input' : 'fr-input')}
                         />
                         {submitted && passwordConfirm !== password &&
-                        <div className="rf-mb-2w rf-mt-n2w">
-                          <div className="invalid rf-mt-2w">Les mots de passe ne correspondent pas. </div>
+                        <div className="fr-mb-2w fr-mt-n2w">
+                          <div className="invalid fr-mt-2w">Les mots de passe ne correspondent pas. </div>
                         </div>
                         }
 
                         <button style={{ width: '100%' }}
-                          className="btn-connexion rf-mb-6w rf-mb-md-9w rf-mt-10v" onClick={handleSubmit} >
+                          className="btn-connexion fr-mb-6w fr-mb-md-9w fr-mt-10v" onClick={handleSubmit} >
                           Supprimer mon adresse <br/>
                           actuelle et cr&eacute;er ma nouvelle adresse
                         </button>
@@ -194,54 +194,54 @@ function ChoosePasswordMailBox({ match }) {
             </div>
           </div>
           { tokenVerified &&
-          <div className="rf-col-12 zone-recapitulatif">
-            <div className="rf-container rf-mt-5w rf-mt-md-9w">
-              <div className="rf-grid-row rf-grid-row--center">
-                <div className="rf-col-offset-md-3" ></div>
-                <div className="rf-col-12 rf-col-md-6 rf-mb-2w etape">&Eacute;tape 1 :
-                  <img src="/logos/mail-conseiller-numerique.svg" alt="Avatar conseiller" className="rf-ml-4v enveloppe" />
+          <div className="fr-col-12 zone-recapitulatif">
+            <div className="fr-container fr-mt-5w fr-mt-md-9w">
+              <div className="fr-grid-row fr-grid-row--center">
+                <div className="fr-col-offset-md-3" ></div>
+                <div className="fr-col-12 fr-col-md-6 fr-mb-2w etape">&Eacute;tape 1 :
+                  <img src="/logos/mail-conseiller-numerique.svg" alt="Avatar conseiller" className="fr-ml-4v enveloppe" />
                 </div>
-                <div className="rf-col-offset-md-3" ></div>
+                <div className="fr-col-offset-md-3" ></div>
 
-                <div className="rf-col-offset-md-3" ></div>
-                <div className="rf-col-12 rf-col-md-6 rf-mb-2w rf-mb-md-3w descriptif">
+                <div className="fr-col-offset-md-3" ></div>
+                <div className="fr-col-12 fr-col-md-6 fr-mb-2w fr-mb-md-3w descriptif">
                   La cr&eacute;ation de votre compte mail <br className="br-mail" />
                   {user.support_cnfs.nouveauEmail}
                 </div>
-                <div className="rf-col-offset-md-3" ></div>
+                <div className="fr-col-offset-md-3" ></div>
 
-                <div className="rf-col-offset-md-3" ></div>
-                <div className="rf-col-12 rf-col-md-6 rf-mb-5w rf-mb-md-9w recapitulatif">
+                <div className="fr-col-offset-md-3" ></div>
+                <div className="fr-col-12 fr-col-md-6 fr-mb-5w fr-mb-md-9w recapitulatif">
                   Celui-ci vous permettra de recevoir et d&rsquo;envoyer les courriels en lien <br className="br-mail" />
                   avec votre activit&eacute;. Il vous servira &eacute;galement d’identifiant  pour la<br />connexion &agrave; l&rsquo;espace Coop.
                 </div>
-                <div className="rf-col-offset-md-3" ></div>
+                <div className="fr-col-offset-md-3" ></div>
 
-                <div className="rf-col-offset-md-3" ></div>
-                <div className="rf-col-12 rf-col-md-6 rf-mb-2w etape">&Eacute;tape 2 :
-                  <img src="/avatars/avatar-conseiller.svg" alt="Avatar conseiller" className="avatar-pwd rf-ml-5v" />
+                <div className="fr-col-offset-md-3" ></div>
+                <div className="fr-col-12 fr-col-md-6 fr-mb-2w etape">&Eacute;tape 2 :
+                  <img src="/avatars/avatar-conseiller.svg" alt="Avatar conseiller" className="avatar-pwd fr-ml-5v" />
                   <img src="/avatars/avatar-conseillere.svg" alt="Avatar conseillere" className="avatar-pwd" />
                   <img src="/avatars/avatar-conseillers.svg" alt="Avatar conseillers" className="avatar-pwd" />
                   <img src="/avatars/avatar-senior.svg" alt="Avatar senior" className="avatar-pwd" />
                   <img src="/avatars/avatar-coordinatrice.svg" alt="Avatar coordinatrice" className="avatar-pwd last" />
                 </div>
-                <div className="rf-col-offset-md-3" ></div>
+                <div className="fr-col-offset-md-3" ></div>
 
-                <div className="rf-col-offset-md-3" ></div>
-                <div className="rf-col-12 rf-col-md-6 rf-mb-2w rf-mb-md-3w descriptif">
+                <div className="fr-col-offset-md-3" ></div>
+                <div className="fr-col-12 fr-col-md-6 fr-mb-2w fr-mb-md-3w descriptif">
                   Connectez-vous &agrave; votre espace personnel sur coop.conseillernumerique.fr
                 </div>
-                <div className="rf-col-offset-md-3" ></div>
+                <div className="fr-col-offset-md-3" ></div>
 
-                <div className="rf-col-offset-md-3" ></div>
-                <div className="rf-col-12 rf-col-md-6 rf-mb-8w rf-mb-md-15w recapitulatif">
+                <div className="fr-col-offset-md-3" ></div>
+                <div className="fr-col-12 fr-col-md-6 fr-mb-8w fr-mb-md-15w recapitulatif">
                   Votre boîte mail&nbsp;
                   <strong>
                   </strong>&nbsp;
                   sert d&rsquo;identifiant<br />
                   Votre mot de passe de connexion est le m&ecirc;me.
                 </div>
-                <div className="rf-col-offset-md-3" ></div>
+                <div className="fr-col-offset-md-3" ></div>
 
               </div>
             </div>

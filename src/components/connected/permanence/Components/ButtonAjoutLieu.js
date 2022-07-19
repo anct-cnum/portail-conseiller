@@ -100,7 +100,7 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpda
   }, [errorsForm]);
 
   return (
-    <button id={'submit_and_next_' + (secondaireId + 1)} className="rf-btn nouveau-btn rf-mb-2w" onClick={() => {
+    <button id={'submit_and_next_' + (secondaireId + 1)} className="fr-btn nouveau-btn fr-mb-2w" onClick={() => {
       onClick();
     }}>
       Ajouter un autre lieu d&rsquo;activit&eacute; secondaire

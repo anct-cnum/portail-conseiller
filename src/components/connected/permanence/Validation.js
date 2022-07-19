@@ -100,19 +100,19 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
 
   return (
     <>
-      <div className="rf-col-offset-1 rf-col-4">
-        <button className="rf-link rf-fi-external-link-line rf-link--icon-right validation-extern-btn" onClick={() => {
+      <div className="fr-col-offset-1 fr-col-4">
+        <button className="fr-link fr-fi-external-link-line fr-link--icon-right validation-extern-btn" onClick={() => {
           handleSubmit('cartographie');
         }}>
           Enregistrer et afficher sur la carte nationale
         </button>
-        <div className="rf-mb-12w rf-mt-4w">
+        <div className="fr-mb-12w fr-mt-4w">
           ( <span className="obligatoire">*</span> ) champs obligatoires
         </div>
       </div>
 
-      <div className="rf-col-5">
-        <button className="rf-btn validation-btn rf-mb-4w" onClick={() => {
+      <div className="fr-col-5">
+        <button className="fr-btn validation-btn fr-mb-4w" onClick={() => {
           handleSubmit(redirection);
         }}>
           Enregistrer&nbsp;

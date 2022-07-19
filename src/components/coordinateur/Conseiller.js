@@ -27,7 +27,7 @@ function Conseiller({ conseiller, currentPage, trClass, role }) {
         <td><div data-tip="Activ&eacute;" className={isUserActif ? 'circle-true' : 'circle-false'}></div></td>
         <td data-tip="CRA saisis">{conseiller?.craCount}</td>
         <td>
-          <Link className="rf-btn details-btn" style={{ boxShadow: 'none' }} to={{
+          <Link className="fr-btn details-btn" style={{ boxShadow: 'none' }} to={{
             pathname: `/conseiller/${conseiller?._id}`,
             currentPage: currentPage,
             origin: '/accueil' }}>

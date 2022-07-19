@@ -8,11 +8,11 @@ import ElementText from './Components/ElementText';
 function StatisticsRenewal(props) {
 
   return (
-    <div className="rf-grid-row">
-      <div className="rf-col-12 rf-col-md-2 rf-col-lg-3">
+    <div className="fr-grid-row">
+      <div className="fr-col-12 fr-col-md-2 fr-col-lg-3">
         <ElementNumber nombre={props.nbUsagersBeneficiantSuivi} classe="numbers-renewal"/>
       </div>
-      <div className="rf-col-12 rf-col-md-10 rf-col-lg-9">
+      <div className="fr-col-12 fr-col-md-10 fr-col-lg-9">
         <ElementText textePluralize={
           <Pluralize
             zero={'usager n\'a bénéficié d\'un accompagnement poursuivi, soit :'}
@@ -22,28 +22,28 @@ function StatisticsRenewal(props) {
             showCount={false} />
         } classe="text"/><br/>
       </div>
-      <div className="rf-col-12 rf-col-md-2 rf-col-lg-3">
+      <div className="fr-col-12 fr-col-md-2 fr-col-lg-3">
         <ElementNumber nombre={props.tauxTotalUsagersAccompagnes} caracteresSpeciaux={props.caracteresSpeciaux} classe="many-numbers"/>
       </div>
-      <div className="rf-col-12 rf-col-md-10 rf-col-lg-9">
+      <div className="fr-col-12 fr-col-md-10 fr-col-lg-9">
         <ElementText texte="du total des usagers accompagnés sur cette période, dont&nbsp;:" classe="texts"/><br/>
       </div>
-      <div className="rf-col-12 rf-col-md-2 rf-col-lg-3">
+      <div className="fr-col-12 fr-col-md-2 fr-col-lg-3">
         <ElementNumber nombre={props.nbUsagersAccompagnementIndividuel} classe="many-numbers"/>
       </div>
-      <div className="rf-col-12 rf-col-md-10 rf-col-lg-9">
+      <div className="fr-col-12 fr-col-md-10 fr-col-lg-9">
         <ElementText texte="en accompagnement individuel" classe="texts"/>
       </div>
-      <div className="rf-col-12 rf-col-md-2 rf-col-lg-3">
+      <div className="fr-col-12 fr-col-md-2 fr-col-lg-3">
         <ElementNumber nombre={props.nbUsagersAtelierCollectif} classe="many-numbers"/>
       </div>
-      <div className="rf-col-12 rf-col-md-10 rf-col-lg-9">
+      <div className="fr-col-12 fr-col-md-10 fr-col-lg-9">
         <ElementText texte="en atelier collectif" classe="texts"/><br/>
       </div>
-      <div className="rf-col-12 rf-col-md-2 rf-col-lg-3">
+      <div className="fr-col-12 fr-col-md-2 fr-col-lg-3">
         <ElementNumber nombre={props.nbReconduction} classe="many-numbers"/>
       </div>
-      <div className="rf-col-12 rf-col-md-10 rf-col-lg-9">
+      <div className="fr-col-12 fr-col-md-10 fr-col-lg-9">
         <ElementText textePluralize={<Pluralize
           zero={'redirection vers une autre structure agréée'}
           singular={'redirection vers une autre structure agréée'}
@@ -51,8 +51,8 @@ function StatisticsRenewal(props) {
           count={props.nbReconduction}
           showCount={false} />} classe="texts"/>
       </div>
-      <div className="rf-col-12">
-        <div className="rf-m-lg-6w"></div>
+      <div className="fr-col-12">
+        <div className="fr-m-lg-6w"></div>
       </div>
     </div>
   );

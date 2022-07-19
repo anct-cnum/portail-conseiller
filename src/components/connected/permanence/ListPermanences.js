@@ -93,7 +93,7 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
         {((prefixId !== 'principal_') ||
         (prefixId === 'principal_' && fields?.filter(field => field.name === 'estStructure')[0]?.value === false)) &&
           <>
-            <div className="rf-col-offset-1 rf-col-11">
+            <div className="fr-col-offset-1 fr-col-11">
               S&eacute;lectionnez votre lieu d&rsquo;activit&eacute;, s&rsquo;il n&rsquo;apparaît pas dans cette liste,
               cochez la puce &laquo;&nbsp;Ajouter un nouveau lieu d&rsquo;activit&eacute;&nbsp;&raquo;.
               <span className="baseline">
@@ -103,8 +103,8 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
                 par vos collaborateurs.
               </span>
             </div>
-            <div className="rf-col-offset-1 rf-col-8">
-              <fieldset className="rf-fieldset rf-mt-4w">
+            <div className="fr-col-offset-1 fr-col-8">
+              <fieldset className="fr-fieldset fr-mt-4w">
                 <div className="emplacement-permanences">
                   {listPermanences.map(((permanence, idx) => {
                     return (
@@ -112,18 +112,18 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
                         {(permanence?.conseillers.includes(conseillerId) === false || permanenceActuelId === String(permanence._id)) &&
                         <>
                           <hr />
-                          <div className="rf-fieldset__content">
-                            <div className="rf-radio-group">
+                          <div className="fr-fieldset__content">
+                            <div className="fr-radio-group">
                               {(permanencesReservees.filter(perm => perm.idPermanence === permanence._id).length > 0 &&
                                permanencesReservees.filter(perm => perm.idPermanence === permanence._id)[0]?.prefixId !== prefixId) &&
                                 <>
                                   <input type="radio" disabled/>
-                                  <label className="rf-label rf-my-2w permanence-existante" htmlFor={prefixId + permanence?._id}>
-                                    <span className="rf-container rf-container--fluid">
-                                      <span className="rf-grid-row">
-                                        <span className="rf-col-3">{permanence?.adresse.ville.toUpperCase()}</span>
-                                        <span className="rf-col-2">{permanence?.adresse.codePostal}</span>
-                                        <span className="rf-col-7">{permanence?.nomEnseigne}</span>
+                                  <label className="fr-label fr-my-2w permanence-existante" htmlFor={prefixId + permanence?._id}>
+                                    <span className="fr-container fr-container--fluid">
+                                      <span className="fr-grid-row">
+                                        <span className="fr-col-3">{permanence?.adresse.ville.toUpperCase()}</span>
+                                        <span className="fr-col-2">{permanence?.adresse.codePostal}</span>
+                                        <span className="fr-col-7">{permanence?.nomEnseigne}</span>
                                       </span>
                                     </span>
                                   </label>
@@ -135,12 +135,12 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
                                   <input type="radio" id={prefixId + permanence?._id} className="permanence-existante"
                                     defaultChecked={permanenceActuelId === String(permanence._id)}
                                     name={prefixId + 'permancenceSecondaire'} value={permanence?._id} required="required" onClick={handleClick}/>
-                                  <label className="rf-label rf-my-2w permanence-existante" htmlFor={prefixId + permanence?._id}>
-                                    <span className="rf-container rf-container--fluid">
-                                      <span className="rf-grid-row">
-                                        <span className="rf-col-3">{permanence?.adresse.ville.toUpperCase()}</span>
-                                        <span className="rf-col-2">{permanence?.adresse.codePostal}</span>
-                                        <span className="rf-col-7">{permanence?.nomEnseigne}</span>
+                                  <label className="fr-label fr-my-2w permanence-existante" htmlFor={prefixId + permanence?._id}>
+                                    <span className="fr-container fr-container--fluid">
+                                      <span className="fr-grid-row">
+                                        <span className="fr-col-3">{permanence?.adresse.ville.toUpperCase()}</span>
+                                        <span className="fr-col-2">{permanence?.adresse.codePostal}</span>
+                                        <span className="fr-col-7">{permanence?.nomEnseigne}</span>
                                       </span>
                                     </span>
                                   </label>
@@ -155,11 +155,11 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
                 </div>
 
                 <hr />
-                <div className="rf-fieldset__content rf-mt-5w rf-mb-9w">
-                  <div className="rf-radio-group">
+                <div className="fr-fieldset__content fr-mt-5w fr-mb-9w">
+                  <div className="fr-radio-group">
                     <input type="radio" id={prefixId + 'nouveau'} name={prefixId + 'permancenceSecondaire'} value="nouveau"
                       defaultChecked={permanenceActuelId === null} required="required" onClick={handleClick}/>
-                    <label className="rf-label rf-my-2w" htmlFor={prefixId + 'nouveau'} >
+                    <label className="fr-label fr-my-2w" htmlFor={prefixId + 'nouveau'} >
                       Ajouter un nouveau lieu d&rsquo;activit&eacute;
                     </label>
                   </div>

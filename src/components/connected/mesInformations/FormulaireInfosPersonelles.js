@@ -76,12 +76,12 @@ function FormulaireInfosPersonnelles() {
   return (
     <>
       <ModalUpdateForm form={form} showModal={showModal} setShowModal={setShowModal} />
-      <div className="rf-input-group rf-mb-5w">
-        <label className="rf-label" htmlFor="conseiller-prenom">
+      <div className="fr-input-group fr-mb-5w">
+        <label className="fr-label" htmlFor="conseiller-prenom">
           Pr&eacute;nom
         </label>
         <input
-          className="rf-input"
+          className="fr-input"
           aria-describedby="text-input-error-desc-error"
           type="text"
           id="conseiller-prenom"
@@ -90,12 +90,12 @@ function FormulaireInfosPersonnelles() {
           value={conseiller?.prenom}
         />
       </div>
-      <div className="rf-input-group rf-mb-5w">
-        <label className="rf-label" htmlFor="conseiller-nom">
+      <div className="fr-input-group fr-mb-5w">
+        <label className="fr-label" htmlFor="conseiller-nom">
           Nom
         </label>
         <input
-          className="rf-input"
+          className="fr-input"
           aria-describedby="text-input-error-desc-error"
           type="text"
           id="conseiller-nom"
@@ -104,13 +104,13 @@ function FormulaireInfosPersonnelles() {
           value={conseiller?.nom}
         />
       </div>
-      <div className={`rf-input-group ${erreurEmailPro ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
-        <label className="rf-label" htmlFor="conseiller-email-pro">
+      <div className={`fr-input-group ${erreurEmailPro ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
+        <label className="fr-label" htmlFor="conseiller-email-pro">
           Adresse mail professionnelle
-          <span className="rf-hint-text desc-input">Si votre structure vous en a fourni une.</span>
+          <span className="fr-hint-text desc-input">Si votre structure vous en a fourni une.</span>
         </label>
         <input
-          className={`rf-input ${erreurEmailPro ? 'rf-input--error' : ''}`}
+          className={`fr-input ${erreurEmailPro ? 'fr-input--error' : ''}`}
           aria-describedby="text-input-error-desc-error"
           type="email"
           id="conseiller-email-pro"
@@ -119,18 +119,18 @@ function FormulaireInfosPersonnelles() {
           onChange={handleChange}
         />
         {erreurEmailPro &&
-          <p id="text-input-error-desc-error" className="rf-error-text">
+          <p id="text-input-error-desc-error" className="fr-error-text">
             {erreurEmailPro}
           </p>
         }
       </div>
-      <div className={`rf-input-group ${erreurNumeroTelephonePro ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
-        <label className="rf-label" htmlFor="conseiller-telephone-pro">
+      <div className={`fr-input-group ${erreurNumeroTelephonePro ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
+        <label className="fr-label" htmlFor="conseiller-telephone-pro">
           T&eacute;l&eacute;phone professionnel
-          <span className="rf-hint-text desc-input">Si votre structure vous en a fourni un.</span>
+          <span className="fr-hint-text desc-input">Si votre structure vous en a fourni un.</span>
         </label>
         <input
-          className={`rf-input ${erreurNumeroTelephonePro ? 'rf-input--error' : ''}`}
+          className={`fr-input ${erreurNumeroTelephonePro ? 'fr-input--error' : ''}`}
           aria-describedby="text-input-error-desc-error"
           type="tel"
           id="conseiller-telephone-pro"
@@ -140,17 +140,17 @@ function FormulaireInfosPersonnelles() {
           onChange={handleChange}
         />
         {erreurNumeroTelephonePro &&
-          <p id="text-input-error-desc-error" className="rf-error-text">
+          <p id="text-input-error-desc-error" className="fr-error-text">
             {erreurNumeroTelephonePro}
           </p>
         }
       </div>
-      <div className={`rf-input-group ${erreurNumeroTelephone ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
-        <label className="rf-label" htmlFor="conseiller-telephone">
+      <div className={`fr-input-group ${erreurNumeroTelephone ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
+        <label className="fr-label" htmlFor="conseiller-telephone">
           T&eacute;l&eacute;phone personnel
         </label>
         <input
-          className={`rf-input ${erreurNumeroTelephone ? 'rf-input--error' : ''}`}
+          className={`fr-input ${erreurNumeroTelephone ? 'fr-input--error' : ''}`}
           aria-describedby="text-input-error-desc-error"
           type="tel"
           id="conseiller-telephone"
@@ -160,18 +160,18 @@ function FormulaireInfosPersonnelles() {
           onChange={handleChange}
         />
         {erreurNumeroTelephone &&
-          <p id="text-input-error-desc-error" className="rf-error-text">
+          <p id="text-input-error-desc-error" className="fr-error-text">
             {erreurNumeroTelephone}
           </p>
         }
       </div>
-      <div className={`rf-input-group ${erreurEmailPerso ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
-        <label className="rf-label" htmlFor="conseiller-email">
+      <div className={`fr-input-group ${erreurEmailPerso ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
+        <label className="fr-label" htmlFor="conseiller-email">
           Adresse mail secondaire
-          <span className="rf-hint-text desc-input">Celle-ci vous a servi pour candidater au dispositif Conseiller numérique France services.</span>
+          <span className="fr-hint-text desc-input">Celle-ci vous a servi pour candidater au dispositif Conseiller numérique France services.</span>
         </label>
         <input
-          className={`rf-input ${erreurEmailPerso ? 'rf-input--error' : ''}`}
+          className={`fr-input ${erreurEmailPerso ? 'fr-input--error' : ''}`}
           aria-describedby="text-input-error-desc-error"
           type="email"
           id="conseiller-email"
@@ -180,19 +180,19 @@ function FormulaireInfosPersonnelles() {
           onChange={handleChange}
         />
         {erreurEmailPerso &&
-          <p id="text-input-error-desc-error" className="rf-error-text">
+          <p id="text-input-error-desc-error" className="fr-error-text">
             {erreurEmailPerso}
           </p>
         }
       </div>
-      <div className="rf-input-group rf-mb-5w">
-        <label className="rf-label" htmlFor="conseiller-date-de-naissance">
+      <div className="fr-input-group fr-mb-5w">
+        <label className="fr-label" htmlFor="conseiller-date-de-naissance">
           Date de naissance
         </label>
         <DatePicker
           id="conseiller-date-de-naissance"
           name="conseillerDateDeNaissance"
-          className="rf-input rf-my-1w"
+          className="fr-input fr-my-1w"
           placeholderText="../../...."
           dateFormat="dd/MM/yyyy"
           locale="fr"
@@ -209,33 +209,33 @@ function FormulaireInfosPersonnelles() {
           required="required"
         />
       </div>
-      <div className="rf-form-group">
-        <fieldset className="rf-fieldset rf-fieldset--inline">
-          <legend className="rf-fieldset__legend rf-text--regular" id="radio-inline-legend">
+      <div className="fr-form-group">
+        <fieldset className="fr-fieldset fr-fieldset--inline">
+          <legend className="fr-fieldset__legend fr-text--regular" id="radio-inline-legend">
             Genre
           </legend>
-          <div className="rf-fieldset__content">
-            <div className="rf-radio-group radio-genre">
+          <div className="fr-fieldset__content">
+            <div className="fr-radio-group radio-genre">
               <input type="radio" id="Homme" name="conseillerSexe" value="Homme" onClick={handleChange}
                 checked={conseillerSexe === 'Homme'}
               />
-              <label className="rf-label" htmlFor="Homme">Homme
+              <label className="fr-label" htmlFor="Homme">Homme
               </label>
             </div>
-            <div className="rf-radio-group radio-genre">
+            <div className="fr-radio-group radio-genre">
               <input type="radio" id="Femme" name="conseillerSexe" value="Femme" onClick={handleChange} checked={conseillerSexe === 'Femme'} />
-              <label className="rf-label" htmlFor="Femme">Femme
+              <label className="fr-label" htmlFor="Femme">Femme
               </label>
             </div>
-            <div className="rf-radio-group radio-genre">
+            <div className="fr-radio-group radio-genre">
               <input type="radio" id="Autre" name="conseillerSexe" value="Autre" onClick={handleChange} checked={conseillerSexe === 'Autre'} />
-              <label className="rf-label" htmlFor="Autre">Autre
+              <label className="fr-label" htmlFor="Autre">Autre
               </label>
             </div>
           </div>
         </fieldset>
       </div>
-      <button className="form-button rf-btn rf-mb-4w" onClick={handleSubmit}>
+      <button className="form-button fr-btn fr-mb-4w" onClick={handleSubmit}>
         Enregistrer
       </button>
     </>

@@ -135,35 +135,35 @@ function FiltersAndSorts({ resetPage, user }) {
   }
 
   return (
-    <div className="rf-container">
+    <div className="fr-container">
       {user?.role === 'admin_coop' &&
-        <div className="rf-grid-row">
-          <div className="rf-select-group" id="filtre-region">
-            <select className="rf-select" onChange={selectFiltreRegion}>
+        <div className="fr-grid-row">
+          <div className="fr-select-group" id="filtre-region">
+            <select className="fr-select" onChange={selectFiltreRegion}>
               <option value={'tous'}>Tous</option>
               {codeRegions.map((region, idx) =>
                 <option key={idx} value={region.code}>{region.code} - {region.nom}</option>
               )}
             </select>
           </div>
-          <div className="rf-ml-auto rf-col-12 rf-col-md-4 rf-mb-4w rf-mb-md-0">
-            <div className="rf-search-bar rf-search-bar" id="search" role="search" >
-              <input className="rf-input" defaultValue={searchInput ?? ''} onKeyDown={handleKeyDown}
+          <div className="fr-ml-auto fr-col-12 fr-col-md-4 fr-mb-4w fr-mb-md-0">
+            <div className="fr-search-bar fr-search-bar" id="search" role="search" >
+              <input className="fr-input" defaultValue={searchInput ?? ''} onKeyDown={handleKeyDown}
                 placeholder="Rechercher par nom" type="search" id="search-input" name="search-input" onChange={handleKeyDown} />
-              <button className="rf-btn" onClick={rechercheParNomOuNomStructure} title="Rechercher par nom">
+              <button className="fr-btn" onClick={rechercheParNomOuNomStructure} title="Rechercher par nom">
                 Rechercher
               </button>
             </div>
           </div>
         </div>
       }
-      <div className="rf-grid-row rf-grid-row--end">
+      <div className="fr-grid-row fr-grid-row--end">
         { location.pathname === '/territoires' &&
-          <div className="rf-col-4">
-            <nav className="rf-nav" id="navigation-sort" role="navigation">
-              <ul className="rf-nav__list">
-                <li className="rf-nav__item">
-                  <button className="rf-nav__btn admin-select" aria-expanded={toggleFiltre}
+          <div className="fr-col-4">
+            <nav className="fr-nav" id="navigation-sort" role="navigation">
+              <ul className="fr-nav__list">
+                <li className="fr-nav__item">
+                  <button className="fr-nav__btn admin-select" aria-expanded={toggleFiltre}
                     aria-controls="menu-territoire" aria-current="true" onClick={filtreClick} >
                     { territoire === 'codeDepartement' ? <>Affichage par d&eacute;partement</> : <>Affichage par r&eacute;gion</>} &nbsp;
                     { !toggleFiltre &&
@@ -173,9 +173,9 @@ function FiltersAndSorts({ resetPage, user }) {
                       <i className="ri-arrow-up-s-line chevron icone-2"></i>
                     }
                   </button>
-                  <div className={ toggleFiltre === true ? 'rf-collapse--expanded rf-menu' : 'rf-collapse rf-nav--expanded rf-menu'}
+                  <div className={ toggleFiltre === true ? 'fr-collapse--expanded fr-menu' : 'fr-collapse fr-nav--expanded fr-menu'}
                     id="menu-territoire">
-                    <ul className="rf-menu__list">
+                    <ul className="fr-menu__list">
                       <li>
                         <button id={ territoire === 'codeDepartement' ? 'codeRegion' : 'codeDepartement'}
                           className="admin-select-option" onClick={handleTerritoire}>
@@ -189,7 +189,7 @@ function FiltersAndSorts({ resetPage, user }) {
           </div>
         }
 
-        <div className="rf-col-12 rf-col-md-4 rf-mb-4w rf-mb-md-0">
+        <div className="fr-col-12 fr-col-md-4 fr-mb-4w fr-mb-md-0">
           <b>
             <span>P&eacute;riode du &nbsp;</span>
             <span id="span-datePickerDebut" >
@@ -202,13 +202,13 @@ function FiltersAndSorts({ resetPage, user }) {
           </b>
         </div>
         {location.pathname === '/accueil' &&
-          <div className="rf-ml-auto">
-            <button className="rf-btn rf-btn--secondary" onClick={exportDonneesCnfs}>Exporter les donn&eacute;es</button>
+          <div className="fr-ml-auto">
+            <button className="fr-btn fr-btn--secondary" onClick={exportDonneesCnfs}>Exporter les donn&eacute;es</button>
           </div>
         }
         { location.pathname === '/territoires' &&
-          <div className="rf-ml-auto">
-            <button className="rf-btn rf-btn--secondary" onClick={exportDonneesTerritoire}>Exporter les donn&eacute;es</button>
+          <div className="fr-ml-auto">
+            <button className="fr-btn fr-btn--secondary" onClick={exportDonneesTerritoire}>Exporter les donn&eacute;es</button>
           </div>
         }
         { (exportTerritoireFileError !== undefined && exportTerritoireFileError !== false) &&

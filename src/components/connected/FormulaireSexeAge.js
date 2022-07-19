@@ -48,16 +48,16 @@ function FormulaireSexeAge() {
   return (
     <>
       {!isUpdated &&
-        <dialog aria-labelledby="rf-modal-sexe-age" role="dialog" id="rf-modal-sexe-age" className="rf-modal modalOpened">
-          <div className="rf-container">
-            <div className="rf-grid-row rf-grid-row--center">
-              <div className="rf-col-12 rf-col-sm-10 rf-col-md-7 rf-modal__body modal-sexe-age">
-                <div className="rf-modal__content">
-                  <h1 id="rf-modal-title-modal-sexe-age" className="rf-modal__title">
+        <dialog aria-labelledby="fr-modal-sexe-age" role="dialog" id="fr-modal-sexe-age" className="fr-modal modalOpened">
+          <div className="fr-container">
+            <div className="fr-grid-row fr-grid-row--center">
+              <div className="fr-col-12 fr-col-sm-10 fr-col-md-7 fr-modal__body modal-sexe-age">
+                <div className="fr-modal__content">
+                  <h1 id="fr-modal-title-modal-sexe-age" className="fr-modal__title">
                     Une derni&egrave;re &eacute;tape !
                   </h1>
                   { (error || errorInputs) &&
-                    <div className="rf-mb-3w">
+                    <div className="fr-mb-3w">
                       <FlashMessage duration={10000} >
                         <div className=" flashBag invalid">
                           <span>
@@ -69,17 +69,17 @@ function FormulaireSexeAge() {
                   }
                   <div className="element-gauche">
                     <div className="label" >Vous &ecirc;tes <span className="important">*</span></div>
-                    <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-4w rf-mb-3w">
-                      <div className="rf-fieldset__content">
-                        <div className="rf-radio-group">
+                    <fieldset className="fr-fieldset fr-fieldset--inline fr-mt-4w fr-mb-3w">
+                      <div className="fr-fieldset__content">
+                        <div className="fr-radio-group">
                           <input type="radio" id="Homme" name="sexe" value="Homme" onClick={handleChange}/>
                           <label className="fr-label" htmlFor="Homme">un homme</label>
                         </div>
-                        <div className="rf-radio-group">
+                        <div className="fr-radio-group">
                           <input type="radio" id="Femme" name="sexe" value="Femme" onClick={handleChange} required="required"/>
                           <label className="fr-label" htmlFor="Femme">une femme</label>
                         </div>
-                        <div className="rf-radio-group">
+                        <div className="fr-radio-group">
                           <input type="radio" id="Autre" name="sexe" value="Autre" onClick={handleChange} required="required"/>
                           <label className="fr-label" htmlFor="Autre">autre</label>
                         </div>
@@ -91,7 +91,7 @@ function FormulaireSexeAge() {
                     <DatePicker
                       id="date"
                       name="date"
-                      className="rf-input rf-my-3w"
+                      className="fr-input fr-my-3w"
                       placeholderText="../../...."
                       dateFormat="dd/MM/yyyy"
                       locale="fr"
@@ -106,10 +106,10 @@ function FormulaireSexeAge() {
                       required="required"
                     />
                   </div>
-                  <p className="rf-mb-6w">L&rsquo;usage de ces donn&eacute;es est strictement r&eacute;serv&eacute; aux statistiques internes de
+                  <p className="fr-mb-6w">L&rsquo;usage de ces donn&eacute;es est strictement r&eacute;serv&eacute; aux statistiques internes de
                       l&rsquo;ANCT et de la Banque des Territoires, celles-ci ne seront pas publi&eacute;es.<br/>
                       Vous pourrez &eacute;galement modifier vos informations de profil par la suite. <br/>
-                  <a className="rf-nav__link" target="blank" href="https://cdn.conseiller-numerique.gouv.fr/CGU-ConseillerNumerique-Coop.pdf">
+                  <a className="fr-nav__link" target="blank" href="https://cdn.conseiller-numerique.gouv.fr/CGU-ConseillerNumerique-Coop.pdf">
                     Consulter les CGU pour plus de d&eacute;tails
                   </a>
                   </p>

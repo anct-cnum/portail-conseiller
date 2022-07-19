@@ -42,60 +42,60 @@ function Login() {
   return (
     <div className="Login">
       {/* Start content */}
-      <div className="rf-container" style={{ backgroundColor: '#2a2a2a', margin: '0px', maxWidth: 'unset' }}>
-        <div className="rf-grid-row rf-grid-row--gutters rf-py-xs-1w rf-py-md-8w" style={{ marginBottom: 0 }}>
+      <div className="fr-container" style={{ backgroundColor: '#2a2a2a', margin: '0px', maxWidth: 'unset' }}>
+        <div className="fr-grid-row fr-grid-row--gutters fr-py-xs-1w fr-py-md-8w" style={{ marginBottom: 0 }}>
           <div className="margeLeft"></div>
           {/* Title */}
-          <div className="rf-col-xs-12 rf-col-sm-12 rf-col-md-5 rf-mt-xs-1w rf-mt-md-8w">
+          <div className="fr-col-xs-12 fr-col-sm-12 fr-col-md-5 fr-mt-xs-1w fr-mt-md-8w">
             <div className="headPart">
               <img
                 src="/logos/logo-conseiller-numerique-nb.svg"
                 alt="logo Conseiller Num&eacute;rique France Services"
                 className="logoCnfs"/>
-              <h1 className="titrage rf-mt-xs-3w rf-mt-md-9w rf-mb-6w">
+              <h1 className="titrage fr-mt-xs-3w fr-mt-md-9w fr-mb-6w">
                 { role === 'admin' &&
-                  <>Administration<br className="rf-mb-2w"/></>
+                  <>Administration<br className="fr-mb-2w"/></>
                 }
                 Espace Coop
               </h1>
             </div>
             { role !== 'admin' &&
               <>
-                <p className="rf-service__tagline labNetworkCnfs">Le r&eacute;seau des conseillers num&eacute;riques France Services.</p>
-                <div className="rf-my-9w personas1">
+                <p className="fr-service__tagline labNetworkCnfs">Le r&eacute;seau des conseillers num&eacute;riques France Services.</p>
+                <div className="fr-my-9w personas1">
                   <img src="/logos/personas-hexagones.svg" width="100%" alt="Avatars conseillers"/>
                 </div>
               </>
             }
           </div>
-          <div className="rf-my-4w connexion">
-            <div className="rf-px-2w rf-mb-2w">
-              <label className="rf-label email" htmlFor="email">E-mail Conseiller num&eacute;rique France Services</label>
+          <div className="fr-my-4w connexion">
+            <div className="fr-px-2w fr-mb-2w">
+              <label className="fr-label email" htmlFor="email">E-mail Conseiller num&eacute;rique France Services</label>
               <input
                 id="email"
                 name="username"
                 value={username}
                 onChange={handleChange}
-                className={`rf-input rf-input-custom ${submitted && !password ? ' is-invalid' : ''}`} />
+                className={`fr-input fr-input-custom ${submitted && !password ? ' is-invalid' : ''}`} />
               {submitted && !username &&
                   <div className="invalid">Identifiant requis</div>
               }
             </div>
-            <div className="rf-px-2w rf-mb-4w">
-              <label className="rf-label password" htmlFor="password">Mot de passe</label>
+            <div className="fr-px-2w fr-mb-4w">
+              <label className="fr-label password" htmlFor="password">Mot de passe</label>
               <input
                 id="password"
                 name="password"
                 type="password"
                 value={password}
                 onChange={handleChange}
-                className={`rf-input rf-input-custom ${submitted && !password ? ' is-invalid' : ''}`} />
+                className={`fr-input fr-input-custom ${submitted && !password ? ' is-invalid' : ''}`} />
               {submitted && !password &&
                   <div className="invalid">Mot de passe requis</div>
               }
             </div>
             <div>
-              <button className="rf-btn rf-text--bold big-btn" onClick={handleSubmit} style={{ background: 'white' }}>Connexion</button>
+              <button className="fr-btn fr-text--bold big-btn" onClick={handleSubmit} style={{ background: 'white' }}>Connexion</button>
               <br/>{loggingIn && <span style={{ color: 'black' }}>Connexion en cours...</span>}
             </div>
             <div>
@@ -110,8 +110,8 @@ function Login() {
 
         </div>
         { role !== 'admin' &&
-          <div className="rf-grid-row rf-pb-12w personas2" style={{ textAlign: 'center' }}>
-            <div className="rf-col-12">
+          <div className="fr-grid-row fr-pb-12w personas2" style={{ textAlign: 'center' }}>
+            <div className="fr-col-12">
               <div className="mot-de-passe-oublie-sm">
                 <Link to="/mot-de-passe-oublie" title="Mot de passe oubli&eacute; ?">Mot de passe oubli&eacute; ?</Link>
               </div>

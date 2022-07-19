@@ -56,12 +56,12 @@ function FormulaireSuperieurHierarchique() {
   return (
     <>
       <ModalUpdateForm form={form} isSupHierarchique={true} showModal={showModal} setShowModal={setShowModal} />
-      <div className={`rf-input-group ${erreurPrenom ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
-        <label className="rf-label" htmlFor="prenom">
+      <div className={`fr-input-group ${erreurPrenom ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
+        <label className="fr-label" htmlFor="prenom">
           Pr&eacute;nom
         </label>
         <input
-          className={`rf-input ${erreurPrenom ? 'rf-input--error' : ''}`}
+          className={`fr-input ${erreurPrenom ? 'fr-input--error' : ''}`}
           aria-describedby="text-input-error-desc-error"
           type="text"
           id="prenom"
@@ -70,17 +70,17 @@ function FormulaireSuperieurHierarchique() {
           onChange={handleChange}
         />
         {erreurPrenom &&
-          <p id="text-input-error-desc-error" className="rf-error-text">
+          <p id="text-input-error-desc-error" className="fr-error-text">
             {erreurPrenom}
           </p>
         }
       </div>
-      <div className={`rf-input-group ${erreurNom ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
-        <label className="rf-label" htmlFor="nom">
+      <div className={`fr-input-group ${erreurNom ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
+        <label className="fr-label" htmlFor="nom">
           Nom
         </label>
         <input
-          className={`rf-input ${erreurNom ? 'rf-input--error' : ''}`}
+          className={`fr-input ${erreurNom ? 'fr-input--error' : ''}`}
           aria-describedby="text-input-error-desc-error"
           type="text"
           id="nom"
@@ -89,17 +89,17 @@ function FormulaireSuperieurHierarchique() {
           onChange={handleChange}
         />
         {erreurNom &&
-          <p id="text-input-error-desc-error" className="rf-error-text">
+          <p id="text-input-error-desc-error" className="fr-error-text">
             {erreurNom}
           </p>
         }
       </div>
-      <div className={`rf-input-group ${erreurFonction ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
-        <label className="rf-label" htmlFor="nom">
+      <div className={`fr-input-group ${erreurFonction ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
+        <label className="fr-label" htmlFor="nom">
           Fonction
         </label>
         <input
-          className={`rf-input ${erreurFonction ? 'rf-input--error' : ''}`}
+          className={`fr-input ${erreurFonction ? 'fr-input--error' : ''}`}
           aria-describedby="text-input-error-desc-error"
           type="text"
           id="fonction"
@@ -108,17 +108,17 @@ function FormulaireSuperieurHierarchique() {
           onChange={handleChange}
         />
         {erreurFonction &&
-          <p id="text-input-error-desc-error" className="rf-error-text">
+          <p id="text-input-error-desc-error" className="fr-error-text">
             {erreurFonction}
           </p>
         }
       </div>
-      <div className={`rf-input-group ${erreurEmail ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
-        <label className="rf-label" htmlFor="email">
+      <div className={`fr-input-group ${erreurEmail ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
+        <label className="fr-label" htmlFor="email">
           Adresse mail
         </label>
         <input
-          className={`rf-input ${erreurEmail ? 'rf-input--error' : ''}`}
+          className={`fr-input ${erreurEmail ? 'fr-input--error' : ''}`}
           aria-describedby="text-input-error-desc-error"
           type="email"
           id="email"
@@ -127,17 +127,17 @@ function FormulaireSuperieurHierarchique() {
           onChange={handleChange}
         />
         {erreurEmail &&
-          <p id="text-input-error-desc-error" className="rf-error-text">
+          <p id="text-input-error-desc-error" className="fr-error-text">
             {erreurEmail}
           </p>
         }
       </div>
-      <div className={`rf-input-group ${erreurNumeroTelephone ? 'rf-input-group--error' : 'rf-mb-5w'}`}>
-        <label className="rf-label" htmlFor="numeroTelephone">
+      <div className={`fr-input-group ${erreurNumeroTelephone ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
+        <label className="fr-label" htmlFor="numeroTelephone">
           Num&eacute;ro de t&eacute;l&eacute;phone
         </label>
         <input
-          className={`rf-input ${erreurNumeroTelephone ? 'rf-input--error' : ''}`}
+          className={`fr-input ${erreurNumeroTelephone ? 'fr-input--error' : ''}`}
           aria-describedby="text-input-error-desc-error"
           type="numeroTelephone"
           id="numeroTelephone"
@@ -147,12 +147,12 @@ function FormulaireSuperieurHierarchique() {
           onChange={handleChange}
         />
         {erreurNumeroTelephone &&
-          <p id="text-input-error-desc-error" className="rf-error-text">
+          <p id="text-input-error-desc-error" className="fr-error-text">
             {erreurNumeroTelephone}
           </p>
         }
       </div>
-      <button className="form-button rf-btn rf-mb-4w" onClick={handleSubmit}>
+      <button className="form-button fr-btn fr-mb-4w" onClick={handleSubmit}>
         Enregistrer
       </button>
     </>

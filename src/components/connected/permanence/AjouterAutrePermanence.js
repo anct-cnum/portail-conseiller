@@ -12,12 +12,12 @@ function AjouterAutrePermanence({ secondaireId, conseillerId, structureId, show,
     <>
       { (!ajoutBtn && isUpdate || !isUpdate && !ajoutBtnNext) &&
         <>
-          <div className="rf-col-1 col-logo rf-mt-8w">
+          <div className="fr-col-1 col-logo fr-mt-8w">
             <img className="pin" src="logos/permanences/pin.svg"/>
           </div>
-          <div className="rf-col-5 rf-mt-7w">
+          <div className="fr-col-5 fr-mt-7w">
             <ButtonAjoutLieu secondaireId={secondaireId} conseillerId={conseillerId} structureId={structureId} show={show} isUpdate={isUpdate} />
-            <span className="baseline rf-mb-6w">
+            <span className="baseline fr-mb-6w">
               Vous pourrez ajouter et modifier vos lieux d&rsquo;activit&eacute; plus tard.
             </span>
           </div>

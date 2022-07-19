@@ -12,13 +12,13 @@ function TypeAcces({ islieuPrincipal, prefixId }) {
 
   return (
     <>
-      <div className="rf-col-offset-1 rf-col-11">
-        <div className={erreurTypeAcces ? 'rf-col-12 invalid rf-mb-6w' : 'rf-col-12 rf-mb-6w'}>
+      <div className="fr-col-offset-1 fr-col-11">
+        <div className={erreurTypeAcces ? 'fr-col-12 invalid fr-mb-6w' : 'fr-col-12 fr-mb-6w'}>
           Type d&rsquo;acc&egrave;s <span className="obligatoire">*</span>
           <span className="baseline">Comment les usagers acc&egrave;dent-ils &agrave; la structure ?</span>
 
-          <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-2w">
-            <div className="rf-fieldset__content">
+          <fieldset className="fr-fieldset fr-fieldset--inline fr-mt-2w">
+            <div className="fr-fieldset__content">
               <InputCheckbox textLabel="Acc&egrave;s libre" errorInput={erreurTypeAcces}
                 idInput={prefixId + 'libre'} prefixId={prefixId} nameInput="libre"/>
 
@@ -33,7 +33,7 @@ function TypeAcces({ islieuPrincipal, prefixId }) {
           </fieldset>
 
           { erreurTypeAcces &&
-            <p className="text-error rf-mb-n3w">{erreurTypeAcces}</p>
+            <p className="text-error fr-mb-n3w">{erreurTypeAcces}</p>
           }
         </div>
       </div>

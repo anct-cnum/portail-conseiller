@@ -30,14 +30,14 @@ function Header({ linkAccount, printClass }) {
   const aideStructure = process.env.REACT_APP_AIDE_URL;
 
   return (
-    <header className={printClass + ' rf-header'} role="banner">
-      <div className="rf-container">
+    <header className={printClass + ' fr-header'} role="banner">
+      <div className="fr-container">
         <div
           // eslint-disable-next-line max-len
-          className={`rf-grid-row rf-grid-row--top header-grid ${location.pathname === '/validation' || location.pathname.startsWith('/inscription') ? 'headerRow' : ''}`}>
-          <div className="rf-col-xs-10 rf-col-sm-10 rf-col-md-10 rf-col-xl-12">
-            <div className="rf-header__body">
-              <a className="rf-header__operator" href="/" style={{ boxShadow: 'none', marginRight: '0.5rem' }}>
+          className={`fr-grid-row fr-grid-row--top header-grid ${location.pathname === '/validation' || location.pathname.startsWith('/inscription') ? 'headerRow' : ''}`}>
+          <div className="fr-col-xs-10 fr-col-sm-10 fr-col-md-10 fr-col-xl-12">
+            <div className="fr-header__body">
+              <a className="fr-header__operator" href="/" style={{ boxShadow: 'none', marginRight: '0.5rem' }}>
                 {printClass ?
                   <img src="/logos/logo-conseiller-numerique.svg" alt="logo Conseiller Num&eacute;rique France Services" style={{ height: '48px' }}/> :
                   // eslint-disable-next-line max-len
@@ -45,21 +45,21 @@ function Header({ linkAccount, printClass }) {
                 }
 
               </a>
-              <div className={`rf-header__navbar ${location.pathname === '/validation' || location.pathname.startsWith('/inscription') ? 'headerCustom' : ''}`}>
-                <div className="rf-service block-feuillet">
+              <div className={`fr-header__navbar ${location.pathname === '/validation' || location.pathname.startsWith('/inscription') ? 'headerCustom' : ''}`}>
+                <div className="fr-service block-feuillet">
                   {role !== 'admin_coop' &&
                     <div className="feuillet">
-                      <a className="rf-service__title title-feuillet" href="/" title="Coop">
+                      <a className="fr-service__title title-feuillet" href="/" title="Coop">
                         Coop
                       </a>
-                      <p className="rf-service__tagline cacher-baseline" style={{ fontSize: '12px', fontWeight: '400', lineHeight: '20px', color: '#929292' }}>
+                      <p className="fr-service__tagline cacher-baseline" style={{ fontSize: '12px', fontWeight: '400', lineHeight: '20px', color: '#929292' }}>
                         Bienvenue sur le r&eacute;seau des conseillers num&eacute;riques
                       </p>
                     </div>
                   }
                   {role === 'admin_coop' &&
                     <>
-                      <a className="rf-service__title" href="/" title="Coop" style={{ fontSize: '24px' }}>
+                      <a className="fr-service__title" href="/" title="Coop" style={{ fontSize: '24px' }}>
                         Espace Coop : Administration
                       </a>
                     </>
@@ -68,7 +68,7 @@ function Header({ linkAccount, printClass }) {
                 {linkAccount !== undefined &&
                   <button
                     id="burgerMenu"
-                    className="rf-btn rf-fi-menu-fill rf-btn--icon "
+                    className="fr-btn fr-fi-menu-fill fr-btn--icon "
                     title="Ouvrir le menu"
                     aria-controls="header-nav-popin"
                     onClick={toggleBurgerMenu}
@@ -78,23 +78,23 @@ function Header({ linkAccount, printClass }) {
               </div>
               {linkAccount !== undefined &&
                 <>
-                  <div className="rf-header__tools headerCustom">
-                    <div className="rf-shortcuts" style={!menu.hiddenMenu ? { display: 'none' } : {} }>
-                      <ul className="rf-shortcuts__list">
-                        <li className="rf-shortcuts__item header-propos rf-mr-md-2w">
-                          <ul className="rf-nav__list">
-                            <li className="rf-nav__item">
-                              <Link className="rf-nav__btn rf-custom-link" to="/a-propos" title="&Agrave; propos de votre espace Coop" >
+                  <div className="fr-header__tools headerCustom">
+                    <div className="fr-shortcuts" style={!menu.hiddenMenu ? { display: 'none' } : {} }>
+                      <ul className="fr-shortcuts__list">
+                        <li className="fr-shortcuts__item header-propos fr-mr-md-2w">
+                          <ul className="fr-nav__list">
+                            <li className="fr-nav__item">
+                              <Link className="fr-nav__btn fr-custom-link" to="/a-propos" title="&Agrave; propos de votre espace Coop" >
                                 &Agrave; propos
                               </Link>
                             </li>
                           </ul>
                         </li>
-                        <li className="rf-shortcuts__item header-aide rf-mr-md-2w">
+                        <li className="fr-shortcuts__item header-aide fr-mr-md-2w">
                           <div className="" role="navigation" aria-label="aide">
-                            <ul className="rf-nav__list">
-                              <li className="rf-nav__item">
-                                <button className="rf-nav__btn rf-custom-link"
+                            <ul className="fr-nav__list">
+                              <li className="fr-nav__item">
+                                <button className="fr-nav__btn fr-custom-link"
                                   aria-expanded={menuAideShow} aria-controls="menu-liens-aide" aria-current="true"
                                   onClick={() => {
                                     setMenuAideShow(!menuAideShow);
@@ -106,14 +106,14 @@ function Header({ linkAccount, printClass }) {
                                   </span>
                                 </button>
                                 <div
-                                  className={!menuAideShow ? 'rf-collapse rf-menu' : 'rf-collapse rf-menu rf-collapse--expanded'}
+                                  className={!menuAideShow ? 'fr-collapse fr-menu' : 'fr-collapse fr-menu fr-collapse--expanded'}
                                   style={!menuAideShow ? { display: 'none' } : {}}
                                   id="menu-liens-aide">
-                                  <ul className="rf-menu__list">
+                                  <ul className="fr-menu__list">
                                     {role !== 'structure_coop' &&
                                       <>
                                         <li className="aide-coop">
-                                          <a className="rf-nav__link lien-aide" href={aideCoop} target="blank" rel="noreferrer"
+                                          <a className="fr-nav__link lien-aide" href={aideCoop} target="blank" rel="noreferrer"
                                             onClick={() => {
                                               setMenuAideShow(false);
                                             }}>
@@ -122,7 +122,7 @@ function Header({ linkAccount, printClass }) {
                                           </a>
                                         </li>
                                         <li className="aide-metier">
-                                          <a className="rf-nav__link lien-aide" href={aideMetier} target="blank" rel="noreferrer"
+                                          <a className="fr-nav__link lien-aide" href={aideMetier} target="blank" rel="noreferrer"
                                             onClick={() => {
                                               setMenuAideShow(false);
                                             }}>
@@ -134,7 +134,7 @@ function Header({ linkAccount, printClass }) {
                                     }
                                     {role === 'structure_coop' &&
                                       <li className="aide-coop">
-                                        <a className="rf-nav__link lien-aide" href={aideStructure} target="blank" rel="noreferrer"
+                                        <a className="fr-nav__link lien-aide" href={aideStructure} target="blank" rel="noreferrer"
                                           onClick={() => {
                                             setMenuAideShow(false);
                                           }}>
@@ -150,11 +150,11 @@ function Header({ linkAccount, printClass }) {
                           </div>
                         </li>
                         {linkAccount !== 'noConnected' &&
-                          <li className="rf-shortcuts__item header-user rf-mr-md-2w">
+                          <li className="fr-shortcuts__item header-user fr-mr-md-2w">
                             <div className="" role="navigation" aria-label="user">
-                              <ul className="rf-nav__list">
-                                <li className="rf-nav__item">
-                                  <button className="rf-nav__btn rf-custom-link"
+                              <ul className="fr-nav__list">
+                                <li className="fr-nav__item">
+                                  <button className="fr-nav__btn fr-custom-link"
                                     aria-expanded={menuUserShow} aria-controls="menu-liens-user" aria-current="true"
                                     onClick={() => {
                                       setMenuUserShow(!menuUserShow);
@@ -168,13 +168,13 @@ function Header({ linkAccount, printClass }) {
                                     </span>
                                   </button>
                                   <div
-                                    className={!menuUserShow ? 'rf-collapse rf-menu' : 'rf-collapse rf-menu rf-collapse--expanded'}
+                                    className={!menuUserShow ? 'fr-collapse fr-menu' : 'fr-collapse fr-menu fr-collapse--expanded'}
                                     style={!menuUserShow ? { display: 'none' } : {}}
                                     id="menu-liens-user">
-                                    <ul className="rf-menu__list">
+                                    <ul className="fr-menu__list">
                                       {['conseiller', 'coordinateur_coop'].includes(role) &&
                                         <li className="user-infos">
-                                          <Link className="rf-nav__link lien-user" to="/mes-informations"
+                                          <Link className="fr-nav__link lien-user" to="/mes-informations"
                                             onClick={() => {
                                               setMenuUserShow(false);
                                             }}>
@@ -188,7 +188,7 @@ function Header({ linkAccount, printClass }) {
                                       {linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
                                         <li className="user-disconnect">
                                           {role === 'conseiller' &&
-                                            <Link className="rf-nav__link lien-user" to="/login"
+                                            <Link className="fr-nav__link lien-user" to="/login"
                                               onClick={() => {
                                                 setMenuUserShow(false);
                                               }}>
@@ -196,7 +196,7 @@ function Header({ linkAccount, printClass }) {
                                             </Link>
                                           }
                                           {role !== 'conseiller' &&
-                                            <Link className="rf-nav__link lien-user" to="/login?role=admin"
+                                            <Link className="fr-nav__link lien-user" to="/login?role=admin"
                                               onClick={() => {
                                                 resetFiltreListeConseillers();
                                                 setMenuUserShow(false);
@@ -215,25 +215,25 @@ function Header({ linkAccount, printClass }) {
                         }
 
                         {linkAccount === 'noConnected' &&
-                          <li className="rf-shortcuts__item">
-                            <a href="/login" className="rf-link" target="_self">J&rsquo;ai d&eacute;j&Agrave; un compte</a>
+                          <li className="fr-shortcuts__item">
+                            <a href="/login" className="fr-link" target="_self">J&rsquo;ai d&eacute;j&Agrave; un compte</a>
                           </li>
                         }
 
                         { /*(linkAccount !== 'noConnected' && role === 'conseiller') &&
 
 
-                        <li className="rf-shortcuts__item header-informations">
+                        <li className="fr-shortcuts__item header-informations">
                           <div className="" role="navigation" aria-label="informations">
-                            <ul className="rf-nav__list">
-                              <li className="rf-nav__item">
-                                <button className="rf-nav__btn rf-custom-link"
+                            <ul className="fr-nav__list">
+                              <li className="fr-nav__item">
+                                <button className="fr-nav__btn fr-custom-link"
                                   aria-expanded={menuInformationsShow} aria-controls="menu-informations" aria-current="true"
                                   onClick={() => {
                                     setMenuInformationsShow(!menuInformationsShow);
                                     setMenuAideShow(false);
                                   }}>
-                                  <span className="texte-informations"><span className="rf-fi-user-line" aria-hidden="true"></span>
+                                  <span className="texte-informations"><span className="fr-fi-user-line" aria-hidden="true"></span>
                                     { linkAccount }
                                     {!menuInformationsShow &&
                                       <i className="ri-arrow-down-s-line"></i>
@@ -243,11 +243,11 @@ function Header({ linkAccount, printClass }) {
                                     }
                                   </span>
                                 </button>
-                                <div className={!menuInformationsShow ? 'rf-collapse rf-menu' : 'rf-collapse rf-menu rf-collapse--expanded'}
+                                <div className={!menuInformationsShow ? 'fr-collapse fr-menu' : 'fr-collapse fr-menu fr-collapse--expanded'}
                                   id="menu-informations">
-                                  <ul className="rf-menu__list">
+                                  <ul className="fr-menu__list">
                                     <li className="mes-informations">
-                                      <a className="rf-nav__link lien-informations" href="/mes-informations"
+                                      <a className="fr-nav__link lien-informations" href="/mes-informations"
                                         onClick={() => {
                                           setMenuInformationsShow(false);
                                         }}>
@@ -264,9 +264,9 @@ function Header({ linkAccount, printClass }) {
                         }
 
                         {/* (linkAccount !== 'noConnected' && role !== 'conseiller') &&
-                        <li className="rf-shortcuts__item">
-                          <span className="rf-link" style={{ cursor: 'unset' }}>
-                            <span className="rf-fi-user-line" aria-hidden="true"></span>
+                        <li className="fr-shortcuts__item">
+                          <span className="fr-link" style={{ cursor: 'unset' }}>
+                            <span className="fr-fi-user-line" aria-hidden="true"></span>
                             { linkAccount }
                           </span>
                         </li>

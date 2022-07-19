@@ -64,7 +64,7 @@ function PermanenceCreate() {
       <div id="formulaire-horaires-adresse" >
         <Banner/>
         {(isCreated || isUpdated) &&
-          <p className="rf-label flashBag">
+          <p className="fr-label flashBag">
             Votre lieu d&rsquo;activit&eacute; a bien &eacute;t&eacute;&nbsp;
             {isCreated && <>cr&eacute;&eacute;</>}
             {isUpdated && <>mis &agrave; jour</>},
@@ -77,7 +77,7 @@ function PermanenceCreate() {
         }
 
         {showError &&
-          <p className="rf-label flashBag invalid">
+          <p className="fr-label flashBag invalid">
             {showErrorMessage ?? errorCreate ?
               'Une erreur est survenue lors de la création de votre lieu d’activité' :
               'Une erreur est survenue lors du traitement de vos informations'}
@@ -86,10 +86,10 @@ function PermanenceCreate() {
         }
 
         {(conseiller && !conseiller?.hasPermanence && structure) &&
-          <div className="rf-container">
-            <div className="rf-grid-row">
-              <div className="rf-col-12 rf-ml-12w">
-                <h2 className="titre-acces rf-my-9w ">Vous n&rsquo;avez pas acc&egrave;s &agrave; ce formulaire pour le moment !</h2>
+          <div className="fr-container">
+            <div className="fr-grid-row">
+              <div className="fr-col-12 fr-ml-12w">
+                <h2 className="titre-acces fr-my-9w ">Vous n&rsquo;avez pas acc&egrave;s &agrave; ce formulaire pour le moment !</h2>
               </div>
             </div>
           </div>
@@ -97,15 +97,15 @@ function PermanenceCreate() {
         {(conseiller && conseiller?.hasPermanence && structure) &&
           <>
             <ContactProfessionel conseiller={conseiller} />
-            <div className="rf-container">
-              <div className="rf-grid-row">
-                <div className="rf-col-1 rf-mt-1w col-logo">
+            <div className="fr-container">
+              <div className="fr-grid-row">
+                <div className="fr-col-1 fr-mt-1w col-logo">
                   <img className="pin" src="/logos/permanences/pin.svg"/>
                 </div>
-                <div className="rf-col-8 ">
-                  <h2 className="sous-titre rf-mb-4w">
+                <div className="fr-col-8 ">
+                  <h2 className="sous-titre fr-mb-4w">
                     Lieu d&rsquo;activit&eacute; secondaire
-                    <span className="baseline rf-mt-1w">
+                    <span className="baseline fr-mt-1w">
                       Un lieu d&rsquo;activit&eacute; secondaire correspond &agrave; une permanence o&ugrave; vous avez &eacute;t&eacute;
                       d&eacute;l&eacute;gu&eacute;(e) et o&ugrave; vous exercez votre activit&eacute; de mani&egrave;re hebdomadaire.
                     </span>
@@ -135,7 +135,7 @@ function PermanenceCreate() {
                   horairesId={0}
                   permanence={null}
                 />
-                <div className="rf-col-12 rf-mt-8w"></div>
+                <div className="fr-col-12 fr-mt-8w"></div>
                 <Validation
                   conseillerId={conseiller?._id}
                   structureId={structure?._id}

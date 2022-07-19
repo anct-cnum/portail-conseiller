@@ -54,7 +54,7 @@ function BigRadioButton({ type, label, value, image, imageSelected, heightImage,
               value={value}/>
           </div>
           <span
-            className={`rf-label labelBigRadioCustom ${controlSelected === value ? 'radioRattachement-selected' : ''}`}
+            className={`fr-label labelBigRadioCustom ${controlSelected === value ? 'radioRattachement-selected' : ''}`}
             value={value}>
             {label}
           </span>

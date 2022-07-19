@@ -5,17 +5,17 @@ function Banner() {
   const location = useLocation();
   return (
     <div className="banniere">
-      <div className="rf-container">
-        <div className="rf-grid-row">
-          <div className="rf-col-offset-1 rf-col-11">
-            <h1 className="titre rf-mt-9w rf-mb-6w">Donn&eacute;es de localisation et contacts</h1>
+      <div className="fr-container">
+        <div className="fr-grid-row">
+          <div className="fr-col-offset-1 fr-col-11">
+            <h1 className="titre fr-mt-9w fr-mb-6w">Donn&eacute;es de localisation et contacts</h1>
           </div>
-          <div className="rf-col-1 col-logo"><br/><br/>
+          <div className="fr-col-1 col-logo"><br/><br/>
             <img className="pin" src="/logos/permanences/pin.svg"/>
             <br/>
             <img className="hexagone" src="/logos/permanences/hexagone.svg"/>
           </div>
-          <div className="rf-col-11 rf-col-md-6 texte-banniere rf-mb-7w">
+          <div className="fr-col-11 fr-col-md-6 texte-banniere fr-mb-7w">
             <span className="important violet">Dans cette page, vous renseignez :</span><br/><br/>
             {location.pathname === 'mes-lieux-activite' &&
             <>
@@ -33,7 +33,7 @@ function Banner() {
             vous donner de la visibilit&eacute; aupr&egrave;s de vos publics,
              celles-ci seront visibles sur la carte.
           </div>
-          <div className="rf-col-12 rf-col-md-5 rf-mb-7w carte-banniere">
+          <div className="fr-col-12 fr-col-md-5 fr-mb-7w carte-banniere">
             <img src="/logos/permanences/cartographie-cnfs.svg"/>
           </div>
         </div>

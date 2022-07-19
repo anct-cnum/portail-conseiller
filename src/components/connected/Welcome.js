@@ -25,14 +25,14 @@ function Welcome() {
   return (
     <>
       <div className="welcome">
-        <div className="rf-container rf-container--fluid fond-sombre">
-          <div className="rf-grid-row">
-            <div className="rf-col-12">
-              <div className="rf-container">
-                <div className="rf-grid-row rf-grid-row--center">
-                  <div className="rf-col-12 rf-mt-15w rf-mb-3w">
+        <div className="fr-container fr-container--fluid fond-sombre">
+          <div className="fr-grid-row">
+            <div className="fr-col-12">
+              <div className="fr-container">
+                <div className="fr-grid-row fr-grid-row--center">
+                  <div className="fr-col-12 fr-mt-15w fr-mb-3w">
                     { conseiller && !conseiller?.supHierarchique &&
-                      <div className="div-info-rappel-hierarchique rf-mb-3w rf-py-1w">
+                      <div className="div-info-rappel-hierarchique fr-mb-3w fr-py-1w">
                         <i className="ri-information-line information icone-info-rappel"></i>
                         <p className="margin-info">
                           Afin que votre responsable hi&eacute;rarchique puisse recevoir toutes les informations concernant le dispositif et vous accompagner
@@ -50,16 +50,16 @@ function Welcome() {
               </div>
             </div>
             <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
-            <div className="rf-col-12">
-              <div className="rf-container">
-                <div className="rf-grid-row espacement-centre-groupe-icon rf-mt-6w">
-                  <div className="rf-col-12 rf-col-sm-3 rf-col-md-3 menu-btn rf-mb-3w">
+            <div className="fr-col-12">
+              <div className="fr-container">
+                <div className="fr-grid-row espacement-centre-groupe-icon fr-mt-6w">
+                  <div className="fr-col-12 fr-col-sm-3 fr-col-md-3 menu-btn fr-mb-3w">
                     <Link to="/compte-rendu-activite" title="Acc&eacute;der &agrave; mon outil de suivi d&rsquo;activit&eacute;">
                       <img src="/logos/home-connected/icone-cra.svg" className="icone-btn icone-cra"/>
                       Suivi d&rsquo;activit&eacute;
                     </Link>
                   </div>
-                  <div className="rf-col-12 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
+                  <div className="fr-col-12 fr-col-sm-3 fr-col-md-2 menu-btn fr-mb-3w">
                     <a href={lienMattermost} target="blank" title="Acc&egrave;s espace discussion">
                       <img src="/logos/home-connected/icone-discussion.svg" className="icone-btn icone-mattermost"/>
                       Espace de discussion
@@ -78,42 +78,42 @@ function Welcome() {
                       </span>
                     </a>
                   </div>
-                  <div className="rf-col-12 rf-col-sm-3 rf-col-md-3 menu-btn rf-mb-3w">
+                  <div className="fr-col-12 fr-col-sm-3 fr-col-md-3 menu-btn fr-mb-3w">
                     <a href={lienLaBase} rel="noreferrer" target="blank" title="Acc&eacute;der &agrave; la ressourcerie">
                       <img src="/logos/home-connected/icone-ressourcerie.svg" className="icone-btn icone-ressourcerie"/>
                       Ressourcerie
                     </a>
                   </div>
-                  <div className="rf-col-12 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
+                  <div className="fr-col-12 fr-col-sm-3 fr-col-md-2 menu-btn fr-mb-3w">
                     <a href={lienPix} target="blank" title="Acc&eacute;der &agrave; Pix">
                       <img src="/logos/home-connected/icone-pix.svg" className="icone-btn icone-pix"/>
                       Pix
                     </a>
                   </div>
                 </div>
-                <div className="rf-grid-row espacement-centre-groupe-icon rf-mt-8w">
+                <div className="fr-grid-row espacement-centre-groupe-icon fr-mt-8w">
 
-                  <div className="rf-col-12 rf-col-sm-3 rf-col-md-3 menu-btn rf-mb-3w">
+                  <div className="fr-col-12 fr-col-sm-3 fr-col-md-3 menu-btn fr-mb-3w">
                     <Link to="/statistiques" title="Acc&eacute;der &agrave; aux statistiques">
                       <img src="/logos/home-connected/icone-statistiques.svg" className="icone-btn icone-statistiques"/>
                       Gestion, statistiques
                     </Link>
                   </div>
 
-                  <div className="rf-col-12 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
+                  <div className="fr-col-12 fr-col-sm-3 fr-col-md-2 menu-btn fr-mb-3w">
                     <Link to="/mes-lieux-activite" title="Acc&eacute;der aux lieux d&rsquo;activit&eacute;">
                       <img src="/logos/home-connected/icone-lieux.svg" className="icone-btn icone-ressourcerie"/>
                       Lieux d&rsquo;activit&eacute;
                     </Link>
                   </div>
 
-                  <div className="rf-col-12 rf-col-sm-3 rf-col-md-3 menu-btn rf-mb-3w">
+                  <div className="fr-col-12 fr-col-sm-3 fr-col-md-3 menu-btn fr-mb-3w">
                     <a href={lienRdvSolidarites} target="blank" title="Acc&eacute;der &agrave; RDV Solidarit&eacute;s">
                       <img src="/logos/home-connected/logo-rdv-solidarites.svg" className="icone-btn icone-rdv-solidarites"/>
                       RDV Solidarit&eacute;s
                     </a>
                   </div>
-                  <div className="rf-col-12 rf-col-sm-3 rf-col-md-2 menu-btn rf-mb-3w">
+                  <div className="fr-col-12 fr-col-sm-3 fr-col-md-2 menu-btn fr-mb-3w">
                     <a href={lienWebmail} target="blank" title="Acc&eacute;der &agrave; ma boîte mail">
                       <img src="/logos/home-connected/icone-courriel.svg" className="icone-btn icone-mail"/>
                       Acc&eacute;der au web mail
@@ -136,10 +136,10 @@ function Welcome() {
               </div>
             </div>
 
-            <div className="rf-col-12">
-              <div className="rf-container">
-                <div className="rf-grid-row rf-grid-row--center">
-                  <div className="rf-col-12 rf-mt-15w rf-mb-3w">
+            <div className="fr-col-12">
+              <div className="fr-container">
+                <div className="fr-grid-row fr-grid-row--center">
+                  <div className="fr-col-12 fr-mt-15w fr-mb-3w">
                     <h2 className="titre">
                       <img src="/logos/home-connected/hexagone-4.svg" className="hexagone"/>
                       Supports
@@ -149,13 +149,13 @@ function Welcome() {
               </div>
             </div>
 
-            <div className="rf-col-12 fond-sombre">
-              <div className="rf-container">
-                <div className="rf-grid-row rf-grid-row--center">
-                  <div className="rf-col-12 rf-col-md-6 rf-mt-6w">
-                    <img src="/logos/home-connected/pres-guide-bien-demarrer-ma-mission.png" className="rf-mr-md-1w img-home"/>
+            <div className="fr-col-12 fond-sombre">
+              <div className="fr-container">
+                <div className="fr-grid-row fr-grid-row--center">
+                  <div className="fr-col-12 fr-col-md-6 fr-mt-6w">
+                    <img src="/logos/home-connected/pres-guide-bien-demarrer-ma-mission.png" className="fr-mr-md-1w img-home"/>
                     <a href="https://cdn.conseiller-numerique.gouv.fr/les-conseils-pour-bien-demarrer.pdf" target="blank"
-                      className="document-btn rf-mt-5w rf-mb-4w" title="Kit bien d&eacute;marrer ma mission">
+                      className="document-btn fr-mt-5w fr-mb-4w" title="Kit bien d&eacute;marrer ma mission">
                       T&eacute;l&eacute;chargez le kit &laquo;&nbsp; Bien d&eacute;marrer ma mission &nbsp;&raquo;
                     </a>
                     <p className="document-text">
@@ -164,10 +164,10 @@ function Welcome() {
                       en poste.
                     </p>
                   </div>
-                  <div className="rf-col-12 rf-col-md-6 rf-mt-6w">
-                    <img src="/logos/home-connected/previews-elements-communication.png" className="rf-ml-md-3v img-home"/>
+                  <div className="fr-col-12 fr-col-md-6 fr-mt-6w">
+                    <img src="/logos/home-connected/previews-elements-communication.png" className="fr-ml-md-3v img-home"/>
                     <a href="https://www.conseiller-numerique.gouv.fr/kit-communication" title="kit de communication" target="blank"
-                      className="kit-communication-btn rf-mt-5w rf-mb-4w">
+                      className="kit-communication-btn fr-mt-5w fr-mb-4w">
                         Acc&eacute;der au kit de communication
                     </a>
                     <p className="kit-communication-text">
@@ -181,13 +181,13 @@ function Welcome() {
           </div>
         </div>
 
-        <div className="rf-container rf-container--fluid fond-sombre">
-          <div className="rf-grid-row">
-            <div className="rf-col-12">
-              <div className="rf-container">
-                <div className="rf-grid-row rf-grid-row--center">
-                  <div className="rf-col-12 rf-col-lg-6">
-                    <h2 className="titre rf-my-7w rf-mt-15w">
+        <div className="fr-container fr-container--fluid fond-sombre">
+          <div className="fr-grid-row">
+            <div className="fr-col-12">
+              <div className="fr-container">
+                <div className="fr-grid-row fr-grid-row--center">
+                  <div className="fr-col-12 fr-col-lg-6">
+                    <h2 className="titre fr-my-7w fr-mt-15w">
                       <img src="/logos/home-connected/hexagone-3.svg" className="hexagone"/>
                       Nouveaut&eacute;s Coop et am&eacute;liorations &agrave; venir
                     </h2>
@@ -209,10 +209,10 @@ function Welcome() {
                     </p>
                     <a></a>
                   </div>
-                  <div className="rf-col-12 rf-col-lg-6 rf-my-7w rf-mt-15w">
+                  <div className="fr-col-12 fr-col-lg-6 fr-my-7w fr-mt-15w">
                     <img src="/logos/home-connected/utilisateurs.svg" className="img-home-futur"/>
                   </div>
-                  <div className="rf-col-12 rf-mt-2w rf-mb-12w center-button">
+                  <div className="fr-col-12 fr-mt-2w fr-mb-12w center-button">
                     <Link to="/a-propos" title="Acc&eacute;der &agrave; la page &agrave; propos" className="propos-btn">
                       &Agrave; propos des services en ligne des conseillers num&eacute;riques
                     </Link>

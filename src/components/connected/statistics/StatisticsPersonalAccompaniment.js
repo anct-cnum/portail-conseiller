@@ -8,10 +8,10 @@ import ElementText from './Components/ElementText';
 function StatisticsPersonalAccompaniment({ type, nbAccompagnementPerso, nbDemandePonctuel }) {
 
   return (
-    <div className="rf-grid-row">
-      <div className={ type ? 'rf-col-12' : 'rf-col-2 rf-col-lg-3' }><ElementNumber nombre={nbAccompagnementPerso}
+    <div className="fr-grid-row">
+      <div className={ type ? 'fr-col-12' : 'fr-col-2 fr-col-lg-3' }><ElementNumber nombre={nbAccompagnementPerso}
         classe={type ? 'numbers-' + type : 'numbers'}/></div>
-      <div className={ type ? 'rf-col-12' : 'rf-col-10 rf-col-lg-9' }><ElementText textePluralize={
+      <div className={ type ? 'fr-col-12' : 'fr-col-10 fr-col-lg-9' }><ElementText textePluralize={
         <Pluralize
           zero={'accompagnement individuel'}
           singular={'accompagnement individuel'}
@@ -19,9 +19,9 @@ function StatisticsPersonalAccompaniment({ type, nbAccompagnementPerso, nbDemand
           count={nbAccompagnementPerso}
           showCount={false} />
       } classe={type ? 'text-' + type : 'text'}/><br/></div>
-      <div className={ type ? 'rf-col-12' : 'rf-col-2 rf-col-lg-3' }><ElementNumber nombre={nbDemandePonctuel}
+      <div className={ type ? 'fr-col-12' : 'fr-col-2 fr-col-lg-3' }><ElementNumber nombre={nbDemandePonctuel}
         classe={type ? 'numbers-' + type : 'numbers'}/></div>
-      <div className={ type ? 'rf-col-12' : 'rf-col-10 rf-col-lg-9' }><ElementText textePluralize={
+      <div className={ type ? 'fr-col-12' : 'fr-col-10 fr-col-lg-9' }><ElementText textePluralize={
         <Pluralize
           zero={'demande ponctuelle'}
           singular={'demande ponctuelle'}

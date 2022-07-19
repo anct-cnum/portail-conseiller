@@ -1,49 +1,6 @@
-//Marianne Thin et Medium imported manually (not in the package DS)
-@font-face {
-  font-family: MarianneThin;
-  src: url(/public/fontsAddons/Marianne-Thin.woff2);
-  font-weight: bold;
-}
 
-@font-face {
-  font-family: MarianneThinItalic;
-  src: url(/public/fontsAddons/Marianne-Thin_Italic.woff2);
-  font-weight: italic;
-}
 
-@font-face {
-  font-family: MarianneMedium;
-  src: url(/public/fontsAddons/Marianne-Medium.woff2);
-  font-weight: bold;
-}
-
-@font-face {
-  font-family: MarianneMediumItalic;
-  src: url(/public/fontsAddons/Marianne-Medium_Italic.woff2);
-  font-weight: italic;
-}
-
-@font-face {
-  font-family: MarianneBold;
-  src: url(/public/fontsAddons/Marianne-Bold.woff2);
-}
-
-@font-face {
-  font-family: MarianneExtraBold;
-  src: url(/public/fontsAddons/Marianne-ExtraBold.woff2);
-}
-
-@font-face {
-  font-family: MarianneRegular;
-  src: url(/public/fontsAddons/Marianne-Regular.woff2);
-}
-
-@font-face {
-  font-family: MarianneLight;
-  src: url(/public/fontsAddons/Marianne-Light2.woff2);
-}
-
-.rf-container--fluid {
+.fr-container--fluid {
   padding-left: 0;
   padding-right: 0;
   max-width: none;
@@ -54,32 +11,32 @@
   display: none;
 }
 
-.rf-header__navbar button:not(#burgerMenu) {
+.fr-header__navbar button:not(#burgerMenu) {
   display: none;
 }
 /** End trick**/
 
 /** Header **/
-.rf-service__tagline {
+.fr-service__tagline {
   font-size: 0.75rem !important;
   line-height: 1.25rem !important;
 }
-.rf-header .header-grid {
+.fr-header .header-grid {
   justify-content: center;
 }
-.rf-header .title-feuillet {
+.fr-header .title-feuillet {
   font-weight: 800 !important;
   font-size: 32px !important;
   line-height: 56px !important;
   font-family: 'MarianneExtraBold' !important;
 }
-.rf-header .logo-conseiller-numerique {
+.fr-header .logo-conseiller-numerique {
   height: 48px;
 }
-.rf-header .block-feuillet {
+.fr-header .block-feuillet {
   margin: -2.5rem -2rem -2rem -2rem !important;
 }
-.rf-header .feuillet {
+.fr-header .feuillet {
   background-image: url(/public/logos/feuillets.svg);
   background-repeat: no-repeat;
   background-position-x: 5.3rem;
@@ -88,7 +45,7 @@
   width: 325px;
   height: 80px;
 }
-.rf-fi-user-line {
+.fr-fi-user-line {
   color:var(--bf500);
 }
 .information-link {
@@ -167,7 +124,7 @@
   padding: 24px;
 }
 
-.rf-btn.support-btn:hover, .rf-btn.support-btn:active {
+.fr-btn.support-btn:hover, .fr-btn.support-btn:active {
   --color-hover: $background!important;
   --color-active: $background!important;
 }
@@ -199,7 +156,7 @@
 }
 
 /* Custom menu header */
-.rf-header {
+.fr-header {
   background-color: #2e2e2e;
   height: 110px;
 }
@@ -207,26 +164,26 @@
   font-size: 16px;
 
 }
-.rf-header .rf-shortcuts__item.header-aide, .rf-shortcuts__item.header-user {
+.fr-header .fr-shortcuts__item.header-aide, .fr-shortcuts__item.header-user {
   border: none;
 }
-.rf-mt-15w {
+.fr-mt-15w {
   margin-top: 7.5rem !important;
 }
 .header-aide, .header-propos, .header-informations, .header-user {
-  .rf-nav__list {
+  .fr-nav__list {
     margin: -28px -1rem;
     padding: 0 0 7px;
     a {
       box-shadow: none;
     }
   }
-  .rf-nav__btn[aria-expanded="true"] {
+  .fr-nav__btn[aria-expanded="true"] {
     background-color: #9A9AFF;
     color: #000091 !important;
   }
 
-  .rf-custom-link {
+  .fr-custom-link {
     padding: 2.5rem 1rem !important;
     background-color: #2e2e2e;
     font-size: 0.88rem !important;
@@ -243,7 +200,7 @@
       outline-color: transparent;
     }
   }
-  .rf-menu::after {
+  .fr-menu::after {
     box-shadow: none;
     background: #1e1e1e;
   }
@@ -285,13 +242,13 @@
     padding: 15px;
     left: 32px;
     margin-top: -0.43rem;
-    .rf-menu__list {
+    .fr-menu__list {
       background-color: #1e1e1e;
     }
   }
   #menu-liens-user {
     max-width: 11rem;
-    .rf-menu__list {
+    .fr-menu__list {
       font-size: 14px;
       line-height: 24px;
     }
@@ -314,7 +271,7 @@
 
 .header-propos {
   font-size: 0.88rem;
-  .rf-custom-link {
+  .fr-custom-link {
     padding: 3rem 1.5rem 2.8rem 0.3rem !important;
     .ri-compasses-2-fill {
       margin: 10px;
@@ -368,10 +325,10 @@
     font-style: 'italic';
       color: #383838;
   }
-  .rf-modal__content {
+  .fr-modal__content {
     margin:0;
   }
-  .rf-fieldset {
+  .fr-fieldset {
       color: #1e1e1e;
   }
   .label {
@@ -485,21 +442,21 @@
       width: 80%;
     }
   }
-  .rf-header .header-grid {
+  .fr-header .header-grid {
     justify-content: flex-start;
   }
-  .rf-header .feuillet {
+  .fr-header .feuillet {
     background-position-x: 4rem;
     background-position-y: -1.3rem;
     background-size: 150px 82px;
   }
-  .rf-header .title-feuillet {
+  .fr-header .title-feuillet {
     font-size: 25px !important;
   }
-  .rf-header .logo-conseiller-numerique {
+  .fr-header .logo-conseiller-numerique {
     height: 42px;
   }
-  .rf-header .block-feuillet {
+  .fr-header .block-feuillet {
     margin: -2.3rem -2rem -2rem -2.3rem !important;
   }
 }
@@ -509,7 +466,7 @@
   .header-logout {
     margin-right: 0px !important;
   }
-  .rf-header__navbar {
+  .fr-header__navbar {
     margin-left: 0px;
   }
  }
@@ -531,19 +488,19 @@
   }
 }
 @media (max-width: 767px) {
-  .rf-header {
+  .fr-header {
     height: auto;
   }
 }
 
 /* Ajustement du header md*/
 @media  (min-width: 688px) and (max-width: 770px) {
-  .rf-header .feuillet {
+  .fr-header .feuillet {
     width: 249px;
   }
 }
 @media  (min-width: 800px) and (max-width: 1023px) {
-  .rf-header .feuillet {
+  .fr-header .feuillet {
     width: 300px;
   }
 }
@@ -600,16 +557,16 @@
       width: 90%;
     }
   }
-  .rf-header .feuillet {
+  .fr-header .feuillet {
     background-position-x: 4.2rem;
     background-position-y: -1.2rem;
     background-size: 150px 82px;
   }
-  .rf-header .title-feuillet {
+  .fr-header .title-feuillet {
     font-size: 23px !important;
     margin-left: 0.5rem !important;
   }
-  .rf-header .block-feuillet {
+  .fr-header .block-feuillet {
     margin: -1.4rem -0.5rem -2.5rem !important;
   }
 

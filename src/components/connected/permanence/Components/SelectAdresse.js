@@ -18,17 +18,17 @@ function SelectAdresse({ prefixId, errorInput, isUpdate }) {
 
   return (
     <>
-      <label className={errorInput ? 'rf-label rf-mb-1w invalid' : 'rf-mb-1w rf-label'}>
+      <label className={errorInput ? 'fr-label fr-mb-1w invalid' : 'fr-mb-1w fr-label'}>
         S&eacute;lectionnez l&rsquo;adresse du lieu d&rsquo;activit&eacute; &agrave; pr&eacute;visualiser <span className="obligatoire">&nbsp;*</span>
         <span className="baseline">Merci de remplir les champs d&rsquo;adresse (Num&eacute;ro de rue, Rue, Code Postal, Ville</span>
       </label>
       {(loadingGeocode) &&
-        <div className="loading rf-mb-6w">
+        <div className="loading fr-mb-6w">
           Recherche de g&eacute;olocalisation en cours ...
         </div>
       }
       {(!loadingGeocode && geocodeAdresse?.length > 0) &&
-        <select id={prefixId + 'geolocalisation'} className={errorInput ? 'rf-input rf-mb-6w input-error' : 'rf-input rf-mb-6w'} onChange={e => {
+        <select id={prefixId + 'geolocalisation'} className={errorInput ? 'fr-input fr-mb-6w input-error' : 'fr-input fr-mb-6w'} onChange={e => {
           onChange(e);
         }}>
           {(prefixId !== 'principal_' && !isUpdate) &&
@@ -41,7 +41,7 @@ function SelectAdresse({ prefixId, errorInput, isUpdate }) {
         </select>
       }
       { (!loadingGeocode && (geocodeAdresse === undefined || geocodeAdresse?.length === 0)) &&
-          <select className={errorInput ? 'rf-input rf-mb-6w input-error' : 'rf-input rf-mb-6w'} >
+          <select className={errorInput ? 'fr-input fr-mb-6w input-error' : 'fr-input fr-mb-6w'} >
             <option>
               Cliquer sur le bouton V&eacute;rifier la localisation
             </option>

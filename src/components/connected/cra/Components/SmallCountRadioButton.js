@@ -88,7 +88,7 @@ function SmallCountRadioButton({ type, typeKey, typeLabel, typeValue }) {
         }
 
         <div className={type === 'duree' ? 'countSmallRadioLabel' : 'countSmallSquareLabel'}>
-          <span className="rf-label labelSmallCount">
+          <span className="fr-label labelSmallCount">
             {type === 'duree' &&
               <>{Math.floor(cra?.duree / 60)}h{(cra?.duree % 60).toLocaleString('fr-FR', { minimumIntegerDigits: 2 })}</>
             }
@@ -103,10 +103,10 @@ function SmallCountRadioButton({ type, typeKey, typeLabel, typeValue }) {
         </div>
         <div onClick={onClickLess} className={type === 'duree' ? 'countSmallRadioCalcul' : 'countSmallSquareCalcul'}
           style={{ borderRight: '1.5px solid black' }}>
-          <span className="rf-label labelCalculCustom">-</span>
+          <span className="fr-label labelCalculCustom">-</span>
         </div>
         <div onClick={onClickMore} className={type === 'duree' ? 'countSmallRadioCalcul' : 'countSmallSquareCalcul'}>
-          <span className="rf-label labelCalculCustom">+</span>
+          <span className="fr-label labelCalculCustom">+</span>
         </div>
       </button>
     </div>
