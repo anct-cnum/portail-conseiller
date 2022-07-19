@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions, structureActions, permanenceActions } from '../../actions';
 import { userEntityId } from '../../helpers';
 import FormulaireSexeAge from './FormulaireSexeAge';
-import Ressourcerie from './ressourcerie/Ressourcerie';
 import Permanence from './permanence/index';
 import MesInformations from './mesInformations';
 import MesPermanences from './permanence/MesPermanences';
@@ -54,7 +53,6 @@ function Connected() {
               <Route path={`/accueil`} component={Welcome} />
               <Route path={`/compte-rendu-activite`} component={Cra} />
               <Route path={`/statistiques`} component={Statistics} />
-              <Route path={`/ressourcerie`} component={Ressourcerie} />
               <Route path={'/mes-informations'} component={MesInformations} />
               <Route path={`/lieux-activite`} component={Permanence} />
               <Route path={'/mes-lieux-activite'} component={MesPermanences} />
