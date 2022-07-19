@@ -8,6 +8,4 @@ export * from './permanence.actions';
 export * from './formulaireSexeAge.actions';
 export * from './filtersAndSorts.actions';
 export * from './pagination.actions';
-export * from './ressources.actions';
-export * from './ressourcesFiltres.actions';
 export * from './supHierarchique.actions';
