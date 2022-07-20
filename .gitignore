@@ -17,6 +17,9 @@
 /public/js
 /public/index.html
 
+# cache files
+/var/www/portail-conseiller/public/logos/leaflet
+
 # misc
 /.idea
 .DS_Store
