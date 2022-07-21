@@ -155,6 +155,7 @@ function PermanenceUpdate({ match }) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       setTimeout(() => {
         if (redirection === '/mes-lieux-activite') {
+          dispatch(permanenceActions.reloadList(true));
           history.push(redirection);
         } else {
           window.open(urlCartographie + '/' + conseiller._id + '/details', '_blank');
@@ -190,6 +191,7 @@ function PermanenceUpdate({ match }) {
                 {showErrorMessage ?? errorUpdated ?
                   'Une erreur est survenue lors de la mise à jour de votre lieu d’activité' :
                   'Une erreur est survenue lors du traitement de vos informations'}
+                  &nbsp;{errorUpdated}
               </p>
             }
 

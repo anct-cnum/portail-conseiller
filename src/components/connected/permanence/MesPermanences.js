@@ -12,11 +12,15 @@ function MesPermanences() {
   const dispatch = useDispatch();
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const listPermanences = useSelector(state => state.permanence?.mesPermanences);
+  const reloadList = useSelector(state => state.permanence?.reloadList);
 
   const [mesPermanences, setMesPermanences] = useState([]);
 
   const isDeleted = useSelector(state => state.permanence.isDeleted);
   const isConseillerDeleted = useSelector(state => state.permanence.isConseillerDeleted);
+
+  const isCreated = useSelector(state => state.permanence?.isCreated);
+  const isUpdated = useSelector(state => state.permanence?.isUpdated);
 
   //Tri pour obtenir le lieu principal en premier
   useEffect(() => {
@@ -39,7 +43,7 @@ function MesPermanences() {
     } else {
       dispatch(permanenceActions.getMesPermanences(conseiller._id));
     }
-  }, [conseiller]);
+  }, [conseiller, isCreated, isUpdated]);
 
   useEffect(() => {
     if (isConseillerDeleted || isDeleted) {
@@ -50,6 +54,15 @@ function MesPermanences() {
       }, 2000);
     }
   }, [isDeleted, isConseillerDeleted]);
+
+  useEffect(() => {
+    if (reloadList && conseiller) {
+      dispatch(permanenceActions.getMesPermanences(conseiller._id));
+      dispatch(permanenceActions.reloadList(false));
+      setMesPermanences([]);
+    }
+  }, [reloadList]);
+
   return (
     <>
       {conseiller &&

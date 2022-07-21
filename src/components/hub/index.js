@@ -5,7 +5,6 @@ import { useLocation } from 'react-router';
 import HeaderHub from './HeaderHub';
 import BannerHub from './BannerHub';
 import Territoires from '../admin/Territoires';
-import Ressourcerie from '../connected/ressourcerie/Ressourcerie';
 import Statistiques from '../connected/statistics/Statistics';
 
 function Admin() {
@@ -21,7 +20,6 @@ function Admin() {
         }
         <Route path={`/statistiques`} component={Statistiques} />
         <Route path={`/territoires`} component={Territoires} />
-        <Route path={`/ressourcerie`} component={Ressourcerie} />
         <Route path={`/accueil`} render={() => (<Redirect to="/territoires" />)} />
         <Route exact path="/" render={() => (<Redirect to="/territoires" />)} />
       </div>

@@ -88,7 +88,6 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
         typeAcces: fields.filter(field => field.name === prefixId + 'typeAcces')[0]?.value ?? null,
         conseillers: conseillers,
         structureId: structureId,
-        showPermanenceForm: true,
         hasPermanence: false,
         lieuPrincipalPour: lieuPrincipalPour,
       };

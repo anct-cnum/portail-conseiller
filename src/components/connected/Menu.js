@@ -11,7 +11,7 @@ function Menu() {
   const aideMetier = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide-metier';
 
   const menu = useSelector(state => state.menu);
-  const voirPermanence = useSelector(state => state?.permanence?.showFormulairePermanence);
+  const voirPermanence = useSelector(state => state?.permanence?.hasPermanence);
   const suspendrePermanence = localStorage.getItem('suspension_permanence');
 
   const toggleBurgerMenu = () => {

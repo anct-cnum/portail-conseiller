@@ -62,7 +62,6 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
         typeAcces: fields.filter(field => field.name === prefixId + 'typeAcces')[0]?.value ?? null,
         conseillers: conseillers,
         structureId: structureId,
-        showPermanenceForm: false,
         hasPermanence: true,
       };
 

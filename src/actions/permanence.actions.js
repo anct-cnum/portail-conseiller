@@ -28,6 +28,7 @@ export const permanenceActions = {
   reporterPermanence,
   setChampsMaPermanence,
   reinitiliserStatut,
+  reloadList,
 };
 
 function getMaPermanence(idPermanence) {
@@ -102,8 +103,9 @@ function getListePermanences(idStructure) {
   }
 }
 
-function isPermanenceChecked(showPermanenceForm) {
-  return { type: 'SHOW_FORMULAIRE_PERMANENCE', showPermanenceForm };
+function isPermanenceChecked(hasPermanence) {
+  const isPermanenceChecked = hasPermanence === undefined ? true : !hasPermanence;
+  return { type: 'SHOW_FORMULAIRE_PERMANENCE', isPermanenceChecked };
 }
 
 function closePermanence() {
@@ -544,4 +546,8 @@ function setChampsMaPermanence(permanence, prefixId, conseiller) {
 
 function reinitiliserStatut() {
   return { type: 'REINITIALISER_STATUT_PERMANENCE' };
+}
+
+function reloadList(bool) {
+  return { type: 'RELOAD_LIST_PERMANENCE', bool };
 }

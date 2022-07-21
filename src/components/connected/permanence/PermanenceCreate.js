@@ -30,6 +30,7 @@ function PermanenceCreate() {
 
   useEffect(() => {
     const show = [true];
+    dispatch(permanenceActions.reloadList(true));
     dispatch(permanenceActions.montrerLieuSecondaire(show));
     dispatch(permanenceActions.updateField('estStructure', false));
     dispatch(permanenceActions.updateLieuEnregistrable('secondaire_0_'));
@@ -80,6 +81,7 @@ function PermanenceCreate() {
             {showErrorMessage ?? errorCreate ?
               'Une erreur est survenue lors de la création de votre lieu d’activité' :
               'Une erreur est survenue lors du traitement de vos informations'}
+              &nbsp;{errorCreate}
           </p>
         }
 

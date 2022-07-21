@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions, structureActions, permanenceActions } from '../../actions';
 import { userEntityId } from '../../helpers';
 import FormulaireSexeAge from './FormulaireSexeAge';
-import Ressourcerie from './ressourcerie/Ressourcerie';
 import Permanence from './permanence/index';
 import MesInformations from './mesInformations';
 import MesPermanences from './permanence/MesPermanences';
@@ -21,17 +20,17 @@ function Connected() {
   const user = useSelector(state => state.authentication.user.user);
   const conseiller = useSelector(state => state?.conseiller?.conseiller);
   const voirFormulaire = useSelector(state => state?.conseiller?.showFormular);
+  const voirPermanence = useSelector(state => state?.permanence?.showFormular);
   const formulaireIsUpdated = useSelector(state => state?.conseiller?.isUpdated);
 
   const structure = useSelector(state => state?.structure?.structure);
   const mesPermanences = useSelector(state => state?.permanence?.mesPermanences);
-  const voirPermanence = useSelector(state => state?.permanence?.showFormulairePermanence);
   const suspendrePermanence = localStorage.getItem('suspension_permanence');
 
   useEffect(() => {
     if (conseiller) {
       dispatch(conseillerActions.isFormulaireChecked(conseiller.sexe, formulaireIsUpdated));
-      dispatch(permanenceActions.isPermanenceChecked(user?.showPermanenceForm));
+      dispatch(permanenceActions.isPermanenceChecked(conseiller?.hasPermanence));
 
       if (!structure || structure === undefined) {
         dispatch(structureActions.get(conseiller.structureId));
@@ -54,7 +53,6 @@ function Connected() {
               <Route path={`/accueil`} component={Welcome} />
               <Route path={`/compte-rendu-activite`} component={Cra} />
               <Route path={`/statistiques`} component={Statistics} />
-              <Route path={`/ressourcerie`} component={Ressourcerie} />
               <Route path={'/mes-informations'} component={MesInformations} />
               <Route path={`/lieux-activite`} component={Permanence} />
               <Route path={'/mes-lieux-activite'} component={MesPermanences} />
