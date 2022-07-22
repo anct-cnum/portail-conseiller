@@ -19,6 +19,12 @@ export default function formulaireSupHierarchique(state = initialState, action) 
         nom: action.formSupHierarchique.nom,
         fonction: action.formSupHierarchique.fonction
       };
+    case 'INIT_FORM_SUP_HIERARCHIQUE_MESSAGE':
+      return {
+        ...state,
+        isCreated: false,
+        showError: false,
+      };
     case 'UPDATE_NUMEROTELEPHONE':
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.numeroTelephone)[0]?.numeroTelephone;
       return {
