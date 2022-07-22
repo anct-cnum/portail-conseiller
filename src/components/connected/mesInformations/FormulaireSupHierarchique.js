@@ -30,7 +30,7 @@ function FormulaireSuperieurHierarchique() {
     if (value.substr(0, 1) !== '+') {
       const findIndicatif = telephoneHorsMetropole.find(r => r.codeDepartement === structure?.codeDepartement);
       return (value && !['+33', '+26', '+59'].includes(value.substr(0, 3))) ?
-      `${findIndicatif?.indicatif ?? '+33'}${value.substr(1)}` : value;
+        `${findIndicatif?.indicatif ?? '+33'}${value.substr(1)}` : value;
     }
     return value;
   };
