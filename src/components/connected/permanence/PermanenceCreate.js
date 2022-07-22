@@ -141,6 +141,7 @@ function PermanenceCreate() {
                   structureId={structure?._id}
                   redirectionValidation="/mes-lieux-activite"
                   statut="secondaire_0_"
+                  codeDepartement={structure?.codeDepartement}
                 />
               </div>
             </div>
