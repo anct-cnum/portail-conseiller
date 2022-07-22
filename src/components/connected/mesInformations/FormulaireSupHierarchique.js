@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import telephoneHorsMetropole from '../../../data/indicatifs.json';
 import { formSupHierarchiqueActions } from '../../../actions/supHierarchique.actions';
 import { useDispatch, useSelector } from 'react-redux';
 import ModalUpdateForm from './ModalUpdateForm';
@@ -12,7 +13,9 @@ function FormulaireSuperieurHierarchique() {
   const erreurFonction = erreursFormulaire?.errors?.filter(erreur => erreur?.fonction)[0]?.fonction;
   const form = useSelector(state => state.formulaireSupHierarchique);
   const supHierarchique = useSelector(state => state.conseiller?.conseiller?.supHierarchique);
+  const structure = useSelector(state => state.structure?.structure);
   const dispatch = useDispatch();
+
   const [inputs, setInputs] = useState({
     prenom: '',
     nom: '',
@@ -23,6 +26,14 @@ function FormulaireSuperieurHierarchique() {
   const [submitted, setSubmitted] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const { prenom, nom, fonction, email, numeroTelephone } = inputs;
+  const formatTelephone = value => {
+    if (value.substr(0, 1) !== '+') {
+      const findIndicatif = telephoneHorsMetropole.find(r => r.codeDepartement === structure?.codeDepartement);
+      return (value && !['+33', '+26', '+59'].includes(value.substr(0, 3))) ?
+      `${findIndicatif?.indicatif ?? '+33'}${value.substr(1)}` : value;
+    }
+    return value;
+  };
   useEffect(() => {
     if (erreursFormulaire?.lengthError === 0 && submitted) {
       setShowModal(true);
@@ -32,11 +43,12 @@ function FormulaireSuperieurHierarchique() {
   }, [erreursFormulaire]);
   useEffect(() => {
     if (supHierarchique !== null && supHierarchique !== undefined) {
+      const numeroTelephone = formatTelephone(supHierarchique.numeroTelephone);
       dispatch(formSupHierarchiqueActions.initFormSupHierarchique(supHierarchique));
       setInputs({
         prenom: supHierarchique.prenom,
         nom: supHierarchique.nom,
-        numeroTelephone: supHierarchique.numeroTelephone,
+        numeroTelephone,
         email: supHierarchique.email,
         fonction: supHierarchique.fonction,
       });
@@ -44,7 +56,10 @@ function FormulaireSuperieurHierarchique() {
   }, [supHierarchique]);
 
   function handleChange(e) {
-    const { name, value } = e.target;
+    let { name, value } = e.target;
+    if ((name === 'numeroTelephone') && value.length >= 10) {
+      value = formatTelephone(value);
+    }
     setInputs(inputs => ({ ...inputs, [name]: value }));
     dispatch(formSupHierarchiqueActions.updateField(name, value));
   }

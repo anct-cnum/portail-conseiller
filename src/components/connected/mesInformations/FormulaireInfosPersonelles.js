@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { formInfoPersonnelActions } from '../../../actions/infoPersonnel.actions';
 import ModalUpdateForm from './ModalUpdateForm';
+import telephoneHorsMetropole from '../../../data/indicatifs.json';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import fr from 'date-fns/locale/fr';
 
@@ -14,7 +15,9 @@ function FormulaireInfosPersonnelles() {
   const erreurEmailPerso = erreursFormulaire?.errors?.filter(erreur => erreur?.email)[0]?.email;
   const erreurEmailPro = erreursFormulaire?.errors?.filter(erreur => erreur?.emailPro)[0]?.emailPro;
   const form = useSelector(state => state.formulaireInfoPersonnel);
+  const structure = useSelector(state => state.structure?.structure);
   const dispatch = useDispatch();
+  
   const [inputs, setInputs] = useState({
     conseillerTelephone: '',
     conseillerTelephonePro: '',
@@ -29,7 +32,14 @@ function FormulaireInfosPersonnelles() {
   const todayDate = new Date();
   const maxDate = todayDate.getFullYear() - 18;
   const minDate = todayDate.getFullYear() - 99;
-
+  const formatTelephone = value => {
+    if (value.substr(0, 1) !== '+') {
+      const findIndicatif = telephoneHorsMetropole.find(r => r.codeDepartement === structure?.codeDepartement);
+      return (value && !['+33', '+26', '+59'].includes(value.substr(0, 3))) ?
+      `${findIndicatif?.indicatif ?? '+33'}${value.substr(1)}` : value;
+    }
+    return value;
+  };
   useEffect(() => {
     if (erreursFormulaire?.lengthError === 0 && submitted) {
       setShowModal(true);
@@ -39,17 +49,19 @@ function FormulaireInfosPersonnelles() {
   }, [erreursFormulaire]);
   useEffect(() => {
     if (conseiller !== null && conseiller !== undefined) {
+      const telephone = formatTelephone(conseiller.telephone);
+      const telephonePro = formatTelephone(conseiller.telephonePro);
       dispatch(formInfoPersonnelActions.initFormInfoPersonnel(
         conseiller.email,
-        conseiller.telephone,
-        conseiller.telephonePro,
+        telephone,
+        telephonePro,
         conseiller.emailPro,
         conseiller.dateDeNaissance,
         conseiller.sexe
       ));
       setInputs({
-        conseillerTelephone: conseiller.telephone,
-        conseillerTelephonePro: conseiller.telephonePro,
+        conseillerTelephone: telephone,
+        conseillerTelephonePro: telephonePro,
         conseillerEmailPro: conseiller.emailPro,
         conseillerEmail: conseiller.email,
         conseillerDateDeNaissance: conseiller.dateDeNaissance,
@@ -60,7 +72,10 @@ function FormulaireInfosPersonnelles() {
 
   function handleChange(e) {
     if (e?.target) {
-      const { name, value } = e.target;
+      let { name, value } = e.target;
+      if ((name === 'conseillerTelephone' || name === 'conseillerTelephonePro') && value.length >= 10) {
+        value = formatTelephone(value);
+      }
       setInputs(inputs => ({ ...inputs, [name]: value }));
       dispatch(formInfoPersonnelActions.updateField(name, value));
     } else {
