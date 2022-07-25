@@ -8,6 +8,7 @@ export const formSupHierarchiqueActions = {
   updateField,
   initFormSupHierarchique,
   createSupHierarchique,
+  initFormSupHierarchiqueMessage
 };
 
 function verifyFormulaire(form) {
@@ -66,6 +67,10 @@ function updateField(name, value) {
 
 function initFormSupHierarchique(formSupHierarchique) {
   return { type: 'INIT_FORM_SUP_HIERARCHIQUE', formSupHierarchique };
+}
+
+function initFormSupHierarchiqueMessage(formSupHierarchique) {
+  return { type: 'INIT_FORM_SUP_HIERARCHIQUE_MESSAGE', formSupHierarchique };
 }
 
 function createSupHierarchique(supHierarchique, conseillerId, username, password) {

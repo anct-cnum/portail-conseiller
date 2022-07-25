@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-
+import telephoneHorsMetropole from '../../../data/indicatifs.json';
 import horairesInitiales from '../../../data/horairesInitiales.json';
 import { permanenceActions } from '../../../actions/permanence.actions';
 
-function Validation({ conseillerId, structureId, statut = 'principal_', redirectionValidation = null }) {
+function Validation({ conseillerId, structureId, statut = 'principal_', redirectionValidation = null, codeDepartement }) {
   const dispatch = useDispatch();
   const form = useSelector(state => state.permanence);
   const fields = useSelector(state => state.permanence?.fields);
@@ -81,6 +81,10 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
       }
 
       nouveauLieu.idOldPermanence = fields?.filter(field => field.name === 'idOldPermanence')[0]?.value ?? null;
+      const findIndicatif = telephoneHorsMetropole.find(r => r.codeDepartement === codeDepartement);
+      const condition = value => (value && !['+33', '+26', '+59'].includes(value.substr(0, 3))) ?
+        `${findIndicatif?.indicatif ?? '+33'}${value.substr(1)}` : value;
+      nouveauLieu.telephonePro = condition(nouveauLieu.telephonePro) ?? null;
 
       if (nouveauLieu._id !== null && nouveauLieu._id !== 'nouveau') {
         dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, true, null, redirection));
@@ -136,6 +140,7 @@ Validation.propTypes = {
   structureId: PropTypes.string,
   redirectionValidation: PropTypes.string,
   statut: PropTypes.string,
+  codeDepartement: PropTypes.string
 };
 
 export default Validation;
