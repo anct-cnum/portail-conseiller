@@ -20,6 +20,14 @@ export default function formulaireInfoPersonnel(state = initialState, action) {
         dateDeNaissance: action.dateDeNaissance,
         sexe: action.sexe
       };
+    case 'INIT_FORM_INFO_PERSONNEL_MESSAGE':
+      return {
+        ...state,
+        isCreated: false,
+        showError: false,
+        showConfirmationMail: null,
+        showConfirmationMailPro: null
+      };
     case 'UPDATE_CONSEILLERTELEPHONE':
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.telephone)[0]?.telephone;
       return {

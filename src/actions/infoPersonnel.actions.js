@@ -8,7 +8,8 @@ export const formInfoPersonnelActions = {
   updateField,
   initFormInfoPersonnel,
   updateInfoPersonnel,
-  confirmConseillerEmail
+  confirmConseillerEmail,
+  initFormInfoPersonnelMessage
 };
 
 function confirmConseillerEmail(token) {
@@ -90,6 +91,10 @@ function updateField(name, value) {
 
 function initFormInfoPersonnel(email, telephone, telephonePro, emailPro, dateDeNaissance, sexe) {
   return { type: 'INIT_FORM_INFO_PERSONNEL', email, telephone, telephonePro, emailPro, dateDeNaissance, sexe };
+}
+
+function initFormInfoPersonnelMessage(state) {
+  return { type: 'INIT_FORM_INFO_PERSONNEL_MESSAGE', state };
 }
 
 function updateInfoPersonnel(infoPersonnel, conseillerId, username, password) {

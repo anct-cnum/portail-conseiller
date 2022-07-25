@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import FormulaireInfosPersonnelles from './FormulaireInfosPersonelles';
 import FormulaireSuperieurHierarchique from './FormulaireSupHierarchique';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { formSupHierarchiqueActions } from '../../../actions/supHierarchique.actions';
+import { formInfoPersonnelActions } from '../../../actions/infoPersonnel.actions';
 import Footer from '../../Footer';
 import FlashMessage from 'react-flash-message';
 import { Link } from 'react-router-dom';
@@ -10,6 +12,13 @@ function MesInformations() {
   const user = useSelector(state => state.authentication.user.user);
   const formSupHierarchique = useSelector(state => state.formulaireSupHierarchique);
   const formInfoPersonnel = useSelector(state => state.formulaireInfoPersonnel);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(formSupHierarchiqueActions.initFormSupHierarchiqueMessage({ isCreated: false, showError: false }));
+    dispatch(formInfoPersonnelActions.initFormInfoPersonnelMessage({ isCreated: false, showError: false }));
+  }, []);
+
   return (
     <>
       {formSupHierarchique.isCreated &&
