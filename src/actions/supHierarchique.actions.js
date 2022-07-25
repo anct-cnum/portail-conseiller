@@ -73,7 +73,6 @@ function initFormSupHierarchiqueMessage(formSupHierarchique) {
   return { type: 'INIT_FORM_SUP_HIERARCHIQUE_MESSAGE', formSupHierarchique };
 }
 
-
 function createSupHierarchique(supHierarchique, conseillerId, username, password) {
   return dispatch => {
     dispatch(request());

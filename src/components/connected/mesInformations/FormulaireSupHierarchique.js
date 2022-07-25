@@ -57,7 +57,7 @@ function FormulaireSuperieurHierarchique() {
 
   function handleChange(e) {
     let { name, value } = e.target;
-    if ((name === 'numeroTelephone') && value.length >= 10) {
+    if ((name === 'numeroTelephone') && (value.length >= 10)) {
       value = formatTelephone(value);
     }
     setInputs(inputs => ({ ...inputs, [name]: value }));

@@ -73,7 +73,7 @@ function FormulaireInfosPersonnelles() {
   function handleChange(e) {
     if (e?.target) {
       let { name, value } = e.target;
-      if ((name === 'conseillerTelephone' || name === 'conseillerTelephonePro') && value.length >= 10) {
+      if ((name === 'conseillerTelephone' || name === 'conseillerTelephonePro') && (value.length >= 10)) {
         value = formatTelephone(value);
       }
       setInputs(inputs => ({ ...inputs, [name]: value }));
