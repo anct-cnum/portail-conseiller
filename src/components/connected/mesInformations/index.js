@@ -15,8 +15,8 @@ function MesInformations() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-      dispatch(formSupHierarchiqueActions.initFormSupHierarchiqueMessage({ isCreated:false, showError:false }));
-      dispatch(formInfoPersonnelActions.initFormInfoPersonnelMessage({ isCreated:false, showError:false }));
+    dispatch(formSupHierarchiqueActions.initFormSupHierarchiqueMessage({ isCreated: false, showError: false }));
+    dispatch(formInfoPersonnelActions.initFormInfoPersonnelMessage({ isCreated: false, showError: false }));
   }, []);
 
   return (
