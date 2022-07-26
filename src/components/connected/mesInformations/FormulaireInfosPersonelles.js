@@ -33,7 +33,7 @@ function FormulaireInfosPersonnelles() {
   const maxDate = todayDate.getFullYear() - 18;
   const minDate = todayDate.getFullYear() - 99;
   const formatTelephone = value => {
-    if (value.substr(0, 1) !== '+') {
+    if (value?.substr(0, 1) !== '+') {
       const findIndicatif = telephoneHorsMetropole.find(r => r.codeDepartement === structure?.codeDepartement);
       return (value && !['+33', '+26', '+59'].includes(value.substr(0, 3))) ?
         `${findIndicatif?.indicatif ?? '+33'}${value.substr(1)}` : value;
