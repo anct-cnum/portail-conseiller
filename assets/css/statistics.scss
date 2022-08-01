@@ -1,6 +1,6 @@
 .statistics {
-
   background-color: #1e1e1e;
+
   .infobulle-image {
     width:64px;
   }
@@ -15,11 +15,10 @@
     width: 280px;
   }
   .title {
+    line-height: 64px;
+    letter-spacing: 0;
     font-weight: 100;
     font-size: 56px;
-    letter-spacing: 0;
-    line-height: 64px;
-    font-family: MarianneThin;
   }
   .periode-xs {
     display: none;
@@ -52,7 +51,6 @@
     color:#5398ff;
   }
   .react-datepicker{
-    font-family: Marianne;
     background-color: #1e1e1e;
     border: 1px solid #5398ff;
     border-radius: 1.4rem;
@@ -76,10 +74,10 @@
       width: 10px;
     }
     .react-datepicker__header {
+      border-top-right-radius: 1.4rem;
+      border-top-left-radius: 1.4rem;
       background-color: #1e1e1e;
       color: #fff;
-      border-top-left-radius: 1.4rem;
-      border-top-right-radius: 1.4rem;
 
       .react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header {
         color: #fff;
@@ -105,26 +103,26 @@
       color: #1e1e1e;
     }
     .react-datepicker__day--selected, .react-datepicker__day--keyboard-selected {
-      color: #1e1e1e;
       background-color: #fff;
+      color: #1e1e1e;
     }
     .react-date-picker__calendar--open {
-      top: 100% !important;
       bottom: unset !important;
+      top: 100% !important;
     }
   }
   .react-datepicker__tab-loop {
     position: absolute;
-    top: 0px;
     left: -93px;
+    top: 0px;
   }
   .number {
-    font-weight: 600;
+    margin-right: 1rem;
     text-align: right;
-    font-size: 32px;
     line-height: 32px;
     letter-spacing: 0;
-    margin-right: 1rem;
+    font-weight: 600;
+    font-size: 32px;
   }
   .numbers, .numbers-renewal {
     font-size: 24px;

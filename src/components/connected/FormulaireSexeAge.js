@@ -68,23 +68,27 @@ function FormulaireSexeAge() {
                     </div>
                   }
                   <div className="element-gauche">
-                    <div className="label" >Vous &ecirc;tes <span className="important">*</span></div>
-                    <fieldset className="fr-fieldset fr-fieldset--inline fr-mt-4w fr-mb-3w">
-                      <div className="fr-fieldset__content">
-                        <div className="fr-radio-group">
-                          <input type="radio" id="Homme" name="sexe" value="Homme" onClick={handleChange}/>
-                          <label className="fr-label" htmlFor="Homme">un homme</label>
+                    <div className="fr-form-group">
+                      <fieldset className="fr-fieldset fr-fieldset--inline">
+                        <legend className="fr-fieldset__legend fr-text--bold fr-mb-4w" id="sexe-legend">
+                          Vous &ecirc;tes <span className="important">*</span>
+                        </legend>
+                        <div className="fr-fieldset__content">
+                          <div className="fr-radio-group">
+                            <input type="radio" id="Homme" name="sexe" value="Homme" onClick={handleChange}/>
+                            <label className="fr-label" htmlFor="Homme">un homme</label>
+                          </div>
+                          <div className="fr-radio-group">
+                            <input type="radio" id="Femme" name="sexe" value="Femme" onClick={handleChange} required="required"/>
+                            <label className="fr-label" htmlFor="Femme">une femme</label>
+                          </div>
+                          <div className="fr-radio-group">
+                            <input type="radio" id="Autre" name="sexe" value="Autre" onClick={handleChange} required="required"/>
+                            <label className="fr-label" htmlFor="Autre">autre</label>
+                          </div>
                         </div>
-                        <div className="fr-radio-group">
-                          <input type="radio" id="Femme" name="sexe" value="Femme" onClick={handleChange} required="required"/>
-                          <label className="fr-label" htmlFor="Femme">une femme</label>
-                        </div>
-                        <div className="fr-radio-group">
-                          <input type="radio" id="Autre" name="sexe" value="Autre" onClick={handleChange} required="required"/>
-                          <label className="fr-label" htmlFor="Autre">autre</label>
-                        </div>
-                      </div>
-                    </fieldset>
+                      </fieldset>
+                    </div>
                   </div>
                   <div className="element-droite">
                     <label className="label" htmlFor="date">Votre date de naissance <span className="important">*</span></label>
@@ -106,10 +110,10 @@ function FormulaireSexeAge() {
                       required="required"
                     />
                   </div>
-                  <p className="fr-mb-6w">L&rsquo;usage de ces donn&eacute;es est strictement r&eacute;serv&eacute; aux statistiques internes de
+                  <p className="fr-mt-1w fr-mb-5w">L&rsquo;usage de ces donn&eacute;es est strictement r&eacute;serv&eacute; aux statistiques internes de
                       l&rsquo;ANCT et de la Banque des Territoires, celles-ci ne seront pas publi&eacute;es.<br/>
                       Vous pourrez &eacute;galement modifier vos informations de profil par la suite. <br/>
-                  <a className="fr-nav__link" target="blank" href="https://cdn.conseiller-numerique.gouv.fr/CGU-ConseillerNumerique-Coop.pdf">
+                  <a className="fr-nav__link sexe-age-link" target="blank" href="https://cdn.conseiller-numerique.gouv.fr/CGU-ConseillerNumerique-Coop.pdf">
                     Consulter les CGU pour plus de d&eacute;tails
                   </a>
                   </p>

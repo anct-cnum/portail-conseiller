@@ -16,22 +16,22 @@ function TypeAcces({ islieuPrincipal, prefixId }) {
         <div className={erreurTypeAcces ? 'fr-col-12 invalid fr-mb-6w' : 'fr-col-12 fr-mb-6w'}>
           Type d&rsquo;acc&egrave;s <span className="obligatoire">*</span>
           <span className="baseline">Comment les usagers acc&egrave;dent-ils &agrave; la structure ?</span>
+          <div className="fr-form-group">
+            <fieldset className="fr-fieldset fr-fieldset--inline fr-mt-2w">
+              <div className="fr-fieldset__content">
+                <InputCheckbox textLabel="Acc&egrave;s libre" errorInput={erreurTypeAcces}
+                  idInput={prefixId + 'libre'} prefixId={prefixId} nameInput="libre"/>
 
-          <fieldset className="fr-fieldset fr-fieldset--inline fr-mt-2w">
-            <div className="fr-fieldset__content">
-              <InputCheckbox textLabel="Acc&egrave;s libre" errorInput={erreurTypeAcces}
-                idInput={prefixId + 'libre'} prefixId={prefixId} nameInput="libre"/>
+                <InputCheckbox textLabel="Sur rendez-vous" errorInput={erreurTypeAcces}
+                  idInput={prefixId + 'rdv'} prefixId={prefixId} nameInput="rdv"/>
 
-              <InputCheckbox textLabel="Sur rendez-vous" errorInput={erreurTypeAcces}
-                idInput={prefixId + 'rdv'} prefixId={prefixId} nameInput="rdv"/>
-
-              {(!islieuPrincipal || estCoordinateur) &&
-              <InputCheckbox textLabel="La structure n&rsquo;accueille pas de public" errorInput={erreurTypeAcces}
-                idInput={prefixId + 'prive'} prefixId={prefixId} nameInput="prive" />
-              }
-            </div>
-          </fieldset>
-
+                {(!islieuPrincipal || estCoordinateur) &&
+                <InputCheckbox textLabel="La structure n&rsquo;accueille pas de public" errorInput={erreurTypeAcces}
+                  idInput={prefixId + 'prive'} prefixId={prefixId} nameInput="prive" />
+                }
+              </div>
+            </fieldset>
+          </div>
           { erreurTypeAcces &&
             <p className="text-error fr-mb-n3w">{erreurTypeAcces}</p>
           }

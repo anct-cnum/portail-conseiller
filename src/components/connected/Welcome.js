@@ -32,7 +32,7 @@ function Welcome() {
                 <div className="fr-grid-row fr-grid-row--center">
                   <div className="fr-col-12 fr-mt-15w fr-mb-3w">
                     { conseiller && !conseiller?.supHierarchique &&
-                      <div className="div-info-rappel-hierarchique fr-mb-3w fr-py-1w">
+                      <div className="info-rappel-hierarchique fr-mb-3w fr-py-1w">
                         <i className="ri-information-line information icone-info-rappel"></i>
                         <p className="margin-info">
                           Afin que votre responsable hi&eacute;rarchique puisse recevoir toutes les informations concernant le dispositif et vous accompagner
@@ -52,7 +52,7 @@ function Welcome() {
             <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
             <div className="fr-col-12">
               <div className="fr-container">
-                <div className="fr-grid-row espacement-centre-groupe-icon fr-mt-6w">
+                <div className="fr-grid-row espacement-centre-groupe-icon fr-mt-5w">
                   <div className="fr-col-12 fr-col-sm-3 fr-col-md-3 menu-btn fr-mb-3w">
                     <Link to="/compte-rendu-activite" title="Acc&eacute;der &agrave; mon outil de suivi d&rsquo;activit&eacute;">
                       <img src="/logos/home-connected/icone-cra.svg" className="icone-btn icone-cra"/>

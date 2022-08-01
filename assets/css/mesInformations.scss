@@ -1,16 +1,23 @@
 .mes-informations {
   font-family: "Marianne", Arial, sans-serif;
+  background-color: #1e1e1e !important;
+  padding-bottom: 6rem;
+  
+  a {
+    background-image: none;
+  }
   .titre {
-    font-family: "MarianneThin", Arial, sans-serif;
-    font-size: 56px;
     line-height: 72px;
+    font-weight: 200;
+    font-size: 56px;
     margin: 0;
   }
   .sous-titre {
-    font-size: 32px;
     line-height: 40px;
     line-height: 32px;
-    font-family: "Marianne-Bold", Arial, sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+
   }
   .react-datepicker-wrapper {
     display: block;

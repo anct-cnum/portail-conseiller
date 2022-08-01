@@ -72,7 +72,7 @@ function BigCountRadioButton({ type, value, label }) {
       <button className="radioRattachement radioRattachement-selected"
         style={{ height: '144px', padding: 0 }}>
         <div className="countRadioLabel" onClick={toggleSelect}>
-          <span className="fr-label" style={{ padding: '10px', color: 'black', fontFamily: 'MarianneMedium' }}>
+          <span className="fr-label" style={{ padding: '10px', color: 'black' }}>
             <span style={{ fontSize: '1.5rem' }}>
               {type === 'participants' ? cra?.nbParticipants : cra?.accompagnement[value] }
             </span>

@@ -1,4 +1,11 @@
+@font-face {
+  font-family: MarianneExtraBold;
+  src: url(/public/fontsAddons/Marianne-ExtraBold.woff2);
+}
 
+.fr-header {
+  box-shadow: none;
+}
 
 .fr-container--fluid {
   padding-left: 0;
@@ -10,44 +17,192 @@
 #burgerMenu {
   display: none;
 }
-
+.Menu {
+  background-color:#232323;
+  margin-bottom: -15px;
+  height: 0px;
+}
 .fr-header__navbar button:not(#burgerMenu) {
   display: none;
 }
+
 /** End trick**/
 
 /** Header **/
-.fr-service__tagline {
-  font-size: 0.75rem !important;
-  line-height: 1.25rem !important;
+.fr-header__body {
+  background-color: #2e2e2e;
+  height: 110px;
+  .fr-header__body-row {
+    padding: 1.75rem 0;
+    .fr-header__logo {
+      box-shadow: none;
+    }
+    .fr-header__service {
+      box-shadow: none;
+      margin-left: 32px;
+      margin-right: 0;
+      width: auto;
+      .block-feuillet {
+        margin: -2.5rem -2rem -2rem -2rem !important;
+        .feuillet {
+          background-image: url(/public/logos/feuillets.svg);
+          background-repeat: no-repeat;
+          background-position-x: 5.3rem;
+          background-position-y: -1rem;
+          background-size: 210px 82px;
+          width: 325px;
+          height: 80px;
+          .title-feuillet {
+            font-weight: 800 !important;
+            font-size: 32px !important;
+            line-height: 56px !important;
+            font-family: 'MarianneExtraBold' !important;
+            color: #fff;
+          }
+        }
+        .fr-header__service-tagline {
+          font-size: 0.75rem !important;
+          line-height: 1.25rem !important;
+          color: rgb(146, 146, 146);
+        }
+      }
+    }
+    .fr-header__tools {
+      color:#fff !important;
+      .fr-btns-group {
+        margin-top: -10px;
+        .header-aide, .header-propos, .header-informations, .header-user {
+          .fr-nav__list {
+            margin: -28px 0rem;
+            padding: 0 0 7px;
+            a {
+              box-shadow: none;
+            }
+          }
+          .fr-nav__btn[aria-expanded="true"] {
+            background-color: #9A9AFF;
+            color: #000091 !important;
+          }
+          .fr-nav__btn::after {
+            margin-top: 10px !important;
+          }
+          .fr-menu {
+            top: 104% !important;
+          }
+          .fr-menu::after {
+            box-shadow: none;
+            background: #1e1e1e;
+          }
+          .link-actif {
+            background-color: #9A9AFF;
+            color: #000091 !important;
+          }
+          .logo-discussion {
+            position: relative;
+            width: 34px;
+            top: 6px;
+          }
+          .texte-aide, .texte-informations, .texte-user {
+            position: relative;
+            margin-left: 10px;
+            bottom: 4px;
+            .ri-arrow-down-s-line {
+              top: 3px;
+              position: relative;
+            }
+          }
+          .texte-informations, .texte-user, .texte-aide {
+            bottom: -4px;
+          }
+          .lien-aide, .lien-informations, .lien-user {
+            box-shadow: none !important;
+            outline: none !important;
+          }
+          .sous-titre-lien {
+            font-size: 12px;
+            line-height: 24px;
+            color: #fff;
+          }
+          #menu-liens-aide, #menu-informations, #menu-liens-user {
+            background-color: #1e1e1e;
+            max-height: none;
+            text-align: left;
+            border: 1px solid #9A9AFF;
+            padding: 15px;
+            margin-top: -0.43rem;
+            margin-left: 0rem;
+            .fr-menu__list {
+              padding-bottom: 0px;
+              background-color: #1e1e1e;
+            }
+          }
+          #menu-liens-user {
+            width: 27.3rem;
+            .fr-menu__list {
+              font-size: 14px;
+              line-height: 24px;
+            }
+          }
+          .aide-coop {
+            padding-bottom: 12px;
+          }
+          .aide-metier {
+            border-top: 1px solid #bfbfe3;
+            padding-top: 12px;
+          }
+          .user-disconnect {
+            width: 24.05rem;
+            border-top: 1px solid #bfbfe3;
+            padding-top: 12px;
+          }
+          .user-infos {
+            width: 24.05rem;
+            padding-bottom: 12px;
+          }
+          .fr-custom-link {
+            padding: 1.6rem 1rem !important;
+            background-color: #2e2e2e;
+            font-size: 0.88rem !important;
+            color: #fff !important;
+            height: 110px !important;
+            line-height: 1.5rem;
+            cursor: pointer;
+            border: none;
+            &:hover{
+              background-color: #9A9AFF;
+              color: #000091 !important;
+            }
+            &:focus {
+              outline-color: transparent;
+            }
+          }
+        }
+        .header-propos {
+          font-size: 0.88rem;
+          .fr-custom-link {
+            padding: 3rem 0.5rem 2.8rem 0.3rem !important;
+            .ri-compasses-2-fill {
+              margin: 10px;
+            }
+          }
+        }
+        .header-user {
+          padding-right: 4px;
+        }
+      }
+    }
+  }
+
 }
+
 .fr-header .header-grid {
   justify-content: center;
 }
-.fr-header .title-feuillet {
-  font-weight: 800 !important;
-  font-size: 32px !important;
-  line-height: 56px !important;
-  font-family: 'MarianneExtraBold' !important;
-}
-.fr-header .logo-conseiller-numerique {
+
+.logo-conseiller-numerique {
   height: 48px;
 }
-.fr-header .block-feuillet {
-  margin: -2.5rem -2rem -2rem -2rem !important;
-}
-.fr-header .feuillet {
-  background-image: url(/public/logos/feuillets.svg);
-  background-repeat: no-repeat;
-  background-position-x: 5.3rem;
-  background-position-y: -1rem;
-  background-size: 210px 82px;
-  width: 325px;
-  height: 80px;
-}
-.fr-fi-user-line {
-  color:var(--bf500);
-}
+
 .information-link {
   background-color: #2e2e2e;
   border: none;
@@ -156,10 +311,7 @@
 }
 
 /* Custom menu header */
-.fr-header {
-  background-color: #2e2e2e;
-  height: 110px;
-}
+
 .ri-compasses-2-fill {
   font-size: 16px;
 
@@ -170,122 +322,24 @@
 .fr-mt-15w {
   margin-top: 7.5rem !important;
 }
-.header-aide, .header-propos, .header-informations, .header-user {
-  .fr-nav__list {
-    margin: -28px -1rem;
-    padding: 0 0 7px;
-    a {
-      box-shadow: none;
-    }
-  }
-  .fr-nav__btn[aria-expanded="true"] {
-    background-color: #9A9AFF;
-    color: #000091 !important;
-  }
 
-  .fr-custom-link {
-    padding: 2.5rem 1rem !important;
-    background-color: #2e2e2e;
-    font-size: 0.88rem !important;
-    color: #fff !important;
-    height: 110px !important;
-    line-height: 1.5rem;
-    cursor: pointer;
-    border: none;
-    &:hover{
-      background-color: #9A9AFF;
-      color: #000091 !important;
-    }
-    &:focus {
-      outline-color: transparent;
-    }
-  }
-  .fr-menu::after {
-    box-shadow: none;
-    background: #1e1e1e;
-  }
-  .link-actif {
-    background-color: #9A9AFF;
-    color: #000091 !important;
-  }
-  .logo-discussion {
-    position: relative;
-    width: 34px;
-    top: 6px;
-  }
-  .texte-aide, .texte-informations, .texte-user {
-    position: relative;
-    margin-left: 10px;
-    bottom: 4px;
-    .ri-arrow-down-s-line {
-      top: 3px;
-      position: relative;
-    }
-  }
-  .texte-informations, .texte-user, .texte-aide {
-    bottom: -4px;
-  }
-  .lien-aide, .lien-informations, .lien-user {
-    box-shadow: none !important;
-    outline: none !important;
-  }
-  .sous-titre-lien {
-    font-size: 12px;
-    line-height: 24px;
-    color: #fff;
-  }
-  #menu-liens-aide, #menu-informations, #menu-liens-user {
-    background-color: #1e1e1e;
-    max-height: none;
-    text-align: left;
-    border: 1px solid #9A9AFF;
-    padding: 15px;
-    left: 32px;
-    margin-top: -0.43rem;
-    .fr-menu__list {
-      background-color: #1e1e1e;
-    }
-  }
-  #menu-liens-user {
-    max-width: 11rem;
-    .fr-menu__list {
-      font-size: 14px;
-      line-height: 24px;
-    }
-  }
-  .aide-coop {
-    padding-bottom: 12px;
-  }
-  .aide-metier {
-    border-top: 1px solid #bfbfe3;
-    padding-top: 12px;
-  }
-  .user-disconnect {
-    border-top: 1px solid #6A6A6A;
-    padding-top: 12px;
-  }
-  .user-infos {
-    padding-bottom: 12px;
-  }
-}
-
-.header-propos {
-  font-size: 0.88rem;
-  .fr-custom-link {
-    padding: 3rem 1.5rem 2.8rem 0.3rem !important;
-    .ri-compasses-2-fill {
-      margin: 10px;
-    }
-  }
-}
 .header-logout {
   height: 32px;
   margin-top: 20px !important;
   margin-right: 13px !important;
 }
+
+/* Pagination */
+.fr-pagination__link, .fr-pagination__link:hover {
+  border-radius: 18px;
+  .number {
+    padding-left: 11px;
+    width: 25px;
+  }
+}
 /*Footer support */
 .lien-footer {
-  box-shadow: none !important;
+  background-image: none;
   margin-right: 16px;
   line-height: 24px;
   font-weight: 600;
@@ -309,6 +363,9 @@
   background-color: #fff;
   padding: 4em 2.5em;
   color: #1e1e1e;
+  h1, legend, label {
+    color: #1e1e1e;
+  }
   .centre {
   text-align: center;
   }
@@ -327,6 +384,7 @@
   }
   .fr-modal__content {
     margin:0;
+    padding: 0px;
   }
   .fr-fieldset {
       color: #1e1e1e;
@@ -355,6 +413,15 @@
     right: 10px;
     top: 5px;
   }
+  .sexe-age-link {
+    color: #1e1e1e;
+    font-size: 1rem;
+    width: 300px;
+    &:hover {
+      background-color: #fff;
+      color: #1e1e1e;
+    }
+  }
  .sexe-age-btn {
     background-color: #fff;
     border: 1px solid #1e1e1e;
@@ -368,6 +435,9 @@
     color: #1e1e1e;
     height: 64px;
     width: 318px;
+    &:hover {
+      background-color: #fff;
+    }
   }
   .ouverture-btn, .remerciement-btn, .suppression-btn {
     background-color: #000091;
@@ -425,9 +495,103 @@
   height: 29px;
 }
 .icone-info-header {
+  position: relative;
   font-size: 1rem;
   color: orange;
-  padding: 4px
+  padding: 4px;
+  top: 3px;
+}
+
+/* Ajustement du header */
+@media  (max-width: 1180px) {
+  .header-logout {
+    margin-right: 0px !important;
+  }
+  .fr-header__navbar {
+    margin-left: 0px;
+  }
+  .fr-icon-menu-fill{
+    padding: 10px;
+    color:#fff;
+    &:hover {
+      background-color: #878787;
+    }
+  }
+ }
+
+ @media  (max-width: 1135px) {
+  .cacher-baseline {
+    display: none;
+  }
+}
+
+@media (max-width: 1064px) {
+  .fr-header__brand {
+    width: auto;
+    .fr-header__brand-top {
+      width: 30%;
+    }
+    .fr-header__service {
+      width: 60%;
+    }
+  }
+  .rf-header__navbar {
+    position: absolute;
+    right: 5px;
+  }
+}
+@media (max-width: 991px) {
+  #burgerMenu {
+    display: block;
+  }
+  .block-feuillet {
+    margin: -2.3rem -2rem -2rem -2.3rem !important;
+  }
+  .fr-header__brand {
+    width: 95%;
+    .fr-header__brand-top {
+      width: 130px;
+    }
+    .fr-header__service {
+      width: 265px;
+    }
+  }
+  .Menu {
+    margin-bottom: -30px;
+    height: auto;
+  }
+  .fr-nav__list {
+    margin-top: 35px !important;
+    .fr-shortcuts__item a.fr-btn.fr-btn--sm {
+      border: 0.125rem solid transparent;
+      box-shadow: none!important;
+      background-color: #232323;
+      border-radius: 15px;
+      font-weight: bold;
+      padding: 0.5rem;
+      font-size: 1rem;
+      color: #fff;
+      width: 100%;
+      &:hover {
+        border-color: white;
+        background-color: #3f3f3f;
+      }
+      &:focus {
+        outline: none!important;
+        background-color: #3f3f3f;
+      }
+    }
+  }
+  .fr-btn.fr-fi-close-line.fr-btn--icon-right.fr-btn--sm {
+    background-color: var(--t-plain) !important;
+    color: #c0c0e3 !important;
+    position: relative !important;
+    top: -270px !important;
+    right: -70% !important;
+    &:hover {
+      background-color: #858585 !important;
+    }
+  }
 }
 @media (max-width: 988px) {
   .modal-sexe-age {
@@ -442,37 +606,25 @@
       width: 80%;
     }
   }
-  .fr-header .header-grid {
+  .header-grid {
     justify-content: flex-start;
   }
-  .fr-header .feuillet {
+  .feuillet {
     background-position-x: 4rem;
     background-position-y: -1.3rem;
     background-size: 150px 82px;
   }
-  .fr-header .title-feuillet {
+  .title-feuillet {
     font-size: 25px !important;
   }
-  .fr-header .logo-conseiller-numerique {
+  .logo-conseiller-numerique {
     height: 42px;
   }
-  .fr-header .block-feuillet {
-    margin: -2.3rem -2rem -2rem -2.3rem !important;
-  }
 }
-
- /* Ajustement du header */
- @media  (max-width: 1180px) {
-  .header-logout {
-    margin-right: 0px !important;
-  }
-  .fr-header__navbar {
-    margin-left: 0px;
-  }
- }
- @media  (max-width: 1135px) {
-  .cacher-baseline {
-    display: none;
+/* Ajustement du header md*/
+@media  (min-width: 800px) and (max-width: 1023px) {
+  .fr-header .feuillet {
+    width: 300px;
   }
 }
 /* custom point de rupture md du DS */
@@ -483,29 +635,62 @@
   .headerCustom {
     display: none;
   }
-  #burgerMenu {
-    display: block;
-  }
-}
-@media (max-width: 767px) {
   .fr-header {
     height: auto;
   }
 }
-
-/* Ajustement du header md*/
 @media  (min-width: 688px) and (max-width: 770px) {
   .fr-header .feuillet {
     width: 249px;
   }
 }
-@media  (min-width: 800px) and (max-width: 1023px) {
-  .fr-header .feuillet {
-    width: 300px;
+/* custom point de rupture XS du DS */
+@media (max-width: 576px) {
+  .logoFooter {
+    margin-bottom: 32px;
+  }
+
+  .footerButton {
+    width: 100%;
+    margin-top: -1rem!important;
+
+    .support-btn {
+      width: 90%;
+    }
+  }
+  .feuillet {
+    background-position-x: 4.2rem;
+    background-position-y: -1.2rem;
+    background-size: 150px 82px;
+  }
+  .title-feuillet {
+    font-size: 23px !important;
+  }
+  .block-feuillet {
+    margin: -1.4rem -0.5rem -2.5rem !important;
+  }
+}
+@media (max-width: 465px) {
+  .fr-header__body {
+    height: 175px;
+  }
+  .fr-header__brand {
+    width: 80%;
+  }
+  .fr-header__service {
+    margin-left: 2.75rem !important;
+  }
+  .feuillet{
+    background-size: 170px 82px !important;
+  }
+}
+@media  (max-width: 327px) {
+  .fr-btn.fr-fi-close-line.fr-btn--icon-right.fr-btn--sm {
+    top: -293px !important;
   }
 }
 
- /* Ajustement du footer md*/
+/* Ajustement du footer md*/
 @media  (min-width: 933px) and (max-width: 1059px) {
   .marge-cgu {
     padding-left: 0px !important;
@@ -541,65 +726,35 @@
     padding-left: 0px !important;
   }
 }
-
-/* custom point de rupture XS du DS */
-@media (max-width: 576px) {
-
-  .logoFooter {
-    margin-bottom: 32px;
+/* Ajustement du footer xs*/
+@media  (min-width: 576px) {
+  .marge-mention {
+    padding-left: 0px !important;
   }
-
-  .footerButton {
-    width: 100%;
-    margin-top: -1rem!important;
-
-    .support-btn {
-      width: 90%;
-    }
+}
+@media  (min-width: 529px) and (max-width: 575px) {
+  .marge-cgu {
+    padding-left: 0px !important;
   }
-  .fr-header .feuillet {
-    background-position-x: 4.2rem;
-    background-position-y: -1.2rem;
-    background-size: 150px 82px;
+}
+@media  (min-width: 524px) and (max-width: 532px) {
+  .marge-bar-cgu {
+    margin-left: 0px !important;
   }
-  .fr-header .title-feuillet {
-    font-size: 23px !important;
-    margin-left: 0.5rem !important;
+}
+@media  (min-width: 376px) and(max-width: 447px) {
+  .marge-donnees {
+    padding-left: 0px !important;
   }
-  .fr-header .block-feuillet {
-    margin: -1.4rem -0.5rem -2.5rem !important;
+}
+@media  (min-width: 371px) and(max-width: 380px) {
+  .marge-bar-donnees {
+    margin-left: 0px !important;
   }
-
-  /* Ajustement du footer xs*/
-  @media  (min-width: 576px) {
-    .marge-mention {
-      padding-left: 0px !important;
-    }
-  }
-  @media  (min-width: 529px) and (max-width: 575px) {
-    .marge-cgu {
-      padding-left: 0px !important;
-    }
-  }
-  @media  (min-width: 524px) and (max-width: 532px) {
-    .marge-bar-cgu {
-      margin-left: 0px !important;
-    }
-  }
-  @media  (min-width: 376px) and(max-width: 447px) {
-    .marge-donnees {
-      padding-left: 0px !important;
-    }
-  }
-  @media  (min-width: 371px) and(max-width: 380px) {
-    .marge-bar-donnees {
-      margin-left: 0px !important;
-    }
-  }
-  @media  (min-width: 320px) and (max-width: 328px) {
-    .marge-responsive {
-      padding-left: 9px;
-    }
+}
+@media  (min-width: 320px) and (max-width: 328px) {
+  .marge-responsive {
+    padding-left: 9px;
   }
 }
 @media (max-width: 400px) {

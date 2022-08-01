@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
 
-function Conseiller({ conseiller, currentPage, trClass, role }) {
+function Conseiller({ conseiller, currentPage, role }) {
 
   const isUserActif = conseiller?.mattermost?.id ?? false;
 
   return (
     <>
-      <tr className={trClass + ' conseiller'}>
+      <tr className="conseiller">
         <td>{conseiller?.prenom}</td>
         <td>{conseiller?.nom}</td>
         { role === 'admin_coop' &&
@@ -43,7 +43,6 @@ function Conseiller({ conseiller, currentPage, trClass, role }) {
 Conseiller.propTypes = {
   conseiller: PropTypes.object,
   currentPage: PropTypes.number,
-  trClass: PropTypes.string,
   role: PropTypes.string
 };
 

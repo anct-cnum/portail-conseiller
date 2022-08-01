@@ -5,14 +5,17 @@
   }
 
   .labNetworkCnfs {
-    font-family: 'MarianneBold', Arial, sans-serif!important;
     line-height: 24px;
   }
-
+  .fr-service__tagline{
+    font-size: .75rem !important;
+    line-height: 1.25rem !important;
+    font-weight: bold;
+    color: #fff;
+  }
   .email, .password {
     color: black;
     font-size: 16px;
-    font-family: 'MarianneRegular', Arial, sans-serif!important;
   }
 
   .email {

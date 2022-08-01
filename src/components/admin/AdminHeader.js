@@ -26,7 +26,7 @@ function AdminHeader({ role, linkAccount }) {
 
   return (
     <>
-      <div className="fr-container">
+      <div className="fr-container fr-mt-1w">
         {errorCSV &&
           <FlashMessage duration={5000}>
             <p className="flashBag invalid">Aucun conseillers n&rsquo;est actuellement à M+2</p>

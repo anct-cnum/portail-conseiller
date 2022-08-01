@@ -40,6 +40,10 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
     dispatch(permanenceActions.updateField(prefixId + 'siteWeb', permanence?.siteWeb));
     dispatch(permanenceActions.updateField(prefixId + 'horaires', { [prefixId + 'horaires']: permanence?.horaires ?? horairesInitiales }));
     dispatch(permanenceActions.updateField(prefixId + 'conseillers', permanence?.conseillers));
+    dispatch(permanenceActions.updateField(prefixId + 'libre', false));
+    dispatch(permanenceActions.updateField(prefixId + 'rdv', false));
+    dispatch(permanenceActions.updateField(prefixId + 'prive', false));
+
     permanence?.typeAcces.forEach(type => {
       dispatch(permanenceActions.updateField(prefixId + type, true));
     });
@@ -104,18 +108,16 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
               </span>
             </div>
             <div className="fr-col-offset-1 fr-col-8">
-              <fieldset className="fr-fieldset fr-mt-4w">
-                <div className="emplacement-permanences">
-                  {listPermanences.map(((permanence, idx) => {
-                    return (
-                      <div key={idx}>
-                        {(permanence?.conseillers.includes(conseillerId) === false || permanenceActuelId === String(permanence._id)) &&
-                        <>
-                          <hr />
-                          <div className="fr-fieldset__content">
-                            <div className="fr-radio-group">
+              <div className="fr-form-group">
+                <fieldset className="fr-fieldset fr-mt-4w">
+                  <div className="fr-fieldset__content">
+                    {listPermanences.map(((permanence, idx) => {
+                      return (
+                        <div className="fr-radio-group fr-radio-rich radio-permanence" key={idx}>
+                          {(permanence?.conseillers.includes(conseillerId) === false || permanenceActuelId === String(permanence._id)) &&
+                            <>
                               {(permanencesReservees.filter(perm => perm.idPermanence === permanence._id).length > 0 &&
-                               permanencesReservees.filter(perm => perm.idPermanence === permanence._id)[0]?.prefixId !== prefixId) &&
+                              permanencesReservees.filter(perm => perm.idPermanence === permanence._id)[0]?.prefixId !== prefixId) &&
                                 <>
                                   <input type="radio" disabled/>
                                   <label className="fr-label fr-my-2w permanence-existante" htmlFor={prefixId + permanence?._id}>
@@ -130,7 +132,7 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
                                 </>
                               }
                               {(permanencesReservees.filter(perm => perm.idPermanence === permanence._id).length === 0 ||
-                               permanencesReservees.filter(perm => perm.idPermanence === permanence._id)[0]?.prefixId === prefixId) &&
+                              permanencesReservees.filter(perm => perm.idPermanence === permanence._id)[0]?.prefixId === prefixId) &&
                                 <>
                                   <input type="radio" id={prefixId + permanence?._id} className="permanence-existante"
                                     defaultChecked={permanenceActuelId === String(permanence._id)}
@@ -146,25 +148,20 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
                                   </label>
                                 </>
                               }
-                            </div>
-                          </div>
-                        </>
-                        }
-                      </div>);
-                  })) }
-                </div>
-
-                <hr />
-                <div className="fr-fieldset__content fr-mt-5w fr-mb-9w">
-                  <div className="fr-radio-group">
-                    <input type="radio" id={prefixId + 'nouveau'} name={prefixId + 'permancenceSecondaire'} value="nouveau"
-                      defaultChecked={permanenceActuelId === null} required="required" onClick={handleClick}/>
-                    <label className="fr-label fr-my-2w" htmlFor={prefixId + 'nouveau'} >
-                      Ajouter un nouveau lieu d&rsquo;activit&eacute;
-                    </label>
+                            </>
+                          }
+                        </div>);
+                    })) }
+                    <div className="fr-radio-group fr-radio-rich radio-permanence">
+                      <input type="radio" className="permanence-existante" id={prefixId + 'nouveau'} name={prefixId + 'permancenceSecondaire'} value="nouveau"
+                        defaultChecked={permanenceActuelId === null} required="required" onClick={handleClick} />
+                      <label className="fr-label fr-my-2w permanence-existante" htmlFor={prefixId + 'nouveau'} >
+                        Ajouter un nouveau lieu d&rsquo;activit&eacute;
+                      </label>
+                    </div>
                   </div>
-                </div>
-              </fieldset>
+                </fieldset>
+              </div>
             </div>
           </>
         }

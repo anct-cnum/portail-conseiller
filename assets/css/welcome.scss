@@ -26,7 +26,8 @@
     font-size: 1rem;
     color: #fff;
     a {
-      box-shadow: none;
+      background-image: none;
+
     }
   }
   .information {
@@ -84,11 +85,12 @@
   .document-btn, .kit-communication-btn {
     background-color: transparent;
     border: 2px solid #8585F6;
+    background-image: none;
     display: inline-block;
     border-radius: 40px;
     line-height: 1.5rem;
     text-align: center;
-    padding-top: 15px;
+    padding-top: 17px;
     font-weight: 600;
     cursor: pointer;
     font-size: 1rem;
@@ -120,6 +122,7 @@
   }
   .propos-btn {
     border: 1px solid #8585f6;
+    background-image: none;
     display: inline-block;
     text-align: center;
     line-height: 24px;
@@ -143,12 +146,13 @@
   .margin-info {
     margin-block: 20px;
   }
-  .div-info-rappel-hierarchique {
+  .info-rappel-hierarchique {
+    justify-content: space-around;
     background: #3b3b3c;
     padding-inline: 2rem;
+    border: solid 1px;
+    color: #f0f0f0;
     display: flex;
-    justify-content: space-around;
-    border: solid 1px
   }
   .img-home-futur {
     width: 588px;

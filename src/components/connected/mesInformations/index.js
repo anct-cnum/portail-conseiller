@@ -60,7 +60,7 @@ function MesInformations() {
           </p>
         </FlashMessage>
       }
-      <div className="mes-informations fr-mb-md-12w">
+      <div className="mes-informations">
         <div className="fr-container">
           <div className="fr-grid-row">
             <div className="fr-col-12">

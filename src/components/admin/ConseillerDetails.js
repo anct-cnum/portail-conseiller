@@ -219,7 +219,7 @@ function ConseillerDetails({ location }) {
           </ul>
         </div>
         <div className="fr-col-xs-12 fr-col-md-4 fr-mt-2w">
-          <Link className="statistiques-btn" style={{ boxShadow: 'none' }} to={{
+          <Link className="statistiques-btn" to={{
             pathname: `/statistiques`,
             currentPage: location?.currentPage,
             idUser: conseiller?._id,

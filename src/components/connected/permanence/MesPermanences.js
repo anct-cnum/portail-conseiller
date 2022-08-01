@@ -86,10 +86,10 @@ function MesPermanences() {
             <div className="fr-container">
               <div className="fr-grid-row">
 
-                <div className="fr-col-12 fr-ml-12w">
+                <div className="fr-col-12">
                   <a className="fr-btn creer-btn" href="/mon-nouveau-lieu-activite">Ajouter un nouveau lieu</a>
                 </div>
-                <div className="fr-col-12 fr-ml-12w">
+                <div className="fr-col-12 fr-ml-7w">
                   <div className="fr-table">
                     <table>
                       <thead>
