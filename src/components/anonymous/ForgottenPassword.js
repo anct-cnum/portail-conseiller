@@ -296,7 +296,7 @@ function ForgottenPassword({ match = null }) {
                           <br />Vous pouvez dès maintenant vous connecter via le bouton ci-dessous :
                         </p>
                         <Link className="btn-connexion fr-mb-6w fr-mb-md-11w fr-p-5v" to={`/login`} style={{ textAlign: 'center' }}>
-                          Accéder à mon espace
+                          Acc&eacute;der à mon espace
                         </Link>
                       </div>
                     }

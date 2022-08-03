@@ -18,7 +18,7 @@
 /public/index.html
 
 # cache files
-/var/www/portail-conseiller/public/logos/leaflet
+/public/logos/leaflet
 
 # misc
 /.idea

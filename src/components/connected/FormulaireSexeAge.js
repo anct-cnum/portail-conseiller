@@ -118,7 +118,7 @@ function FormulaireSexeAge() {
                   </a>
                   </p>
                   <div className="centre">
-                    <button className="sexe-age-btn" onClick={handleSubmit}>Valider et passer à la dernière étape</button>
+                    <button className="sexe-age-btn" onClick={handleSubmit}>Valider et passer à la derni&egrave;re &eacute;tape</button>
                   </div>
                 </div>
               </div>

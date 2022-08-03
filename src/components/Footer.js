@@ -32,8 +32,8 @@ function Footer({ type, role }) {
 
             <div className="fr-footer__content">
               <p className="fr-footer__content-desc">
-                Conseiller numérique France Services est un dispositif financé par l&rsquo;&Eacute;tat dans le cadre de France Relance.
-                Il est piloté par l&rsquo;Agence nationale de la cohésion des territoires avec l&rsquo;appui de la Banque des Territoires.</p>
+                Conseiller num&eacute;rique France Services est un dispositif financ&eacute; par l&rsquo;&Eacute;tat dans le cadre de France Relance.
+                Il est pilot&eacute; par l&rsquo;Agence nationale de la coh&eacute;sion des territoires avec l&rsquo;appui de la Banque des Territoires.</p>
               <ul className="fr-footer__content-list">
                 <li className="fr-footer__content-item">
                   <a className="fr-footer__content-link" href="https://agence-cohesion-territoires.gouv.fr/">anct.gouv.fr</a>
@@ -55,14 +55,14 @@ function Footer({ type, role }) {
               {role === 'structure_coop' &&
                 <a className="fr-footer__brand-link lien-footer" href={aideStructure} target="blank" rel="noreferrer">
                   <img src="/logos/bulle-ressourcerie.svg" className="bulle-ressourcerie" alt="liens aide vers Mattermost"/>
-                  <span >Aide espace Coop</span>
+                  <span>Aide espace Coop</span>
                 </a>
               }
               {role !== 'structure_coop' &&
                 <>
                   <a className="fr-footer__brand-link lien-footer" href={aideCoop} target="blank" rel="noreferrer">
                     <img src="/logos/bulle-ressourcerie.svg" className="bulle-ressourcerie" alt="liens aide vers Mattermost"/>
-                    <span >Aide espace Coop</span>
+                    <span>Aide espace Coop</span>
                   </a>
                   <a className="fr-footer__brand-link lien-footer" href={aideMetier} target="blank" rel="noreferrer">
                     <img src="/logos/bulle-ressourcerie.svg" className="bulle-ressourcerie" alt="liens aide vers Mattermost"/>
@@ -101,24 +101,24 @@ function Footer({ type, role }) {
             </li>
             <li className="fr-footer__bottom-item">
               <a className="fr-footer__bottom-link fr-px-1w" href="https://www.conseiller-numerique.gouv.fr/accessibilite">
-                Accessibilité: non conforme
+                Accessibilit&eacute;: non conforme
               </a>
             </li>
             <li className="fr-footer__bottom-item">
               <a className="fr-footer__bottom-link fr-px-1w" href="https://www.conseiller-numerique.gouv.fr/mentions-legales">
-                Mentions légales
+                Mentions l&eacute;gales
               </a>
             </li>
             <li className="fr-footer__bottom-item">
               <a className="fr-footer__bottom-link fr-px-1w"
                 href="https://cdn.conseiller-numerique.gouv.fr/CGU-Donn%C3%A9es_personnellesConseiller_Num%C3%A9rique.pdf">
-                Données personnelles
+                Donn&eacute;es personnelles
               </a>
             </li>
             <li className="fr-footer__bottom-item">
               <a className="fr-footer__bottom-link fr-px-1w"
                 href="https://cdn.conseiller-numerique.gouv.fr/CGU-Donn%C3%A9es_personnellesConseiller_Num%C3%A9rique.pdf">
-                Conditions générales d&rsquo;utilisation
+                Conditions g&eacute;n&eacute;rales d&rsquo;utilisation
               </a>
             </li>
           </ul>

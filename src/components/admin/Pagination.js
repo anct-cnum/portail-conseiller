@@ -20,7 +20,6 @@ function Pagination({ pageCount, current, navigate }) {
     return (<ul className="pagination" />);
   }
 
-  console.log(isFirstPage);
   return (
     <div className="fr-container">
       <nav className="fr-pagination fr-grid-row fr-grid-row--center" aria-label="Pagination" role="navigation">
