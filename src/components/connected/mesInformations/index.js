@@ -4,9 +4,11 @@ import FormulaireSuperieurHierarchique from './FormulaireSupHierarchique';
 import { useDispatch, useSelector } from 'react-redux';
 import { formSupHierarchiqueActions } from '../../../actions/supHierarchique.actions';
 import { formInfoPersonnelActions } from '../../../actions/infoPersonnel.actions';
+import { conseillerActions } from '../../../actions/conseiller.actions';
 import Footer from '../../Footer';
 import FlashMessage from 'react-flash-message';
 import { Link } from 'react-router-dom';
+import { userEntityId } from '../../../helpers';
 
 function MesInformations() {
   const user = useSelector(state => state.authentication.user.user);
@@ -17,6 +19,7 @@ function MesInformations() {
   useEffect(() => {
     dispatch(formSupHierarchiqueActions.initFormSupHierarchiqueMessage({ isCreated: false, showError: false }));
     dispatch(formInfoPersonnelActions.initFormInfoPersonnelMessage({ isCreated: false, showError: false }));
+    dispatch(conseillerActions.get(userEntityId()));
   }, []);
 
   return (
