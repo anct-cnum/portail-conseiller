@@ -15,9 +15,9 @@ function StatisticsRenewal(props) {
       <div className="rf-col-12 rf-col-md-10 rf-col-lg-9">
         <ElementText textePluralize={
           <Pluralize
-            zero={'Accompagnment avec suivi, soit :'}
-            singular={'Accompagnment avec suivi, soit :'}
-            plural={'Accompagnments avec suivi, soit :'}
+            zero={'Accompagnement avec suivi, soit :'}
+            singular={'Accompagnement avec suivi, soit :'}
+            plural={'Accompagnements avec suivi, soit :'}
             count={props.nbUsagersBeneficiantSuivi}
             showCount={false} />
         } classe="text"/><br/>
