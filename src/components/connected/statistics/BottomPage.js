@@ -106,7 +106,7 @@ function BottomPage({ donneesStats, print, type }) {
       couleursGraphique: tabColorAge
     },
     titre: {
-      optionTitre: '&Eacute;volution des accompagnements',
+      optionTitre: '&Eacute;volution des comptes rendus d&rsquo;activit&eacute;',
       margeTitre: 48,
     }
   };
@@ -122,7 +122,7 @@ function BottomPage({ donneesStats, print, type }) {
       couleursGraphique: tabColorAge
     },
     titre: {
-      optionTitre: '&Eacute;volution des accompagnements',
+      optionTitre: '&Eacute;volution des comptes rendus d&rsquo;activit&eacute',
       margeTitre: 48,
       placementTitre: 10,
     }
@@ -139,7 +139,7 @@ function BottomPage({ donneesStats, print, type }) {
       couleursGraphique: tabColorAge
     },
     titre: {
-      optionTitre: 'Tranches d\'âge des usagers',
+      optionTitre: 'Tranches d&rsquo;&acirc;ge des usagers',
       margeTitre: 34,
     }
   };
