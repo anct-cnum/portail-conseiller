@@ -19,7 +19,7 @@ function Territoire({ territoire, currentPage, trClass }) {
         <td data-tip="CnFS en attente d'activation">{territoire?.cnfsInactives ?? 0}</td>
         <td data-tip="Taux d'activation">{territoire?.tauxActivation ?? 0} %</td>
         <td>
-          <Link className="rf-btn details-btn" style={{ boxShadow: 'none' }} to={{
+          <Link className="fr-btn details-btn" style={{ boxShadow: 'none' }} to={{
             pathname: `/statistiques`,
             territoire: territoire,
             currentPage: currentPage,

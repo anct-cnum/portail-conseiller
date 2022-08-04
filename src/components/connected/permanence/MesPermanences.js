@@ -72,25 +72,25 @@ function MesPermanences() {
           <div id="formulaire-horaires-adresse" >
             <Banner />
             {isDeleted &&
-              <p className="rf-label flashBag">
+              <p className="fr-label flashBag">
                 Le lieu d&rsquo;activit&eacute; &agrave; bien &eacute;t&eacute; supprim&eacute;.
               </p>
             }
 
             {isConseillerDeleted &&
-              <p className="rf-label flashBag">
+              <p className="fr-label flashBag">
                 Vous avez bien &eacute;t&eacute; retir&eacute; du lieu d&rsquo;activit&eacute;.
               </p>
             }
 
-            <div className="rf-container">
-              <div className="rf-grid-row">
+            <div className="fr-container">
+              <div className="fr-grid-row">
 
-                <div className="rf-col-12 rf-ml-12w">
-                  <a className="rf-btn creer-btn" href="/mon-nouveau-lieu-activite">Ajouter un nouveau lieu</a>
+                <div className="fr-col-12">
+                  <a className="fr-btn creer-btn" href="/mon-nouveau-lieu-activite">Ajouter un nouveau lieu</a>
                 </div>
-                <div className="rf-col-12 rf-ml-12w">
-                  <div className="rf-table">
+                <div className="fr-col-12 fr-ml-7w">
+                  <div className="fr-table">
                     <table>
                       <thead>
                         <tr>
@@ -118,10 +118,10 @@ function MesPermanences() {
           (location.pathname !== '/mes-lieux-activite' && conseiller?.hasPermanence)) &&
           <div id="formulaire-horaires-adresse" >
             <Banner />
-            <div className="rf-container">
-              <div className="rf-grid-row">
-                <div className="rf-col-12 rf-ml-12w">
-                  <h2 className="titre-acces rf-my-9w ">Vous n&rsquo;avez pas acc&egrave;s &agrave; ce formulaire pour le moment !</h2>
+            <div className="fr-container">
+              <div className="fr-grid-row">
+                <div className="fr-col-12 fr-ml-12w">
+                  <h2 className="titre-acces fr-my-9w ">Vous n&rsquo;avez pas acc&egrave;s &agrave; ce formulaire pour le moment !</h2>
                 </div>
               </div>
             </div>

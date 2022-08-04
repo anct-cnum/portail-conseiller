@@ -695,7 +695,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
       <HighchartsReact highcharts={Highcharts} options={optionsStatistiques} />
       {listeAutres &&
         <div className="lieux-autres">
-          <div className="rf-mt-list">Autres <span>(écrits manuellement)</span></div>
+          <div className="fr-mt-list">Autres <span>(écrits manuellement)</span></div>
           <ul>
             {listeAutres?.map((autres, idx) => {
               return (<li key={idx}>{autres}</li>);

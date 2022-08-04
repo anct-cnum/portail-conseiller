@@ -1,6 +1,6 @@
 .statistics {
-
   background-color: #1e1e1e;
+
   .infobulle-image {
     width:64px;
   }
@@ -15,11 +15,10 @@
     width: 280px;
   }
   .title {
+    line-height: 64px;
+    letter-spacing: 0;
     font-weight: 100;
     font-size: 56px;
-    letter-spacing: 0;
-    line-height: 64px;
-    font-family: MarianneThin;
   }
   .periode-xs {
     display: none;
@@ -52,7 +51,6 @@
     color:#5398ff;
   }
   .react-datepicker{
-    font-family: Marianne;
     background-color: #1e1e1e;
     border: 1px solid #5398ff;
     border-radius: 1.4rem;
@@ -76,10 +74,10 @@
       width: 10px;
     }
     .react-datepicker__header {
+      border-top-right-radius: 1.4rem;
+      border-top-left-radius: 1.4rem;
       background-color: #1e1e1e;
       color: #fff;
-      border-top-left-radius: 1.4rem;
-      border-top-right-radius: 1.4rem;
 
       .react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header {
         color: #fff;
@@ -105,26 +103,26 @@
       color: #1e1e1e;
     }
     .react-datepicker__day--selected, .react-datepicker__day--keyboard-selected {
-      color: #1e1e1e;
       background-color: #fff;
+      color: #1e1e1e;
     }
     .react-date-picker__calendar--open {
-      top: 100% !important;
       bottom: unset !important;
+      top: 100% !important;
     }
   }
   .react-datepicker__tab-loop {
     position: absolute;
-    top: 0px;
     left: -93px;
+    top: 0px;
   }
   .number {
-    font-weight: 600;
+    margin-right: 1rem;
     text-align: right;
-    font-size: 32px;
     line-height: 32px;
     letter-spacing: 0;
-    margin-right: 1rem;
+    font-weight: 600;
+    font-size: 32px;
   }
   .numbers, .numbers-renewal {
     font-size: 24px;
@@ -220,7 +218,7 @@
   .liste-action {
     padding: 0px;
   }
-  .rf-footer__bottom-link {
+  .fr-footer__bottom-link {
     cursor:pointer;
   }
   .afficher-etapes {
@@ -247,13 +245,13 @@
       margin: 0;
       padding: 0;
     }
-    .rf-mt-list {
+    .fr-mt-list {
       margin-top: 1.4rem;
       margin-bottom: 5px;
       width: 200px;
     }
   }
-  .rf-m-no-reorientation {
+  .fr-m-no-reorientation {
     margin: 7.5rem 0;
   }
 
@@ -261,13 +259,13 @@
     .graphique-responsive-md{
       display:none;
     }
-    .rf-mt-lg-13w {
+    .fr-mt-lg-13w {
       margin-top: 6.5rem !important;
     }
-    .rf-m-lg-15w {
+    .fr-m-lg-15w {
       margin: 7.5rem 0 !important;
     }
-    .rf-mt-md-n15w {
+    .fr-mt-md-n15w {
       margin-top: -7rem;
     }
   }
@@ -275,7 +273,7 @@
     .number {
       font-size: 28px;
     }
-    .rf-m-xs-to-md-7v {
+    .fr-m-xs-to-md-7v {
       margin: 1.75rem 0 !important;
     }
     .afficher-export {
@@ -303,13 +301,13 @@
     .hr-sm-hide {
       display: none;
     }
-    .rf-m-sm-4w {
+    .fr-m-sm-4w {
       margin: 2rem 0 !important;
     }
-    .rf-footer__bottom-link {
+    .fr-footer__bottom-link {
       font-size: 16px;
     }
-    .rf-footer__bottom-item{
+    .fr-footer__bottom-item{
       display: inline-block;
       &::before{
         display: none;
@@ -333,7 +331,7 @@
     .statistiques_nationales-btn {
       margin: 25px 0;
     }
-    .rf-footer__bottom-item{
+    .fr-footer__bottom-item{
       display: block;
     }
   }
@@ -413,7 +411,7 @@
 .statistics.print {
   background-color: #fff;
   color: #1e1e1e;
-  .rf-service__title {
+  .fr-service__title {
     color: #1e1e1e;
   }
   .lieux-autres{
@@ -427,7 +425,7 @@
 .print {
   background-color: #fff;
   color: #1e1e1e;
-  .rf-service__title {
+  .fr-service__title {
     color: #1e1e1e;
   }
 }

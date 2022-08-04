@@ -8,10 +8,10 @@ import ElementText from './Components/ElementText';
 function StatisticsAccompaniment({ type, nbAccompagnement }) {
 
   return (
-    <div className="rf-grid-row">
-      <div className={ type ? 'rf-col-12' : 'rf-col-2 rf-col-lg-3' }><ElementNumber nombre={nbAccompagnement}
+    <div className="fr-grid-row">
+      <div className={ type ? 'fr-col-12' : 'fr-col-2 fr-col-lg-3' }><ElementNumber nombre={nbAccompagnement}
         classe={type ? 'numbers-' + type : 'numbers'}/></div>
-      <div className={ type ? 'rf-col-12' : 'rf-col-9' }><ElementText textePluralize={
+      <div className={ type ? 'fr-col-12' : 'fr-col-9' }><ElementText textePluralize={
         <Pluralize
           zero={'accompagnement total enregistré (dont récurrent)'}
           singular={'accompagnement total enregistré (dont récurrent)'}

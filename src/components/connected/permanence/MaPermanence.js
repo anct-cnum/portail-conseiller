@@ -31,7 +31,7 @@ function MaPermanence({ permanence, conseillerId, trClass }) {
         </ul>
       </td>
       <td style={{ textAlign: 'center' }}>
-        <Link className="rf-btn modifier-btn" style={{ boxShadow: 'none' }} to={{
+        <Link className="fr-btn modifier-btn" style={{ boxShadow: 'none' }} to={{
           pathname: `/mon-lieu-activite/${permanence?._id}`,
           islieuPrincipal: islieuPrincipal,
           idPermanence: permanence?._id

@@ -38,11 +38,11 @@ function ValidationButton() {
   }, [cra?.printError, cra?.errorsRequired]);
 
   return (
-    <div className="rf-grid-row rf-grid-row--center rf-pb-12w rf-mb-3w">
-      <div className="rf-col-sm-10 rf-col-md-6 submitResponsive" style={{ textAlign: 'center' }}>
+    <div className="fr-grid-row fr-grid-row--center fr-pb-12w fr-mb-3w">
+      <div className="fr-col-sm-10 fr-col-md-6 submitResponsive" style={{ textAlign: 'center' }}>
         {saveInProgress ?
-          <button className="rf-btn rf-text--bold big-btn submitCra" disabled >Valider</button> :
-          <button className="rf-btn rf-text--bold big-btn submitCra" onClick={sendCra}>Valider</button>
+          <button className="fr-btn fr-text--bold big-btn submitCra" disabled >Valider</button> :
+          <button className="fr-btn fr-text--bold big-btn submitCra" onClick={sendCra}>Valider</button>
         }
         <br/>
         {saveInProgress &&

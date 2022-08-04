@@ -1,6 +1,6 @@
+$errorDarkMode: #ff3333;
 $background: #1e1e1e;
-$blue: #2B8BF7;
-$errorDarkMode: #FF3333;
+$blue: #2b8bf7;
 
 .cra {
   .espacement {
@@ -11,21 +11,21 @@ $errorDarkMode: #FF3333;
   }
 
   .titre {
-    font-size: 56px;
     line-height: 72px;
+    font-weight: 200;
+    font-size: 56px;
     margin: 0;
-    font-family: 'MarianneThin', Arial, sans-serif;
   }
 
   .a-propos {
+    background-image: none;
     display: inline-block;
-    box-shadow: none !important;
     text-decoration: none;
+    margin-right: -18px;
     line-height: 24px;
     letter-spacing: 0;
     color: #929292;
     font-size: 14px;
-    margin-right: -18px;
   }
   .url-a-propos {
     text-align: right;
@@ -55,36 +55,34 @@ $errorDarkMode: #FF3333;
     color: white;
     text-align: center;
     cursor: pointer;
-    font-family: 'MarianneMedium', Arial, sans-serif!important;
     font-size: 16px;
     font-weight: 500;
   }
 
   .buttonCP-filled, .buttonRecurrence-filled {
+    border: 1px solid white;
+    background-color: white;
     border-color: white;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+    cursor:pointer;
+    color: black;
     height: 104px;
     width: 100%;
-    border: 1px solid white;
-    border-radius: 20px;
-    background-color: white;
-    color: black;
-    text-align: center;
-    cursor: pointer;
-    font-family: 'MarianneMedium', Arial, sans-serif!important;
-    font-size: 16px;
-    font-weight: 500;
   }
 
   .searchCP {
-  height: 104px;
   padding: 14px 20px 12px 45px;
-  border: none;
-  width: 100%;
+  background-color: #fff;
   border-radius: 20px;
   text-align: center;
-  font-family: 'MarianneMedium', Arial, sans-serif!important;
-  font-size: 16px;
   font-weight: 500;
+  font-size: 16px;
+  height: 104px;
+  border: none;
+  width: 100%;
   }
 
   .searchCP::placeholder {
@@ -141,7 +139,6 @@ $errorDarkMode: #FF3333;
     border-radius: 0 0 1.4rem 1.4rem;
     background-color: $background;
     border: 1px solid #5398ff;
-    font-family: Marianne;
     color: #fff;
     left: 32px;
     top: -10px;
@@ -294,7 +291,6 @@ $errorDarkMode: #FF3333;
     }
   }
   .selectAccompagnementRedirection {
-    font-family: 'MarianneMedium', Arial, sans-serif;
     border-radius: 20px 20px 0 0;
     border: solid 1px #5398FF;
     background: #1e1e1e;
@@ -440,11 +436,6 @@ $errorDarkMode: #FF3333;
 
   .labelBigRadioCustom {
     padding-top: 2.5rem;
-    font-family: 'MarianneMedium', Arial, sans-serif!important;
-  }
-
-  .labelSmallRadioCustom {
-    font-family: 'MarianneMedium', Arial, sans-serif!important;
   }
 
   .countRadioLabel {
@@ -612,9 +603,7 @@ $errorDarkMode: #FF3333;
   }
 
   .squareLabel {
-    font-family: 'MarianneMedium', Arial, sans-serif!important;
     font-size: 16px;
-
   }
 
   .responsiveSquare1, .responsiveSquare2, .responsiveSquare3, .responsiveSquare4, .responsiveSquare5 {
@@ -687,7 +676,6 @@ $errorDarkMode: #FF3333;
   }
 
   .labelCheckboxCustom {
-    font-family: 'MarianneMedium', Arial, sans-serif!important;
     line-height: 24px;
     text-align: start;
     align-self: center;
@@ -841,7 +829,6 @@ $errorDarkMode: #FF3333;
   .labelSmallCount {
     color: black;
     font-size: 24px;
-    font-family: 'MarianneMedium', Arial, sans-serif!important;
   }
 
   /* custom point de rupture MD du DS */
@@ -891,7 +878,6 @@ $errorDarkMode: #FF3333;
     border-radius: 48px;
     height: 96px;
     font-size: 20px;
-    font-family: 'MarianneBold', Arial, sans-serif!important;
   }
 
   .submitCra:hover, .submitCra:active {

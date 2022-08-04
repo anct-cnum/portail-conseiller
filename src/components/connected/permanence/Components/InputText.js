@@ -39,7 +39,7 @@ function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineIn
 
   return (
     <div className={classInput}>
-      <label className={errorInput ? 'rf-label invalid' : 'rf-label'} htmlFor={ nameInput }>
+      <label className={errorInput ? 'fr-label invalid' : 'fr-label'} htmlFor={ nameInput }>
         {textLabel}
         {requiredInput &&
           <span className="obligatoire">&nbsp;*</span>
@@ -47,7 +47,7 @@ function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineIn
         {baselineInput &&
           <span className="baseline">{baselineInput}</span>
         }
-        <input className={errorInput ? 'rf-input rf-mt-2v input-error' : 'rf-input rf-mt-2v'}
+        <input className={errorInput ? 'fr-input fr-mt-2v input-error' : 'fr-input fr-mt-2v'}
           name={ nameInput }
           id={ nameInput }
           value={ valueInput }
@@ -63,7 +63,7 @@ function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineIn
 
       </label>
       { errorInput &&
-        <p className="text-error rf-mb-n3w">{errorInput}</p>
+        <p className="text-error fr-mb-n3w">{errorInput}</p>
       }
     </div>
   );

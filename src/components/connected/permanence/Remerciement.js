@@ -9,25 +9,25 @@ function Remerciement() {
     dispatch(permanenceActions.closePermanence());
   }
   return (
-    <dialog aria-labelledby="rf-modal-remerciement" role="dialog" id="rf-modal-remerciement" className="rf-modal modalOpened">
-      <div className="rf-container">
-        <div className="rf-grid-row rf-grid-row--center">
-          <div className="rf-col-12 rf-col-sm-10 rf-col-md-7 rf-modal__body modal-remerciement">
-            <div className="rf-modal__content centre rf-mt-n4w">
-              <h1 className="rf-modal__title">Merci !</h1>
-              <div className="rf-mb-5w">
+    <dialog aria-labelledby="fr-modal-remerciement" role="dialog" id="fr-modal-remerciement" className="fr-modal modalOpened">
+      <div className="fr-container">
+        <div className="fr-grid-row fr-grid-row--center">
+          <div className="fr-col-12 fr-col-sm-10 fr-col-md-7 fr-modal__body modal-remerciement">
+            <div className="fr-modal__content centre fr-mt-n4w">
+              <h1 className="fr-modal__title">Merci !</h1>
+              <div className="fr-mb-5w">
                 <img className="conseillers-carte" src="logos/permanences/carthographie-avec-conseillers-fin.svg"/>
-                <div className="remerciement-enregistrees rf-mt-4w">
+                <div className="remerciement-enregistrees fr-mt-4w">
                   <img className="enregistrees-check" src="logos/permanences/check.svg"/>
                   Vos informations ont &eacute;t&eacute; enregistr&eacute;es.
                 </div>
-                <div className="rf-mt-4w">
+                <div className="fr-mt-4w">
                   Une interface de gestion sera prochainement attribu&eacute;e &agrave; votre responsable via son espace Structure,
                   elle permettra d&rsquo;administrer les lieux d&rsquo;activit&eacute; Conseiller num&eacute;rique France Services cl&eacute;s en main.
                 </div>
               </div>
               <div className="centre">
-                <button className="rf-btn remerciement-btn" onClick={closeModal} >J&rsquo;ai compris</button>
+                <button className="fr-btn remerciement-btn" onClick={closeModal} >J&rsquo;ai compris</button>
               </div>
             </div>
           </div>

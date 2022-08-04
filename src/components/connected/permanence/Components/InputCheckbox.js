@@ -14,7 +14,7 @@ function InputCheckbox({ textLabel, errorInput, prefixId, nameInput, baselineInp
 
   const onClick = e => {
     const { checked } = e.target;
-    
+
     dispatch(permanenceActions.updateField(prefixId + nameInput, checked));
 
     if (nameInput.slice(-5) === 'Siret') {
@@ -38,7 +38,7 @@ function InputCheckbox({ textLabel, errorInput, prefixId, nameInput, baselineInp
 
   return (
     <>
-      <div className="rf-checkbox-group">
+      <div className="fr-checkbox-group">
         {checked &&
         <input type="checkbox" id={ prefixId + nameInput } name={ prefixId + nameInput } value={true} defaultChecked={true} disabled={disabled} onClick={ e => {
           onClick(e);
@@ -49,7 +49,7 @@ function InputCheckbox({ textLabel, errorInput, prefixId, nameInput, baselineInp
           onClick(e);
         }}/>
         }
-        <label className={errorInput ? 'rf-label invalid' : 'rf-label' } htmlFor={ prefixId + nameInput }
+        <label className={errorInput ? 'fr-label invalid' : 'fr-label' } htmlFor={ prefixId + nameInput }
           style={nameInput === 'checkboxSiret' ? { 'width': '350px' } : {}}>
           {textLabel}
         </label>
@@ -61,7 +61,7 @@ function InputCheckbox({ textLabel, errorInput, prefixId, nameInput, baselineInp
       </div>
 
       { (errorInput && !types.includes(nameInput)) &&
-        <p className="text-error rf-mb-n3w">{errorInput}</p>
+        <p className="text-error fr-mb-n3w">{errorInput}</p>
       }
     </>
   );

@@ -117,44 +117,44 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
         adresseStructure={adresseStructure}
       />
 
-      <div className="rf-col-1 col-logo rf-mt-10w">
+      <div className="fr-col-1 col-logo fr-mt-10w">
         <img className="pin" src="logos/permanences/pin.svg"/>
       </div>
-      <div className="rf-col-11">
-        <h2 className="sous-titre rf-mt-9w rf-mb-7w">Votre lieu d&rsquo;activit&eacute; principal</h2>
+      <div className="fr-col-11">
+        <h2 className="sous-titre fr-mt-9w fr-mb-7w">Votre lieu d&rsquo;activit&eacute; principal</h2>
       </div>
 
-      <div className="rf-col-offset-1 rf-col-11">
-        <div className={(erreurAdresseExact && !estClique) ? 'rf-col-12 invalid rf-mb-7w' : 'rf-col-12 rf-mb-7w'}>
+      <div className="fr-col-offset-1 fr-col-11">
+        <div className={(erreurAdresseExact && !estClique) ? 'fr-col-12 invalid fr-mb-7w' : 'fr-col-12 fr-mb-7w'}>
           Le nom et l&rsquo;adresse de la structure d&rsquo;accueil mentionn&eacute;e ci-dessus est-elle votre&nbsp;
           <b>lieu d&rsquo;activit&eacute; principal</b> ?&nbsp;
           <span className="obligatoire">*</span>
-          <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-2w">
-            <div className="rf-fieldset__content">
-              <div className="rf-radio-group">
+          <fieldset className="fr-fieldset fr-fieldset--inline fr-mt-2w">
+            <div className="fr-fieldset__content">
+              <div className="fr-radio-group">
                 <input type="radio" id="Oui" name="principalLieuActivite" value="Oui"
                   defaultChecked={defaultCheckedOui}
                   required="required" onClick={() => {
                     handleAdresse(true);
                   }}/>
-                <label className={(erreurAdresseExact && !estClique) ? 'rf-label invalid' : 'rf-label' } htmlFor="Oui">
+                <label className={(erreurAdresseExact && !estClique) ? 'fr-label invalid' : 'fr-label' } htmlFor="Oui">
                   Oui
                 </label>
               </div>
-              <div className="rf-radio-group">
+              <div className="fr-radio-group">
                 <input type="radio" id="Non" name="principalLieuActivite" value="Non" defaultChecked={defaultCheckedNon}
                   required="required" onClick={() => {
                     handleAdresse(false);
                   }}
                 />
-                <label className={(erreurAdresseExact && !estClique) ? 'rf-label invalid' : 'rf-label' } htmlFor="Non">
+                <label className={(erreurAdresseExact && !estClique) ? 'fr-label invalid' : 'fr-label' } htmlFor="Non">
                   Non
                 </label>
               </div>
             </div>
           </fieldset>
           { (erreurAdresseExact && !estClique) &&
-            <p className="text-error rf-mb-n3w">{erreurAdresseExact}</p>
+            <p className="text-error fr-mb-n3w">{erreurAdresseExact}</p>
           }
         </div>
       </div>

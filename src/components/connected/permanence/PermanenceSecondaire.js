@@ -117,27 +117,27 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
 
   return (
     <>
-      <div className="rf-container">
-        <div className="rf-grid-row">
-          <div className="rf-col-1 col-logo">
-            <img className="pin rf-mt-8w" src="logos/permanences/pin.svg"/>
+      <div className="fr-container">
+        <div className="fr-grid-row">
+          <div className="fr-col-1 col-logo">
+            <img className="pin fr-mt-8w" src="logos/permanences/pin.svg"/>
           </div>
-          <div className="rf-col-8 ">
-            <h2 className="sous-titre rf-mt-7w rf-mb-4w">
+          <div className="fr-col-8 ">
+            <h2 className="sous-titre fr-mt-7w fr-mb-4w">
               Lieu d&rsquo;activit&eacute; secondaire
-              <span className="baseline rf-mt-1w">
+              <span className="baseline fr-mt-1w">
                 Un lieu d&rsquo;activit&eacute; secondaire correspond &agrave; une permanence o&ugrave; vous avez &eacute;t&eacute;
                 d&eacute;l&eacute;gu&eacute;(e) et o&ugrave; vous exercez votre activit&eacute; de mani&egrave;re hebdomadaire.
               </span>
             </h2>
           </div>
 
-          <div className="rf-col-offset-1 rf-col-11 rf-mb-7w">
+          <div className="fr-col-offset-1 fr-col-11 fr-mb-7w">
             Effectuez-vous des accompagnements dans un lieu d&rsquo;activit&eacute; secondaire ?
-            <span className="baseline rf-mt-1w">Vous pourrez ajouter et modifier vos lieux d&rsquo;activit&eacute; plus tard.</span>
-            <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-2w">
-              <div className="rf-fieldset__content">
-                <div className="rf-radio-group">
+            <span className="baseline fr-mt-1w">Vous pourrez ajouter et modifier vos lieux d&rsquo;activit&eacute; plus tard.</span>
+            <fieldset className="fr-fieldset fr-fieldset--inline fr-mt-2w">
+              <div className="fr-fieldset__content">
+                <div className="fr-radio-group">
                   {ouiBtn === true &&
                     <input type="radio" id="secondaire-Oui" name="secondaire" value="true" defaultChecked={true} onClick={() => {
                       handleSecondaire(true);
@@ -148,10 +148,10 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
                       handleSecondaire(true);
                     }} />
                   }
-                  <label className="rf-label" htmlFor="secondaire-Oui">Oui</label>
+                  <label className="fr-label" htmlFor="secondaire-Oui">Oui</label>
                 </div>
 
-                <div className="rf-radio-group">
+                <div className="fr-radio-group">
                   {ouiBtn === true &&
                     <input type="radio" id="secondaire-Non" name="secondaire" value="false" onClick={() => {
                       handleSecondaire(false);
@@ -162,7 +162,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
                       handleSecondaire(false);
                     }} />
                   }
-                  <label className="rf-label" htmlFor="secondaire-Non">Non</label>
+                  <label className="fr-label" htmlFor="secondaire-Non">Non</label>
 
 
                 </div>
@@ -173,18 +173,18 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
       </div>
       {lieuxSecondaires && lieuxSecondaires.map((lieuSecondaire, idx) => {
         return (
-          <div key={idx} className="rf-container">
+          <div key={idx} className="fr-container">
             <div className={(idx === 0 && show[0]) ||
-              (idx > 0 && fields?.filter(field => field.name === 'submit_and_next_' + idx)[0]?.value) ? 'rf-grid-row' : 'hide'}>
+              (idx > 0 && fields?.filter(field => field.name === 'submit_and_next_' + idx)[0]?.value) ? 'fr-grid-row' : 'hide'}>
               {idx >= 1 &&
                 <>
-                  <div className="rf-col-1 col-logo">
-                    <img className="pin rf-mt-8w" src="logos/permanences/pin.svg"/>
+                  <div className="fr-col-1 col-logo">
+                    <img className="pin fr-mt-8w" src="logos/permanences/pin.svg"/>
                   </div>
-                  <div className="rf-col-8 ">
-                    <h2 className="sous-titre rf-mt-7w rf-mb-4w">
+                  <div className="fr-col-8 ">
+                    <h2 className="sous-titre fr-mt-7w fr-mb-4w">
                       Lieu d&rsquo;activit&eacute; secondaire
-                      <span className="baseline rf-mt-1w">
+                      <span className="baseline fr-mt-1w">
                         Un lieu d&rsquo;activit&eacute; secondaire correspond &agrave; une permanence o&ugrave; vous avez &eacute;t&eacute;
                         d&eacute;l&eacute;gu&eacute;(e) et o&ugrave; vous exercez votre activit&eacute; de mani&egrave;re hebdomadaire.
                       </span>

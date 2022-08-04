@@ -42,19 +42,19 @@ function ConseillerDetails({ location }) {
   }, [isSubordonne, loadedIsSubordonee, conseiller]);
 
   return (
-    <div className="rf-container conseillerDetails">
-      <div className="rf-grid-row rf-grid-row--bottom rf-pt-12w rf-pb-9w">
-        <div className="rf-col-3 titreCol">
+    <div className="fr-container conseillerDetails">
+      <div className="fr-grid-row fr-grid-row--bottom fr-pt-12w fr-pb-9w">
+        <div className="fr-col-3 titreCol">
           <h1 className="titre">Profil</h1>
         </div>
-        <div className="rf-col-xs-6 rf-col-lg-3 recrutementCol rf-mb-1w">
+        <div className="fr-col-xs-6 fr-col-lg-3 recrutementCol fr-mb-1w">
           <strong>Recrutement</strong>&nbsp;&nbsp;
           { conseiller?.datePrisePoste ? dayjs(conseiller?.datePrisePoste).format('DD/MM/YYYY') : <>non renseign&eacute;e</>}
           <br/>
           <strong>Fin de formation</strong>&nbsp;&nbsp;
           { conseiller?.dateFinFormation ? dayjs(conseiller?.dateFinFormation).format('DD/MM/YYYY') : <>non renseign&eacute;e</>}
         </div>
-        <div className="rf-col-xs-6 rf-col-lg-2 rf-mb-1w">
+        <div className="fr-col-xs-6 fr-col-lg-2 fr-mb-1w">
           <img src={conseiller?.certifie ? '/logos/icone-check.svg' : '/logos/icone-croix.svg'} style={{ marginRight: '16px' }}/>
           Certification
           <br/>
@@ -62,34 +62,34 @@ function ConseillerDetails({ location }) {
           {isUserActif ? <>Activ&eacute;</> : <>Non activ&eacute;</>}
         </div>
       </div>
-      <div className="rf-grid-row">
-        <div className="rf-col-3">
-          <div className="rf-mb-3w">
+      <div className="fr-grid-row">
+        <div className="fr-col-3">
+          <div className="fr-mb-3w">
             <strong>Nom</strong><br/>
             <span className="breakWord">{conseiller?.nom}</span>
           </div>
-          <div className="rf-mb-3w">
+          <div className="fr-mb-3w">
             <strong>Pr&eacute;nom</strong><br/>
             <span className="breakWord">{conseiller?.prenom}</span>
           </div>
-          <div className="rf-mb-3w">
+          <div className="fr-mb-3w">
             <strong>Sexe</strong><br/>
             <span className="breakWord">{conseiller?.sexe ?? <>non renseign&eacute;</>}</span>
           </div>
-          <div className="rf-mb-3w">
+          <div className="fr-mb-3w">
             <strong>Date de naissance</strong><br/>
             <span className="breakWord">
               {conseiller?.dateDeNaissance ? dayjs(conseiller?.dateDeNaissance).format('DD/MM/YYYY') : <>non renseign&eacute;e</>}
             </span>
           </div>
         </div>
-        <div className="rf-col-5">
-          <div className="rf-mb-3w">
+        <div className="fr-col-5">
+          <div className="fr-mb-3w">
             <strong>Lieu d&rsquo;habitation</strong><br/>
             {conseiller?.codePostal.replace(/^(.{2})(.*)$/, '$1 $2')}&nbsp; {/* espace entre les 2 premiers caractères du CP et les 3 autres */}
             <span style={{ textTransform: 'uppercase' }}>{conseiller?.nomCommune}</span>
           </div>
-          <div className="rf-mb-3w">
+          <div className="fr-mb-3w">
             <strong>Adresse mail CnFS</strong><br/>
             {conseiller?.emailCN?.address &&
               <a className="email"href={'mailto:' + conseiller?.emailCN?.address}>
@@ -100,70 +100,70 @@ function ConseillerDetails({ location }) {
               <span>non renseign&eacute;</span>
             }
           </div>
-          <div className="rf-mb-3w">
+          <div className="fr-mb-3w">
             <strong>Adresse mail personelle</strong><br/>
             <a className="email"href={'mailto:' + conseiller?.email}>{conseiller?.email}</a>
           </div>
-          <div className="rf-mb-3w">
+          <div className="fr-mb-3w">
             <strong>T&eacute;l&eacute;phone personnel</strong><br/>
             <span>{conseiller?.telephone ? conseiller?.telephone.replace(/(.{2})(?=.)/g, '$1 ') : <>non renseign&eacute;</>}</span>
             {/* espace tous les 2 chiffres */}
           </div>
         </div>
-        <div className="rf-col-xs-12 rf-col-xl-4">
-          <div className="rf-mb-3w">
+        <div className="fr-col-xs-12 fr-col-xl-4">
+          <div className="fr-mb-3w">
             <strong>Structure</strong><br/>
             <span>{structure?.nom}</span>
           </div>
-          <div className="rf-grid-row rf-mb-3w">
-            <div className="rf-col-8">
+          <div className="fr-grid-row fr-mb-3w">
+            <div className="fr-col-8">
               <strong>Code Postal de la Structure</strong><br/>
               <span>{structure?.codePostal.replace(/^(.{2})(.*)$/, '$1 $2')}</span>
             </div>
-            <div className="rf-col-4">
+            <div className="fr-col-4">
               <strong>Siret</strong><br/>
               <span>{structure?.siret ?? <>non renseign&eacute;</>}</span>
             </div>
           </div>
-          <div className="rf-mb-3w">
+          <div className="fr-mb-3w">
             <strong>Adresse mail de la structure</strong><br/>
             <a className="email"href={'mailto:' + structure?.contact?.email}>
               {structure?.contact?.email}
             </a>
           </div>
-          <div className="rf-mb-3w">
+          <div className="fr-mb-3w">
             <strong>T&eacute;l&eacute;phone de la structure</strong><br/>
             <span>{structure?.contact?.telephone ? structure?.contact?.telephone.replace(/(.{2})(?=.)/g, '$1 ') : <>non renseign&eacute;</>}</span>
           </div>
         </div>
       </div>
-      <div className="rf-grid-row rf-mt-5w">
-        <div className="rf-col-12">
+      <div className="fr-grid-row fr-mt-5w">
+        <div className="fr-col-12">
           <hr style={{ borderWidth: '0.5px' }}/>
         </div>
       </div>
-      <div className="rf-grid-row rf-mt-6w rf-mb-8w">
-        <div className="rf-col-12 titreCol">
+      <div className="fr-grid-row fr-mt-6w fr-mb-8w">
+        <div className="fr-col-12 titreCol">
           <h1 className="titre">Contact du responsable</h1>
         </div>
       </div>
-      <div className="rf-grid-row">
-        <div className="rf-col-3">
-          <div className="rf-mb-3w">
+      <div className="fr-grid-row">
+        <div className="fr-col-3">
+          <div className="fr-mb-3w">
             <strong>Nom</strong><br/>
             <span className="breakWord">{conseiller?.supHierarchique?.nom ?? '-'}</span>
           </div>
-          <div className="rf-mb-3w">
+          <div className="fr-mb-3w">
             <strong>Pr&eacute;nom</strong><br/>
             <span className="breakWord">{conseiller?.supHierarchique?.prenom ?? '-'}</span>
           </div>
-          <div className="rf-mb-3w">
+          <div className="fr-mb-3w">
             <strong>Fonction</strong><br/>
             <span className="breakWord">{conseiller?.supHierarchique?.fonction ?? '-'}</span>
           </div>
         </div>
-        <div className="rf-col-5">
-          <div className="rf-mb-3w">
+        <div className="fr-col-5">
+          <div className="fr-mb-3w">
             <strong>Mail</strong><br/>
             {conseiller?.supHierarchique?.email &&
               <a className="email"href={'mailto:' + conseiller?.supHierarchique?.email}>
@@ -174,7 +174,7 @@ function ConseillerDetails({ location }) {
               <span>-</span>
             }
           </div>
-          <div className="rf-mb-3w">
+          <div className="fr-mb-3w">
             <strong>T&eacute;l&eacute;phone</strong><br/>
             <span>
               {conseiller?.supHierarchique?.numeroTelephone ?
@@ -185,7 +185,7 @@ function ConseillerDetails({ location }) {
             </span>
           </div>
         </div>
-        <div className="rf-col-xs-12 rf-col-xl-4">
+        <div className="fr-col-xs-12 fr-col-xl-4">
           <p className="blocCoordonnees">
             Ces coordonn&eacute;es pourront &ecirc;tre utilis&eacute;es pour communiquer des informations concernant le dispositif
             et l&rsquo;animation du r&eacute;seau
@@ -193,17 +193,17 @@ function ConseillerDetails({ location }) {
           </p>
         </div>
       </div>
-      <div className="rf-grid-row rf-mt-5w rf-mb-2w">
-        <div className="rf-col-12">
+      <div className="fr-grid-row fr-mt-5w fr-mb-2w">
+        <div className="fr-col-12">
           <hr style={{ borderWidth: '0.5px' }}/>
         </div>
       </div>
-      <div className="rf-grid-row rf-pb-12w rf-mb-3w">
-        <div className="rf-col-8">
-          <ul className="rf-footer__bottom-list liste-action">
-            <li className="rf-footer__bottom-item">
+      <div className="fr-grid-row fr-pb-12w fr-mb-3w">
+        <div className="fr-col-8">
+          <ul className="fr-footer__bottom-list liste-action">
+            <li className="fr-footer__bottom-item">
               <Link
-                className="rf-footer__bottom-link rf-pr-sm-1w"
+                className="fr-footer__bottom-link fr-pr-sm-1w"
                 style={{ boxShadow: 'none', color: '#8585F6', fontSize: '16px' }}
                 to={{
                   pathname: `/accueil`,
@@ -218,8 +218,8 @@ function ConseillerDetails({ location }) {
             </li>
           </ul>
         </div>
-        <div className="rf-col-xs-12 rf-col-md-4 rf-mt-2w">
-          <Link className="statistiques-btn" style={{ boxShadow: 'none' }} to={{
+        <div className="fr-col-xs-12 fr-col-md-4 fr-mt-2w">
+          <Link className="statistiques-btn" to={{
             pathname: `/statistiques`,
             currentPage: location?.currentPage,
             idUser: conseiller?._id,

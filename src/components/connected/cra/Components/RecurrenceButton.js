@@ -29,10 +29,10 @@ function RecurrenceButton() {
       { (cra.nbParticipants > 1 && cra?.nbParticipantsRecurrents > 0) &&
         <div className="buttonRecurrence-filled">
           <div onClick={onClickMore} className="moreRecurrence">
-            <span className="rf-label labelCalculCustom">+</span>
+            <span className="fr-label labelCalculCustom">+</span>
           </div>
           <div onClick={onClickLess} className="lessRecurrence" style={{ borderRight: '1.5px solid black' }}>
-            <span className="rf-label labelCalculCustom">-</span>
+            <span className="fr-label labelCalculCustom">-</span>
           </div>
           <div className="labelRecurrence">
             <span>{cra?.nbParticipantsRecurrents}</span> personne(s) d&eacute;j&agrave; accompagn&eacute;e(s)

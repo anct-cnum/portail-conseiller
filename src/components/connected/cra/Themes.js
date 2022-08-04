@@ -7,8 +7,8 @@ function Themes() {
   let cra = useSelector(state => state.cra);
 
   return (
-    <div className="rf-grid-row rf-grid-row--gutters rf-grid-row--middle espacement">
-      <div className="rf-col-xs-11 rf-col-sm-11 rf-col-md-2 questionCheckboxResponsive">
+    <div className="fr-grid-row fr-grid-row--gutters fr-grid-row--middle espacement">
+      <div className="fr-col-xs-11 fr-col-sm-11 fr-col-md-2 questionCheckboxResponsive">
         <span className={`question ${cra?.printError && cra?.errorsRequired?.themes ? 'questionRequired' : ''}`}>
           Quelle(s) a / ont &eacute;t&eacute; la / les th&eacute;matique(s) de l&rsquo;accompagnement&nbsp;? (choix multiple)
         </span>

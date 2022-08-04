@@ -13,8 +13,8 @@ function Accompagnement() {
 
   return (
     <>
-      <div className="rf-grid-row rf-grid-row--gutters rf-grid-row--middle espacement">
-        <div className="rf-col-xs-11 rf-col-sm-11 rf-col-md-2 questionResponsive">
+      <div className="fr-grid-row fr-grid-row--gutters fr-grid-row--middle espacement">
+        <div className="fr-col-xs-11 fr-col-sm-11 fr-col-md-2 questionResponsive">
           <span className="question">L&rsquo;accompagnement va-t-il &ecirc;tre poursuivi&nbsp;? (Optionnel)</span>
         </div>
         <div className="responsiveRadioActivity1">

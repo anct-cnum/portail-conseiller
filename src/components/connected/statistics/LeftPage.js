@@ -13,27 +13,27 @@ function LeftPage({ donneesStats, type }) {
   const nbTotalSansRecurrence = nbTotalAccompagnements - donneesStats?.nbParticipantsRecurrents;
 
   return (
-    <div className="rf-col-12 rf-col-md-5 rf-col-lg-3">
+    <div className="fr-col-12 fr-col-md-5 fr-col-lg-3">
       <StatisticsTotalAccompaniments
         nbTotalAccompagnements={nbTotalSansRecurrence} type={type}
       />
-      <div className={type ? 'rf-mb-3w' : 'rf-m-7w rf-mb-5w rf-m-xs-to-md-7v' }></div>
+      <div className={type ? 'fr-mb-3w' : 'fr-m-7w fr-mb-5w fr-m-xs-to-md-7v' }></div>
       <hr/>
-      <div className={type ? 'rf-mb-2w' : 'rf-m-5w rf-m-xs-to-md-7v' }></div>
+      <div className={type ? 'fr-mb-2w' : 'fr-m-5w fr-m-xs-to-md-7v' }></div>
       <StatisticsAccompaniment nbAccompagnement={nbTotalAccompagnements} type={type}/>
       <br/>
       <StatisticsWorkshop nbAteliers={donneesStats?.nbAteliers} nbTotalParticipant={donneesStats?.nbTotalParticipant} type={type}/>
-      <div className={type ? 'rf-mb-5v' : 'rf-m-5w rf-m-xs-to-md-7v' }></div>
+      <div className={type ? 'fr-mb-5v' : 'fr-m-5w fr-m-xs-to-md-7v' }></div>
       <hr/>
-      <div className={type ? 'rf-mb-2w' : 'rf-m-5w rf-m-xs-to-md-7v' }></div>
+      <div className={type ? 'fr-mb-2w' : 'fr-m-5w fr-m-xs-to-md-7v' }></div>
       <StatisticsPersonalAccompaniment
         nbAccompagnementPerso={donneesStats?.nbAccompagnementPerso}
         nbDemandePonctuel={donneesStats?.nbDemandePonctuel}
         type={type}
       />
-      <div className={type ? 'rf-mb-5v' : 'rf-m-5w rf-m-xs-to-md-7v' }></div>
+      <div className={type ? 'fr-mb-5v' : 'fr-m-5w fr-m-xs-to-md-7v' }></div>
       <hr/>
-      <div className="rf-m-5w rf-m-xs-to-md-7v"></div>
+      <div className="fr-m-5w fr-m-xs-to-md-7v"></div>
       <StatisticsRenewal
         nbUsagersBeneficiantSuivi={donneesStats?.nbUsagersBeneficiantSuivi}
         tauxTotalUsagersAccompagnes={donneesStats?.tauxTotalUsagersAccompagnes}
@@ -42,9 +42,9 @@ function LeftPage({ donneesStats, type }) {
         nbReconduction={donneesStats?.nbReconduction}
         caracteresSpeciaux="%"
       />
-      <div className="rf-m-xs-to-md-7v"></div>
+      <div className="fr-m-xs-to-md-7v"></div>
       <hr className="hr-md-hide no-print" />
-      <div className="rf-m-xs-to-md-7v"></div>
+      <div className="fr-m-xs-to-md-7v"></div>
     </div>
   );
 }

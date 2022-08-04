@@ -48,35 +48,35 @@ function ModalUpdateForm({ form, showModal, setShowModal, isSupHierarchique = fa
   return (
     <>
       {showModal &&
-        <dialog aria-labelledby="rf-modal-supprimer-candidat" role="dialog" id="rf-modal-supprimer-candidat" className="rf-modal modalOpened">
-          <div className="rf-container rf-container--fluid rf-container-md">
-            <div className="rf-grid-row rf-grid-row--center">
-              <div className="rf-col-11 rf-col-md-10 rf-col-lg-6">
-                <div className="rf-modal__body">
-                  <div className="rf-modal__header">
-                    <button className="rf-link--close rf-link" title="Fermer la fenêtre" onClick={() => {
+        <dialog aria-labelledby="fr-modal-supprimer-candidat" role="dialog" id="fr-modal-supprimer-candidat" className="fr-modal modalOpened">
+          <div className="fr-container fr-container--fluid fr-container-md">
+            <div className="fr-grid-row fr-grid-row--center">
+              <div className="fr-col-11 fr-col-md-10 fr-col-lg-6">
+                <div className="fr-modal__body">
+                  <div className="fr-modal__header">
+                    <button className="fr-link--close fr-link" title="Fermer la fenêtre" onClick={() => {
                       closeModal();
                     }}>Fermer</button>
                   </div>
-                  <div className="rf-modal__content">
-                    <h1 id="rf-modal-2-title" className="rf-modal__title">
-                      <span className="rf-fi-arrow-right-line rf-fi--lg" aria-hidden="true"></span>
+                  <div className="fr-modal__content">
+                    <h1 id="fr-modal-2-title" className="fr-modal__title">
+                      <span className="fr-fi-arrow-right-line fr-fi--lg" aria-hidden="true"></span>
                       Pour confirmer vos modifications, merci de saisir votre mot de passe associ&eacute; &agrave; votre espace COOP
                     </h1>
-                    <div className="rf-col-6">
+                    <div className="fr-col-6">
                       <label htmlFor="password">Votre mot de passe :</label>
-                      <input type="password" className="rf-input rf-mt-1w" name="password" id="password" onChange={handleChange} />
+                      <input type="password" className="fr-input fr-mt-1w" name="password" id="password" onChange={handleChange} />
                     </div>
                   </div>
-                  <div className="rf-modal__footer">
-                    <ul className="rf-btns-group rf-btns-group--right rf-btns-group--inline-reverse rf-btns-group--inline-lg rf-btns-group--icon-left">
+                  <div className="fr-modal__footer">
+                    <ul className="fr-btns-group fr-btns-group--right fr-btns-group--inline-reverse fr-btns-group--inline-lg fr-btns-group--icon-left">
                       <li>
-                        <button className="rf-btn" onClick={handleSubmit} disabled={!active}>
+                        <button className="fr-btn" onClick={handleSubmit} disabled={!active}>
                           Confirmer
                         </button>
                       </li>
                       <li>
-                        <button className="rf-btn" onClick={() => {
+                        <button className="fr-btn" onClick={() => {
                           closeModal();
                         }}>
                           Annuler

@@ -22,7 +22,7 @@ function ElementCodePostal({ idStructure = '' }) {
   });
 
   return (
-    <select className="rf-select code-postal-select rf-my-2w" onChange={setCodePostal}>
+    <select className="fr-select code-postal-select fr-my-2w" onChange={setCodePostal}>
       <option value="">Tous codes postaux</option>
       {listeCodesPostaux && listeCodesPostaux?.map((codePostal, idx) => {
         return (<option key={idx} value={codePostal}>{codePostal}</option>);

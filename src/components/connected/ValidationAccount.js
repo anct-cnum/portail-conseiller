@@ -25,56 +25,56 @@ function ValidationAccount() {
   return (
     <div className="validationAccount">
       <Header/>
-      <div className="rf-container rf-container--fluid rf-pt-2w containerCustom">
+      <div className="fr-container fr-container--fluid fr-pt-2w containerCustom">
         {/* Bandeau */}
-        <div className="rf-grid-row rf-grid-row--center rf-grid-row--middle rf-py-5w rf-mb-9w headBand">
+        <div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-py-5w fr-mb-9w headBand">
           <p className="customLabel">F&eacute;licitations ! Votre adresse mail vient d&rsquo;&ecirc;tre cr&eacute;&eacute;e&nbsp;:<br/>
             <span className="emailLabel">{user?.name}</span>
           </p>
         </div>
         {/* Etape suivante */}
-        <div className="rf-grid-row rf-grid-row--center rf-grid-row--middle rf-mb-6w step">
-          <div className="rf-col-3"></div>
-          <div className="rf-col-6" style={{ textAlign: 'center' }}>
+        <div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-mb-6w step">
+          <div className="fr-col-3"></div>
+          <div className="fr-col-6" style={{ textAlign: 'center' }}>
             <p>
               <strong style={{ fontSize: '24px' }}>&Eacute;tape suivante&nbsp;:</strong>
             </p>
           </div>
-          <div className="rf-col-3"></div>
+          <div className="fr-col-3"></div>
         </div>
         {/* Procédure */}
-        <div className="rf-grid-row rf-grid-row--center rf-grid-row--middle rf-mb-4w process">
-          <div className="rf-col-3"></div>
-          <div className="rf-col-sm-10 rf-col-md-6 processText">
+        <div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-mb-4w process">
+          <div className="fr-col-3"></div>
+          <div className="fr-col-sm-10 fr-col-md-6 processText">
             <p>
               Rendez-vous sur la boîte de r&eacute;ception de votre mail Conseiller num&eacute;rique France Services,
               et cliquez sur le lien de connexion &agrave; l&rsquo;espace Coop qui vous a &eacute;t&eacute; envoy&eacute;.
             </p>
           </div>
-          <div className="rf-col-3"></div>
+          <div className="fr-col-3"></div>
         </div>
         {/* Bouton webmail */}
-        <div className="rf-grid-row rf-grid-row--center rf-grid-row--middle rf-mb-9w buttonResponsive">
-          <div className="rf-col-1"></div>
-          <div className="rf-col-10" style={{ textAlign: 'center' }}>
+        <div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-mb-9w buttonResponsive">
+          <div className="fr-col-1"></div>
+          <div className="fr-col-10" style={{ textAlign: 'center' }}>
             <p>
-              <a href={process.env.REACT_APP_WEBMAIL_URL} className="rf-btn rf-text--bold big-btn finalButton" title="Acc&eacute;der au webmail">
+              <a href={process.env.REACT_APP_WEBMAIL_URL} className="fr-btn fr-text--bold big-btn finalButton" title="Acc&eacute;der au webmail">
                 Acc&eacute;der au webmail
               </a>
             </p>
           </div>
-          <div className="rf-col-1"></div>
+          <div className="fr-col-1"></div>
         </div>
         {/* Titre Coordonnées Pro */}
-        <div className="rf-grid-row rf-grid-row--center rf-grid-row--middle rf-mb-6w coordonnees">
+        <div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-mb-6w coordonnees">
           <p style={{ textAlign: 'center' }}>
             <strong style={{ fontSize: '24px' }}>Vos coordonn&eacute;es professionnelles</strong>
           </p>
         </div>
         {/* Coordonnees */}
-        <div className="rf-grid-row rf-grid-row--center rf-grid-row--middle rf-mb-6w coordonnees">
-          <div className="rf-col-3"></div>
-          <div className="rf-col-6" style={{ textAlign: 'center', color: '#BFBFE3' }}>
+        <div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-mb-6w coordonnees">
+          <div className="fr-col-3"></div>
+          <div className="fr-col-6" style={{ textAlign: 'center', color: '#BFBFE3' }}>
             <p>
               <strong>
                 <span style={{ textTransform: 'capitalize' }}>
@@ -106,10 +106,10 @@ function ValidationAccount() {
             </p>
             }
           </div>
-          <div className="rf-col-3"></div>
+          <div className="fr-col-3"></div>
         </div>
         {/* Procédure */}
-        <div className="rf-grid-row rf-grid-row--center rf-grid-row--middle rf-pb-12w modifCoordonnees">
+        <div className="fr-grid-row fr-grid-row--center fr-grid-row--middle fr-pb-12w modifCoordonnees">
           <p style={{ textAlign: 'center' }}>
             Vous pourrez modifier vos coordonn&eacute;es professionnelles plus tard.
           </p>
