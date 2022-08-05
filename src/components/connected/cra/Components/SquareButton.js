@@ -65,7 +65,7 @@ function SquareButton({ value, label, type, cra }) {
         }
         value={value}>
         <span
-          className={`rf-label squareLabel ${controlSelected === value ? 'squareRattachement-selected' : ''}`}
+          className={`fr-label squareLabel ${controlSelected === value ? 'squareRattachement-selected' : ''}`}
           value={value}>
           {label}
         </span>

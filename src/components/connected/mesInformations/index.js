@@ -26,7 +26,7 @@ function MesInformations() {
     <>
       {formSupHierarchique.isCreated &&
         <FlashMessage duration={10000}>
-          <p className="rf-label flashBag">
+          <p className="fr-label flashBag">
             Vos informations ont bien &eacute;t&eacute; enregistr&eacute;es&nbsp;
             <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
           </p>
@@ -34,7 +34,7 @@ function MesInformations() {
       }
       {formInfoPersonnel.isCreated &&
         <FlashMessage duration={10000}>
-          <p className="rf-label flashBag">
+          <p className="fr-label flashBag">
             Vos informations ont bien &eacute;t&eacute; enregistr&eacute;es&nbsp;
             <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
           </p>
@@ -42,7 +42,7 @@ function MesInformations() {
       }
       {formInfoPersonnel.showConfirmationMail &&
         <FlashMessage duration={10000}>
-          <p className="rf-label flashBag">
+          <p className="fr-label flashBag">
             Un mail de confirmation de votre nouvelle adresse mail vous a &eacute;t&eacute; envoy&eacute; pour valider votre changement
             <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
           </p>
@@ -50,7 +50,7 @@ function MesInformations() {
       }
       {formInfoPersonnel.showConfirmationMailPro &&
         <FlashMessage duration={10000}>
-          <p className="rf-label flashBag">
+          <p className="fr-label flashBag">
             Un mail de confirmation de votre nouvelle adresse mail professionnelle vous a &eacute;t&eacute; envoy&eacute; pour valider votre changement
             <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
           </p>
@@ -58,7 +58,7 @@ function MesInformations() {
       }
       {formSupHierarchique.error &&
         <FlashMessage duration={10000}>
-          <p className="rf-label flashBag invalid">
+          <p className="fr-label flashBag invalid">
             {formSupHierarchique.error}
             <i className="ri-close-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
           </p>
@@ -66,24 +66,24 @@ function MesInformations() {
       }
       {formInfoPersonnel.error &&
         <FlashMessage duration={10000}>
-          <p className="rf-label flashBag invalid">
+          <p className="fr-label flashBag invalid">
             {formInfoPersonnel.error}
             <i className="ri-close-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
           </p>
         </FlashMessage>
       }
-      <div className="mes-informations rf-mb-md-12w">
-        <div className="rf-container">
-          <div className="rf-grid-row">
-            <div className="rf-col-12">
-              <h1 className="titre rf-mt-15w rf-mb-4w rf-mb-md-4w">Mes informations personnelles et contact de mon responsable</h1>
+      <div className="mes-informations">
+        <div className="fr-container">
+          <div className="fr-grid-row">
+            <div className="fr-col-12">
+              <h1 className="titre fr-mt-15w fr-mb-4w fr-mb-md-4w">Mes informations personnelles et contact de mon responsable</h1>
             </div>
-            <div className="rf-col-12 rf-col-md-5 rf-mr-md-6w">
+            <div className="fr-col-12 fr-col-md-5 fr-mr-md-6w">
               <div>
-                <h2 className="rf-mb-md-4w sous-titre">Mes informations personnelles</h2>
+                <h2 className="fr-mb-md-4w sous-titre">Mes informations personnelles</h2>
                 <div className="contact-mail">
                   <img src="/logos/home-connected/icone-courriel.svg" />
-                  <div className="infos-user rf-mb-md-6w">
+                  <div className="infos-user fr-mb-md-6w">
                     <span>{user.name}</span>
                     <Link to={{
                       pathname: '/mot-de-passe-oublie',
@@ -98,10 +98,10 @@ function MesInformations() {
                 <FormulaireInfosPersonnelles />
               </div>
             </div>
-            <div className="rf-col-12 rf-col-md-6">
-              <div className="rf-ml-md-10w">
-                <h2 className="rf-mb-md-4w sous-titre">Contact de mon responsable</h2>
-                <p className="paragraphe rf-mb-md-3w">Ces coordonn&eacute;es pourront &ecirc;tre utilis&eacute;es pour communiquer des informations concernant
+            <div className="fr-col-12 fr-col-md-6">
+              <div className="fr-ml-md-10w">
+                <h2 className="fr-mb-md-4w sous-titre">Contact de mon responsable</h2>
+                <p className="paragraphe fr-mb-md-3w">Ces coordonn&eacute;es pourront &ecirc;tre utilis&eacute;es pour communiquer des informations concernant
                   le dispositif et l&rsquo;animation du r&eacute;seau à votre employeur (ex: invitation à des webinaires,
                   envoi de documents explicatifs, newsletter, etc.)
                 </p>

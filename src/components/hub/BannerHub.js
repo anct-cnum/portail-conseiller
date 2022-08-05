@@ -17,7 +17,7 @@ function BannerHub() {
   const exportConseiller = () => dispatch(conseillerActions.getStatistiquesHubCSV(hub));
 
   return (
-    <div className="rf-container">
+    <div className="fr-container">
       {errorCSV &&
         <FlashMessage duration={5000}>
           <p className="flashBag invalid">
@@ -34,13 +34,13 @@ function BannerHub() {
           visible={loadingCSV === true}
         />
       </div>
-      <div className="rf-grid-row rf-grid-row--right">
-        <div className="rf-col-xs-12 rf-col-md-6 'rf-mt-5w rf-mb-6w">
+      <div className="fr-grid-row fr-grid-row--right">
+        <div className="fr-col-xs-12 fr-col-md-6 'fr-mt-5w fr-mb-6w">
           <a className="statistiques_nationales-btn" href="statistiques-nationales">Statistiques Nationales</a>
-          <button className="export_conseillers-btn rf-ml-4w" onClick={exportConseiller}>Exporter les conseillers</button>
+          <button className="export_conseillers-btn fr-ml-4w" onClick={exportConseiller}>Exporter les conseillers</button>
         </div>
         <div
-          className="rf-col-xs-12 rf-mt-7w rf-col-md-6 'rf-mt-5w rf-mb-6w"
+          className="fr-col-xs-12 fr-mt-7w fr-col-md-6 'fr-mt-5w fr-mb-6w"
           style={{ textAlign: 'right' }}>
           {location.pathname !== '/territoires' &&
           <a className="header-btn" href="territoires">

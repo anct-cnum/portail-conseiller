@@ -53,7 +53,7 @@ function SmallRadioButton({ type, label, value, image, imageSelected, heightImag
             style={{ marginTop: '0.2rem', marginRight: '14px' }}
             value={value}/>
           <span
-            className={`rf-label labelSmallRadioCustom ${controlSelected === value ? 'radioRattachement-selected' : ''}`}
+            className={`fr-label labelSmallRadioCustom ${controlSelected === value ? 'radioRattachement-selected' : ''}`}
             style={{ display: 'inline-block', verticalAlign: 'bottom', lineHeight: '36px' }}
             value={value}>
             {label}

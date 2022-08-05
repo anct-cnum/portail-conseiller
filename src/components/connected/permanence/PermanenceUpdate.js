@@ -174,7 +174,7 @@ function PermanenceUpdate({ match }) {
             <Banner/>
 
             {(isCreated || isUpdated) &&
-              <p className="rf-label flashBag">
+              <p className="fr-label flashBag">
                 Votre lieu d&rsquo;activit&eacute; a bien &eacute;t&eacute;&nbsp;
                 {isCreated && <>cr&eacute;&eacute;</>}
                 {isUpdated && <>mis &agrave; jour</>},
@@ -187,7 +187,7 @@ function PermanenceUpdate({ match }) {
             }
 
             {showError &&
-              <p className="rf-label flashBag invalid">
+              <p className="fr-label flashBag invalid">
                 {showErrorMessage ?? errorUpdated ?
                   'Une erreur est survenue lors de la mise à jour de votre lieu d’activité' :
                   'Une erreur est survenue lors du traitement de vos informations'}
@@ -198,8 +198,8 @@ function PermanenceUpdate({ match }) {
             {(conseiller && maPermanence && structure) &&
               <>
                 <ContactProfessionel conseiller={conseiller} />
-                <div className="rf-container">
-                  <div className="rf-grid-row">
+                <div className="fr-container">
+                  <div className="fr-grid-row">
                     {maPermanence.lieuPrincipalPour.includes(conseiller?._id) &&
                       <Recapitulatif
                         nomStructure={structure?.nom}
@@ -207,15 +207,15 @@ function PermanenceUpdate({ match }) {
                         adresseStructure={adresseStructure}
                       />
                     }
-                    <div className="rf-col-1 col-logo">
-                      <img className="pin rf-mt-8w" src="/logos/permanences/pin.svg"/>
+                    <div className="fr-col-1 col-logo">
+                      <img className="pin fr-mt-8w" src="/logos/permanences/pin.svg"/>
                     </div>
-                    <div className="rf-col-8 ">
-                      <h2 className="sous-titre rf-mt-7w rf-mb-4w">
+                    <div className="fr-col-8 ">
+                      <h2 className="sous-titre fr-mt-7w fr-mb-4w">
                         {!estlieuPrincipal &&
                         <>
                           Lieu d&rsquo;activit&eacute; secondaire
-                          <span className="baseline rf-mt-1w">
+                          <span className="baseline fr-mt-1w">
                             Un lieu d&rsquo;activit&eacute; secondaire correspond &agrave; une permanence o&ugrave; vous avez &eacute;t&eacute;
                             d&eacute;l&eacute;gu&eacute;(e) et o&ugrave; vous exercez votre activit&eacute; de mani&egrave;re hebdomadaire.
                           </span>
@@ -224,30 +224,30 @@ function PermanenceUpdate({ match }) {
                       </h2>
                     </div>
                     {estlieuPrincipal &&
-                      <div className="rf-col-offset-1 rf-col-11">
-                        <div className="rf-col-12 rf-mb-7w">
+                      <div className="fr-col-offset-1 fr-col-11">
+                        <div className="fr-col-12 fr-mb-7w">
                           Le nom et l&rsquo;adresse de la structure d&rsquo;accueil mentionn&eacute;e ci-dessus est-elle votre&nbsp;
                           <b>lieu d&rsquo;activit&eacute; principal</b> ?&nbsp;
                           <span className="obligatoire">*</span>
-                          <fieldset className="rf-fieldset rf-fieldset--inline rf-mt-2w">
-                            <div className="rf-fieldset__content">
-                              <div className="rf-radio-group">
+                          <fieldset className="fr-fieldset fr-fieldset--inline fr-mt-2w">
+                            <div className="fr-fieldset__content">
+                              <div className="fr-radio-group">
                                 <input type="radio" id="Oui" name="principalLieuActivite" value="Oui" defaultChecked={defaultCheckedOui}
                                   required="required" onClick={() => {
                                     handleAdresse(true);
                                   }}
                                 />
-                                <label className="rf-label" htmlFor="Oui">
+                                <label className="fr-label" htmlFor="Oui">
                                   Oui
                                 </label>
                               </div>
-                              <div className="rf-radio-group">
+                              <div className="fr-radio-group">
                                 <input type="radio" id="Non" name="principalLieuActivite" value="Non" defaultChecked={defaultCheckedNon}
                                   required="required" onClick={() => {
                                     handleAdresse(false);
                                   }}
                                 />
-                                <label className="rf-label" htmlFor="Non">
+                                <label className="fr-label" htmlFor="Non">
                                   Non
                                 </label>
                               </div>
@@ -281,7 +281,7 @@ function PermanenceUpdate({ match }) {
                       prefixId={estlieuPrincipal ? 'principal_' : 'secondaire_0_' }
                       horairesId={0}
                     />
-                    <div className="rf-col-12 rf-mt-8w"></div>
+                    <div className="fr-col-12 fr-mt-8w"></div>
                     <Validation
                       conseillerId={conseiller?._id}
                       structureId={structure?._id}

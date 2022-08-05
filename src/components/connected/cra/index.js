@@ -41,28 +41,28 @@ function Cra() {
     <>
       { printFlashbag === true && activeFlashMessage === true &&
         <FlashMessage duration={5000}>
-          <p className="rf-label flashBag">
+          <p className="fr-label flashBag">
             Votre suivi d&rsquo;activit&eacute; a bien &eacute;t&eacute; enregistr&eacute;&nbsp;
             <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
           </p>
         </FlashMessage>
       }
-      <div className="rf-container cra">
-        <div className="rf-grid-row rf-grid-row--center rf-my-md-12w rf-pt-1w rf-pb-3w">
-          <div className="rf-col-12 rf-col-lg-2 centre-titre">
+      <div className="fr-container cra">
+        <div className="fr-grid-row fr-grid-row--center fr-my-md-12w fr-pt-1w fr-pb-3w">
+          <div className="fr-col-12 fr-col-lg-2 centre-titre">
             <img src="/logos/home-connected/icone-cra.svg" style={{ width: '114px', height: '78px' }} />
           </div>
-          <div className="rf-col-12 rf-col-lg-6">
+          <div className="fr-col-12 fr-col-lg-6">
             <h1 className="titre centre-titre">Mon suivi d&rsquo;activit&eacute;</h1>
           </div>
-          <div className="rf-col-12 rf-col-lg-2 url-a-propos">
+          <div className="fr-col-12 fr-col-lg-2 url-a-propos">
             {urlAPropos &&
               <a className="a-propos" href={urlAPropos} target="blank" rel="noreferrer" >&Agrave; propos<br/>
               du suivi d&rsquo;activit&eacute;
               </a>
             }
           </div>
-          <div className="rf-col-12 rf-col-md-2"></div>
+          <div className="fr-col-12 fr-col-md-2"></div>
         </div>
         <CodePostal/>
         <Canal/>

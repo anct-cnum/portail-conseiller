@@ -71,15 +71,15 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
 
   return (
     <>
-      <div className="rf-col-offset-2 rf-col-8 no-print rf-mt-md-n15w">
-        <hr className="rf-mx-5w"/>
-        <div className="rf-m-5w rf-m-md-4w rf-m-xs-to-md-7v"></div>
+      <div className="fr-col-offset-2 fr-col-8 no-print fr-mt-md-n15w">
+        <hr className="fr-mx-5w"/>
+        <div className="fr-m-5w fr-m-md-4w fr-m-xs-to-md-7v"></div>
       </div>
-      <div className="rf-col-12 no-print">
-        <div className="rf-container-fluid">
-          <div className="rf-grid-row rf-grid-row--center">
-            <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-5 rf-col-lg-4 rf-mt-5w centrerTexte">
-              <div className="rf-mb-2v">Exporter cette page</div>
+      <div className="fr-col-12 no-print">
+        <div className="fr-container-fluid">
+          <div className="fr-grid-row fr-grid-row--center">
+            <div className="fr-col-xs-6 fr-col-sm-6 fr-col-md-5 fr-col-lg-4 fr-mt-5w centrerTexte">
+              <div className="fr-mb-2v">Exporter cette page</div>
               <button className="statistiques_nationales-btn" onClick={savePDF}>Format PDF</button>
               &ensp;
               <button className="statistiques_nationales-btn" onClick={saveCSV}>Format CSV</button>
@@ -87,11 +87,11 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
           </div>
 
           { (typeTerritoire || location?.idUser) &&
-          <div className="rf-grid-row rf-grid-row--center">
-            <div className="rf-col-xs-6 rf-col-sm-6 rf-col-md-7 rf-col-lg-8 afficher-etapes">
-              <ul className="rf-footer__bottom-list liste-action">
-                <li className="rf-footer__bottom-item">
-                  <Link className="rf-footer__bottom-link rf-pr-sm-1w" style={{ boxShadow: 'none', color: '#8585F6', fontSize: '16px' }}
+          <div className="fr-grid-row fr-grid-row--center">
+            <div className="fr-col-xs-6 fr-col-sm-6 fr-col-md-7 fr-col-lg-8 afficher-etapes">
+              <ul className="fr-footer__bottom-list liste-action">
+                <li className="fr-footer__bottom-item">
+                  <Link className="fr-footer__bottom-link fr-pr-sm-1w" style={{ boxShadow: 'none', color: '#8585F6', fontSize: '16px' }}
                     to={linkTo}>
                     <img className="image-banniere" src="/logos/statistics/logo-fleche-gauche.svg" alt="Revenir &agrave;
                     l’&eacute;tape pr&eacute;c&eacute;dente"
@@ -100,7 +100,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
                   </Link>
                 </li>
               </ul>
-              <div className="rf-m-5w"></div>
+              <div className="fr-m-5w"></div>
             </div>
           </div>
           }

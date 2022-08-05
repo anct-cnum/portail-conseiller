@@ -23,7 +23,6 @@ function Conseillers() {
   let ordreNom = useSelector(state => state.filtersAndSorts?.ordreNom);
 
   let [page, setPage] = (pagination?.resetPage === false && location.currentPage !== undefined) ? useState(location.currentPage) : useState(1);
-  const [basculerFiltreProfil, setBasculerFiltreProfil] = useState(false);
   const [pageCount, setPageCount] = useState(0);
   const [refresh, setRefresh] = useState(false);
 
@@ -39,12 +38,6 @@ function Conseillers() {
     ));
   };
 
-  const filtreClick = e => {
-    if (e.target.id === 'activer') {
-      setBasculerFiltreProfil(!basculerFiltreProfil);
-    }
-    setRefresh(true);
-  };
   const ordreColonne = e => {
     dispatch(filtersAndSortsActions.changeOrdre(e.target.id));
     setRefresh(true);
@@ -52,7 +45,6 @@ function Conseillers() {
 
   const handleSortProfil = e => {
     dispatch(filtersAndSortsActions.changeProfil(e.target.id));
-    setBasculerFiltreProfil(false);
     setRefresh(true);
   };
 
@@ -78,12 +70,12 @@ function Conseillers() {
     <>
       <div className="conseillers">
         <FiltersAndSorts resetPage={setPage} user={user} />
-        <div className="rf-container rf-mt-2w">
-          <div className="rf-grid-row rf-grid-row--center">
-            <div className="rf-col-12">
-              <div className="rf-table" style={{ overflow: 'auto' }}>
+        <div className="fr-container fr-mt-2w">
+          <div className="fr-grid-row fr-grid-row--center">
+            <div className="fr-col-12">
+              <div className="fr-table" >
                 <table >
-                  <thead className="conseillers-thead">
+                  <thead className="conseillers-coordo-thead">
                     <tr>
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
@@ -111,30 +103,15 @@ function Conseillers() {
                           </span>
                         </button>
                       </th>
-                      {user.role === 'admin_coop' &&
-                        <th>
-                          <button className="filtre-btn" onClick={ordreColonne}>
-                            <span id="nomStructure">
-                              Structure
-                              {(ordreNom !== 'nomStructure' || ordreNom === 'nomStructure' && ordre) &&
-                                <i className="ri-arrow-down-s-line chevron icone"></i>
-                              }
-                              {(ordreNom === 'nomStructure' && !ordre) &&
-                                <i className="ri-arrow-up-s-line chevron icone"></i>
-                              }
-                            </span>
-                          </button>
-                        </th>
-                      }
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
                           <span id="codePostal">
-                            Code <br />Postal
+                            Code Postal
                             {(ordreNom !== 'codePostal' || ordreNom === 'codePostal' && ordre) &&
-                              <i className="ri-arrow-down-s-line chevron icone-2"></i>
+                              <i className="ri-arrow-down-s-line chevron icone"></i>
                             }
                             {(ordreNom === 'codePostal' && !ordre) &&
-                              <i className="ri-arrow-up-s-line chevron icone-2"></i>
+                              <i className="ri-arrow-up-s-line chevron icone"></i>
                             }
                           </span>
                         </button>
@@ -142,67 +119,57 @@ function Conseillers() {
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
                           <span id="datePrisePoste">
-                            Date de <br />recrutement
+                            Date de recrutement
                             {(ordreNom !== 'datePrisePoste' || ordreNom === 'datePrisePoste' && ordre) &&
-                              <i className="ri-arrow-down-s-line chevron icone-2"></i>
+                              <i className="ri-arrow-down-s-line chevron icone"></i>
                             }
                             {(ordreNom === 'datePrisePoste' && !ordre) &&
-                              <i className="ri-arrow-up-s-line chevron icone-2"></i>
+                              <i className="ri-arrow-up-s-line chevron icone"></i>
                             }
                           </span>
                         </button>
                       </th>
-                      <th>
-                        <button className="filtre-btn" onClick={ordreColonne} style={{ width: '104px' }}>
+                      <th style={{ 'width': '257px' }}>
+                        <button className="filtre-btn" onClick={ordreColonne}>
                           <span id="dateFinFormation">
-                            Date de fin <br /> de formation
+                            Date de fin de formation
                             {(ordreNom !== 'dateFinFormation' || ordreNom === 'dateFinFormation' && ordre) &&
-                              <i className="ri-arrow-down-s-line chevron icone-2"></i>
+                              <i className="ri-arrow-down-s-line chevron icone"></i>
                             }
                             {(ordreNom === 'dateFinFormation' && !ordre) &&
-                              <i className="ri-arrow-up-s-line chevron icone-2"></i>
+                              <i className="ri-arrow-up-s-line chevron icone"></i>
                             }
                           </span>
                         </button>
                       </th>
                       <th>
-                        <nav className="rf-nav" id="navigation-sort-profil" role="navigation">
-                          <ul className="rf-nav__list">
-                            <li className={conseillers?.items?.data.length <= 2 ? 'no-result rf-nav__item' : 'rf-nav__item'}>
-                              <span >
-                                <button className="rf-nav__btn admin-select" aria-expanded={basculerFiltreProfil}
-                                  aria-controls="menu-userActive" aria-current="true" id="activer" onClick={filtreClick}>
-                                  Activ&eacute;
-                                  {basculerFiltreProfil &&
-                                    <i className="ri-arrow-up-s-line chevron icone"></i>
-                                  }
-                                  {!basculerFiltreProfil &&
-                                    <i className="ri-arrow-down-s-line chevron icone"></i>
-                                  }
-                                </button>
-                                <div className={basculerFiltreProfil === true ? 'rf-collapse--expanded rf-menu' : 'rf-collapse rf-nav--expanded rf-menu'}
-                                  id="menu-userActive">
-                                  <ul className="rf-menu__list">
-                                    <li className={filtreProfil === 'tous' ? 'selected' : ''}>
-                                      <button id="tous" className="admin-select-option border-no-result" onClick={handleSortProfil}>
-                                        Afficher tout
-                                      </button>
-                                      <hr className="admin-select-hr" />
-                                    </li>
-                                    <li className={filtreProfil === 'active' ? 'selected' : ''}>
-                                      <button id="active" className="admin-select-option border-no-result" onClick={handleSortProfil}>
-                                        Profils activ&eacute;s uniquement
-                                      </button>
-                                      <hr className="admin-select-hr" />
-                                    </li>
-                                    <li className={filtreProfil === 'inactive' ? 'selected' : ''}>
-                                      <button id="inactive" className="admin-select-option" onClick={handleSortProfil}>
-                                        Profils non-activ&eacute;s uniquement
-                                      </button>
-                                    </li>
-                                  </ul>
-                                </div>
-                              </span>
+                        <nav className="fr-nav" role="navigation" aria-label="Menu principal">
+                          <ul className="fr-nav__list">
+                            <li className="fr-nav__item">
+                              <button className="fr-nav__btn" aria-expanded="false" aria-controls="menu-userActive" aria-current="true">
+                                Activ&eacute;
+                              </button>
+                              <div className="fr-collapse fr-menu" id="menu-userActive">
+                                <ul className="fr-menu__list">
+                                  <li className={filtreProfil === 'tous' ? 'selected' : ''}>
+                                    <button id="tous" className="admin-select-option border-no-result" onClick={handleSortProfil}>
+                                      Afficher tout
+                                    </button>
+                                    <hr className="admin-select-hr" />
+                                  </li>
+                                  <li className={filtreProfil === 'active' ? 'selected' : ''}>
+                                    <button id="active" className="admin-select-option border-no-result" onClick={handleSortProfil}>
+                                      Profils activ&eacute;s uniquement
+                                    </button>
+                                    <hr className="admin-select-hr" />
+                                  </li>
+                                  <li className={filtreProfil === 'inactive' ? 'selected' : ''}>
+                                    <button id="inactive" className="admin-select-option" onClick={handleSortProfil}>
+                                      Profils non-activ&eacute;s uniquement
+                                    </button>
+                                  </li>
+                                </ul>
+                              </div>
                             </li>
                           </ul>
                         </nav>
@@ -213,12 +180,12 @@ function Conseillers() {
                   </thead>
                   <tbody>
                     {!conseillers?.error && !conseillers?.loading && conseillers?.data && conseillers?.data.map((conseiller, idx) => {
-                      return (<Conseiller key={idx} conseiller={conseiller} currentPage={page} trClass={idx % 2 === 0 ? 'pair' : 'impair'} role={user.role} />);
+                      return (<Conseiller key={idx} conseiller={conseiller} currentPage={page} role={user.role} />);
                     })
                     }
                     {(conseillers?.data.length === 0 || !conseillers?.data) &&
                       <tr>
-                        <td colSpan="8" className="not-found pair">Aucun conseiller trouv&eacute;</td>
+                        <td colSpan="8" className="not-found">Aucun conseiller trouv&eacute;</td>
                       </tr>
                     }
                   </tbody>

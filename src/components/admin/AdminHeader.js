@@ -26,24 +26,24 @@ function AdminHeader({ role, linkAccount }) {
 
   return (
     <>
-      <div className="rf-container">
+      <div className="fr-container fr-mt-1w">
         {errorCSV &&
           <FlashMessage duration={5000}>
             <p className="flashBag invalid">Aucun conseillers n&rsquo;est actuellement à M+2</p>
           </FlashMessage>
         }
-        <div className="rf-grid-row rf-grid-row--right">
-          <div className={`rf-col-xs-12 rf-col-md-4 ${role !== 'admin_coop' ? 'rf-mt-5w rf-mb-6w' : ''}`}>
+        <div className="fr-grid-row fr-grid-row--right">
+          <div className={`fr-col-xs-12 fr-col-md-4 ${role !== 'admin_coop' ? 'fr-mt-5w fr-mb-6w' : ''}`}>
             <a className="statistiques_nationales-btn" href="statistiques-nationales">Statistiques Nationales</a>
             { role === 'structure_coop' &&
-              <a className="mes_statistiques-btn rf-ml-4w" href="mes-statistiques">Mes statistiques</a>
+              <a className="mes_statistiques-btn fr-ml-4w" href="mes-statistiques">Mes statistiques</a>
             }
             { role === 'admin_coop' &&
-              <button className="export_cnfs_without_cra-btn rf-ml-2w" onClick={exportDonneesCnfsWithoutCRA}>Export CnFS 0 CRA M+2</button>
+              <button className="export_cnfs_without_cra-btn fr-ml-2w" onClick={exportDonneesCnfsWithoutCRA}>Export CnFS 0 CRA M+2</button>
             }
           </div>
           <div
-            className={`'rf-col-xs-12 rf-mt-7w rf-col-md-8 ${role !== 'admin_coop' ? 'rf-mt-5w rf-mb-6w' : 'rf-mt-md-1w'}`}
+            className={`'fr-col-xs-12 fr-mt-7w fr-col-md-8 ${role !== 'admin_coop' ? 'fr-mt-5w fr-mb-6w' : 'fr-mt-md-1w'}`}
             style={{ textAlign: 'right' }}>
             {(location.pathname === '/territoires') &&
             <a className="header-btn" href="accueil">
@@ -71,9 +71,9 @@ function AdminHeader({ role, linkAccount }) {
         </div>
       </div>
       { role === 'admin_coop' &&
-        <div className="band-stats-header rf-mt-5w rf-mb-6w">
-          <div className="rf-container ">
-            <div className="rf-grid-row rf-grid-row--top">
+        <div className="band-stats-header fr-mt-5w fr-mb-6w">
+          <div className="fr-container ">
+            <div className="fr-grid-row fr-grid-row--top">
               {!statsTerritoiresError &&
               <>
                 <ul className="dashboard">
@@ -110,7 +110,7 @@ function AdminHeader({ role, linkAccount }) {
               }
               {statsTerritoiresError &&
               <>
-                <div className="rf-col-12" style={{ textAlign: 'center' }}><h3>Les statistiques sont indisponibles pour le moment...</h3></div>
+                <div className="fr-col-12" style={{ textAlign: 'center' }}><h3>Les statistiques sont indisponibles pour le moment...</h3></div>
               </>
               }
             </div>

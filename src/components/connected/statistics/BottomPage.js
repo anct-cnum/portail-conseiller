@@ -106,7 +106,7 @@ function BottomPage({ donneesStats, print, type }) {
       couleursGraphique: tabColorAge
     },
     titre: {
-      optionTitre: '&Eacute;volution des accompagnements',
+      optionTitre: '&Eacute;volution des comptes rendus d&rsquo;activit&eacute;',
       margeTitre: 48,
     }
   };
@@ -122,7 +122,7 @@ function BottomPage({ donneesStats, print, type }) {
       couleursGraphique: tabColorAge
     },
     titre: {
-      optionTitre: '&Eacute;volution des accompagnements',
+      optionTitre: '&Eacute;volution des comptes rendus d&rsquo;activit&eacute',
       margeTitre: 48,
       placementTitre: 10,
     }
@@ -139,7 +139,7 @@ function BottomPage({ donneesStats, print, type }) {
       couleursGraphique: tabColorAge
     },
     titre: {
-      optionTitre: 'Tranches d\'âge des usagers',
+      optionTitre: 'Tranches d&rsquo;&acirc;ge des usagers',
       margeTitre: 34,
     }
   };
@@ -193,11 +193,11 @@ function BottomPage({ donneesStats, print, type }) {
   };
 
   return (
-    <div className="rf-col-12">
-      <div className="rf-grid-row">
+    <div className="fr-col-12">
+      <div className="fr-grid-row">
 
-        <div className="rf-col-12 rf-col-md-5 rf-col-lg-3 evolution-print">
-          <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v no-print"><hr/></div>
+        <div className="fr-col-12 fr-col-md-5 fr-col-lg-3 evolution-print">
+          <div className="fr-mt-6w fr-mb-5w fr-m-xs-to-md-7v no-print"><hr/></div>
           <span className="graphique-responsive-md-lg ">
             <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolution} print={print}/>
           </span>
@@ -206,34 +206,34 @@ function BottomPage({ donneesStats, print, type }) {
           </span>
         </div>
 
-        <div className="rf-col-offset-12 rf-col-offset-md-1"></div>
+        <div className="fr-col-offset-12 fr-col-offset-md-1"></div>
 
-        <div className="rf-col-12 rf-col-md-5 rf-col-lg-3 age-print">
-          <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v"><hr className="no-print"/></div>
+        <div className="fr-col-12 fr-col-md-5 fr-col-lg-3 age-print">
+          <div className="fr-mt-6w fr-mb-5w fr-m-xs-to-md-7v"><hr className="no-print"/></div>
           <ElementHighcharts donneesStats={statsAges} variablesGraphique={graphiqueAge} print={print}/>
         </div>
 
-        <div className="rf-col-12 rf-col-md-5 graphique-responsive-md no-print">
+        <div className="fr-col-12 fr-col-md-5 graphique-responsive-md no-print">
           {statsReorientations?.length > 0 &&
             <>
-              <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v"><hr/></div>
+              <div className="fr-mt-6w fr-mb-5w fr-m-xs-to-md-7v"><hr/></div>
               <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientationsSM} print={print}/>
             </>
           }
         </div>
 
-        <div className="rf-col-offset-md-1 rf-col-12 rf-col-md-5 rf-col-lg-3 statut-print">
-          <div className="rf-mt-6w rf-mb-5w rf-m-xs-to-md-7v no-print"><hr/></div>
+        <div className="fr-col-offset-md-1 fr-col-12 fr-col-md-5 fr-col-lg-3 statut-print">
+          <div className="fr-mt-6w fr-mb-5w fr-m-xs-to-md-7v no-print"><hr/></div>
           <ElementHighcharts donneesStats={statsUsagers} variablesGraphique={graphiqueStatut} print={print}/>
         </div>
-        <div className={type === 'conseiller' ? 'rf-col-12 rf-col-offset-md-4 rf-col-md-8 graphique-responsive-lg reorientation-print-conseiller' :
-          'rf-col-12 rf-col-offset-md-4 rf-col-md-8 graphique-responsive-lg reorientation-print'}
+        <div className={type === 'conseiller' ? 'fr-col-12 fr-col-offset-md-4 fr-col-md-8 graphique-responsive-lg reorientation-print-conseiller' :
+          'fr-col-12 fr-col-offset-md-4 fr-col-md-8 graphique-responsive-lg reorientation-print'}
         >
-          <div className="rf-mt-6w"></div>
+          <div className="fr-mt-6w"></div>
           {statsReorientations?.length > 0 &&
             <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientations} listeAutres={listeAutres} print={print}/>
           }
-          <div className="rf-m-no-reorientation"></div>
+          <div className="fr-m-no-reorientation"></div>
         </div>
 
       </div>

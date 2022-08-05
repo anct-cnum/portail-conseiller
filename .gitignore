@@ -17,6 +17,9 @@
 /public/js
 /public/index.html
 
+# cache files
+/public/logos/leaflet
+
 # misc
 /.idea
 .DS_Store

@@ -39,7 +39,7 @@ function BigCheckboxButton({ type, label, value, image, imageSelected, heightIma
             style={{ margin: '24px' }}
             value={value}/>
           <span
-            className={`rf-label labelCheckboxCustom ${controlSelected?.includes(value) ? 'checkboxRattachement-selected' : ''}`}
+            className={`fr-label labelCheckboxCustom ${controlSelected?.includes(value) ? 'checkboxRattachement-selected' : ''}`}
             value={value}>
             {label}
             {baseline &&

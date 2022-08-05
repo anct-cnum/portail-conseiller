@@ -25,45 +25,45 @@ function MenuAdmin() {
 
   return (
     <div className="Menu">
-      <div className="rf-grid-row rf-grid-row--center">
-        <nav className={`rf-nav ${!menu.hiddenMenu && menu.expandNav ? 'rf-header__popin rf-header__popin--expanded' : ''}`}
+      <div className="fr-grid-row fr-grid-row--center">
+        <nav className={`fr-nav ${!menu.hiddenMenu && menu.expandNav ? 'fr-header__popin fr-header__popin--expanded' : ''}`}
           id="navigation"
           role="navigation"
           aria-label="Menu principal"
           style={{ boxShadow: 'none', zIndex: 1 }}>
-          <ul className="rf-nav__list" style={{ paddingBottom: '15px' }}>
+          <ul className="fr-nav__list" style={{ paddingBottom: '15px' }}>
             {!menu.hiddenMenu && menu.expandNav &&
             <>
-              <li className="rf-shortcuts__item">
+              <li className="fr-shortcuts__item">
                 <Link
-                  className={`rf-nav__link linkCustom ${location.pathname === '/accueil' ? 'linkActive' : ''}`}
+                  className={`fr-nav__link linkCustom ${location.pathname === '/accueil' ? 'linkActive' : ''}`}
                   to="/accueil"
                   title="Liste des conseillers"
                   onClick={toggleBurgerMenu}>
                     Liste des conseillers
                 </Link>
               </li>
-              <li className="rf-shortcuts__item">
+              <li className="fr-shortcuts__item">
                 <Link
-                  className={`rf-nav__link linkCustom ${location.pathname === '/statistiques-nationales' ? 'linkActive' : ''}`}
+                  className={`fr-nav__link linkCustom ${location.pathname === '/statistiques-nationales' ? 'linkActive' : ''}`}
                   to="/statistiques-nationales"
                   title="Statistiques nationales"
                   onClick={toggleBurgerMenu}>
                     Statistiques nationales
                 </Link>
               </li>
-              <li className="rf-shortcuts__item">
+              <li className="fr-shortcuts__item">
                 <Link
-                  className={`rf-nav__link linkCustom ${location.pathname === '/territoires' ? 'linkActive' : ''}`}
+                  className={`fr-nav__link linkCustom ${location.pathname === '/territoires' ? 'linkActive' : ''}`}
                   to="/territoires"
                   title="Statistiques par territoire"
                   onClick={toggleBurgerMenu}>
                     Statistiques par territoire
                 </Link>
               </li>
-              <li className="rf-shortcuts__item">
+              <li className="fr-shortcuts__item">
                 <Link
-                  className={`rf-nav__link linkCustom ${location.pathname === '/a-propos' ? 'linkActive' : ''}`}
+                  className={`fr-nav__link linkCustom ${location.pathname === '/a-propos' ? 'linkActive' : ''}`}
                   to="/a-propos"
                   title="&Agrave; propos du site"
                   onClick={toggleBurgerMenu}>
@@ -72,37 +72,37 @@ function MenuAdmin() {
               </li>
               { role === 'admin_coop' &&
               <>
-                <li className="rf-shortcuts__item">
-                  <a className="rf-nav__link linkCustom" href={lienLaBase} target="blank" rel="noreferrer">
+                <li className="fr-shortcuts__item">
+                  <a className="fr-nav__link linkCustom" href={lienLaBase} target="blank" rel="noreferrer">
                     Ressourcerie
                   </a>
                 </li>
-                <li className="rf-shortcuts__item">
-                  <a className="rf-nav__link linkCustom" href={lienMattermost} target="blank" rel="noreferrer">
+                <li className="fr-shortcuts__item">
+                  <a className="fr-nav__link linkCustom" href={lienMattermost} target="blank" rel="noreferrer">
                     Espace de discussion
                   </a>
                 </li>
-                <li className="rf-shortcuts__item">
-                  <a className="rf-nav__link linkCustom" href={aideCoop} target="blank" rel="noreferrer">
+                <li className="fr-shortcuts__item">
+                  <a className="fr-nav__link linkCustom" href={aideCoop} target="blank" rel="noreferrer">
                     Aide espace Coop
                   </a>
                 </li>
-                <li className="rf-shortcuts__item">
-                  <a className="rf-nav__link linkCustom" href={aideMetier} target="blank" rel="noreferrer">
+                <li className="fr-shortcuts__item">
+                  <a className="fr-nav__link linkCustom" href={aideMetier} target="blank" rel="noreferrer">
                     Aide m&eacute;tier
                   </a>
                 </li>
               </>
               }
               {role === 'structure_coop' &&
-                <li className="rf-shortcuts__item">
-                  <a className="rf-nav__link linkCustom" href={aideStructure} target="blank" rel="noreferrer">
+                <li className="fr-shortcuts__item">
+                  <a className="fr-nav__link linkCustom" href={aideStructure} target="blank" rel="noreferrer">
                     Aide espace Coop
                   </a>
                 </li>
               }
-              <li className="rf-shortcuts__item">
-                <Link className="rf-btn rf-btn--sm" to="/login?role=admin" title="Se d&eacute;connecter" onClick={toggleBurgerMenu}>
+              <li className="fr-shortcuts__item">
+                <Link className="fr-btn fr-btn--sm" to="/login?role=admin" title="Se d&eacute;connecter" onClick={toggleBurgerMenu}>
                   Se d&eacute;connecter
                 </Link>
               </li>
@@ -110,7 +110,7 @@ function MenuAdmin() {
             }
           </ul>
           { !menu.hiddenMenu && menu.expandNav &&
-            <button className="rf-btn rf-fi-close-line rf-btn--icon-right rf-btn--sm"
+            <button className="fr-btn fr-fi-close-line fr-btn--icon-right fr-btn--sm"
               title="Fermer"
               aria-controls="header-nav-popin"
               onClick={toggleBurgerMenu}>

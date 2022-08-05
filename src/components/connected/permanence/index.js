@@ -75,7 +75,7 @@ function Permanence() {
             <Banner />
 
             {showError &&
-              <p className="rf-label flashBag invalid">
+              <p className="fr-label flashBag invalid">
                 {showErrorMessage &&
                   showErrorMessage
                 }
@@ -86,27 +86,27 @@ function Permanence() {
             }
 
             {isDeleted &&
-              <p className="rf-label flashBag">
+              <p className="fr-label flashBag">
                 Le lieu d&rsquo;activit&eacute; &agrave; bien &eacute;t&eacute; supprim&eacute;.
               </p>
             }
 
             {isConseillerDeleted &&
-              <p className="rf-label flashBag">
+              <p className="fr-label flashBag">
                 Vous avez bien &eacute;t&eacute; retir&eacute; du lieu d&rsquo;activit&eacute;.
               </p>
             }
 
             {isAllUpdated &&
-              <p className="rf-label flashBag">
+              <p className="fr-label flashBag">
                 Vos lieux d&rsquo;activit&eacute; ont bien &eacute;t&eacute; mis &agrave; jour.
               </p>
             }
 
             <ContactProfessionel conseiller={conseiller} />
 
-            <div className="rf-container">
-              <div className="rf-grid-row">
+            <div className="fr-container">
+              <div className="fr-grid-row">
                 <PermanencePrincipale structure={structure} conseillerId={conseiller?._id} isUpdate={conseiller?.hasPermanence}/>
               </div>
             </div>
@@ -116,8 +116,8 @@ function Permanence() {
               isUpdate={location.pathname === '/lieux-activite'}
             />
 
-            <div className="rf-container">
-              <div className="rf-grid-row">
+            <div className="fr-container">
+              <div className="fr-grid-row">
                 <Validation conseillerId={conseiller?._id} structureId={structure?._id}
                   isUpdate={conseiller?.hasPermanence} permanences={listPermanences}/>
               </div>
@@ -128,10 +128,10 @@ function Permanence() {
           (location.pathname !== '/lieux-activite' && conseiller?.hasPermanence)) &&
           <div id="formulaire-horaires-adresse" >
             <Banner />
-            <div className="rf-container">
-              <div className="rf-grid-row">
-                <div className="rf-col-12 rf-ml-12w">
-                  <h2 className="titre-acces rf-my-9w ">Vous n&rsquo;avez pas acc&egrave;s &agrave; ce formulaire pour le moment !</h2>
+            <div className="fr-container">
+              <div className="fr-grid-row">
+                <div className="fr-col-12 fr-ml-12w">
+                  <h2 className="titre-acces fr-my-9w ">Vous n&rsquo;avez pas acc&egrave;s &agrave; ce formulaire pour le moment !</h2>
                 </div>
               </div>
             </div>

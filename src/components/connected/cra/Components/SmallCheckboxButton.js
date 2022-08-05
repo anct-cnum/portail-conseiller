@@ -34,7 +34,7 @@ function SmallCheckboxButton({ type, label, value }) {
         style={{ height: '73px' }}
         value={value}>
         <span
-          className={`rf-label labelCheckboxCustom ${controlSelected?.includes(value) ? 'checkboxRattachement-selected' : ''}`}
+          className={`fr-label labelCheckboxCustom ${controlSelected?.includes(value) ? 'checkboxRattachement-selected' : ''}`}
           style={{ textAlign: 'center' }}
           value={value}>
           {label}

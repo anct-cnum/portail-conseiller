@@ -96,14 +96,14 @@ function Horaires({ prefixId, horairesId }) {
     <>
       {horaires[prefixId + 'horaires'] &&
         <>
-          <div className="rf-col-offset-1 rf-col-11 rf-mb-4w">Horaires de la structure&nbsp;<span className="obligatoire">*</span></div>
-          <div className="rf-col-offset-1 rf-col-11">
+          <div className="fr-col-offset-1 fr-col-11 fr-mb-4w">Horaires de la structure&nbsp;<span className="obligatoire">*</span></div>
+          <div className="fr-col-offset-1 fr-col-11">
             <table>
               <thead>
                 <tr>
                   <th></th>
-                  <th><div className="rf-mx-md-2w jour">Matin (06:00 - 13:00)</div></th>
-                  <th><div className="rf-mx-md-2w jour">Apr&egrave;s-midi (13:00 - 22:00)</div></th>
+                  <th><div className="fr-mx-md-2w jour">Matin (06:00 - 13:00)</div></th>
+                  <th><div className="fr-mx-md-2w jour">Apr&egrave;s-midi (13:00 - 22:00)</div></th>
                 </tr>
               </thead>
               {jourSemaine.map((jour, idx) => {
@@ -126,13 +126,13 @@ function Horaires({ prefixId, horairesId }) {
                               required name={prefixId + jour + 'MatinFin'} min="06:00" max="13:00" onChange={e => {
                                 handleChange(e, idx, 'matin', 1);
                               }}/>
-                            <button className="fermeture-btn rf-mb-md-1w" onClick={() => {
+                            <button className="fermeture-btn fr-mb-md-1w" onClick={() => {
                               onCLickFermeture(idx, 0);
                             }}>Fermé ?</button>
                           </>
                         }
                         {horaires[prefixId + 'horaires'][idx]?.fermeture[0] &&
-                          <div className="horaires-fermeture rf-mb-md-1w" onClick={() => {
+                          <div className="horaires-fermeture fr-mb-md-1w" onClick={() => {
                             onCLick(idx, 0);
                           }} >Fermé</div>
                         }
@@ -150,13 +150,13 @@ function Horaires({ prefixId, horairesId }) {
                               required name={prefixId + jour + 'ApresMidiFin'} min="13:00" max="22:00" onChange={e => {
                                 handleChange(e, idx, 'apresMidi', 1);
                               }}/>
-                            <button className="fermeture-btn rf-mb-md-1w" onClick={() => {
+                            <button className="fermeture-btn fr-mb-md-1w" onClick={() => {
                               onCLickFermeture(idx, 1);
                             }}>Fermé ?</button>
                           </>
                         }{horaires[prefixId + 'horaires'][idx]?.fermeture[1]}
                         {horaires[prefixId + 'horaires'][idx]?.fermeture[1] &&
-                          <div className="horaires-fermeture rf-mb-md-1w" onClick={() => {
+                          <div className="horaires-fermeture fr-mb-md-1w" onClick={() => {
                             onCLick(idx, 1);
                           }} >Fermé</div>
                         }
@@ -166,7 +166,7 @@ function Horaires({ prefixId, horairesId }) {
                       { erreursHoraires?.includes(idx) &&
                       <>
                         <td></td>
-                        <td colSpan={2}><p className="text-error rf-mb-1w">Il y a une incohérence sur les heures saisies</p></td>
+                        <td colSpan={2}><p className="text-error fr-mb-1w">Il y a une incohérence sur les heures saisies</p></td>
                       </>
                       }
                     </tr>

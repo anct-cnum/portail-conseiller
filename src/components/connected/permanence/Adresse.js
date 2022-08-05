@@ -44,7 +44,7 @@ function Adresse({ codeDepartement, prefixId, isUpdate }) {
         <>
           {!fields?.filter(field => field.name === String(prefixId) + 'checkboxSiret')[0]?.value &&
             <>
-              <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
+              <div className="fr-col-offset-1 fr-col-11 fr-col-sm-7 fr-col-md-5 fr-mb-6w">
                 <InputText
                   textLabel="Num&eacute;ro de Siret"
                   errorInput={erreurSiret}
@@ -61,7 +61,7 @@ function Adresse({ codeDepartement, prefixId, isUpdate }) {
               </div>
             </>
           }
-          <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-10 rf-mb-6w">
+          <div className="fr-col-offset-1 fr-col-11 fr-col-sm-7 fr-col-md-10 fr-mb-6w">
             <InputCheckbox
               textLabel="La structure n&rsquo;a pas de num&eacute;ro de Siret"
               errorInput={null}
@@ -78,7 +78,7 @@ function Adresse({ codeDepartement, prefixId, isUpdate }) {
       {(prefixId !== 'principal_' ||
       (prefixId === 'principal_' && fields?.filter(field => field.name === 'estStructure')[0]?.value === false)) &&
         <>
-          <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
+          <div className="fr-col-offset-1 fr-col-11 fr-col-sm-7 fr-col-md-5 fr-mb-6w">
             <InputText disabled={estDisabled}
               textLabel={ prefixId === 'principal_' ? <Fragment>Nom de votre lieu d&rsquo;activit&eacute; principal</Fragment> :
                 <Fragment>Nom de votre lieu d&rsquo;activit&eacute;</Fragment> }
@@ -90,12 +90,12 @@ function Adresse({ codeDepartement, prefixId, isUpdate }) {
             />
           </div>
 
-          <div className="rf-col-5"></div>
+          <div className="fr-col-5"></div>
         </>
       }
 
       {prefixId !== 'principal_' &&
-        <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-10 rf-mb-6w">
+        <div className="fr-col-offset-1 fr-col-11 fr-col-sm-7 fr-col-md-10 fr-mb-6w">
           <InputCheckbox
             textLabel="Lieu d&rsquo;activit&eacute; itin&eacute;rant (exemple&nbsp;: bus)"
             errorInput={null}
@@ -106,40 +106,40 @@ function Adresse({ codeDepartement, prefixId, isUpdate }) {
         </div>
       }
 
-      <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5">
+      <div className="fr-col-offset-1 fr-col-11 fr-col-sm-7 fr-col-md-5">
         <InputText disabled={estDisabled}
           textLabel="Num&eacute;ro de voie"
           errorInput={erreurNumeroVoie}
           nameInput= {prefixId + 'numeroVoie'}
           requiredInput={false}
           valueInput={fields?.filter(field => field.name === prefixId + 'numeroVoie')[0]?.value ?? ''}
-          classInput="rf-mb-6w"
+          classInput="fr-mb-6w"
         />
       </div>
 
-      <div className="rf-col-4"></div>
+      <div className="fr-col-4"></div>
 
-      <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5">
+      <div className="fr-col-offset-1 fr-col-11 fr-col-sm-7 fr-col-md-5">
         <InputText disabled={estDisabled}
           textLabel="Voie"
           errorInput={erreurRueVoie}
           nameInput= {prefixId + 'rueVoie'}
           requiredInput={true}
           valueInput={fields?.filter(field => field.name === prefixId + 'rueVoie')[0]?.value ?? ''}
-          classInput="rf-mb-6w"
+          classInput="fr-mb-6w"
         />
       </div>
 
-      <div className="rf-col-4"></div>
+      <div className="fr-col-4"></div>
 
-      <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5">
+      <div className="fr-col-offset-1 fr-col-11 fr-col-sm-7 fr-col-md-5">
         <InputText disabled={estDisabled}
           textLabel="Code postal"
           errorInput={erreurcodePostal}
           nameInput= {prefixId + 'codePostal'}
           requiredInput={true}
           valueInput={fields?.filter(field => field.name === prefixId + 'codePostal')[0]?.value ?? ''}
-          classInput="rf-mb-6w"
+          classInput="fr-mb-6w"
         />
 
         <InputText disabled={estDisabled}
@@ -148,7 +148,7 @@ function Adresse({ codeDepartement, prefixId, isUpdate }) {
           nameInput= {prefixId + 'ville'}
           requiredInput={true}
           valueInput={fields?.filter(field => field.name === prefixId + 'ville')[0]?.value ?? ''}
-          classInput="rf-mb-6w"
+          classInput="fr-mb-6w"
         />
 
         <div>
@@ -163,9 +163,9 @@ function Adresse({ codeDepartement, prefixId, isUpdate }) {
         </div>
       </div>
 
-      <div className="rf-col-sm-12 rf-col-md-4"><CarteAdresse prefixId={prefixId} /></div>
+      <div className="fr-col-sm-12 fr-col-md-4"><CarteAdresse prefixId={prefixId} /></div>
 
-      <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
+      <div className="fr-col-offset-1 fr-col-11 fr-col-sm-7 fr-col-md-5 fr-mb-6w">
         <InputText
           textLabel="T&eacute;l&eacute;phone de la structure"
           errorInput={erreurNumeroTelephone}
@@ -176,9 +176,9 @@ function Adresse({ codeDepartement, prefixId, isUpdate }) {
           indicatif={indicatif}
         />
       </div>
-      <div className="rf-col-4"></div>
+      <div className="fr-col-4"></div>
 
-      <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
+      <div className="fr-col-offset-1 fr-col-11 fr-col-sm-7 fr-col-md-5 fr-mb-6w">
         <InputText
           textLabel="Mail de la structure"
           errorInput={erreurEmail}
@@ -187,9 +187,9 @@ function Adresse({ codeDepartement, prefixId, isUpdate }) {
           valueInput={fields?.filter(field => field.name === prefixId + 'email')[0]?.value ?? ''}
         />
       </div>
-      <div className="rf-col-4"></div>
+      <div className="fr-col-4"></div>
 
-      <div className="rf-col-offset-1 rf-col-11 rf-col-sm-7 rf-col-md-5 rf-mb-6w">
+      <div className="fr-col-offset-1 fr-col-11 fr-col-sm-7 fr-col-md-5 fr-mb-6w">
         <InputText
           textLabel="Site web de la structure"
           errorInput={erreurSiteWeb}
@@ -198,7 +198,7 @@ function Adresse({ codeDepartement, prefixId, isUpdate }) {
           valueInput={fields?.filter(field => field.name === prefixId + 'siteWeb')[0]?.value ?? ''}
         />
       </div>
-      <div className="rf-col-4"></div>
+      <div className="fr-col-4"></div>
 
     </>
   );
