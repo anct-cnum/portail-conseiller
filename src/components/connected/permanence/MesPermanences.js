@@ -121,7 +121,9 @@ function MesPermanences() {
             <Permanence/>
           </div>
         }
-        <Footer type="support"/>
+        { (location.pathname !== '/mes-lieux-activite' && conseiller?.hasPermanence) &&
+          <Footer type="support"/>
+        }
       </>
       }
     </>
