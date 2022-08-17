@@ -11,6 +11,7 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
   const fields = useSelector(state => state.permanence?.fields);
   const errorsForm = useSelector(state => state.permanence?.errorsFormulaire);
   const prefixId = useSelector(state => state.permanence?.prefixIdLieuEnregistrable);
+  // console.log(':::', prefixId, fields.filter(field => field.name === prefixId + 'nomEnseigne')[0]?.value);
 
   const [clickSubmit, setClickSubmit] = useState(false);
   const [redirection, setRedirection] = useState(redirectionValidation !== null ? redirectionValidation : '/accueil');
@@ -84,12 +85,12 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
       const findIndicatif = telephoneHorsMetropole.find(r => r.codeDepartement === codeDepartement);
       const condition = value => (value && !['+33', '+26', '+59'].includes(value.substr(0, 3))) ?
         `${findIndicatif?.indicatif ?? '+33'}${value.substr(1)}` : value;
-        nouveauLieu.telephonePro = nouveauLieu.telephonePro ? condition(nouveauLieu.telephonePro) : '';
-        if (nouveauLieu.telephonePro.length < 12) {
-          nouveauLieu.telephonePro = null;
-        } else {
-          nouveauLieu.telephonePro = nouveauLieu.telephonePro.trim();
-        }
+      nouveauLieu.telephonePro = nouveauLieu.telephonePro ? condition(nouveauLieu.telephonePro) : '';
+      if (nouveauLieu.telephonePro.length < 12) {
+        nouveauLieu.telephonePro = null;
+      } else {
+        nouveauLieu.telephonePro = nouveauLieu.telephonePro.trim();
+      }
       if (nouveauLieu._id !== null && nouveauLieu._id !== 'nouveau') {
         dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, true, null, redirection));
       } else if (prefixId) {

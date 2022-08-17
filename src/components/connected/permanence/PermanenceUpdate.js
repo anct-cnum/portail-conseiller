@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import horairesInitiales from '../../../data/horairesInitiales.json';
-import { permanenceActions } from '../../../actions';
-import { history } from '../../../helpers';
+import { permanenceActions, conseillerActions } from '../../../actions';
+import { userEntityId, history } from '../../../helpers';
 
 import Banner from './Banner';
 import Recapitulatif from './Recapitulatif';
@@ -106,13 +106,16 @@ function PermanenceUpdate({ match }) {
     }
   }
 
-  useEffect(() => {
+  useEffect(async () => {
     if (structure) {
       dispatch(permanenceActions.getListePermanences(structure._id));
     }
     if (!maPermanence) {
       dispatch(permanenceActions.getMaPermanence(idPermanence));
     } else if (conseiller) {
+      if ((maPermanence?._id !== idPermanence)) {
+        await dispatch(permanenceActions.getMaPermanence(idPermanence));
+      }
       setEstLieuPrincipal(maPermanence.lieuPrincipalPour.includes(conseiller?._id));
       if (maPermanence.estStructure && maPermanence.lieuPrincipalPour.includes(conseiller?._id)) {
         setDefaultCheckedOui(true);
@@ -124,7 +127,7 @@ function PermanenceUpdate({ match }) {
 
       dispatch(permanenceActions.setChampsMaPermanence(
         maPermanence,
-        maPermanence.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_',
+        maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_',
         conseiller)
       );
 
@@ -143,10 +146,8 @@ function PermanenceUpdate({ match }) {
       dispatch(permanenceActions.updateField(
         maPermanence.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_checkboxSiret' : 'secondaire_0_checkboxSiret', false
       ));
-      if (!maPermanence.lieuPrincipalPour.includes(conseiller?._id)) {
-        const show = [true];
-        dispatch(permanenceActions.montrerLieuSecondaire(show));
-      }
+      const show = () => [maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? false : true];
+      dispatch(permanenceActions.montrerLieuSecondaire(show));
     }
   }, [maPermanence, conseiller, structure]);
 
@@ -160,6 +161,7 @@ function PermanenceUpdate({ match }) {
         } else {
           window.open(urlCartographie + '/' + conseiller._id + '/details', '_blank');
         }
+        dispatch(conseillerActions.get(userEntityId()));
         dispatch(permanenceActions.reinitiliserStatut());
         dispatch(permanenceActions.getListePermanences(structure?._id));
       }, 3000);

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { permanenceActions } from '../../../actions';
-import { history } from '../../../helpers';
+import { permanenceActions, conseillerActions } from '../../../actions';
+import { userEntityId, history } from '../../../helpers';
 
 import Banner from './Banner';
 import ContactProfessionel from './ContactProfessionel';
@@ -53,6 +53,7 @@ function PermanenceCreate() {
         } else {
           window.open(urlCartographie + '/' + conseiller._id + '/details', '_blank');
         }
+        dispatch(conseillerActions.get(userEntityId()));
         dispatch(permanenceActions.reinitiliserStatut());
         dispatch(permanenceActions.getListePermanences(structure?._id));
       }, 3000);
