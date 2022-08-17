@@ -147,7 +147,7 @@ function PermanenceUpdate({ match }) {
         maPermanence.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_checkboxSiret' : 'secondaire_0_checkboxSiret', false
       ));
       const show = [!maPermanence?.lieuPrincipalPour.includes(conseiller?._id)];
-      dispatch(permanenceActions.montrerLieuSecondaire());
+      dispatch(permanenceActions.montrerLieuSecondaire(show));
     }
   }, [maPermanence, conseiller, structure]);
 
