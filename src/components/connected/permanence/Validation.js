@@ -11,7 +11,6 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
   const fields = useSelector(state => state.permanence?.fields);
   const errorsForm = useSelector(state => state.permanence?.errorsFormulaire);
   const prefixId = useSelector(state => state.permanence?.prefixIdLieuEnregistrable);
-  // console.log(':::', prefixId, fields.filter(field => field.name === prefixId + 'nomEnseigne')[0]?.value);
 
   const [clickSubmit, setClickSubmit] = useState(false);
   const [redirection, setRedirection] = useState(redirectionValidation !== null ? redirectionValidation : '/accueil');
