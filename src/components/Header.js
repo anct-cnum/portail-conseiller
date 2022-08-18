@@ -62,154 +62,154 @@ function Header({ linkAccount, printClass }) {
               <div className="fr-header__menu-links">
               </div>
             </div>
-      { linkAccount !== undefined &&
-        <>
-            <div className="fr-header__tools">
-              <nav className="fr-header__tools-links">
-                <ul className="fr-btns-group">
-                  <li className="header-propos">
-                    <ul className="fr-nav__list">
-                      <li className="fr-nav__item">
-                        <Link className="fr-custom-link" to="/a-propos" title="&Agrave; propos de votre espace Coop" >
-                          &Agrave; propos
-                        </Link>
+            { linkAccount !== undefined &&
+              <>
+                <div className="fr-header__tools">
+                  <nav className="fr-header__tools-links">
+                    <ul className="fr-btns-group">
+                      <li className="header-propos">
+                        <ul className="fr-nav__list">
+                          <li className="fr-nav__item">
+                            <Link className="fr-custom-link" to="/a-propos" title="&Agrave; propos de votre espace Coop" >
+                              &Agrave; propos
+                            </Link>
+                          </li>
+                        </ul>
                       </li>
-                    </ul>
-                  </li>
 
-                  <li className="header-aide">
-                    <div className="" role="navigation" aria-label="aide">
-                      <ul className="fr-nav__list">
-                        <li className="fr-nav__item">
-                          <button className="fr-nav__btn fr-custom-link"
-                            aria-expanded={menuAideShow} aria-controls="menu-liens-aide" aria-current="true"
-                            onClick={() => {
-                              setMenuAideShow(!menuAideShow);
-                              setMenuUserShow(menuUserShow ? !menuUserShow : menuUserShow);
-                            }}>
-                            <span className="texte-aide">Aide&nbsp;
-                            </span>
-                          </button>
-                          <div
-                            className={!menuAideShow ? 'fr-collapse fr-menu' : 'fr-collapse fr-menu fr-collapse--expanded'}
-                            style={!menuAideShow ? { display: 'none' } : {}}
-                            id="menu-liens-aide">
-                            <ul className="fr-menu__list">
-                              {role !== 'structure_coop' &&
-                                <>
-                                  <li className="aide-coop">
-                                    <a className="fr-nav__link lien-aide" href={aideCoop} target="blank" rel="noreferrer"
-                                      onClick={() => {
-                                        setMenuAideShow(false);
-                                      }}>
-                                      Aide espace Coop<br />
-                                      <span className="sous-titre-lien">Suivi d&rsquo;activit&eacute;, Pix, mail, etc.</span>
-                                    </a>
-                                  </li>
-                                  <li className="aide-metier">
-                                    <a className="fr-nav__link lien-aide" href={aideMetier} target="blank" rel="noreferrer"
-                                      onClick={() => {
-                                        setMenuAideShow(false);
-                                      }}>
-                                      Aide m&eacute;tier<br />
-                                      <span className="sous-titre-lien">Missions et cadre de travail.</span>
-                                    </a>
-                                  </li>
-                                </>
-                              }
-                              {role === 'structure_coop' &&
-                                <li className="aide-coop">
-                                  <a className="fr-nav__link lien-aide" href={aideStructure} target="blank" rel="noreferrer"
-                                    onClick={() => {
-                                      setMenuAideShow(false);
-                                    }}>
-                                    Aide espace Coop<br />
-                                    <span className="sous-titre-lien">Consulter la Foire aux Questions.</span>
-                                  </a>
-                                </li>
-                              }
+                      <li className="header-aide">
+                        <div className="" role="navigation" aria-label="aide">
+                          <ul className="fr-nav__list">
+                            <li className="fr-nav__item">
+                              <button className="fr-nav__btn fr-custom-link"
+                                aria-expanded={menuAideShow} aria-controls="menu-liens-aide" aria-current="true"
+                                onClick={() => {
+                                  setMenuAideShow(!menuAideShow);
+                                  setMenuUserShow(menuUserShow ? !menuUserShow : menuUserShow);
+                                }}>
+                                <span className="texte-aide">Aide&nbsp;
+                                </span>
+                              </button>
+                              <div
+                                className={!menuAideShow ? 'fr-collapse fr-menu' : 'fr-collapse fr-menu fr-collapse--expanded'}
+                                style={!menuAideShow ? { display: 'none' } : {}}
+                                id="menu-liens-aide">
+                                <ul className="fr-menu__list">
+                                  {role !== 'structure_coop' &&
+                                    <>
+                                      <li className="aide-coop">
+                                        <a className="fr-nav__link lien-aide" href={aideCoop} target="blank" rel="noreferrer"
+                                          onClick={() => {
+                                            setMenuAideShow(false);
+                                          }}>
+                                          Aide espace Coop<br />
+                                          <span className="sous-titre-lien">Suivi d&rsquo;activit&eacute;, Pix, mail, etc.</span>
+                                        </a>
+                                      </li>
+                                      <li className="aide-metier">
+                                        <a className="fr-nav__link lien-aide" href={aideMetier} target="blank" rel="noreferrer"
+                                          onClick={() => {
+                                            setMenuAideShow(false);
+                                          }}>
+                                          Aide m&eacute;tier<br />
+                                          <span className="sous-titre-lien">Missions et cadre de travail.</span>
+                                        </a>
+                                      </li>
+                                    </>
+                                  }
+                                  {role === 'structure_coop' &&
+                                    <li className="aide-coop">
+                                      <a className="fr-nav__link lien-aide" href={aideStructure} target="blank" rel="noreferrer"
+                                        onClick={() => {
+                                          setMenuAideShow(false);
+                                        }}>
+                                        Aide espace Coop<br />
+                                        <span className="sous-titre-lien">Consulter la Foire aux Questions.</span>
+                                      </a>
+                                    </li>
+                                  }
+                                </ul>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </li>
+
+                      {linkAccount !== 'noConnected' &&
+                        <li className="header-user">
+                          <div className="" role="navigation" aria-label="user">
+                            <ul className="fr-nav__list">
+                              <li className="fr-nav__item">
+                                <button className="fr-nav__btn fr-custom-link"
+                                  aria-expanded={menuUserShow} aria-controls="menu-liens-user" aria-current="true"
+                                  onClick={() => {
+                                    setMenuUserShow(!menuUserShow);
+                                    setMenuAideShow(menuAideShow ? !menuAideShow : menuAideShow);
+                                  }}>
+                                  <span className="texte-user">{prenom ? prenom + ' ' + nom : email}&nbsp;
+                                    { role === 'conseiller' && !conseiller?.supHierarchique &&
+                                      <i className="ri-information-line information icone-info-header" ></i>
+                                    }
+                                  </span>
+                                </button>
+                                <div
+                                  className={!menuUserShow ? 'fr-collapse fr-menu' : 'fr-collapse fr-menu fr-collapse--expanded'}
+                                  style={!menuUserShow ? { display: 'none' } : {}}
+                                  id="menu-liens-user">
+                                  <ul className="fr-menu__list">
+                                    {['conseiller', 'coordinateur_coop'].includes(role) &&
+                                      <li className="user-infos">
+                                        <Link className="fr-nav__link lien-user" to="/mes-informations"
+                                          onClick={() => {
+                                            setMenuUserShow(false);
+                                          }}>
+                                          { !conseiller?.supHierarchique &&
+                                            <i className="ri-information-line information icone-info-header"></i>
+                                          }
+                                              Mes informations, Contact hi&eacute;rarchique<br />
+                                        </Link>
+                                      </li>
+                                    }
+                                    {linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
+                                      <li className="user-disconnect">
+                                        {role === 'conseiller' &&
+                                          <Link className="fr-nav__link lien-user" to="/login"
+                                            onClick={() => {
+                                              setMenuUserShow(false);
+                                            }}>
+                                            D&eacute;connexion<br />
+                                          </Link>
+                                        }
+                                        {role !== 'conseiller' &&
+                                          <Link className="fr-nav__link lien-user" to="/login?role=admin"
+                                            onClick={() => {
+                                              resetFiltreListeConseillers();
+                                              setMenuUserShow(false);
+                                            }}>
+                                            D&eacute;connexion<br />
+                                          </Link>
+                                        }
+                                      </li>
+                                    }
+                                  </ul>
+                                </div>
+                              </li>
                             </ul>
                           </div>
                         </li>
-                      </ul>
-                    </div>
-                  </li>
+                      }
 
-                  {linkAccount !== 'noConnected' &&
-                    <li className="header-user">
-                      <div className="" role="navigation" aria-label="user">
-                        <ul className="fr-nav__list">
-                          <li className="fr-nav__item">
-                            <button className="fr-nav__btn fr-custom-link"
-                              aria-expanded={menuUserShow} aria-controls="menu-liens-user" aria-current="true"
-                              onClick={() => {
-                                setMenuUserShow(!menuUserShow);
-                                setMenuAideShow(menuAideShow ? !menuAideShow : menuAideShow);
-                              }}>
-                              <span className="texte-user">{prenom ? prenom + ' ' + nom : email}&nbsp;
-                                { role === 'conseiller' && !conseiller?.supHierarchique &&
-                                  <i className="ri-information-line information icone-info-header" ></i>
-                                }
-                              </span>
-                            </button>
-                            <div
-                              className={!menuUserShow ? 'fr-collapse fr-menu' : 'fr-collapse fr-menu fr-collapse--expanded'}
-                              style={!menuUserShow ? { display: 'none' } : {}}
-                              id="menu-liens-user">
-                              <ul className="fr-menu__list">
-                                {['conseiller', 'coordinateur_coop'].includes(role) &&
-                                  <li className="user-infos">
-                                    <Link className="fr-nav__link lien-user" to="/mes-informations"
-                                      onClick={() => {
-                                        setMenuUserShow(false);
-                                      }}>
-                                      { !conseiller?.supHierarchique &&
-                                        <i className="ri-information-line information icone-info-header"></i>
-                                      }
-                                          Mes informations, Contact hi&eacute;rarchique<br />
-                                    </Link>
-                                  </li>
-                                }
-                                {linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
-                                  <li className="user-disconnect">
-                                    {role === 'conseiller' &&
-                                      <Link className="fr-nav__link lien-user" to="/login"
-                                        onClick={() => {
-                                          setMenuUserShow(false);
-                                        }}>
-                                        D&eacute;connexion<br />
-                                      </Link>
-                                    }
-                                    {role !== 'conseiller' &&
-                                      <Link className="fr-nav__link lien-user" to="/login?role=admin"
-                                        onClick={() => {
-                                          resetFiltreListeConseillers();
-                                          setMenuUserShow(false);
-                                        }}>
-                                        D&eacute;connexion<br />
-                                      </Link>
-                                    }
-                                  </li>
-                                }
-                              </ul>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                  }
+                      {linkAccount === 'noConnected' &&
+                        <li className="fr-shortcuts__item">
+                          <a href="/login" className="fr-link" target="_self">J&rsquo;ai d&eacute;j&Agrave; un compte</a>
+                        </li>
+                      }
 
-                  {linkAccount === 'noConnected' &&
-                    <li className="fr-shortcuts__item">
-                      <a href="/login" className="fr-link" target="_self">J&rsquo;ai d&eacute;j&Agrave; un compte</a>
-                    </li>
-                  }
-
-                </ul>
-              </nav>
-            </div>
-        </>
-      }
+                    </ul>
+                  </nav>
+                </div>
+              </>
+            }
             <div className="rf-header__navbar">
               {linkAccount !== undefined &&
               <>
