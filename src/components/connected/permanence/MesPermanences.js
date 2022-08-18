@@ -6,6 +6,7 @@ import { userEntityId } from '../../../helpers';
 
 import Banner from './Banner';
 import MaPermanence from './MaPermanence';
+import Permanence from './index';
 import Footer from '../../Footer';
 
 function MesPermanences() {
@@ -117,17 +118,12 @@ function MesPermanences() {
         { ((location.pathname === '/mes-lieux-activite' && !conseiller?.hasPermanence) ||
           (location.pathname !== '/mes-lieux-activite' && conseiller?.hasPermanence)) &&
           <div id="formulaire-horaires-adresse" >
-            <Banner />
-            <div className="fr-container">
-              <div className="fr-grid-row">
-                <div className="fr-col-12 fr-ml-12w">
-                  <h2 className="titre-acces fr-my-9w ">Vous n&rsquo;avez pas acc&egrave;s &agrave; ce formulaire pour le moment !</h2>
-                </div>
-              </div>
-            </div>
+            <Permanence/>
           </div>
         }
-        <Footer type="support"/>
+        { (location.pathname !== '/mes-lieux-activite' && conseiller?.hasPermanence) &&
+          <Footer type="support"/>
+        }
       </>
       }
     </>
