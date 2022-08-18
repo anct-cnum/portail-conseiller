@@ -62,7 +62,8 @@ function Header({ linkAccount, printClass }) {
               <div className="fr-header__menu-links">
               </div>
             </div>
-
+      { linkAccount !== undefined &&
+        <>
             <div className="fr-header__tools">
               <nav className="fr-header__tools-links">
                 <ul className="fr-btns-group">
@@ -207,6 +208,8 @@ function Header({ linkAccount, printClass }) {
                 </ul>
               </nav>
             </div>
+        </>
+      }
             <div className="rf-header__navbar">
               {linkAccount !== undefined &&
               <>
