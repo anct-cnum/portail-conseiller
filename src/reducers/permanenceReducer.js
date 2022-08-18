@@ -382,7 +382,7 @@ export default function permanence(state = initialState, action) {
         isCreated: false,
         isEnded: false,
         error: false,
-        showError: true,
+        showError: false,
         isDeleted: false,
         isConseillerDeleted: false,
         maPermanence: null,

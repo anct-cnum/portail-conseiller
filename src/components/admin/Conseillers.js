@@ -74,10 +74,14 @@ function Conseillers() {
       setBasculerFiltreCertifie(!basculerFiltreCertifie);
       setBasculerFiltreProfil(false);
       setBasculerFiltreCRA(false);
-    } else {
+    } else if (e.target.id === 'groupeCRA') {
       setBasculerFiltreCertifie(false);
       setBasculerFiltreProfil(false);
       setBasculerFiltreCRA(!basculerFiltreCRA);
+    } else {
+      setBasculerFiltreCertifie(false);
+      setBasculerFiltreCRA(false);
+      setBasculerFiltreProfil(!basculerFiltreProfil);
     }
   };
   const ordreColonne = e => {
@@ -196,12 +200,6 @@ function Conseillers() {
                                 <button className="fr-nav__btn admin-select" aria-expanded={basculerFiltreCRA}
                                   aria-controls="menu-userGroupeCra" aria-current="true" id="groupeCRA" onClick={filtreClick}>
                                   GroupeCRA
-                                  {basculerFiltreCRA &&
-                                    <i className="ri-arrow-up-s-line chevron icone"></i>
-                                  }
-                                  {!basculerFiltreCRA &&
-                                    <i className="ri-arrow-down-s-line chevron icone"></i>
-                                  }
                                 </button>
                                 <div className={basculerFiltreCRA === true ? 'fr-collapse--expanded fr-menu' : 'fr-collapse fr-nav--expanded fr-menu'}
                                   id="menu-userGroupeCra">
@@ -262,12 +260,6 @@ function Conseillers() {
                                 <button className="fr-nav__btn admin-select" aria-expanded={basculerFiltreCertifie}
                                   aria-controls="menu-userCertife" aria-current="true" id="certifier" onClick={filtreClick}>
                                   Certification
-                                  {basculerFiltreCertifie &&
-                                    <i className="ri-arrow-up-s-line chevron icone"></i>
-                                  }
-                                  {!basculerFiltreCertifie &&
-                                    <i className="ri-arrow-down-s-line chevron icone"></i>
-                                  }
                                 </button>
                                 <div className={basculerFiltreCertifie === true ? 'fr-collapse--expanded fr-menu' : 'fr-collapse fr-nav--expanded fr-menu'}
                                   id="menu-userCertife">
@@ -304,12 +296,6 @@ function Conseillers() {
                                 <button className="fr-nav__btn admin-select" aria-expanded={basculerFiltreProfil}
                                   aria-controls="menu-userActive" aria-current="true" id="activer" onClick={filtreClick}>
                                   Activ&eacute;
-                                  {basculerFiltreProfil &&
-                                    <i className="ri-arrow-up-s-line chevron icone"></i>
-                                  }
-                                  {!basculerFiltreProfil &&
-                                    <i className="ri-arrow-down-s-line chevron icone"></i>
-                                  }
                                 </button>
                                 <div className={basculerFiltreProfil === true ? 'fr-collapse--expanded fr-menu' : 'fr-collapse fr-nav--expanded fr-menu'}
                                   id="menu-userActive">
@@ -349,7 +335,7 @@ function Conseillers() {
                     }
                     {(conseillers?.items?.data.length === 0 || !conseillers?.items) &&
                       <tr>
-                        <td colSpan="9" className="not-found pair">Aucun conseiller trouv&eacute;</td>
+                        <td colSpan="11" className="not-found pair">Aucun conseiller trouv&eacute;</td>
                       </tr>
                     }
                   </tbody>

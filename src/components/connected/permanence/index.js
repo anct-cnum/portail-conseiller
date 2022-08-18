@@ -66,7 +66,7 @@ function Permanence() {
           <Ouverture />
         }
 
-        { (isEnded && location.pathname === '/accueil') &&
+        { (isEnded && (location.pathname === '/accueil' || location.pathname === '/mes-lieux-activite')) &&
           <Remerciement/>
         }
         { ((location.pathname === '/lieux-activite' && conseiller?.hasPermanence) ||
