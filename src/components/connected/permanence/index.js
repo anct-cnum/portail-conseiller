@@ -21,6 +21,7 @@ function Permanence() {
 
   const showError = useSelector(state => state.permanence?.showError);
   const showErrorMessage = useSelector(state => state.permanence?.showErrorMessage);
+  const showErrorCreate = useSelector(state => state.permanence?.error);
   const errorAllUpdated = useSelector(state => state.permanence?.errorAllUpdated);
   const isEnded = useSelector(state => state.permanence?.isEnded);
 
@@ -78,6 +79,9 @@ function Permanence() {
               <p className="fr-label flashBag invalid">
                 {showErrorMessage &&
                   showErrorMessage
+                }
+                {showErrorCreate &&
+                  showErrorCreate
                 }
                 {errorAllUpdated &&
                   'Une erreur est survenue lors de la mise à jour de vos lieux d’activité'
