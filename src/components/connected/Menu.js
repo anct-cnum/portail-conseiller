@@ -24,66 +24,62 @@ function Menu() {
 
   return (
     <>
-      { (!voirPermanence || suspendrePermanence) &&
-        <>
-          <div className="Menu">
-            <div className="fr-grid-row fr-grid-row--center">
-              <nav className={`fr-nav ${!menu.hiddenMenu && menu.expandNav ? 'fr-header__popin fr-header__popin--expanded' : ''}`}
-                id="navigation"
-                role="navigation"
-                aria-label="Menu principal"
-                style={{ boxShadow: 'none', zIndex: 1 }}>
-                <ul className="fr-nav__list" style={{ paddingBottom: '15px' }}>
-                  {!menu.hiddenMenu && menu.expandNav &&
+      {(!voirPermanence || suspendrePermanence) &&
+        <div
+          className={`fr-header__menu ${!menu.hiddenMenu ? 'fr-modal fr-modal--opened' : ''}`}
+          id="header-nav-popin"
+          aria-labelledby="burgerMenu"
+          role="menu"
+          style={{ display: !menu.hiddenMenu ? 'block' : 'none' }}
+        >
+          <div className="fr-container">
+            <button className="fr-link--close fr-link" aria-controls="header-nav-popin" onClick={toggleBurgerMenu}>Fermer</button>
+            <div className="fr-header__menu-links"></div>
+            <nav className="fr-nav fr-display--none-lg" id="navigation-869" role="navigation" aria-label="Menu principal">
+              <ul className="fr-nav__list">
+                {!menu.hiddenMenu && menu.expandNav &&
                   <>
-                    <li className="fr-shortcuts__item">
+                    <li className="fr-nav__item">
                       <Link
-                        className={`fr-nav__link linkCustom ${location.pathname === '/a-propos' ? 'linkActive' : ''}`}
+                        className="fr-nav__link linkCustom"
+                        {...(location.pathname.startsWith(`/a-propos`) ? { 'aria-current': 'page' } : {})}
+                        onClick={toggleBurgerMenu}
                         to="/a-propos"
-                        title="&Agrave; propos du site"
-                        onClick={toggleBurgerMenu}>
+                        title="&Agrave; propos du site">
                         &Agrave; propos
                       </Link>
                     </li>
-                    <li className="fr-shortcuts__item">
+                    <li className="fr-nav__item">
                       <a className="fr-nav__link linkCustom" href={aideCoop} target="blank" rel="noreferrer">
                         Aide espace Coop
                       </a>
                     </li>
-                    <li className="fr-shortcuts__item">
+                    <li className="fr-nav__item">
                       <a className="fr-nav__link linkCustom" href={aideMetier} target="blank" rel="noreferrer">
                         Aide m&eacute;tier
                       </a>
                     </li>
-                    <li className="fr-shortcuts__item">
+                    <li className="fr-nav__item">
                       <Link
-                        className={`fr-nav__link linkCustom ${location.pathname === '/mes-informations' ? 'linkActive' : ''}`}
+                        className="fr-nav__link linkCustom"
+                        {...(location.pathname.startsWith(`/mes-informations`) ? { 'aria-current': 'page' } : {})}
                         to="/mes-informations"
                         title="Mes informations, Contact hi&eacute;rarchique"
                         onClick={toggleBurgerMenu}>
                         Mes informations, Contact hi&eacute;rarchique
                       </Link>
                     </li>
-                    <li className="fr-shortcuts__item">
-                      <Link className="fr-btn fr-btn--sm" to="/login" title="Se d&eacute;connecter" onClick={toggleBurgerMenu}>
+                    <li className="fr-nav__item">
+                      <Link className="fr-btn fr-btn--sm" to="/login?role=admin" title="Se d&eacute;connecter" onClick={toggleBurgerMenu}>
                         Se d&eacute;connecter
                       </Link>
                     </li>
                   </>
-                  }
-                </ul>
-                { !menu.hiddenMenu && menu.expandNav &&
-                  <button className="fr-btn fr-fi-close-line fr-btn--icon-right fr-btn--sm"
-                    title="Fermer"
-                    aria-controls="header-nav-popin"
-                    onClick={toggleBurgerMenu}>
-                      Fermer
-                  </button>
                 }
-              </nav>
-            </div>
+              </ul>
+            </nav>
           </div>
-        </>
+        </div>
       }
     </>
   );

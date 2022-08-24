@@ -38,11 +38,8 @@ function Header({ linkAccount, printClass }) {
             <div className="fr-header__brand fr-enlarge-link">
               <div className="fr-header__brand-top">
                 <div className="fr-header__logo">
-                  {printClass ?
-                    <img src="/logos/logo-conseiller-numerique.svg" alt="logo Conseiller Num&eacute;rique France Services" style={{ height: '48px' }}/> :
-                    <img src="/logos/logo-conseiller-numerique-nb.svg" className="logo-conseiller-numerique"
-                      alt="logo Conseiller Num&eacute;rique France Services" />
-                  }
+                  <img src="/logos/logo-conseiller-numerique-nb.svg" className="logo-conseiller-numerique"
+                    alt="logo Conseiller Num&eacute;rique France Services" />
                 </div>
               </div>
 
@@ -213,13 +210,23 @@ function Header({ linkAccount, printClass }) {
             <div className="rf-header__navbar">
               {linkAccount !== undefined &&
               <>
-                <button
+                {/* <button
                   id="burgerMenu"
                   className="fr-icon-menu-fill"
                   title="Ouvrir le menu"
                   aria-controls="header-nav-popin"
                   onClick={toggleBurgerMenu}
                   style={!menu.hiddenMenu ? { zIndex: -1 } : {} }>
+                </button> */}
+                <button
+                  className="fr-icon-menu-fill"
+                  data-fr-opened="false"
+                  aria-controls="header-nav-popin"
+                  aria-haspopup="menu"
+                  title="Ouvrir le menu"
+                  id="burgerMenu"
+                  onClick={toggleBurgerMenu}
+                >
                 </button>
               </>
               }

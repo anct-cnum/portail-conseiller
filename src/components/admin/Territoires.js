@@ -61,7 +61,7 @@ function Territoires() {
                     <tr>
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
-                          <span id="code" >Code
+                          <span id="code" className="name-column-table">Code
                             { (ordreNom !== 'code' || ordreNom === 'code' && ordre) &&
                               <i className="ri-arrow-down-s-line chevron icone"></i>
                             }
@@ -73,7 +73,7 @@ function Territoires() {
                       </th>
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
-                          <span id="nom">Nom
+                          <span id="nom name-column-table" className="name-column-table">Nom
                             { (ordreNom !== 'nom' || ordreNom === 'nom' && ordre) &&
                               <i className="ri-arrow-down-s-line chevron icone"></i>
                             }

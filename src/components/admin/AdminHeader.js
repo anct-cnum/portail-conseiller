@@ -26,14 +26,14 @@ function AdminHeader({ role, linkAccount }) {
 
   return (
     <>
-      <div className="fr-container fr-mt-1w">
+      <div className="fr-container">
         {errorCSV &&
           <FlashMessage duration={5000}>
             <p className="flashBag invalid">Aucun conseillers n&rsquo;est actuellement à M+2</p>
           </FlashMessage>
         }
         <div className="fr-grid-row fr-grid-row--right">
-          <div className={`fr-col-xs-12 fr-col-md-4 ${role !== 'admin_coop' ? 'fr-mt-5w fr-mb-6w' : ''}`}>
+          <div className={`fr-col-lg-4 fr-col-12 ${role !== 'admin_coop' ? 'fr-mt-5w fr-mb-6w' : 'fr-mt-3w'}`}>
             <a className="statistiques_nationales-btn" href="statistiques-nationales">Statistiques Nationales</a>
             { role === 'structure_coop' &&
               <a className="mes_statistiques-btn fr-ml-4w" href="mes-statistiques">Mes statistiques</a>
@@ -43,7 +43,7 @@ function AdminHeader({ role, linkAccount }) {
             }
           </div>
           <div
-            className={`'fr-col-xs-12 fr-mt-7w fr-col-md-8 ${role !== 'admin_coop' ? 'fr-mt-5w fr-mb-6w' : 'fr-mt-md-1w'}`}
+            className={`'fr-col-xs-12 fr-mt-7w fr-col-md-8 ${role !== 'admin_coop' ? 'fr-mt-5w fr-mb-6w' : 'fr-mt-md-4w'}`}
             style={{ textAlign: 'right' }}>
             {(location.pathname === '/territoires') &&
             <a className="header-btn" href="accueil">
@@ -51,22 +51,25 @@ function AdminHeader({ role, linkAccount }) {
               <span className="conseillers-texte-btn">Liste des conseillers</span>
             </a>
             }
+
             {location.pathname !== '/territoires' &&
             <a className="header-btn" href="territoires">
               <span className="stats-logo-btn"></span>
               <span className="stats-texte-btn">Statistiques par territoire</span>
             </a>
             }
-            <a className="header-btn" href={lienLaBase} target="blank" rel="noreferrer">
-              <span className="ressourcerie-logo-btn"></span>
-              <span className="ressourcerie-texte-btn">Ressourcerie</span>
-            </a>
-            { role === 'admin_coop' &&
+            <div className="block-lien-externe">
+              <a className="header-btn" href={lienLaBase} target="blank" rel="noreferrer">
+                <span className="ressourcerie-logo-btn"></span>
+                <span className="ressourcerie-texte-btn">Ressourcerie</span>
+              </a>
+              { role === 'admin_coop' &&
             <a className="header-btn" href={lienMattermost}>
               <span className="discussion-logo-btn"></span>
               <span className="discussion-texte-btn">Espace de discussion</span>
             </a>
-            }
+              }
+            </div>
           </div>
         </div>
       </div>

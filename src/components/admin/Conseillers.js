@@ -114,7 +114,7 @@ function Conseillers() {
                     <tr>
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
-                          <span id="prenom">
+                          <span id="prenom" className="name-column-table">
                             Pr&eacute;nom
                             {(ordreNom !== 'prenom' || ordreNom === 'prenom' && ordre) &&
                               <i className="ri-arrow-down-s-line chevron icone"></i>
@@ -127,7 +127,7 @@ function Conseillers() {
                       </th>
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
-                          <span id="nom">
+                          <span id="nom" className="name-column-table">
                             Nom
                             {(ordreNom !== 'nom' || ordreNom === 'nom' && ordre) &&
                               <i className="ri-arrow-down-s-line chevron icone"></i>
@@ -141,7 +141,7 @@ function Conseillers() {
                       {user.role === 'admin_coop' &&
                         <th>
                           <button className="filtre-btn" onClick={ordreColonne}>
-                            <span id="nomStructure">
+                            <span id="nomStructure" className="name-column-table">
                               Structure
                               {(ordreNom !== 'nomStructure' || ordreNom === 'nomStructure' && ordre) &&
                                 <i className="ri-arrow-down-s-line chevron icone"></i>
