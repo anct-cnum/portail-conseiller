@@ -67,7 +67,7 @@ function Header({ linkAccount, printClass }) {
                       <li className="header-propos">
                         <ul className="fr-nav__list">
                           <li className="fr-nav__item">
-                            <Link className="fr-custom-link" to="/a-propos" title="&Agrave; propos de votre espace Coop" >
+                            <Link className="fr-custom-link" style={{ marginTop: '-1px' }} to="/a-propos" title="&Agrave; propos de votre espace Coop" >
                               &Agrave; propos
                             </Link>
                           </li>

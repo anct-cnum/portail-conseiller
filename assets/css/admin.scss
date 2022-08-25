@@ -150,11 +150,12 @@
     font-size: 1.3rem;
     top: 4px;
   }
-  // .chevron {
-  //   position: absolute;
-  // }
+  .chevron {
+    align-self: center;
+  }
   .name-column-table {
     display: flex;
+    text-align: left;
   }
   .admin-select {
     font-family: "Marianne",arial,sans-serif;

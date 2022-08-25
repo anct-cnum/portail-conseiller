@@ -155,7 +155,7 @@ function Conseillers() {
                       }
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
-                          <span id="codePostal">
+                          <span id="codePostal" className="name-column-table">
                             Code <br />Postal
                             {(ordreNom !== 'codePostal' || ordreNom === 'codePostal' && ordre) &&
                               <i className="ri-arrow-down-s-line chevron icone-2"></i>
@@ -168,7 +168,7 @@ function Conseillers() {
                       </th>
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
-                          <span id="datePrisePoste">
+                          <span id="datePrisePoste" className="name-column-table">
                             Date de <br />recrutement
                             {(ordreNom !== 'datePrisePoste' || ordreNom === 'datePrisePoste' && ordre) &&
                               <i className="ri-arrow-down-s-line chevron icone-2"></i>
@@ -180,8 +180,8 @@ function Conseillers() {
                         </button>
                       </th>
                       <th>
-                        <button className="filtre-btn" onClick={ordreColonne} style={{ width: '104px' }}>
-                          <span id="dateFinFormation">
+                        <button className="filtre-btn" onClick={ordreColonne} style={{ width: '154px' }}>
+                          <span id="dateFinFormation" className="name-column-table">
                             Date de fin <br /> de formation
                             {(ordreNom !== 'dateFinFormation' || ordreNom === 'dateFinFormation' && ordre) &&
                               <i className="ri-arrow-down-s-line chevron icone-2"></i>

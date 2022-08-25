@@ -85,6 +85,7 @@ function FiltersAndSorts({ resetPage, user }) {
 
   const handleTerritoire = e => {
     dispatch(filtersAndSortsActions.changeTerritoire(e.target.id));
+    setToggleFiltre(false);
   };
 
   const exportDonneesTerritoire = () => {
