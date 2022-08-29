@@ -82,7 +82,7 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
 
       nouveauLieu.idOldPermanence = fields?.filter(field => field.name === 'idOldPermanence')[0]?.value ?? null;
       const findIndicatif = telephoneHorsMetropole.find(r => r.codeDepartement === codeDepartement);
-      nouveauLieu.telephonePro = nouveauLieu.telephonePro.trim();
+      nouveauLieu.telephonePro = nouveauLieu.telephonePro?.trim();
       const condition = value => (value && !['+33', '+26', '+59'].includes(value.substr(0, 3))) ?
         `${findIndicatif?.indicatif ?? '+33'}${value.substr(1)}` : value;
       nouveauLieu.telephonePro = nouveauLieu.telephonePro ? condition(nouveauLieu.telephonePro) : '';
