@@ -8,9 +8,7 @@ import PropTypes from 'prop-types';
 function HeaderHub({ linkAccount }) {
 
   const dispatch = useDispatch();
-  let menu = useSelector(state => state.menu);
   const [menuUserShow, setMenuUserShow] = useState(false);
-  const role = useSelector(state => state.authentication?.user?.user?.role);
   const nom = useSelector(state => state.authentication?.user?.user?.nom);
   const prenom = useSelector(state => state.authentication?.user?.user?.prenom);
   const email = useSelector(state => state.authentication?.user?.user?.name);
