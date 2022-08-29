@@ -14,7 +14,6 @@ function Header({ linkAccount, printClass }) {
   const [menuAideShow, setMenuAideShow] = useState(false);
   const [menuUserShow, setMenuUserShow] = useState(false);
 
-  let menu = useSelector(state => state.menu);
   const role = useSelector(state => state.authentication?.user?.user?.role);
   const nom = useSelector(state => state.authentication?.user?.user?.nom);
   const prenom = useSelector(state => state.authentication?.user?.user?.prenom);
@@ -210,14 +209,6 @@ function Header({ linkAccount, printClass }) {
             <div className="rf-header__navbar">
               {linkAccount !== undefined &&
               <>
-                {/* <button
-                  id="burgerMenu"
-                  className="fr-icon-menu-fill"
-                  title="Ouvrir le menu"
-                  aria-controls="header-nav-popin"
-                  onClick={toggleBurgerMenu}
-                  style={!menu.hiddenMenu ? { zIndex: -1 } : {} }>
-                </button> */}
                 <button
                   className="fr-icon-menu-fill"
                   data-fr-opened="false"
