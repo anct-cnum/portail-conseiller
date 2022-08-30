@@ -70,7 +70,7 @@ function Menu() {
                       </Link>
                     </li>
                     <li className="fr-nav__item">
-                      <Link className="fr-btn fr-btn--sm" to="/login?role=admin" title="Se d&eacute;connecter" onClick={toggleBurgerMenu}>
+                      <Link className="fr-btn fr-btn--sm" to="/login" title="Se d&eacute;connecter" onClick={toggleBurgerMenu}>
                         Se d&eacute;connecter
                       </Link>
                     </li>
