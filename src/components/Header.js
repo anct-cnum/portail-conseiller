@@ -14,7 +14,6 @@ function Header({ linkAccount, printClass }) {
   const [menuAideShow, setMenuAideShow] = useState(false);
   const [menuUserShow, setMenuUserShow] = useState(false);
 
-  let menu = useSelector(state => state.menu);
   const role = useSelector(state => state.authentication?.user?.user?.role);
   const nom = useSelector(state => state.authentication?.user?.user?.nom);
   const prenom = useSelector(state => state.authentication?.user?.user?.prenom);
@@ -38,11 +37,8 @@ function Header({ linkAccount, printClass }) {
             <div className="fr-header__brand fr-enlarge-link">
               <div className="fr-header__brand-top">
                 <div className="fr-header__logo">
-                  {printClass ?
-                    <img src="/logos/logo-conseiller-numerique.svg" alt="logo Conseiller Num&eacute;rique France Services" style={{ height: '48px' }}/> :
-                    <img src="/logos/logo-conseiller-numerique-nb.svg" className="logo-conseiller-numerique"
-                      alt="logo Conseiller Num&eacute;rique France Services" />
-                  }
+                  <img src="/logos/logo-conseiller-numerique-nb.svg" className="logo-conseiller-numerique"
+                    alt="logo Conseiller Num&eacute;rique France Services" />
                 </div>
               </div>
 
@@ -70,7 +66,7 @@ function Header({ linkAccount, printClass }) {
                       <li className="header-propos">
                         <ul className="fr-nav__list">
                           <li className="fr-nav__item">
-                            <Link className="fr-custom-link" to="/a-propos" title="&Agrave; propos de votre espace Coop" >
+                            <Link className="fr-custom-link" style={{ marginTop: '-1px' }} to="/a-propos" title="&Agrave; propos de votre espace Coop" >
                               &Agrave; propos
                             </Link>
                           </li>
@@ -214,12 +210,14 @@ function Header({ linkAccount, printClass }) {
               {linkAccount !== undefined &&
               <>
                 <button
-                  id="burgerMenu"
                   className="fr-icon-menu-fill"
-                  title="Ouvrir le menu"
+                  data-fr-opened="false"
                   aria-controls="header-nav-popin"
+                  aria-haspopup="menu"
+                  title="Ouvrir le menu"
+                  id="burgerMenu"
                   onClick={toggleBurgerMenu}
-                  style={!menu.hiddenMenu ? { zIndex: -1 } : {} }>
+                >
                 </button>
               </>
               }

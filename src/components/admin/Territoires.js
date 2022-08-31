@@ -61,7 +61,7 @@ function Territoires() {
                     <tr>
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
-                          <span id="code" >Code
+                          <span id="code" className="name-column-table">Code
                             { (ordreNom !== 'code' || ordreNom === 'code' && ordre) &&
                               <i className="ri-arrow-down-s-line chevron icone"></i>
                             }
@@ -73,7 +73,7 @@ function Territoires() {
                       </th>
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
-                          <span id="nom">Nom
+                          <span id="nom name-column-table" className="name-column-table">Nom
                             { (ordreNom !== 'nom' || ordreNom === 'nom' && ordre) &&
                               <i className="ri-arrow-down-s-line chevron icone"></i>
                             }
@@ -90,8 +90,8 @@ function Territoires() {
                         <span id="personnesAccompagnees">Personnes accompagn&eacute;es</span>
                       </th>
                       <th>
-                        <button className="filtre-btn" onClick={ordreColonne}>
-                          <span id="nombreConseillersCoselec">Dotation de conseillers
+                        <button className="filtre-btn" onClick={ordreColonne} style={{ width: '140px' }}>
+                          <span id="nombreConseillersCoselec" className="name-column-table">Dotation de conseillers
                             { (ordreNom !== 'nombreConseillersCoselec' || ordreNom === 'nombreConseillersCoselec' && ordre) &&
                               <i className="ri-arrow-down-s-line chevron icone-2"></i>
                             }
@@ -103,7 +103,7 @@ function Territoires() {
                       </th>
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
-                          <span id="cnfsActives">CnFS activ&eacute;s
+                          <span id="cnfsActives" className="name-column-table">CnFS activ&eacute;s
                             { (ordreNom !== 'cnfsActives' || ordreNom === 'cnfsActives' && ordre) &&
                               <i className="ri-arrow-down-s-line chevron icone-2"></i>
                             }
@@ -114,8 +114,8 @@ function Territoires() {
                         </button>
                       </th>
                       <th>
-                        <button className="filtre-btn" onClick={ordreColonne}>
-                          <span id="cnfsInactives">CnFS en attente d&rsquo;activation
+                        <button className="filtre-btn" onClick={ordreColonne} style={{ width: '190px' }}>
+                          <span id="cnfsInactives" className="name-column-table">CnFS en attente d&rsquo;activation
                             { (ordreNom !== 'cnfsInactives' || ordreNom === 'cnfsInactives' && ordre) &&
                               <i className="ri-arrow-down-s-line chevron icone-3"></i>
                             }
@@ -133,7 +133,7 @@ function Territoires() {
                         }
                         { filtreTerritoire === 'codeDepartement' &&
                           <button className="filtre-btn" onClick={ordreColonne}>
-                            <span id="tauxActivation">Taux d&rsquo;activation
+                            <span id="tauxActivation" className="name-column-table">Taux d&rsquo;activation
                               { (ordreNom !== 'tauxActivation' || ordreNom === 'tauxActivation' && ordre) &&
                                 <i className="ri-arrow-down-s-line chevron icone-2"></i>
                               }

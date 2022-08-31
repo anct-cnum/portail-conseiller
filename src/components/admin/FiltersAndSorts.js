@@ -85,6 +85,7 @@ function FiltersAndSorts({ resetPage, user }) {
 
   const handleTerritoire = e => {
     dispatch(filtersAndSortsActions.changeTerritoire(e.target.id));
+    setToggleFiltre(false);
   };
 
   const exportDonneesTerritoire = () => {
@@ -159,19 +160,13 @@ function FiltersAndSorts({ resetPage, user }) {
       }
       <div className="fr-grid-row fr-grid-row--end">
         { location.pathname === '/territoires' &&
-          <div className="fr-col-4">
+          <div className="fr-col-lg-6 fr-col-md-4 fr-col-12 fr-mb-1w">
             <nav className="fr-nav" id="navigation-sort" role="navigation">
               <ul className="fr-nav__list">
                 <li className="fr-nav__item">
                   <button className="fr-nav__btn admin-select" aria-expanded={toggleFiltre}
                     aria-controls="menu-territoire" aria-current="true" onClick={filtreClick} >
                     { territoire === 'codeDepartement' ? <>Affichage par d&eacute;partement</> : <>Affichage par r&eacute;gion</>} &nbsp;
-                    { !toggleFiltre &&
-                      <i className="ri-arrow-down-s-line chevron icone-2"></i>
-                    }
-                    { toggleFiltre &&
-                      <i className="ri-arrow-up-s-line chevron icone-2"></i>
-                    }
                   </button>
                   <div className={ toggleFiltre === true ? 'fr-collapse--expanded fr-menu' : 'fr-collapse fr-nav--expanded fr-menu'}
                     id="menu-territoire">

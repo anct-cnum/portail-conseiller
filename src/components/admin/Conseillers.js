@@ -114,7 +114,7 @@ function Conseillers() {
                     <tr>
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
-                          <span id="prenom">
+                          <span id="prenom" className="name-column-table">
                             Pr&eacute;nom
                             {(ordreNom !== 'prenom' || ordreNom === 'prenom' && ordre) &&
                               <i className="ri-arrow-down-s-line chevron icone"></i>
@@ -127,7 +127,7 @@ function Conseillers() {
                       </th>
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
-                          <span id="nom">
+                          <span id="nom" className="name-column-table">
                             Nom
                             {(ordreNom !== 'nom' || ordreNom === 'nom' && ordre) &&
                               <i className="ri-arrow-down-s-line chevron icone"></i>
@@ -141,7 +141,7 @@ function Conseillers() {
                       {user.role === 'admin_coop' &&
                         <th>
                           <button className="filtre-btn" onClick={ordreColonne}>
-                            <span id="nomStructure">
+                            <span id="nomStructure" className="name-column-table">
                               Structure
                               {(ordreNom !== 'nomStructure' || ordreNom === 'nomStructure' && ordre) &&
                                 <i className="ri-arrow-down-s-line chevron icone"></i>
@@ -155,7 +155,7 @@ function Conseillers() {
                       }
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
-                          <span id="codePostal">
+                          <span id="codePostal" className="name-column-table">
                             Code <br />Postal
                             {(ordreNom !== 'codePostal' || ordreNom === 'codePostal' && ordre) &&
                               <i className="ri-arrow-down-s-line chevron icone-2"></i>
@@ -168,7 +168,7 @@ function Conseillers() {
                       </th>
                       <th>
                         <button className="filtre-btn" onClick={ordreColonne}>
-                          <span id="datePrisePoste">
+                          <span id="datePrisePoste" className="name-column-table">
                             Date de <br />recrutement
                             {(ordreNom !== 'datePrisePoste' || ordreNom === 'datePrisePoste' && ordre) &&
                               <i className="ri-arrow-down-s-line chevron icone-2"></i>
@@ -180,8 +180,8 @@ function Conseillers() {
                         </button>
                       </th>
                       <th>
-                        <button className="filtre-btn" onClick={ordreColonne} style={{ width: '104px' }}>
-                          <span id="dateFinFormation">
+                        <button className="filtre-btn" onClick={ordreColonne} style={{ width: '154px' }}>
+                          <span id="dateFinFormation" className="name-column-table">
                             Date de fin <br /> de formation
                             {(ordreNom !== 'dateFinFormation' || ordreNom === 'dateFinFormation' && ordre) &&
                               <i className="ri-arrow-down-s-line chevron icone-2"></i>

@@ -151,7 +151,11 @@
     top: 4px;
   }
   .chevron {
-    position: absolute;
+    align-self: center;
+  }
+  .name-column-table {
+    display: flex;
+    text-align: left;
   }
   .admin-select {
     font-family: "Marianne",arial,sans-serif;
@@ -370,7 +374,11 @@
   .circle-false {
     background: #ff6f4c;
   }
-
+  #codeDepartement, #codeRegion {
+    padding: 10px !important;
+    margin-left: 10px !important;
+    width: 90% !important;
+  }
   .fr-table {
     thead {
       background-color: #2a2a2a !important;
@@ -451,11 +459,25 @@
     .react-datepicker-popper {
       transform: none !important;
     }
+    .statistiques_nationales-btn, .export_conseillers-btn, .mes_statistiques-btn, .export_cnfs_without_cra-btn {
+      font-size: 15px !important;
+    }
+    #codeDepartement, #codeRegion {
+      padding: 6px !important;
+      height: 100% !important;
+    }
+    .block-lien-externe {
+      display: none;
+    }
   }
 
   @media (max-width: 767px) {
-    .statistiques_nationales-btn, .export_conseillers-btn {
-      font-size: 14px !important;
+    .statistiques_nationales-btn, .export_conseillers-btn, .mes_statistiques-btn, .export_cnfs_without_cra-btn {
+      font-size: 12px !important;
+    }
+    #codeDepartement, #codeRegion {
+      padding: 4px !important;
+      height: 100% !important;
     }
   }
 

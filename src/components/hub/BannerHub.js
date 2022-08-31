@@ -48,14 +48,16 @@ function BannerHub() {
             <span className="stats-texte-btn">Statistiques par territoire</span>
           </a>
           }
-          <a className="header-btn" href={lienLaBase} target="blank" rel="noreferrer">
-            <span className="ressourcerie-logo-btn"></span>
-            <span className="ressourcerie-texte-btn">Ressourcerie</span>
-          </a>
-          <a className="header-btn" href={lienMattermost}>
-            <span className="discussion-logo-btn"></span>
-            <span className="discussion-texte-btn">Espace de discussion</span>
-          </a>
+          <div className="block-lien-externe">
+            <a className="header-btn" href={lienLaBase} target="blank" rel="noreferrer">
+              <span className="ressourcerie-logo-btn"></span>
+              <span className="ressourcerie-texte-btn">Ressourcerie</span>
+            </a>
+            <a className="header-btn" href={lienMattermost}>
+              <span className="discussion-logo-btn"></span>
+              <span className="discussion-texte-btn">Espace de discussion</span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
