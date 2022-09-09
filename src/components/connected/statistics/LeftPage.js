@@ -11,7 +11,7 @@ function LeftPage({ donneesStats, type }) {
 
   const nbTotalAccompagnements = donneesStats?.nbTotalParticipant + donneesStats?.nbAccompagnementPerso + donneesStats?.nbDemandePonctuel;
   const nbTotalSansRecurrence = (nbTotalAccompagnements > donneesStats?.nbParticipantsRecurrents) ?
-   (nbTotalAccompagnements - donneesStats?.nbParticipantsRecurrents) : (donneesStats?.nbParticipantsRecurrents - nbTotalAccompagnements);
+    (nbTotalAccompagnements - donneesStats?.nbParticipantsRecurrents) : (donneesStats?.nbParticipantsRecurrents - nbTotalAccompagnements);
 
   return (
     <div className="fr-col-12 fr-col-md-5 fr-col-lg-3">
