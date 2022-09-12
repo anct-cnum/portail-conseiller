@@ -20,8 +20,8 @@ function Footer({ type, role }) {
                     style={{ height: '80px', marginRight: '28px' }} className="logoFooter"/>
                 </div>
                 <div style={{ display: 'inline-block' }} >
-                  <img src="/logos/logo-anct-nb.svg" alt="logo Agence Nationale De La Coh&eacute;sion Des Territoires"
-                    style={{ height: '59px', marginRight: '50px' }} className="logoFooter"/>
+                  <img src="/logos/logo-anct-min.svg" alt="logo Agence Nationale De La Coh&eacute;sion Des Territoires"
+                    style={{ height: '80px', marginRight: '50px' }} className="logoFooter"/>
                 </div>
                 <div style={{ display: 'inline-block' }} >
                   <img src="/logos/logo-france-relance-nb.svg" alt="logo France Relance"
