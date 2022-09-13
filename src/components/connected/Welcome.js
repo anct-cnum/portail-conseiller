@@ -20,7 +20,7 @@ function Welcome() {
   const lienLaBase = `${process.env.REACT_APP_LABASE_URL}?email=${conseiller?.emailCN?.address}`;
   const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
   const lienWebmail = process.env.REACT_APP_WEBMAIL_URL;
-  const lienRdvSolidarites = process.env.REACT_APP_RDV_SOLIDARITES_URL;
+  const lienRdvAideNumerique = process.env.REACT_APP_RDV_AIDE_NUMERIQUE_URL;
 
   return (
     <>
@@ -108,9 +108,9 @@ function Welcome() {
                   </div>
 
                   <div className="fr-col-12 fr-col-sm-3 fr-col-md-3 menu-btn fr-mb-3w">
-                    <a href={lienRdvSolidarites} target="blank" title="Acc&eacute;der &agrave; RDV Solidarit&eacute;s">
-                      <img src="/logos/home-connected/logo-rdv-solidarites.svg" className="icone-btn icone-rdv-solidarites"/>
-                      RDV Solidarit&eacute;s
+                    <a href={lienRdvAideNumerique} target="blank" title="Acc&eacute;der &agrave; RDV Aide Num&eacute;rique">
+                      <img src="/logos/home-connected/logo-rdv-aide-numerique.svg" className="icone-btn icone-rdv-aide-numerique"/>
+                      RDV Aide Num&eacute;rique
                     </a>
                   </div>
                   <div className="fr-col-12 fr-col-sm-3 fr-col-md-2 menu-btn fr-mb-3w">
