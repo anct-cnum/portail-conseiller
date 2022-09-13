@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { craActions } from '../../../../actions';
@@ -17,7 +17,11 @@ function RecurrenceButton() {
   const onClickLess = () => {
     dispatch(craActions.updateRecurrence(cra?.nbParticipantsRecurrents - 1));
   };
-
+  useEffect(() => {
+    if (cra?.nbParticipantsRecurrents > cra?.nbParticipants) {
+      dispatch(craActions.updateRecurrence(0));
+    }
+  }, [cra?.nbParticipants]);
 
   return (
     <div className="checkboxButton">

@@ -16,7 +16,7 @@ function Propos() {
 
   return (
     <div>
-      { user?.role === 'hub_coop' ? <HeaderHub /> : <Header linkAccount={user?.name}/>}
+      { user?.role === 'hub_coop' ? <HeaderHub linkAccount={user?.name} /> : <Header linkAccount={user?.name}/>}
       <div id="propos">
         <div className="fr-container">
           <div className="fr-grid-row">

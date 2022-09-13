@@ -19,7 +19,7 @@ function verifyFormulaire(form) {
 
   errors.push({
     numeroTelephone: (Joi.object({
-      numeroTelephone: Joi.string().required().pattern(regExpNumero)
+      numeroTelephone: Joi.string().optional().allow('', null).pattern(regExpNumero)
     }).validate({ numeroTelephone: form?.numeroTelephone }).error) ?
       'Un numéro de téléphone valide doit obligatoirement être saisi. Exemples: +33XXXXXXXXX ou +262XXXXXXXXX, ...' : null
   });

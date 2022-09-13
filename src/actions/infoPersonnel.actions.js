@@ -48,7 +48,7 @@ function verifyFormulaire(form, telephone) {
   if (!regExpOldTelephone.test(telephone) || form?.telephone !== telephone) {
     errors.push({
       telephone: (Joi.object({
-        telephone: Joi.string().required().pattern(regExpNumero)
+        telephone: Joi.string().optional().allow('', null).pattern(regExpNumero)
       }).validate({ telephone: form?.telephone }).error) ?
         'Un numéro de téléphone valide doit obligatoirement être saisi. Exemples: +33XXXXXXXXX ou +262XXXXXXXXX, ...' : null
     });
@@ -56,7 +56,7 @@ function verifyFormulaire(form, telephone) {
 
   errors.push({
     telephonePro: (Joi.object({
-      telephonePro: Joi.string().optional().allow(null).pattern(regExpNumero)
+      telephonePro: Joi.string().optional().allow('', null).pattern(regExpNumero)
     }).validate({ telephonePro: form?.telephonePro }).error) ?
       'Un numéro de téléphone professionnel valide doit obligatoirement être saisi. Exemples: +33XXXXXXXXX ou +262XXXXXXXXX, ...' : null
   });
@@ -68,7 +68,7 @@ function verifyFormulaire(form, telephone) {
   });
   errors.push({
     emailPro: (Joi.object({
-      emailPro: Joi.string().optional().allow(null).pattern(regExpEmail)
+      emailPro: Joi.string().optional().allow('', null).pattern(regExpEmail)
     }).validate({ emailPro: form?.emailPro }).error) ?
       'Une adresse email professionnelle valide doit obligatoirement être saisie' : null
   });

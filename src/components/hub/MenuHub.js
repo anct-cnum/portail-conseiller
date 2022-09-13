@@ -21,73 +21,52 @@ function MenuHub() {
   };
 
   return (
-    <div className="Menu">
-      <div className="fr-grid-row fr-grid-row--center">
-        <nav className={`fr-nav ${!menu.hiddenMenu && menu.expandNav ? 'fr-header__popin fr-header__popin--expanded' : ''}`}
-          id="navigation"
-          role="navigation"
-          aria-label="Menu principal"
-          style={{ boxShadow: 'none', zIndex: 1 }}>
-          <ul className="fr-nav__list" style={{ paddingBottom: '15px' }}>
+    <div
+      className={`fr-header__menu ${!menu.hiddenMenu ? 'fr-modal fr-modal--opened' : ''}`}
+      id="modal-870"
+      aria-labelledby="burgerMenu"
+      role="menu"
+      style={{ display: !menu.hiddenMenu ? 'block' : 'none' }}
+    >
+      <div className="fr-container">
+        <button className="fr-link--close fr-link" aria-controls="modal-870" onClick={toggleBurgerMenu}>Fermer</button>
+        <div className="fr-header__menu-links"></div>
+        <nav className="fr-nav fr-display--none-lg" id="navigation-869" role="navigation" aria-label="Menu principal">
+          <ul className="fr-nav__list">
             {!menu.hiddenMenu && menu.expandNav &&
-            <>
-              <li className="fr-shortcuts__item">
-                <Link
-                  className={`fr-nav__link linkCustom ${location.pathname === '/statistiques-nationales' ? 'linkActive' : ''}`}
-                  to="/statistiques-nationales"
-                  title="Statistiques nationales"
-                  onClick={toggleBurgerMenu}>
-                    Statistiques nationales
-                </Link>
-              </li>
-              <li className="fr-shortcuts__item">
-                <Link
-                  className={`fr-nav__link linkCustom ${location.pathname === '/territoires' ? 'linkActive' : ''}`}
-                  to="/territoires"
-                  title="Statistiques par territoire"
-                  onClick={toggleBurgerMenu}>
-                    Statistiques par territoire
-                </Link>
-              </li>
-              <li className="fr-shortcuts__item">
-                <a
-                  className="fr-nav__link linkCustom"
-                  href={lienLaBase} rel="noreferrer" target="blank"
-                  title="Ressourcerie"
-                  onClick={toggleBurgerMenu}>
+              <>
+                <li className="fr-nav__item">
+                  <Link
+                    className="fr-nav__link linkCustom"
+                    {...(location.pathname.startsWith(`/a-propos`) ? { 'aria-current': 'page' } : {})}
+                    onClick={toggleBurgerMenu}
+                    to="/a-propos"
+                    title="&Agrave; propos du site">
+                    &Agrave; propos
+                  </Link>
+                </li>
+                <li className="fr-nav__item">
+                  <a
+                    className="fr-nav__link linkCustom"
+                    href={lienLaBase} rel="noreferrer" target="blank"
+                    title="Ressourcerie"
+                    onClick={toggleBurgerMenu}>
                     Ressourcerie
-                </a>
-              </li>
-              <li className="fr-shortcuts__item">
-                <Link
-                  className={`fr-nav__link linkCustom ${location.pathname === '/a-propos' ? 'linkActive' : ''}`}
-                  to="/a-propos"
-                  title="&Agrave; propos du site"
-                  onClick={toggleBurgerMenu}>
-                  &Agrave; propos
-                </Link>
-              </li>
-              <li className="fr-shortcuts__item">
-                <a className="fr-nav__link linkCustom" href={lienMattermost} target="blank" rel="noreferrer">
+                  </a>
+                </li>
+                <li className="fr-nav__item">
+                  <a className="fr-nav__link linkCustom" href={lienMattermost} target="blank" rel="noreferrer">
                   Espace de discussion
-                </a>
-              </li>
-              <li className="fr-shortcuts__item">
-                <Link className="fr-btn fr-btn--sm" to="/login?role=admin" title="Se d&eacute;connecter" onClick={toggleBurgerMenu}>
-                  Se d&eacute;connecter
-                </Link>
-              </li>
-            </>
+                  </a>
+                </li>
+                <li className="fr-nav__item">
+                  <Link className="fr-btn fr-btn--sm" to="/login?role=admin" title="Se d&eacute;connecter" onClick={toggleBurgerMenu}>
+                    Se d&eacute;connecter
+                  </Link>
+                </li>
+              </>
             }
           </ul>
-          { !menu.hiddenMenu && menu.expandNav &&
-            <button className="fr-btn fr-fi-close-line fr-btn--icon-right fr-btn--sm"
-              title="Fermer"
-              aria-controls="header-nav-popin"
-              onClick={toggleBurgerMenu}>
-                Fermer
-            </button>
-          }
         </nav>
       </div>
     </div>

@@ -5,6 +5,7 @@
 
 .fr-header {
   box-shadow: none;
+  filter: none;
 }
 
 .fr-container--fluid {
@@ -36,6 +37,9 @@
     padding: 1.75rem 0;
     .fr-header__logo {
       box-shadow: none;
+    }
+    .fr-header__brand {
+      background-color: transparent;
     }
     .fr-header__service {
       box-shadow: none;
@@ -123,7 +127,7 @@
             line-height: 24px;
             color: #fff;
           }
-          #menu-liens-aide, #menu-informations, #menu-liens-user {
+          #menu-liens-aide, #menu-informations, #menu-liens-user, #menu-liens-hub {
             background-color: #1e1e1e;
             max-height: none;
             text-align: left;
@@ -138,6 +142,14 @@
           }
           #menu-liens-user {
             width: 27.3rem;
+            .fr-menu__list {
+              font-size: 14px;
+              line-height: 24px;
+            }
+          }
+          #menu-liens-hub {
+            width: 15rem;
+            margin-right: -5.25rem;
             .fr-menu__list {
               font-size: 14px;
               line-height: 24px;
