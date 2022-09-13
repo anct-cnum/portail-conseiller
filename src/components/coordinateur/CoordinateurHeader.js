@@ -15,7 +15,7 @@ function CoordinateurHeader() {
 
   const lienPix = `${process.env.REACT_APP_PIX_URL}?control1714940=${conseiller?.prenom}&control1714939=${conseiller?.nom}&control1714941=${user?.name}`;
   const lienWebmail = process.env.REACT_APP_WEBMAIL_URL;
-  const lienRdvSolidarites = process.env.REACT_APP_RDV_SOLIDARITES_URL;
+  const lienRdvAideNumerique = process.env.REACT_APP_RDV_AIDE_NUMERIQUE_URL;
   const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
   const lienLaBase = `${process.env.REACT_APP_LABASE_URL}?email=${conseiller?.emailCN?.address}`;
 
@@ -111,9 +111,9 @@ function CoordinateurHeader() {
                   </div>
 
                   <div className="fr-col-6 fr-col-sm-3 fr-col-md-2 menu-btn fr-mb-3w">
-                    <a href={lienRdvSolidarites} target="blank" title="Acc&eacute;der &agrave; RDV Solidarit&eacute;s">
-                      <img src="/logos/home-connected/logo-rdv-solidarites.svg" className="icone-btn icone-rdv-solidarites"/>
-                      RDV Solidarit&eacute;s
+                    <a href={lienRdvAideNumerique} target="blank" title="Acc&eacute;der &agrave; RDV Aide Num&eacute;rique">
+                      <img src="/logos/home-connected/logo-rdv-aide-numerique.svg" className="icone-btn icone-rdv-aide-numerique"/>
+                      RDV Aide Num&eacute;rique
                     </a>
                   </div>
 
