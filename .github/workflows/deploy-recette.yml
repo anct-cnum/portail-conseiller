@@ -37,7 +37,7 @@ jobs:
         envkey_REACT_APP_LABASE_URL: "https://labase.anct.gouv.fr/base/3"
         envkey_REACT_APP_AIDE_URL: "https://aide.conseiller-numerique.gouv.fr/fr"
         envkey_REACT_APP_CARTOGRAPHIE_URL: "https://cartographie.conseiller-numerique.gouv.fr"
-        envkey_REACT_APP_RDV_AIDE_NUMERIQUE_URL: "https://www.rdv-aide-numerique.fr/users/sign_in"
+        envkey_REACT_APP_RDV_AIDE_NUMERIQUE_URL: "https://www.rdv-aide-numerique.fr/agents/sign_in"
         envkey_REACT_APP_NOMBRE_LIEU_SECONDAIRE: 15
         file_name: .env
     - name: Build application
