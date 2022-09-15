@@ -59,7 +59,7 @@ function Welcome() {
                       Suivi d&rsquo;activit&eacute;
                     </Link>
                   </div>
-                  <div className="fr-col-12 fr-col-sm-3 fr-col-md-2 menu-btn fr-mb-3w">
+                  <div className="fr-col-12 fr-col-sm-3 fr-col-md-3 menu-btn fr-mb-3w">
                     <a href={lienMattermost} target="blank" title="Acc&egrave;s espace discussion">
                       <img src="/logos/home-connected/icone-discussion.svg" className="icone-btn icone-mattermost"/>
                       Espace de discussion
@@ -79,19 +79,19 @@ function Welcome() {
                     </a>
                   </div>
                   <div className="fr-col-12 fr-col-sm-3 fr-col-md-3 menu-btn fr-mb-3w">
-                    <a href={lienLaBase} rel="noreferrer" target="blank" title="Acc&eacute;der &agrave; la ressourcerie">
-                      <img src="/logos/home-connected/icone-ressourcerie.svg" className="icone-btn icone-ressourcerie"/>
-                      Ressourcerie
+                    <a href={lienLaBase} rel="noreferrer" target="blank" title="Acc&eacute;der &agrave; La Base">
+                      <img src="/logos/home-connected/icone-la-base.svg" className="icone-btn icone-la-base"/>
+                      La Base
                     </a>
                   </div>
-                  <div className="fr-col-12 fr-col-sm-3 fr-col-md-2 menu-btn fr-mb-3w">
+                  <div className="fr-col-12 fr-col-sm-3 fr-col-md-3 menu-btn fr-mb-3w">
                     <a href={lienPix} target="blank" title="Acc&eacute;der &agrave; Pix">
                       <img src="/logos/home-connected/icone-pix.svg" className="icone-btn icone-pix"/>
                       Pix
                     </a>
                   </div>
                 </div>
-                <div className="fr-grid-row espacement-centre-groupe-icon fr-mt-8w">
+                <div className="fr-grid-row espacement-centre-groupe-icon fr-mt-5w">
 
                   <div className="fr-col-12 fr-col-sm-3 fr-col-md-3 menu-btn fr-mb-3w">
                     <Link to="/statistiques" title="Acc&eacute;der &agrave; aux statistiques">
@@ -100,9 +100,9 @@ function Welcome() {
                     </Link>
                   </div>
 
-                  <div className="fr-col-12 fr-col-sm-3 fr-col-md-2 menu-btn fr-mb-3w">
+                  <div className="fr-col-12 fr-col-sm-3 fr-col-md-3 menu-btn fr-mb-3w">
                     <Link to="/mes-lieux-activite" title="Acc&eacute;der aux lieux d&rsquo;activit&eacute;">
-                      <img src="/logos/home-connected/icone-lieux.svg" className="icone-btn icone-ressourcerie"/>
+                      <img src="/logos/home-connected/icone-lieux.svg" className="icone-btn icone-la-base"/>
                       Lieux d&rsquo;activit&eacute;
                     </Link>
                   </div>
@@ -113,7 +113,7 @@ function Welcome() {
                       RDV Aide Num&eacute;rique
                     </a>
                   </div>
-                  <div className="fr-col-12 fr-col-sm-3 fr-col-md-2 menu-btn fr-mb-3w">
+                  <div className="fr-col-12 fr-col-sm-3 fr-col-md-3 menu-btn fr-mb-3w">
                     <a href={lienWebmail} target="blank" title="Acc&eacute;der &agrave; ma boîte mail">
                       <img src="/logos/home-connected/icone-courriel.svg" className="icone-btn icone-mail"/>
                       Acc&eacute;der au web mail
