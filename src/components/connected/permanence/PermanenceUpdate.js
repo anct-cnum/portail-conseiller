@@ -47,13 +47,15 @@ function PermanenceUpdate({ match }) {
   const [defaultCheckedNon, setDefaultCheckedNon] = useState(null);
 
   const updateGeocodeAdress = (maPermanence, prefixId) => {
-    const adresseGeoloc = {
+    const adresse = {
       numero: maPermanence?.adresse?.numeroRue,
       rue: maPermanence?.adresse?.rue,
       codePostal: maPermanence?.adresse?.codePostal,
       ville: maPermanence?.adresse?.ville.toUpperCase()
     };
-
+    const adresseGeoloc = JSON.parse(JSON.stringify(adresse,
+      (key, value) => (value === null) ? '' : value
+    ));
     dispatch(permanenceActions.getGeocodeAdresse(
       adresseGeoloc,
       prefixId)
@@ -131,13 +133,15 @@ function PermanenceUpdate({ match }) {
         conseiller)
       );
 
-      const adresseGeoloc = {
+      const adresse = {
         numero: maPermanence?.adresse?.numeroRue,
         rue: maPermanence?.adresse?.rue,
         codePostal: maPermanence?.adresse?.codePostal,
         ville: maPermanence?.adresse?.ville.toUpperCase()
       };
-
+      const adresseGeoloc = JSON.parse(JSON.stringify(adresse,
+        (key, value) => (value === null) ? '' : value
+      ));
       dispatch(permanenceActions.getGeocodeAdresse(
         adresseGeoloc,
         maPermanence.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_')
