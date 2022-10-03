@@ -89,6 +89,9 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
       if (nouveauLieu.telephonePro.length < 12) {
         nouveauLieu.telephonePro = null;
       }
+      nouveauLieu.adresse = JSON.parse(JSON.stringify(nouveauLieu.adresse,
+        (key, value) => (value === '') ? null : value
+      ));
       if (nouveauLieu._id !== null && nouveauLieu._id !== 'nouveau') {
         dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, true, null, redirection));
       } else if (prefixId) {
