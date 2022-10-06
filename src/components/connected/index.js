@@ -13,6 +13,7 @@ import MesInformations from './mesInformations';
 import MesPermanences from './permanence/MesPermanences';
 import PermanenceUpdate from './permanence/PermanenceUpdate';
 import PermanenceCreate from './permanence/PermanenceCreate';
+import HistoriqueCras from './historiqueCras';
 
 function Connected() {
 
@@ -58,6 +59,7 @@ function Connected() {
               <Route path={'/mes-lieux-activite'} component={MesPermanences} />
               <Route path={'/mon-lieu-activite/:idPermanence'} component={PermanenceUpdate} />
               <Route path={'/mon-nouveau-lieu-activite'} component={PermanenceCreate} />
+              <Route path="/historique" component={HistoriqueCras} />
               <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
             </>
           }

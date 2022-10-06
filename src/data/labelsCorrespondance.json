@@ -1,5 +1,17 @@
 [
   {
+    "nom": "individuel",
+    "correspondance": "Accompagnement individuel"
+  },
+  {
+    "nom": "collectif",
+    "correspondance": "Atelier collectif"
+  },
+  {
+    "nom": "ponctuel",
+    "correspondance": "Demande ponctuelle"
+  },
+  {
     "nom": "equipement informatique",
     "correspondance": "Prendre en main du mat&eacute;riel"
   },
