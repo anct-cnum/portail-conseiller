@@ -1,10 +1,10 @@
 import dayjs from 'dayjs';
-import React, { useEffect, useState } from 'react';
-import { AddToHomeScreen } from 'react-pwa-add-to-homescreen';
+import React, { useEffect, useState, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
 import { historiqueCrasActions } from '../../../actions/historiqueCras.actions';
 import labelsCorrespondance from '../../../data/labelsCorrespondance.json';
+import { htmlDecode } from '../../../utils/functionEncodeDecode';
 import Footer from '../../Footer';
 import Thematiques from './Thematiques';
 
@@ -14,11 +14,6 @@ function HistoriqueCras() {
   const accompagnements = useSelector(state => state.historiqueCras?.liste);
   const themes = useSelector(state => state.historiqueCras?.themes);
   const [thematique, setThematique] = useState(null);
-
-  const htmlDecode = input => {
-    const doc = new DOMParser().parseFromString(input, 'text/html');
-    return doc.documentElement.textContent;
-  };
 
   useEffect(() => {
     if (accompagnements === undefined || thematique || !thematique) {
@@ -63,7 +58,7 @@ function HistoriqueCras() {
           {accompagnements &&
             <div className="fr-grid-row">
               <div className="fr-col-8 fr-mt-1w fr-mb-8w">
-                Vous avez enregistr&eacute;s {accompagnements.length} accompagnements au cours des 30 derniers jours.
+                Vous avez enregistr&eacute; {accompagnements.length} accompagnements au cours des 30 derniers jours.
               </div>
 
               <div className="fr-col-12 fr-mb-12w">
@@ -122,14 +117,18 @@ function HistoriqueCras() {
                             {dayjs(accompagnement.cra.dateAccompagnement).format('DD/MM/YY')}
                           </td>
                           <td className="canal">
-                            <img src={`/logos/historique/canal/${accompagnement.cra.canal}.svg`} alt={`${accompagnement.cra.canal}`}
-                              data-tip={htmlDecode(labelsCorrespondance.find(label => label.nom === accompagnement.cra.canal)?.correspondance)}/>
+                            <img src={htmlDecode(labelsCorrespondance.find(label => label.nom === accompagnement.cra.canal)?.image)}
+                              alt={htmlDecode(labelsCorrespondance.find(label => label.nom === accompagnement.cra.canal)?.correspondance)}
+                              data-tip={htmlDecode(labelsCorrespondance.find(label => label.nom === accompagnement.cra.canal)?.correspondance)}
+                              className="logo"
+                            />
                           </td>
                           <td>{accompagnement.cra.codePostal + ' ' + accompagnement.cra.nomCommune}</td>
                           <td>
-                            <img src={`/logos/historique/type/${accompagnement.cra.activite}.svg`}
-                              alt={htmlDecode(labelsCorrespondance.find(label => label.nom === accompagnement.cra.activite)?.correspondance)}
-                              data-tip={htmlDecode(labelsCorrespondance.find(label => label.nom === accompagnement.cra.activite)?.correspondance)}
+                            <img src={htmlDecode(labelsCorrespondance.find(label => label.nom === accompagnement.cra.activite)?.image)}
+                              alt={labelsCorrespondance.find(label => label.nom === accompagnement.cra.activite)?.correspondance}
+                              data-tip={labelsCorrespondance.find(label => label.nom === accompagnement.cra.activite)?.correspondance}
+                              className="logo"
                             />
                           </td>
                           <td>
@@ -159,11 +158,6 @@ function HistoriqueCras() {
         </div>
       </div>
       <Footer type="support"/>
-      <AddToHomeScreen translate={{
-        safariTapShare: `Pour installer l'icône sur votre écran d'accueil cliquer sur`,
-        safariAddHomeScreen: `"Sur l'écran d'accueil"`,
-        chromiumAddHomeScreen: `Pour installer l'icône sur votre écran d'accueil allez dans le menu du navigateur et "Ajouter à l'écran d'accueil"`
-      }}/>
     </>
   );
 }

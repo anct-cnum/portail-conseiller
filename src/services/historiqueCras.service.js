@@ -1,13 +1,14 @@
 import { authHeader, history } from '../helpers';
 import { userService } from './user.service';
 
+const apiUrlRoot = process.env.REACT_APP_API;
+
 export const historiqueCras = {
   getHistoriqueCrasListe,
   getHistoriqueCrasThematiques,
 };
 
 function getHistoriqueCrasListe(theme) {
-  const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
@@ -17,7 +18,6 @@ function getHistoriqueCrasListe(theme) {
 }
 
 function getHistoriqueCrasThematiques() {
-  const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
     method: 'GET',
     headers: authHeader()

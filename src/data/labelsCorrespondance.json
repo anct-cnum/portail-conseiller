@@ -1,94 +1,117 @@
 [
   {
     "nom": "individuel",
-    "correspondance": "Accompagnement individuel"
+    "correspondance": "Accompagnement individuel",
+    "image": "/logos/cra/logo-acc-individuel.svg"
   },
   {
     "nom": "collectif",
-    "correspondance": "Atelier collectif"
+    "correspondance": "Atelier collectif",
+    "image": "/logos/cra/logo-atelier.svg"
   },
   {
     "nom": "ponctuel",
-    "correspondance": "Demande ponctuelle"
+    "correspondance": "Demande ponctuelle",
+    "image": "/logos/cra/logo-demande-ponctuelle.svg"
+  },
+  {
+    "nom": "domicile",
+    "correspondance": "&Agrave; domicile",
+    "image": "/logos/cra/logo-a-domicile.svg"
+  },
+  {
+    "nom": "distance",
+    "correspondance": "&Agrave; distance",
+    "image": "/logos/cra/logo-a-distance.svg"
+  },
+  {
+    "nom": "rattachement",
+    "correspondance": "Lieu de ratachement",
+    "image": "/logos/cra/logo-lieu-rattachement.svg"
+  },
+  {
+    "nom": "autre",
+    "correspondance": "Autre lieu",
+    "image": "/logos/cra/logo-autre-lieu.svg"
   },
   {
     "nom": "equipement informatique",
-    "correspondance": "Prendre en main du mat&eacute;riel"
+    "correspondance": "Prendre en main du mat&eacute;riel",
+    "image": "/logos/cra/logo-equip-info.svg"
   },
   {
     "nom": "vocabulaire",
-    "correspondance": "Culture num&eacute;rique"
+    "correspondance": "Culture num&eacute;rique",
+    "image": "/logos/cra/logo-vocabulaire-info.svg"
   },
   {
     "nom": "internet",
-    "correspondance": "Naviguer sur Internet"
+    "correspondance": "Naviguer sur Internet",
+    "image": "/logos/cra/logo-naviguer-internet.svg"
   },
   {
     "nom": "courriel",
-    "correspondance": "Courriels"
+    "correspondance": "Courriels",
+    "image": "/logos/cra/logo-courriel.svg"
   },
   {
     "nom": "securite",
-    "correspondance" : "S&eacute;curiser un &eacute;quipement" },
+    "correspondance" : "S&eacute;curiser un &eacute;quipement",
+    "image": "/logos/cra/logo-securite.svg"
+  },
   {
     "nom": "smartphone",
-    "correspondance": "Applications smartphone"
+    "correspondance": "Applications smartphone",
+    "image": "/logos/cra/logo-telephone-portable.svg"
   },
   {
     "nom": "contenus numeriques",
-    "correspondance": "Gestion de contenus num&eacute;riques"
+    "correspondance": "Gestion de contenus num&eacute;riques",
+    "image": "/logos/cra/logo-contenus-numeriques.svg"
   },
   {
     "nom": "traitement texte",
-    "correspondance": "Traitement de texte"
+    "correspondance": "Traitement de texte",
+    "image": "/logos/cra/logo-traitement-texte.svg"
   },
   {
     "nom": "echanger",
-    "correspondance": "&Eacute;changer avec ses proches"
+    "correspondance": "&Eacute;changer avec ses proches",
+    "image": "/logos/cra/logo-echanger-proches.svg"
   },
   {
     "nom": "trouver emploi",
-    "correspondance": "Emploi, formation"
+    "correspondance": "Emploi, formation",
+    "image": "/logos/cra/logo-trouver-emploi.svg"
   },
   {
     "nom": "accompagner enfant",
-    "correspondance": "Accompagner un aidant"
+    "correspondance": "Accompagner un aidant",
+    "image": "/logos/cra/logo-accompagner-enfant.svg"
   },
   {
     "nom": "tpe/pme",
-    "correspondance": "Num&eacute;rique et TPE/PME"
+    "correspondance": "Num&eacute;rique et TPE/PME",
+    "image": "/logos/cra/logo-tpe-pme.svg"
   },
   {
     "nom": "demarche en ligne",
-    "correspondance": "D&eacute;marche en ligne"
+    "correspondance": "D&eacute;marche en ligne",
+    "image": "/logos/cra/logo-demarche-en-ligne.svg"
   },
   {
     "nom": "fraude et harcelement",
-    "correspondance": "Fraude et harc&egrave;lement"
+    "correspondance": "Fraude et harc&egrave;lement",
+    "image": "/logos/cra/logo-fraude.svg"
   },
   {
     "nom": "sante",
-    "correspondance": "Sant&eacute;"
+    "correspondance": "Sant&eacute;",
+    "image": "/logos/cra/logo-sante.svg"
   },
   {
     "nom": "autre",
     "correspondance": "Autre"
-  },
-  {
-    "nom": "domicile",
-    "correspondance": "&Agrave; domicile"
-  },
-  {
-    "nom": "distance",
-    "correspondance": "&Agrave; distance"
-  },
-  {
-    "nom": "rattachement",
-    "correspondance": "Lieu de ratachement"
-  },
-  {
-    "nom": "autre",
-    "correspondance": "Autre lieu"
   },
   {
     "nom": "0-30",
