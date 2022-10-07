@@ -63,7 +63,7 @@ function HistoriqueCras() {
           {accompagnements &&
             <div className="fr-grid-row">
               <div className="fr-col-8 fr-mt-1w fr-mb-8w">
-                Vous avez enregistrés {accompagnements.length} accompagnements au cours des 30 derniers jours.
+                Vous avez enregistr&eacute;s {accompagnements.length} accompagnements au cours des 30 derniers jours.
               </div>
 
               <div className="fr-col-12 fr-mb-12w">
