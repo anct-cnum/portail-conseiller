@@ -1,0 +1,133 @@
+.historique-cras {
+  font-family: "Marianne", Arial, sans-serif;
+  background-color: #1e1e1e;
+  a {
+    background-image: none !important;
+  }
+  .titre {
+    line-height: 72px;
+    font-weight: 200;
+    font-size: 56px;
+    text-align: center;
+    padding-top: 80px;
+  }
+  .sous-titre {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    color: #CECECE;
+  }
+  .box-bouton-menu::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    background: linear-gradient(0deg,#3558A2,#9A9AFF) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      mask:linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+  .box-bouton-menu {
+    background: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%) !important;
+    border-radius: 20px;
+    position: relative;
+    line-height: 24px;
+    font-weight: 500;
+    color: #FFFFFF;
+    font-size: 16px;
+    display: block;
+    height: 104px;
+  }
+  .bouton-home, .bouton-cra {
+    background: url(../../public/logos/historique/bouton_home.svg) no-repeat;
+    display: inline-block;
+    margin: 20px 11px -26px 24px;
+    width: 64px;
+    height: 64px;
+  }
+  .bouton-cra {
+    background: url(../../public/logos/historique/bouton_cra.svg) no-repeat;
+    margin-bottom: -15px;
+  }
+  .texte-cra {
+    display: inline-block;
+    width: 170px;
+  }
+  .infobulle {
+    padding: 10px !important;
+    background-color: #fff;
+    border-radius: 6px;
+    text-align: left;
+    line-height: 22px;
+    color: #1e1e1e;
+    font-size: 16px;
+  }
+  .canal {
+    text-align: center;
+  }
+  table {
+    border: 1px solid #fff;
+  }
+  .logo {
+    height: 20px;
+    margin-right: 16px;
+  }
+  .modifie-le {
+    font-size: 12px;
+    color: #666;
+  }
+  #filtre-thematiques {
+    height: 33px;
+    margin-top: -20px;
+    .fr-nav__list .fr-nav__item.fr-nav__item--align-right {
+      position: relative !important;
+      z-index: 0 !important;
+      button {
+        background-color: #242424;
+        padding-top: 10px;
+        color: #fff;
+        &:hover, &:active, .fr-nav__btn[aria-expanded="true"] {
+          background-color: #9a9aff !important;
+          color: #000091 !important;
+        }
+      }
+    }
+    .btn-thematiques {
+      font-weight: 700;
+      color: #fff;
+      height: 30px;
+    }
+    .btn-thematiques[aria-expanded="true"] {
+      background-color: #9a9aff !important;
+      color: #000091 !important;
+    }
+    .fr-menu__list{
+      padding: 0;
+      .fr-nav__item {
+        max-height: 250px;
+        overflow: auto;
+      }
+    }
+    #filtre-themes {
+      border-radius: 0 20px 20px;
+      padding: 0;
+      border: 2px solid;
+      color: #9a9aff;
+      right: -113%;
+      top: 58px;
+    }
+  }
+
+  @media (min-width: 991px) {
+    .short-column {
+      width: 70px;
+    }
+    .medium-column {
+      width: 130px;
+    }
+  }
+}
+
+
