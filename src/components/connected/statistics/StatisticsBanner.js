@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { conseillerActions } from '../../../actions';
 
-function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePostal = null, idUser = null }) {
+function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePostal = null, idUser = null, nomSubordonneeCSV = null }) {
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -44,7 +44,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
   function saveCSV() {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     if (user?.role === 'conseiller' || user?.role === 'coordinateur_coop') {
-      dispatch(conseillerActions.getStatistiquesCSV(dateDebut, dateFin, codePostal, idUser));
+      dispatch(conseillerActions.getStatistiquesCSV(dateDebut, dateFin, codePostal, idUser, nomSubordonneeCSV));
     } else {
       const type = getTypeStatistique(typeStats);
       const conseillerIds = territoire?.conseillerIds ?? undefined;
@@ -116,7 +116,8 @@ StatisticsBanner.propTypes = {
   idTerritoire: PropTypes.string,
   typeStats: PropTypes.string,
   codePostal: PropTypes.string,
-  idUser: PropTypes.string
+  idUser: PropTypes.string,
+  nomSubordonneeCSV: PropTypes.string
 };
 
 export default StatisticsBanner;

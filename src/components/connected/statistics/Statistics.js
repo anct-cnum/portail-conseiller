@@ -32,7 +32,6 @@ function Statistics() {
   const territoire = location?.territoire;
   const typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : '';
   useEffect(() => {
-    console.log('location?.idUser:', location?.idUser);
     if (location?.idUser) {
       dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, location?.idUser));
     } else if (territoire) {
@@ -135,7 +134,7 @@ function Statistics() {
           <h2 className="centrerTexte">Il n&rsquo;y a aucune statistique pour le moment</h2>
         }
       </div>
-      <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats} idTerritoire={territoire?.[typeTerritoire]} codePostal={codePostalStats} idUser={location?.idUser} />
+      <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats} idTerritoire={territoire?.[typeTerritoire]} codePostal={codePostalStats} idUser={location?.idUser} nomSubordonneeCSV={location?.nomSubordonneeCSV}/>
       <div className="fr-m-5w fr-m-md-9w fr-m-lg-15w"></div>
       <Footer type="support" role={user.role} />
     </div>
