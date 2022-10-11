@@ -134,7 +134,8 @@ function Statistics() {
           <h2 className="centrerTexte">Il n&rsquo;y a aucune statistique pour le moment</h2>
         }
       </div>
-      <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats} idTerritoire={territoire?.[typeTerritoire]} codePostal={codePostalStats} idUser={location?.idUser} nomSubordonneeCSV={location?.nomSubordonneeCSV}/>
+      <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats} idTerritoire={territoire?.[typeTerritoire]} codePostal={codePostalStats}
+        idUser={location?.idUser} nomSubordonneeCSV={location?.nomSubordonneeCSV}/>
       <div className="fr-m-5w fr-m-md-9w fr-m-lg-15w"></div>
       <Footer type="support" role={user.role} />
     </div>
