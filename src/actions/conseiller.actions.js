@@ -164,10 +164,10 @@ function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType, codePosta
   }
 }
 
-function getStatistiquesCSV(dateDebut, dateFin, codePostal) {
+function getStatistiquesCSV(dateDebut, dateFin, codePostal, userSubordonne) {
   return dispatch => {
     dispatch(request());
-    conseillerService.getStatistiquesCSV(dateDebut, dateFin, codePostal)
+    conseillerService.getStatistiquesCSV(dateDebut, dateFin, codePostal, userSubordonne)
     .then(
       data => dispatch(success(data, download(data, `${statistiquesCnfsFileName(dateDebut, dateFin)}.csv`))),
       error => dispatch(failure(error))
