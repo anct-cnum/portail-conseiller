@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { conseillerActions } from '../../../actions';
 
-function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePostal = null, idUser = null, nomSubordonneeCSV = null }) {
+function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePostal = null, idSubordonne = null, nomSubordonneeCSV = null }) {
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -116,7 +116,7 @@ StatisticsBanner.propTypes = {
   idTerritoire: PropTypes.string,
   typeStats: PropTypes.string,
   codePostal: PropTypes.string,
-  idUser: PropTypes.string,
+  idSubordonne: PropTypes.string,
   nomSubordonneeCSV: PropTypes.string
 };
 
