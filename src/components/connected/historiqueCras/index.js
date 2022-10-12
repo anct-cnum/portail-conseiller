@@ -16,7 +16,6 @@ function HistoriqueCras() {
   const themes = useSelector(state => state.historiqueCras?.themes);
   const printFlashbag = useSelector(state => state.cra.printFlashbag);
   const [thematique, setThematique] = useState(null);
-  const [activeFlashMessage, setActiveFlashMessage] = useState(false);
 
   useEffect(() => {
     if (accompagnements === undefined || thematique || !thematique) {
@@ -31,11 +30,7 @@ function HistoriqueCras() {
   useEffect(() => {
     if (printFlashbag === true) {
       window.scrollTo(0, 0);
-      setActiveFlashMessage(true);
     }
-    setTimeout(() => {
-      setActiveFlashMessage(false);
-    }, 5000);
   }, [printFlashbag]);
 
   return (
@@ -49,7 +44,7 @@ function HistoriqueCras() {
               </h1>
             </div>
           </div>
-          { printFlashbag === true && activeFlashMessage === true &&
+          { printFlashbag === true &&
             <FlashMessage duration={5000}>
               <p className="fr-label flashBag">
                 Votre suivi d&rsquo;activit&eacute; a bien &eacute;t&eacute; enregistr&eacute;&nbsp;
