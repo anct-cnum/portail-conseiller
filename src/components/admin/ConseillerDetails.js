@@ -223,6 +223,7 @@ function ConseillerDetails({ location }) {
             pathname: `/statistiques`,
             currentPage: location?.currentPage,
             idUser: conseiller?._id,
+            nomSubordonneeCSV: `${conseiller?.nom}_${conseiller?.prenom}`,
             origin: '/accueil' }}>
               Statistiques d&rsquo;accompagnement
           </Link>

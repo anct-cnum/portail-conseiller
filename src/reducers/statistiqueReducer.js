@@ -1,6 +1,7 @@
 const anneeEnCours = new Date().getFullYear();
+const moisEnCours = new Date().getMonth() + 1;
 const initialState = {
-  dateDebutStats: new Date(anneeEnCours + '/01/01'),
+  dateDebutStats: new Date(anneeEnCours + '/' + moisEnCours + '/01'),
   dateFinStats: new Date(),
   codePostalStats: '',
   listeAutresReorientations: [],
