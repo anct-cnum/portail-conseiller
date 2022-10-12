@@ -78,16 +78,19 @@
     font-size: 12px;
     color: #666;
   }
+  .fr-nav__list > * > .fr-nav__btn[aria-current]::before, .fr-nav__list > * > .fr-nav__link[aria-current]::before, .fr-nav__list > .fr-nav__btn[aria-current]::before, .fr-nav__list > .fr-nav__link[aria-current]::before {
+    width: 0% !important;
+  }
   #filtre-thematiques {
     height: 33px;
-    margin-top: -20px;
+    margin-top: -23px;
     .fr-nav__list .fr-nav__item.fr-nav__item--align-right {
       position: relative !important;
       z-index: 0 !important;
       button {
-        background-color: #242424;
-        padding-top: 10px;
-        color: #fff;
+        background-color: #242424 !important;
+        padding-top: 10px !important;
+        color: #fff !important;
         &:hover, &:active, .fr-nav__btn[aria-expanded="true"] {
           background-color: #9a9aff !important;
           color: #000091 !important;
@@ -97,13 +100,13 @@
     .btn-thematiques {
       font-weight: 700;
       color: #fff;
-      height: 30px;
     }
     .btn-thematiques[aria-expanded="true"] {
       background-color: #9a9aff !important;
       color: #000091 !important;
     }
     .fr-menu__list{
+      background-color: #242424 !important;
       padding: 0;
       .fr-nav__item {
         max-height: 250px;
@@ -112,20 +115,60 @@
     }
     #filtre-themes {
       border-radius: 0 20px 20px;
-      padding: 0;
       border: 2px solid;
       color: #9a9aff;
-      right: -113%;
-      top: 58px;
+      width: 300px;
+      right: -97%;
+      padding: 0;
+      top: 60px;
     }
   }
-
-  @media (min-width: 991px) {
-    .short-column {
-      width: 70px;
+  .boutons-cras {
+    a {
+      margin: 10px 0;
     }
-    .medium-column {
-      width: 130px;
+  }
+  .short-column {
+    width: 70px;
+  }
+  .medium-column {
+    width: 130px;
+  }
+  @media (max-width: 991px) {
+    .fr-table {
+      overflow: auto;
+    }
+    table {
+      min-width: 865px !important;
+    }
+    .fr-nav__list {
+      margin-top: 1px !important;
+      .fr-nav__btn {
+        height: 55px;
+      }
+    }
+
+  }
+  @media (max-width: 767px){
+    .fr-nav__list {
+      margin-top: 9px !important;
+      .fr-nav__btn {
+        height: 47px;
+      }
+    }
+  }
+  @media (max-width: 575px) {
+    .titre {
+      line-height: 36px;
+      font-weight: 200;
+      font-size: 28px;
+      padding-top: 40px;
+    }
+    .boutons-cras {
+      text-align: center;
+      a {
+        width: 340px;
+      }
     }
   }
 }
