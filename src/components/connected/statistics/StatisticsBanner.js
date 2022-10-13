@@ -43,7 +43,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
 
   function saveCSV() {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-    if (user?.role === 'conseiller' || user?.role === 'coordinateur_coop') {
+    if ((user?.role === 'conseiller' || user?.role === 'coordinateur_coop') && !idTerritoire) {
       dispatch(conseillerActions.getStatistiquesCSV(dateDebut, dateFin, codePostal, idSubordonne, nomSubordonneeCSV));
     } else {
       const type = getTypeStatistique(typeStats);
