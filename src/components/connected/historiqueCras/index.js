@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import React, { useEffect, useState, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
+import FlashMessage from 'react-flash-message';
 import { historiqueCrasActions } from '../../../actions/historiqueCras.actions';
 import labelsCorrespondance from '../../../data/labelsCorrespondance.json';
 import { htmlDecode } from '../../../utils/functionEncodeDecode';
@@ -13,6 +14,7 @@ function HistoriqueCras() {
 
   const accompagnements = useSelector(state => state.historiqueCras?.liste);
   const themes = useSelector(state => state.historiqueCras?.themes);
+  const printFlashbag = useSelector(state => state.cra.printFlashbag);
   const [thematique, setThematique] = useState(null);
 
   useEffect(() => {
@@ -23,6 +25,13 @@ function HistoriqueCras() {
       dispatch(historiqueCrasActions.getHistoriqueCrasThematiques());
     }
   }, [thematique]);
+
+  //Forcer affichage en haut de la page pour voir le flashbag
+  useEffect(() => {
+    if (printFlashbag === true) {
+      window.scrollTo(0, 0);
+    }
+  }, [printFlashbag]);
 
   return (
     <>
@@ -35,6 +44,14 @@ function HistoriqueCras() {
               </h1>
             </div>
           </div>
+          { printFlashbag === true &&
+            <FlashMessage duration={5000}>
+              <p className="fr-label flashBag">
+                Votre suivi d&rsquo;activit&eacute; a bien &eacute;t&eacute; enregistr&eacute;&nbsp;
+                <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+              </p>
+            </FlashMessage>
+          }
           {!accompagnements &&
             <div className="fr-grid-row fr-grid-row--center">
               <div className="fr-col-6 fr-mt-15w fr-mb-7w">
@@ -57,13 +74,15 @@ function HistoriqueCras() {
           }
           {accompagnements &&
             <div className="fr-grid-row">
-              <div className="fr-col-8 fr-mt-1w fr-mb-8w">
+              <div className="fr-col-lg-8 fr-mt-1w fr-mb-8w">
                 Vous avez enregistr&eacute; {accompagnements.length} accompagnements au cours des 30 derniers jours.
               </div>
 
               <div className="fr-col-12 fr-mb-12w">
-                <a className="fr-btn fr-btn--secondary fr-mr-2w" href="/compte-rendu-activite">Enregistrer un nouvel accompagnement</a>
-                <a className="fr-btn fr-btn--secondary" href="/statistiques">Consulter mes statistiques</a>
+                <div className="boutons-cras">
+                  <a className="fr-btn fr-btn--secondary boutons-cras fr-mr-md-2w" href="/compte-rendu-activite">Enregistrer un nouvel accompagnement</a>
+                  <a className="fr-btn fr-btn--secondary" href="/statistiques">Consulter mes statistiques</a>
+                </div>
                 <div className="fr-table fr-table--bordered fr-table--layout-fixed">
                   <table>
                     <thead>
@@ -140,7 +159,7 @@ function HistoriqueCras() {
                           )}
                           </td>
                           <td className="modifie-le">
-                            {dayjs(accompagnement.createdAt).format('DD/MM/YY à HH:MM')}
+                            {dayjs(accompagnement.createdAt).format('DD/MM/YY à HH:mm')}
                           </td>
                           <td>
                             <a href={`/compte-rendu-activite/${accompagnement._id}`}>
