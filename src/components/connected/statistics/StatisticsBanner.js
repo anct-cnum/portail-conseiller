@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { conseillerActions } from '../../../actions';
 
-function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePostal = null }) {
+function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePostal = null, idSubordonne = null, nomSubordonneeCSV = null }) {
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -43,10 +43,10 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
 
   function saveCSV() {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-    if (user?.role === 'conseiller' || user?.role === 'coordinateur_coop') {
-      dispatch(conseillerActions.getStatistiquesCSV(dateDebut, dateFin, codePostal));
+    const type = getTypeStatistique(typeStats);
+    if ((user?.role === 'conseiller' || user?.role === 'coordinateur_coop') && !idTerritoire && type !== 'nationales') {
+      dispatch(conseillerActions.getStatistiquesCSV(dateDebut, dateFin, codePostal, idSubordonne, nomSubordonneeCSV));
     } else {
-      const type = getTypeStatistique(typeStats);
       const conseillerIds = territoire?.conseillerIds ?? undefined;
       // eslint-disable-next-line max-len
       dispatch(conseillerActions.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser, conseillerIds, codePostal));
@@ -116,6 +116,8 @@ StatisticsBanner.propTypes = {
   idTerritoire: PropTypes.string,
   typeStats: PropTypes.string,
   codePostal: PropTypes.string,
+  idSubordonne: PropTypes.string,
+  nomSubordonneeCSV: PropTypes.string
 };
 
 export default StatisticsBanner;
