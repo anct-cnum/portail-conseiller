@@ -19,6 +19,8 @@ export const craActions = {
   changeDate,
   datePickerStatus,
   showSelectRedirection,
+  getCra,
+  updateCra,
 };
 
 function getSearchlist() {
@@ -116,4 +118,56 @@ function submitCra(cra) {
 
 function showSelectRedirection(show) {
   return { type: 'SHOW_SELECT_REDIRECTION', show };
+}
+
+function getCra(id) {
+  return dispatch => {
+    dispatch(request());
+
+    craService.getCra(id)
+    .then(
+      result => {
+        dispatch(success(result.cra));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'GET_CRA_REQUEST' };
+  }
+  function success(cra) {
+    return { type: 'GET_CRA_SUCCESS', cra };
+  }
+  function failure(error) {
+    return { type: 'GET_CRA_FAILURE', error };
+  }
+}
+
+function updateCra(cra, conseillerId) {
+  return dispatch => {
+    dispatch(request(cra));
+
+    craService.updateCra(cra, conseillerId)
+    .then(
+      cra => {
+        dispatch(success(cra));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request(cra) {
+    return { type: 'SET_CRA_REQUEST', cra };
+  }
+  function success(cra) {
+    return { type: 'SET_CRA_SUCCESS', cra };
+  }
+  function failure(error) {
+    return { type: 'SET_CRA_FAILURE', error };
+  }
 }

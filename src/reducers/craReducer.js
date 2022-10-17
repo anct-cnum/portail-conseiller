@@ -214,6 +214,106 @@ export default function cra(state = initialState, action) {
         ...state,
         showSelectRedirection: action.show
       };
+    case 'UPDATE_CRA_REQUEST':
+      return {
+        ...state,
+        saveInProgress: true,
+        printUpdateFlashbag: false
+      };
+    case 'UPDATE_CRA_SUCCESS':
+      //retour à l'état initial
+      return {
+        ...initialState,
+        printUpdateFlashbag: true,
+      };
+    case 'UPDATE_CRA_FAILURE':
+      return {
+        ...state,
+        error: action.error,
+        saveInProgress: false,
+        printUpdateFlashbag: false
+      };
+    case 'GET_CRA_REQUEST' :
+      return {
+        ...initialState,
+        error: false,
+        loading: true,
+      };
+    case 'GET_CRA_SUCCESS':
+      return {
+        ...initialState,
+        loading: false,
+        errorsRequired: {
+          cp: false,
+          canal: false,
+          activite: false,
+          age: false,
+          statut: false,
+          themes: false,
+          duree: false
+        },
+        id: action.cra._id,
+        updatedAt: action.cra.updatedAt ?? action.cra.createdAt,
+        searchCP: false,
+        searchInput: false,
+        cp: action.cra.cra.codePostal + ' ' + action.cra.cra.nomCommune,
+        dateAccompagnement: new Date(action.cra.cra.dateAccompagnement),
+        oldDateAccompagnement: new Date(action.cra.cra.dateAccompagnement),
+        canal: action.cra.cra.canal,
+        activite: action.cra.cra.activite,
+        nbParticipantsRecurrents: action.cra.cra.nbParticipantsRecurrents,
+        age: {
+          moins12ans: action.cra.cra.age.moins12ans,
+          de12a18ans: action.cra.cra.age.de12a18ans,
+          de18a35ans: action.cra.cra.age.de18a35ans,
+          de35a60ans: action.cra.cra.age.de35a60ans,
+          plus60ans: action.cra.cra.age.plus60ans,
+        },
+        nbParticipantsAge: action.cra.cra.nbParticipants,
+        statut: {
+          etudiant: action.cra.cra.statut.etudiant,
+          sansEmploi: action.cra.cra.statut.sansEmploi,
+          enEmploi: action.cra.cra.statut.enEmploi,
+          retraite: action.cra.cra.statut.retraite,
+          heterogene: action.cra.cra.statut.heterogene
+        },
+        nbParticipantsStatut: action.cra.cra.nbParticipants,
+        themes: action.cra.cra.themes,
+        duree: action.cra.cra.duree,
+        accompagnement: {
+          individuel: action.cra.cra.accompagnement.individuel,
+          atelier: action.cra.cra.accompagnement.atelier,
+          redirection: action.cra.cra.accompagnement.redirection,
+        },
+        nbParticipantsAccompagnement: action.cra.cra.nbParticipants,
+        organisme: action.cra.cra.organisme,
+        nbParticipants: action.cra.cra.nbParticipants,
+
+      };
+    case 'GET_CRA_FAILURE':
+      return {
+        error: action.error,
+        loading: false,
+      };
+    case 'SET_CRA_REQUEST':
+      return {
+        ...state,
+        saveInProgress: true,
+        printFlashbag: false
+      };
+    case 'SET_CRA_SUCCESS':
+      //retour à l'état initial
+      return {
+        ...initialState,
+        printFlashbag: true,
+      };
+    case 'SET_CRA_FAILURE':
+      return {
+        ...state,
+        error: action.error,
+        saveInProgress: false,
+        printFlashbag: false
+      };
     default:
       return state;
   }
