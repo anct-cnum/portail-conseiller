@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { AddToHomeScreen } from 'react-pwa-add-to-homescreen';
 import { history } from '../../../helpers';
 import CodePostal from './CodePostal';
 import Canal from './Canal';
@@ -25,7 +24,6 @@ function UpdateCra({ match }) {
   const error = useSelector(state => state.cra?.error);
   const loading = useSelector(state => state.cra?.loading);
 
-  //Forcer affichage en haut de la page pour voir le flashbag
   useEffect(() => {
     if (printFlashbag) {
       history.push('/historique');
@@ -82,11 +80,6 @@ function UpdateCra({ match }) {
       </div>
 
       <Footer type="support"/>
-      <AddToHomeScreen translate={{
-        safariTapShare: `Pour installer l'icône sur votre écran d'accueil cliquer sur`,
-        safariAddHomeScreen: `"Sur l'écran d'accueil"`,
-        chromiumAddHomeScreen: `Pour installer l'icône sur votre écran d'accueil allez dans le menu du navigateur et "Ajouter à l'écran d'accueil"`
-      }}/>
     </>
   );
 }
