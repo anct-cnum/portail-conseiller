@@ -21,7 +21,7 @@ function UpdateCra({ match }) {
   const idCra = match.params.idCra;
   const urlAPropos = process.env.REACT_APP_AIDE_URL +
     '/article/comment-le-conseiller-numerique-rend-il-compte-de-ses-activites-et-a-quoi-cela-sert-il-16n3yhq/';
-  const printFlashbag = useSelector(state => state.cra.printFlashbag);
+  const printFlashbag = useSelector(state => state.cra?.printFlashbag);
   const error = useSelector(state => state.cra?.error);
   const loading = useSelector(state => state.cra?.loading);
 
