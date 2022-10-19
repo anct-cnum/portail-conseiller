@@ -49,7 +49,7 @@ function PermanenceCreate() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       setTimeout(() => {
         if (redirection !== '/mes-lieux-activite') {
-          window.open(urlCartographie + '/' + redirection + '/details', '_blank');
+          window.open(urlCartographie + '/' + redirection + '/details', '_blank',  'noopener,noreferrer');
         }
         dispatch(conseillerActions.get(userEntityId()));
         dispatch(permanenceActions.reinitiliserStatut());
