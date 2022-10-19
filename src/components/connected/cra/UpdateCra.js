@@ -48,8 +48,9 @@ function UpdateCra({ match }) {
             <h1 className="titre centre-titre">Mon suivi d&rsquo;activit&eacute;</h1>
           </div>
           {(error && !loading) &&
-            <div className="fr-col-12 fr-mt-12w">
-              Une erreur est survenue, le suivi d&rsquo;activit&eacute; n&rsquo;a pas pu &ecirc;tre trouv&eacute; !
+            <div className="fr-col-12 fr-mt-12w flashBag invalid">
+              Une erreur est survenue, le suivi d&rsquo;activit&eacute; n&rsquo;a pas pu &ecirc;tre trouv&eacute; !<br/>
+              Erreur : {error}
             </div>
           }
           {(!error && !loading) &&
