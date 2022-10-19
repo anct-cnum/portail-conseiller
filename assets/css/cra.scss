@@ -892,4 +892,49 @@ $blue: #2b8bf7;
     }
 
   }
+
+  /* CRA V3 */
+  .titre {
+    line-height: 64px;
+    font-weight: 250;
+    font-size: 56px;
+    margin: 0;
+  }
+  .btn-guide {
+    border: 1px solid #8585F6;
+    background-image: none;
+    display: inline-block;
+    text-align: center;
+    font-style: normal;
+    padding-top: 8px;
+    margin-top: 15px;
+    color: #8585F6;
+    font-size: 16px;
+    height: 40px;
+    width: 180px;
+  }
+
+  .box-bouton-menu::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    background: linear-gradient(0deg,#3558A2,#9A9AFF) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      mask:linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+  .box-bouton-menu {
+    background: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%) !important;
+    border-radius: 20px;
+    position: relative;
+    line-height: 24px;
+    font-weight: 500;
+    color: #FFFFFF;
+    font-size: 16px;
+    display: block;
+    height: 104px;
+  }
 }
