@@ -14,6 +14,7 @@ import ValidationButton from './Components/ValidationButton';
 import Footer from '../../Footer';
 import Recurrence from './Recurrence';
 import { craActions } from '../../../actions';
+import dayjs from 'dayjs';
 
 function UpdateCra({ match }) {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ function UpdateCra({ match }) {
   const printFlashbag = useSelector(state => state.cra?.printFlashbag);
   const error = useSelector(state => state.cra?.error);
   const loading = useSelector(state => state.cra?.loading);
+  const dateUpdate = useSelector(state => state.cra?.updatedAt);
 
   useEffect(() => {
     if (printFlashbag) {
@@ -46,9 +48,10 @@ function UpdateCra({ match }) {
             <h1 className="titre centre-titre">Mon suivi d&rsquo;activit&eacute;</h1>
           </div>
           {(error && !loading) &&
-          <div className="fr-col-12 fr-mt-12w">
-            Une erreur est survenue, le suivi d&rsquo;activit&eacute; n&rsquo;a pas pu &ecirc;tre trouv&eacute; !
-          </div>
+            <div className="fr-col-12 fr-mt-12w flashBag invalid">
+              Une erreur est survenue, le suivi d&rsquo;activit&eacute; n&rsquo;a pas pu &ecirc;tre trouv&eacute; !<br/>
+              Erreur : {error}
+            </div>
           }
           {(!error && !loading) &&
             <>
@@ -60,6 +63,9 @@ function UpdateCra({ match }) {
                 }
               </div>
               <div className="fr-col-12 fr-col-md-2"></div>
+              <div className="fr-col-12 fr-mt-3w">
+                Dernier enregistrement de ce compte rendu d&rsquo;activit&eacute; le <b>{dayjs(dateUpdate).format('DD/MM/YYYY à HH:mm')}</b>
+              </div>
             </>
           }
         </div>
