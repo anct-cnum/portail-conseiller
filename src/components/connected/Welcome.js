@@ -25,7 +25,7 @@ function Welcome() {
   return (
     <>
       <div className="welcome">
-        { conseiller && !conseiller?.supHierarchique &&
+        { !conseiller?.supHierarchique &&
         <div className="fr-container">
           <div className="fr-grid-row fr-grid-row--center">
             <div className="fr-col-12 fr-mt-15w fr-mb-3w">
@@ -72,7 +72,7 @@ function Welcome() {
                           <a href={lienMattermost} target="blank" title="Acc&egrave;s espace discussion">
                             <img src="/logos/home-connected/icone-discussion.svg" className="icone-btn icone-mattermost"/>
                             Discussion
-                            <span data-tip="
+                            <span data-tip={`
                               <div><b>Astuce :</b> l’espace de discussion fonctionne via le logiciel libre Mattermost.
                               Si vous le souhaitez, il est possible de l’installer sur votre ordinateur ou votre t&eacute;l&eacute;phone
                               afin de pouvoir y acc&eacute;der directement.</div>
@@ -80,9 +80,9 @@ function Welcome() {
                               <div>Pour le t&eacute;l&eacute;charger : www.mattermost.com/download/ </div>
                               <br/>
                               <div>Pour le param&eacute;trer : </div>
-                              <div>serveur : https://discussion.conseiller-numerique.gouv.fr </div>
+                              <div>serveur : ${lienMattermost} </div>
                               <div>identifiants : votre mail et votre mot de passe Conseiller num&eacute;rique. </div>
-                              <div>Cette fonctionnalit&eacute; sera disponible prochainement.</div>">
+                              <div>Cette fonctionnalit&eacute; sera disponible prochainement.</div>`}>
                               <i className="ri-information-line information"></i>
                             </span>
                           </a>
