@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import CodePostal from './CodePostal';
-import Canal from './Canal';
+import CanalEtAdresse from './CanalEtAdresse';
 import Activite from './Activite';
 import Age from './Age';
 import Themes from './Themes';
@@ -10,22 +9,29 @@ import Accompagnement from './Accompagnement';
 import ValidationButton from './Components/ValidationButton';
 import Footer from '../../Footer';
 import Recurrence from './Recurrence';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { AddToHomeScreen } from 'react-pwa-add-to-homescreen';
 import { history } from '../../../helpers';
+import { permanenceActions } from '../../../actions';
 
 function Cra() {
-
+  const dispatch = useDispatch();
   const urlAPropos =
   process.env.REACT_APP_AIDE_URL + '/article/comment-le-conseiller-numerique-rend-il-compte-de-ses-activites-et-a-quoi-cela-sert-il-16n3yhq/';
   const printFlashbag = useSelector(state => state.cra.printFlashbag);
+  const conseiller = useSelector(state => state.conseiller?.conseiller);
+  const listPermanences = useSelector(state => state.permanence?.mesPermanences);
 
   useEffect(() => {
     if (printFlashbag) {
       history.push('historique');
     }
   }, [printFlashbag]);
-
+  useEffect(() => {
+    if (conseiller) {
+      dispatch(permanenceActions.getMesPermanences(conseiller._id));
+    }
+  }, [conseiller]);
   return (
     <>
       <div className="fr-container cra">
@@ -45,8 +51,7 @@ function Cra() {
           </div>
           <div className="fr-col-12 fr-col-md-2"></div>
         </div>
-        <CodePostal/>
-        <Canal/>
+        <CanalEtAdresse/>
         <Activite/>
         <Recurrence/>
         <Age/>
