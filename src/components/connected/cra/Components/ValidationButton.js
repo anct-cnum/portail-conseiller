@@ -25,8 +25,12 @@ function ValidationButton() {
       let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error,
         // eslint-disable-next-line no-unused-vars
         showSelectRedirection, nbParticipantsAge, nbParticipantsStatut, nbParticipantsAccompagnement, printFlashbag, ...dataCraToSend } = cra;
-
+        console.log('dataCraToSend$$$$$$$:', dataCraToSend);
+        if (cra?.sousThemes === []) {
+          delete dataCraToSend.sousThemes;
+        }
       dispatch(craActions.submitCra(dataCraToSend));
+      console.log('dataCraToSend11111:', dataCraToSend);
     }
   };
 

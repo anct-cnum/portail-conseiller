@@ -156,6 +156,11 @@ export default function cra(state = initialState, action) {
           ...state.errorsRequired,
           themes: (action.themes.length === 0) },
       };
+    case 'UPDATE_MULTIPLE_THEMES':
+      return {
+        ...state,
+        sousThemes: action.sousthemesList
+      };
     case 'UPDATE_DUREE':
       return {
         ...state,
