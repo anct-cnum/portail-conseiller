@@ -8,6 +8,7 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, h
 
   const dispatch = useDispatch();
   let cra = useSelector(state => state.cra);
+
   let controlSelected = getCraValue(type);
 
   const sousThemes = [
@@ -50,8 +51,10 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, h
         if (!newthemesList.includes(valueOnClick) && !array.includes(valueOnClick)) {
           newthemesList.push(valueOnClick);
         } else {
+          console.log('Avant:', sousthemesList);
           newthemesList = newthemesList.filter(theme => theme !== valueOnClick);
           if (!newthemesList.includes(value)) {
+            console.log('sousthemesList:', sousthemesList);
             sousthemesList = sousthemesList.filter(obj => !obj[value]);
             dispatch(craActions.updateMultipleThemes(sousthemesList));
             console.log('RESET', sousthemesList);
@@ -97,8 +100,10 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, h
               <br/>
               <div className="fr-checkbox-group">
               {sousThemes.filter(t => t.theme === value).map((sous, key) => {
+                  const test = cra?.sousThemes ? cra?.sousThemes.find(s => s[value]) : undefined;
+                  const checked = test ? test[value]?.includes(sous.value) : false;
                 return <div key={key}>
-                <input type="checkbox" id={sous.value} name={sous.value} value={sous.value} className="" onClick={clickSousTheme}/>
+                <input type="checkbox" id={sous.value} name={sous.value} value={sous.value} defaultChecked={checked} onClick={clickSousTheme}/>
                 <label className="fr-label" htmlFor={sous.value}>{sous.label}</label>
               </div>;
               }

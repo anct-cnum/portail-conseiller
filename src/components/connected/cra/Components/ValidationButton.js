@@ -24,13 +24,15 @@ function ValidationButton() {
       // eslint-disable-next-line no-unused-vars
       let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error,
         // eslint-disable-next-line no-unused-vars
-        showSelectRedirection, nbParticipantsAge, nbParticipantsStatut, nbParticipantsAccompagnement, printFlashbag, ...dataCraToSend } = cra;
-        console.log('dataCraToSend$$$$$$$:', dataCraToSend);
-        if (cra?.sousThemes === []) {
-          delete dataCraToSend.sousThemes;
-        }
-      dispatch(craActions.submitCra(dataCraToSend));
-      console.log('dataCraToSend11111:', dataCraToSend);
+        showSelectRedirection, nbParticipantsAge, nbParticipantsStatut, nbParticipantsAccompagnement, printFlashbag, loading, id, ...dataCraToSend } = cra;
+      if (dataCraToSend?.sousThemes.length === 0) {
+        delete dataCraToSend.sousThemes;
+      }
+      if (cra.id) {
+        dispatch(craActions.updateCra(dataCraToSend, cra.id));
+      } else {
+        dispatch(craActions.submitCra(dataCraToSend));
+      }
     }
   };
 

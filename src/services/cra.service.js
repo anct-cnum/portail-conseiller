@@ -3,10 +3,13 @@ import { userService } from './user.service';
 
 export const craService = {
   createCra,
+  getCra,
+  updateCra,
 };
 
+const apiUrlRoot = process.env.REACT_APP_API;
+
 function createCra(cra) {
-  console.log('cra:', cra);
   const apiUrlRoot = process.env.REACT_APP_API;
 
   const requestOptions = {
@@ -19,6 +22,27 @@ function createCra(cra) {
   };
 
   return fetch(`${apiUrlRoot}/cras`, requestOptions).then(handleResponse);
+}
+
+function getCra(id) {
+
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader(),
+  };
+
+  return fetch(`${apiUrlRoot}/cras/${id}`, requestOptions).then(handleResponse);
+}
+
+function updateCra(cra, id) {
+  const requestOptions = {
+    method: 'PATCH',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+    body: JSON.stringify({
+      cra
+    })
+  };
+  return fetch(`${apiUrlRoot}/cras/${id}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
