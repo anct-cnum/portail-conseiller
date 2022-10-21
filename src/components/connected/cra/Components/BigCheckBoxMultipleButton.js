@@ -12,7 +12,7 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, h
   let controlSelected = getCraValue(type);
 
   const sousThemes = [
-      {theme: 'sante', value: 'espace-sante', label: 'Mon espace santé'},
+    { theme: 'sante', value: 'espace-sante', label: 'Mon espace santé' },
   ];
   const array = [
     ...sousThemes.map(test => test.value),
@@ -23,22 +23,22 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, h
     const valueOnClick = e.target.getAttribute('value');
     let sousthemesList = cra?.sousThemes ? cra?.sousThemes : [];
     if (!sousthemesList.find(name => name[value])) {
-      sousthemesList.push({[value]: [valueOnClick]});
+      sousthemesList.push({ [value]: [valueOnClick] });
     } else {
       sousthemesList = sousthemesList.filter((e, key) => {
-          let nameSousTheme = sousthemesList[key][value];
-          if (String(Object.keys(e)) === String(value)) {
-              if (sousthemesList && !nameSousTheme.includes(valueOnClick)) {
-                sousthemesList[key][value] = [...nameSousTheme, valueOnClick];
-              } else {
-                sousthemesList[key][value] = nameSousTheme.filter(i => i !== valueOnClick);
-                }
-              }
-            return sousthemesList;
-          });
+        let nameSousTheme = sousthemesList[key][value];
+        if (String(Object.keys(e)) === String(value)) {
+          if (sousthemesList && !nameSousTheme.includes(valueOnClick)) {
+            sousthemesList[key][value] = [...nameSousTheme, valueOnClick];
+          } else {
+            sousthemesList[key][value] = nameSousTheme.filter(i => i !== valueOnClick);
+          }
         }
-        sousthemesList = sousthemesList.filter(obj => JSON.stringify(obj) !== JSON.stringify({ [value]: [] }));
-        await dispatch(craActions.updateMultipleThemes(sousthemesList));
+        return sousthemesList;
+      });
+    }
+    sousthemesList = sousthemesList.filter(obj => JSON.stringify(obj) !== JSON.stringify({ [value]: [] }));
+    await dispatch(craActions.updateMultipleThemes(sousthemesList));
   };
 
   const onClickCheckbox = e => {
@@ -96,15 +96,15 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, h
               <label className="fr-label">Optionnellement, précisez&nbsp;:&nbsp;&nbsp;</label>
               <br/>
               <div className="fr-checkbox-group">
-              {sousThemes.filter(t => t.theme === value).map((sous, key) => {
+                { sousThemes.filter(t => t.theme === value).map((sous, key) => {
                   const test = cra?.sousThemes ? cra?.sousThemes.find(s => s[value]) : undefined;
                   const checked = test ? test[value]?.includes(sous.value) : false;
-                return <div key={key}>
-                <input type="checkbox" id={sous.value} name={sous.value} value={sous.value} defaultChecked={checked} onClick={clickSousTheme}/>
-                <label className="fr-label" htmlFor={sous.value}>{sous.label}</label>
-              </div>;
-              }
-            )}
+                  return <div key={key}>
+                    <input type="checkbox" id={sous.value} name={sous.value} value={sous.value} defaultChecked={checked} onClick={clickSousTheme}/>
+                    <label className="fr-label" htmlFor={sous.value}>{sous.label}</label>
+                  </div>;
+                }
+                )}
               </div>
             </div>
           }
