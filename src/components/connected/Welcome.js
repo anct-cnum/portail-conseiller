@@ -50,7 +50,7 @@ function Welcome() {
                   <div className="fr-col-12 fr-col-md-4 fr-mb-5w">
                     <div className="block-cra">
                       <Link to="/compte-rendu-activite" className="saisie-cra"
-                        title="Acc&eacute;der &agrave; mon outil de suivi d&rsquo;activit&eacute;" >
+                        title="Acc&eacute;der &agrave; votre outil de suivi d&rsquo;activit&eacute;" >
                         <img src="/logos/home-connected/icone-saisie.svg"/>
                         <span>Enregistrer une activit&eacute;</span>
                       </Link>
@@ -140,13 +140,13 @@ function Welcome() {
                     <div className="fr-container fr-container--fluid">
                       <div className="fr-grid-row">
                         <div className="fr-col-12 fr-col-sm-6 menu-btn fr-mb-5w fr-mt-md-7w fr-ml-md-n2w">
-                          <a href="/statistiques-nationales" title="Acc&eacute;der &agrave; Pix">
+                          <a href="/statistiques-nationales" title="Acc&eacute;der aux Statistiques Nationales">
                             <img src="/logos/home-connected/icone-nationale.svg" className="icone-btn icone-pix"/>
                             <span>Statistiques <br/>nationales</span>
                           </a>
                         </div>
                         <div className="fr-col-12 fr-col-sm-6 menu-btn fr-mb-5w fr-mt-md-7w fr-ml-md-n3w">
-                          <a href={lienBlog} target="blank" title="Acc&eacute;der &agrave; Pix">
+                          <a href={lienBlog} target="blank" title="Acc&eacute;der au Blog">
                             <img src="/logos/home-connected/icone-blog.svg" className="icone-btn icone-pix"/>
                             <span>M&eacute;dia CnFS</span>
                           </a>
