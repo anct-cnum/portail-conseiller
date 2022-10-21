@@ -38,9 +38,7 @@ function updateCra(cra, id) {
   const requestOptions = {
     method: 'PATCH',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
-    body: JSON.stringify({
-      cra
-    })
+    body: JSON.stringify(cra)
   };
   return fetch(`${apiUrlRoot}/cras/${id}`, requestOptions).then(handleResponse);
 }

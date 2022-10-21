@@ -51,13 +51,10 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, h
         if (!newthemesList.includes(valueOnClick) && !array.includes(valueOnClick)) {
           newthemesList.push(valueOnClick);
         } else {
-          console.log('Avant:', sousthemesList);
           newthemesList = newthemesList.filter(theme => theme !== valueOnClick);
           if (!newthemesList.includes(value)) {
-            console.log('sousthemesList:', sousthemesList);
             sousthemesList = sousthemesList.filter(obj => !obj[value]);
             dispatch(craActions.updateMultipleThemes(sousthemesList));
-            console.log('RESET', sousthemesList);
           }
         }
         dispatch(craActions.updateThemes(newthemesList));
