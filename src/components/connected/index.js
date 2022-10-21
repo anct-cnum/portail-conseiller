@@ -61,7 +61,8 @@ function Connected() {
               <Route path={'/mes-lieux-activite'} component={MesPermanences} />
               <Route path={'/mon-lieu-activite/:idPermanence'} component={PermanenceUpdate} />
               <Route path={'/mon-nouveau-lieu-activite'} component={PermanenceCreate} />
-              <Route path={"/historique"} component={HistoriqueCras} />
+              <Route path={'/historique'} component={HistoriqueCras} />
+
               <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
             </>
           }
