@@ -156,7 +156,7 @@ function Welcome() {
                   </div>
 
                   <div className="fr-col-12 fr-col-sm-4 fr-col-md-3 menu-btn fr-mb-5w">
-                    <a href="https://cdn.conseiller-numerique.gouv.fr/les-conseils-pour-bien-demarrer.pdf" target="blank">
+                    <a href="https://www.conseiller-numerique.gouv.fr/kit-communication" target="blank">
                       <img src="/logos/home-connected/icone-kit.svg" className=""/><br/>
                       <span>Kit de communication</span>
                     </a>
