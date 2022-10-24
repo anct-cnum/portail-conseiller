@@ -13,7 +13,6 @@ function HistoriqueCras() {
   const dispatch = useDispatch();
 
   const accompagnements = useSelector(state => state.historiqueCras?.liste);
-  console.log('accompagnements:', accompagnements);
   const themes = useSelector(state => state.historiqueCras?.themes);
   const printFlashbag = useSelector(state => state.cra.printFlashbag);
   const [thematique, setThematique] = useState(null);
