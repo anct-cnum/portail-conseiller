@@ -2,14 +2,14 @@ $errorDarkMode: #ff3333;
 $background: #1e1e1e;
 $blue: #2b8bf7;
 
-.cra {
+.cra { /*
   .espacement {
     margin-bottom: 3.75rem !important;
   }
   *:focus {
     outline: none;
   }
-
+ /*
   .titre {
     line-height: 72px;
     font-weight: 200;
@@ -39,12 +39,8 @@ $blue: #2b8bf7;
     content:" * ";
   }
 
-  /** START SELECT CP **/
-  .question {
-    height: 42px;
-    font-size: 14px;
-    font-weight: 100;
-  }
+  /** START SELECT CP **/ /*
+
 
   .buttonCP, .buttonRecurrence {
     height: 104px;
@@ -71,18 +67,6 @@ $blue: #2b8bf7;
     color: black;
     height: 104px;
     width: 100%;
-  }
-
-  .searchCP {
-  padding: 14px 20px 12px 45px;
-  background-color: #fff;
-  border-radius: 20px;
-  text-align: center;
-  font-weight: 500;
-  font-size: 16px;
-  height: 104px;
-  border: none;
-  width: 100%;
   }
 
   .searchCP::placeholder {
@@ -135,89 +119,6 @@ $blue: #2b8bf7;
     padding-left: 0.75rem;
   }
 
-  .react-datepicker{
-    border-radius: 0 0 1.4rem 1.4rem;
-    background-color: $background;
-    border: 1px solid #5398ff;
-    color: #fff;
-    left: 32px;
-    top: -10px;
-    .react-datepicker-popper {
-      margin: 0 !important;
-    }
-    .react-datepicker__triangle {
-      display: none;
-    }
-    .react-datepicker__navigation--previous {
-      background: url(../../public/logos/statistics/logo-chevron-gauche.svg) no-repeat;
-      margin-left: 11px;
-      border: none;
-      height: 16px;
-      width: 10px;
-    }
-    .react-datepicker__navigation--next {
-      background: url(../../public/logos/statistics/logo-chevron-droit.svg) no-repeat;
-      margin-right: 11px;
-      border: none;
-      height: 16px;
-      width: 10px;
-    }
-    .react-datepicker__header {
-      background-color: $background;
-      color: #fff;
-      .react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header {
-        color: #fff;
-      }
-      .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
-        color: #fff;
-      }
-      .react-datepicker__month {
-        color: #fff;
-      }
-    }
-    .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
-      font-size: 16px;
-      color: #fff;
-      width: 1.54rem;
-      height: 1.54rem;
-      margin: 6px;
-    }
-    .react-datepicker__week {
-      cursor: default;
-    }
-    .react-datepicker__day--outside-month {
-      color: #909090;
-    }
-    .react-datepicker__day--disabled {
-      color: $background;
-      cursor: default;
-      &:hover {
-        color: $background;
-      }
-    }
-    .react-datepicker__day:hover, .react-datepicker__month-text:hover, .react-datepicker__quarter-text:hover, .react-datepicker__year-text:hover{
-      color: $background;
-    }
-    .react-datepicker__day--selected, .react-datepicker__day--keyboard-selected {
-      color: $background;
-      background-color: #fff;
-    }
-    .react-date-picker__calendar--open {
-      top: 100% !important;
-      bottom: unset !important;
-    }
-  }
-  .react-datepicker__tab-loop {
-    position: absolute;
-    top: 0px;
-    left: -93px;
-  }
-  .chevron-stats {
-    margin: 0px 2px 0px 4px;
-    position: relative;
-    font-size: 2rem;
-    top: 10px;
-  }
   .responsiveDate{
     background-color: $background;
     border: 1px solid white;
@@ -368,7 +269,7 @@ $blue: #2b8bf7;
     height: 104px;
   }
 
-  /* custom point de rupture LG du DS */
+  /* custom point de rupture LG du DS */ /*
   @media (max-width: 1024px) {
 
     .responsiveSelect, .responsiveRecurrence {
@@ -377,7 +278,7 @@ $blue: #2b8bf7;
 
   }
 
-  /* custom point de rupture MD du DS */
+  /* custom point de rupture MD du DS */ /*
   @media (max-width: 767px) {
 
     .titre {
@@ -401,7 +302,7 @@ $blue: #2b8bf7;
     }
   }
 
-  /* custom point de rupture SM du DS */
+  /* custom point de rupture SM du DS */ /*
   @media (max-width: 576px) {
 
     .questionResponsive {
@@ -416,18 +317,13 @@ $blue: #2b8bf7;
   }
   /** END SELECT CP **/
 
-  /** START RADIO CANAL & ACTIVITY **/
+  /** START RADIO CANAL & ACTIVITY **/ /*
   .radioRattachement, .radioRattachementAlt {
     width: 100%;
     border-radius: 20px;
     border: 1px solid white;
     background-color: $background;
     cursor: pointer;
-  }
-
-  .radioRattachement-selected {
-    background-color: white!important;
-    color: black!important;
   }
 
   .labelBigRadioCustom {
@@ -503,7 +399,7 @@ $blue: #2b8bf7;
     display: flex;
   }
 
-  /* custom point de rupture LG du DS */
+  /* custom point de rupture LG du DS */ /*
   @media (max-width: 1024px) {
 
     .responsiveRadioCanal1, .responsiveRadioActivity1 {
@@ -512,6 +408,7 @@ $blue: #2b8bf7;
   }
 
   /* custom point de rupture MD du DS */
+   /*
   @media (max-width: 767px) {
 
     .responsiveRadioCanal1, .responsiveRadioActivity1 {
@@ -555,8 +452,9 @@ $blue: #2b8bf7;
     }
 
   }
-
+*/
     /* custom point de rupture SM du DS */
+     /*
     @media (max-width: 576px) {
 
       .responsiveRadioCanal1, .responsiveRadioActivity1, .responsiveRadioCanal2, .responsiveRadioActivity2 {
@@ -583,9 +481,11 @@ $blue: #2b8bf7;
       }
 
     }
+     */
   /** END RADIO CANAL & ACTIVITY **/
 
   /** START SQUARE BUTTON AGE AND STATUT **/
+   /*
   .squareRattachement, .squareRattachementAlt {
     width: 100%;
     height: 104px;
@@ -611,8 +511,9 @@ $blue: #2b8bf7;
   .responsiveSquare1 {
     margin-left: 0.75rem;
   }
-
+*/
   /* custom point de rupture MD du DS */
+   /*
   @media (max-width: 767px) {
 
     .responsiveSquare1 {
@@ -626,8 +527,9 @@ $blue: #2b8bf7;
     }
 
   }
-
+*/
     /* custom point de rupture SM du DS */
+     /*
     @media (max-width: 576px) {
 
       .responsiveSquare1, .responsiveSquare2 {
@@ -654,9 +556,11 @@ $blue: #2b8bf7;
       }
 
     }
+    */
   /** END SQUARE BUTTON AGE AND STATUT **/
 
   /** START CHECKBOX BUTTON THEMES **/
+   /*
   .checkboxRattachement {
     width: 100%;
     border-radius: 20px;
@@ -701,8 +605,9 @@ $blue: #2b8bf7;
   .questionCheckboxResponsive {
     height: 108px;
   }
-
+*/
   /* custom point de rupture LG du DS */
+   /*
   @media (max-width: 991px) {
     .centre-titre {
       text-align: center;
@@ -715,8 +620,9 @@ $blue: #2b8bf7;
     }
 
   }
-
+*/
   /* custom point de rupture MD du DS */
+   /*
   @media (max-width: 767px) {
 
     .responsiveCheckbox1, .responsiveCheckboxNewRow1 {
@@ -740,8 +646,9 @@ $blue: #2b8bf7;
     }
 
   }
-
+*/
   /* custom point de rupture SM du DS */
+   /*
   @media (max-width: 576px) {
 
     .responsiveCheckbox1, .responsiveCheckbox2, .responsiveCheckboxNewRow1, .responsiveCheckboxNewRow2, .responsiveSmallCheckbox {
@@ -760,9 +667,11 @@ $blue: #2b8bf7;
     }
 
   }
+  */
   /** END CHECKBOX BUTTON THEMES **/
 
   /** START SQUARE BUTTON TIME **/
+   /*
   .responsiveSquareTime1, .responsiveSquareTime2, .responsiveSquareTime3 {
     width: calc(266%/12);
   }
@@ -828,8 +737,9 @@ $blue: #2b8bf7;
     color: black;
     font-size: 24px;
   }
-
+*/
   /* custom point de rupture MD du DS */
+   /*
   @media (max-width: 767px) {
 
     .responsiveSquareTime1 {
@@ -868,8 +778,9 @@ $blue: #2b8bf7;
     }
 
   }
+ */
   /** END SQUARE BUTTON TIME **/
-
+/*
   .submitCra {
     background-color: white;
     width: 70%;
@@ -890,7 +801,7 @@ $blue: #2b8bf7;
     }
 
   }
-
+*/
   /* CRA V3 */
   .titre {
     line-height: 64px;
@@ -911,57 +822,299 @@ $blue: #2b8bf7;
     height: 40px;
     width: 180px;
   }
-
-  .box-bouton-menu::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 20px;
-    border: 1px solid transparent;
-    background: linear-gradient(0deg,#3558A2,#9A9AFF) border-box;
-    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-      mask:linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
+  .question {
+    height: 42px;
+    font-size: 14px;
+    font-weight: 100;
   }
-  .box-bouton-menu {
-    background: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%) !important;
-    border-radius: 20px;
-    position: relative;
-    line-height: 24px;
-    font-weight: 500;
-    color: #FFFFFF;
-    font-size: 16px;
-    display: block;
-    height: 104px;
-  }
-
-  /* CRA V3 */
   .responsiveElement {
     display: inline-block;
     border-radius: 20px;
+      /** START SELECT CP **/
+      .searchCP {
+        padding: 14px 20px 12px 45px;
+        background-color: #fff;
+        border-radius: 20px;
+        text-align: center;
+        font-weight: 500;
+        font-size: 16px;
+        height: 104px;
+        border: none;
+        width: 100%;
+        }
+
+    .buttonCP, .buttonRecurrence {
+      height: 104px;
+      width: 100%;
+      border: 1px solid white;
+      border-radius: 20px;
+      background-color: $background;
+      color: white;
+      text-align: center;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .buttonCP-filled, .buttonRecurrence-filled {
+      border: 1px solid white;
+      background-color: white;
+      border-color: white;
+      border-radius: 20px;
+      text-align: center;
+      font-weight: 500;
+      font-size: 16px;
+      cursor:pointer;
+      color: black;
+      height: 104px;
+      width: 100%;
+    }
+
+    .searchCP::placeholder {
+      color: $background;
+      text-align: center;
+    }
+
+    .dropdown {
+      position: relative;
+      z-index: 1;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      width: 100%;
+      background-color: $background;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    div.scrollOptions {
+      overflow: scroll;
+      overflow-x: hidden;
+      max-height: 200px;
+    }
+
+    .dropdown-content:hover, .dropdown-content:focus {
+      outline: none;
+    }
+
+    .dropdown-content div div {
+      padding: 8px;
+      text-align: center;
+    }
+
+    .dropdown-content div div:hover {
+      padding: 8px;
+      text-align: center;
+      background-color: white;
+      color: black;
+    }
+
+    .show {
+      display: block;
+    }
+
     button {
       background: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%);
+      border: 1px solid #8a8ae3;
+      color: #fff;
+      border-radius: 20px;
       height: 144px;
       width: 264px;
-      border: 1px solid #8a8ae3;
-      &:hover {
+      .logoLieuRatachement, .logoAutreLieu {
+        background: url(../../public/logos/cra/logo-lieu-rattachement.svg) no-repeat;
+        display: inline-block;
+        height: 56px;
+        width: 56px;
+      }
+      .logoAutreLieu {
+        background: url(../../public/logos/cra/logo-autre-lieu.svg) no-repeat;
+      }
+      .logoCalendrier, .logoDistance, .logoDomicile {
+        display: inline-block;
+        height: 24px;
+        width: 24px;
+      }
+      .logoCalendrier {
+        background: url(../../public/logos/cra/logo-calendrier.svg) no-repeat;
+        margin: 0px 16px 0px 0px;
+      }
+      .logoDistance {
+        background: url(../../public/logos/cra/logo-a-distance.svg) no-repeat;
+      }
+      .logoDomicile {
+        background: url(../../public/logos/cra/logo-a-domicile.svg) no-repeat;
+      }
+      .texteDatePicker {
+        position: relative;
+        top: -5px;
+      }
+      .chevron-stats {
+        margin: 0px 0px 0px 16px;
+        position: relative;
+        font-size: 2rem;
+        top: 5px;
+      }
+      .labelSmallRadioCustom {
+        position: relative;
+        margin-left: 7px;
+        font-size: 14px;
+        bottom: 5px;
+      }
+      &:hover, &.selected {
         background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 58.33%, #518FFF 100%);
-
-        img, .labelBigRadioCustom {
+        color: #2a2a2a;
+        .labelBigRadioCustom, .labelSmallRadioCustom {
           color: #2a2a2a;
         }
+        .logoLieuRatachement{
+          background: url(../../public/logos/cra/logo-lieu-rattachement-n.svg) no-repeat;
+        }
+        .logoAutreLieu {
+          background: url(../../public/logos/cra/logo-autre-lieu-n.svg) no-repeat;
+        }
+        .logoCalendrier {
+          background: url(../../public/logos/cra/logo-calendrier-n.svg) no-repeat;
+        }
+        .logoDistance {
+          background: url(../../public/logos/cra/logo-a-distance-n.svg) no-repeat;
+        }
+        .logoDomicile {
+          background: url(../../public/logos/cra/logo-a-domicile-n.svg) no-repeat;
+        }
       }
+    }
+  }
+  .buttonDate {
+    button {
+      height: 72px;
+    }
+    .selectedDate {
+      background-color: #fff;
+      color: #2a2a2a;
     }
   }
   .radioButton {
     .radioRattachement {
       height: 144px;
     }
+    .smallRadioRattachement {
+      height: 72px;
+      width: 131px;
+    }
   }
-  .responsiveDate{
-    height: 72px;
-    max-width: 264px;
+  .radioButton.small {
+    display: inline;
+  }
+  .react-datepicker{
+    border-radius: 0 0 20px 20px;
+    background-color: $background;
+    border: 1px solid #8a8ae3;
+    color: #fff;
+    left: 93px;
+    top: -25px;
+    .react-datepicker-popper {
+      margin: 0 !important;
+    }
+    .react-datepicker__triangle {
+      display: none;
+    }
+    .react-datepicker__navigation--previous {
+      background: url(../../public/logos/cra/logo-chevron-gauche.svg) no-repeat;
+      margin-left: 11px;
+      border: none;
+      height: 16px;
+      width: 10px;
+      &:hover {
+        background: url(../../public/logos/cra/logo-chevron-gauche.svg) no-repeat;
+      }
+    }
+    .react-datepicker__navigation--next {
+      background: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
+      margin-right: 11px;
+      border: none;
+      height: 16px;
+      width: 10px;
+      &:hover {
+        background: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
+      }
+    }
+    .react-datepicker__header {
+      background-color: #fff;
+      border-bottom: 1px solid #9A9AFF;
+      color: #161616;
+      .react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header {
+        color: #161616;
+      }
+      .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+        color: #161616;
+      }
+      .react-datepicker__month {
+        color: #161616;
+      }
+    }
+    .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+      font-size: 16px;
+      font-weight: 200;
+      color: #161616;
+      width: 1.47rem;
+      height: 1.54rem;
+      margin: 6px;
+    }
+    .react-datepicker__month-container {
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
+      border-radius: 0 0 20px 20px;
+    }
+    .react-datepicker__week {
+      cursor: default;
+    }
+    .react-datepicker__day--outside-month {
+      color: #666666;
+    }
+    .react-datepicker__day--disabled {
+      color: #666666;
+      cursor: default;
+      &:hover {
+        color: #666666;
+      }
+    }
+    .react-datepicker__day:hover, .react-datepicker__month-text:hover, .react-datepicker__quarter-text:hover, .react-datepicker__year-text:hover{
+      color: $background;
+    }
+    .react-datepicker__day--selected, .react-datepicker__day--keyboard-selected {
+      color: #fff;
+      background: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
+      border-radius: 8px;
+    }
+    .react-date-picker__calendar--open {
+      top: 100% !important;
+      bottom: unset !important;
+    }
+  }
+  .react-datepicker__tab-loop {
+    position: absolute;
+    top: 0px;
+    left: -93px;
+  }
+
+  @media (max-width: 767px) {
+
+    .titre {
+      text-align: center;
+      font-size:28px;
+      line-height:40px;
+    }
+    .questionResponsive {
+      text-align: center;
+      margin: auto;
+    }
+  }
+  @media (max-width: 576px) {
+
+    .questionResponsive {
+      width: calc(1200%/12);
+    }
   }
 }
 

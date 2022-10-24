@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AddToHomeScreen } from 'react-pwa-add-to-homescreen';
 import { history } from '../../../helpers';
 import { permanenceActions } from '../../../actions';
+import CodePostal from './CodePostal';
 
 function Cra() {
   const dispatch = useDispatch();

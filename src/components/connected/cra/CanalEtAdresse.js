@@ -1,8 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import BigRadioButton from './Components/BigRadioButton';
-import SmallRadioButton from './Components/SmallRadioButton';
+import BigRadioButtonV2 from './Components/BigRadioButtonV2';
+import SmallRadioButtonV2 from './Components/SmallRadioButtonV2';
 import BigDatePickerButton from './Components/BigDatePickerButton';
+import SelectCP from './Components/SelectCP';
 
 function CanalEtAdresse() {
 
@@ -17,69 +18,40 @@ function CanalEtAdresse() {
       </div>
       <div className="fr-col-12 fr-col-md-9">
         <div className="responsiveElement">
-          <BigRadioButton
+          <SelectCP/>
+        </div>
+        <div className="responsiveElement">
+          <BigRadioButtonV2
             type="canal"
             label="Lieu de rattachement"
             value="rattachement"
-            image="/logos/cra/logo-lieu-rattachement.svg"
-            imageSelected="/logos/cra/logo-lieu-rattachement-n.svg"
-            heightImage="56px"
+            image="logoLieuRatachement"
             classDiv="lieuRattachement"/>
         </div>
         <div className="responsiveElement">
-
+          <BigRadioButtonV2
+            type="canal"
+            label="Autre lieu"
+            value="autre"
+            image="logoAutreLieu"
+            classDiv="autreLieu"/>
         </div>
         <div className="responsiveElement">
-
-        </div>
-      </div>
-
-      {/*
-<div className="responsiveRadioCanal1">
-        <BigRadioButton
-          type="canal"
-          label="Lieu de rattachement"
-          value="rattachement"
-          image="/logos/cra/logo-lieu-rattachement.svg"
-          imageSelected="/logos/cra/logo-lieu-rattachement-n.svg"
-          heightImage="56px"
-          classDiv="lieuRattachement"/>
-      </div>
-      <div className="responsiveRadioCanal2">
-        <BigRadioButton
-          type="canal"
-          label="Autre lieu"
-          value="autre"
-          image="/logos/cra/logo-autre-lieu.svg"
-          imageSelected="/logos/cra/logo-autre-lieu-n.svg"
-          heightImage="56px"
-          classDiv="autreLieu"/>
-      </div>
-      <div className="responsiveRadioCanal3">
-        <div className={cra?.datePickerStatus ? 'responsiveDate active' : 'responsiveDate' }>
-          <BigDatePickerButton initDate={cra?.dateAccompagnement} />
-        </div>
-        <div style={{ width: '50%', display: 'inline-block' }}>
-          <SmallRadioButton
+          <div className="buttonDate">
+            <BigDatePickerButton type="date" initDate={cra?.dateAccompagnement} />
+          </div>
+          <SmallRadioButtonV2
             type="canal"
             label="&Agrave; distance"
             value="distance"
-            image="/logos/cra/logo-a-distance.svg"
-            imageSelected="/logos/cra/logo-a-distance-n.svg"
-            heightImage="32px" />
-        </div>
-        <div style={{ width: '50%', display: 'inline-block' }}>
-          <SmallRadioButton
+            image="logoDistance" />
+          <SmallRadioButtonV2
             type="canal"
             label="&Agrave; domicile"
             value="domicile"
-            image="/logos/cra/logo-a-domicile.svg"
-            imageSelected="/logos/cra/logo-a-domicile-n.svg"
-            heightImage="32px" />
+            image="logoDomicile" />
         </div>
-
       </div>
-      */}
     </div>
   );
 }
