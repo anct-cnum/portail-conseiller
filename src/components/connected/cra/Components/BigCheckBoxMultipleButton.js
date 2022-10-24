@@ -3,17 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
 import { getCraValue } from '../utils/CraFunctions';
+import sousThemes from '../../../../data/listCheckbox.json';
 
 function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, heightImage, baseline }) {
 
   const dispatch = useDispatch();
   let cra = useSelector(state => state.cra);
-
   let controlSelected = getCraValue(type);
 
-  const sousThemes = [
-    { theme: 'sante', value: 'espace-sante', label: 'Mon espace santé' },
-  ];
   const arrayValueSousTheme = [
     ...sousThemes.map(test => test.value),
     null

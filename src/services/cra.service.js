@@ -30,16 +30,19 @@ function getCra(id) {
     headers: authHeader(),
   };
 
-  return fetch(`${apiUrlRoot}/cras/${id}`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/cras/cra?id=${id}`, requestOptions).then(handleResponse);
 }
 
-function updateCra(cra, id) {
+function updateCra(cra, conseillerId) {
   const requestOptions = {
     method: 'PATCH',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
-    body: JSON.stringify(cra)
+    body: JSON.stringify({
+      cra,
+      conseillerId
+    })
   };
-  return fetch(`${apiUrlRoot}/cras/${id}`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/cras`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

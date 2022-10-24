@@ -13,6 +13,7 @@ function HistoriqueCras() {
   const dispatch = useDispatch();
 
   const accompagnements = useSelector(state => state.historiqueCras?.liste);
+  console.log('accompagnements:', accompagnements);
   const themes = useSelector(state => state.historiqueCras?.themes);
   const printFlashbag = useSelector(state => state.cra.printFlashbag);
   const [thematique, setThematique] = useState(null);
@@ -159,7 +160,7 @@ function HistoriqueCras() {
                           )}
                           </td>
                           <td className="modifie-le">
-                            {dayjs(accompagnement.updatedAt).format('DD/MM/YY à HH:mm') ?? dayjs(accompagnement.createdAt).format('DD/MM/YY à HH:mm')}
+                            {dayjs(accompagnement?.updatedAt ?? accompagnement.createdAt).format('DD/MM/YY à HH:mm')}
                           </td>
                           <td>
                             <a href={`/compte-rendu-activite/${accompagnement._id}`}>

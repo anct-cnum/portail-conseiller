@@ -8,6 +8,7 @@ function ValidationButton() {
   let cra = useSelector(state => state.cra);
   const saveInProgress = useSelector(state => state.cra.saveInProgress);
   const error = useSelector(state => state.cra.error);
+  const conseiller = useSelector(state => state.conseiller?.conseiller);
 
   const sendCra = () => {
     let hasErrors = false;
@@ -22,17 +23,12 @@ function ValidationButton() {
     } else {
       //Pas d'erreurs, envoi seulement des donnes necessaires à l'API
       // eslint-disable-next-line max-len, no-unused-vars
-      let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error, showSelectRedirection, nbParticipantsAge, nbParticipantsStatut, nbParticipantsAccompagnement, printFlashbag, loading, id, oldDateAccompagnement, datePickerStatus, ...dataCraToSend } = cra;
+      let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error, showSelectRedirection, nbParticipantsAge, nbParticipantsStatut, nbParticipantsAccompagnement, printFlashbag, ...dataCraToSend } = cra;
       if (dataCraToSend?.sousThemes?.length === 0) {
         delete dataCraToSend.sousThemes;
       }
       if (cra.id) {
-        dataCraToSend = {
-          cra: dataCraToSend,
-          updatedAt: dataCraToSend.updatedAt
-        };
-        delete dataCraToSend.cra.updatedAt;
-        dispatch(craActions.updateCra(dataCraToSend, cra.id));
+        dispatch(craActions.updateCra(dataCraToSend, conseiller._id));
       } else {
         dispatch(craActions.submitCra(dataCraToSend));
       }

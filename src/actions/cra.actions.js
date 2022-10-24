@@ -131,7 +131,7 @@ function getCra(id) {
     craService.getCra(id)
     .then(
       result => {
-        dispatch(success(result));
+        dispatch(success(result.cra));
       },
       error => {
         dispatch(failure(error));
@@ -150,11 +150,11 @@ function getCra(id) {
   }
 }
 
-function updateCra(cra, id) {
+function updateCra(cra, conseillerId) {
   return dispatch => {
     dispatch(request(cra));
 
-    craService.updateCra(cra, id)
+    craService.updateCra(cra, conseillerId)
     .then(
       cra => {
         dispatch(success(cra));

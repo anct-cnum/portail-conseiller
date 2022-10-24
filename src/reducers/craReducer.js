@@ -245,6 +245,10 @@ export default function cra(state = initialState, action) {
         searchInput: false,
         cp: action.cra.cra?.codePostal + ' ' + action.cra.cra.nomCommune,
         dateAccompagnement: new Date(action.cra.cra.dateAccompagnement),
+        oldDateAccompagnement: new Date(action.cra.cra.dateAccompagnement),
+        nbParticipantsAge: action.cra.cra.nbParticipants,
+        nbParticipantsStatut: action.cra.cra.nbParticipants,
+        nbParticipantsAccompagnement: action.cra.cra.nbParticipants,
       };
     case 'GET_CRA_FAILURE':
       return {
