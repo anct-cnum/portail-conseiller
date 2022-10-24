@@ -77,7 +77,7 @@ function SelectCP() {
       <button id="buttonCP"
         onClick={onClickButton}
         className={`${cra?.cp === undefined ? 'buttonCP' : 'buttonCP-filled'}`}>
-        {cra?.cp === undefined ? 'Entrez le code postal ou la commune...' : cra?.cp}
+        {cra?.cp === undefined ? 'Entrez le code postal ou la commune...' : cra.cp}
       </button>
       }
       <div id="myDropdown"

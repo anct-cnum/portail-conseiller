@@ -226,7 +226,6 @@ export default function cra(state = initialState, action) {
         loading: true,
       };
     case 'GET_CRA_SUCCESS':
-      console.log('action.cra:', action.cra);
       return {
         ...initialState,
         ...action.cra.cra,

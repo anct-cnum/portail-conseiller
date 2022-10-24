@@ -14,7 +14,7 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, h
   const sousThemes = [
     { theme: 'sante', value: 'espace-sante', label: 'Mon espace santé' },
   ];
-  const array = [
+  const arrayValueSousTheme = [
     ...sousThemes.map(test => test.value),
     null
   ];
@@ -48,7 +48,7 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, h
         let newthemesList = cra?.themes ? cra?.themes : [];
         let sousthemesList = cra?.sousThemes ? cra?.sousThemes : [];
 
-        if (!newthemesList.includes(valueOnClick) && !array.includes(valueOnClick)) {
+        if (!newthemesList.includes(valueOnClick) && !arrayValueSousTheme.includes(valueOnClick)) {
           newthemesList.push(valueOnClick);
         } else {
           newthemesList = newthemesList.filter(theme => theme !== valueOnClick);
@@ -67,10 +67,10 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, h
   return (
     <div className="checkboxButton" onClick={onClickCheckbox} value={value}>
       <button id="checkboxRattachement"
-        className={`checkboxRattachement ${controlSelected?.includes(value) ? 'checkboxRattachement-selected-sante' : ''}`}
+        className={`checkboxRattachement ${controlSelected?.includes(value) ? 'checkboxRattachement-selected' : ''}`}
         style={{ height: '108px' }}
         value={value}>
-        <div value={value} style={{ display: 'flex' }}>
+        <div value={value} style={{ display: `${controlSelected?.includes(value) ? '' : 'flex'}` }}>
           { !controlSelected?.includes(value) &&
             <>
               <img
@@ -79,7 +79,7 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, h
                 style={{ margin: '24px' }}
                 value={value}/>
               <span
-                className={`fr-label labelCheckboxCustom ${controlSelected?.includes(value) ? 'checkboxRattachement-selected-sante' : ''}`}
+                className={`fr-label labelCheckboxCustom ${controlSelected?.includes(value) ? 'checkboxRattachement-selected' : ''}`}
                 value={value}>
                 {label}
                 {baseline &&
@@ -92,16 +92,15 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, h
             </>
           }
           { controlSelected?.includes(value) &&
-            <div>
-              <label className="fr-label">Optionnellement, précisez&nbsp;:&nbsp;&nbsp;</label>
-              <br/>
+            <div className="checkbox-selected fr-mt-3w fr-mb-3w">
+              <label className="fr-label fr-text--sm" style={{ color: 'black', margin: 'auto' }}>Optionnellement, pr&eacute;cisez&nbsp;:</label>
               <div className="fr-checkbox-group">
                 { sousThemes.filter(t => t.theme === value).map((sous, key) => {
-                  const test = cra?.sousThemes ? cra?.sousThemes.find(s => s[value]) : undefined;
-                  const checked = test ? test[value]?.includes(sous.value) : false;
-                  return <div key={key}>
+                  const matchingTheme = cra?.sousThemes ? cra?.sousThemes.find(s => s[value]) : undefined;
+                  const checked = matchingTheme ? matchingTheme[value]?.includes(sous.value) : false;
+                  return <div key={key} style={{ margin: '-0.5rem' }}>
                     <input type="checkbox" id={sous.value} name={sous.value} value={sous.value} defaultChecked={checked} onClick={clickSousTheme}/>
-                    <label className="fr-label" htmlFor={sous.value}>{sous.label}</label>
+                    <label className="fr-label fr-text--sm" htmlFor={sous.value}>{sous.label}</label>
                   </div>;
                 }
                 )}

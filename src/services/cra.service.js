@@ -10,7 +10,6 @@ export const craService = {
 const apiUrlRoot = process.env.REACT_APP_API;
 
 function createCra(cra) {
-  const apiUrlRoot = process.env.REACT_APP_API;
 
   const requestOptions = {
     method: 'POST',
