@@ -9,7 +9,6 @@ export default function historiqueCras(state = initialState, action) {
         error: false
       };
     case 'GET_HISTORIQUE_CRAS_LIST_SUCCESS':
-      console.log(action.items);
       return {
         ...state,
         liste: action.items.data,
