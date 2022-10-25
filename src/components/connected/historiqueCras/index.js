@@ -8,11 +8,14 @@ import labelsCorrespondance from '../../../data/labelsCorrespondance.json';
 import { htmlDecode } from '../../../utils/functionEncodeDecode';
 import Footer from '../../Footer';
 import Thematiques from './Thematiques';
+import Spinner from 'react-loader-spinner';
 
 function HistoriqueCras() {
   const dispatch = useDispatch();
 
   const accompagnements = useSelector(state => state.historiqueCras?.liste);
+  const loading = useSelector(state => state.historiqueCras?.loading);
+  const error = useSelector(state => state.historiqueCras?.error);
   const themes = useSelector(state => state.historiqueCras?.themes);
   const printFlashbag = useSelector(state => state.cra.printFlashbag);
   const [thematique, setThematique] = useState(null);
@@ -52,7 +55,23 @@ function HistoriqueCras() {
               </p>
             </FlashMessage>
           }
-          {!accompagnements &&
+          {error &&
+            <FlashMessage duration={5000}>
+              <p className="fr-label flashBag invalid">
+                Une erreur s&rsquo;est produite lors du chargement de votre historique, veuillez re&eacute;ssayer ult&eacute;rieurement.
+              </p>
+            </FlashMessage>
+          }
+          <div className="spinnerCustom">
+            <Spinner
+              type="Oval"
+              color="#00BFFF"
+              height={100}
+              width={100}
+              visible={loading === true }
+            />
+          </div>
+          {(!accompagnements && !loading) &&
             <div className="fr-grid-row fr-grid-row--center">
               <div className="fr-col-6 fr-mt-15w fr-mb-7w">
                   Vous n&rsquo;avez pas d&rsquo;accompagnement enregistr&eacute; dans les 30 derniers jours.
@@ -72,7 +91,7 @@ function HistoriqueCras() {
               </div>
             </div>
           }
-          {accompagnements &&
+          {(accompagnements && !loading) &&
             <div className="fr-grid-row">
               <div className="fr-col-lg-8 fr-mt-1w fr-mb-8w">
                 Vous avez enregistr&eacute; {accompagnements.length} accompagnements au cours des 30 derniers jours.
