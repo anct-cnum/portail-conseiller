@@ -8,13 +8,13 @@ export const historiqueCras = {
   getHistoriqueCrasThematiques,
 };
 
-function getHistoriqueCrasListe(theme) {
+function getHistoriqueCrasListe(theme, page) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
   };
 
-  return fetch(`${apiUrlRoot}/historique-cras/liste?theme=${theme}`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/historique-cras/liste?theme=${theme}&page=${page}`, requestOptions).then(handleResponse);
 }
 
 function getHistoriqueCrasThematiques() {
