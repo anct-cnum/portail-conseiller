@@ -172,6 +172,8 @@
             padding-bottom: 12px;
           }
           .fr-custom-link {
+            position: relative;
+            z-index: 1;
             padding: 1.6rem 1rem !important;
             background-color: #2e2e2e;
             font-size: 0.88rem !important;

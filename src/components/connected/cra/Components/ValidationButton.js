@@ -8,6 +8,7 @@ function ValidationButton() {
   let cra = useSelector(state => state.cra);
   const saveInProgress = useSelector(state => state.cra.saveInProgress);
   const error = useSelector(state => state.cra.error);
+  const conseiller = useSelector(state => state.conseiller?.conseiller);
 
   const sendCra = () => {
     let hasErrors = false;
@@ -25,8 +26,11 @@ function ValidationButton() {
       let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error,
         // eslint-disable-next-line no-unused-vars
         showSelectRedirection, nbParticipantsAge, nbParticipantsStatut, nbParticipantsAccompagnement, printFlashbag, ...dataCraToSend } = cra;
-
-      dispatch(craActions.submitCra(dataCraToSend));
+      if (cra.id) {
+        dispatch(craActions.updateCra(dataCraToSend, conseiller._id));
+      } else {
+        dispatch(craActions.submitCra(dataCraToSend));
+      }
     }
   };
 

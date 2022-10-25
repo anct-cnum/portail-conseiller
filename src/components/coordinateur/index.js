@@ -16,6 +16,7 @@ import { userEntityId } from '../../helpers';
 import MesInformations from '../connected/mesInformations';
 import Cra from '../connected/cra';
 import FormulaireSexeAge from '../connected/FormulaireSexeAge';
+import UpdateCra from '../connected/cra/UpdateCra';
 
 function Coordinateur() {
   const dispatch = useDispatch();
@@ -49,6 +50,7 @@ function Coordinateur() {
           <>
             <Route path={'/mes-informations'} component={MesInformations} />
             <Route path={`/compte-rendu-activite`} component={Cra} />
+            <Route path={`/compte-rendu-activite/:idCra`} component={UpdateCra} />
             <Route path={'/mes-lieux-activite'} component={MesPermanences} />
             <Route path={'/mon-lieu-activite/:idPermanence'} component={PermanenceUpdate} />
             <Route path={'/mon-nouveau-lieu-activite'} component={PermanenceCreate} />

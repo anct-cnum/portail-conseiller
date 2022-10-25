@@ -12,6 +12,7 @@ import pagination from './paginationReducer';
 import permanence from './permanenceReducer';
 import formulaireSupHierarchique from './supHierarchiqueReducer';
 import formulaireInfoPersonnel from './infoPersonnelReducer';
+import historiqueCras from './historiqueCrasReducer';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
@@ -28,8 +29,8 @@ const rootReducer = combineReducers({
   pagination: pagination,
   permanence: permanence,
   formulaireSupHierarchique: formulaireSupHierarchique,
-  formulaireInfoPersonnel: formulaireInfoPersonnel
-
+  formulaireInfoPersonnel: formulaireInfoPersonnel,
+  historiqueCras: historiqueCras,
 });
 
 export default rootReducer;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import CodePostal from './CodePostal';
 import Canal from './Canal';
 import Activite from './Activite';
@@ -9,44 +9,25 @@ import Duree from './Duree';
 import Accompagnement from './Accompagnement';
 import ValidationButton from './Components/ValidationButton';
 import Footer from '../../Footer';
-import FlashMessage from 'react-flash-message';
 import Recurrence from './Recurrence';
-import { useSelector, useDispatch } from 'react-redux';
-import { statistiqueActions } from '../../../actions';
+import { useSelector } from 'react-redux';
 import { AddToHomeScreen } from 'react-pwa-add-to-homescreen';
+import { history } from '../../../helpers';
 
 function Cra() {
 
   const urlAPropos =
   process.env.REACT_APP_AIDE_URL + '/article/comment-le-conseiller-numerique-rend-il-compte-de-ses-activites-et-a-quoi-cela-sert-il-16n3yhq/';
   const printFlashbag = useSelector(state => state.cra.printFlashbag);
-  const [activeFlashMessage, setActiveFlashMessage] = useState(false);
-  const dispatch = useDispatch();
 
-  //Forcer affichage en haut de la page pour voir le flashbag
   useEffect(() => {
-    if (printFlashbag === true) {
-      window.scrollTo(0, 0);
-      dispatch(statistiqueActions.getCodesPostauxCrasConseiller());
+    if (printFlashbag) {
+      history.push('historique');
     }
-    if (printFlashbag === false) {
-      setActiveFlashMessage(true);
-    }
-    setTimeout(() => {
-      setActiveFlashMessage(false);
-    }, 5000);
   }, [printFlashbag]);
 
   return (
     <>
-      { printFlashbag === true && activeFlashMessage === true &&
-        <FlashMessage duration={5000}>
-          <p className="fr-label flashBag">
-            Votre suivi d&rsquo;activit&eacute; a bien &eacute;t&eacute; enregistr&eacute;&nbsp;
-            <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
-          </p>
-        </FlashMessage>
-      }
       <div className="fr-container cra">
         <div className="fr-grid-row fr-grid-row--center fr-my-md-12w fr-pt-1w fr-pb-3w">
           <div className="fr-col-12 fr-col-lg-2 centre-titre">

@@ -13,7 +13,7 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
   const prefixId = useSelector(state => state.permanence?.prefixIdLieuEnregistrable);
 
   const [clickSubmit, setClickSubmit] = useState(false);
-  const [redirection, setRedirection] = useState(redirectionValidation !== null ? redirectionValidation : '/accueil');
+  let [redirection, setRedirection] = useState(redirectionValidation !== null ? redirectionValidation : '/accueil');
 
   function handleSubmit(redirection = '/accueil') {
     const typeAcces = [
@@ -92,6 +92,9 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
       nouveauLieu.adresse = JSON.parse(JSON.stringify(nouveauLieu.adresse,
         (key, value) => (value === '') ? null : value
       ));
+      if (redirection === 'cartographie') {
+        redirection = nouveauLieu._id ?? conseillerId;
+      }
       if (nouveauLieu._id !== null && nouveauLieu._id !== 'nouveau') {
         dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, true, null, redirection));
       } else if (prefixId) {

@@ -49,12 +49,11 @@ function Permanence() {
     if (isAllUpdated) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       setTimeout(() => {
-        if (redirection === '/accueil') {
-          history.push(redirection);
-        } else {
-          window.open(urlCartographie + '/' + conseiller._id + '/details', '_blank');
+        if (redirection !== '/accueil') {
+          window.open(urlCartographie + '/' + redirection + '/details', '_blank', 'noopener,noreferrer');
         }
         dispatch(permanenceActions.getListePermanences(structure?._id));
+        history.push('/mes-lieux-activite');
       }, 3000);
     }
   }, [isDeleted, isConseillerDeleted, isAllUpdated]);
