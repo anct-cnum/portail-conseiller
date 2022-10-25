@@ -159,7 +159,7 @@ export default function cra(state = initialState, action) {
     case 'UPDATE_MULTIPLE_THEMES':
       return {
         ...state,
-        sousThemes: action.sousthemesList
+        sousThemes: action.sousThemesList
       };
     case 'UPDATE_DUREE':
       return {

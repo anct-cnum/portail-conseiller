@@ -63,8 +63,8 @@ function updateThemes(themes) {
   return { type: 'UPDATE_THEMES', themes };
 }
 
-function updateMultipleThemes(sousthemesList) {
-  return { type: 'UPDATE_MULTIPLE_THEMES', sousthemesList };
+function updateMultipleThemes(sousThemesList) {
+  return { type: 'UPDATE_MULTIPLE_THEMES', sousThemesList };
 }
 function updateDuree(duree) {
   return { type: 'UPDATE_DUREE', duree };

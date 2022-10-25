@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
 import { getCraValue } from '../utils/CraFunctions';
-import sousThemes from '../../../../data/listCheckbox.json';
+import sousThemes from '../../../../data/sousThemes.json';
 
 function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, heightImage, baseline }) {
 
