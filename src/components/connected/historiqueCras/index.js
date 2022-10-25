@@ -9,20 +9,31 @@ import { htmlDecode } from '../../../utils/functionEncodeDecode';
 import Footer from '../../Footer';
 import Thematiques from './Thematiques';
 import Spinner from 'react-loader-spinner';
+import Pagination from '../../admin/Pagination';
 
 function HistoriqueCras() {
   const dispatch = useDispatch();
 
   const accompagnements = useSelector(state => state.historiqueCras?.liste);
+  const total = useSelector(state => state.historiqueCras?.total);
+  const limit = useSelector(state => state.historiqueCras?.limit);
   const loading = useSelector(state => state.historiqueCras?.loading);
   const error = useSelector(state => state.historiqueCras?.error);
   const themes = useSelector(state => state.historiqueCras?.themes);
   const printFlashbag = useSelector(state => state.cra.printFlashbag);
   const [thematique, setThematique] = useState(null);
 
+  /*Pagination */
+  let [page, setPage] = useState(1);
+  const [pageCount, setPageCount] = useState(0);
+  const navigate = page => {
+    setPage(page);
+    dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, page));
+  };
+
   useEffect(() => {
     if (accompagnements === undefined || thematique || !thematique) {
-      dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique));
+      dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, page));
     }
     if (themes === undefined) {
       dispatch(historiqueCrasActions.getHistoriqueCrasThematiques());
@@ -35,6 +46,13 @@ function HistoriqueCras() {
       window.scrollTo(0, 0);
     }
   }, [printFlashbag]);
+
+  useEffect(() => {
+    if (accompagnements) {
+      const count = limit ? Math.floor(total / limit) : 0;
+      setPageCount(total % limit === 0 ? count : count + 1);
+    }
+  }, [accompagnements]);
 
   return (
     <>
@@ -97,7 +115,7 @@ function HistoriqueCras() {
                 Vous avez enregistr&eacute; {accompagnements.length} accompagnements au cours des 30 derniers jours.
               </div>
 
-              <div className="fr-col-12 fr-mb-12w">
+              <div className="fr-col-12">
                 <div className="boutons-cras">
                   <a className="fr-btn fr-btn--secondary boutons-cras fr-mr-md-2w" href="/compte-rendu-activite">Enregistrer un nouvel accompagnement</a>
                   <a className="fr-btn fr-btn--secondary" href="/statistiques">Consulter mes statistiques</a>
@@ -191,6 +209,9 @@ function HistoriqueCras() {
                   </table>
                   <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
                 </div>
+              </div>
+              <div className="fr-col-12 fr-mb-12w">
+                <Pagination current={page} pageCount={pageCount} navigate={navigate}/>
               </div>
             </div>
           }

@@ -5,13 +5,13 @@ export const historiqueCrasActions = {
   getHistoriqueCrasThematiques,
 };
 
-function getHistoriqueCrasListe(theme = null) {
+function getHistoriqueCrasListe(theme = null, page) {
   return dispatch => {
     dispatch(request());
-    historiqueCras.getHistoriqueCrasListe(theme)
+    historiqueCras.getHistoriqueCrasListe(theme, page)
     .then(
       result => {
-        dispatch(success(result.cras));
+        dispatch(success(result.items));
       },
       error => {
         dispatch(failure(error));
@@ -22,8 +22,8 @@ function getHistoriqueCrasListe(theme = null) {
   function request() {
     return { type: 'GET_HISTORIQUE_CRAS_LIST_REQUEST' };
   }
-  function success(listeCras) {
-    return { type: 'GET_HISTORIQUE_CRAS_LIST_SUCCESS', listeCras };
+  function success(items) {
+    return { type: 'GET_HISTORIQUE_CRAS_LIST_SUCCESS', items };
   }
   function failure(error) {
     return { type: 'GET_HISTORIQUE_CRAS_LIST_FAILURE', error };

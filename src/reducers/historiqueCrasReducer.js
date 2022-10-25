@@ -9,9 +9,12 @@ export default function historiqueCras(state = initialState, action) {
         error: false
       };
     case 'GET_HISTORIQUE_CRAS_LIST_SUCCESS':
+      console.log(action.items);
       return {
         ...state,
-        liste: action.listeCras,
+        liste: action.items.data,
+        total: action.items.total,
+        limit: action.items.limit,
         loading: false,
       };
     case 'GET_HISTORIQUE_CRAS_LIST_FAILURE':
