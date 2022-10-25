@@ -8,7 +8,7 @@ import SelectCP from './Components/SelectCP';
 function CanalEtAdresse() {
 
   let cra = useSelector(state => state.cra);
-console.log(cra);
+
   return (
     <div className="fr-grid-row fr-grid-row--gutters fr-grid-row--middle espacement">
       <div className="fr-col-11 fr-col-md-2 questionResponsive">

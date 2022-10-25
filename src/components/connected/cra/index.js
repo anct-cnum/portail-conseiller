@@ -13,7 +13,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AddToHomeScreen } from 'react-pwa-add-to-homescreen';
 import { history } from '../../../helpers';
 import { permanenceActions } from '../../../actions';
-import CodePostal from './CodePostal';
 
 function Cra() {
   const dispatch = useDispatch();
@@ -21,7 +20,6 @@ function Cra() {
   process.env.REACT_APP_AIDE_URL + '/article/comment-le-conseiller-numerique-rend-il-compte-de-ses-activites-et-a-quoi-cela-sert-il-16n3yhq/';
   const printFlashbag = useSelector(state => state.cra.printFlashbag);
   const conseiller = useSelector(state => state.conseiller?.conseiller);
-  const listPermanences = useSelector(state => state.permanence?.mesPermanences);
 
   useEffect(() => {
     if (printFlashbag) {

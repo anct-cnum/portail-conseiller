@@ -14,12 +14,24 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
     switch (type) {
       case 'canal':
         dispatch(craActions.updateCanal(value));
-        if (value === 'autre') {
-          dispatch(craActions.getButtonCP());
-          setTimeout(() => {
-            document.getElementById('buttonCP').focus();
-          }, 100);
+        switch (value) {
+          case 'autre':
+            dispatch(craActions.getButtonCP());
+            setTimeout(() => {
+              document.getElementById('buttonCP').focus();
+            }, 100);
+            break;
+          case 'rattachement':
+            dispatch(craActions.getButtonCP());
+            setTimeout(() => {
+              document.getElementById('buttonCP').focus();
+            }, 100);
+            break;
+          default:
+            break;
         }
+
+
         break;
       case 'activite':
         dispatch(craActions.updateActivite(value));
