@@ -37,6 +37,11 @@ const initialState = {
 
 export default function cra(state = initialState, action) {
   switch (action.type) {
+    case 'GET_BUTTON_CP':
+      return {
+        ...state,
+        buttonCP: true,
+      };
     case 'GET_SEARCH_LIST':
       return {
         ...state,

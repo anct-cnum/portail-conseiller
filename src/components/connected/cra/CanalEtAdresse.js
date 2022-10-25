@@ -8,7 +8,7 @@ import SelectCP from './Components/SelectCP';
 function CanalEtAdresse() {
 
   let cra = useSelector(state => state.cra);
-
+console.log(cra);
   return (
     <div className="fr-grid-row fr-grid-row--gutters fr-grid-row--middle espacement">
       <div className="fr-col-11 fr-col-md-2 questionResponsive">
@@ -18,9 +18,6 @@ function CanalEtAdresse() {
       </div>
       <div className="fr-col-12 fr-col-md-9">
         <div className="responsiveElement">
-          <SelectCP/>
-        </div>
-        <div className="responsiveElement">
           <BigRadioButtonV2
             type="canal"
             label="Lieu de rattachement"
@@ -29,6 +26,7 @@ function CanalEtAdresse() {
             classDiv="lieuRattachement"/>
         </div>
         <div className="responsiveElement">
+          <SelectCP/>
           <BigRadioButtonV2
             type="canal"
             label="Autre lieu"

@@ -1,6 +1,7 @@
 import { craService } from '../services/cra.service.js';
 
 export const craActions = {
+  getButtonCP,
   getSearchlist,
   searchInput,
   updateCP,
@@ -23,6 +24,9 @@ export const craActions = {
   updateCra,
 };
 
+function getButtonCP() {
+  return { type: 'GET_BUTTON_CP' };
+}
 function getSearchlist() {
   return { type: 'GET_SEARCH_LIST' };
 }

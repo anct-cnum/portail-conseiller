@@ -9,11 +9,17 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
   const dispatch = useDispatch();
   const cra = useSelector(state => state.cra);
   let controlSelected = getCraValue(type);
-
+  //OnClick button
   const onClickRadio = () => {
     switch (type) {
       case 'canal':
         dispatch(craActions.updateCanal(value));
+        if (value === 'autre') {
+          dispatch(craActions.getButtonCP());
+          setTimeout(() => {
+            document.getElementById('buttonCP').focus();
+          }, 100);
+        }
         break;
       case 'activite':
         dispatch(craActions.updateActivite(value));

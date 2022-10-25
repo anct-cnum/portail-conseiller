@@ -72,28 +72,29 @@ function SelectCP() {
   };
 
   return (
-    <div className="dropdown" style={cra?.searchCP === true ? { marginBottom: '104px' } : {}}>
+    <div className="dropdown">
       {!cra?.searchCP && !cra?.searchInput &&
       <button id="buttonCP"
         onClick={onClickButton}
-        className={`${cra?.cp === undefined ? 'buttonCP' : 'buttonCP-filled'}`}>
-        {cra?.cp === undefined ? 'Entrez le code postal ou la commune...' : cra.cp}
+        className={`${cra?.cp === undefined ? 'buttonCP' : 'buttonCP-filled'} ${cra?.buttonCP ? ' show' : ''}`}>
+        {cra?.cp === undefined ? 'Entrez le code postal ou la commune' : cra.cp}
+        <div>Saisissez au moins 3 caract&egrave;res</div>
       </button>
       }
-      <div id="myDropdown"
-        className={`dropdown-content ${(cra?.searchCP === true || cra?.searchInput === true) ? 'show' : ''}`}
-        style={cra?.searchCP === true && codePostalList.length > 0 ? { border: '1px solid white' } : {}}>
-        <input
-          onMouseMove={focusInput}
-          autoComplete="off"
-          type="text"
-          id="searchCP"
-          name="searchCP"
-          className={`searchCP ${cra?.searchInput === true ? 'dropdown-expanded' : ''}`}
-          style={cra?.searchCP === true && codePostalList.length > 0 ? { borderRadius: '20px 20px 0 0' } : {}}
-          placeholder="Saisissez au moins 3 caract&egrave;res"
-          onKeyUp={onKeyUp}
-          autoFocus={true}/>
+      <div id="myDropdown" className={`dropdown-content ${(cra?.searchCP === true || cra?.searchInput === true) ? 'show' : ''}`}>
+        <div className={`inputCP ${(cra?.searchCP === true || cra?.searchInput === true) ? 'show' : ''}`}>
+          <input
+            onMouseMove={focusInput}
+            autoComplete="off"
+            type="text"
+            id="searchCP"
+            name="searchCP"
+            className={`searchCP ${cra?.searchInput === true ? 'dropdown-expanded' : ''}`}
+            style={cra?.searchCP === true && codePostalList.length > 0 ? { borderRadius: '20px 20px 0 0' } : {}}
+            onKeyUp={onKeyUp}
+            autoFocus={true}/>
+          <div className={`${cra?.buttonCP ? 'show' : 'hide'}`}>Saisissez au moins 3 caract&egrave;res</div>
+        </div>
         <div className="scrollOptions">{codePostalList}</div>
       </div>
     </div>

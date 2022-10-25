@@ -830,90 +830,84 @@ $blue: #2b8bf7;
   .responsiveElement {
     display: inline-block;
     border-radius: 20px;
-      /** START SELECT CP **/
-      .searchCP {
-        padding: 14px 20px 12px 45px;
-        background-color: #fff;
-        border-radius: 20px;
-        text-align: center;
-        font-weight: 500;
-        font-size: 16px;
-        height: 104px;
-        border: none;
-        width: 100%;
-        }
-
-    .buttonCP, .buttonRecurrence {
-      height: 104px;
-      width: 100%;
-      border: 1px solid white;
-      border-radius: 20px;
-      background-color: $background;
-      color: white;
-      text-align: center;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: 500;
-    }
-
-    .buttonCP-filled, .buttonRecurrence-filled {
-      border: 1px solid white;
-      background-color: white;
-      border-color: white;
-      border-radius: 20px;
-      text-align: center;
-      font-weight: 500;
-      font-size: 16px;
-      cursor:pointer;
-      color: black;
-      height: 104px;
-      width: 100%;
-    }
-
-    .searchCP::placeholder {
-      color: $background;
-      text-align: center;
-    }
-
+    /** START SELECT CP **/
     .dropdown {
-      position: relative;
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
+      border-radius: 20px;
+      position: absolute;
+      height: 144px;
       z-index: 1;
     }
-
     .dropdown-content {
+      height: 144px;
       display: none;
-      position: absolute;
-      width: 100%;
-      background-color: $background;
-      border-radius: 20px;
-      cursor: pointer;
+      width: 528px;
     }
+    .buttonCP, .inputCP {
+      background: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
+      border-radius: 20px 20px 0px 0px;
+      line-height: 24px;
+      font-weight: 700;
+      font-size: 16px;
+      display: none;
+      color: #fff;
+      width: 528px;
+      height: 72px;
+      &:hover {
+        background: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
+        color: #fff;
+      }
+      div {
+        text-align: center;
+        line-height: 20px;
+        font-weight: 400;
+        font-size: 12px;
+      }
+    }
+    .searchCP {
+      margin: 12px 0px 0 9px;
+      text-align: center;
+      line-height: 24px;
+      font-weight: 700;
+      font-size: 16px;
+      color: #fff;
+      width: 510px;
 
+    }
     div.scrollOptions {
-      overflow: scroll;
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
+      border-radius: 0 0 20px 20px;
       overflow-x: hidden;
       max-height: 200px;
+      line-height: 24px;
+      overflow: scroll;
+      color: #161616;
+      font-weight: 700;
+      font-size: 16px;
+      div {
+        padding: 12px 0 0 25px;
+        height: 47px;
+        &:hover {
+          background: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
+          color: #fff;
+        }
+      }
     }
-
-    .dropdown-content:hover, .dropdown-content:focus {
-      outline: none;
-    }
-
-    .dropdown-content div div {
-      padding: 8px;
+    .buttonCP-filled {
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);color: #2a2a2a;
       text-align: center;
+      line-height: 24px;
+      font-weight: 700;
+      color: #162616;
+      font-size: 16px;
     }
-
-    .dropdown-content div div:hover {
-      padding: 8px;
-      text-align: center;
-      background-color: white;
-      color: black;
-    }
-
     .show {
       display: block;
     }
+    .hide {
+      display: none;
+    }
+    /** END SELECT CP **/
 
     button {
       background: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%);
@@ -991,8 +985,11 @@ $blue: #2b8bf7;
       height: 72px;
     }
     .selectedDate {
-      background-color: #fff;
+      background: #fff;
       color: #2a2a2a;
+      .logoCalendrier {
+        background: url(../../public/logos/cra/logo-calendrier-n.svg) no-repeat;
+      }
     }
   }
   .radioButton {
@@ -1004,6 +1001,10 @@ $blue: #2b8bf7;
       width: 131px;
     }
   }
+  .buttonDate, .radioButton.small {
+    position: relative;
+    top: 8px;
+  }
   .radioButton.small {
     display: inline;
   }
@@ -1012,7 +1013,7 @@ $blue: #2b8bf7;
     background-color: $background;
     border: 1px solid #8a8ae3;
     color: #fff;
-    left: 93px;
+    left: 92px;
     top: -25px;
     .react-datepicker-popper {
       margin: 0 !important;
@@ -1058,7 +1059,7 @@ $blue: #2b8bf7;
       font-size: 16px;
       font-weight: 200;
       color: #161616;
-      width: 1.47rem;
+      width: 1.48rem;
       height: 1.54rem;
       margin: 6px;
     }

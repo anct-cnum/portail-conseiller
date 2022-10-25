@@ -16,20 +16,12 @@ function BigDatePickerButton({ initDate }) {
 
   const CustomDateInput = forwardRef(
     ({ value, onClick }, ref) => (
-      <button onClick={onClick} ref={ref} className={`${active ? 'selectedDate' : ''}`}>
+      <button onClick={onClick} ref={ref} className={`${active ? 'selectedDate' : 'selected'}`}>
         <span className="logoCalendrier"></span>&nbsp;
         <b className="texteDatePicker">Le {value}</b>
         <i className={active ? 'ri-arrow-up-s-line chevron-stats' : 'ri-arrow-down-s-line chevron-stats' }></i>
       </button>
     ),
-    /*
-    ({ value, onClick }, ref) => (
-      <button className={active ? 'buttonDate buttonDateActive' : 'buttonDate' } onClick={onClick} ref={ref}>
-        <b>Le {value}</b>
-        <i className={active ? 'ri-arrow-up-s-line chevron-stats' : 'ri-arrow-down-s-line chevron-stats' }></i>
-      </button>
-    ),
-    */
   );
   CustomDateInput.displayName = 'CustomDateInput';
 
