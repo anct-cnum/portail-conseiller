@@ -177,8 +177,8 @@ function HistoriqueCras() {
                             <Thematiques key={idx} texte={theme} />
                           )}
                           </td>
-                          <td className="modifie-le">
-                            {dayjs(accompagnement.updatedAt).format('DD/MM/YY à HH:mm') ?? dayjs(accompagnement.createdAt).format('DD/MM/YY à HH:mm')}
+                          <td className="modifie-le" style={{ textAlign: 'center' }}>
+                            {accompagnement?.updatedAt ? dayjs(accompagnement?.updatedAt).format('DD/MM/YY à HH:mm') : '-'}
                           </td>
                           <td>
                             <a href={`/compte-rendu-activite/${accompagnement._id}`}>

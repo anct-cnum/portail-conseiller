@@ -22,10 +22,11 @@ function ValidationButton() {
       dispatch(craActions.verifyCra(Object.values(cra?.errorsRequired)));
     } else {
       //Pas d'erreurs, envoi seulement des donnes necessaires à l'API
-      // eslint-disable-next-line no-unused-vars
-      let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error,
-        // eslint-disable-next-line no-unused-vars
-        showSelectRedirection, nbParticipantsAge, nbParticipantsStatut, nbParticipantsAccompagnement, printFlashbag, ...dataCraToSend } = cra;
+      // eslint-disable-next-line max-len, no-unused-vars
+      let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error, showSelectRedirection, nbParticipantsAge, nbParticipantsStatut, nbParticipantsAccompagnement, printFlashbag, ...dataCraToSend } = cra;
+      if (dataCraToSend?.sousThemes?.length === 0) {
+        delete dataCraToSend.sousThemes;
+      }
       if (cra.id) {
         dispatch(craActions.updateCra(dataCraToSend, conseiller._id));
       } else {
