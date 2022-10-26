@@ -351,6 +351,13 @@
     width: 25px;
   }
 }
+.fr-pagination {
+  display: flex;
+  margin: auto;
+  .fr-pagination__list {
+    margin: auto;
+  }
+}
 /*Footer support */
 .lien-footer {
   background-image: none;

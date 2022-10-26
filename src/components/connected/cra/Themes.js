@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import BigCheckboxButton from './Components/BigCheckboxButton';
+import BigCheckboxMultipleButton from './Components/BigCheckBoxMultipleButton';
 
 function Themes() {
 
@@ -149,7 +150,7 @@ function Themes() {
       </div>
 
       <div className="responsiveCheckboxNewRow2">
-        <BigCheckboxButton
+        <BigCheckboxMultipleButton
           type="themes"
           label="Sant&eacute;"
           baseline="cr&eacute;ation de compte Ameli, etc."

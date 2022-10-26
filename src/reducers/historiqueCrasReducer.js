@@ -11,7 +11,9 @@ export default function historiqueCras(state = initialState, action) {
     case 'GET_HISTORIQUE_CRAS_LIST_SUCCESS':
       return {
         ...state,
-        liste: action.listeCras,
+        liste: action.items.data,
+        total: action.items.total,
+        limit: action.items.limit,
         loading: false,
       };
     case 'GET_HISTORIQUE_CRAS_LIST_FAILURE':

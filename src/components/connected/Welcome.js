@@ -54,11 +54,11 @@ function Welcome() {
                         <img src="/logos/home-connected/icone-saisie.svg"/>
                         <span>Enregistrer une activit&eacute;</span>
                       </Link>
-                      <a href="/historique "className="historique-cra"
+                      <Link to="/historique" className="historique-cra"
                         title="Acc&eacute;der &agrave; l&rsquo;historique de vos comptes rendus d&rsquo;activit&eacute;" >
                         <img src="/logos/home-connected/icone-historique.svg"/><br/>
                         <span>Historique</span>
-                      </a>
+                      </Link>
                       <Link to="/statistiques" className="statistiques-cra"
                         title="Acc&eacute;der &agrave; aux statistiques" >
                         <img src="/logos/home-connected/icone-statistiques.svg"/><br/>
