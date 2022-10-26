@@ -65,13 +65,12 @@ function Pagination({ pageCount, current, navigate }) {
         {
           (pageCount > 5 && current > 3) &&
           <li>
-            <a className="fr-pagination__link fr-displayed-lg">...</a>
+            <a className="fr-pagination__link fr-displayed-lg" href="/#" onClick={e => onClick(e, previousPage - 1)}>...</a>
           </li>
         }
         {showPrevious &&
           <li>
-            <a className="fr-pagination__link number" href="/#"
-              onClick={e => onClick(e, previousPage)}>{previousPage}
+            <a className="fr-pagination__link number" href="/#" onClick={e => onClick(e, previousPage)}>{previousPage}
             </a>
           </li>
         }
@@ -91,7 +90,7 @@ function Pagination({ pageCount, current, navigate }) {
         {
           (current < pageCount - 2) &&
           <li>
-            <a href="/#" className="fr-pagination__link fr-displayed-lg">...</a>
+            <a href="/#" className="fr-pagination__link fr-displayed-lg" onClick={e => onClick(e, nextPage + 1)}>...</a>
           </li>
         }
         <li>
@@ -110,7 +109,7 @@ function Pagination({ pageCount, current, navigate }) {
           }
           {!isLastPage &&
           <a className="fr-pagination__link fr-pagination__link--next fr-pagination__link--lg-label" aria-label="Page suivante"
-            title="Page suivante" href="/#" onClick={e => onClick(e, lastPage)}>
+            title="Page suivante" href="/#" onClick={e => onClick(e, nextPage)}>
             Page suivante
           </a>
           }
