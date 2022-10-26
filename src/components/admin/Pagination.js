@@ -21,8 +21,7 @@ function Pagination({ pageCount, current, navigate }) {
   }
 
   return (
-    <nav className="fr-pagination" aria-label="Pagination" role="navigation"
-      style={{}}>
+    <nav className="fr-pagination" aria-label="Pagination" role="navigation">
       <ul className="fr-pagination__list">
         <li>
           {isFirstPage &&
