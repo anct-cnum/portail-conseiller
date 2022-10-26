@@ -351,6 +351,10 @@
     width: 25px;
   }
 }
+.fr-pagination {
+  width: 551px;
+  margin: auto;
+}
 /*Footer support */
 .lien-footer {
   background-image: none;
@@ -605,6 +609,10 @@
     &:hover {
       background-color: #858585 !important;
     }
+  }
+  .fr-pagination {
+    width: 276px;
+    margin: auto;
   }
 }
 @media (max-width: 988px) {
