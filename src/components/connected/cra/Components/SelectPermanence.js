@@ -6,27 +6,30 @@ function SelectPermanence() {
   const listPermanences = useSelector(state => state.permanence?.mesPermanences);
   let cra = useSelector(state => state.cra);
 
-console.log(listPermanences);
-
   return (
     <div id="buttonPermanences" className={`dropdown ${cra?.buttonPermanences ? 'show' : ''}`}>
-      {listPermanences && listPermanences?.map((permanence, idx) => {
-        return (
-          <button className="buttonPermanence" key={idx}>
-            <div className="nomEnseigne">{permanence.nomEnseigne}</div>
-            <div className="adresse">
-              {
-                permanence.adresse.numeroRue + ' ' +
-                permanence.adresse.rue + ' ' +
-                permanence.adresse.codePostal + ' ' +
-                permanence.adresse.ville
-              }
-            </div>
-          </button>
-        );
-      })}
-      <div>
-        <Link to="/mon-nouveau-lieu-activite">Ajouter un nouveau lieu d&rsquo;activit&eacute;</Link>
+      <div className="listButtonPermanence">
+        {listPermanences && listPermanences?.map((permanence, idx) => {
+          return (
+            <button className="buttonPermanence" key={idx}>
+              <span className="logoRattachementActif"></span>
+              <span style={{display: 'inline-block'}}>
+                <div className="nomEnseigne">{permanence.nomEnseigne.toUpperCase()}</div>
+                <div className="adresse">
+                  {permanence.adresse.numeroRue !== 'null' ? permanence.adresse.numeroRue : ''}
+                  {
+                    ' ' + permanence.adresse.rue.toUpperCase() + ' ' +
+                    permanence.adresse.codePostal + ' ' +
+                    permanence.adresse.ville.toUpperCase()
+                  }
+                </div>
+              </span>
+            </button>
+          );
+        })}
+      </div>
+      <div className="lienPermanence">
+        <Link to="/mon-nouveau-lieu-activite" >Ajouter un nouveau lieu d&rsquo;activit&eacute;</Link>
       </div>
       {/*
       {!cra?.searchCP && !cra?.searchInput &&
