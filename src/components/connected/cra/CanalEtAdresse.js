@@ -4,6 +4,7 @@ import BigRadioButtonV2 from './Components/BigRadioButtonV2';
 import SmallRadioButtonV2 from './Components/SmallRadioButtonV2';
 import BigDatePickerButton from './Components/BigDatePickerButton';
 import SelectCP from './Components/SelectCP';
+import SelectPermanence from './Components/SelectPermanence';
 
 function CanalEtAdresse() {
 
@@ -18,6 +19,7 @@ function CanalEtAdresse() {
       </div>
       <div className="fr-col-12 fr-col-md-9">
         <div className="responsiveElement">
+          <SelectPermanence/>
           <BigRadioButtonV2
             type="canal"
             label="Lieu de rattachement"

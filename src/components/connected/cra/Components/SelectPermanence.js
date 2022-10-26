@@ -1,59 +1,34 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { craActions } from '.././../../../actions';
-import codesPostaux from '../../../../data/codesPostaux.json';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function SelectPermanence() {
-  const dispatch = useDispatch();
-  let cra = useSelector(state => state.cra);
   const listPermanences = useSelector(state => state.permanence?.mesPermanences);
+  let cra = useSelector(state => state.cra);
+
 console.log(listPermanences);
-  //Tri
-  const tri = permanences => {
-    return permanences.sort(function compare(a, b) {
-      if (a.Nom_commune < b.Nom_commune) {
-        return -1;
-      }
-      if (a.Nom_commune > b.Nom_commune) {
-        return 1;
-      }
-      return 0;
-    });
-  };
-
-  //Remove doublons if necessary
-  const removeDuplicatesFromArray = arr => [...new Set(
-    arr.map(el => JSON.stringify(el))
-  )].map(e => JSON.parse(e));
-
-  //filter array with search
-  const filterArray = text => {
-    return tri(removeDuplicatesFromArray(codesPostaux).filter(
-      codePostal => String(codePostal.Code_postal).startsWith(text) || String(codePostal.Nom_commune.toLowerCase()).startsWith(text.toLowerCase())
-    ));
-  };
-
-  //Select Option and set value
-  const onClickOption = e => {
-    const value = e.target.getAttribute('value');
-    dispatch(craActions.updateCP(value));
-  };
-
-  //OnClick button
-  const onClickButton = () => {
-    dispatch(craActions.getSearchlist());
-    setTimeout(() => {
-      document.getElementById('searchCP').focus();
-    }, 100);
-  };
-
-  //Focus input
-  const focusInput = () => {
-    document.getElementById('searchCP').focus();
-  };
 
   return (
-    <div className="dropdown">
+    <div id="buttonPermanences" className={`dropdown ${cra?.buttonPermanences ? 'show' : ''}`}>
+      {listPermanences && listPermanences?.map((permanence, idx) => {
+        return (
+          <button className="buttonPermanence" key={idx}>
+            <div className="nomEnseigne">{permanence.nomEnseigne}</div>
+            <div className="adresse">
+              {
+                permanence.adresse.numeroRue + ' ' +
+                permanence.adresse.rue + ' ' +
+                permanence.adresse.codePostal + ' ' +
+                permanence.adresse.ville
+              }
+            </div>
+          </button>
+        );
+      })}
+      <div>
+        <Link to="/mon-nouveau-lieu-activite">Ajouter un nouveau lieu d&rsquo;activit&eacute;</Link>
+      </div>
+      {/*
       {!cra?.searchCP && !cra?.searchInput &&
       <button id="buttonCP"
         onClick={onClickButton}
@@ -71,13 +46,12 @@ console.log(listPermanences);
             id="searchCP"
             name="searchCP"
             className={`searchCP ${cra?.searchInput === true ? 'dropdown-expanded' : ''}`}
-            style={cra?.searchCP === true && codePostalList.length > 0 ? { borderRadius: '20px 20px 0 0' } : {}}
-            onKeyUp={onKeyUp}
+            style={cra?.searchCP === true && listPermanences.length > 0 ? { borderRadius: '20px 20px 0 0' } : {}}
             autoFocus={true}/>
           <div className={`${cra?.buttonCP ? 'show' : 'hide'}`}>Saisissez au moins 3 caract&egrave;res</div>
         </div>
-        <div className="scrollOptions">{codePostalList}</div>
-      </div>
+        <div className="scrollOptions">{listPermanences}</div>
+      </div> */}
     </div>
   );
 

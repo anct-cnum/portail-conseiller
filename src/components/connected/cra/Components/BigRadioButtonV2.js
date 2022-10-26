@@ -22,9 +22,9 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
             }, 100);
             break;
           case 'rattachement':
-            dispatch(craActions.getButtonCP());
+            dispatch(craActions.getButtonPermanences());
             setTimeout(() => {
-              document.getElementById('buttonCP').focus();
+              document.getElementById('buttonPermanences').focus();
             }, 100);
             break;
           default:

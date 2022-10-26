@@ -979,7 +979,44 @@ $blue: #2b8bf7;
         }
       }
     }
+    #buttonPermanences {
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
+      height: 344px;
+      overflow: auto;
+      display: none;
+      width: 528px;
+    }
+    #buttonPermanences.show {
+      display: block;
+    }
+    .buttonPermanence {
+      background: none;
+      border-radius: 0;
+      text-align: left;
+      width: 528px;
+      height: 72px;
+      border: none;
+      .nomEnseigne {
+        line-height: 24px;
+        color: #2a2a2a;
+        font-weight: 700;
+        font-size: 16px;
+      }
+      .adresse {
+        line-height: 20px;
+        color: #929292;
+        font-weight: 400;
+        font-size: 12px;
+      }
+      &:hover {
+        background: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
+        .nomEnseigne, .adresse {
+          color: #fff;
+        }
+      }
+    }
   }
+
   .buttonDate {
     button {
       height: 72px;
