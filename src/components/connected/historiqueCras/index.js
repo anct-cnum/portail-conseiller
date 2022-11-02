@@ -14,9 +14,10 @@ function HistoriqueCras() {
 
   const accompagnements = useSelector(state => state.historiqueCras?.liste);
   const themes = useSelector(state => state.historiqueCras?.themes);
+  const histo = useSelector(state => state.historiqueCras?.themes);
   const printFlashbag = useSelector(state => state.cra.printFlashbag);
   const [thematique, setThematique] = useState(null);
-
+console.log(histo);
   useEffect(() => {
     if (accompagnements === undefined || thematique || !thematique) {
       dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique));

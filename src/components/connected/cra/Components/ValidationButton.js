@@ -23,9 +23,10 @@ function ValidationButton() {
     } else {
       //Pas d'erreurs, envoi seulement des donnes necessaires à l'API
       // eslint-disable-next-line no-unused-vars
-      let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error,
+      let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error, buttonCP, buttonPermanence, nomEnseigne,
         // eslint-disable-next-line no-unused-vars
         showSelectRedirection, nbParticipantsAge, nbParticipantsStatut, nbParticipantsAccompagnement, printFlashbag, ...dataCraToSend } = cra;
+      sessionStorage.setItem('permanenceId', cra?.permanenceId);
       if (cra.id) {
         dispatch(craActions.updateCra(dataCraToSend, conseiller._id));
       } else {

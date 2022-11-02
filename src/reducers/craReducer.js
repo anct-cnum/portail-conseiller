@@ -111,18 +111,18 @@ export default function cra(state = initialState, action) {
           canal: !!canal },
       };
     case 'CLEAR_CANAL':
+      console.log(state.canal);
       return {
         ...state,
         permanenceId: null,
         nomEnseigne: null,
-        cp: undefined,
+        cp: !state.buttonCP ? undefined : state.cp,
         buttonPermanences: false,
-        buttonCP: false,
         searchCP: false,
         errorsRequired: {
           ...state.errorsRequired,
           canal: false,
-          cp: true
+          cp: !state.buttonCP
         },
       };
     case 'UPDATE_ACTIVITE':

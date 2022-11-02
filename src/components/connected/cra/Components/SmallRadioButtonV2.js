@@ -23,24 +23,6 @@ function SmallRadioButton({ type, label, value, image }) {
           dispatch(craActions.clearCanal());
         }
         break;
-      case 'activite':
-        dispatch(craActions.updateActivite(e.target.getAttribute('value')));
-        break;
-      case 'accompagnement':
-        if (cra?.nbParticipants > cra?.nbParticipantsAccompagnement) {
-          const accompagnement = cra?.accompagnement;
-          for (let key in cra?.accompagnement) {
-            if (key === value) {
-              accompagnement[key] += 1;
-            }
-          }
-          dispatch(craActions.updateAccompagnement(accompagnement, cra?.nbParticipantsAccompagnement + 1));
-          if (value === 'redirection') {
-            dispatch(craActions.updateOrganisme(null));
-            dispatch(craActions.showSelectRedirection(true));
-          }
-        }
-        break;
       default:
         break;
     }

@@ -15,9 +15,16 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
   let disabled = false;
   switch (type) {
     case 'canal':
-      styleClass = cra?.canal === 'domicile' ? 'disabled' : 'radioRattachement2';
+      if (cra?.canal === 'domicile') {
+        if (value === 'rattachement') {
+          styleClass = 'disabled';
+        } else {
+          styleClass += cra?.errorsRequired.cp ? ' buttonError' : 'radioRattachement2';
+        }
+
+      }
       styleClass += cra?.canal === 'distance' && cra?.errorsRequired.cp ? ' buttonError' : '';
-      disabled = cra?.canal === 'domicile';
+      disabled = cra?.canal === 'domicile' && value === 'rattachement';
       break;
     case 'activite':
       styleClass += controlSelected === value ? ' selected' : '';
@@ -52,24 +59,6 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
             break;
           default:
             break;
-        }
-        break;
-      case 'activite':
-        dispatch(craActions.updateActivite(value));
-        break;
-      case 'accompagnement':
-        if (cra?.nbParticipants > cra?.nbParticipantsAccompagnement) {
-          const accompagnement = cra?.accompagnement;
-          for (let key in cra?.accompagnement) {
-            if (key === value) {
-              accompagnement[key] += 1;
-            }
-          }
-          dispatch(craActions.updateAccompagnement(accompagnement, cra?.nbParticipantsAccompagnement + 1));
-          if (value === 'redirection') {
-            dispatch(craActions.updateOrganisme(null));
-            dispatch(craActions.showSelectRedirection(true));
-          }
         }
         break;
       default:

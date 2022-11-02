@@ -5,7 +5,7 @@ import { craActions } from '../../../../actions';
 
 function SelectPermanence() {
   const dispatch = useDispatch();
-
+  const permanenceId = sessionStorage.getItem('permanenceId');
   let cra = useSelector(state => state.cra);
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const listPermanences = useSelector(state => state.permanence?.mesPermanences);
@@ -31,8 +31,11 @@ function SelectPermanence() {
         }
       }
       setMesPermanences(mesPermanences);
+      if (permanenceId) {
+        dispatch(craActions.getPermanence(listPermanences.find(permanence => permanence._id === permanenceId)));
+      }
     }
-  }, [listPermanences]);
+  }, [listPermanences, permanenceId]);
 
   return (
     <>

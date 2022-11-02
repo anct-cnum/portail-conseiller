@@ -51,7 +51,7 @@ function CanalEtAdresse() {
             value="domicile"
             image="logoDomicile" />
         </div>
-        {cra?.canal === 'domicile' &&
+        {cra?.canal === 'domicile' && cra?.errorsRequired.cp &&
           <div className="textInformation">
             Renseignez la localisation plus bas via le champ &laquo;Lieu(x) de r&eacute;sidence(s) des usagers&raquo;.
           </div>
