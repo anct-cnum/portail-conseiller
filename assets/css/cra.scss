@@ -2,21 +2,13 @@ $errorDarkMode: #ff3333;
 $background: #1e1e1e;
 $blue: #2b8bf7;
 
-.cra { /*
+.cra {
   .espacement {
     margin-bottom: 3.75rem !important;
   }
   *:focus {
     outline: none;
   }
- /*
-  .titre {
-    line-height: 72px;
-    font-weight: 200;
-    font-size: 56px;
-    margin: 0;
-  }
-
   .a-propos {
     background-image: none;
     display: inline-block;
@@ -38,42 +30,6 @@ $blue: #2b8bf7;
   .questionRequired::after {
     content:" * ";
   }
-
-  /** START SELECT CP **/ /*
-
-
-  .buttonCP, .buttonRecurrence {
-    height: 104px;
-    width: 100%;
-    border: 1px solid white;
-    border-radius: 20px;
-    background-color: $background;
-    color: white;
-    text-align: center;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 500;
-  }
-
-  .buttonCP-filled, .buttonRecurrence-filled {
-    border: 1px solid white;
-    background-color: white;
-    border-color: white;
-    border-radius: 20px;
-    text-align: center;
-    font-weight: 500;
-    font-size: 16px;
-    cursor:pointer;
-    color: black;
-    height: 104px;
-    width: 100%;
-  }
-
-  .searchCP::placeholder {
-    color: $background;
-    text-align: center;
-  }
-
   .dropdown {
     position: relative;
     z-index: 1;
@@ -117,31 +73,6 @@ $blue: #2b8bf7;
   .responsiveSelect, .responsiveRecurrence {
     width: calc(810%/12 - 271px);
     padding-left: 0.75rem;
-  }
-
-  .responsiveDate{
-    background-color: $background;
-    border: 1px solid white;
-    width: 271px;
-    border-radius: 20px;
-    text-align: center;
-    &.active {
-      border-radius: 20px 20px 0 0;
-      border-color:#5398ff;
-      cursor: pointer;
-    }
-    .buttonDate {
-      padding-top:10%;
-      cursor: pointer;
-      height: 72px;
-      &:hover, &:active {
-        color:#5398ff;
-        cursor: pointer;
-      }
-    }
-    .buttonDateActive{
-      color:#5398ff;
-    }
   }
 
   .lessRecurrence, .moreRecurrence {
@@ -269,28 +200,49 @@ $blue: #2b8bf7;
     height: 104px;
   }
 
-  /* custom point de rupture LG du DS */ /*
+  .buttonRecurrence {
+    height: 104px;
+    width: 100%;
+    border: 1px solid white;
+    border-radius: 20px;
+    background-color: $background;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .buttonRecurrence-filled {
+    border: 1px solid white;
+    background-color: white;
+    border-color: white;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+    cursor:pointer;
+    color: black;
+    height: 104px;
+    width: 100%;
+  }
+
+  /* custom point de rupture LG du DS */
   @media (max-width: 1024px) {
 
-    .responsiveSelect, .responsiveRecurrence {
+    .responsiveRecurrence {
       padding-left: 0.5rem;
     }
 
   }
 
-  /* custom point de rupture MD du DS */ /*
+  /* custom point de rupture MD du DS */
   @media (max-width: 767px) {
-
-    .titre {
-      text-align: center;
-      font-size:28px;
-      line-height:40px;
-    }
     .questionResponsive {
       text-align: center;
       margin: auto;
     }
-    .responsiveSelect, .responsiveRecurrence, .responsiveDate {
+    .responsiveRecurrence {
       width: calc(1000%/12);
       margin: 0 auto;
       padding-left: .5rem;
@@ -302,28 +254,33 @@ $blue: #2b8bf7;
     }
   }
 
-  /* custom point de rupture SM du DS */ /*
+  /* custom point de rupture SM du DS */
   @media (max-width: 576px) {
 
     .questionResponsive {
       width: calc(1200%/12);
     }
 
-    .responsiveSelect, .responsiveRecurrence, .responsiveDate {
+    .responsiveRecurrence {
       width: calc(1200%/12);
       padding-left: .5rem;
     }
-
   }
-  /** END SELECT CP **/
-
-  /** START RADIO CANAL & ACTIVITY **/ /*
-  .radioRattachement, .radioRattachementAlt {
+   /** START RADIO CANAL & ACTIVITY **/
+   .radioRattachement, .radioRattachementAlt {
     width: 100%;
     border-radius: 20px;
     border: 1px solid white;
     background-color: $background;
     cursor: pointer;
+    height: 144px;
+    padding: 0px;
+
+  }
+
+  .radioRattachement-selected {
+    background-color: white!important;
+    color: black!important;
   }
 
   .labelBigRadioCustom {
@@ -369,8 +326,7 @@ $blue: #2b8bf7;
   }
 
   .responsiveRadioCanal1, .responsiveRadioCanal2, .responsiveRadioActivity1, .responsiveRadioActivity2, .responsiveRadioActivity3Big {
-    width: calc(270%/12);
-    max-width: 264px;
+    width: calc(266%/12);
   }
 
   .responsiveRadioCanal1, .responsiveRadioActivity1 {
@@ -379,8 +335,7 @@ $blue: #2b8bf7;
 
   .responsiveRadioCanalVertical {
     align-self: flex-start;
-    width: calc(270%/12);
-    max-width: 264px;
+    width: calc(266%/12);
   }
 
   .responsiveRadioActivity3Small {
@@ -399,16 +354,14 @@ $blue: #2b8bf7;
     display: flex;
   }
 
-  /* custom point de rupture LG du DS */ /*
-  @media (max-width: 1024px) {
+   /* custom point de rupture LG du DS */
+   @media (max-width: 1024px) {
 
     .responsiveRadioCanal1, .responsiveRadioActivity1 {
       margin-left: 0.5rem;
     }
   }
-
   /* custom point de rupture MD du DS */
-   /*
   @media (max-width: 767px) {
 
     .responsiveRadioCanal1, .responsiveRadioActivity1 {
@@ -443,49 +396,44 @@ $blue: #2b8bf7;
       margin-bottom: 0.5rem;
     }
 
-    .responsiveRadioCanalVertical {
+    .responsiveRadioCanalVertical .radioButton {
       width: calc(550%/12);
     }
 
-    .responsiveRadioCanalVertical {
+    .responsiveRadioCanalVertical .radioButton:first-child {
       width: calc(540%/12);
+    }
+  }
+  /* custom point de rupture SM du DS */
+  @media (max-width: 576px) {
+
+    .responsiveRadioCanal1, .responsiveRadioActivity1, .responsiveRadioCanal2, .responsiveRadioActivity2 {
+      width: calc(600%/12);
+      margin-left: 0;
+    }
+
+    .responsiveRadioActivity3Small {
+      width: calc(12000%/12);
+      margin-left: 0;
+    }
+
+    .responsiveRadioCanalVertical {
+      width: calc(1200%/12);
+      margin-left: 0;
+    }
+
+    .responsiveRadioCanalVertical .radioButton {
+      width: calc(605%/12);
+    }
+
+    .responsiveRadioCanalVertical .radioButton:first-child {
+      width: calc(595%/12);
     }
 
   }
-*/
-    /* custom point de rupture SM du DS */
-     /*
-    @media (max-width: 576px) {
-
-      .responsiveRadioCanal1, .responsiveRadioActivity1, .responsiveRadioCanal2, .responsiveRadioActivity2 {
-        width: calc(600%/12);
-        margin-left: 0;
-      }
-
-      .responsiveRadioActivity3Small {
-        width: calc(12000%/12);
-        margin-left: 0;
-      }
-
-      .responsiveRadioCanalVertical {
-        width: calc(1200%/12);
-        margin-left: 0;
-      }
-
-      .responsiveRadioCanalVertical {
-        width: calc(605%/12);
-      }
-
-      .responsiveRadioCanalVertical {
-        width: calc(595%/12);
-      }
-
-    }
-     */
   /** END RADIO CANAL & ACTIVITY **/
 
   /** START SQUARE BUTTON AGE AND STATUT **/
-   /*
   .squareRattachement, .squareRattachementAlt {
     width: 100%;
     height: 104px;
@@ -511,9 +459,7 @@ $blue: #2b8bf7;
   .responsiveSquare1 {
     margin-left: 0.75rem;
   }
-*/
   /* custom point de rupture MD du DS */
-   /*
   @media (max-width: 767px) {
 
     .responsiveSquare1 {
@@ -525,153 +471,35 @@ $blue: #2b8bf7;
     .responsiveSquare2, .responsiveSquare3, .responsiveSquare4, .responsiveSquare5 {
       width: calc(200%/12);
     }
-
   }
-*/
-    /* custom point de rupture SM du DS */
-     /*
-    @media (max-width: 576px) {
+   /* custom point de rupture SM du DS */
+   @media (max-width: 576px) {
 
-      .responsiveSquare1, .responsiveSquare2 {
-        width: calc(600%/12);
-        margin-left: 0;
-      }
-
-      .responsiveSquare3 {
-        width: calc(600%/12);
-        padding-left: 0.5rem;
-      }
-
-      .responsiveSquare4 {
-        width: calc(600%/12);
-      }
-
-      .responsiveSquare5 {
-        width: calc(1200%/12);
-        padding-left: 0.5rem;
-      }
-
-      .squareRattachement {
-        height: 73px;
-      }
-
+    .responsiveSquare1, .responsiveSquare2 {
+      width: calc(600%/12);
+      margin-left: 0;
     }
-    */
+
+    .responsiveSquare3 {
+      width: calc(600%/12);
+      padding-left: 0.5rem;
+    }
+
+    .responsiveSquare4 {
+      width: calc(600%/12);
+    }
+
+    .responsiveSquare5 {
+      width: calc(1200%/12);
+      padding-left: 0.5rem;
+    }
+
+    .squareRattachement {
+      height: 73px;
+    }
+  }
   /** END SQUARE BUTTON AGE AND STATUT **/
-
-  /** START CHECKBOX BUTTON THEMES **/
-   /*
-  .checkboxRattachement {
-    width: 100%;
-    border-radius: 20px;
-    border: 1px solid white;
-    background-color: $background;
-    cursor: pointer;
-  }
-
-  .checkboxRattachement-selected {
-    background-color: white!important;
-    color: black!important;
-    .baseline {
-      color: #2a2a2a;
-    }
-  }
-
-  .labelCheckboxCustom {
-    line-height: 24px;
-    text-align: start;
-    align-self: center;
-  }
-
-  .responsiveCheckbox1 {
-    width: calc(400%/12);
-    margin-left: 0.75rem;
-  }
-
-  .responsiveCheckbox2, .responsiveCheckboxNewRow2 {
-    width: calc(400%/12);
-  }
-
-  .responsiveCheckboxNewRow1 {
-    width: calc(400%/12);
-    margin-left: calc(211%/12);
-  }
-
-  .responsiveSmallCheckbox {
-    width: calc(800%/12);
-    margin-left: calc(211%/12);
-  }
-
-  .questionCheckboxResponsive {
-    height: 108px;
-  }
-*/
-  /* custom point de rupture LG du DS */
-   /*
-  @media (max-width: 991px) {
-    .centre-titre {
-      text-align: center;
-    }
-    .url-a-propos {
-      text-align: center;
-    }
-    .labelCheckboxCustom {
-      font-size: 12px;
-    }
-
-  }
-*/
-  /* custom point de rupture MD du DS */
-   /*
-  @media (max-width: 767px) {
-
-    .responsiveCheckbox1, .responsiveCheckboxNewRow1 {
-      width: calc(500%/12);
-      margin-left: calc(100%/12);
-      padding-left: 0.5rem;
-    }
-
-    .responsiveCheckbox2, .responsiveCheckboxNewRow2 {
-      width: calc(500%/12);
-    }
-
-    .responsiveSmallCheckbox {
-      width: calc(1000%/12);
-      margin-left: calc(100%/12);
-      padding-left: 0.5rem;
-    }
-
-    .questionCheckboxResponsive {
-      height: unset;
-    }
-
-  }
-*/
-  /* custom point de rupture SM du DS */
-   /*
-  @media (max-width: 576px) {
-
-    .responsiveCheckbox1, .responsiveCheckbox2, .responsiveCheckboxNewRow1, .responsiveCheckboxNewRow2, .responsiveSmallCheckbox {
-      width: calc(1200%/12);
-      margin-left: 0;
-      padding-left: 0.5rem;
-    }
-
-    .labelCheckboxCustom {
-      font-size: 16px;
-    }
-
-    .questionCheckboxResponsive {
-      margin-left: 0;
-      width: calc(1200%/12);
-    }
-
-  }
-  */
-  /** END CHECKBOX BUTTON THEMES **/
-
   /** START SQUARE BUTTON TIME **/
-   /*
   .responsiveSquareTime1, .responsiveSquareTime2, .responsiveSquareTime3 {
     width: calc(266%/12);
   }
@@ -737,9 +565,7 @@ $blue: #2b8bf7;
     color: black;
     font-size: 24px;
   }
-*/
   /* custom point de rupture MD du DS */
-   /*
   @media (max-width: 767px) {
 
     .responsiveSquareTime1 {
@@ -751,7 +577,6 @@ $blue: #2b8bf7;
     .responsiveSquareTime2, .responsiveSquareTime3 {
       width: calc(333%/12);
     }
-
   }
 
   @media (max-width: 576px) {
@@ -778,30 +603,74 @@ $blue: #2b8bf7;
     }
 
   }
- */
   /** END SQUARE BUTTON TIME **/
-/*
-  .submitCra {
-    background-color: white;
-    width: 70%;
-    border-radius: 48px;
-    height: 96px;
-    font-size: 20px;
+  /** START CHECKBOX BUTTON THEMES **/
+  .checkboxRattachement {
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid white;
+    background-color: $background;
+    cursor: pointer;
   }
 
-  .submitCra:hover, .submitCra:active {
-    --color-hover: $background!important;
-    --color-active: $background!important;
+  .checkboxRattachement-selected {
+    background-color: white!important;
+    color: black!important;
+    .baseline {
+      color: #2a2a2a;
+    }
+  }
+  .labelCheckboxCustom {
+    line-height: 24px;
+    text-align: start;
+    align-self: center;
   }
 
-  @media (max-width: 576px) {
+  .responsiveCheckbox1 {
+    width: calc(400%/12);
+    margin-left: 0.75rem;
+  }
 
-    .submitResponsive {
-      width: calc(800%/12);
+  .responsiveCheckbox2, .responsiveCheckboxNewRow2 {
+    width: calc(400%/12);
+  }
+
+  .responsiveCheckboxNewRow1 {
+    width: calc(400%/12);
+    margin-left: calc(211%/12);
+  }
+
+  .responsiveSmallCheckbox {
+    width: calc(800%/12);
+    margin-left: calc(211%/12);
+  }
+
+  .questionCheckboxResponsive {
+    height: 108px;
+  }
+    /** END SQUARE BUTTON TIME **/
+
+    .submitCra {
+      background-color: white;
+      width: 70%;
+      border-radius: 48px;
+      height: 96px;
+      font-size: 20px;
     }
 
-  }
-*/
+    .submitCra:hover, .submitCra:active {
+      --color-hover: $background!important;
+      --color-active: $background!important;
+    }
+
+    @media (max-width: 576px) {
+
+      .submitResponsive {
+        width: calc(800%/12);
+      }
+
+    }
+
   /* CRA V3 */
   .titre {
     line-height: 64px;
@@ -822,12 +691,12 @@ $blue: #2b8bf7;
     height: 40px;
     width: 180px;
   }
-  .question {
+  .question2 {
     height: 42px;
     font-size: 14px;
     font-weight: 100;
   }
-  .responsiveElement {
+  .responsiveElement2 {
     display: inline-block;
     border-radius: 20px;
     /** START SELECT CP **/
@@ -835,10 +704,11 @@ $blue: #2b8bf7;
       background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
       border-radius: 20px;
       position: absolute;
+      cursor: pointer;
       height: 144px;
-      z-index: 1;
+      z-index: 3;
     }
-    .dropdown-content {
+    .dropdown-content2 {
       height: 144px;
       display: none;
       width: 528px;
@@ -874,7 +744,7 @@ $blue: #2b8bf7;
       width: 510px;
 
     }
-    div.scrollOptions {
+    div.scrollOptions2 {
       background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
       border-radius: 0 0 20px 20px;
       overflow-x: hidden;
@@ -893,13 +763,17 @@ $blue: #2b8bf7;
         }
       }
     }
-    .buttonCP-filled {
+    .buttonCP-filled, .buttonPermanence-filled {
       background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);color: #2a2a2a;
       text-align: center;
       line-height: 24px;
       font-weight: 700;
       color: #162616;
       font-size: 16px;
+      z-index: 3;
+    }
+    .buttonPermanence-filled {
+      position: absolute;
     }
     .show {
       display: block;
@@ -907,13 +781,12 @@ $blue: #2b8bf7;
     .hide {
       display: none;
     }
-    /** END SELECT CP **/
 
+    /** END SELECT CP **/
     button {
       background: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%);
-      border: 1px solid #8a8ae3;
-      color: #fff;
       border-radius: 20px;
+      color: #fff;
       height: 144px;
       width: 264px;
       .logoLieuRatachement, .logoAutreLieu {
@@ -979,30 +852,31 @@ $blue: #2b8bf7;
         }
       }
     }
+    .logoRattachementSelected {
+      background: url(../../public/logos/cra/logo-lieu-rattachement-selected.svg) no-repeat;
+      margin: 5px auto;
+      display: block;
+      height: 56px;
+      width: 33px;
+    }
     #buttonPermanences {
       background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
+      border-radius: 20px;
+      position: absolute;
+      max-height: 344px;
       display: none;
-      height: 344px;
       width: 528px;
       .listButtonPermanence {
-        border-radius: 20px;
-        height: 311px;
+        max-height: 311px;
+        padding: 24px 0;
         overflow: auto;
         .buttonPermanence {
           background: none;
           border-radius: 0;
           text-align: left;
-          width: 528px;
+          width: 526px;
           height: 56px;
           border: none;
-          .logoRattachementActif {
-            background: url(../../public/logos/cra/logo-lieu-rattachement-actif.svg) no-repeat;
-            margin: 0px 8px 16px 24px;
-            display: inline-block;
-            height: 24px;
-            width: 14px;
-
-          }
           .nomEnseigne {
             line-height: 24px;
             color: #2a2a2a;
@@ -1022,12 +896,28 @@ $blue: #2b8bf7;
             }
           }
         }
+        .lieuActiviteAbsent {
+          padding: 20px 0 0;
+          color: #2a2a2a;
+          margin: auto;
+          height: 60px;
+          width: 240px;
+
+        }
+      }
+      .logoRattachementActif {
+        background: url(../../public/logos/cra/logo-lieu-rattachement-actif.svg) no-repeat;
+        margin: 0px 8px 16px 24px;
+        display: inline-block;
+        height: 24px;
+        width: 14px;
       }
       .lienPermanence {
         border-top: 1px solid #9A9AFF;
         display: inline-block;
+        padding-left: 46px;
         color: #000091;
-        width: 528px;
+        width: 526px;
         height: 33px;
       }
     }
@@ -1047,21 +937,77 @@ $blue: #2b8bf7;
       }
     }
   }
-  .radioButton {
-    .radioRattachement {
-      height: 144px;
+  .radioButton2 {
+    .radioRattachement2::after, .smallRadioRattachement2::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      border: 1px solid transparent;
+      background: linear-gradient(0deg,#3558A2,#9A9AFF) border-box;
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+        mask:linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
     }
-    .smallRadioRattachement {
+    .radioRattachement2 {
+      border-radius: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .smallRadioRattachement2 {
+      border-radius: 20px;
+      position: relative;
       height: 72px;
       width: 131px;
     }
   }
-  .buttonDate, .radioButton.small {
+  .buttonDate, .radioButton2.small {
     position: relative;
     top: 8px;
   }
-  .radioButton.small {
+  .radioButton2.small {
     display: inline;
+  }
+  .buttonError::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    background: linear-gradient(0deg,red,orange) border-box !important;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      mask:linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+  .buttonError {
+    border-radius: 20px;
+    position: relative;
+  }
+  .disabled {
+    border : 1px solid #3d3d3d !important;
+    color: #3d3d3d !important;
+    &::after, &:hover {
+      border : 1px solid #3d3d3d !important;
+      color: #3d3d3d !important;
+      background: none !important;
+    }
+    .logoLieuRatachement {
+      background: url(../../public/logos/cra/logo-lieu-rattachement-n.svg) no-repeat !important;
+    }
+    .logoAutreLieu{
+      background: url(../../public/logos/cra/logo-autre-lieu-n.svg) no-repeat !important;
+    }
+    .labelBigRadioCustom {
+      color: #3d3d3d !important;
+    }
+  }
+  .textInformation {
+    margin: 15px 0 20px;
+    text-align: center;
+    font-size: 12px;
+    width: 792px;
   }
   .react-datepicker{
     border-radius: 0 0 20px 20px;
@@ -1173,4 +1119,3 @@ $blue: #2b8bf7;
     }
   }
 }
-

@@ -18,16 +18,16 @@ function CanalEtAdresse() {
         </span>
       </div>
       <div className="fr-col-12 fr-col-md-9">
-        <div className="responsiveElement">
+        <div className="responsiveElement2">
           <SelectPermanence/>
           <BigRadioButtonV2
             type="canal"
-            label="Lieu de rattachement"
+            label="Lieu d&rsquo;activit&eacute;"
             value="rattachement"
             image="logoLieuRatachement"
             classDiv="lieuRattachement"/>
         </div>
-        <div className="responsiveElement">
+        <div className="responsiveElement2">
           <SelectCP/>
           <BigRadioButtonV2
             type="canal"
@@ -36,7 +36,7 @@ function CanalEtAdresse() {
             image="logoAutreLieu"
             classDiv="autreLieu"/>
         </div>
-        <div className="responsiveElement">
+        <div className="responsiveElement2">
           <div className="buttonDate">
             <BigDatePickerButton type="date" initDate={cra?.dateAccompagnement} />
           </div>
@@ -51,6 +51,16 @@ function CanalEtAdresse() {
             value="domicile"
             image="logoDomicile" />
         </div>
+        {cra?.canal === 'domicile' &&
+          <div className="textInformation">
+            Renseignez la localisation plus bas via le champ &laquo;Lieu(x) de r&eacute;sidence(s) des usagers&raquo;.
+          </div>
+        }
+        {cra?.canal === 'distance' && cra?.errorsRequired.cp &&
+          <div className="textInformation">
+            Veuillez compl&eacute;ter en s&eacute;lectionnant l&rsquo;un des deux champs.
+          </div>
+        }
       </div>
     </div>
   );

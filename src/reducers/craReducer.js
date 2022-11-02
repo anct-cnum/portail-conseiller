@@ -41,11 +41,32 @@ export default function cra(state = initialState, action) {
       return {
         ...state,
         buttonPermanences: true,
+        buttonCP: false,
+        searchCP: false,
+        permanenceId: null,
+        nomEnseigne: null,
+        cp: undefined,
+      };
+    case 'GET_PERMANENCE':
+      return {
+        ...state,
+        buttonPermanences: false,
+        searchCP: false,
+        permanenceId: action.permanence._id,
+        nomEnseigne: action.permanence.nomEnseigne,
+        cp: action.permanence.adresse.codePostal + ' ' + action.permanence.adresse.ville,
+        errorsRequired: {
+          ...state.errorsRequired,
+          cp: false },
       };
     case 'GET_BUTTON_CP':
       return {
         ...state,
+        permanenceId: null,
+        nomEnseigne: null,
+        cp: undefined,
         buttonCP: true,
+        buttonPermanences: false,
       };
     case 'GET_SEARCH_LIST':
       return {
@@ -74,6 +95,35 @@ export default function cra(state = initialState, action) {
         errorsRequired: {
           ...state.errorsRequired,
           canal: false },
+      };
+    case 'DELETE_CANAL_VALUE':
+      let canal = null;
+      if (state?.cp) {
+        canal = state?.permanenceId ? 'rattachement' : 'autre';
+      } else {
+        canal = undefined;
+      }
+      return {
+        ...state,
+        canal: canal,
+        errorsRequired: {
+          ...state.errorsRequired,
+          canal: !!canal },
+      };
+    case 'CLEAR_CANAL':
+      return {
+        ...state,
+        permanenceId: null,
+        nomEnseigne: null,
+        cp: undefined,
+        buttonPermanences: false,
+        buttonCP: false,
+        searchCP: false,
+        errorsRequired: {
+          ...state.errorsRequired,
+          canal: false,
+          cp: true
+        },
       };
     case 'UPDATE_ACTIVITE':
       return {

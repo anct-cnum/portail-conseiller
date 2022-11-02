@@ -15,7 +15,13 @@ function SmallRadioButton({ type, label, value, image }) {
   const onClickRadio = e => {
     switch (type) {
       case 'canal':
-        dispatch(craActions.updateCanal(e.target.getAttribute('value')));
+        const value = e.target.getAttribute('value');
+        dispatch(craActions.updateCanal(value));
+        if (cra?.canal === value) {
+          dispatch(craActions.deleteCanalValue());
+        } else if (value === 'domicile') {
+          dispatch(craActions.clearCanal());
+        }
         break;
       case 'activite':
         dispatch(craActions.updateActivite(e.target.getAttribute('value')));
@@ -41,8 +47,8 @@ function SmallRadioButton({ type, label, value, image }) {
   };
 
   return (
-    <div className="radioButton small" onClick={onClickRadio} value={value}>
-      <button id="radioRattachement" className={`smallRadioRattachement ${controlSelected === value ? 'selected' : ''}`} value={value}>
+    <div className="radioButton2 small" onClick={onClickRadio} value={value}>
+      <button id="radioRattachement2" className={`smallRadioRattachement2 ${controlSelected === value ? 'selected' : ''}`} value={value}>
         <div value={value}>
           <span className={image}></span>&nbsp;
           <span

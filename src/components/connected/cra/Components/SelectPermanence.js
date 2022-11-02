@@ -1,61 +1,83 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { craActions } from '../../../../actions';
 
 function SelectPermanence() {
-  const listPermanences = useSelector(state => state.permanence?.mesPermanences);
+  const dispatch = useDispatch();
+
   let cra = useSelector(state => state.cra);
+  const conseiller = useSelector(state => state.conseiller?.conseiller);
+  const listPermanences = useSelector(state => state.permanence?.mesPermanences);
+
+  const [mesPermanences, setMesPermanences] = useState([]);
+  const onClickButton = permanence => {
+    dispatch(craActions.getPermanence(permanence));
+  };
+
+  const onClickButtonFilled = () => {
+    dispatch(craActions.getButtonPermanences());
+  };
+
+  //Tri pour obtenir le lieu principal en premier
+  useEffect(() => {
+    if (listPermanences) {
+      setMesPermanences(Array.from({ length: listPermanences?.length }, () => ({})));
+      for (let i = 0; i < listPermanences.length; i++) {
+        if (listPermanences[i]?.lieuPrincipalPour.includes(conseiller._id) === true) {
+          mesPermanences[0] = listPermanences[i];
+        } else {
+          mesPermanences[i + 1] = listPermanences[i];
+        }
+      }
+      setMesPermanences(mesPermanences);
+    }
+  }, [listPermanences]);
 
   return (
-    <div id="buttonPermanences" className={`dropdown ${cra?.buttonPermanences ? 'show' : ''}`}>
-      <div className="listButtonPermanence">
-        {listPermanences && listPermanences?.map((permanence, idx) => {
-          return (
-            <button className="buttonPermanence" key={idx}>
-              <span className="logoRattachementActif"></span>
-              <span style={{display: 'inline-block'}}>
-                <div className="nomEnseigne">{permanence.nomEnseigne.toUpperCase()}</div>
-                <div className="adresse">
-                  {permanence.adresse.numeroRue !== 'null' ? permanence.adresse.numeroRue : ''}
-                  {
-                    ' ' + permanence.adresse.rue.toUpperCase() + ' ' +
-                    permanence.adresse.codePostal + ' ' +
-                    permanence.adresse.ville.toUpperCase()
-                  }
-                </div>
-              </span>
-            </button>
-          );
-        })}
-      </div>
-      <div className="lienPermanence">
-        <Link to="/mon-nouveau-lieu-activite" >Ajouter un nouveau lieu d&rsquo;activit&eacute;</Link>
-      </div>
-      {/*
-      {!cra?.searchCP && !cra?.searchInput &&
-      <button id="buttonCP"
-        onClick={onClickButton}
-        className={`${cra?.cp === undefined ? 'buttonCP' : 'buttonCP-filled'} ${cra?.buttonCP ? ' show' : ''}`}>
-        {cra?.cp === undefined ? 'Entrez le code postal ou la commune' : cra.cp}
-        <div>Saisissez au moins 3 caract&egrave;res</div>
-      </button>
+    <>
+      {cra?.permanenceId &&
+        <button className="buttonPermanence-filled" onClick={onClickButtonFilled}>
+          <span className="logoRattachementSelected"></span>
+          <span>{cra.nomEnseigne.toUpperCase()}</span>
+        </button>
       }
-      <div id="myDropdown" className={`dropdown-content ${(cra?.searchCP === true || cra?.searchInput === true) ? 'show' : ''}`}>
-        <div className={`inputCP ${(cra?.searchCP === true || cra?.searchInput === true) ? 'show' : ''}`}>
-          <input
-            onMouseMove={focusInput}
-            autoComplete="off"
-            type="text"
-            id="searchCP"
-            name="searchCP"
-            className={`searchCP ${cra?.searchInput === true ? 'dropdown-expanded' : ''}`}
-            style={cra?.searchCP === true && listPermanences.length > 0 ? { borderRadius: '20px 20px 0 0' } : {}}
-            autoFocus={true}/>
-          <div className={`${cra?.buttonCP ? 'show' : 'hide'}`}>Saisissez au moins 3 caract&egrave;res</div>
+      {!cra?.permanenceId &&
+        <div id="buttonPermanences" className={`dropdown ${cra?.buttonPermanences ? 'show' : ''}`}
+          style={{ height: listPermanences?.length ? listPermanences?.length * 56 + 85 + 'px' : '144px' }}>
+          <div className="listButtonPermanence">
+            {listPermanences && listPermanences?.length > 0 && mesPermanences?.map((permanence, idx) => {
+              return (
+                <button className="buttonPermanence" key={idx} onClick={() => {
+                  onClickButton(permanence);
+                }}>
+                  <span className="logoRattachementActif"></span>
+                  <span style={{ display: 'inline-block' }}>
+                    <div className="nomEnseigne">{permanence.nomEnseigne.toUpperCase()}</div>
+                    <div className="adresse">
+                      {permanence.adresse.numeroRue !== 'null' ? permanence.adresse.numeroRue : ''}
+                      {
+                        ' ' + permanence.adresse.rue.toUpperCase() + ' ' +
+                        permanence.adresse.codePostal + ' ' +
+                        permanence.adresse.ville.toUpperCase()
+                      }
+                    </div>
+                  </span>
+                </button>
+              );
+            })}
+            {!listPermanences || listPermanences?.length === 0 &&
+              <div className="lieuActiviteAbsent">
+                Aucun lieu d&rsquo;activit&eacute; enregistr&eacute;
+              </div>
+            }
+          </div>
+          <div className="lienPermanence">
+            <Link to="/mon-nouveau-lieu-activite" >Ajouter un nouveau lieu d&rsquo;activit&eacute;</Link>
+          </div>
         </div>
-        <div className="scrollOptions">{listPermanences}</div>
-      </div> */}
-    </div>
+      }
+    </>
   );
 
 }
