@@ -13,7 +13,7 @@ function CanalEtAdresse() {
   return (
     <div className="fr-grid-row fr-grid-row--gutters fr-grid-row--middle espacement">
       <div className="fr-col-11 fr-col-md-2 questionResponsive">
-        <span className={`question ${cra?.printError && cra?.errorsRequired?.canal ? 'questionRequired' : ''}`}>
+        <span className={`question ${cra?.printError && (cra?.errorsRequired?.canal || cra?.errorsRequired?.cp) ? 'questionRequired' : ''}`}>
         O&ugrave; et quand l&rsquo;accompagnement a-t-il eu lieu&nbsp;?
         </span>
       </div>
@@ -59,6 +59,11 @@ function CanalEtAdresse() {
         {cra?.canal === 'distance' && cra?.errorsRequired.cp &&
           <div className="textInformation">
             Veuillez compl&eacute;ter en s&eacute;lectionnant l&rsquo;un des deux champs.
+          </div>
+        }
+        {!cra?.idPermanence && cra?.canal === 'rattachement' &&
+          <div className="textInformation">
+            Pour la Coh&eacute;rence des donn&eacute;es, merci de mettre à jour le champs &laquo;Lieu d&rsquo;activit&eacute; &raquo;
           </div>
         }
       </div>

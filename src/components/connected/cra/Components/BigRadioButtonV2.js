@@ -2,13 +2,11 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
-import { getCraValue } from '../utils/CraFunctions';
 
 function BigRadioButton({ type, label, value, image, classDiv }) {
 
   const dispatch = useDispatch();
   const cra = useSelector(state => state.cra);
-  let controlSelected = getCraValue(type);
 
   //Gestion du style du bouton
   let styleClass = 'radioRattachement2';
@@ -19,18 +17,14 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
         if (value === 'rattachement') {
           styleClass = 'disabled';
         } else {
-          styleClass += cra?.errorsRequired.cp ? ' buttonError' : 'radioRattachement2';
+          styleClass += cra?.errorsRequired.cp ? ' buttonError' : '';
         }
 
+      } else if (!cra?.idPermanence && cra?.canal === 'rattachement' && value === 'rattachement') {
+        styleClass += ' buttonError';
       }
       styleClass += cra?.canal === 'distance' && cra?.errorsRequired.cp ? ' buttonError' : '';
       disabled = cra?.canal === 'domicile' && value === 'rattachement';
-      break;
-    case 'activite':
-      styleClass += controlSelected === value ? ' selected' : '';
-      break;
-    case 'accompagnement':
-      styleClass += controlSelected[value] === value ? ' selected' : '';
       break;
     default:
       break;
@@ -39,7 +33,7 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
   const onClickRadio = () => {
     switch (type) {
       case 'canal':
-        if (cra?.canal !== 'distance') {
+        if (cra?.canal !== 'distance' && cra?.canal !== 'domicile') {
           dispatch(craActions.updateCanal(value));
         }
         switch (value) {

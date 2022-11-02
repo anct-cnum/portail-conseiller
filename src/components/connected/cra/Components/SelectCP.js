@@ -73,7 +73,7 @@ function SelectCP() {
 
   return (
     <>
-      {!cra?.permanenceId &&
+      {!cra?.idPermanence && cra?.canal !== 'rattachement' &&
       <div className="dropdown" onClick={() => {
         if (document.getElementById('buttonCP')) {
           onClickButton();

@@ -43,7 +43,7 @@ export default function cra(state = initialState, action) {
         buttonPermanences: true,
         buttonCP: false,
         searchCP: false,
-        permanenceId: null,
+        idPermanence: null,
         nomEnseigne: null,
         cp: undefined,
       };
@@ -52,7 +52,7 @@ export default function cra(state = initialState, action) {
         ...state,
         buttonPermanences: false,
         searchCP: false,
-        permanenceId: action.permanence._id,
+        idPermanence: action.permanence._id,
         nomEnseigne: action.permanence.nomEnseigne,
         cp: action.permanence.adresse.codePostal + ' ' + action.permanence.adresse.ville,
         errorsRequired: {
@@ -62,7 +62,7 @@ export default function cra(state = initialState, action) {
     case 'GET_BUTTON_CP':
       return {
         ...state,
-        permanenceId: null,
+        idPermanence: null,
         nomEnseigne: null,
         cp: undefined,
         buttonCP: true,
@@ -99,7 +99,7 @@ export default function cra(state = initialState, action) {
     case 'DELETE_CANAL_VALUE':
       let canal = null;
       if (state?.cp) {
-        canal = state?.permanenceId ? 'rattachement' : 'autre';
+        canal = state?.idPermanence ? 'rattachement' : 'autre';
       } else {
         canal = undefined;
       }
@@ -111,10 +111,9 @@ export default function cra(state = initialState, action) {
           canal: !!canal },
       };
     case 'CLEAR_CANAL':
-      console.log(state.canal);
       return {
         ...state,
-        permanenceId: null,
+        idPermanence: null,
         nomEnseigne: null,
         cp: !state.buttonCP ? undefined : state.cp,
         buttonPermanences: false,
@@ -292,7 +291,7 @@ export default function cra(state = initialState, action) {
         loading: false,
         errorsRequired: {
           cp: false,
-          canal: false,
+          canal: !action.cra?.permanence?.$id && action.cra.cra.canal === 'rattachement',
           activite: false,
           age: false,
           statut: false,
@@ -303,6 +302,7 @@ export default function cra(state = initialState, action) {
         updatedAt: action.cra.updatedAt ?? action.cra.createdAt,
         searchCP: false,
         searchInput: false,
+        idPermanence: action.cra?.permanence?.$id,
         cp: action.cra.cra?.codePostal + ' ' + action.cra.cra.nomCommune,
         dateAccompagnement: new Date(action.cra.cra.dateAccompagnement),
         oldDateAccompagnement: new Date(action.cra.cra.dateAccompagnement),

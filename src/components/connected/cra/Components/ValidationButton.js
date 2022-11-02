@@ -24,7 +24,9 @@ function ValidationButton() {
       // eslint-disable-next-line max-len, no-unused-vars
       let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error, showSelectRedirection, nbParticipantsAge, nbParticipantsStatut,
       // eslint-disable-next-line max-len, no-unused-vars
-        nbParticipantsAccompagnement, printFlashbag, buttonCP, buttonPermanence, nomEnseigne, ...dataCraToSend } = cra;
+        nbParticipantsAccompagnement, printFlashbag, buttonCP, buttonPermanences, buttonPermanence, nomEnseigne, ...dataCraToSend } = cra;
+      dataCraToSend.idStructure = conseiller.structureId;
+
       if (dataCraToSend?.sousThemes?.length === 0) {
         delete dataCraToSend.sousThemes;
       }

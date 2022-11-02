@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { history } from '../../../helpers';
-import CodePostal from './CodePostal';
-import Canal from './Canal';
 import Activite from './Activite';
 import Age from './Age';
 import Themes from './Themes';
@@ -15,6 +13,7 @@ import Footer from '../../Footer';
 import Recurrence from './Recurrence';
 import { craActions } from '../../../actions';
 import dayjs from 'dayjs';
+import CanalEtAdresse from './CanalEtAdresse';
 
 function UpdateCra({ match }) {
   const dispatch = useDispatch();
@@ -41,28 +40,25 @@ function UpdateCra({ match }) {
     <>
       <div className="fr-container cra">
         <div className="fr-grid-row fr-grid-row--center fr-my-md-12w fr-pt-1w fr-pb-3w">
-          <div className="fr-col-12 fr-col-lg-2 centre-titre">
+          <div className="fr-col-12 fr-col-lg-1 centrer">
             <img src="/logos/home-connected/icone-cra.svg" style={{ width: '114px', height: '78px' }} />
           </div>
-          <div className="fr-col-12 fr-col-lg-6">
-            <h1 className="titre centre-titre">Mon suivi d&rsquo;activit&eacute;</h1>
+          <div className="fr-col-12 fr-col-lg-9">
+            <h1 className="titre centrer fr-ml-12w">Enregistrer une activit&eacute;</h1>
+          </div>
+          <div className="fr-col-12 fr-col-lg-2">
+            {urlAPropos &&
+              <a className="fr-btn-secondaire btn-guide" href={urlAPropos} target="blank" rel="noreferrer" >
+                <i className="ri-lightbulb-line ri-xl"></i>&nbsp;Guide utilisateur
+              </a>
+            }
           </div>
           {(error && !loading) &&
-            <div className="fr-col-12 fr-mt-12w flashBag invalid">
-              Une erreur est survenue, le suivi d&rsquo;activit&eacute; n&rsquo;a pas pu &ecirc;tre trouv&eacute; !<br/>
-              Erreur : {error}
-            </div>
-          }
-          {(!error && !loading) &&
             <>
-              <div className="fr-col-12 fr-col-lg-2 url-a-propos">
-                {urlAPropos &&
-                  <a className="a-propos" href={urlAPropos} target="blank" rel="noreferrer" >&Agrave; propos<br/>
-                  du suivi d&rsquo;activit&eacute;
-                  </a>
-                }
+              <div className="fr-col-12 fr-mt-12w flashBag invalid">
+                Une erreur est survenue, le suivi d&rsquo;activit&eacute; n&rsquo;a pas pu &ecirc;tre trouv&eacute; !<br/>
+                Erreur : {error}
               </div>
-              <div className="fr-col-12 fr-col-md-2"></div>
               <div className="fr-col-12 fr-mt-3w">
                 Dernier enregistrement de ce compte rendu d&rsquo;activit&eacute; le <b>{dayjs(dateUpdate).format('DD/MM/YYYY à HH:mm')}</b>
               </div>
@@ -71,8 +67,7 @@ function UpdateCra({ match }) {
         </div>
         {(!error && !loading) &&
           <>
-            <CodePostal/>
-            <Canal/>
+            <CanalEtAdresse/>
             <Activite/>
             <Recurrence/>
             <Age/>

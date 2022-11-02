@@ -5,7 +5,7 @@ import { craActions } from '../../../../actions';
 
 function SelectPermanence() {
   const dispatch = useDispatch();
-  const permanenceId = sessionStorage.getItem('permanenceId');
+  const idPermanence = sessionStorage.getItem('idPermanence');
   let cra = useSelector(state => state.cra);
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const listPermanences = useSelector(state => state.permanence?.mesPermanences);
@@ -31,21 +31,22 @@ function SelectPermanence() {
         }
       }
       setMesPermanences(mesPermanences);
-      if (permanenceId) {
-        dispatch(craActions.getPermanence(listPermanences.find(permanence => permanence._id === permanenceId)));
+      if (idPermanence || cra?.idPermanence) {
+        const idPermanenceToFind = cra?.idPermanence ?? idPermanence;
+        dispatch(craActions.getPermanence(listPermanences.find(permanence => permanence._id === idPermanenceToFind)));
       }
     }
-  }, [listPermanences, permanenceId]);
+  }, [listPermanences, idPermanence]);
 
   return (
     <>
-      {cra?.permanenceId &&
+      {cra?.idPermanence &&
         <button className="buttonPermanence-filled" onClick={onClickButtonFilled}>
           <span className="logoRattachementSelected"></span>
-          <span>{cra.nomEnseigne.toUpperCase()}</span>
+          <span>{cra?.nomEnseigne?.toUpperCase()}</span>
         </button>
       }
-      {!cra?.permanenceId &&
+      {!cra?.idPermanence &&
         <div id="buttonPermanences" className={`dropdown ${cra?.buttonPermanences ? 'show' : ''}`}
           style={{ height: listPermanences?.length ? listPermanences?.length * 56 + 85 + 'px' : '144px' }}>
           <div className="listButtonPermanence">
