@@ -216,6 +216,11 @@ export default function cra(state = initialState, action) {
           ...state.errorsRequired,
           themes: (action.themes.length === 0) },
       };
+    case 'UPDATE_MULTIPLE_THEMES':
+      return {
+        ...state,
+        sousThemes: action.sousThemesList
+      };
     case 'UPDATE_DUREE':
       return {
         ...state,
@@ -283,6 +288,7 @@ export default function cra(state = initialState, action) {
     case 'GET_CRA_SUCCESS':
       return {
         ...initialState,
+        ...action.cra.cra,
         loading: false,
         errorsRequired: {
           cp: false,
@@ -297,39 +303,12 @@ export default function cra(state = initialState, action) {
         updatedAt: action.cra.updatedAt ?? action.cra.createdAt,
         searchCP: false,
         searchInput: false,
-        cp: action.cra.cra.codePostal + ' ' + action.cra.cra.nomCommune,
+        cp: action.cra.cra?.codePostal + ' ' + action.cra.cra.nomCommune,
         dateAccompagnement: new Date(action.cra.cra.dateAccompagnement),
         oldDateAccompagnement: new Date(action.cra.cra.dateAccompagnement),
-        canal: action.cra.cra.canal,
-        activite: action.cra.cra.activite,
-        nbParticipantsRecurrents: action.cra.cra.nbParticipantsRecurrents,
-        age: {
-          moins12ans: action.cra.cra.age.moins12ans,
-          de12a18ans: action.cra.cra.age.de12a18ans,
-          de18a35ans: action.cra.cra.age.de18a35ans,
-          de35a60ans: action.cra.cra.age.de35a60ans,
-          plus60ans: action.cra.cra.age.plus60ans,
-        },
         nbParticipantsAge: action.cra.cra.nbParticipants,
-        statut: {
-          etudiant: action.cra.cra.statut.etudiant,
-          sansEmploi: action.cra.cra.statut.sansEmploi,
-          enEmploi: action.cra.cra.statut.enEmploi,
-          retraite: action.cra.cra.statut.retraite,
-          heterogene: action.cra.cra.statut.heterogene
-        },
         nbParticipantsStatut: action.cra.cra.nbParticipants,
-        themes: action.cra.cra.themes,
-        duree: action.cra.cra.duree,
-        accompagnement: {
-          individuel: action.cra.cra.accompagnement.individuel,
-          atelier: action.cra.cra.accompagnement.atelier,
-          redirection: action.cra.cra.accompagnement.redirection,
-        },
         nbParticipantsAccompagnement: action.cra.cra.nbParticipants,
-        organisme: action.cra.cra.organisme,
-        nbParticipants: action.cra.cra.nbParticipants,
-
       };
     case 'GET_CRA_FAILURE':
       return {

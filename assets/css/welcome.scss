@@ -5,23 +5,60 @@
   .fond-sombre {
     background-color: #232323;
   }
-  .titre {
-    font-size: 1.25em;
-    line-height: 2em;
-    font-weight: 400;
-    color: #fff;
-  }
-  .hexagone {
-    margin-right: 16px;
-    position: relative;
-    height: 32px;
-    width: 28px;
-    top: 9px;
+
+  .block-cra {
+    border: 1px solid #3558a2;
+    border-radius: 20px;
+    height: 280px;
+    width: 346px;
+    .saisie-cra,  .historique-cra, .statistiques-cra {
+      display: inline-block;
+      height: 139px;
+      color: #fff;
+    }
+    .historique-cra, .statistiques-cra {
+      background: linear-gradient(60.95deg, #2A2A2A 2.53%, #253574 99.07%), #253574 ;
+      border-radius: 0px 0px 20px 0px;
+      text-align: center;
+      width: 50%;
+      &:hover {
+        background: linear-gradient(60.95deg, #2A2A2A 2.53%, #518FFF 99.07%), #518FFF;
+      }
+      img {
+        margin-top: 26px;
+      }
+    }
+    .historique-cra {
+      border-right: 1px solid #3558a2;
+      border-radius: 0px 0px 0px 20px;
+      position: relative;
+      top: -4px;
+      img {
+        margin-top: 31px;
+      }
+    }
+    .saisie-cra {
+      background: linear-gradient(249.41deg, #3558a2 6.92%, #253574 55.09%, #253574 73.96%), #2a2a2a;
+      border-bottom: 1px solid #3558a2;
+      border-radius: 20px 20px 0 0;
+      font-weight: 700;
+      width: 100%;
+      &:hover {
+        background: linear-gradient(256.6deg, #518FFF 6.81%, #253574 77.17%), #2A2A2A;
+      }
+      img {
+        margin: 22px 12px 0px 32px;
+      }
+      span {
+        position: relative;
+        top: -45px;
+      }
+    }
   }
   .menu-btn {
     line-height: 1.5rem;
     text-align: center;
-    font-weight: 500;
+    font-weight: 400;
     cursor: pointer;
     font-size: 1rem;
     color: #fff;
@@ -55,86 +92,18 @@
     margin: auto;
     height: 72px;
   }
-  .icone-cra {
-    margin-bottom: 13px;
-  }
   .icone-mattermost {
     margin-top: -2px;
     margin-bottom: 14px;
   }
-  .icone-la-base {
+  .icone-la-base, .icone-lieux {
     margin-bottom: 13px;
-  }
-  .icone-statistiques{
-    margin-bottom: 14px;
   }
   .icone-pix, .icone-rdv-aide-numerique {
     margin-bottom: 13px;
   }
   .icone-mail {
     margin-bottom: 12px;
-  }
-  .icone-lieux {
-    margin-bottom: -30px;
-  }
-  .bloc-document {
-    background-color: #1e1e1e;
-    border-radius: 20px;
-  }
-  .document-btn, .kit-communication-btn {
-    background-color: transparent;
-    border: 2px solid #8585F6;
-    background-image: none;
-    display: inline-block;
-    border-radius: 40px;
-    line-height: 1.5rem;
-    text-align: center;
-    padding-top: 17px;
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 1rem;
-    color: #8585F6;
-    height: 64px;
-    width: 429px;
-    box-shadow: none;
-  }
-  .document-btn {
-    margin-left: 4.5rem;
-  }
-  .kit-communication-btn{
-    width: 326px;
-    margin-left: 8.5rem;
-  }
-  .kit-communication-text {
-    margin-left: 1rem;
-  }
-  .kit-communication-text, .document-text {
-    font-family: Helvetica;
-    font-size: 14px;
-    color: #929292;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0px;
-  }
-  .img-home {
-    width: 588px;
-  }
-  .propos-btn {
-    border: 1px solid #8585f6;
-    background-image: none;
-    display: inline-block;
-    text-align: center;
-    line-height: 24px;
-    letter-spacing: 0;
-    padding: 8px 24px;
-    margin-top: -10px;
-    color: #8585f6;
-    font-size: 16px;
-    height: 40px;
-    box-shadow: none;
-  }
-  .center-button {
-    text-align: center;
   }
   .icone-info-rappel {
     font-size: 2rem;
@@ -153,72 +122,16 @@
     color: #f0f0f0;
     display: flex;
   }
-  .img-home-futur {
-    width: 588px;
-    margin-left: 1rem;
-    border-radius: 12px;
+
+  @media (max-width: 1000px ) and (min-width: 768px) {
+    .bloc-liens {
+      margin-left: 27%;
+    }
   }
 
-  .espacement-centre-groupe-icon {
-    justify-content: center;
-  }
-
-  @media (max-width:  1436px) {
-    .img-home-futur {
-      width: 90%;
-    }
-  }
-  @media (min-width: 768px) and (max-width: 1220px ) {
-    .img-home {
-      width: 90%;
-    }
-  }
-  @media (min-width: 992px) and (max-width:  1033px) {
-   .propos-btn {
-    height: 70px;
-   }
-  }
-  @media (max-width:  978px) {
-    .document-btn, .kit-communication-btn {
-      font-size: 11px;
-      width: 77%;
-      height: 10%;
-    }
-    .kit-communication-btn {
-      margin-left: 2.2rem;
-    }
-    .document-btn {
-      margin-left: 1.5rem;
-    }
-    .document-text, .kit-communication-text {
-      font-size: 11px;
-      max-width: 360px;
-    }
-    .img-home-futur {
-      width: 92%;
-      margin-left: 2rem;
-    }
-  }
-  @media (max-width: 767px) {
-    .img-home, .document-btn, .kit-communication-btn {
-      width: 100%;
-    }
-    .document-btn, .kit-communication-btn {
-      font-size: 13px;
-      width: 95%;
-      margin-left: 0.5rem;
-    }
-    .document-text, .kit-communication-text {
-      font-size: 11px;
-      max-width: 350px;
-      margin-left: 0;
-    }
-    .img-home-futur {
-      width: 100%;
-      margin-left: 0;
-    }
-    .espacement-centre-groupe-icon {
-      justify-content: normal;
+  @media (max-width: 767px ) {
+    .block-cra {
+      margin: auto;
     }
   }
   @media (max-width: 700px) {
@@ -227,9 +140,17 @@
       height: 400px;
     }
   }
-  @media (max-width: 524px) {
-    .propos-btn {
-      height: 70px;
-     }
+  @media (max-width: 575px) {
+    .block-cra {
+      width: 284px;
+      .saisie-cra {
+        span {
+          display: inline-block;
+          margin-left: 15px;
+          width: 40%;
+          top: -30px;
+        }
+      }
+    }
   }
 }

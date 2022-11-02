@@ -292,7 +292,7 @@ function ForgottenPassword({ match = null }) {
                           <img className="cle" src="/logos/cle-precieuse.svg" />
                         </p>
                         <h6>Votre mot de passe a &eacute;t&eacute; renouvel&eacute; avec succ&egrave;s.</h6>
-                        <p>Un email vous a &eacute;t&eacute; envoyer pour vous confirmer cela !
+                        <p>Un email vous a &eacute;t&eacute; envoy&eacute; pour vous confirmer cela !
                           <br />Vous pouvez dès maintenant vous connecter via le bouton ci-dessous :
                         </p>
                         <Link className="btn-connexion fr-mb-6w fr-mb-md-11w fr-p-5v" to={`/login`} style={{ textAlign: 'center' }}>

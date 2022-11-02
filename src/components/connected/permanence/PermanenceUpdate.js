@@ -159,15 +159,14 @@ function PermanenceUpdate({ match }) {
     if (isCreated || isUpdated) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       setTimeout(() => {
-        if (redirection === '/mes-lieux-activite') {
-          dispatch(permanenceActions.reloadList(true));
-          history.push(redirection);
-        } else {
-          window.open(urlCartographie + '/' + conseiller._id + '/details', '_blank');
+        if (redirection !== '/mes-lieux-activite') {
+          window.open(urlCartographie + '/' + redirection + '/details', '_blank', 'noopener,noreferrer');
         }
+        dispatch(permanenceActions.reloadList(true));
         dispatch(conseillerActions.get(userEntityId()));
         dispatch(permanenceActions.reinitiliserStatut());
         dispatch(permanenceActions.getListePermanences(structure?._id));
+        history.push('/mes-lieux-activite');
       }, 3000);
     }
   }, [isUpdated, isCreated]);
@@ -183,10 +182,10 @@ function PermanenceUpdate({ match }) {
               <p className="fr-label flashBag">
                 Votre lieu d&rsquo;activit&eacute; a bien &eacute;t&eacute;&nbsp;
                 {isCreated && <>cr&eacute;&eacute;</>}
-                {isUpdated && <>mis &agrave; jour</>},
+                {isUpdated && <>mis &agrave; jour</>}
                 {redirection === '/mes-lieux-activite' &&
                 <>
-                  &nbsp;vous allez &ecirc;tre redirig&eacute; vers votre liste de lieux d&rsquo;activit&eacute;.
+                  ,&nbsp;vous allez &ecirc;tre redirig&eacute; vers votre liste de lieux d&rsquo;activit&eacute;.
                 </>
                 }
               </p>

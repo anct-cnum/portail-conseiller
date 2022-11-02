@@ -8,19 +8,32 @@ import labelsCorrespondance from '../../../data/labelsCorrespondance.json';
 import { htmlDecode } from '../../../utils/functionEncodeDecode';
 import Footer from '../../Footer';
 import Thematiques from './Thematiques';
+import Spinner from 'react-loader-spinner';
+import Pagination from '../../admin/Pagination';
 
 function HistoriqueCras() {
   const dispatch = useDispatch();
 
   const accompagnements = useSelector(state => state.historiqueCras?.liste);
+  const total = useSelector(state => state.historiqueCras?.total);
+  const limit = useSelector(state => state.historiqueCras?.limit);
+  const loading = useSelector(state => state.historiqueCras?.loading);
+  const error = useSelector(state => state.historiqueCras?.error);
   const themes = useSelector(state => state.historiqueCras?.themes);
-  const histo = useSelector(state => state.historiqueCras?.themes);
   const printFlashbag = useSelector(state => state.cra.printFlashbag);
   const [thematique, setThematique] = useState(null);
-console.log(histo);
+
+  /*Pagination */
+  let [page, setPage] = useState(1);
+  const [pageCount, setPageCount] = useState(0);
+  const navigate = page => {
+    setPage(page);
+    dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, page));
+  };
+
   useEffect(() => {
     if (accompagnements === undefined || thematique || !thematique) {
-      dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique));
+      dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, page));
     }
     if (themes === undefined) {
       dispatch(historiqueCrasActions.getHistoriqueCrasThematiques());
@@ -33,6 +46,13 @@ console.log(histo);
       window.scrollTo(0, 0);
     }
   }, [printFlashbag]);
+
+  useEffect(() => {
+    if (accompagnements) {
+      const count = limit ? Math.floor(total / limit) : 0;
+      setPageCount(total % limit === 0 ? count : count + 1);
+    }
+  }, [accompagnements]);
 
   return (
     <>
@@ -53,7 +73,23 @@ console.log(histo);
               </p>
             </FlashMessage>
           }
-          {!accompagnements &&
+          {error &&
+            <FlashMessage duration={5000}>
+              <p className="fr-label flashBag invalid">
+                Une erreur s&rsquo;est produite lors du chargement de votre historique, veuillez re&eacute;ssayer ult&eacute;rieurement.
+              </p>
+            </FlashMessage>
+          }
+          <div className="spinnerCustom">
+            <Spinner
+              type="Oval"
+              color="#00BFFF"
+              height={100}
+              width={100}
+              visible={loading === true }
+            />
+          </div>
+          {(!accompagnements && !loading) &&
             <div className="fr-grid-row fr-grid-row--center">
               <div className="fr-col-6 fr-mt-15w fr-mb-7w">
                   Vous n&rsquo;avez pas d&rsquo;accompagnement enregistr&eacute; dans les 30 derniers jours.
@@ -73,13 +109,13 @@ console.log(histo);
               </div>
             </div>
           }
-          {accompagnements &&
+          {(accompagnements && !loading) &&
             <div className="fr-grid-row">
               <div className="fr-col-lg-8 fr-mt-1w fr-mb-8w">
-                Vous avez enregistr&eacute; {accompagnements.length} accompagnements au cours des 30 derniers jours.
+                Vous avez enregistr&eacute; {total} accompagnements au cours des 30 derniers jours.
               </div>
 
-              <div className="fr-col-12 fr-mb-12w">
+              <div className="fr-col-12">
                 <div className="boutons-cras">
                   <a className="fr-btn fr-btn--secondary boutons-cras fr-mr-md-2w" href="/compte-rendu-activite">Enregistrer un nouvel accompagnement</a>
                   <a className="fr-btn fr-btn--secondary" href="/statistiques">Consulter mes statistiques</a>
@@ -159,8 +195,9 @@ console.log(histo);
                             <Thematiques key={idx} texte={theme} />
                           )}
                           </td>
-                          <td className="modifie-le">
-                            {dayjs(accompagnement.updatedAt).format('DD/MM/YY à HH:mm') ?? dayjs(accompagnement.createdAt).format('DD/MM/YY à HH:mm')}
+                          <td className="modifie-le" style={{ textAlign: 'center' }}>
+                            {accompagnement?.updatedAt ?
+                              dayjs(accompagnement.updatedAt).format('DD/MM/YY à HH:mm') : dayjs(accompagnement.createdAt).format('DD/MM/YY à HH:mm')}
                           </td>
                           <td>
                             <a href={`/compte-rendu-activite/${accompagnement._id}`}>
@@ -173,6 +210,9 @@ console.log(histo);
                   </table>
                   <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
                 </div>
+              </div>
+              <div className="fr-col-12 fr-mb-12w">
+                <Pagination current={page} pageCount={pageCount} navigate={navigate}/>
               </div>
             </div>
           }

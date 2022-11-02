@@ -21,12 +21,13 @@ function ValidationButton() {
       //Affichage des erreurs
       dispatch(craActions.verifyCra(Object.values(cra?.errorsRequired)));
     } else {
-      //Pas d'erreurs, envoi seulement des donnes necessaires à l'API
-      // eslint-disable-next-line no-unused-vars
-      let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error, buttonCP, buttonPermanence, nomEnseigne,
-        // eslint-disable-next-line no-unused-vars
-        showSelectRedirection, nbParticipantsAge, nbParticipantsStatut, nbParticipantsAccompagnement, printFlashbag, ...dataCraToSend } = cra;
-      sessionStorage.setItem('permanenceId', cra?.permanenceId);
+      // eslint-disable-next-line max-len, no-unused-vars
+      let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error, showSelectRedirection, nbParticipantsAge, nbParticipantsStatut,
+      // eslint-disable-next-line max-len, no-unused-vars
+        nbParticipantsAccompagnement, printFlashbag, buttonCP, buttonPermanence, nomEnseigne, ...dataCraToSend } = cra;
+      if (dataCraToSend?.sousThemes?.length === 0) {
+        delete dataCraToSend.sousThemes;
+      }
       if (cra.id) {
         dispatch(craActions.updateCra(dataCraToSend, conseiller._id));
       } else {

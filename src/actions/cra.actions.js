@@ -16,6 +16,7 @@ export const craActions = {
   updateAge,
   updateStatut,
   updateThemes,
+  updateMultipleThemes,
   updateDuree,
   updateAccompagnement,
   updateOrganisme,
@@ -81,6 +82,9 @@ function updateThemes(themes) {
   return { type: 'UPDATE_THEMES', themes };
 }
 
+function updateMultipleThemes(sousThemesList) {
+  return { type: 'UPDATE_MULTIPLE_THEMES', sousThemesList };
+}
 function updateDuree(duree) {
   return { type: 'UPDATE_DUREE', duree };
 }
