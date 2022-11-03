@@ -73,39 +73,39 @@ function SelectCP() {
 
   return (
     <>
-      {!cra?.idPermanence && cra?.canal !== 'rattachement' &&
-      <div className="dropdown" onClick={() => {
-        if (document.getElementById('buttonCP')) {
-          onClickButton();
-        } else {
-          focusInput();
-        }
-      }}>
-        {!cra?.searchCP && !cra?.searchInput &&
-        <button id="buttonCP"
-          onClick={onClickButton}
-          className={`${cra?.cp === undefined ? 'buttonCP' : 'buttonCP-filled'} ${cra?.buttonCP ? ' show' : ''}`}>
-          {cra?.cp === undefined ? 'Entrez le code postal ou la commune' : cra.cp}
-          <div className={`${cra.cp ? 'hide' : 'show'}`}>Saisissez au moins 3 caract&egrave;res</div>
-        </button>
-        }
-        <div id="myDropdown" className={`dropdown-content2 ${(cra?.searchCP === true || cra?.searchInput === true) ? 'show' : ''}`}>
-          <div className={`inputCP ${(cra?.searchCP === true || cra?.searchInput === true) ? 'show' : ''}`}>
-            <input
-              onMouseMove={focusInput}
-              autoComplete="off"
-              type="text"
-              id="searchCP"
-              name="searchCP"
-              className={`searchCP ${cra?.searchInput === true ? 'dropdown-expanded' : ''}`}
-              style={cra?.searchCP === true && codePostalList.length > 0 ? { borderRadius: '20px 20px 0 0' } : {}}
-              onKeyUp={onKeyUp}
-              autoFocus={true}/>
-            <div>Saisissez au moins 3 caract&egrave;res</div>
+      {(!cra?.idPermanence && cra?.canal !== 'rattachement') &&
+        <div id="dropdown" className="dropdown" onClick={() => {
+          if (document.getElementById('buttonCP')) {
+            onClickButton();
+          } else {
+            focusInput();
+          }
+        }}>
+          {!cra?.searchCP && !cra?.searchInput &&
+          <button id="buttonCP"
+            onClick={onClickButton}
+            className={`${cra?.cp === undefined ? 'buttonCP' : 'buttonCP-filled'} ${cra?.buttonCP ? ' show' : ''}`}>
+            {cra?.cp === undefined ? 'Entrez le code postal ou la commune' : cra.cp}
+            <div className={`${cra.cp ? 'hide' : 'show'}`}>Saisissez au moins 3 caract&egrave;res</div>
+          </button>
+          }
+          <div id="myDropdown" className={`dropdown-content2 ${(cra?.searchCP === true || cra?.searchInput === true) ? 'show' : ''}`}>
+            <div className={`inputCP ${(cra?.searchCP === true || cra?.searchInput === true) ? 'show' : ''}`}>
+              <input
+                onMouseMove={focusInput}
+                autoComplete="off"
+                type="text"
+                id="searchCP"
+                name="searchCP"
+                className={`searchCP ${cra?.searchInput === true ? 'dropdown-expanded' : ''}`}
+                style={cra?.searchCP === true && codePostalList.length > 0 ? { borderRadius: '20px 20px 0 0' } : {}}
+                onKeyUp={onKeyUp}
+                autoFocus={true}/>
+              <div>Saisissez au moins 3 caract&egrave;res</div>
+            </div>
+            <div className="scrollOptions2">{codePostalList}</div>
           </div>
-          <div className="scrollOptions2">{codePostalList}</div>
         </div>
-      </div>
       }
     </>
   );

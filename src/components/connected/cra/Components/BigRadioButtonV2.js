@@ -10,7 +10,6 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
 
   //Gestion du style du bouton
   let styleClass = 'radioRattachement2';
-  let disabled = false;
   switch (type) {
     case 'canal':
       if (cra?.canal === 'domicile') {
@@ -19,12 +18,10 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
         } else {
           styleClass += cra?.errorsRequired.cp ? ' buttonError' : '';
         }
-
       } else if (!cra?.idPermanence && cra?.canal === 'rattachement' && value === 'rattachement') {
         styleClass += ' buttonError';
       }
       styleClass += cra?.canal === 'distance' && cra?.errorsRequired.cp ? ' buttonError' : '';
-      disabled = cra?.canal === 'domicile' && value === 'rattachement';
       break;
     default:
       break;
@@ -40,6 +37,7 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
           case 'autre':
             dispatch(craActions.getButtonCP());
             setTimeout(() => {
+              document.getElementById('dropdown').style.display = 'block';
               document.getElementById('buttonCP').style.zIndex = 3;
               document.getElementById('buttonCP').focus();
             }, 100);
@@ -47,6 +45,7 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
           case 'rattachement':
             dispatch(craActions.getButtonPermanences());
             setTimeout(() => {
+              document.getElementById('dropdown').style.display = 'none';
               document.getElementById('buttonPermanences').style.zIndex = 3;
               document.getElementById('buttonPermanences').focus();
             }, 100);
@@ -62,7 +61,7 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
 
   return (
     <div className="radioButton2" onClick={onClickRadio} value={value}>
-      <button id="radioRattachement2" className={styleClass} value={value} disabled={disabled}>
+      <button id="radioRattachement2" className={styleClass} value={value} disabled={cra?.canal === 'domicile' && value === 'rattachement'}>
         <div value={value}>
           <div className={classDiv !== undefined ? classDiv : '' } value={value}>
             <span className={image}></span>

@@ -664,6 +664,63 @@ $blue: #2b8bf7;
     --data-uri-svg: url(../../public/logos/cra/checkbox-sous-menu.svg)!important;
     background-color: rgb(0, 0, 145);
   }
+  @media (max-width: 991px) {
+    .centre-titre {
+      text-align: center;
+    }
+    .url-a-propos {
+      text-align: center;
+    }
+    .labelCheckboxCustom {
+      font-size: 12px;
+    }
+
+  }
+
+  /* custom point de rupture MD du DS */
+  @media (max-width: 767px) {
+
+    .responsiveCheckbox1, .responsiveCheckboxNewRow1 {
+      width: calc(500%/12);
+      margin-left: calc(100%/12);
+      padding-left: 0.5rem;
+    }
+
+    .responsiveCheckbox2, .responsiveCheckboxNewRow2 {
+      width: calc(500%/12);
+    }
+
+    .responsiveSmallCheckbox {
+      width: calc(1000%/12);
+      margin-left: calc(100%/12);
+      padding-left: 0.5rem;
+    }
+
+    .questionCheckboxResponsive {
+      text-align: center;
+      height: unset;
+    }
+
+  }
+
+  /* custom point de rupture SM du DS */
+  @media (max-width: 576px) {
+
+    .responsiveCheckbox1, .responsiveCheckbox2, .responsiveCheckboxNewRow1, .responsiveCheckboxNewRow2, .responsiveSmallCheckbox {
+      width: calc(1200%/12);
+      margin-left: 0;
+      padding-left: 0.5rem;
+    }
+
+    .labelCheckboxCustom {
+      font-size: 16px;
+    }
+
+    .questionCheckboxResponsive {
+      margin-left: 0;
+      width: calc(1200%/12);
+    }
+  }
     /** END SQUARE BUTTON TIME **/
 
     .submitCra {
@@ -688,6 +745,10 @@ $blue: #2b8bf7;
     }
 
   /* CRA V3 */
+  .icon-cra {
+    width: 114px;
+    height: 78px;
+  }
   .titre {
     line-height: 64px;
     font-weight: 250;
@@ -712,7 +773,7 @@ $blue: #2b8bf7;
     font-size: 14px;
     font-weight: 100;
   }
-  .responsiveElement2 {
+  .responsiveElement2, .responsiveElementEnd2 {
     display: inline-block;
     border-radius: 20px;
     /** START SELECT CP **/
@@ -1115,17 +1176,146 @@ $blue: #2b8bf7;
     top: 0px;
     left: -93px;
   }
+  @media (max-width: 1111px) {
+    .responsiveElement2, .responsiveElementEnd2{
+      button {
+        width: 231px;
+      }
+      button.smallRadioRattachement2 {
+        width: 116px;
+      }
+      #buttonPermanences{
+        width: 462px;
+        .buttonPermanence {
+          width: 100%;
+        }
+      }
+      .buttonCP, .inputCP,.dropdown-content2, .searchCP {
+        width: 462px;
+      }
+      .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+        height: 1.25rem;
+        width: 1.25rem;
+      }
+      .react-datepicker__month-container {
+        width: 230px;
+      }
+    }
+    .textInformation {
+      width: 694px;
+    }
+  }
 
+  @media (max-width: 991px) {
+    .centrer {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 867px) {
+    .responsiveElement2, .responsiveElementEnd2 {
+      button {
+        width: 192px;
+      }
+      button.smallRadioRattachement2 {
+        width: 96px;
+        top: 10px;
+      }
+      #buttonPermanences{
+        width: 576px;
+        .buttonPermanence {
+          width: 100%;
+        }
+      }
+      .buttonCP, .inputCP,.dropdown-content2, .searchCP {
+        width: 384px;
+      }
+      .buttonDate {
+        top: 18px;
+      }
+      .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+        font-size: 15px;
+        height: 1.25rem;
+        width: 0.9rem;
+        margin: 5px;
+      }
+      .react-datepicker__month-container {
+        width: 191px;
+      }
+    }
+    .textInformation {
+      width: 576px;
+    }
+  }
   @media (max-width: 767px) {
-
     .titre {
       text-align: center;
       font-size:28px;
       line-height:40px;
     }
+    .btn-guide {
+      text-align: center;
+    }
     .questionResponsive {
       text-align: center;
       margin: auto;
+    }
+    .responsiveElement2{
+      width: 50%;
+      button {
+        width: 100%;
+      }
+      #dropdown {
+        display: none;
+      }
+      .dropdown {
+        display: block;
+        width: 48%;
+      }
+      .dropdown-content2, .buttonCP, .inputCP, .searchCP {
+        width: 100%;
+      }
+      .buttonPermanence-filled {
+        width: 48%;
+      }
+      #buttonPermanences{
+        width: 96%;
+        .listButtonPermanence .buttonPermanence {
+          width: 100%;
+        }
+      }
+    }
+    .buttonCP-filled {
+      width: 100%;
+    }
+    .responsiveElementEnd2 {
+      width: 100%;
+      .buttonDate {
+        top: 0px;
+      }
+      .react-datepicker {
+        left: 93px;
+        top: -27px;
+      }
+      .react-datepicker-wrapper, .react-datepicker__input-container, .react-datepicker__input-container button {
+        width: 100%;
+      }
+      .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+        font-size: 16px;
+        height: 1.5rem;
+        width: 1.8rem;
+        margin: 6px;
+      }
+      .react-datepicker__month-container {
+        width: 100%;
+      }
+      *, ::after, ::before {
+        width: 100%;
+      }
+      button.smallRadioRattachement2 {
+        width: 50%;
+        top: -8px;
+      }
     }
   }
   @media (max-width: 576px) {

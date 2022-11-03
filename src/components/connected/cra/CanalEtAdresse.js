@@ -17,7 +17,7 @@ function CanalEtAdresse() {
         O&ugrave; et quand l&rsquo;accompagnement a-t-il eu lieu&nbsp;?
         </span>
       </div>
-      <div className="fr-col-12 fr-col-md-9">
+      <div className="fr-col-12 fr-col-md-10">
         <div className="responsiveElement2">
           <SelectPermanence/>
           <BigRadioButtonV2
@@ -36,7 +36,7 @@ function CanalEtAdresse() {
             image="logoAutreLieu"
             classDiv="autreLieu"/>
         </div>
-        <div className="responsiveElement2">
+        <div className="responsiveElementEnd2">
           <div className="buttonDate">
             <BigDatePickerButton type="date" initDate={cra?.dateAccompagnement} />
           </div>
@@ -63,7 +63,7 @@ function CanalEtAdresse() {
         }
         {!cra?.idPermanence && cra?.canal === 'rattachement' &&
           <div className="textInformation">
-            Pour la Coh&eacute;rence des donn&eacute;es, merci de mettre à jour le champs &laquo;Lieu d&rsquo;activit&eacute; &raquo;
+            Pour la Coh&eacute;rence des donn&eacute;es, merci de mettre &agrave; jour le champs &laquo;Lieu d&rsquo;activit&eacute; &raquo;
           </div>
         }
       </div>

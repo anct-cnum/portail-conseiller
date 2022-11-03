@@ -52,9 +52,9 @@ export default function cra(state = initialState, action) {
         ...state,
         buttonPermanences: false,
         searchCP: false,
-        idPermanence: action.permanence._id,
-        nomEnseigne: action.permanence.nomEnseigne,
-        cp: action.permanence.adresse.codePostal + ' ' + action.permanence.adresse.ville,
+        idPermanence: action?.permanence?._id,
+        nomEnseigne: action?.permanence?.nomEnseigne,
+        cp: action?.permanence?.adresse?.codePostal + ' ' + action?.permanence?.adresse?.ville,
         errorsRequired: {
           ...state.errorsRequired,
           cp: false },
@@ -97,12 +97,10 @@ export default function cra(state = initialState, action) {
           canal: false },
       };
     case 'DELETE_CANAL_VALUE':
-      let canal = null;
-      if (state?.cp) {
-        canal = state?.idPermanence ? 'rattachement' : 'autre';
-      } else {
-        canal = undefined;
-      }
+      // eslint-disable-next-line no-undef-init
+      let canal = undefined;
+      canal = state?.idPermanence ? 'rattachement' : 'autre';
+
       return {
         ...state,
         canal: canal,

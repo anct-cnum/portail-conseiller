@@ -36,12 +36,12 @@ function Cra() {
       <div className="fr-container cra">
         <div className="fr-grid-row fr-grid-row--center fr-my-md-12w fr-pt-1w fr-pb-3w">
           <div className="fr-col-12 fr-col-lg-1 centrer">
-            <img src="/logos/home-connected/icone-cra.svg" style={{ width: '114px', height: '78px' }} />
+            <img src="/logos/home-connected/icone-cra.svg" className="icon-cra" />
           </div>
           <div className="fr-col-12 fr-col-lg-9">
-            <h1 className="titre centrer fr-ml-12w">Enregistrer une activit&eacute;</h1>
+            <h1 className="titre centrer fr-ml-md-12w">Enregistrer une activit&eacute;</h1>
           </div>
-          <div className="fr-col-12 fr-col-lg-2">
+          <div className="fr-col-12 fr-col-lg-2 centrer">
             {urlAPropos &&
               <a className="fr-btn-secondaire btn-guide" href={urlAPropos} target="blank" rel="noreferrer" >
                 <i className="ri-lightbulb-line ri-xl"></i>&nbsp;Guide utilisateur
