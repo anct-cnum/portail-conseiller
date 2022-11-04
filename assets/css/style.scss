@@ -489,27 +489,95 @@
   width: 57px;
 }
 #propos {
-  .titre1 {
-    font-size: 2rem;
+  h1 {
+    font-weight: 250;
+    font-size: 56px;
+    line-height: 64px;
   }
-  .titre2 {
-    font-size: 1.5rem;
+  h2 {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
   }
-  .titre3 {
-    font-size: 1.25rem;
+  h3 {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #cecece;
   }
-  .lien-a-propos{
+  p {
+    color: #cecece;
+  }
+  .sous-titre {
+    font-weight: 700;
+    font-size: 20px;
+  }
+  .sous-titre-2 {
+    font-weight: 400;
+    font-size: 14px;
+  }
+  a {
+    color: #fff;
+    background-image: none;
+  }
+  .icone-mail, .icone-cra, .icone-lieux, .icone-mattermost, .icone-base, .icone-pix, .icone-rdv, .icone-carte {
     display: inline-block;
+    width: 53px;
+    height: 40px;
+    margin-right: 35px;
+  }
+  .icone-cra, .icone-lieux {
+    width: 58px;
+  }
+  .icone-lieux, .icone-mattermost {
+    margin-bottom: 12px;
+  }
+  .icone-base, .icone-pix, .icone-rdv, .icone-carte {
+    margin-bottom: 17px;
+  }
+  .icone-base {
+    width: 46px;
+    margin-right: 37px;
+  }
+  .icone-rdv {
+    width: 40px;
+    margin-right: 43px;
+  }
+  .icone-base, .icone-rdv  {
+    margin-left: 10px;
+  }
+  .text-icone {
+    display: inline-block;
+  }
+  .bulle-ressourcerie {
     position: relative;
-    width: 84%;
+    margin-right: 10px;
+    top: 10px;
+  }
+  .lien-mattermost {
+    background-image: none;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #6A6AF4;
+  }
+  .sommaire {
+    line-height: 20px;
+    font-weight: 800;
+    position: fixed;
+    font-size: 12px;
+    width: 180px;
+    color: #fff;
+    li a {
+      font-weight: 400;
+    }
   }
   .fresque-text {
-    height: 100px;
-    width: 180px;
-    color: #929292;
-    font-size: 12px;
-    letter-spacing: 0;
     line-height: 20px;
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 12px;
+    width: 180px;
   }
 }
 .bulle-ressourcerie {
