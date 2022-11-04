@@ -97,8 +97,7 @@ export default function cra(state = initialState, action) {
           canal: false },
       };
     case 'DELETE_CANAL_VALUE':
-      // eslint-disable-next-line no-undef-init
-      let canal = undefined;
+      let canal;
       canal = state?.idPermanence ? 'rattachement' : 'autre';
 
       return {
