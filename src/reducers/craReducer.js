@@ -97,7 +97,7 @@ export default function cra(state = initialState, action) {
           canal: false },
       };
     case 'DELETE_CANAL_VALUE':
-      let canal = state?.idPermanence ? 'rattachement' : 'autre';
+      const canal = state?.idPermanence ? 'rattachement' : 'autre';
       return {
         ...state,
         canal: canal,
