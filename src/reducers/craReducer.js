@@ -288,7 +288,7 @@ export default function cra(state = initialState, action) {
         loading: false,
         errorsRequired: {
           cp: false,
-          canal: !action.cra?.permanence?.$id && action.cra.cra.canal === 'rattachement',
+          canal: !action.cra?.permanence?.$id && action.cra?.cra?.canal === 'rattachement',
           activite: false,
           age: false,
           statut: false,
