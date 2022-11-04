@@ -74,7 +74,7 @@ function Propos() {
                     </p>
                     <p>
                       <b>Trouver des supports et des outils</b> pour mener ses activit&eacute;s de m&eacute;diation :<br/>
-                      – La Base, biblioth&egrave;que du num&eacute;rique d&rsquo;int&eacute;rêt g&eacute;n&eacute;ral ;<br/>
+                      – La Base, biblioth&egrave;que du num&eacute;rique d&rsquo;int&eacute;r&ecirc;t g&eacute;n&eacute;ral ;<br/>
                       – les applications pour am&eacute;liorer et structurer votre activit&eacute; : Pix, Rendez-vous Aide Num&eacute;rique ;<br/>
                       – le kit communication, pour communiquer en tant que CnFS.<br/>
                     </p>
@@ -137,7 +137,7 @@ function Propos() {
                             <b>La Base</b><br/>
                             <span className="sous-titre-2">
                               La bibiloth&egrave;que des ressources des<br/>
-                              professionnels du num&eacute;rique d&rsquo;int&eacute;rêt g&eacute;n&eacute;ral.
+                              professionnels du num&eacute;rique d&rsquo;int&eacute;r&ecirc;t g&eacute;n&eacute;ral.
                             </span>
                           </div>
                         </div>
@@ -157,7 +157,7 @@ function Propos() {
                             <b>RDV Aide Num&eacute;rique</b><br/>
                             <span className="sous-titre-2">
                               Permet aux usagers ayant pris rendez-vous pour<br/>
-                              un accompagnement d&rsquo;être rappel&eacute;s par SMS.
+                              un accompagnement d&rsquo;&ecirc;tre rappel&eacute;s par SMS.
                             </span>
                           </div>
                         </div>
@@ -166,7 +166,7 @@ function Propos() {
                           <div className="text-icone">
                             <b>Cartographie Soci&eacute;t&eacute; Num&eacute;rique</b><br/>
                             <span className="sous-titre-2">
-                              Carte des structures d’inclusion numérique<br/>
+                              Carte des structures d&rsquo;inclusion num&eacute;rique<br/>
                               cartographie.societenumerique.gouv.fr
                             </span>
                           </div>
@@ -266,7 +266,7 @@ function Propos() {
                     <img src="/logos/wireframe-espace-coop.png" style={{ height: '118px' }}/>
                     <p className="fresque-text">Premier croquis de la Coop, janvier 2021.</p>
                     <img src="/logos/photo-nec.png" style={{ height: '118px' }}/>
-                    <p className="fresque-text">Atelier de conception de l’outil de suivi d’activité, NEC 2021.</p>
+                    <p className="fresque-text">Atelier de conception de l&rsquo;outil de suivi d&rsquo;activit&eacute;, NEC 2021.</p>
                     <img src="/logos/home-site-vitrine.png" style={{ height: '118px' }}/>
                     <p className="fresque-text">Lancement de la plateforme de recrutement, oct. 2020.</p>
                     <img src="/logos/home-carto.png" style={{ height: '118px' }}/>
