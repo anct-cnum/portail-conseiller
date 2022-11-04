@@ -43,7 +43,7 @@ function Cra() {
           </div>
           <div className="fr-col-12 fr-col-lg-2 centrer">
             {urlAPropos &&
-              <a className="fr-btn-secondaire btn-guide" href={urlAPropos} target="blank" rel="noreferrer" >
+              <a className="fr-btn-secondaire btn-guide" href={urlAPropos} target="blank" rel="noopener noreferrer" >
                 <i className="ri-lightbulb-line ri-xl"></i>&nbsp;Guide utilisateur
               </a>
             }

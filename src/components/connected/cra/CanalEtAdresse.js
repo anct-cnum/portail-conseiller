@@ -63,7 +63,7 @@ function CanalEtAdresse() {
         }
         {!cra?.idPermanence && cra?.canal === 'rattachement' &&
           <div className="textInformation">
-            Pour la Coh&eacute;rence des donn&eacute;es, merci de mettre &agrave; jour le champs &laquo;Lieu d&rsquo;activit&eacute; &raquo;
+            Pour la Coh&eacute;rence des donn&eacute;es, merci de mettre &agrave; jour le champs &laquo;&nbsp;Lieu d&rsquo;activit&eacute;&nbsp;&raquo;
           </div>
         }
       </div>

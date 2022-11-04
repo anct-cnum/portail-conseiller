@@ -59,11 +59,11 @@ function SelectPermanence() {
                   <span style={{ display: 'inline-block' }}>
                     <div className="nomEnseigne">{permanence.nomEnseigne?.toUpperCase()}</div>
                     <div className="adresse">
-                      {permanence.adresse.numeroRue !== 'null' ? permanence.adresse.numeroRue : ''}
+                      {permanence.adresse?.numeroRue !== 'null' ? permanence.adresse.numeroRue : ''}
                       {
-                        ' ' + permanence.adresse.rue?.toUpperCase() + ' ' +
-                        permanence.adresse.codePostal + ' ' +
-                        permanence.adresse.ville?.toUpperCase()
+                        ' ' + permanence.adresse?.rue?.toUpperCase() + ' ' +
+                        permanence.adresse?.codePostal + ' ' +
+                        permanence.adresse?.ville?.toUpperCase()
                       }
                     </div>
                   </span>
