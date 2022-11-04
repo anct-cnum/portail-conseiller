@@ -33,25 +33,20 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
         if (cra?.canal !== 'distance' && cra?.canal !== 'domicile') {
           dispatch(craActions.updateCanal(value));
         }
-        switch (value) {
-          case 'autre':
-            dispatch(craActions.getButtonCP());
-            setTimeout(() => {
-              document.getElementById('dropdown').style.display = 'block';
-              document.getElementById('buttonCP').style.zIndex = 3;
-              document.getElementById('buttonCP').focus();
-            }, 100);
-            break;
-          case 'rattachement':
-            dispatch(craActions.getButtonPermanences());
-            setTimeout(() => {
-              document.getElementById('dropdown').style.display = 'none';
-              document.getElementById('buttonPermanences').style.zIndex = 3;
-              document.getElementById('buttonPermanences').focus();
-            }, 100);
-            break;
-          default:
-            break;
+        if (value === 'autre') {
+          dispatch(craActions.getButtonCP());
+          setTimeout(() => {
+            document.getElementById('dropdown').style.display = 'block';
+            document.getElementById('buttonCP').style.zIndex = 3;
+            document.getElementById('buttonCP').focus();
+          }, 100);
+        } else if (value === 'rattachement') {
+          dispatch(craActions.getButtonPermanences());
+          setTimeout(() => {
+            document.getElementById('dropdown').style.display = 'none';
+            document.getElementById('buttonPermanences').style.zIndex = 3;
+            document.getElementById('buttonPermanences').focus();
+          }, 100);
         }
         break;
       default:

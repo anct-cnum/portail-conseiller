@@ -21,11 +21,12 @@ function ValidationButton() {
       //Affichage des erreurs
       dispatch(craActions.verifyCra(Object.values(cra?.errorsRequired)));
     } else {
-      // eslint-disable-next-line max-len, no-unused-vars
+      /* eslint-disable */
       let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error, showSelectRedirection, nbParticipantsAge, nbParticipantsStatut,
-      // eslint-disable-next-line max-len, no-unused-vars
         nbParticipantsAccompagnement, printFlashbag, buttonCP, buttonPermanences, buttonPermanence, nomEnseigne, ...dataCraToSend } = cra;
       dataCraToSend.idStructure = conseiller.structureId;
+      /* eslint-enable */
+
 
       if (dataCraToSend?.sousThemes?.length === 0) {
         delete dataCraToSend.sousThemes;
