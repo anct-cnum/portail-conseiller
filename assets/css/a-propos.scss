@@ -1,0 +1,160 @@
+#propos {
+  h1 {
+    font-weight: 250;
+    font-size: 56px;
+    line-height: 64px;
+  }
+  h2 {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 32px;
+  }
+  h3 {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #cecece;
+  }
+  p {
+    color: #cecece;
+  }
+  .sous-titre {
+    font-weight: 700;
+    font-size: 20px;
+  }
+  .sous-titre-2 {
+    font-weight: 400;
+    font-size: 14px;
+  }
+  a {
+    color: #fff;
+    background-image: none;
+  }
+  .icone-mail, .icone-cra, .icone-lieux, .icone-mattermost, .icone-base, .icone-pix, .icone-rdv, .icone-carte {
+    display: inline-block;
+    width: 53px;
+    height: 40px;
+    margin-right: 35px;
+  }
+  .icone-cra, .icone-lieux {
+    width: 58px;
+  }
+  .icone-lieux, .icone-mattermost {
+    margin-bottom: 12px;
+  }
+  .icone-base, .icone-pix, .icone-rdv, .icone-carte {
+    margin-bottom: 17px;
+  }
+  .icone-base {
+    width: 46px;
+    margin-right: 37px;
+  }
+  .icone-rdv {
+    width: 40px;
+    margin-right: 43px;
+  }
+  .icone-base, .icone-rdv  {
+    margin-left: 10px;
+  }
+  .text-icone {
+    display: inline-block;
+  }
+  .bulle-ressourcerie {
+    position: relative;
+    margin-right: 10px;
+    top: 10px;
+  }
+  .lien-mattermost {
+    background-image: none;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #6A6AF4;
+  }
+  .engrenages {
+    display: block;
+    margin-left: 40px;
+    margin-top: 18rem;
+  }
+  .fr-sidemenu,.fr-sidemenu__inner {
+    --ol-type: decimal !important;
+    --ol-start: 1em !important;
+    --ol-content: counters(li-counter,".") ".  ";
+    box-shadow: none;
+    padding: 0;
+  }
+  .sommaire {
+    width: 180px !important;
+    line-height: 20px;
+    font-weight: 800;
+    position: fixed;
+    font-size: 12px;
+    color: #fff;
+    z-index: 3;
+    #fr-sidemenu-wrapper {
+      background-color: #161616;
+    }
+    ol {
+      li a.sous-menu {
+        display: block;
+        font-weight: 400;
+      }
+    }
+  }
+  .fresque-img {
+    height: 118px;
+  }
+  .fresque-text {
+    line-height: 20px;
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 12px;
+    width: 180px;
+  }
+  .bulle-ressourcerie {
+    height: 29px;
+  }
+
+  @media (max-width: 1124px) {
+    .top {
+      top: 0 !important;
+    }
+    .sommaire {
+    width: 150px !important;
+    top:75px;
+    }
+  }
+  @media (max-width: 954px) and (min-width: 768px) {
+    .sommaire {
+      width: 120px !important;
+    }
+  }
+  @media (max-width: 767px) {
+    .sommaire {
+    width: 100% !important;
+    top:110px;
+    }
+    .hide-md {
+      display: none;
+    }
+    .show-md {
+      display: block !important;
+    }
+    .engrenages, .communaute, .echange {
+      display: block;
+      margin: 3rem auto;
+    }
+    .fresque-img {
+      height: 90px;
+    }
+    .fresque-text {
+      width: 135px;
+    }
+  }
+  @media (max-width: 465px) {
+    .sommaire {
+      top:176px;
+      }
+  }
+}
+
