@@ -150,7 +150,7 @@ function Propos() {
                           </div>
                         </div>
                         <div className="fr-col-12 sous-titre-2 fr-mb-4w show-md" style={{ display: 'none' }}>
-                          Install&eacute;es  et maintenues en interne :
+                          Install&eacute;es  et maintenues en interne&nbsp;:
                         </div>
                         <div className="fr-col-12 fr-col-md-6 fr-mb-4w show-md" style={{ display: 'none' }}>
                           <img src="/logos/home-connected/icone-courriel.svg" className="icone-mail"/>
