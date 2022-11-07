@@ -37,6 +37,37 @@ const initialState = {
 
 export default function cra(state = initialState, action) {
   switch (action.type) {
+    case 'GET_BUTTON_PERMANENCES':
+      return {
+        ...state,
+        buttonPermanences: true,
+        buttonCP: false,
+        searchCP: false,
+        idPermanence: null,
+        nomEnseigne: null,
+        cp: undefined,
+      };
+    case 'GET_PERMANENCE':
+      return {
+        ...state,
+        buttonPermanences: false,
+        searchCP: false,
+        idPermanence: action?.permanence?._id,
+        nomEnseigne: action?.permanence?.nomEnseigne,
+        cp: action?.permanence?.adresse?.codePostal + ' ' + action?.permanence?.adresse?.ville,
+        errorsRequired: {
+          ...state.errorsRequired,
+          cp: false },
+      };
+    case 'GET_BUTTON_CP':
+      return {
+        ...state,
+        idPermanence: null,
+        nomEnseigne: null,
+        cp: undefined,
+        buttonCP: true,
+        buttonPermanences: false,
+      };
     case 'GET_SEARCH_LIST':
       return {
         ...state,
@@ -64,6 +95,29 @@ export default function cra(state = initialState, action) {
         errorsRequired: {
           ...state.errorsRequired,
           canal: false },
+      };
+    case 'DELETE_CANAL_VALUE':
+      const canal = state?.idPermanence ? 'rattachement' : 'autre';
+      return {
+        ...state,
+        canal: canal,
+        errorsRequired: {
+          ...state.errorsRequired,
+          canal: false },
+      };
+    case 'CLEAR_CANAL':
+      return {
+        ...state,
+        idPermanence: null,
+        nomEnseigne: null,
+        cp: !state.buttonCP ? undefined : state.cp,
+        buttonPermanences: false,
+        searchCP: false,
+        errorsRequired: {
+          ...state.errorsRequired,
+          canal: false,
+          cp: !state.buttonCP
+        },
       };
     case 'UPDATE_ACTIVITE':
       return {
@@ -232,7 +286,7 @@ export default function cra(state = initialState, action) {
         loading: false,
         errorsRequired: {
           cp: false,
-          canal: false,
+          canal: !action.cra?.permanence?.$id && action.cra?.cra?.canal === 'rattachement',
           activite: false,
           age: false,
           statut: false,
@@ -243,6 +297,7 @@ export default function cra(state = initialState, action) {
         updatedAt: action.cra.updatedAt ?? action.cra.createdAt,
         searchCP: false,
         searchInput: false,
+        idPermanence: action.cra?.permanence?.$id,
         cp: action.cra.cra?.codePostal + ' ' + action.cra.cra.nomCommune,
         dateAccompagnement: new Date(action.cra.cra.dateAccompagnement),
         oldDateAccompagnement: new Date(action.cra.cra.dateAccompagnement),

@@ -9,14 +9,6 @@ $blue: #2b8bf7;
   *:focus {
     outline: none;
   }
-
-  .titre {
-    line-height: 72px;
-    font-weight: 200;
-    font-size: 56px;
-    margin: 0;
-  }
-
   .a-propos {
     background-image: none;
     display: inline-block;
@@ -38,58 +30,6 @@ $blue: #2b8bf7;
   .questionRequired::after {
     content:" * ";
   }
-
-  /** START SELECT CP **/
-  .question {
-    height: 42px;
-    font-size: 14px;
-    font-weight: 100;
-  }
-
-  .buttonCP, .buttonRecurrence {
-    height: 104px;
-    width: 100%;
-    border: 1px solid white;
-    border-radius: 20px;
-    background-color: $background;
-    color: white;
-    text-align: center;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 500;
-  }
-
-  .buttonCP-filled, .buttonRecurrence-filled {
-    border: 1px solid white;
-    background-color: white;
-    border-color: white;
-    border-radius: 20px;
-    text-align: center;
-    font-weight: 500;
-    font-size: 16px;
-    cursor:pointer;
-    color: black;
-    height: 104px;
-    width: 100%;
-  }
-
-  .searchCP {
-  padding: 14px 20px 12px 45px;
-  background-color: #fff;
-  border-radius: 20px;
-  text-align: center;
-  font-weight: 500;
-  font-size: 16px;
-  height: 104px;
-  border: none;
-  width: 100%;
-  }
-
-  .searchCP::placeholder {
-    color: $background;
-    text-align: center;
-  }
-
   .dropdown {
     position: relative;
     z-index: 1;
@@ -133,114 +73,6 @@ $blue: #2b8bf7;
   .responsiveSelect, .responsiveRecurrence {
     width: calc(810%/12 - 271px);
     padding-left: 0.75rem;
-  }
-
-  .react-datepicker{
-    border-radius: 0 0 1.4rem 1.4rem;
-    background-color: $background;
-    border: 1px solid #5398ff;
-    color: #fff;
-    left: 32px;
-    top: -10px;
-    .react-datepicker-popper {
-      margin: 0 !important;
-    }
-    .react-datepicker__triangle {
-      display: none;
-    }
-    .react-datepicker__navigation--previous {
-      background: url(../../public/logos/statistics/logo-chevron-gauche.svg) no-repeat;
-      margin-left: 11px;
-      border: none;
-      height: 16px;
-      width: 10px;
-    }
-    .react-datepicker__navigation--next {
-      background: url(../../public/logos/statistics/logo-chevron-droit.svg) no-repeat;
-      margin-right: 11px;
-      border: none;
-      height: 16px;
-      width: 10px;
-    }
-    .react-datepicker__header {
-      background-color: $background;
-      color: #fff;
-      .react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header {
-        color: #fff;
-      }
-      .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
-        color: #fff;
-      }
-      .react-datepicker__month {
-        color: #fff;
-      }
-    }
-    .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
-      font-size: 16px;
-      color: #fff;
-      width: 1.54rem;
-      height: 1.54rem;
-      margin: 6px;
-    }
-    .react-datepicker__week {
-      cursor: default;
-    }
-    .react-datepicker__day--outside-month {
-      color: #909090;
-    }
-    .react-datepicker__day--disabled {
-      color: $background;
-      cursor: default;
-      &:hover {
-        color: $background;
-      }
-    }
-    .react-datepicker__day:hover, .react-datepicker__month-text:hover, .react-datepicker__quarter-text:hover, .react-datepicker__year-text:hover{
-      color: $background;
-    }
-    .react-datepicker__day--selected, .react-datepicker__day--keyboard-selected {
-      color: $background;
-      background-color: #fff;
-    }
-    .react-date-picker__calendar--open {
-      top: 100% !important;
-      bottom: unset !important;
-    }
-  }
-  .react-datepicker__tab-loop {
-    position: absolute;
-    top: 0px;
-    left: -93px;
-  }
-  .chevron-stats {
-    margin: 0px 2px 0px 4px;
-    position: relative;
-    font-size: 2rem;
-    top: 10px;
-  }
-  .responsiveDate{
-    background-color: $background;
-    border: 1px solid white;
-    width: 271px;
-    border-radius: 20px;
-    text-align: center;
-    &.active {
-      border-radius: 20px 20px 0 0;
-      border-color:#5398ff;
-      cursor: pointer;
-    }
-    .buttonDate {
-      padding-top: 21%;
-      cursor: pointer;
-      height: 103px;
-      &:hover, &:active {
-        color:#5398ff;
-        cursor: pointer;
-      }
-    }
-    .buttonDateActive{
-      color:#5398ff;
-    }
   }
 
   .lessRecurrence, .moreRecurrence {
@@ -368,10 +200,37 @@ $blue: #2b8bf7;
     height: 104px;
   }
 
+  .buttonRecurrence {
+    height: 104px;
+    width: 100%;
+    border: 1px solid white;
+    border-radius: 20px;
+    background-color: $background;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .buttonRecurrence-filled {
+    border: 1px solid white;
+    background-color: white;
+    border-color: white;
+    border-radius: 20px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+    cursor:pointer;
+    color: black;
+    height: 104px;
+    width: 100%;
+  }
+
   /* custom point de rupture LG du DS */
   @media (max-width: 1024px) {
 
-    .responsiveSelect, .responsiveRecurrence {
+    .responsiveRecurrence {
       padding-left: 0.5rem;
     }
 
@@ -379,21 +238,11 @@ $blue: #2b8bf7;
 
   /* custom point de rupture MD du DS */
   @media (max-width: 767px) {
-
-    .titre {
-      text-align: center;
-      font-size:28px;
-      line-height:40px;
-    }
     .questionResponsive {
       text-align: center;
       margin: auto;
     }
-    .dateBox {
-      padding-left: .5rem;
-      width: 100%;
-    }
-    .responsiveSelect, .responsiveRecurrence, .responsiveDate {
+    .responsiveRecurrence {
       width: calc(1000%/12);
       margin: 0 auto;
       padding-left: .5rem;
@@ -412,21 +261,21 @@ $blue: #2b8bf7;
       width: calc(1200%/12);
     }
 
-    .responsiveSelect, .responsiveRecurrence, .responsiveDate {
+    .responsiveRecurrence {
       width: calc(1200%/12);
       padding-left: .5rem;
     }
-
   }
-  /** END SELECT CP **/
-
-  /** START RADIO CANAL & ACTIVITY **/
-  .radioRattachement, .radioRattachementAlt {
+   /** START RADIO CANAL & ACTIVITY **/
+   .radioRattachement, .radioRattachementAlt {
     width: 100%;
     border-radius: 20px;
     border: 1px solid white;
     background-color: $background;
     cursor: pointer;
+    height: 144px;
+    padding: 0px;
+
   }
 
   .radioRattachement-selected {
@@ -505,14 +354,13 @@ $blue: #2b8bf7;
     display: flex;
   }
 
-  /* custom point de rupture LG du DS */
-  @media (max-width: 1024px) {
+   /* custom point de rupture LG du DS */
+   @media (max-width: 1024px) {
 
     .responsiveRadioCanal1, .responsiveRadioActivity1 {
       margin-left: 0.5rem;
     }
   }
-
   /* custom point de rupture MD du DS */
   @media (max-width: 767px) {
 
@@ -555,36 +403,34 @@ $blue: #2b8bf7;
     .responsiveRadioCanalVertical .radioButton:first-child {
       width: calc(540%/12);
     }
+  }
+  /* custom point de rupture SM du DS */
+  @media (max-width: 576px) {
+
+    .responsiveRadioCanal1, .responsiveRadioActivity1, .responsiveRadioCanal2, .responsiveRadioActivity2 {
+      width: calc(600%/12);
+      margin-left: 0;
+    }
+
+    .responsiveRadioActivity3Small {
+      width: calc(12000%/12);
+      margin-left: 0;
+    }
+
+    .responsiveRadioCanalVertical {
+      width: calc(1200%/12);
+      margin-left: 0;
+    }
+
+    .responsiveRadioCanalVertical .radioButton {
+      width: calc(605%/12);
+    }
+
+    .responsiveRadioCanalVertical .radioButton:first-child {
+      width: calc(595%/12);
+    }
 
   }
-
-    /* custom point de rupture SM du DS */
-    @media (max-width: 576px) {
-
-      .responsiveRadioCanal1, .responsiveRadioActivity1, .responsiveRadioCanal2, .responsiveRadioActivity2 {
-        width: calc(600%/12);
-        margin-left: 0;
-      }
-
-      .responsiveRadioActivity3Small {
-        width: calc(12000%/12);
-        margin-left: 0;
-      }
-
-      .responsiveRadioCanalVertical {
-        width: calc(1200%/12);
-        margin-left: 0;
-      }
-
-      .responsiveRadioCanalVertical .radioButton {
-        width: calc(605%/12);
-      }
-
-      .responsiveRadioCanalVertical .radioButton:first-child {
-        width: calc(595%/12);
-      }
-
-    }
   /** END RADIO CANAL & ACTIVITY **/
 
   /** START SQUARE BUTTON AGE AND STATUT **/
@@ -613,7 +459,6 @@ $blue: #2b8bf7;
   .responsiveSquare1 {
     margin-left: 0.75rem;
   }
-
   /* custom point de rupture MD du DS */
   @media (max-width: 767px) {
 
@@ -626,160 +471,34 @@ $blue: #2b8bf7;
     .responsiveSquare2, .responsiveSquare3, .responsiveSquare4, .responsiveSquare5 {
       width: calc(200%/12);
     }
-
   }
+   /* custom point de rupture SM du DS */
+   @media (max-width: 576px) {
 
-    /* custom point de rupture SM du DS */
-    @media (max-width: 576px) {
-
-      .responsiveSquare1, .responsiveSquare2 {
-        width: calc(600%/12);
-        margin-left: 0;
-      }
-
-      .responsiveSquare3 {
-        width: calc(600%/12);
-        padding-left: 0.5rem;
-      }
-
-      .responsiveSquare4 {
-        width: calc(600%/12);
-      }
-
-      .responsiveSquare5 {
-        width: calc(1200%/12);
-        padding-left: 0.5rem;
-      }
-
-      .squareRattachement {
-        height: 73px;
-      }
-
+    .responsiveSquare1, .responsiveSquare2 {
+      width: calc(600%/12);
+      margin-left: 0;
     }
+
+    .responsiveSquare3 {
+      width: calc(600%/12);
+      padding-left: 0.5rem;
+    }
+
+    .responsiveSquare4 {
+      width: calc(600%/12);
+    }
+
+    .responsiveSquare5 {
+      width: calc(1200%/12);
+      padding-left: 0.5rem;
+    }
+
+    .squareRattachement {
+      height: 73px;
+    }
+  }
   /** END SQUARE BUTTON AGE AND STATUT **/
-
-  /** START CHECKBOX BUTTON THEMES **/
-  .checkboxRattachement {
-    width: 100%;
-    border-radius: 20px;
-    border: 1px solid white;
-    background-color: $background;
-    cursor: pointer;
-  }
-
-  .checkboxRattachement-selected {
-    background-color: white!important;
-    color: black!important;
-    .baseline {
-      color: #2a2a2a;
-    }
-  }
-  .checkbox-selected {
-    display: inline-grid;
-    justify-items: center;
-  }
-  .fr-checkbox-group input[type=checkbox]+label {// pour la couleur du label
-    color: black;
-  }
-
-  .fr-checkbox-group input[type="checkbox" i] + label::before {// pour la couleur de la checkbox
-    box-shadow: inset 0 0 0 1px black!important;
-  }
-
-  .fr-checkbox-group input[type="checkbox" i]:checked + label::before { // pour la couleur du check en svg
-    --data-uri-svg: url(../../public/logos/cra/checkbox-sous-menu.svg)!important;
-    background-color: rgb(0, 0, 145);
-  }
-
-  .labelCheckboxCustom {
-    line-height: 24px;
-    text-align: start;
-    align-self: center;
-  }
-
-  .responsiveCheckbox1 {
-    width: calc(400%/12);
-    margin-left: 0.75rem;
-  }
-
-  .responsiveCheckbox2, .responsiveCheckboxNewRow2 {
-    width: calc(400%/12);
-  }
-
-  .responsiveCheckboxNewRow1 {
-    width: calc(400%/12);
-    margin-left: calc(211%/12);
-  }
-
-  .responsiveSmallCheckbox {
-    width: calc(800%/12);
-    margin-left: calc(211%/12);
-  }
-
-  .questionCheckboxResponsive {
-    height: 108px;
-  }
-
-  /* custom point de rupture LG du DS */
-  @media (max-width: 991px) {
-    .centre-titre {
-      text-align: center;
-    }
-    .url-a-propos {
-      text-align: center;
-    }
-    .labelCheckboxCustom {
-      font-size: 12px;
-    }
-
-  }
-
-  /* custom point de rupture MD du DS */
-  @media (max-width: 767px) {
-
-    .responsiveCheckbox1, .responsiveCheckboxNewRow1 {
-      width: calc(500%/12);
-      margin-left: calc(100%/12);
-      padding-left: 0.5rem;
-    }
-
-    .responsiveCheckbox2, .responsiveCheckboxNewRow2 {
-      width: calc(500%/12);
-    }
-
-    .responsiveSmallCheckbox {
-      width: calc(1000%/12);
-      margin-left: calc(100%/12);
-      padding-left: 0.5rem;
-    }
-
-    .questionCheckboxResponsive {
-      height: unset;
-    }
-
-  }
-
-  /* custom point de rupture SM du DS */
-  @media (max-width: 576px) {
-
-    .responsiveCheckbox1, .responsiveCheckbox2, .responsiveCheckboxNewRow1, .responsiveCheckboxNewRow2, .responsiveSmallCheckbox {
-      width: calc(1200%/12);
-      margin-left: 0;
-      padding-left: 0.5rem;
-    }
-
-    .labelCheckboxCustom {
-      font-size: 16px;
-    }
-
-    .questionCheckboxResponsive {
-      margin-left: 0;
-      width: calc(1200%/12);
-    }
-
-  }
-  /** END CHECKBOX BUTTON THEMES **/
-
   /** START SQUARE BUTTON TIME **/
   .responsiveSquareTime1, .responsiveSquareTime2, .responsiveSquareTime3 {
     width: calc(266%/12);
@@ -846,7 +565,6 @@ $blue: #2b8bf7;
     color: black;
     font-size: 24px;
   }
-
   /* custom point de rupture MD du DS */
   @media (max-width: 767px) {
 
@@ -859,7 +577,6 @@ $blue: #2b8bf7;
     .responsiveSquareTime2, .responsiveSquareTime3 {
       width: calc(333%/12);
     }
-
   }
 
   @media (max-width: 576px) {
@@ -887,25 +604,724 @@ $blue: #2b8bf7;
 
   }
   /** END SQUARE BUTTON TIME **/
-
-  .submitCra {
-    background-color: white;
-    width: 70%;
-    border-radius: 48px;
-    height: 96px;
-    font-size: 20px;
+  /** START CHECKBOX BUTTON THEMES **/
+  .checkboxRattachement {
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid white;
+    background-color: $background;
+    cursor: pointer;
   }
 
-  .submitCra:hover, .submitCra:active {
-    --color-hover: $background!important;
-    --color-active: $background!important;
+  .checkboxRattachement-selected {
+    background-color: white!important;
+    color: black!important;
+    .baseline {
+      color: #2a2a2a;
+    }
+  }
+  .labelCheckboxCustom {
+    line-height: 24px;
+    text-align: start;
+    align-self: center;
   }
 
-  @media (max-width: 576px) {
+  .responsiveCheckbox1 {
+    width: calc(400%/12);
+    margin-left: 0.75rem;
+  }
 
-    .submitResponsive {
-      width: calc(800%/12);
+  .responsiveCheckbox2, .responsiveCheckboxNewRow2 {
+    width: calc(400%/12);
+  }
+
+  .responsiveCheckboxNewRow1 {
+    width: calc(400%/12);
+    margin-left: calc(211%/12);
+  }
+
+  .responsiveSmallCheckbox {
+    width: calc(800%/12);
+    margin-left: calc(211%/12);
+  }
+
+  .questionCheckboxResponsive {
+    height: 108px;
+  }
+  .checkbox-selected {
+    display: inline-grid;
+    justify-items: center;
+  }
+  .fr-checkbox-group input[type=checkbox]+label {// pour la couleur du label
+    color: black;
+  }
+
+  .fr-checkbox-group input[type="checkbox" i] + label::before {// pour la couleur de la checkbox
+    box-shadow: inset 0 0 0 1px black!important;
+  }
+
+  .fr-checkbox-group input[type="checkbox" i]:checked + label::before { // pour la couleur du check en svg
+    --data-uri-svg: url(../../public/logos/cra/checkbox-sous-menu.svg)!important;
+    background-color: rgb(0, 0, 145);
+  }
+  @media (max-width: 991px) {
+    .centre-titre {
+      text-align: center;
+    }
+    .url-a-propos {
+      text-align: center;
+    }
+    .labelCheckboxCustom {
+      font-size: 12px;
     }
 
+  }
+
+  /* custom point de rupture MD du DS */
+  @media (max-width: 767px) {
+
+    .responsiveCheckbox1, .responsiveCheckboxNewRow1 {
+      width: calc(500%/12);
+      margin-left: calc(100%/12);
+      padding-left: 0.5rem;
+    }
+
+    .responsiveCheckbox2, .responsiveCheckboxNewRow2 {
+      width: calc(500%/12);
+    }
+
+    .responsiveSmallCheckbox {
+      width: calc(1000%/12);
+      margin-left: calc(100%/12);
+      padding-left: 0.5rem;
+    }
+
+    .questionCheckboxResponsive {
+      text-align: center;
+      height: unset;
+    }
+
+  }
+
+  /* custom point de rupture SM du DS */
+  @media (max-width: 576px) {
+
+    .responsiveCheckbox1, .responsiveCheckbox2, .responsiveCheckboxNewRow1, .responsiveCheckboxNewRow2, .responsiveSmallCheckbox {
+      width: calc(1200%/12);
+      margin-left: 0;
+      padding-left: 0.5rem;
+    }
+
+    .labelCheckboxCustom {
+      font-size: 16px;
+    }
+
+    .questionCheckboxResponsive {
+      margin-left: 0;
+      width: calc(1200%/12);
+    }
+  }
+    /** END SQUARE BUTTON TIME **/
+
+    .submitCra {
+      background-color: white;
+      width: 70%;
+      border-radius: 48px;
+      height: 96px;
+      font-size: 20px;
+    }
+
+    .submitCra:hover, .submitCra:active {
+      --color-hover: $background!important;
+      --color-active: $background!important;
+    }
+
+    @media (max-width: 576px) {
+
+      .submitResponsive {
+        width: calc(800%/12);
+      }
+
+    }
+
+  /* CRA V3 */
+  .icon-cra {
+    width: 114px;
+    height: 78px;
+  }
+  .titre {
+    line-height: 64px;
+    font-weight: 250;
+    font-size: 56px;
+    margin: 0;
+  }
+  .btn-guide {
+    border: 1px solid #8585F6;
+    background-image: none;
+    display: inline-block;
+    text-align: center;
+    font-style: normal;
+    padding-top: 8px;
+    margin-top: 15px;
+    color: #8585F6;
+    font-size: 16px;
+    height: 40px;
+    width: 180px;
+  }
+  .question2 {
+    height: 42px;
+    font-size: 14px;
+    font-weight: 100;
+  }
+  .responsiveElement2, .responsiveElementEnd2 {
+    display: inline-block;
+    border-radius: 20px;
+    /** START SELECT CP **/
+    .dropdown {
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
+      border-radius: 20px;
+      position: absolute;
+      cursor: pointer;
+      height: 144px;
+      z-index: 3;
+    }
+    .dropdown-content2 {
+      height: 144px;
+      display: none;
+      width: 528px;
+    }
+    .buttonCP, .inputCP {
+      background: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
+      border-radius: 20px 20px 0px 0px;
+      line-height: 24px;
+      font-weight: 700;
+      font-size: 16px;
+      display: none;
+      color: #fff;
+      width: 528px;
+      height: 72px;
+      &:hover {
+        background: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
+        color: #fff;
+      }
+      div {
+        text-align: center;
+        line-height: 20px;
+        font-weight: 400;
+        font-size: 12px;
+      }
+    }
+    .searchCP {
+      margin: 12px 0px 0 9px;
+      text-align: center;
+      line-height: 24px;
+      font-weight: 700;
+      font-size: 16px;
+      color: #fff;
+      width: 510px;
+
+    }
+    div.scrollOptions2 {
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
+      border-radius: 0 0 20px 20px;
+      overflow-x: hidden;
+      max-height: 200px;
+      line-height: 24px;
+      overflow: scroll;
+      color: #161616;
+      font-weight: 700;
+      font-size: 16px;
+      div {
+        padding: 12px 0 0 25px;
+        height: 47px;
+        &:hover {
+          background: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
+          color: #fff;
+        }
+      }
+    }
+    .buttonCP-filled, .buttonPermanence-filled {
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);color: #2a2a2a;
+      text-align: center;
+      line-height: 24px;
+      font-weight: 700;
+      color: #162616;
+      font-size: 16px;
+      z-index: 3;
+    }
+    .buttonPermanence-filled {
+      position: absolute;
+    }
+    .show {
+      display: block;
+    }
+    .hide {
+      display: none;
+    }
+
+    /** END SELECT CP **/
+    button {
+      background: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%);
+      border-radius: 20px;
+      color: #fff;
+      height: 144px;
+      width: 264px;
+      .logoLieuRatachement, .logoAutreLieu {
+        background: url(../../public/logos/cra/logo-lieu-rattachement.svg) no-repeat;
+        display: inline-block;
+        height: 56px;
+        width: 56px;
+      }
+      .logoAutreLieu {
+        background: url(../../public/logos/cra/logo-autre-lieu.svg) no-repeat;
+      }
+      .logoCalendrier, .logoDistance, .logoDomicile {
+        display: inline-block;
+        height: 24px;
+        width: 24px;
+      }
+      .logoCalendrier {
+        background: url(../../public/logos/cra/logo-calendrier.svg) no-repeat;
+        margin: 0px 16px 0px 0px;
+      }
+      .logoDistance {
+        background: url(../../public/logos/cra/logo-a-distance.svg) no-repeat;
+      }
+      .logoDomicile {
+        background: url(../../public/logos/cra/logo-a-domicile.svg) no-repeat;
+      }
+      .texteDatePicker {
+        position: relative;
+        top: -5px;
+      }
+      .chevron-stats {
+        margin: 0px 0px 0px 16px;
+        position: relative;
+        font-size: 2rem;
+        top: 5px;
+      }
+      .labelSmallRadioCustom {
+        position: relative;
+        margin-left: 7px;
+        font-size: 14px;
+        bottom: 5px;
+      }
+      &:hover, &.selected {
+        background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 58.33%, #518FFF 100%);
+        color: #2a2a2a;
+        .labelBigRadioCustom, .labelSmallRadioCustom {
+          color: #2a2a2a;
+        }
+        .logoLieuRatachement{
+          background: url(../../public/logos/cra/logo-lieu-rattachement-n.svg) no-repeat;
+        }
+        .logoAutreLieu {
+          background: url(../../public/logos/cra/logo-autre-lieu-n.svg) no-repeat;
+        }
+        .logoCalendrier {
+          background: url(../../public/logos/cra/logo-calendrier-n.svg) no-repeat;
+        }
+        .logoDistance {
+          background: url(../../public/logos/cra/logo-a-distance-n.svg) no-repeat;
+        }
+        .logoDomicile {
+          background: url(../../public/logos/cra/logo-a-domicile-n.svg) no-repeat;
+        }
+      }
+    }
+    .logoRattachementSelected {
+      background: url(../../public/logos/cra/logo-lieu-rattachement-selected.svg) no-repeat;
+      margin: 5px auto;
+      display: block;
+      height: 56px;
+      width: 33px;
+    }
+    #buttonPermanences {
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
+      border-radius: 20px;
+      position: absolute;
+      max-height: 344px;
+      display: none;
+      width: 528px;
+      .listButtonPermanence {
+        max-height: 311px;
+        padding: 24px 0;
+        overflow: auto;
+        .buttonPermanence {
+          background: none;
+          border-radius: 0;
+          text-align: left;
+          width: 526px;
+          height: 56px;
+          border: none;
+          .nomEnseigne {
+            line-height: 24px;
+            color: #2a2a2a;
+            font-weight: 700;
+            font-size: 16px;
+          }
+          .adresse {
+            line-height: 20px;
+            color: #929292;
+            font-weight: 400;
+            font-size: 12px;
+          }
+          &:hover {
+            background: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
+            .nomEnseigne, .adresse {
+              color: #fff;
+            }
+          }
+        }
+        .lieuActiviteAbsent {
+          padding: 20px 0 0;
+          color: #2a2a2a;
+          margin: auto;
+          height: 60px;
+          width: 240px;
+
+        }
+      }
+      .logoRattachementActif {
+        background: url(../../public/logos/cra/logo-lieu-rattachement-actif.svg) no-repeat;
+        margin: 0px 8px 16px 24px;
+        display: inline-block;
+        height: 24px;
+        width: 14px;
+      }
+      .lienPermanence {
+        border-top: 1px solid #9A9AFF;
+        display: inline-block;
+        padding-left: 46px;
+        color: #000091;
+        width: 526px;
+        height: 33px;
+      }
+    }
+  }
+  #buttonPermanences.show {
+    display: block;
+  }
+  .buttonDate {
+    button {
+      height: 72px;
+    }
+    .selectedDate {
+      background: #fff;
+      color: #2a2a2a;
+      .logoCalendrier {
+        background: url(../../public/logos/cra/logo-calendrier-n.svg) no-repeat;
+      }
+    }
+  }
+  .radioButton2 {
+    .radioRattachement2::after, .smallRadioRattachement2::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      border: 1px solid transparent;
+      background: linear-gradient(0deg,#3558A2,#9A9AFF) border-box;
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+        mask:linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+    .radioRattachement2 {
+      border-radius: 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .smallRadioRattachement2 {
+      border-radius: 20px;
+      position: relative;
+      height: 72px;
+      width: 131px;
+    }
+  }
+  .buttonDate, .radioButton2.small {
+    position: relative;
+    top: 8px;
+  }
+  .radioButton2.small {
+    display: inline;
+  }
+  .buttonError::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    background: linear-gradient(0deg,red,orange) border-box !important;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      mask:linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+  .buttonError {
+    border-radius: 20px;
+    position: relative;
+  }
+  .disabled {
+    border : 1px solid #3d3d3d !important;
+    color: #3d3d3d !important;
+    &::after, &:hover {
+      border : 1px solid #3d3d3d !important;
+      color: #3d3d3d !important;
+      background: none !important;
+    }
+    .logoLieuRatachement {
+      background: url(../../public/logos/cra/logo-lieu-rattachement-n.svg) no-repeat !important;
+    }
+    .logoAutreLieu{
+      background: url(../../public/logos/cra/logo-autre-lieu-n.svg) no-repeat !important;
+    }
+    .labelBigRadioCustom {
+      color: #3d3d3d !important;
+    }
+  }
+  .textInformation {
+    margin: 15px 0 20px;
+    text-align: center;
+    font-size: 12px;
+    width: 792px;
+  }
+  .react-datepicker{
+    border-radius: 0 0 20px 20px;
+    background-color: $background;
+    border: 1px solid #8a8ae3;
+    color: #fff;
+    left: 92px;
+    top: -25px;
+    .react-datepicker-popper {
+      margin: 0 !important;
+    }
+    .react-datepicker__triangle {
+      display: none;
+    }
+    .react-datepicker__navigation--previous {
+      background: url(../../public/logos/cra/logo-chevron-gauche.svg) no-repeat;
+      margin-left: 11px;
+      border: none;
+      height: 16px;
+      width: 10px;
+      &:hover {
+        background: url(../../public/logos/cra/logo-chevron-gauche.svg) no-repeat;
+      }
+    }
+    .react-datepicker__navigation--next {
+      background: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
+      margin-right: 11px;
+      border: none;
+      height: 16px;
+      width: 10px;
+      &:hover {
+        background: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
+      }
+    }
+    .react-datepicker__header {
+      background-color: #fff;
+      border-bottom: 1px solid #9A9AFF;
+      color: #161616;
+      .react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header {
+        color: #161616;
+      }
+      .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+        color: #161616;
+      }
+      .react-datepicker__month {
+        color: #161616;
+      }
+    }
+    .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+      font-size: 16px;
+      font-weight: 200;
+      color: #161616;
+      width: 1.48rem;
+      height: 1.54rem;
+      margin: 6px;
+    }
+    .react-datepicker__month-container {
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
+      border-radius: 0 0 20px 20px;
+    }
+    .react-datepicker__week {
+      cursor: default;
+    }
+    .react-datepicker__day--outside-month {
+      color: #666666;
+    }
+    .react-datepicker__day--disabled {
+      color: #666666;
+      cursor: default;
+      &:hover {
+        color: #666666;
+      }
+    }
+    .react-datepicker__day:hover, .react-datepicker__month-text:hover, .react-datepicker__quarter-text:hover, .react-datepicker__year-text:hover{
+      color: $background;
+    }
+    .react-datepicker__day--selected, .react-datepicker__day--keyboard-selected {
+      color: #fff;
+      background: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
+      border-radius: 8px;
+    }
+    .react-date-picker__calendar--open {
+      top: 100% !important;
+      bottom: unset !important;
+    }
+  }
+  .react-datepicker__tab-loop {
+    position: absolute;
+    top: 0px;
+    left: -93px;
+  }
+  @media (max-width: 1111px) {
+    .responsiveElement2, .responsiveElementEnd2{
+      button {
+        width: 231px;
+      }
+      button.smallRadioRattachement2 {
+        width: 116px;
+      }
+      #buttonPermanences{
+        width: 462px;
+        .buttonPermanence {
+          width: 100%;
+        }
+      }
+      .buttonCP, .inputCP,.dropdown-content2, .searchCP {
+        width: 462px;
+      }
+      .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+        height: 1.25rem;
+        width: 1.25rem;
+      }
+      .react-datepicker__month-container {
+        width: 230px;
+      }
+    }
+    .textInformation {
+      width: 694px;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .centrer {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 867px) {
+    .responsiveElement2, .responsiveElementEnd2 {
+      button {
+        width: 192px;
+      }
+      button.smallRadioRattachement2 {
+        width: 96px;
+        top: 10px;
+      }
+      #buttonPermanences{
+        width: 576px;
+        .buttonPermanence {
+          width: 100%;
+        }
+      }
+      .buttonCP, .inputCP,.dropdown-content2, .searchCP {
+        width: 384px;
+      }
+      .buttonDate {
+        top: 18px;
+      }
+      .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+        font-size: 15px;
+        height: 1.25rem;
+        width: 0.9rem;
+        margin: 5px;
+      }
+      .react-datepicker__month-container {
+        width: 191px;
+      }
+    }
+    .textInformation {
+      width: 576px;
+    }
+  }
+  @media (max-width: 767px) {
+    .titre {
+      text-align: center;
+      font-size:28px;
+      line-height:40px;
+    }
+    .btn-guide {
+      text-align: center;
+    }
+    .questionResponsive {
+      text-align: center;
+      margin: auto;
+    }
+    .responsiveElement2{
+      width: 50%;
+      button {
+        width: 100%;
+      }
+      #dropdown {
+        display: none;
+      }
+      .dropdown {
+        display: block;
+        width: 48%;
+      }
+      .dropdown-content2, .buttonCP, .inputCP, .searchCP {
+        width: 100%;
+      }
+      .buttonPermanence-filled {
+        width: 48%;
+      }
+      #buttonPermanences{
+        width: 96%;
+        .listButtonPermanence .buttonPermanence {
+          width: 100%;
+        }
+      }
+    }
+    .buttonCP-filled {
+      width: 100%;
+    }
+    .responsiveElementEnd2 {
+      width: 100%;
+      .buttonDate {
+        top: 0px;
+      }
+      .react-datepicker {
+        left: 93px;
+        top: -27px;
+      }
+      .react-datepicker-wrapper, .react-datepicker__input-container, .react-datepicker__input-container button {
+        width: 100%;
+      }
+      .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+        font-size: 16px;
+        height: 1.5rem;
+        width: 1.8rem;
+        margin: 6px;
+      }
+      .react-datepicker__month-container {
+        width: 100%;
+      }
+      *, ::after, ::before {
+        width: 100%;
+      }
+      button.smallRadioRattachement2 {
+        width: 50%;
+        top: -8px;
+      }
+    }
+  }
+  @media (max-width: 576px) {
+
+    .questionResponsive {
+      width: calc(1200%/12);
+    }
   }
 }

@@ -21,9 +21,13 @@ function ValidationButton() {
       //Affichage des erreurs
       dispatch(craActions.verifyCra(Object.values(cra?.errorsRequired)));
     } else {
-      //Pas d'erreurs, envoi seulement des donnes necessaires à l'API
-      // eslint-disable-next-line max-len, no-unused-vars
-      let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error, showSelectRedirection, nbParticipantsAge, nbParticipantsStatut, nbParticipantsAccompagnement, printFlashbag, ...dataCraToSend } = cra;
+      /* eslint-disable */
+      let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error, showSelectRedirection, nbParticipantsAge, nbParticipantsStatut,
+        nbParticipantsAccompagnement, printFlashbag, buttonCP, buttonPermanences, buttonPermanence, nomEnseigne, ...dataCraToSend } = cra;
+      dataCraToSend.idStructure = conseiller.structureId;
+      /* eslint-enable */
+
+
       if (dataCraToSend?.sousThemes?.length === 0) {
         delete dataCraToSend.sousThemes;
       }

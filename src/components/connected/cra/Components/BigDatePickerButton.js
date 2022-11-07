@@ -16,10 +16,11 @@ function BigDatePickerButton({ initDate }) {
 
   const CustomDateInput = forwardRef(
     ({ value, onClick }, ref) => (
-      <div className={active ? 'buttonDate buttonDateActive' : 'buttonDate' } onClick={onClick} ref={ref}>
-        <b>Le {value}</b>
+      <button onClick={onClick} ref={ref} className={`${active ? 'selectedDate' : 'selected'}`}>
+        <span className="logoCalendrier"></span>&nbsp;
+        <b className="texteDatePicker">Le {value}</b>
         <i className={active ? 'ri-arrow-up-s-line chevron-stats' : 'ri-arrow-down-s-line chevron-stats' }></i>
-      </div>
+      </button>
     ),
   );
   CustomDateInput.displayName = 'CustomDateInput';
@@ -48,6 +49,7 @@ function BigDatePickerButton({ initDate }) {
       disabledKeyboardNavigation
       maxDate={new Date()}
       minDate={new Date('2020-01-01')}
+      formatWeekDay={nameOfDay => nameOfDay.substr(0, 1).toUpperCase()}
     />
   );
 }

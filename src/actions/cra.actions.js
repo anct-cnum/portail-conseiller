@@ -1,10 +1,15 @@
 import { craService } from '../services/cra.service.js';
 
 export const craActions = {
+  getButtonPermanences,
+  getPermanence,
+  getButtonCP,
   getSearchlist,
   searchInput,
   updateCP,
   updateCanal,
+  deleteCanalValue,
+  clearCanal,
   updateActivite,
   updateNbParticipants,
   updateRecurrence,
@@ -24,6 +29,15 @@ export const craActions = {
   updateCra,
 };
 
+function getButtonPermanences() {
+  return { type: 'GET_BUTTON_PERMANENCES' };
+}
+function getPermanence(permanence) {
+  return { type: 'GET_PERMANENCE', permanence };
+}
+function getButtonCP() {
+  return { type: 'GET_BUTTON_CP' };
+}
 function getSearchlist() {
   return { type: 'GET_SEARCH_LIST' };
 }
@@ -39,7 +53,12 @@ function updateCP(cp) {
 function updateCanal(canal) {
   return { type: 'UPDATE_CANAL', canal };
 }
-
+function deleteCanalValue() {
+  return { type: 'DELETE_CANAL_VALUE' };
+}
+function clearCanal() {
+  return { type: 'CLEAR_CANAL' };
+}
 function updateActivite(activite) {
   return { type: 'UPDATE_ACTIVITE', activite };
 }

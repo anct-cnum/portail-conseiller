@@ -8,6 +8,8 @@ export function getCraValue(type) {
   switch (type) {
     case 'canal':
       return cra?.canal;
+    case 'date':
+      return cra?.dateAccompagnement;
     case 'activite':
       return cra?.activite;
     case 'age':
