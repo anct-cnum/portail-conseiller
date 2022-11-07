@@ -116,9 +116,6 @@
   }
 
   @media (max-width: 1124px) {
-    .top {
-      top: 0 !important;
-    }
     .sommaire {
     width: 150px !important;
     top:75px;
@@ -130,6 +127,9 @@
     }
   }
   @media (max-width: 767px) {
+    .top {
+      top: 0 !important;
+    }
     .sommaire {
     width: 100% !important;
     top:110px;
