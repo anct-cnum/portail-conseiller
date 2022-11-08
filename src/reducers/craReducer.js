@@ -333,6 +333,7 @@ export default function cra(state = initialState, action) {
       return {
         ...state,
         loading: true,
+        error: false,
         printFlashbag: false
       };
     case 'COUNT_CRA_PERMANENCE_SUCCESS':
