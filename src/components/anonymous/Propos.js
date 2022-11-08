@@ -11,15 +11,17 @@ function Propos() {
   const atelierActivite = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/atelier-nec---suivi-dactivite';
   const atelierPartenariats = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/atelier-nec-2022---demarches-partenariales';
 
-  window.addEventListener('scroll', () => {
-    if (window.innerWidth < 767) {
+  if (window.innerWidth < 767) {
+    document.addEventListener('scroll', () => {
       if (document.documentElement.scrollTop > 50) {
         document.getElementById('sommaire').classList.add('top');
       } else {
         document.getElementById('sommaire').classList.remove('top');
       }
-    }
-  });
+    },
+    { passive: true }
+    );
+  }
 
   return (
     <div>
