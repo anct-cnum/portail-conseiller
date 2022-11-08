@@ -5,6 +5,7 @@ export const craService = {
   createCra,
   getCra,
   updateCra,
+  countByPermanence,
 };
 
 const apiUrlRoot = process.env.REACT_APP_API;
@@ -43,6 +44,14 @@ function updateCra(cra, conseillerId) {
     })
   };
   return fetch(`${apiUrlRoot}/cras`, requestOptions).then(handleResponse);
+}
+
+function countByPermanence(permanenceId) {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  };
+  return fetch(`${apiUrlRoot}/cras/countByPermanence?permanenceId=${permanenceId}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

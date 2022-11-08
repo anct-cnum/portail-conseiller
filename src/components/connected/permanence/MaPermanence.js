@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import SupprimerPermanence from './SupprimerPermanence';
+import { useDispatch, useSelector } from 'react-redux';
+import { craActions } from '../../../actions';
 
 function MaPermanence({ permanence, conseillerId, trClass }) {
-
+  const dispatch = useDispatch();
   const typeAcces = {
     libre: 'Accès libre',
     rdv: 'Sur Rendez-vous',
@@ -12,6 +14,21 @@ function MaPermanence({ permanence, conseillerId, trClass }) {
   };
 
   const islieuPrincipal = permanence?.lieuPrincipalPour?.includes(conseillerId);
+
+  const countCra = useSelector(state => state.cra.countCra);
+  const [count, setCount] = useState([]);
+  useEffect(() => {
+    if (permanence?._id && !countCra) {
+      dispatch(craActions.countByPermanence(permanence._id));
+    }
+  }, [permanence]);
+
+  useEffect(() => {
+    if (countCra && !count?.find(cra => cra === countCra)) {
+      count.push(countCra);
+      setCount(count);
+    }
+  }, [countCra]);
 
   return (
     <tr className={trClass + ' permanence'}>
@@ -38,7 +55,7 @@ function MaPermanence({ permanence, conseillerId, trClass }) {
         }}>
             Modifier
         </Link>
-        <SupprimerPermanence permanence={permanence} isDisabled={islieuPrincipal}/>
+        <SupprimerPermanence permanence={permanence} isDisabled={islieuPrincipal} count={count?.find(cra => cra.id === permanence?._id)?.count}/>
       </td>
     </tr>
   );
