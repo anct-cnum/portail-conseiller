@@ -27,6 +27,7 @@ export const craActions = {
   showSelectRedirection,
   getCra,
   updateCra,
+  countByPermanence,
 };
 
 function getButtonPermanences() {
@@ -192,5 +193,31 @@ function updateCra(cra, conseillerId) {
   }
   function failure(error) {
     return { type: 'SET_CRA_FAILURE', error };
+  }
+}
+
+function countByPermanence(permanenceId) {
+  return dispatch => {
+    dispatch(request());
+
+    craService.countByPermanence(permanenceId)
+    .then(
+      result => {
+        dispatch(success(result));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'COUNT_CRA_PERMANENCE_REQUEST' };
+  }
+  function success(count) {
+    return { type: 'COUNT_CRA_PERMANENCE_SUCCESS', count };
+  }
+  function failure(error) {
+    return { type: 'COUNT_CRA_PERMANENCE_FAILURE', error };
   }
 }

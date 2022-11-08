@@ -329,6 +329,25 @@ export default function cra(state = initialState, action) {
         saveInProgress: false,
         printFlashbag: false
       };
+    case 'COUNT_CRA_PERMANENCE_REQUEST':
+      return {
+        ...state,
+        loading: true,
+        printFlashbag: false
+      };
+    case 'COUNT_CRA_PERMANENCE_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        countCra: action.count
+      };
+    case 'COUNT_CRA_PERMANENCE_FAILURE':
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
+        printFlashbag: true
+      };
     default:
       return state;
   }
