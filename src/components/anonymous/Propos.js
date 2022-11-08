@@ -5,23 +5,26 @@ import Header from '../Header';
 import HeaderHub from '../hub/HeaderHub';
 
 function Propos() {
+
   const user = useSelector(state => state.authentication?.user?.user);
   const aideCoop = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide_espace_coop';
   const atelierActivite = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/atelier-nec---suivi-dactivite';
   const atelierPartenariats = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/atelier-nec-2022---demarches-partenariales';
 
-  const handleScroll = () => {
-    if (document.documentElement.scrollTop > 110) {
-      document.getElementById('sommaire').classList.add('top');
-    } else {
-      document.getElementById('sommaire').classList.remove('top');
+  window.addEventListener('scroll', () => {
+    if (window.innerWidth < 767) {
+      if (document.documentElement.scrollTop > 50) {
+        document.getElementById('sommaire').classList.add('top');
+      } else {
+        document.getElementById('sommaire').classList.remove('top');
+      }
     }
-  };
+  });
 
   return (
     <div>
       { user?.role === 'hub_coop' ? <HeaderHub linkAccount={user?.name} /> : <Header linkAccount={user?.name}/>}
-      <div id="propos" onWheel={handleScroll}>
+      <div id="propos">
         <div className="fr-container fr-mb-15w" >
           <div className="fr-grid-row">
             <div className="fr-col-12 fr-col-md-2 fr-my-6w fr-my-md-15w">
