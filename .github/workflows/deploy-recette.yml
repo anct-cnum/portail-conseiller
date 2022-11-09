@@ -44,10 +44,6 @@ jobs:
         envkey_REACT_APP_SENTRY_ENVIRONMENT: "recette"
         envkey_REACT_APP_SENTRY_DSN: ${{ secrets.SENTRY_COOP_DSN }}
         envkey_REACT_APP_SENTRY_TRACE_RATE: "0.01"
-        envkey_SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_BETA_AUTH_TOKEN }}
-        envkey_SENTRY_ORG: ${{ secrets.SENTRY_BETA_ORG }}
-        envkey_SENTRY_PROJECT: ${{ secrets.SENTRY_COOP_PROJECT }}
-        envkey_SENTRY_URL: ${{ secrets.SENTRY_BETA_URL }}
         file_name: .env
     - name: Build application
       run: yarn run build
@@ -64,3 +60,15 @@ jobs:
         FOLDER: build
         SSH_PRIVATE_KEY: ${{ secrets.CLEVER_CLOUD_DEPLOY_PRIVATE_KEY }}
         KNOWN_HOSTS_FILE: resources/known_hosts
+    - uses: actions/checkout@v2
+    - name: Create Sentry release
+      uses: getsentry/action-release@v1
+      env:
+        SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_BETA_AUTH_TOKEN }}
+        SENTRY_ORG: ${{ secrets.SENTRY_BETA_ORG }}
+        SENTRY_PROJECT: ${{ secrets.SENTRY_COOP_PROJECT }}
+        SENTRY_URL: ${{ secrets.SENTRY_BETA_URL }}
+      with:
+        environment: production
+        ignore_missing: true
+        ignore_empty: true
