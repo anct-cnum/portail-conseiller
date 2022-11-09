@@ -55,7 +55,7 @@ function RightPage({ donneesStats, print }) {
       couleursGraphique: tabColorLieux
     },
     titre: {
-      optionTitre: 'Lieux des accompagnements',
+      optionTitre: 'Canaux d&rsquo;accompagnements',
       margeTitre: 48,
       placementTitre: 0
     }
@@ -72,7 +72,7 @@ function RightPage({ donneesStats, print }) {
       couleursGraphique: tabColorLieux
     },
     titre: {
-      optionTitre: 'Lieux des accompagnements',
+      optionTitre: 'Canaux d&rsquo;accompagnements',
       margeTitre: -17,
       placementTitre: 0
     }

@@ -1041,7 +1041,10 @@ $blue: #2b8bf7;
   }
   .buttonDate, .radioButton2.small {
     position: relative;
-    top: 8px;
+    top: 35px;
+    @supports (-moz-appearance:none) {
+      top: 8px;
+    }
   }
   .radioButton2.small {
     display: inline;
