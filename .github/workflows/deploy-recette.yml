@@ -69,6 +69,6 @@ jobs:
         SENTRY_PROJECT: ${{ secrets.SENTRY_COOP_PROJECT }}
         SENTRY_URL: ${{ secrets.SENTRY_BETA_URL }}
       with:
-        environment: production
+        environment: recette
         ignore_missing: true
         ignore_empty: true
