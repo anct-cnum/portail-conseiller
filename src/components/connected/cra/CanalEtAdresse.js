@@ -53,7 +53,7 @@ function CanalEtAdresse() {
         </div>
         {cra?.canal === 'domicile' && cra?.errorsRequired.cp &&
           <div className="textInformation">
-            Renseignez la localisation plus bas via le champ &laquo;Lieu(x) de r&eacute;sidence(s) des usagers&raquo;.
+            Veuillez compl&eacute;ter en s&eacute;lectionnant le champs &laquo;&nbsp;Autre lieu&nbsp;&raquo;.
           </div>
         }
         {cra?.canal === 'distance' && cra?.errorsRequired.cp &&
