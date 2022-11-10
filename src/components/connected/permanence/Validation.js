@@ -97,12 +97,12 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
       }
       if (nouveauLieu._id !== null && nouveauLieu._id !== 'nouveau') {
         if (prefixId === 'principal_' && (idPermanenceUrl !== nouveauLieu._id)) {
-            dispatch(permanenceActions.deleteConseillerPermanence(idPermanenceUrl));
+          nouveauLieu.idOldPermanence = idPermanenceUrl;
         }
         dispatch(permanenceActions.updatePermanence(nouveauLieu?._id, conseillerId, nouveauLieu, true, null, redirection));
       } else if (prefixId) {
         if (prefixId === 'principal_') {
-          dispatch(permanenceActions.deleteConseillerPermanence(prefixId));
+          nouveauLieu.idOldPermanence = idPermanenceUrl;
         }
         nouveauLieu._id = null;
         dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, true, null, redirection));

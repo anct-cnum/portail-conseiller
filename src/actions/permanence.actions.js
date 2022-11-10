@@ -115,7 +115,6 @@ function closePermanence() {
 function verifyFormulaire(form, statut) {
 
   let errors = [];
-  console.log('errors:', errors);
   const errorsMessageTab = ['Merci de remplir le formulaire.', 'Vous devez impérativement corriger les erreurs avant de passer à la suite.'];
   const showLieuSecondaire = form?.showLieuSecondaire;
 
@@ -254,7 +253,6 @@ function verifyFormulaire(form, statut) {
   const idMessage = errors.length <= 4 ? 0 : 1;
   const errorMessage = errorsMessageTab[idMessage];
   const showError = errors.length <= 4 || nbErrors > 0;
-  console.log('nbErrors:', nbErrors);
 
   return { type: 'VERIFY_FORMULAIRE', errorsForm, errorMessage, showError };
 }
