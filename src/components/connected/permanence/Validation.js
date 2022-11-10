@@ -5,7 +5,7 @@ import telephoneHorsMetropole from '../../../data/indicatifs.json';
 import horairesInitiales from '../../../data/horairesInitiales.json';
 import { permanenceActions } from '../../../actions/permanence.actions';
 
-function Validation({ conseillerId, structureId, statut = 'principal_', redirectionValidation = null, codeDepartement }) {
+function Validation({ conseillerId, structureId, statut = 'principal_', redirectionValidation = null, codeDepartement, idPermanenceUrl }) {
   const dispatch = useDispatch();
   const form = useSelector(state => state.permanence);
   const fields = useSelector(state => state.permanence?.fields);
@@ -96,8 +96,14 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
         redirection = nouveauLieu._id ?? conseillerId;
       }
       if (nouveauLieu._id !== null && nouveauLieu._id !== 'nouveau') {
-        dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, true, null, redirection));
+        if (prefixId === 'principal_' && (idPermanenceUrl !== nouveauLieu._id)) {
+            dispatch(permanenceActions.deleteConseillerPermanence(idPermanenceUrl));
+        }
+        dispatch(permanenceActions.updatePermanence(nouveauLieu?._id, conseillerId, nouveauLieu, true, null, redirection));
       } else if (prefixId) {
+        if (prefixId === 'principal_') {
+          dispatch(permanenceActions.deleteConseillerPermanence(prefixId));
+        }
         nouveauLieu._id = null;
         dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, true, null, redirection));
       } else if (prefixId === null) {
@@ -149,7 +155,8 @@ Validation.propTypes = {
   structureId: PropTypes.string,
   redirectionValidation: PropTypes.string,
   statut: PropTypes.string,
-  codeDepartement: PropTypes.string
+  codeDepartement: PropTypes.string,
+  idPermanenceUrl: PropTypes.string
 };
 
 export default Validation;

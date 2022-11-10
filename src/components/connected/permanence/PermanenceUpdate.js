@@ -62,6 +62,45 @@ function PermanenceUpdate({ match }) {
     );
   };
 
+  const fillPermanencePrincipale = (permanencePrincipale, estStructure) => {
+    dispatch(permanenceActions.updateField('principal_idPermanence', permanencePrincipale?._id ?? null));
+    dispatch(permanenceActions.updateField('lieuPrincipalPour', permanencePrincipale?.lieuPrincipalPour));
+    dispatch(permanenceActions.updateField('principal_numeroTelephone', permanencePrincipale?.numeroTelephone ?? null));
+    dispatch(permanenceActions.updateField('principal_email', permanencePrincipale?.email ?? null));
+    dispatch(permanenceActions.updateField('principal_siteWeb', permanencePrincipale?.siteWeb ?? null));
+
+    dispatch(permanenceActions.updateField('principal_typeAcces', permanencePrincipale?.typeAcces ?? null));
+    permanencePrincipale?.typeAcces?.forEach(type => {
+      dispatch(permanenceActions.updateField('principal_' + type, true));
+    });
+    const horaires = permanencePrincipale?.horaires ?? horairesInitiales;
+    dispatch(permanenceActions.updateField('principal_horaires', { principal_horaires: horaires }));
+    dispatch(permanenceActions.updateField('principal_conseillers', permanencePrincipale?.conseillers ?? null));
+    dispatch(permanenceActions.updateField('principal_nomEnseigne', permanencePrincipale?.nomEnseigne ?? structure?.nom));
+    dispatch(permanenceActions.updateField('principal_siret', permanencePrincipale?.siret ?? structure?.siret));
+    dispatch(permanenceActions.updateField('principal_numeroVoie',
+      permanencePrincipale?.adresse?.numeroRue ?? adresseStructure.numero_voie));
+    dispatch(permanenceActions.updateField('principal_rueVoie',
+      permanencePrincipale?.adresse?.rue ?? adresseStructure.type_voie + ' ' + adresseStructure.nom_voie));
+    dispatch(permanenceActions.updateField('principal_codePostal',
+      permanencePrincipale?.adresse?.codePostal ?? adresseStructure.code_postal));
+    dispatch(permanenceActions.updateField('principal_ville',
+      permanencePrincipale?.adresse?.ville.toUpperCase() ?? adresseStructure.localite.toUpperCase()));
+    dispatch(permanenceActions.updateField('principal_location', estStructure === false ? structure?.location : null));
+    if (loadingHoraires) {
+      loadingHoraires[0] = true;
+      dispatch(permanenceActions.setHorairesLoading(loadingHoraires));
+    }
+    const adresseGeoloc = {
+      numero: estStructure ? maPermanence?.adresse?.numeroRue ?? adresseStructure.numero_voie : '',
+      rue: estStructure ? maPermanence?.adresse?.rue ?? adresseStructure.type_voie + ' ' + adresseStructure.nom_voie : '',
+      codePostal: estStructure ? maPermanence?.adresse?.codePostal ?? adresseStructure.code_postal : '',
+      ville: estStructure ? maPermanence?.adresse?.ville.toUpperCase() ?? adresseStructure.localite.toUpperCase() : ''
+    };
+    dispatch(permanenceActions.getGeocodeAdresse(adresseGeoloc, 'principal_'));
+    dispatch(permanenceActions.disabledField('principal_', estStructure === true ? true : false));
+  };
+
   function handleAdresse(estStructure) {
     loadingHoraires[0] = true;
     dispatch(permanenceActions.updateField('estStructure', estStructure));
@@ -85,27 +124,30 @@ function PermanenceUpdate({ match }) {
 
     if (estStructure) {
       maPermanence = listPermanences.filter(permanence => permanence?.estStructure === true)[0];
-      dispatch(permanenceActions.setChampsMaPermanence(
-        maPermanence,
-        'principal_',
-        conseiller)
-      );
+      fillPermanencePrincipale(maPermanence, estStructure);
       updateGeocodeAdress(maPermanence, 'principal_');
     } else {
-      dispatch(permanenceActions.rebootGeocodeAdresse(maPermanence.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_'));
-      dispatch(permanenceActions.disabledField(maPermanence.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_', false));
-      dispatch(permanenceActions.updateLieuEnregistrable(maPermanence.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_'));
+      dispatch(permanenceActions.rebootGeocodeAdresse(maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_'));
+      dispatch(permanenceActions.disabledField(maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_', estStructure === true ? true : false ));
+      dispatch(permanenceActions.updateLieuEnregistrable(maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_'));
       dispatch(permanenceActions.updateField(
-        maPermanence.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_checkboxSiret' : 'secondaire_0_checkboxSiret', false
+        maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_checkboxSiret' : 'secondaire_0_checkboxSiret', false
       ));
 
-      if (!maPermanence.lieuPrincipalPour.includes(conseiller?._id)) {
+      if (!maPermanence?.lieuPrincipalPour.includes(conseiller?._id)) {
         const show = [true];
         dispatch(permanenceActions.montrerLieuSecondaire(show));
       }
-
+      dispatch(permanenceActions.disabledField(maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_', estStructure === true ? true : false ));
       updateGeocodeAdress(maPermanence, maPermanence.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_');
     }
+    const adresseGeoloc = {
+      numero: estStructure ? maPermanence?.adresse?.numeroRue ?? adresseStructure.numero_voie : '',
+      rue: estStructure ? maPermanence?.adresse?.rue ?? adresseStructure.type_voie + ' ' + adresseStructure.nom_voie : '',
+      codePostal: estStructure ? maPermanence?.adresse?.codePostal ?? adresseStructure.code_postal : '',
+      ville: estStructure ? maPermanence?.adresse?.ville.toUpperCase() ?? adresseStructure.localite.toUpperCase() : ''
+    };
+    dispatch(permanenceActions.getGeocodeAdresse(adresseGeoloc, 'principal_'));
   }
 
   useEffect(async () => {
@@ -118,8 +160,8 @@ function PermanenceUpdate({ match }) {
       if ((maPermanence?._id !== idPermanence)) {
         await dispatch(permanenceActions.getMaPermanence(idPermanence));
       }
-      setEstLieuPrincipal(maPermanence.lieuPrincipalPour.includes(conseiller?._id));
-      if (maPermanence.estStructure && maPermanence.lieuPrincipalPour.includes(conseiller?._id)) {
+      setEstLieuPrincipal(maPermanence?.lieuPrincipalPour.includes(conseiller?._id));
+      if (maPermanence.estStructure && maPermanence?.lieuPrincipalPour.includes(conseiller?._id)) {
         setDefaultCheckedOui(true);
         setDefaultCheckedNon(false);
       } else {
@@ -150,6 +192,7 @@ function PermanenceUpdate({ match }) {
       dispatch(permanenceActions.updateField(
         maPermanence.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_checkboxSiret' : 'secondaire_0_checkboxSiret', false
       ));
+      dispatch(permanenceActions.disabledField(maPermanence.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_', maPermanence?.estStructure === true ? true : false ));
       const show = [!maPermanence?.lieuPrincipalPour.includes(conseiller?._id)];
       dispatch(permanenceActions.montrerLieuSecondaire(show));
     }
@@ -266,7 +309,7 @@ function PermanenceUpdate({ match }) {
                     <ListPermanences
                       prefixId={estlieuPrincipal ? 'principal_' : 'secondaire_0_' }
                       conseillerId={conseiller._id}
-                      permanenceActuelId={maPermanence._id}
+                      permanenceActuelId={maPermanence?._id}
                     />
 
                     <Adresse
@@ -292,6 +335,7 @@ function PermanenceUpdate({ match }) {
                       structureId={structure?._id}
                       redirectionValidation="/mes-lieux-activite"
                       statut={estlieuPrincipal ? 'principal_' : 'secondaire_0_' }
+                      idPermanenceUrl={idPermanence}
                     />
                   </div>
                 </div>
