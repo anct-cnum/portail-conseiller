@@ -30,6 +30,9 @@
     color: #fff;
     background-image: none;
   }
+  .journal-btn {
+    color: #6A6AF4;
+  }
   .icone-mail, .icone-cra, .icone-lieux, .icone-mattermost, .icone-base, .icone-pix, .icone-rdv, .icone-carte {
     display: inline-block;
     width: 53px;
@@ -114,11 +117,59 @@
   .bulle-ressourcerie {
     height: 29px;
   }
-
+  .top {
+    top: 0 !important;
+  }
+  .bulle-outil {
+    top: -2px;
+  }
+  .text-outil {
+    display: inline-block;
+    position: relative;
+    top: 12px;
+  }
+  @media  (max-width: 1280px)and (min-width: 768px) {
+    .test {
+      top: -300px !important;
+    }
+  }
+  @media (max-width: 1241px) and (min-width: 768px) {
+    .center-outils {
+      text-align: center;
+    }
+    .icone-base, .icone-carte, .icone-cra, .icone-lieux, .icone-mail, .icone-mattermost, .icone-pix, .icone-rdv {
+      display: block;
+      margin: auto;
+    }
+  }
+  @media (max-width: 1169px) {
+    .hide-md-br {
+      display: none;
+    }
+  }
   @media (max-width: 1124px) {
     .sommaire {
     width: 150px !important;
     top:75px;
+    }
+  }
+  @media (min-width: 996px) {
+    .text-outil {
+      width: 175px;
+    }
+  }
+  @media (max-width: 995px) {
+    .text-outil {
+    width: 165px;
+    }
+  }
+  @media (max-width: 991px) {
+    .bulle-outil {
+      top: 10px;
+    }
+    .text-outil {
+      width: 250px;
+      top: 0px;
     }
   }
   @media (max-width: 954px) and (min-width: 768px) {
@@ -127,9 +178,6 @@
     }
   }
   @media (max-width: 767px) {
-    .top {
-      top: 0 !important;
-    }
     .sommaire {
     width: 100% !important;
     top:110px;
@@ -157,4 +205,3 @@
       }
   }
 }
-

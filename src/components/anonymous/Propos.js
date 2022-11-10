@@ -11,22 +11,25 @@ function Propos() {
   const atelierActivite = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/atelier-nec---suivi-dactivite';
   const atelierPartenariats = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/atelier-nec-2022---demarches-partenariales';
 
-  if (window.innerWidth < 767) {
-    document.addEventListener('scroll', () => {
-      if (document.documentElement.scrollTop > 50) {
-        document.getElementById('sommaire').classList.add('top');
-      } else {
-        document.getElementById('sommaire').classList.remove('top');
-      }
-    },
-    { passive: true }
-    );
-  }
+  document.addEventListener('scroll', () => {
+    if (document.documentElement.scrollTop > 3350) {
+      document.getElementById('sommaire').classList.add('test');
+      document.getElementById('sommaire').classList.remove('top');
+    } else if (document.documentElement.scrollTop > 50) {
+      document.getElementById('sommaire').classList.add('top');
+      document.getElementById('sommaire').classList.remove('test');
+    } else {
+      document.getElementById('sommaire').classList.remove('top');
+      document.getElementById('sommaire').classList.remove('test');
+    }
+  },
+  { passive: true }
+  );
 
   return (
     <div>
       { user?.role === 'hub_coop' ? <HeaderHub linkAccount={user?.name} /> : <Header linkAccount={user?.name}/>}
-      <div id="propos">
+      <div id="propos" className="contenu-marge">
         <div className="fr-container fr-mb-15w" >
           <div className="fr-grid-row">
             <div className="fr-col-12 fr-col-md-2 fr-my-6w fr-my-md-15w">
@@ -105,7 +108,7 @@ function Propos() {
                       – permet &eacute;galement &agrave; l&rsquo;&eacute;tat d&rsquo;administrer et piloter le dispostif CnFS.<br/>
                     </p>
                     <p>
-                      <b>&eacute;changer entre conseillers num&eacute;riques</b> via l&rsquo;espace de discussion pour&nbsp;:<br/>
+                      <b>&Eacute;changer entre conseillers num&eacute;riques</b> via l&rsquo;espace de discussion pour&nbsp;:<br/>
                       – des &eacute;changes de pratiques, des conseils, de l&rsquo;aide dans son activit&eacute;&nbsp;;<br/>
                       – faire des retours, participer &agrave; l&rsquo;am&eacute;lioration des outils CnFS.<br/>
                     </p>
@@ -126,7 +129,7 @@ function Propos() {
                       1. Les applications g&eacute;r&eacute;es par l&rsquo;&eacute;quipe de conception Coop
                     </h3>
                     <div className="fr-container--fluid">
-                      <div className="fr-grid-row">
+                      <div className="fr-grid-row center-outils">
                         <div className="fr-col-12 fr-col-md-6 sous-titre-2 fr-mb-4w">
                           D&eacute;velopp&eacute;es en interne :
                         </div>
@@ -177,7 +180,7 @@ function Propos() {
                       2. Les liens vers les services d&eacute;velopp&eacute;s par d&rsquo;autres &eacute;quipes mandat&eacute;es par l&rsquo;&eacute;tat
                     </h3>
                     <div className="fr-container--fluid">
-                      <div className="fr-grid-row">
+                      <div className="fr-grid-row center-outils">
                         <div className="fr-col-12 fr-col-md-6 fr-mb-4w">
                           <img src="/logos/home-connected/icone-la-base.svg" className="icone-base"/>
                           <div className="text-icone">
@@ -193,8 +196,8 @@ function Propos() {
                           <div className="text-icone">
                             <b>PIX</b><br/>
                             <span className="sous-titre-2">
-                              Service public en ligne pour &eacute;valuer, d&eacute;velopper<br/>
-                              et certifier les comp&eacute;tences num&eacute;riques.
+                              Service public en ligne pour &eacute;valuer, d&eacute;velopper<br className="hide-md-br"/>
+                              &nbsp;et certifier les comp&eacute;tences num&eacute;riques.
                             </span>
                           </div>
                         </div>
@@ -203,8 +206,8 @@ function Propos() {
                           <div className="text-icone">
                             <b>RDV Aide Num&eacute;rique</b><br/>
                             <span className="sous-titre-2">
-                              Permet aux usagers ayant pris rendez-vous pour<br/>
-                              un accompagnement d&rsquo;&ecirc;tre rappel&eacute;s par SMS.
+                              Permet aux usagers ayant pris rendez-vous pour<br className="hide-md-br"/>
+                              &nbsp;un accompagnement d&rsquo;&ecirc;tre rappel&eacute;s par SMS.
                             </span>
                           </div>
                         </div>
@@ -227,20 +230,22 @@ function Propos() {
                   <div className="fr-col-12 fr-col-md-10 fr-mt-9w">
                     <h2 id="philosophieOutils">La philosophie des outils CnFS&nbsp;: co-construire avec vous, &nbsp;<br className="hide-md"/>
                     et en am&eacute;lioration continue</h2>
-                    <img className="show-md echange" src="/logos/participation-cnfs.svg" />
+                    <img className="show-md echange" src="/logos/participation-cnfs.svg" style={{ display: 'none' }}/>
                     <p>
-                      Les outils des CnFS (Coop, CRA, carte, kit de communication, etc.) sont conçus en mettant l&rsquo;humain<br className="hide-md"/>
-                      au centre : avec la participation active de conseillers num&eacute;riques, de m&eacute;diateurs exp&eacute;riment&eacute;s,
-                      ainsi<br className="hide-md"/> que d&rsquo;un panel vari&eacute; d&rsquo;acteurs de l&rsquo;&eacute;co-syst&egrave;me de la
+                      Les outils des CnFS (Coop, CRA, carte, kit de communication, etc.) sont conçus en mettant l&rsquo;humain<br className="hide-md-br"/>
+                      &nbsp;au centre : avec la participation active de conseillers num&eacute;riques, de m&eacute;diateurs exp&eacute;riment&eacute;s,
+                      ainsi<br className="hide-md-br"/> que d&rsquo;un panel vari&eacute; d&rsquo;acteurs de l&rsquo;&eacute;co-syst&egrave;me de la
                       m&eacute;diation num&eacute;rique.
                     </p>
                     <p>
                       Le but final de cette d&eacute;marche est de fournir les outils qui correspondent au mieux &agrave; la r&eacute;alit&eacute;
-                      de<br className="hide-md"/> terrain des conseillers num&eacute;riques.
+                      de<br className="hide-md-br"/> terrain des conseillers num&eacute;riques.
                     </p>
                     <p>
                       Consulter le&nbsp;
-                      <a className="fr-link fr-fi-external-link-line fr-link--icon-right validation-extern-btn" href="" title="prochainement...">
+                      <a className="fr-link fr-fi-external-link-line fr-link--icon-right journal-btn"
+                        href="https://outline.incubateur.anct.gouv.fr/share/5ba87b15-f627-4ad5-a9fd-7f515832ef1b"
+                        target="blank" rel="noopener noreferrer" title="Le journal de bord de l&rsquo;espace coop">
                         journal de bord
                       </a>
                       &nbsp;de la Coop pour d&eacute;couvrir la liste des mises &agrave; jour &agrave; venir et pass&eacute;es.
@@ -249,22 +254,22 @@ function Propos() {
                     <h3 id="contribution" className="fr-mt-6w">1. Vous aussi, contribuez si vous le souhaitez !</h3>
                     <p>
                       Vous souhaitez effectuer un retour, faire part d&rsquo;un besoin, d&rsquo;une id&eacute;e, signaler un bug, participer &agrave; un
-                      <br className="hide-md"/> atelier de conception, ou d&eacute;couvrir les futures am&eacute;liorations en avant-premi&egrave;re&nbsp;?
+                      <br className="hide-md-br"/> atelier de conception, ou d&eacute;couvrir les futures am&eacute;liorations en avant-premi&egrave;re&nbsp;?
                     </p>
                     <p>
                       Rejoignez les canaux d&eacute;di&eacute;s sur l&rsquo;espace de discussion (Mattermost) :
                     </p>
                     <div className="fr-container--fluid fr-my-6w">
                       <div className="fr-grid-row">
-                        <a className="fr-col-4 fr-col-md-3 lien-mattermost" href={aideCoop} target="blank" rel="noopener noreferrer">
+                        <a className="fr-col-12 fr-col-lg-4 lien-mattermost" href={aideCoop} target="blank" rel="noopener noreferrer">
                           <img src="/logos/bulle-ressourcerie.svg" className="bulle-ressourcerie" alt="liens aide vers Mattermost"/>
                           Aide - Espace Coop
                         </a>
-                        <a className="fr-col-4 fr-col-md-3 lien-mattermost" href={atelierActivite} target="blank" rel="noopener noreferrer">
-                          <img src="/logos/bulle-ressourcerie.svg" className="bulle-ressourcerie" alt="liens aide vers Mattermost"/>
-                          Atelier - Outil de suivi d&rsquo;activit&eacute;
+                        <a className="fr-col-12 fr-col-lg-4 lien-mattermost" href={atelierActivite} target="blank" rel="noopener noreferrer">
+                          <img src="/logos/bulle-ressourcerie.svg" className="bulle-ressourcerie bulle-outil" alt="liens aide vers Mattermost"/>
+                          <div className="text-outil">Atelier - Outil de suivi d&rsquo;activit&eacute;</div>
                         </a>
-                        <a className="fr-col-4 fr-col-md-3 lien-mattermost" href={atelierPartenariats} target="blank" rel="noopener noreferrer">
+                        <a className="fr-col-12 fr-col-lg-4 lien-mattermost" href={atelierPartenariats} target="blank" rel="noopener noreferrer">
                           <img src="/logos/bulle-ressourcerie.svg" className="bulle-ressourcerie" alt="liens aide vers Mattermost"/>
                           Atelier - Partenariats
                         </a>
@@ -274,18 +279,18 @@ function Propos() {
                     <ul>
                       <li className="fr-mb-3w">
                       Une douzaine de m&eacute;diateurs num&eacute;riques et des r&eacute;f&eacute;rents territoriaux ont
-                      particip&eacute; &agrave; la d&eacute;finition<br className="hide-md"/> de l&rsquo;espace Coop en janvier 2021.
+                      particip&eacute; &agrave; la d&eacute;finition<br className="hide-md-br"/> de l&rsquo;espace Coop en janvier 2021.
                       </li>
                       <li className="fr-mb-3w">
                         Le CRA (outil de Compte Rendu d&rsquo;Activit&eacute;) a &eacute;t&eacute; pourvu de multiples am&eacute;liorations
-                        apport&eacute;es par<br className="hide-md"/> les CnFS, leurs coordinateurs, et d&rsquo;autres m&eacute;diateurs
-                        num&eacute;riques confirm&eacute;s depuis sa conception<br className="hide-md"/> et son lancement en 2021.
+                        apport&eacute;es par<br className="hide-md-br"/> les CnFS, leurs coordinateurs, et d&rsquo;autres m&eacute;diateurs
+                        num&eacute;riques confirm&eacute;s depuis sa conception<br className="hide-md-br"/> et son lancement en 2021.
                       </li>
                       <li className="fr-mb-3w">
                         L&rsquo;application Lieux d&rsquo;activit&eacute;s a subi deux it&eacute;rations de tests lors de sa conception.
-                        L&rsquo;&eacute;v&egrave;nement<br className="hide-md"/> NEC 2022, a donn&eacute; lieu &agrave; un nouvel atelier de conception, en lien
-                        avec la mise en valeur de l&rsquo;offre<br className="hide-md"/> de services des conseillers num&eacute;riques sur la carte nationale de
-                        la m&eacute;diation num&eacute;rique.
+                        L&rsquo;&eacute;v&egrave;nement<br className="hide-md-br"/> NEC 2022, a donn&eacute; lieu &agrave; un nouvel atelier de conception, en
+                        lien avec la mise en valeur de l&rsquo;offre<br className="hide-md-br"/> de services des conseillers num&eacute;riques sur la carte
+                        nationale de la m&eacute;diation num&eacute;rique.
                       </li>
                     </ul>
                   </div>
@@ -319,21 +324,21 @@ function Propos() {
                     <div>
                       <b>2020</b><br/>
                       <p>
-                        Octobre : lancement du dispositif Conseiller num&eacute;rique France Services et de sa plateforme de <br className="hide-md"/>
+                        Octobre : lancement du dispositif Conseiller num&eacute;rique France Services et de sa plateforme de <br className="hide-md-br"/>
                         recrutement en un mois (&eacute;quipe de conception de 3 personnes).
                       </p>
                       <b>2021</b><br/>
                       <p>
-                        semestre 1 : articulation du processus de recrutement, maintient des espaces (50 000 candidats et&nbsp;<br className="hide-md"/>
+                        semestre 1 : articulation du processus de recrutement, maintient des espaces (50 000 candidats et&nbsp;<br className="hide-md-br"/>
                         structures)&nbsp;;
-                        conception de l&rsquo;espace Coop.<br className="hide-md"/>
+                        conception de l&rsquo;espace Coop.<br className="hide-md-br"/>
                         semestre 2 : mise en ligne de la Coop ; conception de la carte nationale CnFS.
                       </p>
                       <b>2022</b><br/>
                       <p>
                         semestre 1 : mise en ligne de la carte nationale CnFS ; &eacute;volution de l&rsquo;outil de suivi d&rsquo;activit&eacute;.<br/>
                         semestre 2 : constitution d&rsquo;&eacute;quipes d&eacute;di&eacute;es : Carte, Coop, Tableau de bord structures (environ 4 &agrave;
-                        5<br className="hide-md"/> personnes par &eacute;quipe, les services sont en am&eacute;lioration continue).
+                        5<br className="hide-md-br"/> personnes par &eacute;quipe, les services sont en am&eacute;lioration continue).
                       </p>
                     </div>
                   </div>
