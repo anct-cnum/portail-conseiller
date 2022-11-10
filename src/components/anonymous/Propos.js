@@ -267,7 +267,7 @@ function Propos() {
                         </a>
                         <a className="fr-col-12 fr-col-lg-4 lien-mattermost" href={atelierActivite} target="blank" rel="noopener noreferrer">
                           <img src="/logos/bulle-ressourcerie.svg" className="bulle-ressourcerie bulle-outil" alt="liens aide vers Mattermost"/>
-                          <div className="text-outil" style={{ display: 'inline-block' }}>Atelier - Outil de suivi d&rsquo;activit&eacute;</div>
+                          <div className="text-outil">Atelier - Outil de suivi d&rsquo;activit&eacute;</div>
                         </a>
                         <a className="fr-col-12 fr-col-lg-4 lien-mattermost" href={atelierPartenariats} target="blank" rel="noopener noreferrer">
                           <img src="/logos/bulle-ressourcerie.svg" className="bulle-ressourcerie" alt="liens aide vers Mattermost"/>

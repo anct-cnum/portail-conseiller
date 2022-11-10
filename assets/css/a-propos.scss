@@ -124,6 +124,7 @@
     top: -2px;
   }
   .text-outil {
+    display: inline-block;
     position: relative;
     top: 12px;
   }
@@ -154,7 +155,6 @@
   }
   @media (min-width: 996px) {
     .text-outil {
-      display: inline-block;
       width: 175px;
     }
   }
