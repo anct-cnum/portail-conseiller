@@ -115,6 +115,7 @@ function closePermanence() {
 function verifyFormulaire(form, statut) {
 
   let errors = [];
+  console.log('errors:', errors);
   const errorsMessageTab = ['Merci de remplir le formulaire.', 'Vous devez impérativement corriger les erreurs avant de passer à la suite.'];
   const showLieuSecondaire = form?.showLieuSecondaire;
 
@@ -253,6 +254,7 @@ function verifyFormulaire(form, statut) {
   const idMessage = errors.length <= 4 ? 0 : 1;
   const errorMessage = errorsMessageTab[idMessage];
   const showError = errors.length <= 4 || nbErrors > 0;
+  console.log('nbErrors:', nbErrors);
 
   return { type: 'VERIFY_FORMULAIRE', errorsForm, errorMessage, showError };
 }
@@ -517,27 +519,27 @@ function reporterPermanence() {
 
 function setChampsMaPermanence(permanence, prefixId, conseiller) {
   const fields = [
-    { name: prefixId + 'idPermanence', value: permanence._id },
-    { name: 'estStructure', value: permanence.estStructure },
+    { name: prefixId + 'idPermanence', value: permanence?._id },
+    { name: 'estStructure', value: permanence?.estStructure },
     { name: 'estCoordinateur', value: conseiller?.estCoordinateur },
     { name: 'emailPro', value: conseiller?.emailPro },
     { name: 'telephonePro', value: conseiller?.telephonePro },
-    { name: prefixId + 'nomEnseigne', value: permanence.nomEnseigne },
-    { name: prefixId + 'numeroTelephone', value: permanence.numeroTelephone },
-    { name: prefixId + 'email', value: permanence.email },
-    { name: prefixId + 'siteWeb', value: permanence.siteWeb },
-    { name: prefixId + 'siret', value: permanence.siret },
-    { name: prefixId + 'numeroVoie', value: permanence.adresse.numeroRue },
-    { name: prefixId + 'rueVoie', value: permanence.adresse?.rue },
-    { name: prefixId + 'codePostal', value: permanence.adresse.codePostal },
-    { name: prefixId + 'ville', value: permanence.adresse.ville.toUpperCase() },
-    { name: prefixId + 'location', value: permanence.location },
-    { name: prefixId + 'conseillers', value: permanence.conseillers },
-    { name: prefixId + 'itinerant', value: permanence.conseillersItinerants.includes(conseiller?._id) },
+    { name: prefixId + 'nomEnseigne', value: permanence?.nomEnseigne },
+    { name: prefixId + 'numeroTelephone', value: permanence?.numeroTelephone },
+    { name: prefixId + 'email', value: permanence?.email },
+    { name: prefixId + 'siteWeb', value: permanence?.siteWeb },
+    { name: prefixId + 'siret', value: permanence?.siret },
+    { name: prefixId + 'numeroVoie', value: permanence?.adresse.numeroRue },
+    { name: prefixId + 'rueVoie', value: permanence?.adresse?.rue },
+    { name: prefixId + 'codePostal', value: permanence?.adresse.codePostal },
+    { name: prefixId + 'ville', value: permanence?.adresse.ville.toUpperCase() },
+    { name: prefixId + 'location', value: permanence?.location },
+    { name: prefixId + 'conseillers', value: permanence?.conseillers },
+    { name: prefixId + 'itinerant', value: permanence?.conseillersItinerants.includes(conseiller?._id) },
     { name: prefixId + 'horaires', value: { [prefixId + 'horaires']: permanence?.horaires } },
   ];
 
-  permanence.typeAcces?.forEach(type => {
+  permanence?.typeAcces?.forEach(type => {
     fields.push({ name: prefixId + type, value: true });
   });
 
