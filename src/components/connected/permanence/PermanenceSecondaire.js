@@ -38,11 +38,18 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
         fields?.filter(field => field.name === prefixId + 'prive')[0]?.value ? 'prive' : null,
       ].filter(n => n);
       dispatch(permanenceActions.updateField(prefixId + 'typeAcces', typeAcces));
-
-      dispatch(permanenceActions.verifyFormulaire(form, prefixId));
       setClickSubmit(true);
       setOuiBtn(true);
+      if (prefixId === 'principal_') {
+        dispatch(permanenceActions.verifyFormulaire(form, prefixId));
+      } else {
+        show[0] = true;
+        dispatch(permanenceActions.updateLieuEnregistrable(null));
+        dispatch(permanenceActions.updateField('submit_and_next_0', true));
+        dispatch(permanenceActions.montrerLieuSecondaire(show));
+      }
     } else {
+      setOuiBtn(false);
       show[0] = false;
 
       dispatch(permanenceActions.updateLieuEnregistrable(null));
@@ -88,7 +95,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
         typeAcces: fields.filter(field => field.name === prefixId + 'typeAcces')[0]?.value ?? null,
         conseillers: conseillers,
         structureId: structureId,
-        hasPermanence: false,
+        hasPermanence: true,
         lieuPrincipalPour: lieuPrincipalPour,
       };
 
@@ -102,10 +109,10 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
       show[0] = true;
       dispatch(permanenceActions.updateField('submit_and_next_0', true));
       dispatch(permanenceActions.montrerLieuSecondaire(show));
+      dispatch(permanenceActions.getListePermanences(structureId));
 
     } else if (errorsForm?.lengthError > 0 && clickSubmit) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      setOuiBtn(false);
     }
     setShow(show);
     setClickSubmit(false);

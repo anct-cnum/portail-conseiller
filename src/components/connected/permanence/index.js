@@ -29,6 +29,7 @@ function Permanence() {
   const isConseillerDeleted = useSelector(state => state.permanence.isConseillerDeleted);
   const isAllUpdated = useSelector(state => state.permanence.isAllUpdated);
   const redirection = useSelector(state => state.permanence?.redirection);
+  const permanencePrincipale = listPermanences && listPermanences.find(permanence => permanence.lieuPrincipalPour.includes(conseiller?._id));
 
   useEffect(() => {
     if (!conseiller) {
@@ -110,7 +111,20 @@ function Permanence() {
 
             <div className="fr-container">
               <div className="fr-grid-row">
-                <PermanencePrincipale structure={structure} conseillerId={conseiller?._id} isUpdate={conseiller?.hasPermanence}/>
+                {!permanencePrincipale &&
+                  <PermanencePrincipale structure={structure} conseillerId={conseiller?._id} isUpdate={conseiller?.hasPermanence}/>
+                }
+                {permanencePrincipale &&
+                  <>
+                    <div className="fr-col-1 col-logo fr-mt-10w">
+                      <img className="pin" src="logos/permanences/pin.svg"/>
+                    </div>
+                    <div className="fr-col-11">
+                      <h2 className="sous-titre fr-mt-9w fr-mb-7w">Votre lieu d&rsquo;activit&eacute; principal</h2>
+                      <h4>Nous avons bien prie en compte votre lieux d&rsquo;activit&eacute; principal</h4>
+                    </div>
+                  </>
+                }
               </div>
             </div>
 
