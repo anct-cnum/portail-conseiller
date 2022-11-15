@@ -4,6 +4,7 @@ const initialState = {
   dateDebutStats: new Date(anneeEnCours + '/' + moisEnCours + '/01'),
   dateFinStats: new Date(),
   codePostalStats: '',
+  villeStats: '',
   listeAutresReorientations: [],
 };
 export default function statistique(state = initialState, action) {
@@ -40,6 +41,7 @@ export default function statistique(state = initialState, action) {
       return {
         ...state,
         codePostalStats: action.codePostal,
+        villeStats: action.ville,
       };
     case 'GET_CODES_POSTAUX_CRA_REQUEST':
       return {
