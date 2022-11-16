@@ -12,15 +12,15 @@ function Propos() {
   const atelierPartenariats = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/atelier-nec-2022---demarches-partenariales';
 
   document.addEventListener('scroll', () => {
-    if (document.documentElement.scrollTop > 3350) {
-      document.getElementById('sommaire').classList.add('test');
+    if (window.innerWidth > 767 && document.documentElement.scrollTop > 3350) {
+      document.getElementById('sommaire').classList.add('upAtTop');
       document.getElementById('sommaire').classList.remove('top');
     } else if (document.documentElement.scrollTop > 50) {
       document.getElementById('sommaire').classList.add('top');
-      document.getElementById('sommaire').classList.remove('test');
+      document.getElementById('sommaire').classList.remove('upAtTop');
     } else {
       document.getElementById('sommaire').classList.remove('top');
-      document.getElementById('sommaire').classList.remove('test');
+      document.getElementById('sommaire').classList.remove('upAtTop');
     }
   },
   { passive: true }
@@ -35,9 +35,9 @@ function Propos() {
             <div className="fr-col-12 fr-col-md-2 fr-my-6w fr-my-md-15w">
               <nav id="sommaire" className="fr-sidemenu sommaire" aria-label="Sommaire">
                 <div className="fr-sidemenu__inner">
-                  <button className="fr-sidemenu__btn" hidden aria-controls="fr-sidemenu-wrapper" aria-expanded="false">Sommmaire</button>
+                  <button className="fr-sidemenu__btn" hidden aria-controls="fr-sidemenu-wrapper" aria-expanded="false">Sommaire</button>
                   <div className="fr-collapse" id="fr-sidemenu-wrapper">
-                    <div className="fr-mt-6w fr-mb-3w">Sommmaire</div>
+                    <div className="fr-mt-6w fr-mb-3w">Sommaire</div>
                     <ul className="fr-sidemenu__list">
                       <li className="fr-mb-1w">
                         <a href="#utiliteCoop" className="" aria-current="page">

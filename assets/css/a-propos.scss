@@ -129,7 +129,7 @@
     top: 12px;
   }
   @media  (max-width: 1280px)and (min-width: 768px) {
-    .test {
+    .upAtTop {
       top: -300px !important;
     }
   }
@@ -198,10 +198,23 @@
     .fresque-text {
       width: 135px;
     }
+    .text-icone {
+      width: 70%;
+    }
   }
   @media (max-width: 465px) {
     .sommaire {
       top: 176px;
       }
+  }
+  @media (max-width: 341px) {
+    .icone-base, .icone-carte, .icone-cra, .icone-lieux, .icone-mail, .icone-mattermost, .icone-pix, .icone-rdv {
+      display: block;
+      margin: auto;
+    }
+    .text-icone {
+      width: 100%;
+      text-align: center;
+    }
   }
 }

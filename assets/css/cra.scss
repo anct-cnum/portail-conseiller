@@ -1207,6 +1207,18 @@ $blue: #2b8bf7;
     .textInformation {
       width: 694px;
     }
+    .buttonDate {
+      top: 25px;
+      @supports (-moz-appearance:none) {
+        top: 8px;
+      }
+    }
+    .smallRadioRattachement2  {
+      top: -10px;
+      @supports (-moz-appearance:none) {
+        top: 0px;
+      }
+    }
   }
 
   @media (max-width: 991px) {
@@ -1222,7 +1234,6 @@ $blue: #2b8bf7;
       }
       button.smallRadioRattachement2 {
         width: 96px;
-        top: 10px;
       }
       #buttonPermanences{
         width: 576px;
@@ -1234,7 +1245,16 @@ $blue: #2b8bf7;
         width: 384px;
       }
       .buttonDate {
-        top: 18px;
+        top: 25px;
+        @supports (-moz-appearance:none) {
+          top: 18px;
+        }
+      }
+      .smallRadioRattachement2  {
+        top: -10px;
+        @supports (-moz-appearance:none) {
+          top: 10px;
+        }
       }
       .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
         font-size: 15px;
@@ -1291,10 +1311,20 @@ $blue: #2b8bf7;
     .buttonCP-filled {
       width: 100%;
     }
+    .textInformation {
+      width: 100%;
+    }
     .responsiveElementEnd2 {
       width: 100%;
+
       .buttonDate {
         top: 0px;
+      }
+      .smallRadioRattachement2  {
+        top: -35px;
+        @supports (-moz-appearance:none) {
+          top: -8px;
+        }
       }
       .react-datepicker {
         left: 93px;
@@ -1317,7 +1347,6 @@ $blue: #2b8bf7;
       }
       button.smallRadioRattachement2 {
         width: 50%;
-        top: -8px;
       }
     }
   }
