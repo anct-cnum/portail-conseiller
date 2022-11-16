@@ -8,7 +8,9 @@ function ElementCodePostal({ idStructure = '' }) {
   const dispatch = useDispatch();
   const listeCodesPostaux = useSelector(state => state.statistique?.listeCodesPostaux);
   const setCodePostal = e => {
-    dispatch(statistiqueActions.changeCodePostalStats(e.target.value));
+    const codePostal = e.target.value.split(' - ')[0];
+    const ville = e.target.value.split(' - ')[1];
+    dispatch(statistiqueActions.changeCodePostalStats(codePostal, ville));
   };
 
   useEffect(() => {
@@ -23,9 +25,19 @@ function ElementCodePostal({ idStructure = '' }) {
 
   return (
     <select className="fr-select code-postal-select fr-my-2w" onChange={setCodePostal}>
-      <option value="">Tous codes postaux</option>
-      {listeCodesPostaux && listeCodesPostaux?.map((codePostal, idx) => {
+      <option value="">TOUS CODES POSTAUX</option>
+      {idStructure.length > 0 && listeCodesPostaux && listeCodesPostaux?.map((codePostal, idx) => {
         return (<option key={idx} value={codePostal}>{codePostal}</option>);
+      })}
+      {idStructure.length === 0 && listeCodesPostaux && listeCodesPostaux?.map((codePostal, idx) => {
+        return (<optgroup key={idx} label={codePostal.id}>
+          {codePostal?.codePostal?.length > 1 &&
+            <option value={codePostal.id}>{codePostal.id} - TOUTES COMMUNES </option>
+          }
+          {codePostal?.codePostal?.map((ligne, idxbis) => {
+            return (<option key={idxbis} value={ligne}>{ligne.toUpperCase()}</option>);
+          })}
+        </optgroup>);
       })}
     </select>
   );
