@@ -91,6 +91,7 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpda
         setClickSubmit(false);
         dispatch(permanenceActions.updateField('submit_and_next_' + (secondaireId + 1), true));
         dispatch(permanenceActions.montrerLieuSecondaire(show));
+        dispatch(permanenceActions.getListePermanences(structureId));
       } else if (errorsForm?.lengthError > 0 && submit === true && clickSubmit === true) {
         dispatch(permanenceActions.montrerLieuSecondaire(show));
         window.scrollTo({ top: 0, behavior: 'smooth' });

@@ -8,7 +8,7 @@ import CarteAdresse from './Components/CarteAdresse';
 import ButtonLocalisation from './Components/ButtonLocalisation';
 import SelectAdresse from './Components/SelectAdresse';
 
-function Adresse({ codeDepartement, prefixId, isUpdate }) {
+function Adresse({ codeDepartement, prefixId, isUpdate, chargeCarteFistSecondaire }) {
 
   const fields = useSelector(state => state.permanence?.fields);
   const disabledFields = useSelector(state => state.permanence?.disabledFields);
@@ -163,7 +163,10 @@ function Adresse({ codeDepartement, prefixId, isUpdate }) {
         </div>
       </div>
 
-      <div className="fr-col-sm-12 fr-col-md-4"><CarteAdresse prefixId={prefixId} /></div>
+      <div className="fr-col-sm-12 fr-col-md-4">
+      {chargeCarteFistSecondaire === 'loading' ? <CarteAdresse prefixId={prefixId}/> : '' }
+      {!chargeCarteFistSecondaire && <CarteAdresse prefixId={prefixId}/> }
+      </div>
 
       <div className="fr-col-offset-1 fr-col-11 fr-col-sm-7 fr-col-md-5 fr-mb-6w">
         <InputText
@@ -210,6 +213,7 @@ Adresse.propTypes = {
   isUpdate: PropTypes.bool,
   permanence: PropTypes.object,
   conseillerId: PropTypes.string,
+  chargeCarteFistSecondaire: PropTypes.string,
 };
 
 export default Adresse;

@@ -121,7 +121,7 @@ function Permanence() {
                     </div>
                     <div className="fr-col-11">
                       <h2 className="sous-titre fr-mt-9w fr-mb-7w">Votre lieu d&rsquo;activit&eacute; principal</h2>
-                      <h4>Nous avons bien prie en compte votre lieux d&rsquo;activit&eacute; principal</h4>
+                      <h4>Votre lieu principal d&rsquo;activit&eacute; &agrave; bien &eacute;t&eacute; enregistr&eacute;</h4>
                     </div>
                   </>
                 }
@@ -131,6 +131,7 @@ function Permanence() {
             <PermanenceSecondaire structure={structure}
               conseillerId={conseiller?._id} structureId={structure?._id}
               isUpdate={location.pathname === '/lieux-activite'}
+              codeDepartement={conseiller?.codeDepartementStructure}
             />
 
             <div className="fr-container">
