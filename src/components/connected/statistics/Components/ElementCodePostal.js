@@ -25,17 +25,17 @@ function ElementCodePostal({ idStructure = '' }) {
 
   return (
     <select className="fr-select code-postal-select fr-my-2w" onChange={setCodePostal}>
-      <option value="">Tous codes postaux</option>
+      <option value="">TOUS CODES POSTAUX</option>
       {idStructure.length > 0 && listeCodesPostaux && listeCodesPostaux?.map((codePostal, idx) => {
         return (<option key={idx} value={codePostal}>{codePostal}</option>);
       })}
       {idStructure.length === 0 && listeCodesPostaux && listeCodesPostaux?.map((codePostal, idx) => {
         return (<optgroup key={idx} label={codePostal.id}>
-          {codePostal?.codePostal.length > 1 &&
-            <option value={codePostal.id}>{codePostal.id} - Toutes villes </option>
+          {codePostal?.codePostal?.length > 1 &&
+            <option value={codePostal.id}>{codePostal.id} - TOUTES COMMUNES </option>
           }
-          {codePostal?.codePostal.map((ligne, idxbis) => {
-            return (<option key={idxbis} value={ligne}>{ligne}</option>);
+          {codePostal?.codePostal?.map((ligne, idxbis) => {
+            return (<option key={idxbis} value={ligne}>{ligne.toUpperCase()}</option>);
           })}
         </optgroup>);
       })}
