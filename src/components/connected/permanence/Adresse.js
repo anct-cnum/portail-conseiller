@@ -164,8 +164,8 @@ function Adresse({ codeDepartement, prefixId, isUpdate, chargeCarteFistSecondair
       </div>
 
       <div className="fr-col-sm-12 fr-col-md-4">
-      {chargeCarteFistSecondaire === 'loading' ? <CarteAdresse prefixId={prefixId}/> : '' }
-      {!chargeCarteFistSecondaire && <CarteAdresse prefixId={prefixId}/> }
+        {chargeCarteFistSecondaire === 'loading' ? <CarteAdresse prefixId={prefixId}/> : '' }
+        {!chargeCarteFistSecondaire && <CarteAdresse prefixId={prefixId}/> }
       </div>
 
       <div className="fr-col-offset-1 fr-col-11 fr-col-sm-7 fr-col-md-5 fr-mb-6w">

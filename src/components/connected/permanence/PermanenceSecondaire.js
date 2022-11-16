@@ -164,33 +164,33 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
                 {/* // sois on cache cette partie où on fais un en sorte que le onclick n'est pas possible.. */}
                 {(!listPermanences?.find(permanence => !permanence?.lieuPrincipalPour.includes(conseillerId))) &&
                   <>
-                  <div className="fr-radio-group">
-                    {ouiBtn === true &&
-                      <input type="radio" id="secondaire-Oui" name="secondaire" value="true" defaultChecked={true} onClick={() => {
-                        handleSecondaire(true);
-                      }} />
-                    }
-                    {ouiBtn === false &&
-                      <input type="radio" id="secondaire-Oui" name="secondaire" value="true" onClick={() => {
-                        handleSecondaire(true);
-                      }} />
-                    }
-                    <label className="fr-label" htmlFor="secondaire-Oui">Oui</label>
-                  </div>
+                    <div className="fr-radio-group">
+                      {ouiBtn === true &&
+                        <input type="radio" id="secondaire-Oui" name="secondaire" value="true" defaultChecked={true} onClick={() => {
+                          handleSecondaire(true);
+                        }} />
+                      }
+                      {ouiBtn === false &&
+                        <input type="radio" id="secondaire-Oui" name="secondaire" value="true" onClick={() => {
+                          handleSecondaire(true);
+                        }} />
+                      }
+                      <label className="fr-label" htmlFor="secondaire-Oui">Oui</label>
+                    </div>
 
-                  <div className="fr-radio-group">
-                    {ouiBtn === true &&
-                      <input type="radio" id="secondaire-Non" name="secondaire" value="false" onClick={() => {
-                        handleSecondaire(false);
-                      }} />
-                    }
-                    {ouiBtn === false &&
-                      <input type="radio" id="secondaire-Non" name="secondaire" value="false" defaultChecked={true} onClick={() => {
-                        handleSecondaire(false);
-                      }} />
-                    }
-                  <label className="fr-label" htmlFor="secondaire-Non">Non</label>
-                </div>
+                    <div className="fr-radio-group">
+                      {ouiBtn === true &&
+                        <input type="radio" id="secondaire-Non" name="secondaire" value="false" onClick={() => {
+                          handleSecondaire(false);
+                        }} />
+                      }
+                      {ouiBtn === false &&
+                        <input type="radio" id="secondaire-Non" name="secondaire" value="false" defaultChecked={true} onClick={() => {
+                          handleSecondaire(false);
+                        }} />
+                      }
+                      <label className="fr-label" htmlFor="secondaire-Non">Non</label>
+                    </div>
                   </>
                 }
               </div>
@@ -230,7 +230,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
                     secondaireId={ idx }
                     islieuPrincipal={false}
                     conseillerId={conseillerId}
-                    chargeCarteFistSecondaire={(prefixId === `secondaire_${idx}_`) ? 'loading': 'notLoading'}
+                    chargeCarteFistSecondaire={(prefixId === `secondaire_${idx}_`) ? 'loading' : 'notLoading'}
                   />
                   <TypeAcces prefixId={ 'secondaire_' + idx + '_'} islieuPrincipal={false} />
                   <Horaires prefixId={ 'secondaire_' + idx + '_'} horairesId={idx + 1} />
@@ -238,7 +238,11 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
               }
               {idx < listPermanences?.filter(permanence => !permanence?.lieuPrincipalPour.includes(conseillerId)).length &&
                 <>
-                  <h5 className="fr-col-offset-1 fr-col-11 fr-mb-7w">Lieu d&rsquo;activit&eacute; secondaire {listPermanences?.filter(permanence => !permanence?.lieuPrincipalPour.includes(conseillerId))[idx]?.nomEnseigne} a bien &eacute;t&eacute; enregistr&eacute;</h5>
+                  <h5 className="fr-col-offset-1 fr-col-11 fr-mb-7w">
+                    Lieu d&rsquo;activit&eacute; secondaire
+                    {` ${listPermanences?.filter(permanence => !permanence?.lieuPrincipalPour.includes(conseillerId))[idx]?.nomEnseigne} `}
+                    a bien &eacute;t&eacute; enregistr&eacute;
+                  </h5>
                 </>
               }
 
