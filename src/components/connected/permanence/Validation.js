@@ -81,12 +81,13 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
       }
 
       nouveauLieu.idOldPermanence = fields?.filter(field => field.name === 'idOldPermanence')[0]?.value ?? null;
+      const PHONE_REGEX = /^(?:(?:\+)(33|590|596|594|262|269))(?:\d{3}){3}$/;
       const findIndicatif = telephoneHorsMetropole.find(r => r.codeDepartement === codeDepartement);
       nouveauLieu.telephonePro = nouveauLieu.telephonePro?.trim();
-      const condition = value => (value && !['+33', '+26', '+59'].includes(value.substr(0, 3))) ?
+      const condition = value => !PHONE_REGEX.test(nouveauLieu.telephonePro) ?
         `${findIndicatif?.indicatif ?? '+33'}${value.substr(1)}` : value;
       nouveauLieu.telephonePro = nouveauLieu.telephonePro ? condition(nouveauLieu.telephonePro) : '';
-      if (nouveauLieu.telephonePro.length < 12) {
+      if (!PHONE_REGEX.test(nouveauLieu.telephonePro)) {
         nouveauLieu.telephonePro = null;
       }
       nouveauLieu.adresse = JSON.parse(JSON.stringify(nouveauLieu.adresse,

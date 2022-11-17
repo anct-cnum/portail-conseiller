@@ -95,11 +95,12 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
         lieuPrincipalPour: lieuPrincipalPour,
       };
       const findIndicatif = telephoneHorsMetropole.find(r => r.codeDepartement === codeDepartement);
+      const PHONE_REGEX = /^(?:(?:\+)(33|590|596|594|262|269))(?:\d{3}){3}$/;
       nouveauLieu.telephonePro = nouveauLieu.telephonePro?.trim();
-      const condition = value => (value && !['+33', '+26', '+59'].includes(value.substr(0, 3))) ?
+      const condition = value => !PHONE_REGEX.test(nouveauLieu.telephonePro) ?
         `${findIndicatif?.indicatif ?? '+33'}${value.substr(1)}` : value;
       nouveauLieu.telephonePro = nouveauLieu.telephonePro ? condition(nouveauLieu.telephonePro) : '';
-      if (nouveauLieu.telephonePro.length < 12) {
+      if (!PHONE_REGEX.test(nouveauLieu.telephonePro)) {
         nouveauLieu.telephonePro = null;
       }
       if (nouveauLieu._id !== null && nouveauLieu._id !== 'nouveau') {
