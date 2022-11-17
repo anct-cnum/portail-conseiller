@@ -4,11 +4,9 @@ import { permanenceActions } from '../../../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import horairesInitiales from '../../../../data/horairesInitiales.json';
 import telephoneHorsMetropole from '../../../../data/indicatifs.json';
-import { useLocation } from 'react-router-dom';
 
 function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpdate, codeDepartement }) {
   const dispatch = useDispatch();
-  const location = useLocation();
 
   const form = useSelector(state => state.permanence);
   const fields = useSelector(state => state.permanence?.fields);

@@ -250,7 +250,12 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
               }
 
               {idx < 14 &&
-                <AjouterAutrePermanence secondaireId={ idx } conseillerId={conseillerId} structureId={structureId} show={show} codeDepartement={structure?.codeDepartement}/>
+                <AjouterAutrePermanence
+                  secondaireId={ idx }
+                  conseillerId={conseillerId}
+                  structureId={structureId}
+                  show={show}
+                  codeDepartement={structure?.codeDepartement}/>
               }
             </div>
           </div>
