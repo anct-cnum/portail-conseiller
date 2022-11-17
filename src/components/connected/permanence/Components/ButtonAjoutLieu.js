@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { permanenceActions } from '../../../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import horairesInitiales from '../../../../data/horairesInitiales.json';
+import telephoneHorsMetropole from '../../../../data/indicatifs.json';
 import { useLocation } from 'react-router-dom';
 
-function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpdate }) {
+function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpdate, codeDepartement }) {
   const dispatch = useDispatch();
   const location = useLocation();
 
@@ -15,6 +16,10 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpda
   const prefixId = useSelector(state => state.permanence?.prefixIdLieuEnregistrable);
 
   const [clickSubmit, setClickSubmit] = useState(false);
+
+  const REGEX_PHONE_DEBUT = /^(?:\+)(33|590|596|594|262|269)/;
+  const REGEX_ZERO = /^(?:(?:\+)(33|590|596|594|262|269))([/\1-9/g])(?:\d{3}){3}$/g; // controle du zero après +XXX
+  const REGEX_PHONE = /^(?:(?:\+)(33|590|596|594|262|269))(?:\d{3}){3}$/;
 
   const onClick = () => {
 
@@ -78,9 +83,15 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpda
           conseillersItinerants: conseillersItinerants,
           conseillers: conseillers,
           structureId: structureId,
-          hasPermanence: location.pathname === '/lieux-activite',
+          hasPermanence: true,
         };
-
+        const findIndicatif = telephoneHorsMetropole.find(r => r.codeDepartement === codeDepartement);
+        nouveauLieu.telephonePro = nouveauLieu.telephonePro?.trim();
+        const condition = value => !REGEX_PHONE_DEBUT.test(nouveauLieu.telephonePro) ? `${findIndicatif?.indicatif ?? '+33'}${value.substr(1)}` : value;
+        nouveauLieu.telephonePro = nouveauLieu.telephonePro ? condition(nouveauLieu.telephonePro) : '';
+        if (REGEX_ZERO.test(nouveauLieu.telephonePro) || !REGEX_PHONE.test(nouveauLieu.telephonePro)) {
+          nouveauLieu.telephonePro = null;
+        }
         if (nouveauLieu._id !== null && nouveauLieu._id !== 'nouveau') {
           dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, false, 'secondaire_' + (secondaireId + 1) + '_'));
         } else {
@@ -115,6 +126,7 @@ ButtonAjoutLieu.propTypes = {
   structureId: PropTypes.string,
   secondaireId: PropTypes.number,
   isUpdate: PropTypes.bool,
+  codeDepartement: PropTypes.string,
 };
 
 export default ButtonAjoutLieu;

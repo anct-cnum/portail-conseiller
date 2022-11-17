@@ -31,6 +31,10 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
   const [clickSubmit, setClickSubmit] = useState(false);
   const [ouiBtn, setOuiBtn] = useState(false);
 
+  const REGEX_PHONE_DEBUT = /^(?:\+)(33|590|596|594|262|269)/;
+  const REGEX_ZERO = /^(?:(?:\+)(33|590|596|594|262|269))([/\1-9/g])(?:\d{3}){3}$/g; // controle du zero après +XXX
+  const REGEX_PHONE = /^(?:(?:\+)(33|590|596|594|262|269))(?:\d{3}){3}$/;
+
   function handleSecondaire(hasSecondaire) {
     if (hasSecondaire) {
 
@@ -95,12 +99,10 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
         lieuPrincipalPour: lieuPrincipalPour,
       };
       const findIndicatif = telephoneHorsMetropole.find(r => r.codeDepartement === codeDepartement);
-      const PHONE_REGEX = /^(?:(?:\+)(33|590|596|594|262|269))(?:\d{3}){3}$/;
       nouveauLieu.telephonePro = nouveauLieu.telephonePro?.trim();
-      const condition = value => !PHONE_REGEX.test(nouveauLieu.telephonePro) ?
-        `${findIndicatif?.indicatif ?? '+33'}${value.substr(1)}` : value;
+      const condition = value => !REGEX_PHONE_DEBUT.test(nouveauLieu.telephonePro) ? `${findIndicatif?.indicatif ?? '+33'}${value.substr(1)}` : value;
       nouveauLieu.telephonePro = nouveauLieu.telephonePro ? condition(nouveauLieu.telephonePro) : '';
-      if (!PHONE_REGEX.test(nouveauLieu.telephonePro)) {
+      if (REGEX_ZERO.test(nouveauLieu.telephonePro) || !REGEX_PHONE.test(nouveauLieu.telephonePro)) {
         nouveauLieu.telephonePro = null;
       }
       if (nouveauLieu._id !== null && nouveauLieu._id !== 'nouveau') {
@@ -248,7 +250,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
               }
 
               {idx < 14 &&
-                <AjouterAutrePermanence secondaireId={ idx } conseillerId={conseillerId} structureId={structureId} show={show} />
+                <AjouterAutrePermanence secondaireId={ idx } conseillerId={conseillerId} structureId={structureId} show={show} codeDepartement={structure?.codeDepartement}/>
               }
             </div>
           </div>

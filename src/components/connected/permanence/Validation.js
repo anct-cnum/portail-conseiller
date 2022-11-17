@@ -15,6 +15,10 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
   const [clickSubmit, setClickSubmit] = useState(false);
   let [redirection, setRedirection] = useState(redirectionValidation !== null ? redirectionValidation : '/accueil');
 
+  const REGEX_PHONE_DEBUT = /^(?:\+)(33|590|596|594|262|269)/;
+  const REGEX_ZERO = /^(?:(?:\+)(33|590|596|594|262|269))([/\1-9/g])(?:\d{3}){3}$/g; // controle du zero après +XXX
+  const REGEX_PHONE = /^(?:(?:\+)(33|590|596|594|262|269))(?:\d{3}){3}$/;
+
   function handleSubmit(redirection = '/accueil') {
     const typeAcces = [
       fields?.filter(field => field.name === prefixId + 'libre')[0]?.value ? 'libre' : null,
@@ -81,13 +85,11 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
       }
 
       nouveauLieu.idOldPermanence = fields?.filter(field => field.name === 'idOldPermanence')[0]?.value ?? null;
-      const PHONE_REGEX = /^(?:(?:\+)(33|590|596|594|262|269))(?:\d{3}){3}$/;
       const findIndicatif = telephoneHorsMetropole.find(r => r.codeDepartement === codeDepartement);
       nouveauLieu.telephonePro = nouveauLieu.telephonePro?.trim();
-      const condition = value => !PHONE_REGEX.test(nouveauLieu.telephonePro) ?
-        `${findIndicatif?.indicatif ?? '+33'}${value.substr(1)}` : value;
+      const condition = value => !REGEX_PHONE_DEBUT.test(nouveauLieu.telephonePro) ? `${findIndicatif?.indicatif ?? '+33'}${value.substr(1)}` : value;
       nouveauLieu.telephonePro = nouveauLieu.telephonePro ? condition(nouveauLieu.telephonePro) : '';
-      if (!PHONE_REGEX.test(nouveauLieu.telephonePro)) {
+      if (REGEX_ZERO.test(nouveauLieu.telephonePro) || !REGEX_PHONE.test(nouveauLieu.telephonePro)) {
         nouveauLieu.telephonePro = null;
       }
       nouveauLieu.adresse = JSON.parse(JSON.stringify(nouveauLieu.adresse,
