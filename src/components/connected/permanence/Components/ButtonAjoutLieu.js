@@ -84,11 +84,16 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpda
           hasPermanence: true,
         };
         const findIndicatif = telephoneHorsMetropole.find(r => r.codeDepartement === codeDepartement);
+        const condition = value => !REGEX_PHONE_DEBUT.test(value) ? `${findIndicatif?.indicatif ?? '+33'}${value.substr(1)}` : value;
         nouveauLieu.telephonePro = nouveauLieu.telephonePro?.trim();
-        const condition = value => !REGEX_PHONE_DEBUT.test(nouveauLieu.telephonePro) ? `${findIndicatif?.indicatif ?? '+33'}${value.substr(1)}` : value;
         nouveauLieu.telephonePro = nouveauLieu.telephonePro ? condition(nouveauLieu.telephonePro) : '';
         if (REGEX_ZERO.test(nouveauLieu.telephonePro) || !REGEX_PHONE.test(nouveauLieu.telephonePro)) {
           nouveauLieu.telephonePro = null;
+        }
+        nouveauLieu.numeroTelephone = nouveauLieu.numeroTelephone?.trim();
+        nouveauLieu.numeroTelephone = nouveauLieu.numeroTelephone ? condition(nouveauLieu.numeroTelephone) : '';
+        if (REGEX_ZERO.test(nouveauLieu.numeroTelephone) || !REGEX_PHONE.test(nouveauLieu.numeroTelephone)) {
+          nouveauLieu.numeroTelephone = null;
         }
         if (nouveauLieu._id !== null && nouveauLieu._id !== 'nouveau') {
           dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, false, 'secondaire_' + (secondaireId + 1) + '_'));
