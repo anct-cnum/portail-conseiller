@@ -23,6 +23,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
   const validForms = useSelector(state => state.permanence.formulairesValides);
   const prefixId = useSelector(state => state.permanence?.prefixIdLieuEnregistrable);
   const listPermanences = useSelector(state => state.permanence?.permanences);
+  const permanencePrincipale = listPermanences && listPermanences.find(permanence => permanence.lieuPrincipalPour.includes(conseillerId));
 
   const [show, setShow] = useState(
     Array.from({ length: process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE }, () => (false))
@@ -34,6 +35,16 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
   const REGEX_PHONE_DEBUT = /^(?:\+)(33|590|596|594|262|269)/;
   const REGEX_ZERO = /^(?:(?:\+)(33|590|596|594|262|269))([/\1-9/g])(?:\d{3}){3}$/g; // controle du zero après +XXX
   const REGEX_PHONE = /^(?:(?:\+)(33|590|596|594|262|269))(?:\d{3}){3}$/;
+
+  function falseSecondaire() {
+    setOuiBtn(false);
+    show[0] = false;
+    // dans le cas où il y a une erreur dans la form principal, garder le prefixId en 'principal_'
+    // pour pouvoir l'enregsitrer en recochant oui ou enregistrement directe
+    dispatch(permanenceActions.updateLieuEnregistrable(!permanencePrincipale ? 'principal_' : null));
+    dispatch(permanenceActions.updateField('submit_and_next_0', false));
+    dispatch(permanenceActions.montrerLieuSecondaire(show));
+  }
 
   function handleSecondaire(hasSecondaire) {
     if (hasSecondaire) {
@@ -47,21 +58,24 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
       setClickSubmit(true);
       setOuiBtn(true);
       if (prefixId === 'principal_') {
-        dispatch(permanenceActions.verifyFormulaire(form, prefixId));
+        dispatch(permanenceActions.verifyFormulaire(form, 'principal_'));
       }
-    } else {
-      setOuiBtn(false);
-      show[0] = false;
-
-      dispatch(permanenceActions.updateLieuEnregistrable(null));
-      dispatch(permanenceActions.updateField('submit_and_next_0', false));
+      dispatch(permanenceActions.updateLieuEnregistrable(!permanencePrincipale ? 'principal_' : 'secondaire_0_'));
+      if (!prefixId) {
+        // dans le cas où le prefixId est à null (auparavant selectionner sur false)
+        // si je ne met pas condition du if , c'ets à cause de cela u'il y a le doublon perm enregsitrer en meme temp !
+        dispatch(permanenceActions.updateField('submit_and_next_0', true));
+      }
+      show[0] = true;
       dispatch(permanenceActions.montrerLieuSecondaire(show));
+    } else {
+      falseSecondaire();
     }
   }
 
   useEffect(() => {
+    if ((errorsForm?.lengthError === 0) && clickSubmit) {
 
-    if ((errorsForm?.lengthError === 0) && clickSubmit && (prefixId === 'principal_')) {
       const conseillers = fields?.filter(field => field.name === prefixId + 'conseillers')[0]?.value ?? [];
       if (!conseillers.includes(conseillerId)) {
         conseillers.push(conseillerId);
@@ -119,6 +133,9 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
 
     } else if (errorsForm?.lengthError > 0 && clickSubmit) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (!permanencePrincipale) {
+        falseSecondaire();
+      }
     }
     setShow(show);
     setClickSubmit(false);
@@ -128,20 +145,6 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
 
   }, [validForms]);
 
-  useEffect(() => {
-    if (ouiBtn === true) {
-      show[0] = true;
-      dispatch(permanenceActions.updateLieuEnregistrable('secondaire_0_'));
-      dispatch(permanenceActions.updateField('submit_and_next_0', true));
-      dispatch(permanenceActions.montrerLieuSecondaire(show));
-    } else {
-      show[0] = false;
-      dispatch(permanenceActions.montrerLieuSecondaire(show));
-      if (prefixId === 'principal_') {
-        setOuiBtn(false);
-      }
-    }
-  }, [ouiBtn]);
   return (
     <>
       <div className="fr-container">
@@ -152,53 +155,55 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
           <div className="fr-col-8 ">
             <h2 className="sous-titre fr-mt-7w fr-mb-4w">
               Lieu d&rsquo;activit&eacute; secondaire
-              <span className="baseline fr-mt-1w">
-                Un lieu d&rsquo;activit&eacute; secondaire correspond &agrave; une permanence o&ugrave; vous avez &eacute;t&eacute;
-                d&eacute;l&eacute;gu&eacute;(e) et o&ugrave; vous exercez votre activit&eacute; de mani&egrave;re hebdomadaire.
-              </span>
+              {(!listPermanences?.find(permanence => !permanence?.lieuPrincipalPour.includes(conseillerId))) &&
+                <span className="baseline fr-mt-1w">
+                  Un lieu d&rsquo;activit&eacute; secondaire correspond &agrave; une permanence o&ugrave; vous avez &eacute;t&eacute;
+                  d&eacute;l&eacute;gu&eacute;(e) et o&ugrave; vous exercez votre activit&eacute; de mani&egrave;re hebdomadaire.
+                </span>
+              }
             </h2>
           </div>
 
-          <div className="fr-col-offset-1 fr-col-11 fr-mb-7w">
-            Effectuez-vous des accompagnements dans un lieu d&rsquo;activit&eacute; secondaire ?
-            <span className="baseline fr-mt-1w">Vous pourrez ajouter et modifier vos lieux d&rsquo;activit&eacute; plus tard.</span>
-            <fieldset className="fr-fieldset fr-fieldset--inline fr-mt-2w">
-              <div className="fr-fieldset__content">
-                {/* // sois on cache cette partie où on fais un en sorte que le onclick n'est pas possible.. */}
-                {(!listPermanences?.find(permanence => !permanence?.lieuPrincipalPour.includes(conseillerId))) &&
-                  <>
-                    <div className="fr-radio-group">
-                      {ouiBtn === true &&
-                        <input type="radio" id="secondaire-Oui" name="secondaire" value="true" defaultChecked={true} onClick={() => {
-                          handleSecondaire(true);
-                        }} />
-                      }
-                      {ouiBtn === false &&
-                        <input type="radio" id="secondaire-Oui" name="secondaire" value="true" onClick={() => {
-                          handleSecondaire(true);
-                        }} />
-                      }
-                      <label className="fr-label" htmlFor="secondaire-Oui">Oui</label>
-                    </div>
+          {(!listPermanences?.find(permanence => !permanence?.lieuPrincipalPour.includes(conseillerId))) &&
+              <div className="fr-col-offset-1 fr-col-11 fr-mb-7w">
+                Effectuez-vous des accompagnements dans un lieu d&rsquo;activit&eacute; secondaire ?
+                <span className="baseline fr-mt-1w">Vous pourrez ajouter et modifier vos lieux d&rsquo;activit&eacute; plus tard.</span>
+                <fieldset className="fr-fieldset fr-fieldset--inline fr-mt-2w">
+                  <div className="fr-fieldset__content">
+                    <>
+                      <div className="fr-radio-group">
+                        {ouiBtn === true &&
+                          <input type="radio" id="secondaire-Oui" name="secondaire" value="true" defaultChecked={true} onClick={() => {
+                            handleSecondaire(true);
+                          }} />
+                        }
+                        {ouiBtn === false &&
+                          <input type="radio" id="secondaire-Oui" name="secondaire" value="true" onClick={() => {
+                            handleSecondaire(true);
+                          }} />
+                        }
+                        <label className="fr-label" htmlFor="secondaire-Oui">Oui</label>
+                      </div>
 
-                    <div className="fr-radio-group">
-                      {ouiBtn === true &&
-                        <input type="radio" id="secondaire-Non" name="secondaire" value="false" onClick={() => {
-                          handleSecondaire(false);
-                        }} />
-                      }
-                      {ouiBtn === false &&
-                        <input type="radio" id="secondaire-Non" name="secondaire" value="false" defaultChecked={true} onClick={() => {
-                          handleSecondaire(false);
-                        }} />
-                      }
-                      <label className="fr-label" htmlFor="secondaire-Non">Non</label>
-                    </div>
-                  </>
-                }
+                      <div className="fr-radio-group">
+                        {ouiBtn === true &&
+                          <input type="radio" id="secondaire-Non" name="secondaire" value="false" onClick={() => {
+                            handleSecondaire(false);
+                          }} />
+                        }
+                        {ouiBtn === false &&
+                          <input type="radio" id="secondaire-Non" name="secondaire" value="false" defaultChecked={true} onClick={() => {
+                            handleSecondaire(false);
+                          }} />
+                        }
+                        <label className="fr-label" htmlFor="secondaire-Non">Non</label>
+                      </div>
+                    </>
+                  </div>
+                </fieldset>
               </div>
-            </fieldset>
-          </div>
+          }
+
         </div>
       </div>
       {lieuxSecondaires && lieuxSecondaires.map((lieuSecondaire, idx) => {
@@ -214,10 +219,13 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
                   <div className="fr-col-8 ">
                     <h2 className="sous-titre fr-mt-7w fr-mb-4w">
                       Lieu d&rsquo;activit&eacute; secondaire
+                      {!(idx < listPermanences?.filter(permanence => !permanence?.lieuPrincipalPour.includes(conseillerId)).length) &&
+
                       <span className="baseline fr-mt-1w">
                         Un lieu d&rsquo;activit&eacute; secondaire correspond &agrave; une permanence o&ugrave; vous avez &eacute;t&eacute;
                         d&eacute;l&eacute;gu&eacute;(e) et o&ugrave; vous exercez votre activit&eacute; de mani&egrave;re hebdomadaire.
                       </span>
+                      }
                     </h2>
                   </div>
                 </>
