@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import telephoneHorsMetropole from '../../../data/indicatifs.json';
+
 import horairesInitiales from '../../../data/horairesInitiales.json';
 import { permanenceActions } from '../../../actions/permanence.actions';
+import { formatTelephone } from '../../../utils/functionFormats';
 
 function Validation({ conseillerId, structureId, statut = 'principal_', redirectionValidation = null, codeDepartement, idPermanenceUrl }) {
   const dispatch = useDispatch();
@@ -14,10 +15,6 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
 
   const [clickSubmit, setClickSubmit] = useState(false);
   let [redirection, setRedirection] = useState(redirectionValidation !== null ? redirectionValidation : '/accueil');
-
-  const REGEX_PHONE_DEBUT = /^(?:\+)(33|590|596|594|262|269)/;
-  const REGEX_ZERO = /^(?:(?:\+)(33|590|596|594|262|269))([/\1-9/g])(?:\d{3}){3}$/g; // controle du zero après +XXX
-  const REGEX_PHONE = /^(?:(?:\+)(33|590|596|594|262|269))(?:\d{3}){3}$/;
 
   function handleSubmit(redirection = '/accueil') {
     const typeAcces = [
@@ -85,18 +82,8 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
       }
 
       nouveauLieu.idOldPermanence = fields?.filter(field => field.name === 'idOldPermanence')[0]?.value ?? null;
-      const findIndicatif = telephoneHorsMetropole.find(r => r.codeDepartement === codeDepartement);
-      const condition = value => !REGEX_PHONE_DEBUT.test(value) ? `${findIndicatif?.indicatif ?? '+33'}${value.substr(1)}` : value;
-      nouveauLieu.telephonePro = nouveauLieu.telephonePro?.trim();
-      nouveauLieu.telephonePro = nouveauLieu.telephonePro ? condition(nouveauLieu.telephonePro) : '';
-      if (REGEX_ZERO.test(nouveauLieu.telephonePro) || !REGEX_PHONE.test(nouveauLieu.telephonePro)) {
-        nouveauLieu.telephonePro = null;
-      }
-      nouveauLieu.numeroTelephone = nouveauLieu.numeroTelephone?.trim();
-      nouveauLieu.numeroTelephone = nouveauLieu.numeroTelephone ? condition(nouveauLieu.numeroTelephone) : '';
-      if (REGEX_ZERO.test(nouveauLieu.numeroTelephone) || !REGEX_PHONE.test(nouveauLieu.numeroTelephone)) {
-        nouveauLieu.numeroTelephone = null;
-      }
+      nouveauLieu.telephonePro = formatTelephone(nouveauLieu?.telephonePro, codeDepartement);
+      nouveauLieu.numeroTelephone = formatTelephone(nouveauLieu?.numeroTelephone, codeDepartement);
       nouveauLieu.adresse = JSON.parse(JSON.stringify(nouveauLieu.adresse,
         (key, value) => (value === '') ? null : value
       ));

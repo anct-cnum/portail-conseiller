@@ -8,9 +8,9 @@ import TypeAcces from './TypeAcces';
 import Horaires from './Horaires';
 import Adresse from './Adresse';
 
-import telephoneHorsMetropole from '../../../data/indicatifs.json';
 import horairesInitiales from '../../../data/horairesInitiales.json';
 import { permanenceActions } from '../../../actions';
+import { formatTelephone } from '../../../utils/functionFormats';
 
 function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepartement }) {
   const dispatch = useDispatch();
@@ -31,10 +31,6 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
 
   const [clickSubmit, setClickSubmit] = useState(false);
   const [ouiBtn, setOuiBtn] = useState(false);
-
-  const REGEX_PHONE_DEBUT = /^(?:\+)(33|590|596|594|262|269)/;
-  const REGEX_ZERO = /^(?:(?:\+)(33|590|596|594|262|269))([/\1-9/g])(?:\d{3}){3}$/g; // controle du zero après +XXX
-  const REGEX_PHONE = /^(?:(?:\+)(33|590|596|594|262|269))(?:\d{3}){3}$/;
 
   function falseSecondaire() {
     setOuiBtn(false);
@@ -115,18 +111,9 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
         hasPermanence: true,
         lieuPrincipalPour: lieuPrincipalPour,
       };
-      const findIndicatif = telephoneHorsMetropole.find(r => r.codeDepartement === codeDepartement);
-      const condition = value => !REGEX_PHONE_DEBUT.test(value) ? `${findIndicatif?.indicatif ?? '+33'}${value.substr(1)}` : value;
-      nouveauLieu.telephonePro = nouveauLieu.telephonePro?.trim();
-      nouveauLieu.telephonePro = nouveauLieu.telephonePro ? condition(nouveauLieu.telephonePro) : '';
-      if (REGEX_ZERO.test(nouveauLieu.telephonePro) || !REGEX_PHONE.test(nouveauLieu.telephonePro)) {
-        nouveauLieu.telephonePro = null;
-      }
-      nouveauLieu.numeroTelephone = nouveauLieu.numeroTelephone?.trim();
-      nouveauLieu.numeroTelephone = nouveauLieu.numeroTelephone ? condition(nouveauLieu.numeroTelephone) : '';
-      if (REGEX_ZERO.test(nouveauLieu.numeroTelephone) || !REGEX_PHONE.test(nouveauLieu.numeroTelephone)) {
-        nouveauLieu.numeroTelephone = null;
-      }
+      nouveauLieu.telephonePro = formatTelephone(nouveauLieu.telephonePro, codeDepartement);
+      nouveauLieu.numeroTelephone = formatTelephone(nouveauLieu.numeroTelephone, codeDepartement);
+
       if (nouveauLieu._id !== null && nouveauLieu._id !== 'nouveau') {
         dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, false, 'secondaire_0_'));
       } else if (prefixId) {
@@ -228,11 +215,10 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
                     <h2 className="sous-titre fr-mt-7w fr-mb-4w">
                       Lieu d&rsquo;activit&eacute; secondaire
                       {!(idx < listPermanences?.filter(permanence => !permanence?.lieuPrincipalPour.includes(conseillerId)).length) &&
-
-                      <span className="baseline fr-mt-1w">
-                        Un lieu d&rsquo;activit&eacute; secondaire correspond &agrave; une permanence o&ugrave; vous avez &eacute;t&eacute;
-                        d&eacute;l&eacute;gu&eacute;(e) et o&ugrave; vous exercez votre activit&eacute; de mani&egrave;re hebdomadaire.
-                      </span>
+                        <span className="baseline fr-mt-1w">
+                          Un lieu d&rsquo;activit&eacute; secondaire correspond &agrave; une permanence o&ugrave; vous avez &eacute;t&eacute;
+                          d&eacute;l&eacute;gu&eacute;(e) et o&ugrave; vous exercez votre activit&eacute; de mani&egrave;re hebdomadaire.
+                        </span>
                       }
                     </h2>
                   </div>
@@ -256,13 +242,11 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
                 </>
               }
               {idx < listPermanences?.filter(permanence => !permanence?.lieuPrincipalPour.includes(conseillerId)).length &&
-                <>
                   <h5 className="fr-col-offset-1 fr-col-11 fr-mb-7w">
                     Lieu d&rsquo;activit&eacute; secondaire
                     {` ${listPermanences?.filter(permanence => !permanence?.lieuPrincipalPour.includes(conseillerId))[idx]?.nomEnseigne} `}
                     a bien &eacute;t&eacute; enregistr&eacute;
                   </h5>
-                </>
               }
 
               {idx < 14 &&

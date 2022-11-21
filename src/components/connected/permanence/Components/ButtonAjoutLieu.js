@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { permanenceActions } from '../../../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import horairesInitiales from '../../../../data/horairesInitiales.json';
-import telephoneHorsMetropole from '../../../../data/indicatifs.json';
+import { formatTelephone } from '../../../../utils/functionFormats';
 
 function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpdate, codeDepartement }) {
   const dispatch = useDispatch();
@@ -14,10 +14,6 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpda
   const prefixId = useSelector(state => state.permanence?.prefixIdLieuEnregistrable);
 
   const [clickSubmit, setClickSubmit] = useState(false);
-
-  const REGEX_PHONE_DEBUT = /^(?:\+)(33|590|596|594|262|269)/;
-  const REGEX_ZERO = /^(?:(?:\+)(33|590|596|594|262|269))([/\1-9/g])(?:\d{3}){3}$/g; // controle du zero après +XXX
-  const REGEX_PHONE = /^(?:(?:\+)(33|590|596|594|262|269))(?:\d{3}){3}$/;
 
   const onClick = () => {
 
@@ -83,18 +79,8 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpda
           structureId: structureId,
           hasPermanence: true,
         };
-        const findIndicatif = telephoneHorsMetropole.find(r => r.codeDepartement === codeDepartement);
-        const condition = value => !REGEX_PHONE_DEBUT.test(value) ? `${findIndicatif?.indicatif ?? '+33'}${value.substr(1)}` : value;
-        nouveauLieu.telephonePro = nouveauLieu.telephonePro?.trim();
-        nouveauLieu.telephonePro = nouveauLieu.telephonePro ? condition(nouveauLieu.telephonePro) : '';
-        if (REGEX_ZERO.test(nouveauLieu.telephonePro) || !REGEX_PHONE.test(nouveauLieu.telephonePro)) {
-          nouveauLieu.telephonePro = null;
-        }
-        nouveauLieu.numeroTelephone = nouveauLieu.numeroTelephone?.trim();
-        nouveauLieu.numeroTelephone = nouveauLieu.numeroTelephone ? condition(nouveauLieu.numeroTelephone) : '';
-        if (REGEX_ZERO.test(nouveauLieu.numeroTelephone) || !REGEX_PHONE.test(nouveauLieu.numeroTelephone)) {
-          nouveauLieu.numeroTelephone = null;
-        }
+        nouveauLieu.telephonePro = formatTelephone(nouveauLieu?.telephonePro, codeDepartement);
+        nouveauLieu.numeroTelephone = formatTelephone(nouveauLieu?.numeroTelephone, codeDepartement);
         if (nouveauLieu._id !== null && nouveauLieu._id !== 'nouveau') {
           dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, false, 'secondaire_' + (secondaireId + 1) + '_'));
         } else {

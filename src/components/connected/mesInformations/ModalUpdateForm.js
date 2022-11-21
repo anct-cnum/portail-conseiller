@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { formSupHierarchiqueActions } from '../../../actions/supHierarchique.actions';
 import { formInfoPersonnelActions } from '../../../actions/infoPersonnel.actions';
+import { formatTelephone } from '../../../utils/functionFormats';
 
 function ModalUpdateForm({ form, showModal, setShowModal, isSupHierarchique = false }) {
   const [active, setActive] = useState(false);
@@ -26,7 +27,7 @@ function ModalUpdateForm({ form, showModal, setShowModal, isSupHierarchique = fa
   function handleSubmit() {
     if (isSupHierarchique) {
       dispatch(formSupHierarchiqueActions.createSupHierarchique({
-        numeroTelephone: form.numeroTelephone,
+        numeroTelephone: formatTelephone(form.numeroTelephone, conseiller?.codeDepartement),
         email: form.email.trim(),
         nom: form.nom.trim(),
         prenom: form.prenom.trim(),
@@ -34,8 +35,8 @@ function ModalUpdateForm({ form, showModal, setShowModal, isSupHierarchique = fa
       }, conseiller._id, user.name, password));
     } else {
       dispatch(formInfoPersonnelActions.updateInfoPersonnel({
-        telephone: form.telephone,
-        telephonePro: form.telephonePro,
+        telephone: formatTelephone(form.telephone, conseiller?.codeDepartement),
+        telephonePro: formatTelephone(form.telephonePro, conseiller?.codeDepartement),
         emailPro: form.emailPro?.trim(),
         email: form.email.trim(),
         dateDeNaissance: form.dateDeNaissance,
