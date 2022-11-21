@@ -42,8 +42,11 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
     // dans le cas où il y a une erreur dans la form principal, garder le prefixId en 'principal_'
     // pour pouvoir l'enregsitrer en recochant oui ou enregistrement directe
     dispatch(permanenceActions.updateLieuEnregistrable(!permanencePrincipale ? 'principal_' : null));
-    dispatch(permanenceActions.updateField('submit_and_next_0', false));
     dispatch(permanenceActions.montrerLieuSecondaire(show));
+    // condition nescessaire pour éviter la double enregistrement
+    if (permanencePrincipale) {
+      dispatch(permanenceActions.updateField('submit_and_next_0', false));
+    }
   }
 
   function handleSecondaire(hasSecondaire) {
