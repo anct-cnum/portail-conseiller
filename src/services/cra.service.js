@@ -11,13 +11,16 @@ export const craService = {
 const apiUrlRoot = process.env.REACT_APP_API;
 
 function createCra(cra) {
+  // eslint-disable-next-line no-unused-vars
+  const { idStructure, ...craObj } = cra;
 
   const requestOptions = {
     method: 'POST',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
     body: JSON.stringify({
-      cra: cra,
-      idConseiller: userEntityId()
+      cra: craObj,
+      idConseiller: userEntityId(),
+      idStructure: cra.idStructure
     })
   };
 
