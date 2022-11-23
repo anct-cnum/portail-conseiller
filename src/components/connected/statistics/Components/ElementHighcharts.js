@@ -695,7 +695,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
   return (
     <>
       <HighchartsReact highcharts={Highcharts} options={optionsStatistiques} />
-      {listeAutres &&
+      {listeAutres && listeAutres?.length > 0 &&
         <div className="lieux-autres">
           <div className="fr-mt-list">Autres <span>(écrits manuellement)</span></div>
           <ul>

@@ -99,7 +99,9 @@ function BottomPage({ donneesStats, print, type }) {
     graphique: {
       typeGraphique: 'xy',
       largeurGraphique: 320,
+      largeurGraphiquePrint: 1200,
       hauteurGraphique: 310,
+      hauteurGraphiquePrint: 600,
       margeGaucheGraphique: 40,
       margeDroiteGraphique: 70,
       optionResponsive: false,
@@ -181,6 +183,8 @@ function BottomPage({ donneesStats, print, type }) {
     graphique: {
       typeGraphique: 'pie',
       hauteurGraphique: 555,
+      hauteurGraphiquePrint: 600,
+      largeurGraphiquePrint: 1200,
       margeGaucheGraphique: print ? -315 : -419,
       optionResponsive: false,
       couleursGraphique: tabColorLieux
@@ -244,10 +248,10 @@ function BottomPage({ donneesStats, print, type }) {
       <div className="fr-col-6 only-print fr-mb-6w">
         <ElementHighcharts donneesStats={statsUsagers} variablesGraphique={graphiqueStatut} print={true}/>
       </div>
-      <div className="fr-col-12 only-print fr-mb-6">
+      <div className="fr-col-12 only-print fr-mb-6w">
         <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolution} print={true}/>
       </div>
-      <div className="fr-col-12 only-print fr-mb-6">
+      <div className="fr-col-12 only-print">
         {statsReorientations?.length > 0 &&
           <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientations} listeAutres={listeAutres} print={true}/>
         }

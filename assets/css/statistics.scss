@@ -430,18 +430,18 @@
   display: none;
 }
 @media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
   header, footer, .dont-print {
     display: none;
   }
   .only-print {
     display: block;
+    color: #1e1e1e;
   }
-  .hr {
-    display: block;
-    width: 100%;
-    height: 1px;
-    background-color: #1e1e1e;
-  }
+  
   .statistics{
     background-color: #fff;
     font-size: 2rem;
@@ -456,6 +456,9 @@
         font-weight: 700;
       }
     }
+    span {
+      color: #1e1e1e;
+    }
     .print-col-12 {
       width: 100% !important;
     }
@@ -468,9 +471,11 @@
     }
     .text, .number {
       font-size: 2rem;
+      color: #1e1e1e;
     }
     .numbers {
       font-size: 3rem;
+      color: #1e1e1e;
     }
     .remonter-print {
       margin-top: 15px;
@@ -479,6 +484,12 @@
       .remonter-print {
         margin-top: 150px;
       }
+    }
+    .lieux-autres{
+      margin: -45px 0 0 150px;
+    }
+    .lieux-autres, .lieux-autres ul{
+      color: #1e1e1e;
     }
   }
 }
