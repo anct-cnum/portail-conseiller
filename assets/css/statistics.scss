@@ -358,9 +358,8 @@
       left: -122px;
     }
   }
-
+/*
   @media print {
-
     #burgerMenu {
       display: none;
     }
@@ -374,26 +373,22 @@
       background: #fff !important;
       background-color: #fff !important;
     }
-
     h1 {
       color: #1e1e1e !important;
       margin: 0px 0;
     }
-
     .title-print-territoire {
       margin: 0;
       font-weight: 100;
       font-size: 35px;
       text-align: left;
     }
-
     .graphique-responsive-lg {
       display: block !important;
     }
     .theme-print {
       margin: 120px 0 0 0;
     }
-
     .evolution-print {
       margin-top: 70px;
     }
@@ -406,9 +401,9 @@
     .reorientation-print {
       margin-top: -20px;
     }
-  }
+  }  */
 }
-
+/*
 .statistics.print {
   background-color: #fff;
   color: #1e1e1e;
@@ -430,3 +425,61 @@
     color: #1e1e1e;
   }
 }
+*/
+.header-print, .only-print {
+  display: none;
+}
+@media print {
+  header, footer, .dont-print {
+    display: none;
+  }
+  .only-print {
+    display: block;
+  }
+  .hr {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #1e1e1e;
+  }
+  .statistics{
+    background-color: #fff;
+    font-size: 2rem;
+    .header-print {
+      display: block;
+      color: #1e1e1e;
+      img {
+        width: 1200px;
+      }
+      .identifiant {
+        text-align: center;
+        font-weight: 700;
+      }
+    }
+    .print-col-12 {
+      width: 100% !important;
+    }
+    .print-mb-0w {
+      margin-bottom: 0px !important;
+    }
+    .code-postal-select {
+      font-weight: 700;
+      max-width: 500px !important;
+    }
+    .text, .number {
+      font-size: 2rem;
+    }
+    .numbers {
+      font-size: 3rem;
+    }
+    .remonter-print {
+      margin-top: 15px;
+    }
+    @supports (-moz-appearance:none) {
+      .remonter-print {
+        margin-top: 150px;
+      }
+    }
+  }
+}
+

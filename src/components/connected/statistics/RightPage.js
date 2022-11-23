@@ -14,7 +14,9 @@ function RightPage({ donneesStats, print }) {
     graphique: {
       typeGraphique: 'bar',
       largeurGraphique: null,
+      largeurGraphiquePrint: 1200,
       hauteurGraphique: 428,
+      hauteurGraphiquePrint: 600,
       margeGaucheGraphique: 300,
       margeDroiteGraphique: 0,
       optionResponsive: false,
@@ -48,7 +50,9 @@ function RightPage({ donneesStats, print }) {
     graphique: {
       typeGraphique: 'pie',
       largeurGraphique: 300,
+      largeurGraphiquePrint: 600,
       hauteurGraphique: 320,
+      hauteurGraphiquePrint: 600,
       margeGaucheGraphique: 0,
       margeDroiteGraphique: 10,
       optionResponsive: false,
@@ -65,7 +69,9 @@ function RightPage({ donneesStats, print }) {
     graphique: {
       typeGraphique: 'pie',
       largeurGraphique: 300,
+      largeurGraphiquePrint: 600,
       hauteurGraphique: 320,
+      hauteurGraphiquePrint: 600,
       margeGaucheGraphique: 0,
       margeDroiteGraphique: 10,
       optionResponsive: true,
@@ -82,7 +88,9 @@ function RightPage({ donneesStats, print }) {
     graphique: {
       typeGraphique: 'column',
       largeurGraphique: 360,
+      largeurGraphiquePrint: 600,
       hauteurGraphique: 310,
+      hauteurGraphiquePrint: 600,
       margeGaucheGraphique: 55,
       margeDroiteGraphique: 55,
       optionResponsive: false,
@@ -99,7 +107,9 @@ function RightPage({ donneesStats, print }) {
     graphique: {
       typeGraphique: 'column',
       largeurGraphique: 300,
+      largeurGraphiquePrint: 600,
       hauteurGraphique: 310,
+      hauteurGraphiquePrint: 600,
       margeGaucheGraphique: 55,
       margeDroiteGraphique: 55,
       optionResponsive: false,
@@ -114,7 +124,7 @@ function RightPage({ donneesStats, print }) {
 
   return (
     <>
-      <div className="fr-col-12 fr-col-md-5 fr-col-lg-7 graphique-responsive-lg">
+      <div className="fr-col-12 fr-col-md-5 fr-col-lg-7 graphique-responsive-lg dont-print">
         <div className="fr-container-fluid">
           <div className="fr-grid-row ">
             <div className="fr-col-12 theme-print">
@@ -126,19 +136,19 @@ function RightPage({ donneesStats, print }) {
             </div>
 
             <div className="fr-col-12 fr-col-lg-6">
-              <ElementHighcharts donneesStats={statsLieux} variablesGraphique={pieGraphique} print={print}/>
+              <ElementHighcharts donneesStats={statsLieux} variablesGraphique={pieGraphiqueSm} print={print}/>
             </div>
 
-            <div className="fr-col-12 fr-col-lg-6 no-print">
+            <div className="fr-col-12 fr-col-lg-6 dont-print">
               <div className="fr-ml-md-6w">
-                <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphique} print={print}/>
+                <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphiqueSm} print={print}/>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="fr-col-12 fr-col-md-5 graphique-responsive-md no-print">
+      <div className="fr-col-12 fr-col-md-5 graphique-responsive-md dont-print">
 
         <div className="fr-container-fluid">
           <div className="fr-grid-row ">
@@ -149,7 +159,7 @@ function RightPage({ donneesStats, print }) {
         </div>
       </div>
 
-      <div className="fr-col-12 graphique-responsive-md">
+      <div className="fr-col-12 graphique-responsive-md dont-print">
         <div className="fr-container-fluid">
           <div className="fr-grid-row ">
 
@@ -163,11 +173,11 @@ function RightPage({ donneesStats, print }) {
               <div className="fr-m-xs-to-md-7v"><hr/></div>
             </div>
 
-            <div className="fr-col-12 fr-col-md-6 no-print">
+            <div className="fr-col-12 fr-col-md-6 dont-print">
               <ElementHighcharts donneesStats={statsLieux} variablesGraphique={pieGraphiqueSm} print={print}/>
             </div>
 
-            <div className="fr-col-12 hr-md-hide no-print">
+            <div className="fr-col-12 hr-md-hide dont-print">
               <div className="fr-m-6w fr-m-xs-to-md-7v"><hr/></div>
             </div>
 
@@ -179,6 +189,15 @@ function RightPage({ donneesStats, print }) {
             </div>
           </div>
         </div>
+      </div>
+      <div className="fr-col-12 only-print fr-mb-6w">
+        <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphique} print={true}/>
+      </div>
+      <div className="fr-col-6 only-print fr-mb-6w">
+        <ElementHighcharts donneesStats={statsLieux} variablesGraphique={pieGraphique} print={true}/>
+      </div>
+      <div className="fr-col-6 only-print fr-mb-6w">
+        <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphique} print={true}/>
       </div>
     </>
   );

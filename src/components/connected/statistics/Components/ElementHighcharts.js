@@ -10,12 +10,14 @@ import labelsCorrespondance from '../../../../data/labelsCorrespondance.json';
 function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutres }) {
 
   const isReoriente = variablesGraphique.titre.optionTitre === 'Usager.ères réorienté.es';
-  const { typeGraphique, largeurGraphique, hauteurGraphique,
+  const { typeGraphique, largeurGraphique, largeurGraphiquePrint, hauteurGraphique, hauteurGraphiquePrint,
     margeGaucheGraphique, margeDroiteGraphique, optionResponsive, couleursGraphique } = variablesGraphique.graphique;
   const { optionTitre, margeTitre, placementTitre } = variablesGraphique.titre;
 
   const categoriesStatistiques = setCategoriesStatistiques(donneesStats, typeGraphique);
-  const chartStatistiques = setStatistiquesGraphique(typeGraphique, largeurGraphique, hauteurGraphique, margeGaucheGraphique, margeDroiteGraphique);
+  const chartStatistiques = setStatistiquesGraphique(
+    typeGraphique, largeurGraphique, largeurGraphiquePrint, hauteurGraphique, hauteurGraphiquePrint, margeGaucheGraphique, margeDroiteGraphique
+  );
   const titreStatistiques = setStatistiquesTitre(optionTitre, margeTitre, placementTitre);
   const seriesStatistiques = setStatistiquesDonnees(donneesStats, typeGraphique, couleursGraphique);
   const legendStatistiques = setStatistiquesLegende(typeGraphique, isReoriente);
@@ -38,17 +40,17 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
     return categories;
   }
 
-  function setStatistiquesGraphique(typeGraphique, largeurGraphique, hauteurGraphique, margeGaucheGraphique, margeDroiteGraphique) {
+  function setStatistiquesGraphique(
+    typeGraphique, largeurGraphique, largeurGraphiquePrint, hauteurGraphique, hauteurGraphiquePrint, margeGaucheGraphique, margeDroiteGraphique) {
     const type = typeGraphique === 'stacked' ? 'bar' : typeGraphique;
 
     let chart = {
-      width: print ? 700 : largeurGraphique,
-      height: hauteurGraphique,
+      width: print ? largeurGraphiquePrint : largeurGraphique,
+      height: print ? hauteurGraphiquePrint : hauteurGraphique,
       marginLeft: margeGaucheGraphique,
       marginRight: margeDroiteGraphique,
       backgroundColor: print ? '#fff' : '#1e1e1e',
       spacing: [0, 0, 0, 0],
-
       style: {
         fontFamily: 'Marianne',
         marginBottom: 150
@@ -73,12 +75,12 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
       text: optionTitre,
       margin: margeTitre,
       x: placementTitre,
-      y: 13,
-      width: 300,
+      y: print ? 50 : 13,
+      width: print ? 800 : 300,
       align: 'left',
       style: {
         color: print ? '#1e1e1e' : '#fff',
-        fontSize: '16px',
+        fontSize: print ? '2.5rem' : '16px',
         fontWeight: 'bold',
         lineHeight: '24px'
       }

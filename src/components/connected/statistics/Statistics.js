@@ -29,6 +29,7 @@ function Statistics() {
   const villeStats = useSelector(state => state.statistique?.villeStats);
   const donneesStatistiques = useSelector(state => state.statistique?.statsData);
   const user = useSelector(state => state?.authentication?.user?.user);
+  const nomStructure = useSelector(state => state?.structure?.structure?.nom);
 
   const territoire = location?.territoire;
   const typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : '';
@@ -45,6 +46,15 @@ function Statistics() {
 
   return (
     <div className="statistics">
+      <div className="header-print">
+        <div className="fr-grid-row">
+          <div className="fr-col-12">
+            <img src="/logos/statistics/en-tete-export-pdf.jpg" />
+            <div className="identifiant fr-my-6w">{user?.prenom} {user?.nom} - {nomStructure}</div>
+            <div className="header-titre fr-ml-2w fr-mb-6w">R&eacute;capitulatif de l&rsquo;activit&eacute; d&rsquo;accompagnement</div>
+          </div>
+        </div>
+      </div>
       <div className="fr-container">
         <div className="spinnerCustom">
           <Spinner
@@ -77,7 +87,8 @@ function Statistics() {
             </p>
           </FlashMessage>
         }
-        <div className="fr-grid-row">
+
+        <div className="fr-grid-row dont-print">
           <div className="fr-col-12">
             <div className="fr-mt-2w fr-mt-md-9w fr-mt-lg-13w"></div>
             { (statsDataError !== undefined && statsDataError !== false) &&
@@ -103,16 +114,16 @@ function Statistics() {
         </div>
 
         <div className="fr-grid-row">
-          <div className="fr-col-xs-3 fr-col-sm-7 fr-col-md-6 fr-col-lg-4">
-            <div className="fr-mb-4w fr-mb-md-6w">
+          <div className="fr-col-xs-3 fr-col-sm-7 fr-col-md-6 fr-col-lg-4 print-col-12">
+            <div className="fr-mb-4w fr-mb-md-6w print-mb-0w">
               <StatisticsPeriod dateDebut={dateDebutStats} dateFin={dateFinStats} />
+              <div className="only-print fr-mb-6w"></div>
               {user?.role.includes('conseiller') &&
                 <ElementCodePostal />
               }
             </div>
           </div>
-
-          <div className="fr-col-md-6 fr-col-lg-8">
+          <div className="fr-col-md-6 fr-col-lg-8 dont-print">
             <hr className="hr-sm-hide fr-mt-2w"/>
             <div className="fr-m-6w fr-m-xs-to-md-7v"></div>
           </div>
@@ -121,7 +132,7 @@ function Statistics() {
         { donneesStatistiques !== undefined &&
           <div className="fr-grid-row">
 
-            <LeftPage donneesStats={donneesStatistiques} type={typeTerritoire} print={false}/>
+            <LeftPage donneesStats={donneesStatistiques} type={typeTerritoire}/>
 
             <div className="fr-col-offset-md-1"></div>
 

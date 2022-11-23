@@ -33,12 +33,15 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
 
   function savePDF() {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    window.print();
+    /*
     if (user?.role === 'conseiller') {
       dispatch(conseillerActions.getStatistiquesPDF(user.entity.$id, dateDebut, dateFin, codePostal, ville));
     } else {
       const type = getTypeStatistique(typeStats);
       dispatch(conseillerActions.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser, codePostal));
     }
+    */
   }
 
   function saveCSV() {
@@ -71,11 +74,11 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
 
   return (
     <>
-      <div className="fr-col-offset-2 fr-col-8 no-print fr-mt-md-n15w">
+      <div className="fr-col-offset-2 fr-col-8 dont-print fr-mt-md-n15w">
         <hr className="fr-mx-5w"/>
         <div className="fr-m-5w fr-m-md-4w fr-m-xs-to-md-7v"></div>
       </div>
-      <div className="fr-col-12 no-print">
+      <div className="fr-col-12 dont-print">
         <div className="fr-container-fluid">
           <div className="fr-grid-row fr-grid-row--center">
             <div className="fr-col-xs-6 fr-col-sm-6 fr-col-md-5 fr-col-lg-4 fr-mt-5w centrerTexte">
