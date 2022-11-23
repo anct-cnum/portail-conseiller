@@ -77,7 +77,9 @@ function SelectPermanence() {
             }
           </div>
           <div className="lienPermanence">
-            <Link to="/mon-nouveau-lieu-activite" >Ajouter un nouveau lieu d&rsquo;activit&eacute;</Link>
+            <Link to={!listPermanences || listPermanences?.length === 0 ? '/mes-lieux-activite' : '/mon-nouveau-lieu-activite'} >
+              Ajouter un nouveau lieu d&rsquo;activit&eacute;
+            </Link>
           </div>
         </div>
       }
