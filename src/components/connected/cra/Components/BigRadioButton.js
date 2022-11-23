@@ -43,7 +43,6 @@ function BigRadioButton({ type, label, value, image, imageSelected, heightImage,
       <button id="radioRattachement"
         className={type !== 'accompagnement' ? `radioRattachement ${controlSelected === value ? 'radioRattachement-selected' : ''}` :
           `radioRattachement ${controlSelected[value] === value ? 'radioRattachement-selected' : ''}`}
-        style={{ height: '144px' }}
         value={value}>
         <div value={value}>
           <div className={classDiv !== undefined ? classDiv : '' } value={value}>

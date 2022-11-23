@@ -23,11 +23,11 @@ const formatDate = date => {
   return dayjs(date).format('YYYY-MM-DD');
 };
 
-function getStatsCra(dateDebut, dateFin, idUser = null, codePostal = null) {
+function getStatsCra(dateDebut, dateFin, idUser = null, codePostal = null, ville = null) {
   return dispatch => {
     dispatch(request(dateDebut, dateFin, idUser, codePostal));
 
-    statistiqueService.getStatsCra(formatDate(dateDebut), formatDate(dateFin), idUser, codePostal)
+    statistiqueService.getStatsCra(formatDate(dateDebut), formatDate(dateFin), idUser, codePostal, ville)
     .then(
       statsCra => {
         dispatch(success(statsCra));
@@ -57,8 +57,8 @@ function changeDateStatsFin(dateFin) {
   return { type: 'CHANGE_DATE_FIN_STATS', dateFin };
 }
 
-function changeCodePostalStats(codePostal) {
-  return { type: 'CHANGE_CODE_POSTAL_STATS', codePostal };
+function changeCodePostalStats(codePostal, ville) {
+  return { type: 'CHANGE_CODE_POSTAL_STATS', codePostal, ville };
 }
 
 function getStatsAdmin() {

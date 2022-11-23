@@ -21,6 +21,7 @@ function HistoriqueCras() {
   const error = useSelector(state => state.historiqueCras?.error);
   const themes = useSelector(state => state.historiqueCras?.themes);
   const printFlashbag = useSelector(state => state.cra.printFlashbag);
+
   const [thematique, setThematique] = useState(null);
 
   /*Pagination */

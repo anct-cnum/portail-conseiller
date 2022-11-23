@@ -48,6 +48,7 @@ function App() {
           <Route path="/validation" component={ValidationAccount} />
           <Route path="/a-propos" component={Propos}/>
           <Route path="/statistiques-nationales" component={StatistiquesNationales} />
+          <Route path="/statistiques/:type/:id/:dateDebut/:dateFin/:codePostal/:ville" component={EnregistrerStatistiquesPdf} />
           <Route path="/statistiques/:type/:id/:dateDebut/:dateFin/:codePostal" component={EnregistrerStatistiquesPdf} />
           <Route path="/statistiques/:type/:dateDebut/:dateFin" component={EnregistrerStatistiquesPdf} />
           {user?.role === 'conseiller' &&

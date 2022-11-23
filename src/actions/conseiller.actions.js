@@ -117,10 +117,10 @@ function getConseillersSubordonnes(page, dateDebut, dateFin, filtreProfil, filtr
   }
 }
 
-function getStatistiquesPDF(idConseiller, dateDebut, dateFin, codePostal) {
+function getStatistiquesPDF(idConseiller, dateDebut, dateFin, codePostal, ville) {
   return dispatch => {
     dispatch(request());
-    conseillerService.getStatistiquesPDF(idConseiller, dateDebut, dateFin, codePostal)
+    conseillerService.getStatistiquesPDF(idConseiller, dateDebut, dateFin, codePostal, ville)
     .then(
       data => {
         dispatch(success(data, download(data, `${statistiquesCnfsFileName(dateDebut, dateFin)}.pdf`)));
@@ -164,10 +164,10 @@ function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType, codePosta
   }
 }
 
-function getStatistiquesCSV(dateDebut, dateFin, codePostal, idSubordonne, nomSubordonneeCSV) {
+function getStatistiquesCSV(dateDebut, dateFin, codePostal, ville, idSubordonne, nomSubordonneeCSV) {
   return dispatch => {
     dispatch(request());
-    conseillerService.getStatistiquesCSV(dateDebut, dateFin, codePostal, idSubordonne)
+    conseillerService.getStatistiquesCSV(dateDebut, dateFin, codePostal, ville, idSubordonne)
     .then(
       data => dispatch(success(data, download(data, `${statistiquesCnfsFileName(dateDebut, dateFin, idSubordonne, nomSubordonneeCSV)}.csv`))),
       error => dispatch(failure(error))
