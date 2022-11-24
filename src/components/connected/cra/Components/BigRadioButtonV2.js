@@ -43,7 +43,9 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
         } else if (value === 'rattachement') {
           dispatch(craActions.getButtonPermanences());
           setTimeout(() => {
-            document.getElementById('dropdown').style.display = 'none';
+            if (document.getElementById('dropdown')) {
+              document.getElementById('dropdown').style.display = 'none';
+            }
             document.getElementById('buttonPermanences').style.zIndex = 3;
             document.getElementById('buttonPermanences').focus();
           }, 100);

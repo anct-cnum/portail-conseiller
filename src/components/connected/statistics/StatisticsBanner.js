@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { conseillerActions } from '../../../actions';
 
-function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePostal = null, idSubordonne = null, nomSubordonneeCSV = null }) {
+function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePostal = null, ville = null, idSubordonne = null, nomSubordonneeCSV = null }) {
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
   function savePDF() {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     if (user?.role === 'conseiller') {
-      dispatch(conseillerActions.getStatistiquesPDF(user.entity.$id, dateDebut, dateFin, codePostal));
+      dispatch(conseillerActions.getStatistiquesPDF(user.entity.$id, dateDebut, dateFin, codePostal, ville));
     } else {
       const type = getTypeStatistique(typeStats);
       dispatch(conseillerActions.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser, codePostal));
@@ -45,7 +45,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     const type = getTypeStatistique(typeStats);
     if ((user?.role === 'conseiller' || user?.role === 'coordinateur_coop') && !idTerritoire && type !== 'nationales') {
-      dispatch(conseillerActions.getStatistiquesCSV(dateDebut, dateFin, codePostal, idSubordonne, nomSubordonneeCSV));
+      dispatch(conseillerActions.getStatistiquesCSV(dateDebut, dateFin, codePostal, ville, idSubordonne, nomSubordonneeCSV));
     } else {
       const conseillerIds = territoire?.conseillerIds ?? undefined;
       // eslint-disable-next-line max-len
@@ -116,6 +116,7 @@ StatisticsBanner.propTypes = {
   idTerritoire: PropTypes.string,
   typeStats: PropTypes.string,
   codePostal: PropTypes.string,
+  ville: PropTypes.string,
   idSubordonne: PropTypes.string,
   nomSubordonneeCSV: PropTypes.string
 };

@@ -16,7 +16,7 @@ import HeaderHub from '../hub/HeaderHub';
 function StatistiquesNationales() {
   const dispatch = useDispatch();
 
-  const user = useSelector(state => state.authentication.user.user);
+  const user = useSelector(state => state.authentication?.user?.user);
   let statsDataLoading = useSelector(state => state.statistique?.statsDataLoading);
   const loadingCSV = useSelector(state => state.conseiller?.loadingCSV);
   const errorCSV = useSelector(state => state.conseiller?.errorCSV);
@@ -37,7 +37,7 @@ function StatistiquesNationales() {
   return (
     <div>
       {user?.role === 'hub_coop' ? <HeaderHub /> : <Header linkAccount={user?.name}/>}
-      {user.role === 'admin_coop' &&
+      {user?.role === 'admin_coop' &&
         <div className="admin">
           <AdminHeader linkAccount={user?.name} />
         </div>
@@ -122,7 +122,7 @@ function StatistiquesNationales() {
         </div>
         <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats} typeStats={'nationales'}/>
         <div className="fr-m-5w fr-m-md-9w fr-m-lg-15w"></div>
-        <Footer type="support" role={user.role}/>
+        <Footer type="support" role={user?.role}/>
       </div>
     </div>
   );

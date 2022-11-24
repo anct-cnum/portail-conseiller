@@ -23,8 +23,8 @@ function SelectPermanence() {
   useEffect(() => {
     if (listPermanences) {
       setMesPermanences(Array.from({ length: listPermanences?.length }, () => ({})));
-      for (let i = 0; i < listPermanences.length; i++) {
-        if (listPermanences[i]?.lieuPrincipalPour.includes(conseiller._id) === true) {
+      for (let i = 0; i < listPermanences?.length; i++) {
+        if (listPermanences[i]?.lieuPrincipalPour.includes(conseiller?._id) === true) {
           mesPermanences[0] = listPermanences[i];
         } else {
           mesPermanences[i + 1] = listPermanences[i];
@@ -77,7 +77,9 @@ function SelectPermanence() {
             }
           </div>
           <div className="lienPermanence">
-            <Link to="/mon-nouveau-lieu-activite" >Ajouter un nouveau lieu d&rsquo;activit&eacute;</Link>
+            <Link to={!listPermanences || listPermanences?.length === 0 ? '/mes-lieux-activite' : '/mon-nouveau-lieu-activite'} >
+              Ajouter un nouveau lieu d&rsquo;activit&eacute;
+            </Link>
           </div>
         </div>
       }

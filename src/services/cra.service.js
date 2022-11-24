@@ -5,18 +5,22 @@ export const craService = {
   createCra,
   getCra,
   updateCra,
+  countByPermanence,
 };
 
 const apiUrlRoot = process.env.REACT_APP_API;
 
 function createCra(cra) {
+  // eslint-disable-next-line no-unused-vars
+  const { idStructure, ...craObj } = cra;
 
   const requestOptions = {
     method: 'POST',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
     body: JSON.stringify({
-      cra: cra,
-      idConseiller: userEntityId()
+      cra: craObj,
+      idConseiller: userEntityId(),
+      idStructure: cra.idStructure
     })
   };
 
@@ -43,6 +47,14 @@ function updateCra(cra, conseillerId) {
     })
   };
   return fetch(`${apiUrlRoot}/cras`, requestOptions).then(handleResponse);
+}
+
+function countByPermanence(permanenceId) {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  };
+  return fetch(`${apiUrlRoot}/cras/countByPermanence?permanenceId=${permanenceId}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
