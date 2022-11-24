@@ -26,6 +26,7 @@ function Statistics() {
   const dateDebutStats = useSelector(state => state.statistique?.dateDebutStats);
   const dateFinStats = useSelector(state => state.statistique?.dateFinStats);
   const codePostalStats = useSelector(state => state.statistique?.codePostalStats);
+  const villeStats = useSelector(state => state.statistique?.villeStats);
   const donneesStatistiques = useSelector(state => state.statistique?.statsData);
   const user = useSelector(state => state?.authentication?.user?.user);
 
@@ -37,10 +38,10 @@ function Statistics() {
     } else if (territoire) {
       dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, territoire.conseillerIds));
     } else {
-      dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, null, codePostalStats));
+      dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, null, codePostalStats, villeStats));
     }
     dispatch(paginationActions.resetPage(false));
-  }, [dateDebutStats, dateFinStats, location, codePostalStats]);
+  }, [dateDebutStats, dateFinStats, location, codePostalStats, villeStats]);
 
   return (
     <div className="statistics">
@@ -134,7 +135,8 @@ function Statistics() {
           <h2 className="centrerTexte">Il n&rsquo;y a aucune statistique pour le moment</h2>
         }
       </div>
-      <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats} idTerritoire={territoire?.[typeTerritoire]} codePostal={codePostalStats}
+      <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats}
+        idTerritoire={territoire?.[typeTerritoire]} codePostal={codePostalStats} ville={villeStats}
         idSubordonne={location?.idUser} nomSubordonneeCSV={location?.nomSubordonneeCSV}/>
       <div className="fr-m-5w fr-m-md-9w fr-m-lg-15w"></div>
       <Footer type="support" role={user.role} />

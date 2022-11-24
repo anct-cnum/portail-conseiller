@@ -3,10 +3,10 @@ import { useDispatch } from 'react-redux';
 import { permanenceActions } from '../../../actions';
 import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
+import Pluralize from 'react-pluralize';
 
-function SupprimerPermanence({ permanence, isDisabled }) {
+function SupprimerPermanence({ permanence, isDisabled, count }) {
   const dispatch = useDispatch();
-
   const [modalOpenClose, setModalOpenClose] = useState(false);
 
   const deletePermanence = idPermanence => {
@@ -49,6 +49,17 @@ function SupprimerPermanence({ permanence, isDisabled }) {
                 <div className="fr-modal__content centre fr-mt-n2w">
                   <h1 className="fr-modal__title fr-mb-6w">Suppression du lieu d’activité</h1>
                   <div className="centre">
+                    {count > 0 &&
+                      <div className="fr-mb-5w">
+                        (*)&nbsp;Ce lieu comporte&nbsp;
+                        <Pluralize
+                          singular={`compte rendu d'activité`}
+                          plural={`comptes rendus d'activités`}
+                          count={count}
+                          showCount={true} />. La suppression
+                        impliquera &eacute;galement une suppression de la permanence dans les CRAs.
+                      </div>
+                    }
                     <div className="fr-mb-5w">
                       <button className="fr-btn annuler-btn " onClick={() => {
                         setModalOpenClose(false);
@@ -56,7 +67,7 @@ function SupprimerPermanence({ permanence, isDisabled }) {
                     </div>
                     <div className="fr-mb-3w">
                       <button className="fr-btn suppression-btn" onClick={() => {
-                        deleteConseillerPermanence(permanence._id);
+                        deleteConseillerPermanence(permanence?._id);
                       }} >Masquer les informations du lieu engistr&eacute;es</button>
                     </div>
                     <div className="fr-mb-6w">
@@ -65,12 +76,12 @@ function SupprimerPermanence({ permanence, isDisabled }) {
                       d&rsquo;activit&eacute; dans les &eacute;l&eacute;ments pr&eacute;-enregistr&eacute;s.
                     </div>
 
-                    {permanence?.conseillers.length === 1}
+                    {permanence?.conseillers?.length === 1}
                     <button className="fr-btn suppression-definitive" onClick={() => {
-                      deletePermanence(permanence._id);
+                      deletePermanence(permanence?._id);
                     }} >Supprimer d&eacute;finitivement</button>
                     <div className="fr-mt-3w">
-                    Les informations seront d&eacute;finitivement supprim&eacute;es de la base de donn&eacute;es.Cette action est irr&eacute;versible.
+                    Les informations seront d&eacute;finitivement supprim&eacute;es de la base de donn&eacute;es. Cette action est irr&eacute;versible.
                     </div>
                   </div>
                 </div>
@@ -86,6 +97,7 @@ function SupprimerPermanence({ permanence, isDisabled }) {
 SupprimerPermanence.propTypes = {
   permanence: PropTypes.object,
   isDisabled: PropTypes.bool,
+  count: PropTypes.number,
 };
 
 export default SupprimerPermanence;

@@ -16,10 +16,12 @@ function EnregistrerStatistiquesPdf({ match }) {
   const dateDebut = new Date(match.params?.dateDebut);
   const dateFin = new Date(match.params?.dateFin);
   const codePostal = match.params?.codePostal;
+  const ville = match.params?.ville;
 
   const dateDebutStats = useSelector(state => state.statistique?.dateDebutStats);
   const dateFinStats = useSelector(state => state.statistique?.dateFinStats);
   const codePostalStats = useSelector(state => state.statistique?.codePostalStats);
+  const villeStats = useSelector(state => state.statistique?.villeStats);
   const donneesStatistiques = useSelector(state => state.statistique?.statsData);
   const territoire = useSelector(state => state.statistique?.territoire);
   const typeTerritoire = (type !== 'user' && type !== 'conseiller' && type !== 'structure') ? type : '';
@@ -33,9 +35,9 @@ function EnregistrerStatistiquesPdf({ match }) {
   useEffect(() => {
     dispatch(statistiqueActions.changeDateStatsDebut(dateDebut));
     dispatch(statistiqueActions.changeDateStatsFin(dateFin));
-    dispatch(statistiqueActions.changeCodePostalStats(codePostal));
+    dispatch(statistiqueActions.changeCodePostalStats(codePostal, ville));
     if ((type === 'user' || type === 'conseiller') && type !== 'nationales') {
-      dispatch(statistiqueActions.getStatsCra(dateDebut, dateFin, id, codePostal));
+      dispatch(statistiqueActions.getStatsCra(dateDebut, dateFin, id, codePostal, ville));
     } else if (((type !== 'user' && type !== 'conseiller') && type !== 'nationales') && territoire?.conseillerIds) {
       dispatch(statistiqueActions.getStatsCraTerritoire(dateDebut, dateFin, typeTerritoire, territoire?.conseillerIds));
     } else if (type === 'nationales') {
@@ -43,7 +45,7 @@ function EnregistrerStatistiquesPdf({ match }) {
     } else if (type === 'structure') {
       dispatch(statistiqueActions.getStatsCraStructure(dateDebut, dateFin, id, codePostal));
     }
-  }, [territoire, codePostalStats]);
+  }, [territoire, codePostalStats, villeStats]);
 
   return (
 
@@ -83,7 +85,10 @@ function EnregistrerStatistiquesPdf({ match }) {
               <StatisticsPeriod dateDebut={dateDebutStats} dateFin={dateFinStats} />
               {(type === 'conseiller' || type === 'structure') &&
                 <select className="fr-select code-postal-select fr-my-2w">
-                  <option value="">{codePostal !== 'null' ? codePostal : 'Tous codes postaux' }</option>
+                  <option value="">
+                    {codePostal !== 'null' ? codePostal : 'Tous codes postaux' }
+                    &nbsp;{ville !== 'null' && ville !== undefined ? ' - ' + ville : ''}
+                  </option>
                 </select>
               }
             </div>

@@ -116,7 +116,7 @@ function PermanenceUpdate({ match }) {
     dispatch(permanenceActions.setHorairesLoading(loadingHoraires));
 
     if (estStructure) {
-      maPermanence = listPermanences.filter(permanence => permanence?.estStructure === true)[0];
+      maPermanence = listPermanences?.filter(permanence => permanence?.estStructure === true)[0];
       fillPermanencePrincipale(maPermanence, estStructure);
       updateGeocodeAdress(maPermanence, 'principal_');
     } else {
@@ -302,7 +302,7 @@ function PermanenceUpdate({ match }) {
 
                     <ListPermanences
                       prefixId={estlieuPrincipal ? 'principal_' : 'secondaire_0_' }
-                      conseillerId={conseiller._id}
+                      conseillerId={conseiller?._id}
                       permanenceActuelId={maPermanence?._id}
                     />
 
@@ -311,7 +311,7 @@ function PermanenceUpdate({ match }) {
                       prefixId={estlieuPrincipal ? 'principal_' : 'secondaire_0_' }
                       isUpdate={true}
                       permanence={maPermanence}
-                      conseillerId={conseiller._id}
+                      conseillerId={conseiller?._id}
                     />
                     <TypeAcces
                       prefixId={estlieuPrincipal ? 'principal_' : 'secondaire_0_' }
