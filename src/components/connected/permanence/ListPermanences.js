@@ -116,7 +116,7 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
                         <div className="fr-radio-group fr-radio-rich radio-permanence" key={idx}>
                           {(permanence?.conseillers.includes(conseillerId) === false || permanenceActuelId === String(permanence._id)) &&
                             <>
-                              {(permanencesReservees?.filter(perm => perm.idPermanence === permanence._id).length > 0 &&
+                              {(permanencesReservees?.filter(perm => perm.idPermanence === permanence._id)?.length > 0 &&
                               permanencesReservees?.filter(perm => perm.idPermanence === permanence._id)[0]?.prefixId !== prefixId) &&
                                 <>
                                   <input type="radio" disabled/>
@@ -131,7 +131,7 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
                                   </label>
                                 </>
                               }
-                              {(permanencesReservees?.filter(perm => perm.idPermanence === permanence._id).length === 0 ||
+                              {(permanencesReservees?.filter(perm => perm.idPermanence === permanence._id)?.length === 0 ||
                               permanencesReservees?.filter(perm => perm.idPermanence === permanence._id)[0]?.prefixId === prefixId) &&
                                 <>
                                   <input type="radio" id={prefixId + permanence?._id} className="permanence-existante"

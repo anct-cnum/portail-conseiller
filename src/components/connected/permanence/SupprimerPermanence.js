@@ -76,7 +76,7 @@ function SupprimerPermanence({ permanence, isDisabled, count }) {
                       d&rsquo;activit&eacute; dans les &eacute;l&eacute;ments pr&eacute;-enregistr&eacute;s.
                     </div>
 
-                    {permanence?.conseillers.length === 1}
+                    {permanence?.conseillers?.length === 1}
                     <button className="fr-btn suppression-definitive" onClick={() => {
                       deletePermanence(permanence._id);
                     }} >Supprimer d&eacute;finitivement</button>

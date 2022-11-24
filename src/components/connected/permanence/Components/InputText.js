@@ -17,7 +17,7 @@ function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineIn
 
   const handleChange = e => {
     const { name, value } = e.target;
-    if (name.slice(-5) === 'siret' && filtreValue(value).length === 14 && reg.test(filtreValue(value))) {
+    if (name.slice(-5) === 'siret' && filtreValue(value)?.length === 14 && reg.test(filtreValue(value))) {
       dispatch(permanenceActions.verifySiret(name.slice(0, -5), filtreValue(value)));
       dispatch(permanenceActions.updateField(name, filtreValue(value)));
     } else {

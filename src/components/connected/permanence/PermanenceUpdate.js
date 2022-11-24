@@ -84,7 +84,7 @@ function PermanenceUpdate({ match }) {
     dispatch(permanenceActions.setHorairesLoading(loadingHoraires));
 
     if (estStructure) {
-      maPermanence = listPermanences.filter(permanence => permanence?.estStructure === true)[0];
+      maPermanence = listPermanences?.filter(permanence => permanence?.estStructure === true)[0];
       dispatch(permanenceActions.setChampsMaPermanence(
         maPermanence,
         'principal_',

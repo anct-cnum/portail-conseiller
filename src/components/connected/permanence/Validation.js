@@ -86,7 +86,7 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
       const condition = value => (value && !['+33', '+26', '+59'].includes(value.substr(0, 3))) ?
         `${findIndicatif?.indicatif ?? '+33'}${value.substr(1)}` : value;
       nouveauLieu.telephonePro = nouveauLieu.telephonePro ? condition(nouveauLieu.telephonePro) : '';
-      if (nouveauLieu.telephonePro.length < 12) {
+      if (nouveauLieu.telephonePro?.length < 12) {
         nouveauLieu.telephonePro = null;
       }
       nouveauLieu.adresse = JSON.parse(JSON.stringify(nouveauLieu.adresse,
