@@ -22,14 +22,14 @@ function ElementCodePostal({ idStructure = '' }) {
       } else {
         dispatch(statistiqueActions.getCodesPostauxCrasConseiller());
       }
-    } else if (listeCodesPostaux && optionList.length === 0) {
+    } else if (listeCodesPostaux && optionList?.length === 0) {
       listeCodesPostaux.forEach(codePostal => {
-        if (codePostal.villes.length === 1) {
+        if (codePostal.villes?.length === 1) {
           optionList.push({
             text: codePostal.id + ' - ' + codePostal.villes[0].toUpperCase(),
             value: codePostal.id + '-' + codePostal.villes[0]
           });
-        } else if (codePostal.villes.length > 1) {
+        } else if (codePostal.villes?.length > 1) {
           optionList.push({
             text: codePostal.id + ' - TOUTES COMMUNES',
             value: codePostal.id
@@ -50,10 +50,10 @@ function ElementCodePostal({ idStructure = '' }) {
   return (
     <select className="fr-select code-postal-select fr-my-2w" onChange={setCodePostal}>
       <option value="">codes postaux, villes</option>
-      {idStructure.length > 0 && listeCodesPostaux && listeCodesPostaux?.map((codePostal, idx) => {
+      {idStructure?.length > 0 && listeCodesPostaux && listeCodesPostaux?.map((codePostal, idx) => {
         return (<option key={idx} value={codePostal}>{codePostal}</option>);
       })}
-      {idStructure.length === 0 && listeCodesPostaux && optionList?.map((option, idx) => {
+      {idStructure?.length === 0 && listeCodesPostaux && optionList?.map((option, idx) => {
         return (
           <option key={idx} value={option.value}>
             {option?.marge}{option.text}
