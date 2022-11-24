@@ -132,7 +132,7 @@ function PermanenceUpdate({ match }) {
         dispatch(permanenceActions.montrerLieuSecondaire(show));
       }
       dispatch(permanenceActions.disabledField(maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_', estStructure));
-      updateGeocodeAdress(maPermanence, maPermanence.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_');
+      updateGeocodeAdress(maPermanence, maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_');
     }
     const adresseGeoloc = estStructure ? {
       numero: maPermanence?.adresse?.numeroRue ?? adresseStructure.numero_voie,
@@ -179,14 +179,14 @@ function PermanenceUpdate({ match }) {
       ));
       dispatch(permanenceActions.getGeocodeAdresse(
         adresseGeoloc,
-        maPermanence.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_')
+        maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_')
       );
-      dispatch(permanenceActions.updateLieuEnregistrable(maPermanence.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_'));
+      dispatch(permanenceActions.updateLieuEnregistrable(maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_'));
       dispatch(permanenceActions.updateField(
-        maPermanence.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_checkboxSiret' : 'secondaire_0_checkboxSiret', false
+        maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_checkboxSiret' : 'secondaire_0_checkboxSiret', false
       ));
       // eslint-disable-next-line max-len
-      dispatch(permanenceActions.disabledField(maPermanence.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_', maPermanence?.estStructure));
+      dispatch(permanenceActions.disabledField(maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_', maPermanence?.estStructure));
       const show = [!maPermanence?.lieuPrincipalPour.includes(conseiller?._id)];
       dispatch(permanenceActions.montrerLieuSecondaire(show));
     }
@@ -242,7 +242,7 @@ function PermanenceUpdate({ match }) {
                 <ContactProfessionel conseiller={conseiller} />
                 <div className="fr-container">
                   <div className="fr-grid-row">
-                    {maPermanence.lieuPrincipalPour.includes(conseiller?._id) &&
+                    {maPermanence?.lieuPrincipalPour.includes(conseiller?._id) &&
                       <Recapitulatif
                         nomStructure={structure?.nom}
                         siret={structure?.siret}
