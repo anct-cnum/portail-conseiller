@@ -13,14 +13,14 @@ function Propos() {
 
   document.addEventListener('scroll', () => {
     if (window.innerWidth > 767 && document.documentElement.scrollTop > 3350) {
-      document.getElementById('sommaire').classList.add('upAtTop');
-      document.getElementById('sommaire').classList.remove('top');
+      document.getElementById('sommaire')?.classList?.add('upAtTop');
+      document.getElementById('sommaire')?.classList?.remove('top');
     } else if (document.documentElement.scrollTop > 50) {
-      document.getElementById('sommaire').classList.add('top');
-      document.getElementById('sommaire').classList.remove('upAtTop');
+      document.getElementById('sommaire')?.classList?.add('top');
+      document.getElementById('sommaire')?.classList?.remove('upAtTop');
     } else {
-      document.getElementById('sommaire').classList.remove('top');
-      document.getElementById('sommaire').classList.remove('upAtTop');
+      document.getElementById('sommaire')?.classList?.remove('top');
+      document.getElementById('sommaire')?.classList?.remove('upAtTop');
     }
   },
   { passive: true }
