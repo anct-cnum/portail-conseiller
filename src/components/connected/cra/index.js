@@ -28,7 +28,7 @@ function Cra() {
   }, [printFlashbag]);
   useEffect(() => {
     if (conseiller) {
-      dispatch(permanenceActions.getMesPermanences(conseiller._id));
+      dispatch(permanenceActions.getMesPermanences(conseiller?._id));
     }
   }, [conseiller]);
   return (

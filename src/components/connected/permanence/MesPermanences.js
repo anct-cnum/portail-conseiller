@@ -28,7 +28,7 @@ function MesPermanences() {
     if (listPermanences) {
       setMesPermanences(Array.from({ length: listPermanences?.length }, () => ({})));
       for (let i = 0; i < listPermanences?.length; i++) {
-        if (listPermanences[i]?.lieuPrincipalPour.includes(conseiller._id) === true) {
+        if (listPermanences[i]?.lieuPrincipalPour.includes(conseiller?._id) === true) {
           mesPermanences[0] = listPermanences[i];
         } else {
           mesPermanences[i + 1] = listPermanences[i];
@@ -42,14 +42,14 @@ function MesPermanences() {
     if (!conseiller) {
       dispatch(conseillerActions.get(userEntityId()));
     } else {
-      dispatch(permanenceActions.getMesPermanences(conseiller._id));
+      dispatch(permanenceActions.getMesPermanences(conseiller?._id));
     }
   }, [conseiller, isCreated, isUpdated]);
 
   useEffect(() => {
     if (isConseillerDeleted || isDeleted) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      dispatch(permanenceActions.getMesPermanences(conseiller._id));
+      dispatch(permanenceActions.getMesPermanences(conseiller?._id));
       setTimeout(() => {
         dispatch(permanenceActions.reinitiliserStatut());
       }, 2000);
@@ -58,7 +58,7 @@ function MesPermanences() {
 
   useEffect(() => {
     if (reloadList && conseiller) {
-      dispatch(permanenceActions.getMesPermanences(conseiller._id));
+      dispatch(permanenceActions.getMesPermanences(conseiller?._id));
       dispatch(permanenceActions.reloadList(false));
       setMesPermanences([]);
     }

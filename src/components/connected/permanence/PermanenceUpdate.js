@@ -265,8 +265,8 @@ function PermanenceUpdate({ match }) {
 
                     <ListPermanences
                       prefixId={estlieuPrincipal ? 'principal_' : 'secondaire_0_' }
-                      conseillerId={conseiller._id}
-                      permanenceActuelId={maPermanence._id}
+                      conseillerId={conseiller?._id}
+                      permanenceActuelId={maPermanence?._id}
                     />
 
                     <Adresse
@@ -274,7 +274,7 @@ function PermanenceUpdate({ match }) {
                       prefixId={estlieuPrincipal ? 'principal_' : 'secondaire_0_' }
                       isUpdate={true}
                       permanence={maPermanence}
-                      conseillerId={conseiller._id}
+                      conseillerId={conseiller?._id}
                     />
                     <TypeAcces
                       prefixId={estlieuPrincipal ? 'principal_' : 'secondaire_0_' }
