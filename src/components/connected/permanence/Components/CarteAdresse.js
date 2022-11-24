@@ -21,6 +21,11 @@ function CarteAdresse({ prefixId }) {
       setPosition(location?.coordinates);
       setZoom(15);
       setPositionInitial(false);
+    } else {
+      // Dans le cas où la perm principale , click sur le bouton "Non" (reset de l'adresse)
+      setPosition([1.849121, 46.624100]);
+      setZoom(5);
+      setPositionInitial(true);
     }
   }, [location]);
 

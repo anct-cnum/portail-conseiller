@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import { permanenceActions } from '../../../../actions';
 import { useDispatch, useSelector } from 'react-redux';
 import horairesInitiales from '../../../../data/horairesInitiales.json';
-import { useLocation } from 'react-router-dom';
+import { formatTelephone } from '../../../../utils/functionFormats';
 
-function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpdate }) {
+function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpdate, codeDepartement }) {
   const dispatch = useDispatch();
-  const location = useLocation();
 
   const form = useSelector(state => state.permanence);
   const fields = useSelector(state => state.permanence?.fields);
@@ -78,9 +77,10 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpda
           conseillersItinerants: conseillersItinerants,
           conseillers: conseillers,
           structureId: structureId,
-          hasPermanence: location.pathname === '/lieux-activite',
+          hasPermanence: true,
         };
-
+        nouveauLieu.telephonePro = formatTelephone(nouveauLieu?.telephonePro, codeDepartement);
+        nouveauLieu.numeroTelephone = formatTelephone(nouveauLieu?.numeroTelephone, codeDepartement);
         if (nouveauLieu._id !== null && nouveauLieu._id !== 'nouveau') {
           dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, false, 'secondaire_' + (secondaireId + 1) + '_'));
         } else {
@@ -91,6 +91,7 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpda
         setClickSubmit(false);
         dispatch(permanenceActions.updateField('submit_and_next_' + (secondaireId + 1), true));
         dispatch(permanenceActions.montrerLieuSecondaire(show));
+        dispatch(permanenceActions.getListePermanences(structureId));
       } else if (errorsForm?.lengthError > 0 && submit === true && clickSubmit === true) {
         dispatch(permanenceActions.montrerLieuSecondaire(show));
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -114,6 +115,7 @@ ButtonAjoutLieu.propTypes = {
   structureId: PropTypes.string,
   secondaireId: PropTypes.number,
   isUpdate: PropTypes.bool,
+  codeDepartement: PropTypes.string,
 };
 
 export default ButtonAjoutLieu;
