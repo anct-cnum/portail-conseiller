@@ -31,7 +31,7 @@ function ModalUpdateForm({ form, showModal, setShowModal, isSupHierarchique = fa
         nom: form.nom.trim(),
         prenom: form.prenom.trim(),
         fonction: form.fonction.trim()
-      }, conseiller._id, user.name, password));
+      }, conseiller?._id, user.name, password));
     } else {
       dispatch(formInfoPersonnelActions.updateInfoPersonnel({
         telephone: form.telephone,
@@ -40,7 +40,7 @@ function ModalUpdateForm({ form, showModal, setShowModal, isSupHierarchique = fa
         email: form.email.trim(),
         dateDeNaissance: form.dateDeNaissance,
         sexe: form.sexe
-      }, conseiller._id, user.name, password));
+      }, conseiller?._id, user.name, password));
     }
 
     closeModal();

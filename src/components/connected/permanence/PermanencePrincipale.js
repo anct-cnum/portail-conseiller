@@ -85,7 +85,7 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
     dispatch(permanenceActions.reserverPermanence({ prefixId: 'principal_', idPermanence: null }));
 
     if (estStructure) {
-      const permanencePrincipale = listPermanences.find(permanence => permanence.structure.$id === structure._id && permanence.estStructure === true);
+      const permanencePrincipale = listPermanences.find(permanence => permanence.structure.$id === structure?._id && permanence.estStructure === true);
       fillPermanencePrincipale(permanencePrincipale);
     } else {
       dispatch(permanenceActions.rebootGeocodeAdresse('principal_'));
@@ -97,7 +97,7 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
 
   useEffect(() => {
     if (isUpdate && listPermanences) {
-      const permanencePrincipale = listPermanences.find(permanence => permanence.lieuPrincipalPour.includes(conseillerId));
+      const permanencePrincipale = listPermanences.find(permanence => permanence?.lieuPrincipalPour?.includes(conseillerId));
       fillPermanencePrincipale(permanencePrincipale);
       dispatch(permanenceActions.updateField('estStructure', permanencePrincipale?.estStructure));
       if (permanencePrincipale?.estStructure === true) {

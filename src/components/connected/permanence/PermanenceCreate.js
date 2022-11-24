@@ -35,7 +35,7 @@ function PermanenceCreate() {
     dispatch(permanenceActions.updateField('estStructure', false));
     dispatch(permanenceActions.updateLieuEnregistrable('secondaire_0_'));
     if (structure) {
-      dispatch(permanenceActions.getListePermanences(structure._id));
+      dispatch(permanenceActions.getListePermanences(structure?._id));
     }
     if (conseiller) {
       dispatch(permanenceActions.updateField('telephonePro', conseiller.telephonePro));
@@ -114,7 +114,7 @@ function PermanenceCreate() {
 
                 <ListPermanences
                   prefixId="secondaire_0_"
-                  conseillerId={conseiller._id}
+                  conseillerId={conseiller?._id}
                 />
 
                 <Adresse
@@ -122,7 +122,7 @@ function PermanenceCreate() {
                   prefixId="secondaire_0_"
                   isUpdate={true}
                   permanence={null}
-                  conseillerId={conseiller._id}
+                  conseillerId={conseiller?._id}
                 />
                 <TypeAcces
                   prefixId="secondaire_0_"

@@ -67,7 +67,7 @@ function SupprimerPermanence({ permanence, isDisabled, count }) {
                     </div>
                     <div className="fr-mb-3w">
                       <button className="fr-btn suppression-btn" onClick={() => {
-                        deleteConseillerPermanence(permanence._id);
+                        deleteConseillerPermanence(permanence?._id);
                       }} >Masquer les informations du lieu engistr&eacute;es</button>
                     </div>
                     <div className="fr-mb-6w">
@@ -76,9 +76,9 @@ function SupprimerPermanence({ permanence, isDisabled, count }) {
                       d&rsquo;activit&eacute; dans les &eacute;l&eacute;ments pr&eacute;-enregistr&eacute;s.
                     </div>
 
-                    {permanence?.conseillers.length === 1}
+                    {permanence?.conseillers?.length === 1}
                     <button className="fr-btn suppression-definitive" onClick={() => {
-                      deletePermanence(permanence._id);
+                      deletePermanence(permanence?._id);
                     }} >Supprimer d&eacute;finitivement</button>
                     <div className="fr-mt-3w">
                     Les informations seront d&eacute;finitivement supprim&eacute;es de la base de donn&eacute;es. Cette action est irr&eacute;versible.

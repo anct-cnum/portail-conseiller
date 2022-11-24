@@ -92,7 +92,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId }) {
         lieuPrincipalPour: lieuPrincipalPour,
       };
 
-      if (nouveauLieu._id !== null && nouveauLieu._id !== 'nouveau') {
+      if (nouveauLieu?._id !== null && nouveauLieu?._id !== 'nouveau') {
         dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, false, 'secondaire_0_'));
       } else if (prefixId) {
         nouveauLieu._id = null;
