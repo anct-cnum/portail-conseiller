@@ -245,10 +245,10 @@ function BottomPage({ donneesStats, print, type }) {
       <div className="fr-col-6 only-print fr-mb-6w">
         <ElementHighcharts donneesStats={statsAges} variablesGraphique={graphiqueAge} print={true}/>
       </div>
-      <div className="fr-col-6 only-print fr-mb-6w">
+      <div className="fr-col-6 only-print fr-mb-12w">
         <ElementHighcharts donneesStats={statsUsagers} variablesGraphique={graphiqueStatut} print={true}/>
       </div>
-      <div className="fr-col-12 only-print fr-mb-6w">
+      <div className="fr-col-12 only-print fr-mb-12w">
         <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolution} print={true}/>
       </div>
       <div className="fr-col-12 only-print">

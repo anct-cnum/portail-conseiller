@@ -431,6 +431,8 @@
 }
 @media print {
   body {
+    size: A4;
+    transform: scale(1.00);
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
@@ -441,7 +443,7 @@
     display: block;
     color: #1e1e1e;
   }
-  
+
   .statistics{
     background-color: #fff;
     font-size: 2rem;
@@ -482,7 +484,7 @@
     }
     @supports (-moz-appearance:none) {
       .remonter-print {
-        margin-top: 150px;
+        margin-top: 200px;
       }
     }
     .lieux-autres{
