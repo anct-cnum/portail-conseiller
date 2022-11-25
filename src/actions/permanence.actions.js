@@ -274,6 +274,13 @@ function controleHoraires(horaires) {
         (jour.matin[1] === 'Fermé' && jour.apresMidi[0] === 'Fermé' && jour.matin[0] > jour.apresMidi[1])) {
       erreursHoraires.push(id);
     }
+    if ((jour.apresMidi[0] !== 'Fermé') && (jour.apresMidi[1] === 'Fermé')) {
+      erreursHoraires.push(id);
+    }
+    if ((jour.matin[0] !== 'Fermé') && (jour.matin[1] === 'Fermé') &&
+    ((jour.apresMidi[0] === 'Fermé') && (jour.apresMidi[1] === 'Fermé'))) {
+      erreursHoraires.push(id);
+    }
   });
   return erreursHoraires;
 }
