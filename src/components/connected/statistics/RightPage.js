@@ -14,13 +14,14 @@ function RightPage({ donneesStats, print }) {
     graphique: {
       typeGraphique: 'bar',
       largeurGraphique: null,
-      largeurGraphiquePrint: 1200,
       hauteurGraphique: 428,
-      hauteurGraphiquePrint: 600,
       margeGaucheGraphique: 300,
       margeDroiteGraphique: 0,
       optionResponsive: false,
-      couleursGraphique: tabColorTheme
+      couleursGraphique: tabColorTheme,
+
+      largeurGraphiquePrint: 1200,
+      hauteurGraphiquePrint: 500,
     },
     titre: {
       optionTitre: 'Th&egrave;mes des accompagnements',
@@ -50,13 +51,14 @@ function RightPage({ donneesStats, print }) {
     graphique: {
       typeGraphique: 'pie',
       largeurGraphique: 300,
-      largeurGraphiquePrint: 600,
       hauteurGraphique: 320,
-      hauteurGraphiquePrint: 600,
       margeGaucheGraphique: 0,
       margeDroiteGraphique: 10,
       optionResponsive: false,
-      couleursGraphique: tabColorLieux
+      couleursGraphique: tabColorLieux,
+
+      largeurGraphiquePrint: 1200,
+      hauteurGraphiquePrint: 400,
     },
     titre: {
       optionTitre: 'Canaux d&rsquo;accompagnements',
@@ -69,9 +71,7 @@ function RightPage({ donneesStats, print }) {
     graphique: {
       typeGraphique: 'pie',
       largeurGraphique: 300,
-      largeurGraphiquePrint: 600,
       hauteurGraphique: 320,
-      hauteurGraphiquePrint: 600,
       margeGaucheGraphique: 0,
       margeDroiteGraphique: 10,
       optionResponsive: true,
@@ -88,13 +88,14 @@ function RightPage({ donneesStats, print }) {
     graphique: {
       typeGraphique: 'column',
       largeurGraphique: 360,
-      largeurGraphiquePrint: 600,
       hauteurGraphique: 310,
-      hauteurGraphiquePrint: 600,
       margeGaucheGraphique: 55,
       margeDroiteGraphique: 55,
       optionResponsive: false,
-      couleursGraphique: tabColorDuree
+      couleursGraphique: tabColorDuree,
+
+      largeurGraphiquePrint: 1200,
+      hauteurGraphiquePrint: 450,
     },
     titre: {
       optionTitre: 'Dur&eacute;e des accompagnements',
@@ -107,9 +108,7 @@ function RightPage({ donneesStats, print }) {
     graphique: {
       typeGraphique: 'column',
       largeurGraphique: 300,
-      largeurGraphiquePrint: 600,
       hauteurGraphique: 310,
-      hauteurGraphiquePrint: 600,
       margeGaucheGraphique: 55,
       margeDroiteGraphique: 55,
       optionResponsive: false,
@@ -127,7 +126,7 @@ function RightPage({ donneesStats, print }) {
       <div className="fr-col-12 fr-col-md-5 fr-col-lg-7 graphique-responsive-lg dont-print">
         <div className="fr-container-fluid">
           <div className="fr-grid-row ">
-            <div className="fr-col-12 theme-print">
+            <div className="fr-col-12">
               <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphique} print={print}/>
             </div>
 
@@ -182,21 +181,19 @@ function RightPage({ donneesStats, print }) {
             </div>
 
             <div className="fr-col-12 fr-col-md-6">
-              {print &&
-                <div style={{ height: '250px' }}></div>
-              }
               <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphiqueSm} print={print}/>
             </div>
           </div>
         </div>
       </div>
-      <div className="fr-col-12 only-print fr-mb-6w">
+      <div className="fr-col-12 fr-mb-6w only-print theme-print">
+        <div className="mozilla-espace-block"></div>
         <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphique} print={true}/>
       </div>
-      <div className="fr-col-6 only-print fr-mb-6w">
+      <div className="fr-col-12 only-print lieux-print">
         <ElementHighcharts donneesStats={statsLieux} variablesGraphique={pieGraphique} print={true}/>
       </div>
-      <div className="fr-col-6 only-print fr-mb-6w">
+      <div className="fr-col-12 fr-mb-6w only-print duree-print">
         <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphique} print={true}/>
       </div>
     </>

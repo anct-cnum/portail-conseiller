@@ -13,7 +13,7 @@ function LeftPage({ donneesStats, type }) {
   const nbTotalSansRecurrence = nbTotalAccompagnements - donneesStats?.nbParticipantsRecurrents;
 
   return (
-    <div className="fr-col-12 fr-col-md-5 fr-col-lg-3 remonter-print">
+    <div className="fr-col-12 fr-col-md-5 fr-col-lg-3">
       <StatisticsTotalAccompaniments
         nbTotalAccompagnements={nbTotalSansRecurrence} type={type}
       />

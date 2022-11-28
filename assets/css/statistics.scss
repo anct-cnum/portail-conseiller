@@ -358,80 +358,15 @@
       left: -122px;
     }
   }
-/*
-  @media print {
-    #burgerMenu {
-      display: none;
-    }
-    #footer {
-      display: none;
-    }
-    .number, .numbers, .numbers-renewal, .many-numbers {
-      text-align: left;
-    }
-    div {
-      background: #fff !important;
-      background-color: #fff !important;
-    }
-    h1 {
-      color: #1e1e1e !important;
-      margin: 0px 0;
-    }
-    .title-print-territoire {
-      margin: 0;
-      font-weight: 100;
-      font-size: 35px;
-      text-align: left;
-    }
-    .graphique-responsive-lg {
-      display: block !important;
-    }
-    .theme-print {
-      margin: 120px 0 0 0;
-    }
-    .evolution-print {
-      margin-top: 70px;
-    }
-    .age-print{
-      margin-top: 50px;
-    }
-    .reorientation-print-conseiller {
-      margin-top: -750px;
-    }
-    .reorientation-print {
-      margin-top: -20px;
-    }
-  }  */
 }
-/*
-.statistics.print {
-  background-color: #fff;
-  color: #1e1e1e;
-  .fr-service__title {
-    color: #1e1e1e;
-  }
-  .lieux-autres{
-    position: static;
-    margin: -28px 0 0 405px;
-  }
-  .lieux-autres, .lieux-autres ul{
-    color: #1e1e1e;
-  }
-}
-.print {
-  background-color: #fff;
-  color: #1e1e1e;
-  .fr-service__title {
-    color: #1e1e1e;
-  }
-}
-*/
+
 .header-print, .only-print {
   display: none;
 }
+
 @media print {
   body {
-    size: A4;
+    size: A4 portrait;
     transform: scale(1.00);
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
@@ -443,13 +378,13 @@
     display: block;
     color: #1e1e1e;
   }
-
   .statistics{
     background-color: #fff;
-    font-size: 2rem;
+    font-size: 1.8rem;
     .header-print {
-      display: block;
       color: #1e1e1e;
+      display: block;
+      height: 340px;
       img {
         width: 1200px;
       }
@@ -461,30 +396,53 @@
     span {
       color: #1e1e1e;
     }
-    .print-col-12 {
-      width: 100% !important;
-    }
-    .print-mb-0w {
-      margin-bottom: 0px !important;
-    }
     .code-postal-select {
       font-weight: 700;
       max-width: 500px !important;
     }
     .text, .number {
-      font-size: 2rem;
+      font-size: 1.8rem;
       color: #1e1e1e;
     }
     .numbers {
-      font-size: 3rem;
+      font-size: 2.7rem;
       color: #1e1e1e;
     }
-    .remonter-print {
-      margin-top: 15px;
+    .theme-print {
+      height: 470px;
+    }
+    .lieux-print {
+      height: 440px;
+    }
+    .duree-print {
+      height: 625px;
+    }
+    .evolution-print {
+      height: 825px;
+    }
+    @supports (-ms-ime-align:auto) {
+      .theme-print {
+        height: 600px;
+      }
+      .lieux-print, .duree-print {
+        height: 410px;
+      }
+      .evolution-print {
+        height: 0px;
+      }
     }
     @supports (-moz-appearance:none) {
-      .remonter-print {
-        margin-top: 200px;
+      .mozilla-espace-block {
+        height: 85px;
+      }
+      .theme-print {
+        height: 800px;
+      }
+      .lieux-print, .duree-print {
+        height: 600px;
+      }
+      .evolution-print {
+        height: 0px;
       }
     }
     .lieux-autres{

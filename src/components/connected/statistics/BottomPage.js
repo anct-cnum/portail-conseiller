@@ -99,13 +99,14 @@ function BottomPage({ donneesStats, print, type }) {
     graphique: {
       typeGraphique: 'xy',
       largeurGraphique: 320,
-      largeurGraphiquePrint: 1200,
       hauteurGraphique: 310,
-      hauteurGraphiquePrint: 600,
       margeGaucheGraphique: 40,
       margeDroiteGraphique: 70,
       optionResponsive: false,
-      couleursGraphique: tabColorAge
+      couleursGraphique: tabColorAge,
+
+      largeurGraphiquePrint: 1200,
+      hauteurGraphiquePrint: 500,
     },
     titre: {
       optionTitre: '&Eacute;volution des comptes rendus d&rsquo;activit&eacute;',
@@ -133,12 +134,15 @@ function BottomPage({ donneesStats, print, type }) {
   const graphiqueAge = {
     graphique: {
       typeGraphique: 'stacked',
-      largeurGraphique: 300,
+      largeurGraphique: 280,
       hauteurGraphique: 300,
       margeGaucheGraphique: 0,
       margeDroiteGraphique: 0,
       optionResponsive: false,
-      couleursGraphique: tabColorAge
+      couleursGraphique: tabColorAge,
+
+      largeurGraphiquePrint: 1200,
+      hauteurGraphiquePrint: 300,
     },
     titre: {
       optionTitre: 'Tranches d&rsquo;&acirc;ge des usagers',
@@ -149,12 +153,15 @@ function BottomPage({ donneesStats, print, type }) {
   const graphiqueStatut = {
     graphique: {
       typeGraphique: 'stacked',
-      largeurGraphique: 300,
+      largeurGraphique: 280,
       hauteurGraphique: 300,
       margeGaucheGraphique: 0,
       margeDroiteGraphique: 0,
       optionResponsive: false,
-      couleursGraphique: tabColorStatut
+      couleursGraphique: tabColorStatut,
+
+      largeurGraphiquePrint: 1200,
+      hauteurGraphiquePrint: 300,
     },
     titre: {
       optionTitre: 'Statut des usagers',
@@ -183,11 +190,12 @@ function BottomPage({ donneesStats, print, type }) {
     graphique: {
       typeGraphique: 'pie',
       hauteurGraphique: 555,
-      hauteurGraphiquePrint: 600,
-      largeurGraphiquePrint: 1200,
       margeGaucheGraphique: print ? -315 : -419,
       optionResponsive: false,
-      couleursGraphique: tabColorLieux
+      couleursGraphique: tabColorLieux,
+
+      largeurGraphiquePrint: 1200,
+      hauteurGraphiquePrint: 500,
     },
     titre: {
       optionTitre: 'Usager.ères réorienté.es',
@@ -242,13 +250,13 @@ function BottomPage({ donneesStats, print, type }) {
           </div>
         </div>
       </div>
-      <div className="fr-col-6 only-print fr-mb-6w">
+      <div className="fr-col-12 fr-mb-6w only-print" >
         <ElementHighcharts donneesStats={statsAges} variablesGraphique={graphiqueAge} print={true}/>
       </div>
-      <div className="fr-col-6 only-print fr-mb-12w">
+      <div className="fr-col-12 fr-mb-6w only-print" >
         <ElementHighcharts donneesStats={statsUsagers} variablesGraphique={graphiqueStatut} print={true}/>
       </div>
-      <div className="fr-col-12 only-print fr-mb-12w">
+      <div className="fr-col-12 fr-mb-6w only-print evolution-print">
         <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolution} print={true}/>
       </div>
       <div className="fr-col-12 only-print">

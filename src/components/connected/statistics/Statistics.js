@@ -11,6 +11,7 @@ import StatisticsBanner from './StatisticsBanner';
 import FlashMessage from 'react-flash-message';
 import { useLocation } from 'react-router';
 import ElementCodePostal from './Components/ElementCodePostal';
+import StatisticsPrint from './StatisticsPrint';
 
 function Statistics() {
   const dispatch = useDispatch();
@@ -45,113 +46,106 @@ function Statistics() {
   }, [dateDebutStats, dateFinStats, location, codePostalStats, villeStats]);
 
   return (
-    <div className="statistics">
-      <div className="header-print">
-        <div className="fr-grid-row">
-          <div className="fr-col-12">
-            <img src="/logos/statistics/en-tete-export-pdf.jpg" />
-            <div className="identifiant fr-my-6w">{user?.prenom} {user?.nom} - {nomStructure}</div>
-            <div className="header-titre fr-ml-2w fr-mb-6w">R&eacute;capitulatif de l&rsquo;activit&eacute; d&rsquo;accompagnement</div>
+    <>
+      <StatisticsPrint dateDebutStats={dateDebutStats} dateFinStats={dateFinStats} donneesStatistiques={donneesStatistiques}
+        user={user} nomStructure={nomStructure} typeTerritoire={typeTerritoire}/>
+      <div className="statistics dont-print">
+        <div className="fr-container">
+          <div className="spinnerCustom">
+            <Spinner
+              type="Oval"
+              color="#00BFFF"
+              height={100}
+              width={100}
+              visible={statsDataLoading === true || loadingPDF === true || loadingCSV === true}
+            />
           </div>
-        </div>
-      </div>
-      <div className="fr-container">
-        <div className="spinnerCustom">
-          <Spinner
-            type="Oval"
-            color="#00BFFF"
-            height={100}
-            width={100}
-            visible={statsDataLoading === true || loadingPDF === true || loadingCSV === true}
-          />
-        </div>
 
-        {isPDFDownloaded === false &&
-          <FlashMessage duration={5000}>
-            <p className="flashBag invalid">
-              Vos statistiques n&rsquo;ont pas pu &ecirc;tre t&eacute;l&eacute;charg&eacute;es, veuillez r&eacute;essayer !
-            </p>
-          </FlashMessage>
-        }
-        {errorPDF &&
-          <FlashMessage duration={5000}>
-            <p className="flashBag invalid">
-              {errorPDF}
-            </p>
-          </FlashMessage>
-        }
-        {errorCSV &&
-          <FlashMessage duration={5000}>
-            <p className="flashBag invalid">
-              {errorCSV}
-            </p>
-          </FlashMessage>
-        }
-
-        <div className="fr-grid-row dont-print">
-          <div className="fr-col-12">
-            <div className="fr-mt-2w fr-mt-md-9w fr-mt-lg-13w"></div>
-            { (statsDataError !== undefined && statsDataError !== false) &&
-              <p className="fr-label flashBag" style={{ color: 'red' }}>
-                {statsDataError?.toString()}
+          {isPDFDownloaded === false &&
+            <FlashMessage duration={5000}>
+              <p className="flashBag invalid">
+                Vos statistiques n&rsquo;ont pas pu &ecirc;tre t&eacute;l&eacute;charg&eacute;es, veuillez r&eacute;essayer !
               </p>
-            }
-            <h1 className="title">
-              {territoire &&
-              <>
-                Statistiques - { territoire?.nomDepartement ?? territoire?.nomRegion }
-              </>
-              }
-              {location?.idUser &&
-                <>Statistiques</>
-              }
-              {!territoire && !location?.idUser &&
-                <>Mes Statistiques</>
-              }
-            </h1>
-            <div className="fr-mb-5w fr-mt-md-4w"></div>
-          </div>
-        </div>
+            </FlashMessage>
+          }
+          {errorPDF &&
+            <FlashMessage duration={5000}>
+              <p className="flashBag invalid">
+                {errorPDF}
+              </p>
+            </FlashMessage>
+          }
+          {errorCSV &&
+            <FlashMessage duration={5000}>
+              <p className="flashBag invalid">
+                {errorCSV}
+              </p>
+            </FlashMessage>
+          }
 
-        <div className="fr-grid-row">
-          <div className="fr-col-xs-3 fr-col-sm-7 fr-col-md-6 fr-col-lg-4 print-col-12">
-            <div className="fr-mb-4w fr-mb-md-6w print-mb-0w">
-              <StatisticsPeriod dateDebut={dateDebutStats} dateFin={dateFinStats} />
-              <div className="only-print fr-mb-6w"></div>
-              {user?.role.includes('conseiller') &&
-                <ElementCodePostal />
+          <div className="fr-grid-row">
+            <div className="fr-col-12">
+              <div className="fr-mt-2w fr-mt-md-9w fr-mt-lg-13w"></div>
+              { (statsDataError !== undefined && statsDataError !== false) &&
+                <p className="fr-label flashBag" style={{ color: 'red' }}>
+                  {statsDataError?.toString()}
+                </p>
               }
+              <h1 className="title">
+                {territoire &&
+                <>
+                  Statistiques - { territoire?.nomDepartement ?? territoire?.nomRegion }
+                </>
+                }
+                {location?.idUser &&
+                  <>Statistiques</>
+                }
+                {!territoire && !location?.idUser &&
+                  <>Mes Statistiques</>
+                }
+              </h1>
+              <div className="fr-mb-5w fr-mt-md-4w"></div>
             </div>
           </div>
-          <div className="fr-col-md-6 fr-col-lg-8 dont-print">
-            <hr className="hr-sm-hide fr-mt-2w"/>
-            <div className="fr-m-6w fr-m-xs-to-md-7v"></div>
-          </div>
-        </div>
-
-        { donneesStatistiques !== undefined &&
           <div className="fr-grid-row">
-
-            <LeftPage donneesStats={donneesStatistiques} type={typeTerritoire}/>
-
-            <div className="fr-col-offset-md-1"></div>
-
-            <RightPage donneesStats={donneesStatistiques} print={false}/>
-
-            <BottomPage donneesStats={donneesStatistiques} print={false}/>
-
+            <div className="fr-col-xs-3 fr-col-sm-7 fr-col-md-6 fr-col-lg-4">
+              <div className="fr-mb-4w fr-mb-md-6w">
+                <StatisticsPeriod dateDebut={dateDebutStats} dateFin={dateFinStats} />
+                {user?.role.includes('conseiller') &&
+                  <ElementCodePostal />
+                }
+              </div>
+            </div>
+            <div className="fr-col-md-6 fr-col-lg-8">
+              <hr className="hr-sm-hide fr-mt-2w"/>
+              <div className="fr-m-6w fr-m-xs-to-md-7v"></div>
+            </div>
           </div>
-        }
-        {!donneesStatistiques &&
-          <h2 className="centrerTexte">Il n&rsquo;y a aucune statistique pour le moment</h2>
-        }
+
+          { donneesStatistiques !== undefined &&
+            <div className="fr-grid-row">
+
+              <LeftPage donneesStats={donneesStatistiques} type={typeTerritoire}/>
+
+              <div className="fr-col-offset-md-1"></div>
+
+              <RightPage donneesStats={donneesStatistiques} print={false}/>
+
+              <BottomPage donneesStats={donneesStatistiques} print={false}/>
+
+            </div>
+          }
+          {!donneesStatistiques &&
+            <h2 className="centrerTexte">Il n&rsquo;y a aucune statistique pour le moment</h2>
+          }
+        </div>
+        <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats}
+          idTerritoire={territoire?.[typeTerritoire]} codePostal={codePostalStats} ville={villeStats}
+          idSubordonne={location?.idUser} nomSubordonneeCSV={location?.nomSubordonneeCSV}/>
+        <div className="fr-m-5w fr-m-md-9w fr-m-lg-15w"></div>
+        <Footer type="support" role={user.role} />
       </div>
-      <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats}
-        idTerritoire={territoire?.[typeTerritoire]} codePostal={codePostalStats} ville={villeStats}
-        idSubordonne={location?.idUser} nomSubordonneeCSV={location?.nomSubordonneeCSV}/>
-      <div className="fr-m-5w fr-m-md-9w fr-m-lg-15w"></div>
-      <Footer type="support" role={user.role} />
-    </div>
+    </>
   );
 }
 
