@@ -17,6 +17,7 @@ import MesInformations from '../connected/mesInformations';
 import Cra from '../connected/cra';
 import FormulaireSexeAge from '../connected/FormulaireSexeAge';
 import UpdateCra from '../connected/cra/UpdateCra';
+import HistoriqueCras from '../connected/historiqueCras';
 
 function Coordinateur() {
   const dispatch = useDispatch();
@@ -49,7 +50,7 @@ function Coordinateur() {
         {(!voirPermanence || suspendrePermanence) &&
           <>
             <Route path={'/mes-informations'} component={MesInformations} />
-            <Route path={`/compte-rendu-activite`} component={Cra} />
+            <Route exact path={`/compte-rendu-activite`} component={Cra} />
             <Route path={`/compte-rendu-activite/:idCra`} component={UpdateCra} />
             <Route path={'/mes-lieux-activite'} component={MesPermanences} />
             <Route path={'/mon-lieu-activite/:idPermanence'} component={PermanenceUpdate} />
@@ -59,6 +60,7 @@ function Coordinateur() {
             <Route path={`/statistiques`} component={Statistics} />
             <Route path={`/conseiller/:id`} component={conseillerDetails} />
             <Route path={`/lieux-activite`} component={Permanence} />
+            <Route path={'/historique'} component={HistoriqueCras} />
             <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
           </>
         }

@@ -121,7 +121,7 @@ function HistoriqueCras() {
                   <a className="fr-btn fr-btn--secondary boutons-cras fr-mr-md-2w" href="/compte-rendu-activite">Enregistrer un nouvel accompagnement</a>
                   <a className="fr-btn fr-btn--secondary" href="/statistiques">Consulter mes statistiques</a>
                 </div>
-                <div className="fr-table fr-table--bordered fr-table--layout-fixed">
+                <div className="fr-table fr-table--bordered fr-table--layout-fixed cras">
                   <table>
                     <thead>
                       <tr>
