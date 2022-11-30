@@ -100,13 +100,14 @@ function BottomPage({ donneesStats, print, type }) {
       typeGraphique: 'xy',
       largeurGraphique: 320,
       hauteurGraphique: 310,
-      margeGaucheGraphique: 40,
-      margeDroiteGraphique: 70,
+      margeGaucheGraphique: 80,
+      margeDroiteGraphique: 80,
       optionResponsive: false,
       couleursGraphique: tabColorAge,
-
-      largeurGraphiquePrint: 1200,
+      largeurGraphiquePrint: 1100,
       hauteurGraphiquePrint: 500,
+      margeGaucheGraphiquePrint: 100,
+      margeDroiteGraphiquePrint: 200,
     },
     titre: {
       optionTitre: '&Eacute;volution des comptes rendus d&rsquo;activit&eacute;',
@@ -140,9 +141,10 @@ function BottomPage({ donneesStats, print, type }) {
       margeDroiteGraphique: 0,
       optionResponsive: false,
       couleursGraphique: tabColorAge,
-
-      largeurGraphiquePrint: 1200,
+      largeurGraphiquePrint: 1100,
       hauteurGraphiquePrint: 300,
+      margeGaucheGraphiquePrint: 0,
+      margeDroiteGraphiquePrint: 0,
     },
     titre: {
       optionTitre: 'Tranches d&rsquo;&acirc;ge des usagers',
@@ -159,9 +161,10 @@ function BottomPage({ donneesStats, print, type }) {
       margeDroiteGraphique: 0,
       optionResponsive: false,
       couleursGraphique: tabColorStatut,
-
-      largeurGraphiquePrint: 1200,
+      largeurGraphiquePrint: 1100,
       hauteurGraphiquePrint: 300,
+      margeGaucheGraphiquePrint: 0,
+      margeDroiteGraphiquePrint: 0,
     },
     titre: {
       optionTitre: 'Statut des usagers',
@@ -190,12 +193,14 @@ function BottomPage({ donneesStats, print, type }) {
     graphique: {
       typeGraphique: 'pie',
       hauteurGraphique: 555,
-      margeGaucheGraphique: print ? -315 : -419,
+      margeGaucheGraphique: -730,
       optionResponsive: false,
       couleursGraphique: tabColorLieux,
 
-      largeurGraphiquePrint: 1200,
+      largeurGraphiquePrint: 1100,
       hauteurGraphiquePrint: 500,
+      margeGaucheGraphiquePrint: -315,
+      margeDroiteGraphiquePrint: 0,
     },
     titre: {
       optionTitre: 'Usager.ères réorienté.es',

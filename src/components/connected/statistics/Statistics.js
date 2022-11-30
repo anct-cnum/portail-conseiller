@@ -33,7 +33,13 @@ function Statistics() {
   const nomStructure = useSelector(state => state?.structure?.structure?.nom);
 
   const territoire = location?.territoire;
+  const nomComplet = location?.nomComplet;
   const typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : '';
+  let nomTerritoire = null;
+  if (typeTerritoire) {
+    nomTerritoire = typeTerritoire === 'codeDepartement' ? territoire.nomDepartement : territoire.nomRegion;
+  }
+
   useEffect(() => {
     if (location?.idUser) {
       dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, location?.idUser));
@@ -48,7 +54,7 @@ function Statistics() {
   return (
     <>
       <StatisticsPrint dateDebutStats={dateDebutStats} dateFinStats={dateFinStats} donneesStatistiques={donneesStatistiques}
-        user={user} nomStructure={nomStructure} typeTerritoire={typeTerritoire}/>
+        user={user} nomComplet={nomComplet} nomStructure={nomStructure} typeTerritoire={typeTerritoire} nomTerritoire={nomTerritoire}/>
       <div className="statistics dont-print">
         <div className="fr-container">
           <div className="spinnerCustom">
@@ -60,7 +66,6 @@ function Statistics() {
               visible={statsDataLoading === true || loadingPDF === true || loadingCSV === true}
             />
           </div>
-
           {isPDFDownloaded === false &&
             <FlashMessage duration={5000}>
               <p className="flashBag invalid">

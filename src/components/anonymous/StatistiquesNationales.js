@@ -12,6 +12,7 @@ import FlashMessage from 'react-flash-message';
 import Header from '../Header';
 import AdminHeader from '../admin/AdminHeader';
 import HeaderHub from '../hub/HeaderHub';
+import StatisticsPrint from './StatisticsPrint';
 
 function StatistiquesNationales() {
   const dispatch = useDispatch();
@@ -38,11 +39,13 @@ function StatistiquesNationales() {
     <div>
       {user?.role === 'hub_coop' ? <HeaderHub /> : <Header linkAccount={user?.name}/>}
       {user.role === 'admin_coop' &&
-        <div className="admin">
+        <div className="admin dont-print">
           <AdminHeader linkAccount={user?.name} />
         </div>
       }
-      <div className="statistics">
+      <StatisticsPrint dateDebutStats={dateDebutStats} dateFinStats={dateFinStats} donneesStatistiques={donneesStatistiques}
+        user={user} typeTerritoire={typeTerritoire}/>
+      <div className="statistics dont-print">
         <div className="fr-container">
           <div className="spinnerCustom">
             <Spinner

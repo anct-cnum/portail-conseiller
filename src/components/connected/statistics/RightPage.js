@@ -19,9 +19,10 @@ function RightPage({ donneesStats, print }) {
       margeDroiteGraphique: 0,
       optionResponsive: false,
       couleursGraphique: tabColorTheme,
-
-      largeurGraphiquePrint: 1200,
+      largeurGraphiquePrint: 1100,
       hauteurGraphiquePrint: 500,
+      margeGaucheGraphiquePrint: 300,
+      margeDroiteGraphiquePrint: 0,
     },
     titre: {
       optionTitre: 'Th&egrave;mes des accompagnements',
@@ -56,9 +57,10 @@ function RightPage({ donneesStats, print }) {
       margeDroiteGraphique: 10,
       optionResponsive: false,
       couleursGraphique: tabColorLieux,
-
-      largeurGraphiquePrint: 1200,
+      largeurGraphiquePrint: 1100,
       hauteurGraphiquePrint: 400,
+      margeGaucheGraphiquePrint: 0,
+      margeDroiteGraphiquePrint: 10,
     },
     titre: {
       optionTitre: 'Canaux d&rsquo;accompagnements',
@@ -93,9 +95,10 @@ function RightPage({ donneesStats, print }) {
       margeDroiteGraphique: 55,
       optionResponsive: false,
       couleursGraphique: tabColorDuree,
-
-      largeurGraphiquePrint: 1200,
+      largeurGraphiquePrint: 1100,
       hauteurGraphiquePrint: 450,
+      margeGaucheGraphiquePrint: 55,
+      margeDroiteGraphiquePrint: 55,
     },
     titre: {
       optionTitre: 'Dur&eacute;e des accompagnements',

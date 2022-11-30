@@ -224,6 +224,7 @@ function ConseillerDetails({ location }) {
             currentPage: location?.currentPage,
             idUser: conseiller?._id,
             nomSubordonneeCSV: `${conseiller?.nom}_${conseiller?.prenom}`,
+            nomComplet: `${conseiller?.nom} ${conseiller?.prenom}`,
             origin: '/accueil' }}>
               Statistiques d&rsquo;accompagnement
           </Link>

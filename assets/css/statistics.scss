@@ -239,9 +239,13 @@
       font-weight: 500;
     }
     ul {
+      position: absolute;
+      line-height: 20px;
+      max-height: 475px;
       list-style: none;
       color: #FFFFFF;
-      line-height: 20px;
+      overflow: auto;
+      height: 475px;
       margin: 0;
       padding: 0;
     }
@@ -409,10 +413,10 @@
       color: #1e1e1e;
     }
     .theme-print {
-      height: 470px;
+      height: 505px;
     }
     .lieux-print {
-      height: 440px;
+      height: 400px;
     }
     .duree-print {
       height: 625px;
@@ -420,17 +424,19 @@
     .evolution-print {
       height: 825px;
     }
-    @supports (-ms-ime-align:auto) {
+    .nationale-print {
+      height: 60px;
+    }
+    .mozilla-espace-block {
+      height: 40px;
+    }
+    /*chrome & safari*/
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
       .theme-print {
-        height: 600px;
-      }
-      .lieux-print, .duree-print {
-        height: 410px;
-      }
-      .evolution-print {
-        height: 0px;
+        height: 475px !important;
       }
     }
+    /*mozilla*/
     @supports (-moz-appearance:none) {
       .mozilla-espace-block {
         height: 85px;
@@ -442,14 +448,8 @@
         height: 600px;
       }
       .evolution-print {
-        height: 0px;
+        height: 500px;
       }
-    }
-    .lieux-autres{
-      margin: -45px 0 0 150px;
-    }
-    .lieux-autres, .lieux-autres ul{
-      color: #1e1e1e;
     }
   }
 }

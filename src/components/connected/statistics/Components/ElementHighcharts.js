@@ -11,12 +11,14 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
 
   const isReoriente = variablesGraphique.titre.optionTitre === 'Usager.ères réorienté.es';
   const { typeGraphique, largeurGraphique, largeurGraphiquePrint, hauteurGraphique, hauteurGraphiquePrint,
-    margeGaucheGraphique, margeDroiteGraphique, optionResponsive, couleursGraphique } = variablesGraphique.graphique;
+    margeGaucheGraphique, margeGaucheGraphiquePrint, margeDroiteGraphique, margeDroiteGraphiquePrint,
+    optionResponsive, couleursGraphique } = variablesGraphique.graphique;
   const { optionTitre, margeTitre, placementTitre } = variablesGraphique.titre;
 
   const categoriesStatistiques = setCategoriesStatistiques(donneesStats, typeGraphique);
-  const chartStatistiques = setStatistiquesGraphique(
-    typeGraphique, largeurGraphique, largeurGraphiquePrint, hauteurGraphique, hauteurGraphiquePrint, margeGaucheGraphique, margeDroiteGraphique
+  const chartStatistiques = setStatistiquesGraphique(typeGraphique,
+    largeurGraphique, largeurGraphiquePrint, hauteurGraphique, hauteurGraphiquePrint,
+    margeGaucheGraphique, margeGaucheGraphiquePrint, margeDroiteGraphique, margeDroiteGraphiquePrint
   );
   const titreStatistiques = setStatistiquesTitre(optionTitre, margeTitre, placementTitre);
   const seriesStatistiques = setStatistiquesDonnees(donneesStats, typeGraphique, couleursGraphique);
@@ -47,8 +49,8 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
     let chart = {
       width: print ? largeurGraphiquePrint : largeurGraphique,
       height: print ? hauteurGraphiquePrint : hauteurGraphique,
-      marginLeft: margeGaucheGraphique,
-      marginRight: margeDroiteGraphique,
+      marginLeft: print ? margeGaucheGraphiquePrint : margeGaucheGraphique,
+      marginRight: print ? margeDroiteGraphiquePrint : margeDroiteGraphique,
       backgroundColor: print ? '#fff' : '#1e1e1e',
       spacing: [0, 0, 0, 0],
       style: {
@@ -696,7 +698,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
     <>
       <HighchartsReact highcharts={Highcharts} options={optionsStatistiques} />
       {listeAutres && listeAutres?.length > 0 &&
-        <div className="lieux-autres">
+        <div className="lieux-autres dont-print">
           <div className="fr-mt-list">Autres <span>(écrits manuellement)</span></div>
           <ul>
             {listeAutres?.map((autres, idx) => {
