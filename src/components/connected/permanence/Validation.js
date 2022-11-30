@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import telephoneHorsMetropole from '../../../data/indicatifs.json';
+
 import horairesInitiales from '../../../data/horairesInitiales.json';
 import { permanenceActions } from '../../../actions/permanence.actions';
+import { formatTelephone } from '../../../utils/functionFormats';
 
-function Validation({ conseillerId, structureId, statut = 'principal_', redirectionValidation = null, codeDepartement }) {
+function Validation({ conseillerId, structureId, statut = 'principal_', redirectionValidation = null, codeDepartement, idPermanenceUrl }) {
   const dispatch = useDispatch();
   const form = useSelector(state => state.permanence);
   const fields = useSelector(state => state.permanence?.fields);
@@ -81,14 +82,8 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
       }
 
       nouveauLieu.idOldPermanence = fields?.filter(field => field.name === 'idOldPermanence')[0]?.value ?? null;
-      const findIndicatif = telephoneHorsMetropole.find(r => r.codeDepartement === codeDepartement);
-      nouveauLieu.telephonePro = nouveauLieu.telephonePro?.trim();
-      const condition = value => (value && !['+33', '+26', '+59'].includes(value.substr(0, 3))) ?
-        `${findIndicatif?.indicatif ?? '+33'}${value.substr(1)}` : value;
-      nouveauLieu.telephonePro = nouveauLieu.telephonePro ? condition(nouveauLieu.telephonePro) : '';
-      if (nouveauLieu.telephonePro.length < 12) {
-        nouveauLieu.telephonePro = null;
-      }
+      nouveauLieu.telephonePro = formatTelephone(nouveauLieu?.telephonePro, codeDepartement);
+      nouveauLieu.numeroTelephone = formatTelephone(nouveauLieu?.numeroTelephone, codeDepartement);
       nouveauLieu.adresse = JSON.parse(JSON.stringify(nouveauLieu.adresse,
         (key, value) => (value === '') ? null : value
       ));
@@ -96,8 +91,14 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
         redirection = nouveauLieu._id ?? conseillerId;
       }
       if (nouveauLieu._id !== null && nouveauLieu._id !== 'nouveau') {
-        dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, true, null, redirection));
+        if (prefixId === 'principal_' && (idPermanenceUrl !== nouveauLieu._id)) {
+          nouveauLieu.idOldPermanence = idPermanenceUrl;
+        }
+        dispatch(permanenceActions.updatePermanence(nouveauLieu?._id, conseillerId, nouveauLieu, true, null, redirection));
       } else if (prefixId) {
+        if (prefixId === 'principal_') {
+          nouveauLieu.idOldPermanence = idPermanenceUrl;
+        }
         nouveauLieu._id = null;
         dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, true, null, redirection));
       } else if (prefixId === null) {
@@ -149,7 +150,8 @@ Validation.propTypes = {
   structureId: PropTypes.string,
   redirectionValidation: PropTypes.string,
   statut: PropTypes.string,
-  codeDepartement: PropTypes.string
+  codeDepartement: PropTypes.string,
+  idPermanenceUrl: PropTypes.string
 };
 
 export default Validation;

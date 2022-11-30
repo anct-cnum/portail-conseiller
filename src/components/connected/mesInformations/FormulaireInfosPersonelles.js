@@ -28,7 +28,7 @@ function FormulaireInfosPersonnelles() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const { conseillerTelephone, conseillerTelephonePro, conseillerEmail, conseillerDateDeNaissance, conseillerSexe, conseillerEmailPro } = inputs;
+
   const todayDate = new Date();
   const maxDate = todayDate.getFullYear() - 18;
   const minDate = todayDate.getFullYear() - 99;
@@ -130,7 +130,7 @@ function FormulaireInfosPersonnelles() {
           type="email"
           id="conseiller-email-pro"
           name="conseillerEmailPro"
-          value={conseillerEmailPro}
+          value={inputs?.conseillerEmailPro}
           onChange={handleChange}
         />
         {erreurEmailPro &&
@@ -151,7 +151,7 @@ function FormulaireInfosPersonnelles() {
           id="conseiller-telephone-pro"
           placeholder="+33XXXXXXXXX ou +262XXXXXXXXX, ..."
           name="conseillerTelephonePro"
-          value={conseillerTelephonePro}
+          value={inputs?.conseillerTelephonePro ?? ''}
           onChange={handleChange}
         />
         {erreurNumeroTelephonePro &&
@@ -171,7 +171,7 @@ function FormulaireInfosPersonnelles() {
           id="conseiller-telephone"
           placeholder="+33XXXXXXXXX ou +262XXXXXXXXX, ..."
           name="conseillerTelephone"
-          value={conseillerTelephone}
+          value={inputs?.conseillerTelephone}
           onChange={handleChange}
         />
         {erreurNumeroTelephone &&
@@ -191,7 +191,7 @@ function FormulaireInfosPersonnelles() {
           type="email"
           id="conseiller-email"
           name="conseillerEmail"
-          value={conseillerEmail}
+          value={inputs?.conseillerEmail}
           onChange={handleChange}
         />
         {erreurEmailPerso &&
@@ -211,9 +211,9 @@ function FormulaireInfosPersonnelles() {
           placeholderText="../../...."
           dateFormat="dd/MM/yyyy"
           locale="fr"
-          selected={new Date(conseillerDateDeNaissance)}
+          selected={new Date(inputs?.conseillerDateDeNaissance)}
           onChange={handleChange}
-          value={new Date(conseillerDateDeNaissance)}
+          value={new Date(inputs?.conseillerDateDeNaissance)}
           peekNextMonth
           onChangeRaw={e => e.preventDefault()}
           showMonthDropdown
@@ -232,18 +232,18 @@ function FormulaireInfosPersonnelles() {
           <div className="fr-fieldset__content">
             <div className="fr-radio-group radio-genre">
               <input type="radio" id="Homme" name="conseillerSexe" value="Homme" onClick={handleChange}
-                checked={conseillerSexe === 'Homme'}
+                checked={inputs?.conseillerSexe === 'Homme'} readOnly
               />
               <label className="fr-label" htmlFor="Homme">Homme
               </label>
             </div>
             <div className="fr-radio-group radio-genre">
-              <input type="radio" id="Femme" name="conseillerSexe" value="Femme" onClick={handleChange} checked={conseillerSexe === 'Femme'} />
+              <input type="radio" id="Femme" name="conseillerSexe" value="Femme" onClick={handleChange} checked={inputs?.conseillerSexe === 'Femme'} readOnly />
               <label className="fr-label" htmlFor="Femme">Femme
               </label>
             </div>
             <div className="fr-radio-group radio-genre">
-              <input type="radio" id="Autre" name="conseillerSexe" value="Autre" onClick={handleChange} checked={conseillerSexe === 'Autre'} />
+              <input type="radio" id="Autre" name="conseillerSexe" value="Autre" onClick={handleChange} checked={inputs?.conseillerSexe === 'Autre'} readOnly />
               <label className="fr-label" htmlFor="Autre">Autre
               </label>
             </div>

@@ -18,7 +18,7 @@ const initialState = {
 
 const nettoyageState = form => {
   return form?.filter(field => {
-    if (Object.keys(field).length !== 0) {
+    if (Object.keys(field)?.length !== 0) {
       return true;
     }
     return false;
@@ -107,7 +107,7 @@ export default function permanence(state = initialState, action) {
         fields: fields
       };
     case 'DISABLED_FIELD':
-      let disabledFields = state?.disabledFields;
+      let disabledFields = state?.disabledFields ?? [];
       delete disabledFields?.filter(field => field.id === action.field.id)[0]?.value;
       delete disabledFields?.filter(field => field.id === action.field.id)[0]?.id;
 
@@ -191,8 +191,8 @@ export default function permanence(state = initialState, action) {
         loadingGeocode: true,
       };
     case 'GEOCODE_ADRESSE_SUCCESS':
-      let geocodeAdresses = state?.geocodeAdresses;
-      if (geocodeAdresses.length > 0) {
+      let geocodeAdresses = state?.geocodeAdresses ?? [];
+      if (geocodeAdresses?.length > 0) {
         delete geocodeAdresses?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.geocodeAdresse;
         delete geocodeAdresses?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.prefixId;
       }
@@ -213,11 +213,13 @@ export default function permanence(state = initialState, action) {
       };
     case 'GEOCODE_ADRESSE_REBOOT':
       let geocodeToDelete = state?.geocodeAdresses;
-      if (geocodeToDelete.length > 0) {
+      if (geocodeToDelete?.length > 0) {
         delete geocodeToDelete?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.geocodeAdresse;
         delete geocodeToDelete?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.prefixId;
+        geocodeToDelete = nettoyageState(geocodeToDelete);
+      } else {
+        geocodeToDelete = [];
       }
-      geocodeToDelete = nettoyageState(geocodeToDelete);
       return {
         ...state,
         geocodeAdresses: geocodeToDelete,
@@ -314,10 +316,14 @@ export default function permanence(state = initialState, action) {
       };
     case 'RESERVE_LIEU_ACTIVITE':
       const reservation = action.reservationPermanence;
-      delete state.permanencesReservees.filter(perm => perm.prefixId === reservation.prefixId)[0]?.idPermanence;
-      delete state.permanencesReservees.filter(perm => perm.prefixId === reservation.prefixId)[0]?.prefixId;
-      state.permanencesReservees.push(action.reservationPermanence);
-      state.permanencesReservees = nettoyageState(state.permanencesReservees);
+      if (state?.permanencesReservees?.length === 0) {
+        state.permanencesReservees = [reservation];
+      } else {
+        delete state.permanencesReservees?.filter(perm => perm.prefixId === reservation.prefixId)[0]?.idPermanence;
+        delete state.permanencesReservees?.filter(perm => perm.prefixId === reservation.prefixId)[0]?.prefixId;
+        state.permanencesReservees.push(reservation);
+        state.permanencesReservees = nettoyageState(state.permanencesReservees);
+      }
 
       return {
         ...state,

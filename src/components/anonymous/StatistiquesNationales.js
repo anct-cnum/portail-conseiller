@@ -17,7 +17,7 @@ import StatisticsPrint from './StatisticsPrint';
 function StatistiquesNationales() {
   const dispatch = useDispatch();
 
-  const user = useSelector(state => state.authentication.user.user);
+  const user = useSelector(state => state.authentication?.user?.user);
   let statsDataLoading = useSelector(state => state.statistique?.statsDataLoading);
   const loadingCSV = useSelector(state => state.conseiller?.loadingCSV);
   const errorCSV = useSelector(state => state.conseiller?.errorCSV);
@@ -125,7 +125,7 @@ function StatistiquesNationales() {
         </div>
         <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats} typeStats={'nationales'}/>
         <div className="fr-m-5w fr-m-md-9w fr-m-lg-15w"></div>
-        <Footer type="support" role={user.role}/>
+        <Footer type="support" role={user?.role}/>
       </div>
     </div>
   );

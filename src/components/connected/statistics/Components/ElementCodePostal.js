@@ -24,14 +24,14 @@ function ElementCodePostal({ idStructure = '' }) {
       } else {
         dispatch(statistiqueActions.getCodesPostauxCrasConseiller());
       }
-    } else if (listeCodesPostaux && optionList.length === 0) {
+    } else if (listeCodesPostaux && optionList?.length === 0) {
       listeCodesPostaux.forEach(codePostal => {
-        if (codePostal.villes.length === 1) {
+        if (codePostal.villes?.length === 1) {
           optionList.push({
             text: codePostal.id + ' - ' + codePostal.villes[0].toUpperCase(),
             value: codePostal.id + '-' + codePostal.villes[0]
           });
-        } else if (codePostal.villes.length > 1) {
+        } else if (codePostal.villes?.length > 1) {
           optionList.push({
             text: codePostal.id + ' - TOUTES COMMUNES',
             value: codePostal.id

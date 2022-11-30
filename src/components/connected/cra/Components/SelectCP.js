@@ -41,8 +41,8 @@ function SelectCP() {
   //Keyup to reload list with search filter
   const onKeyUp = () => {
     let input = document.getElementById('searchCP');
-    dispatch(craActions.searchInput(input.value.length > 2));
-    if (input.value.length > 2) {
+    dispatch(craActions.searchInput(input.value?.length > 2));
+    if (input.value?.length > 2) {
       let codesPostauxFiltered = filterArray(input.value);
       let options = [];
       codesPostauxFiltered.forEach(codePostal => options.push(
@@ -98,7 +98,7 @@ function SelectCP() {
                 id="searchCP"
                 name="searchCP"
                 className={`searchCP ${cra?.searchInput === true ? 'dropdown-expanded' : ''}`}
-                style={cra?.searchCP === true && codePostalList.length > 0 ? { borderRadius: '20px 20px 0 0' } : {}}
+                style={cra?.searchCP === true && codePostalList?.length > 0 ? { borderRadius: '20px 20px 0 0' } : {}}
                 onKeyUp={onKeyUp}
                 autoFocus={true}/>
               <div>Saisissez au moins 3 caract&egrave;res</div>
