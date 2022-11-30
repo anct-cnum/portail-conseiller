@@ -7,7 +7,6 @@ import BottomPage from './BottomPage';
 import ElementCodePostal from './Components/ElementCodePostal';
 
 function StatisticsPrint({ user, nomComplet, nomStructure, dateDebutStats, dateFinStats, donneesStatistiques, typeTerritoire, nomTerritoire }) {
-  console.log(nomComplet);
   return (
     <div className="statistics only-print">
       <div className="fr-container">
