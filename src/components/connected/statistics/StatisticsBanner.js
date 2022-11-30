@@ -34,14 +34,6 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
   function savePDF() {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     window.print();
-    /*
-    if (user?.role === 'conseiller') {
-      dispatch(conseillerActions.getStatistiquesPDF(user.entity.$id, dateDebut, dateFin, codePostal, ville));
-    } else {
-      const type = getTypeStatistique(typeStats);
-      dispatch(conseillerActions.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser, codePostal));
-    }
-    */
   }
 
   function saveCSV() {
