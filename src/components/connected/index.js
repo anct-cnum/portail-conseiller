@@ -19,7 +19,7 @@ import UpdateCra from './cra/UpdateCra';
 function Connected() {
 
   const dispatch = useDispatch();
-  const user = useSelector(state => state.authentication.user.user);
+  const user = useSelector(state => state.authentication?.user?.user);
   const conseiller = useSelector(state => state?.conseiller?.conseiller);
   const voirFormulaire = useSelector(state => state?.conseiller?.showFormular);
   const voirPermanence = useSelector(state => state?.permanence?.showFormular);
@@ -31,7 +31,7 @@ function Connected() {
 
   useEffect(() => {
     if (conseiller) {
-      dispatch(conseillerActions.isFormulaireChecked(conseiller.sexe, formulaireIsUpdated));
+      dispatch(conseillerActions.isFormulaireChecked(conseiller?.sexe, formulaireIsUpdated));
       dispatch(permanenceActions.isPermanenceChecked(conseiller?.hasPermanence));
 
       if (!structure || structure === undefined) {

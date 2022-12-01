@@ -10,7 +10,7 @@ import Statistiques from '../connected/statistics/Statistics';
 function Admin() {
   const location = useLocation();
 
-  const user = useSelector(state => state.authentication.user.user);
+  const user = useSelector(state => state.authentication?.user?.user);
   return (
     <>
       <HeaderHub linkAccount={user?.name}/>
