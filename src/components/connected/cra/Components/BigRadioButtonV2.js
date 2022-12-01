@@ -36,17 +36,17 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
         if (value === 'autre') {
           dispatch(craActions.getButtonCP());
           setTimeout(() => {
-            document.getElementById('dropdown').style.display = 'block';
-            document.getElementById('buttonCP').style.zIndex = 3;
+            document.getElementById('dropdown').style?.display = 'block';
+            document.getElementById('buttonCP').style?.zIndex = 3;
             document.getElementById('buttonCP').focus();
           }, 100);
         } else if (value === 'rattachement') {
           dispatch(craActions.getButtonPermanences());
           setTimeout(() => {
             if (document.getElementById('dropdown')) {
-              document.getElementById('dropdown').style.display = 'none';
+              document.getElementById('dropdown').style?.display = 'none';
             }
-            document.getElementById('buttonPermanences').style.zIndex = 3;
+            document.getElementById('buttonPermanences').style?.zIndex = 3;
             document.getElementById('buttonPermanences').focus();
           }, 100);
         }
