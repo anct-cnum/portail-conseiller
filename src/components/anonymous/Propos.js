@@ -358,7 +358,7 @@ function Propos() {
           </div>
         </div>
       </div>
-      <Footer type="support" role={user.role}/>
+      <Footer type="support" role={user?.role}/>
     </div>
   );
 }
