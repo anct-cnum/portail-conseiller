@@ -40,16 +40,17 @@ function CoordinateurHeader() {
                   </div>
 
                   <div className="fr-col-6 fr-col-sm-3 fr-col-md-2 menu-btn fr-mb-3w">
-                    <Link to="/territoires" title="Acc&eacute;der &agrave; aux statistiques par territoire">
-                      <img src="/logos/home-connected/icone-statistiques.svg" className="icone-btn icone-cra"/>
-                      Statistiques par <br/>territoire
+                    <Link to="/compte-rendu-activite" title="Acc&eacute;der &agrave; mon outil de suivi d&rsquo;activit&eacute;">
+                      <img src="/logos/home-connected/icone-cra.svg" className="icone-btn icone-cra"/>
+                      Suivi d&rsquo;activit&eacute;
                     </Link>
                   </div>
 
                   <div className="fr-col-6 fr-col-sm-3 fr-col-md-2 menu-btn fr-mb-3w">
-                    <Link to="/compte-rendu-activite" title="Acc&eacute;der &agrave; mon outil de suivi d&rsquo;activit&eacute;">
-                      <img src="/logos/home-connected/icone-cra.svg" className="icone-btn icone-cra"/>
-                      Suivi d&rsquo;activit&eacute;
+                    <Link to="/historique" className="historique-cra"
+                      title="Acc&eacute;der &agrave; l&rsquo;historique de vos comptes rendus d&rsquo;activit&eacute;" >
+                      <img src="/logos/home-connected/icone-historique.svg"/><br/>
+                      <span>Historique</span>
                     </Link>
                   </div>
 
@@ -93,6 +94,13 @@ function CoordinateurHeader() {
                     <Link to="/statistiques-nationales" title="Acc&eacute;der &agrave; aux statistiques nationales">
                       <img src="/logos/home-connected/icone-statistiques.svg" className="icone-btn icone-statistiques"/>
                       Statistiques Nationales
+                    </Link>
+                  </div>
+                  
+                  <div className="fr-col-6 fr-col-sm-3 fr-col-md-2 menu-btn fr-mb-3w">
+                    <Link to="/territoires" title="Acc&eacute;der &agrave; aux statistiques par territoire">
+                      <img src="/logos/home-connected/icone-statistiques.svg" className="icone-btn icone-cra"/>
+                      Statistiques par <br/>territoire
                     </Link>
                   </div>
 

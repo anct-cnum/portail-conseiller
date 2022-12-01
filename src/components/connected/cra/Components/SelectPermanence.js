@@ -57,7 +57,8 @@ function SelectPermanence() {
                 }}>
                   <span className="logoRattachementActif"></span>
                   <span style={{ display: 'inline-block' }}>
-                    <div className="nomEnseigne">{permanence.nomEnseigne?.toUpperCase()}</div>
+                    <div className="nomEnseigne">{permanence.nomEnseigne?.length > 40 ?
+                      permanence.nomEnseigne?.toUpperCase().substr(0, 40) + ' [...]' : permanence.nomEnseigne?.toUpperCase()}</div>
                     <div className="adresse">
                       {permanence.adresse?.numeroRue !== 'null' ? permanence.adresse.numeroRue : ''}
                       {
