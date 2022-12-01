@@ -81,8 +81,8 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpda
         };
         nouveauLieu.telephonePro = formatTelephone(nouveauLieu?.telephonePro, codeDepartement);
         nouveauLieu.numeroTelephone = formatTelephone(nouveauLieu?.numeroTelephone, codeDepartement);
-        if (nouveauLieu._id !== null && nouveauLieu._id !== 'nouveau') {
-          dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, false, 'secondaire_' + (secondaireId + 1) + '_'));
+        if (nouveauLieu?._id !== null && nouveauLieu?._id !== 'nouveau') {
+          dispatch(permanenceActions.updatePermanence(nouveauLieu?._id, conseillerId, nouveauLieu, false, 'secondaire_' + (secondaireId + 1) + '_'));
         } else {
           nouveauLieu._id = null;
           dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, false, 'secondaire_' + (secondaireId + 1) + '_'));

@@ -145,7 +145,7 @@ function PermanenceUpdate({ match }) {
 
   useEffect(async () => {
     if (structure) {
-      dispatch(permanenceActions.getListePermanences(structure._id));
+      dispatch(permanenceActions.getListePermanences(structure?._id));
     }
     if (!maPermanence) {
       dispatch(permanenceActions.getMaPermanence(idPermanence));

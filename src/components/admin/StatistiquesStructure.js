@@ -107,7 +107,7 @@ function StatistiquesStructure() {
             <div className="fr-mb-4w fr-mb-md-6w">
               <StatisticsPeriod dateDebut={dateDebutStats} dateFin={dateFinStats} />
               {structure !== undefined &&
-                <ElementCodePostal idStructure={structure._id} />
+                <ElementCodePostal idStructure={structure?._id} />
               }
             </div>
           </div>

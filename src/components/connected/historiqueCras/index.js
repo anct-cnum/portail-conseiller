@@ -201,7 +201,7 @@ function HistoriqueCras() {
                               dayjs(accompagnement.updatedAt).format('DD/MM/YY à HH:mm') : dayjs(accompagnement.createdAt).format('DD/MM/YY à HH:mm')}
                           </td>
                           <td>
-                            <a href={`/compte-rendu-activite/${accompagnement._id}`}>
+                            <a href={`/compte-rendu-activite/${accompagnement?._id}`}>
                               <i className="ri-pencil-fill ri-xl"></i>
                             </a>
                           </td>

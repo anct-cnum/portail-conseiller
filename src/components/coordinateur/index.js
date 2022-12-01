@@ -33,7 +33,7 @@ function Coordinateur() {
   useEffect(() => {
     if (conseiller) {
       if (!structure || structure === undefined) {
-        dispatch(structureActions.get(conseiller.structureId));
+        dispatch(structureActions.get(conseiller?.structureId));
       }
       dispatch(permanenceActions.isPermanenceChecked(conseiller?.hasPermanence));
 

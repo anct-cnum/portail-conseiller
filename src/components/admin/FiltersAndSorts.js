@@ -118,7 +118,7 @@ function FiltersAndSorts({ resetPage, user }) {
     const conseillerByStructure = conseillerBeforeFilter.find(conseiller =>
       formatNomStructure(conseiller.nomStructure.toLowerCase()) === formatNomStructure(value.toLowerCase()));
     if (conseillerByStructure) {
-      dispatch(filtersAndSortsActions.changeStructureId(conseillerByStructure.structureId));
+      dispatch(filtersAndSortsActions.changeStructureId(conseillerByStructure?.structureId));
     } else {
       dispatch(filtersAndSortsActions.changeNom(value));
     }

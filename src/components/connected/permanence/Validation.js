@@ -88,9 +88,9 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
         (key, value) => (value === '') ? null : value
       ));
       if (redirection === 'cartographie') {
-        redirection = nouveauLieu._id ?? conseillerId;
+        redirection = nouveauLieu?._id ?? conseillerId;
       }
-      if (nouveauLieu._id !== null && nouveauLieu._id !== 'nouveau') {
+      if (nouveauLieu?._id !== null && nouveauLieu?._id !== 'nouveau') {
         if (prefixId === 'principal_' && (idPermanenceUrl !== nouveauLieu._id)) {
           nouveauLieu.idOldPermanence = idPermanenceUrl;
         }

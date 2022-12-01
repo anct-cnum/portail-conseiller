@@ -35,10 +35,10 @@ function Connected() {
       dispatch(permanenceActions.isPermanenceChecked(conseiller?.hasPermanence));
 
       if (!structure || structure === undefined) {
-        dispatch(structureActions.get(conseiller.structureId));
+        dispatch(structureActions.get(conseiller?.structureId));
       }
       if (mesPermanences === undefined) {
-        dispatch(permanenceActions.getMesPermanences(conseiller._id));
+        dispatch(permanenceActions.getMesPermanences(conseiller?._id));
       }
     } else {
       dispatch(conseillerActions.get(userEntityId()));
