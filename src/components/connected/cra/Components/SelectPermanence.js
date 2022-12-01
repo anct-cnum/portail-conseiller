@@ -43,7 +43,7 @@ function SelectPermanence() {
       {cra?.idPermanence &&
         <button className="buttonPermanence-filled" onClick={onClickButtonFilled}>
           <span className="logoRattachementSelected"></span>
-          <span>{cra?.nomEnseigne?.toUpperCase()}</span>
+          <span>{cra?.nomEnseigne?.length > 40 ? cra?.nomEnseigne?.toUpperCase().substr(0, 40) + ' [...]' : cra?.nomEnseigne?.toUpperCase()}</span>
         </button>
       }
       {!cra?.idPermanence &&

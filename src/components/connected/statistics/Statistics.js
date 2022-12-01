@@ -148,7 +148,7 @@ function Statistics() {
           idTerritoire={territoire?.[typeTerritoire]} codePostal={codePostalStats} ville={villeStats}
           idSubordonne={location?.idUser} nomSubordonneeCSV={location?.nomSubordonneeCSV}/>
         <div className="fr-m-5w fr-m-md-9w fr-m-lg-15w"></div>
-        <Footer type="support" role={user.role} />
+        <Footer type="support" role={user?.role} />
       </div>
     </>
   );
