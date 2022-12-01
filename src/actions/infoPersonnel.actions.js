@@ -86,7 +86,7 @@ function verifyFormulaire(form, telephone) {
 }
 
 function updateField(name, value) {
-  return { type: 'UPDATE_' + name.toUpperCase(), value };
+  return { type: 'UPDATE_' + name?.toUpperCase(), value };
 }
 
 function initFormInfoPersonnel(email, telephone, telephonePro, emailPro, dateDeNaissance, sexe) {

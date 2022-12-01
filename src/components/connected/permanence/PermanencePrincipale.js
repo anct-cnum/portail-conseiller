@@ -47,7 +47,7 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
     dispatch(permanenceActions.updateField('principal_codePostal',
       permanencePrincipale?.adresse?.codePostal ?? adresseStructure.code_postal));
     dispatch(permanenceActions.updateField('principal_ville',
-      permanencePrincipale?.adresse?.ville.toUpperCase() ?? adresseStructure.localite.toUpperCase()));
+      permanencePrincipale?.adresse?.ville?.toUpperCase() ?? adresseStructure.localite?.toUpperCase()));
     dispatch(permanenceActions.updateField('principal_location', structure?.location));
     if (loadingHoraires) {
       loadingHoraires[0] = true;
@@ -57,7 +57,7 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
       numero: permanencePrincipale?.adresse?.numeroRue ?? adresseStructure.numero_voie,
       rue: permanencePrincipale?.adresse?.rue ?? adresseStructure.type_voie + ' ' + adresseStructure.nom_voie,
       codePostal: permanencePrincipale?.adresse?.codePostal ?? adresseStructure.code_postal,
-      ville: permanencePrincipale?.adresse?.ville.toUpperCase() ?? adresseStructure.localite.toUpperCase()
+      ville: permanencePrincipale?.adresse?.ville?.toUpperCase() ?? adresseStructure.localite?.toUpperCase()
     };
     dispatch(permanenceActions.getGeocodeAdresse(adresseGeoloc, 'principal_'));
     dispatch(permanenceActions.disabledField('principal_', !isUpdate));

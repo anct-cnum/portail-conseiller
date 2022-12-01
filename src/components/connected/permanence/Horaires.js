@@ -111,7 +111,7 @@ function Horaires({ prefixId, horairesId }) {
                   <tbody key={idx}>
                     <tr className="tr-horaires">
                       <td className={`jour position-jour ${erreursHoraires?.includes(idx) ? 'invalid ' : ''}`}>
-                        {jour.charAt(0).toUpperCase() + jour.substring(1)}
+                        {jour.charAt(0)?.toUpperCase() + jour.substring(1)}
                       </td>
                       <td>
                         {!horaires[prefixId + 'horaires'][idx]?.fermeture[0] &&

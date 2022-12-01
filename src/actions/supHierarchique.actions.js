@@ -62,7 +62,7 @@ function verifyFormulaire(form) {
 }
 
 function updateField(name, value) {
-  return { type: 'UPDATE_' + name.toUpperCase(), value };
+  return { type: 'UPDATE_' + name?.toUpperCase(), value };
 }
 
 function initFormSupHierarchique(formSupHierarchique) {

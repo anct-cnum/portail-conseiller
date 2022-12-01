@@ -33,7 +33,7 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
     dispatch(permanenceActions.updateField(prefixId + 'numeroVoie', permanence?.adresse.numeroRue));
     dispatch(permanenceActions.updateField(prefixId + 'rueVoie', permanence?.adresse.rue));
     dispatch(permanenceActions.updateField(prefixId + 'codePostal', permanence?.adresse.codePostal));
-    dispatch(permanenceActions.updateField(prefixId + 'ville', permanence?.adresse.ville.toUpperCase()));
+    dispatch(permanenceActions.updateField(prefixId + 'ville', permanence?.adresse.ville?.toUpperCase()));
     dispatch(permanenceActions.updateField(prefixId + 'location', permanence?.location));
     dispatch(permanenceActions.updateField(prefixId + 'numeroTelephone', permanence?.numeroTelephone));
     dispatch(permanenceActions.updateField(prefixId + 'email', permanence?.email));
@@ -127,7 +127,7 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
                                   <label className="fr-label fr-my-2w permanence-existante" htmlFor={prefixId + permanence?._id}>
                                     <span className="fr-container fr-container--fluid">
                                       <span className="fr-grid-row">
-                                        <span className="fr-col-3">{permanence?.adresse.ville.toUpperCase()}</span>
+                                        <span className="fr-col-3">{permanence?.adresse.ville?.toUpperCase()}</span>
                                         <span className="fr-col-2">{permanence?.adresse.codePostal}</span>
                                         <span className="fr-col-7">{permanence?.nomEnseigne}</span>
                                       </span>
@@ -144,7 +144,7 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
                                   <label className="fr-label fr-my-2w permanence-existante" htmlFor={prefixId + permanence?._id}>
                                     <span className="fr-container fr-container--fluid">
                                       <span className="fr-grid-row">
-                                        <span className="fr-col-3">{permanence?.adresse.ville.toUpperCase()}</span>
+                                        <span className="fr-col-3">{permanence?.adresse.ville?.toUpperCase()}</span>
                                         <span className="fr-col-2">{permanence?.adresse.codePostal}</span>
                                         <span className="fr-col-7">{permanence?.nomEnseigne}</span>
                                       </span>

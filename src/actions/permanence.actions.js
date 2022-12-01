@@ -537,7 +537,7 @@ function setChampsMaPermanence(permanence, prefixId, conseiller) {
     { name: prefixId + 'numeroVoie', value: permanence?.adresse.numeroRue },
     { name: prefixId + 'rueVoie', value: permanence?.adresse?.rue },
     { name: prefixId + 'codePostal', value: permanence?.adresse.codePostal },
-    { name: prefixId + 'ville', value: permanence?.adresse.ville.toUpperCase() },
+    { name: prefixId + 'ville', value: permanence?.adresse.ville?.toUpperCase() },
     { name: prefixId + 'location', value: permanence?.location },
     { name: prefixId + 'conseillers', value: permanence?.conseillers },
     { name: prefixId + 'itinerant', value: permanence?.conseillersItinerants.includes(conseiller?._id) },
