@@ -29,7 +29,7 @@ function Permanence() {
   const isConseillerDeleted = useSelector(state => state.permanence.isConseillerDeleted);
   const isAllUpdated = useSelector(state => state.permanence.isAllUpdated);
   const redirection = useSelector(state => state.permanence?.redirection);
-  const permanencePrincipale = listPermanences && listPermanences.find(permanence => permanence.lieuPrincipalPour.includes(conseiller?._id));
+  const permanencePrincipale = listPermanences && listPermanences.find(permanence => permanence?.lieuPrincipalPour.includes(conseiller?._id) && permanence?.conseillers.includes(conseiller?._id));
 
   useEffect(() => {
     if (!conseiller) {
