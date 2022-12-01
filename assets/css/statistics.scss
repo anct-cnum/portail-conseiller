@@ -239,9 +239,13 @@
       font-weight: 500;
     }
     ul {
+      position: absolute;
+      line-height: 20px;
+      max-height: 475px;
       list-style: none;
       color: #FFFFFF;
-      line-height: 20px;
+      overflow: auto;
+      height: 475px;
       margin: 0;
       padding: 0;
     }
@@ -358,75 +362,95 @@
       left: -122px;
     }
   }
+}
 
-  @media print {
+.header-print, .only-print {
+  display: none;
+}
 
-    #burgerMenu {
-      display: none;
+@media print {
+  body {
+    size: A4 portrait;
+    transform: scale(1.00);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  header, footer, .dont-print {
+    display: none;
+  }
+  .only-print {
+    display: block;
+    color: #1e1e1e;
+  }
+  .statistics{
+    background-color: #fff;
+    font-size: 1.8rem;
+    .header-print {
+      color: #1e1e1e;
+      display: block;
+      height: 340px;
+      img {
+        width: 1200px;
+      }
+      .identifiant {
+        text-align: center;
+        font-weight: 700;
+      }
     }
-    #footer {
-      display: none;
+    span {
+      color: #1e1e1e;
     }
-    .number, .numbers, .numbers-renewal, .many-numbers {
-      text-align: left;
+    .code-postal-select {
+      font-weight: 700;
+      max-width: 500px !important;
     }
-    div {
-      background: #fff !important;
-      background-color: #fff !important;
+    .text, .number {
+      font-size: 1.8rem;
+      color: #1e1e1e;
     }
-
-    h1 {
-      color: #1e1e1e !important;
-      margin: 0px 0;
-    }
-
-    .title-print-territoire {
-      margin: 0;
-      font-weight: 100;
-      font-size: 35px;
-      text-align: left;
-    }
-
-    .graphique-responsive-lg {
-      display: block !important;
+    .numbers {
+      font-size: 2.7rem;
+      color: #1e1e1e;
     }
     .theme-print {
-      margin: 120px 0 0 0;
+      height: 505px;
     }
-
+    .lieux-print {
+      height: 400px;
+    }
+    .duree-print {
+      height: 625px;
+    }
     .evolution-print {
-      margin-top: 70px;
+      height: 825px;
     }
-    .age-print{
-      margin-top: 50px;
+    .nationale-print {
+      height: 60px;
     }
-    .reorientation-print-conseiller {
-      margin-top: -750px;
+    .mozilla-espace-block {
+      height: 40px;
     }
-    .reorientation-print {
-      margin-top: -20px;
+    /*chrome & safari*/
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+      .theme-print {
+        height: 475px !important;
+      }
+    }
+    /*mozilla*/
+    @supports (-moz-appearance:none) {
+      .mozilla-espace-block {
+        height: 85px;
+      }
+      .theme-print {
+        height: 800px;
+      }
+      .lieux-print, .duree-print {
+        height: 600px;
+      }
+      .evolution-print {
+        height: 500px;
+      }
     }
   }
 }
 
-.statistics.print {
-  background-color: #fff;
-  color: #1e1e1e;
-  .fr-service__title {
-    color: #1e1e1e;
-  }
-  .lieux-autres{
-    position: static;
-    margin: -28px 0 0 405px;
-  }
-  .lieux-autres, .lieux-autres ul{
-    color: #1e1e1e;
-  }
-}
-.print {
-  background-color: #fff;
-  color: #1e1e1e;
-  .fr-service__title {
-    color: #1e1e1e;
-  }
-}
