@@ -4,6 +4,7 @@ import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { conseillerActions } from '../../../actions';
+import dayjs from 'dayjs';
 
 function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePostal = null, ville = null, idSubordonne = null, nomSubordonneeCSV = null }) {
 
@@ -30,8 +31,26 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
     }
     return typeTarget;
   }
+  
+  function getTitlePDF() {
+    const titrePDF = 'Statistiques';
+    const datesPDF = '_' + dayjs(dateDebut).format('DD/MM/YYYY') + '_' + dayjs(dateFin).format('DD/MM/YYYY');
+    const identitePDF = nomSubordonneeCSV ?? user.prenom + '_' + user.nom;
+    let titlePDF = titrePDF;
+    if (typeStats) {
+      titlePDF += '_' + typeStats + datesPDF;
+    } else if (typeTerritoire) {
+      titlePDF += typeTerritoire === 'codeDepartement' ?
+        '_' + territoire?.nomDepartement + datesPDF :
+        '_' + territoire?.nomRegion + datesPDF;
+    } else {
+      titlePDF += '_' + identitePDF + datesPDF;
+    }
+    return titlePDF;
+  }
 
   function savePDF() {
+    document.title = getTitlePDF();
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     window.print();
   }
