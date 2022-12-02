@@ -22,7 +22,7 @@ import HistoriqueCras from '../connected/historiqueCras';
 function Coordinateur() {
   const dispatch = useDispatch();
 
-  const user = useSelector(state => state.authentication.user.user);
+  const user = useSelector(state => state.authentication?.user?.user);
   const conseiller = useSelector(state => state?.conseiller?.conseiller);
   const structure = useSelector(state => state?.structure?.structure);
 
@@ -33,7 +33,7 @@ function Coordinateur() {
   useEffect(() => {
     if (conseiller) {
       if (!structure || structure === undefined) {
-        dispatch(structureActions.get(conseiller.structureId));
+        dispatch(structureActions.get(conseiller?.structureId));
       }
       dispatch(permanenceActions.isPermanenceChecked(conseiller?.hasPermanence));
 

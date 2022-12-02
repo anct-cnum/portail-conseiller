@@ -28,7 +28,7 @@ function ElementCodePostal({ idStructure = '' }) {
       listeCodesPostaux.forEach(codePostal => {
         if (codePostal.villes?.length === 1) {
           optionList.push({
-            text: codePostal.id + ' - ' + codePostal.villes[0].toUpperCase(),
+            text: codePostal.id + ' - ' + codePostal.villes[0]?.toUpperCase(),
             value: codePostal.id + '-' + codePostal.villes[0]
           });
         } else if (codePostal.villes?.length > 1) {

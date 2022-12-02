@@ -10,7 +10,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
   const location = useLocation();
   const dispatch = useDispatch();
   const downloadError = useSelector(state => state.conseiller?.downloadError);
-  const user = useSelector(state => state.authentication.user.user);
+  const user = useSelector(state => state.authentication?.user?.user);
   const blob = useSelector(state => state.conseiller?.blob);
   const territoire = location?.territoire;
   let typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : null;

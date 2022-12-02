@@ -38,8 +38,6 @@ function StatisticsPrint({ dateDebutStats, dateFinStats, donneesStatistiques, ty
 }
 
 StatisticsPrint.propTypes = {
-  user: PropTypes.object,
-  nomStructure: PropTypes.string,
   typeTerritoire: PropTypes.string,
   donneesStatistiques: PropTypes.object,
   dateDebutStats: PropTypes.instanceOf(Date),

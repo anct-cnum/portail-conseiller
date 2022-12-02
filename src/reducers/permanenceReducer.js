@@ -321,7 +321,7 @@ export default function permanence(state = initialState, action) {
       } else {
         delete state.permanencesReservees?.filter(perm => perm.prefixId === reservation.prefixId)[0]?.idPermanence;
         delete state.permanencesReservees?.filter(perm => perm.prefixId === reservation.prefixId)[0]?.prefixId;
-        state.permanencesReservees.push(reservation);
+        state.permanencesReservees?.push(reservation);
         state.permanencesReservees = nettoyageState(state.permanencesReservees);
       }
 

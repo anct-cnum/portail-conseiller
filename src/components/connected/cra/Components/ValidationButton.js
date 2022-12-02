@@ -24,7 +24,7 @@ function ValidationButton() {
       /* eslint-disable */
       let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error, showSelectRedirection, nbParticipantsAge, nbParticipantsStatut,
         nbParticipantsAccompagnement, printFlashbag, buttonCP, buttonPermanences, buttonPermanence, nomEnseigne, ...dataCraToSend } = cra;
-      dataCraToSend.idStructure = conseiller.structureId;
+      dataCraToSend.idStructure = conseiller?.structureId;
       /* eslint-enable */
 
 
@@ -32,7 +32,7 @@ function ValidationButton() {
         delete dataCraToSend.sousThemes;
       }
       if (cra.id) {
-        dispatch(craActions.updateCra(dataCraToSend, conseiller._id));
+        dispatch(craActions.updateCra(dataCraToSend, conseiller?._id));
       } else {
         dispatch(craActions.submitCra(dataCraToSend));
       }

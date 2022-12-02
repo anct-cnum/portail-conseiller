@@ -51,7 +51,7 @@ function PermanenceUpdate({ match }) {
       numero: maPermanence?.adresse?.numeroRue,
       rue: maPermanence?.adresse?.rue,
       codePostal: maPermanence?.adresse?.codePostal,
-      ville: maPermanence?.adresse?.ville.toUpperCase()
+      ville: maPermanence?.adresse?.ville?.toUpperCase()
     };
     const adresseGeoloc = JSON.parse(JSON.stringify(adresse,
       (key, value) => (value === null) ? '' : value
@@ -79,13 +79,13 @@ function PermanenceUpdate({ match }) {
     dispatch(permanenceActions.updateField('principal_nomEnseigne', permanencePrincipale?.nomEnseigne ?? structure?.nom));
     dispatch(permanenceActions.updateField('principal_siret', permanencePrincipale?.siret ?? structure?.siret));
     dispatch(permanenceActions.updateField('principal_numeroVoie',
-      permanencePrincipale?.adresse?.numeroRue ?? adresseStructure.numero_voie));
+      permanencePrincipale?.adresse?.numeroRue ?? adresseStructure?.numero_voie));
     dispatch(permanenceActions.updateField('principal_rueVoie',
-      permanencePrincipale?.adresse?.rue ?? adresseStructure.type_voie + ' ' + adresseStructure.nom_voie));
+      permanencePrincipale?.adresse?.rue ?? adresseStructure?.type_voie + ' ' + adresseStructure?.nom_voie));
     dispatch(permanenceActions.updateField('principal_codePostal',
-      permanencePrincipale?.adresse?.codePostal ?? adresseStructure.code_postal));
+      permanencePrincipale?.adresse?.codePostal ?? adresseStructure?.code_postal));
     dispatch(permanenceActions.updateField('principal_ville',
-      permanencePrincipale?.adresse?.ville.toUpperCase() ?? adresseStructure.localite.toUpperCase()));
+      permanencePrincipale?.adresse?.ville?.toUpperCase() ?? adresseStructure?.localite?.toUpperCase()));
     dispatch(permanenceActions.updateField('principal_location', estStructure ? structure?.location : null));
     if (loadingHoraires) {
       loadingHoraires[0] = true;
@@ -135,17 +135,17 @@ function PermanenceUpdate({ match }) {
       updateGeocodeAdress(maPermanence, maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_');
     }
     const adresseGeoloc = estStructure ? {
-      numero: maPermanence?.adresse?.numeroRue ?? adresseStructure.numero_voie,
-      rue: maPermanence?.adresse?.rue ?? adresseStructure.type_voie + ' ' + adresseStructure.nom_voie,
+      numero: maPermanence?.adresse?.numeroRue ?? adresseStructure?.numero_voie,
+      rue: maPermanence?.adresse?.rue ?? adresseStructure?.type_voie + ' ' + adresseStructure?.nom_voie,
       codePostal: maPermanence?.adresse?.codePostal ?? adresseStructure.code_postal,
-      ville: maPermanence?.adresse?.ville.toUpperCase() ?? adresseStructure.localite.toUpperCase()
+      ville: maPermanence?.adresse?.ville?.toUpperCase() ?? adresseStructure.localite?.toUpperCase()
     } : {};
     dispatch(permanenceActions.getGeocodeAdresse(adresseGeoloc, 'principal_'));
   }
 
   useEffect(async () => {
     if (structure) {
-      dispatch(permanenceActions.getListePermanences(structure._id));
+      dispatch(permanenceActions.getListePermanences(structure?._id));
     }
     if (!maPermanence) {
       dispatch(permanenceActions.getMaPermanence(idPermanence));
@@ -172,7 +172,7 @@ function PermanenceUpdate({ match }) {
         numero: maPermanence?.adresse?.numeroRue,
         rue: maPermanence?.adresse?.rue,
         codePostal: maPermanence?.adresse?.codePostal,
-        ville: maPermanence?.adresse?.ville.toUpperCase()
+        ville: maPermanence?.adresse?.ville?.toUpperCase()
       };
       const adresseGeoloc = JSON.parse(JSON.stringify(adresse,
         (key, value) => (value === null) ? '' : value

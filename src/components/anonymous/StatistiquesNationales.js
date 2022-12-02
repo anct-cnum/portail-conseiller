@@ -43,8 +43,7 @@ function StatistiquesNationales() {
           <AdminHeader linkAccount={user?.name} />
         </div>
       }
-      <StatisticsPrint dateDebutStats={dateDebutStats} dateFinStats={dateFinStats} donneesStatistiques={donneesStatistiques}
-        user={user} typeTerritoire={typeTerritoire}/>
+      <StatisticsPrint dateDebutStats={dateDebutStats} dateFinStats={dateFinStats} donneesStatistiques={donneesStatistiques}/>
       <div className="statistics dont-print">
         <div className="fr-container">
           <div className="spinnerCustom">

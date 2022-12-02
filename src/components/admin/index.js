@@ -13,13 +13,13 @@ import StatistiquesStructure from './StatistiquesStructure';
 function Admin() {
   const location = useLocation();
 
-  const user = useSelector(state => state.authentication.user.user);
+  const user = useSelector(state => state.authentication?.user?.user);
   return (
     <>
       <Header linkAccount={user?.name}/>
       <div className="admin">
         { !location.pathname.startsWith('/statistiques') && !location.pathname.startsWith('/conseiller') &&
-          <AdminHeader role={ user.role } linkAccount={user?.name} />
+          <AdminHeader role={ user?.role } linkAccount={user?.name} />
         }
         <Route path={`/accueil`} component={Conseillers} />
         <Route path={`/territoires`} component={Territoires} />
