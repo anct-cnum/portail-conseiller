@@ -74,7 +74,7 @@ function HistoriqueCras() {
               </p>
             </FlashMessage>
           }
-          {error &&
+          {error && error !== 'Aucun CRA' &&
             <FlashMessage duration={5000}>
               <p className="fr-label flashBag invalid">
                 Une erreur s&rsquo;est produite lors du chargement de votre historique, veuillez re&eacute;ssayer ult&eacute;rieurement.
