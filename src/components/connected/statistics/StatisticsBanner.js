@@ -31,12 +31,11 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
     }
     return typeTarget;
   }
-  
+
   function getTitlePDF() {
-    const titrePDF = 'Statistiques';
     const datesPDF = '_' + dayjs(dateDebut).format('DD/MM/YYYY') + '_' + dayjs(dateFin).format('DD/MM/YYYY');
     const identitePDF = nomSubordonneeCSV ?? user.prenom + '_' + user.nom;
-    let titlePDF = titrePDF;
+    let titlePDF = 'Statistiques';
     if (typeStats) {
       titlePDF += '_' + typeStats + datesPDF;
     } else if (typeTerritoire) {
