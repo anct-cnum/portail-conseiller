@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Recapitulatif({ nomStructure, siret, adresseStructure }) {
+  const numeroRue = adresseStructure?.numeroRue ?? '';
+  const numeroVoie = adresseStructure?.numero_voie ?? '';
 
   return (
 
@@ -16,8 +18,8 @@ function Recapitulatif({ nomStructure, siret, adresseStructure }) {
         <span className="libelle-adresse fr-mr-5w">Adresse</span>
         <span className="info-adresse">
           {adresseStructure?.numeroRue ?
-            adresseStructure?.numeroRue + ' ' + adresseStructure?.rue :
-            adresseStructure?.numero_voie + ' ' + adresseStructure?.type_voie + ' ' + adresseStructure?.nom_voie}
+            numeroRue + ' ' + adresseStructure?.rue :
+            numeroVoie + ' ' + adresseStructure?.type_voie + ' ' + adresseStructure?.nom_voie}
         </span>
         <br/>
         <span className="libelle-adresse fr-mr-5w">Code Postal</span>
