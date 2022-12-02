@@ -127,8 +127,8 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
                                   <label className="fr-label fr-my-2w permanence-existante" htmlFor={prefixId + permanence?._id}>
                                     <span className="fr-container fr-container--fluid">
                                       <span className="fr-grid-row">
-                                        <span className="fr-col-3">{permanence?.adresse.ville?.toUpperCase()}</span>
-                                        <span className="fr-col-2">{permanence?.adresse.codePostal}</span>
+                                        <span className="fr-col-3">{permanence?.adresse?.ville?.toUpperCase()}</span>
+                                        <span className="fr-col-2">{permanence?.adresse?.codePostal}</span>
                                         <span className="fr-col-7">{permanence?.nomEnseigne}</span>
                                       </span>
                                     </span>
