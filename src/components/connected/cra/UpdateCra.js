@@ -54,16 +54,14 @@ function UpdateCra({ match }) {
             }
           </div>
           {(error && !loading) &&
-            <>
-              <div className="fr-col-12 fr-mt-12w flashBag invalid">
-                Une erreur est survenue, le suivi d&rsquo;activit&eacute; n&rsquo;a pas pu &ecirc;tre trouv&eacute; !<br/>
-                Erreur : {error}
-              </div>
-              <div className="fr-col-12 fr-mt-3w">
-                Dernier enregistrement de ce compte rendu d&rsquo;activit&eacute; le <b>{dayjs(dateUpdate).format('DD/MM/YYYY à HH:mm')}</b>
-              </div>
-            </>
+            <div className="fr-col-12 fr-mt-12w flashBag invalid">
+              Une erreur est survenue, le suivi d&rsquo;activit&eacute; n&rsquo;a pas pu &ecirc;tre trouv&eacute; !<br/>
+              Erreur : {error}
+            </div>
           }
+          <div className="fr-col-12 fr-mt-3w">
+            Dernier enregistrement de ce compte rendu d&rsquo;activit&eacute; le <b>{dayjs(dateUpdate).format('DD/MM/YYYY à HH:mm')}</b>
+          </div>
         </div>
         {(!error && !loading) &&
           <>
