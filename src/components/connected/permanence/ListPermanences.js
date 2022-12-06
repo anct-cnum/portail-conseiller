@@ -17,7 +17,7 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
   const [showList, setShowList] = useState(0);
 
   const handleClick = e => {
-    const permanence = listPermanences.find(permanence => permanence._id === e.target.value);
+    const permanence = listPermanences.find(permanence => permanence?._id === e.target.value);
     if (permanence?._id) {
       dispatch(permanenceActions.reserverPermanence({ prefixId: prefixId, idPermanence: permanence?._id }));
     }
@@ -33,7 +33,7 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
     dispatch(permanenceActions.updateField(prefixId + 'numeroVoie', permanence?.adresse.numeroRue));
     dispatch(permanenceActions.updateField(prefixId + 'rueVoie', permanence?.adresse.rue));
     dispatch(permanenceActions.updateField(prefixId + 'codePostal', permanence?.adresse.codePostal));
-    dispatch(permanenceActions.updateField(prefixId + 'ville', permanence?.adresse.ville.toUpperCase()));
+    dispatch(permanenceActions.updateField(prefixId + 'ville', permanence?.adresse.ville?.toUpperCase()));
     dispatch(permanenceActions.updateField(prefixId + 'location', permanence?.location));
     dispatch(permanenceActions.updateField(prefixId + 'numeroTelephone', permanence?.numeroTelephone));
     dispatch(permanenceActions.updateField(prefixId + 'email', permanence?.email));
@@ -85,7 +85,11 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
     if (geocodeAdresses) {
       const geocodeAdresse = geocodeAdresses?.filter(geocode => geocode.prefixId === prefixId)[0]?.geocodeAdresse;
       if (geocodeAdresse) {
-        dispatch(permanenceActions.updateField(prefixId + 'location', geocodeAdresse[0]?.geometry ?? { type: 'Point', coordinates: [1.849121, 46.624100] }));
+        let resultGeocode = geocodeAdresse[0]?.geometry ?? { type: 'Point', coordinates: [1.849121, 46.624100] };
+        if (prefixId === 'principal_' && geocodeAdresse.length === 0) {
+          resultGeocode = null;
+        }
+        dispatch(permanenceActions.updateField(prefixId + 'location', resultGeocode));
       }
     }
   }, [geocodeAdresses]);
@@ -114,7 +118,7 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
                     {listPermanences.map(((permanence, idx) => {
                       return (
                         <div className="fr-radio-group fr-radio-rich radio-permanence" key={idx}>
-                          {(permanence?.conseillers.includes(conseillerId) === false || permanenceActuelId === String(permanence._id)) &&
+                          {(permanence?.conseillers.includes(conseillerId) === false || permanenceActuelId === String(permanence?._id)) &&
                             <>
                               {(permanencesReservees?.filter(perm => perm.idPermanence === permanence?._id)?.length > 0 &&
                               permanencesReservees?.filter(perm => perm.idPermanence === permanence?._id)[0]?.prefixId !== prefixId) &&
@@ -123,8 +127,8 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
                                   <label className="fr-label fr-my-2w permanence-existante" htmlFor={prefixId + permanence?._id}>
                                     <span className="fr-container fr-container--fluid">
                                       <span className="fr-grid-row">
-                                        <span className="fr-col-3">{permanence?.adresse.ville.toUpperCase()}</span>
-                                        <span className="fr-col-2">{permanence?.adresse.codePostal}</span>
+                                        <span className="fr-col-3">{permanence?.adresse?.ville?.toUpperCase()}</span>
+                                        <span className="fr-col-2">{permanence?.adresse?.codePostal}</span>
                                         <span className="fr-col-7">{permanence?.nomEnseigne}</span>
                                       </span>
                                     </span>
@@ -140,8 +144,8 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
                                   <label className="fr-label fr-my-2w permanence-existante" htmlFor={prefixId + permanence?._id}>
                                     <span className="fr-container fr-container--fluid">
                                       <span className="fr-grid-row">
-                                        <span className="fr-col-3">{permanence?.adresse.ville.toUpperCase()}</span>
-                                        <span className="fr-col-2">{permanence?.adresse.codePostal}</span>
+                                        <span className="fr-col-3">{permanence?.adresse?.ville?.toUpperCase()}</span>
+                                        <span className="fr-col-2">{permanence?.adresse?.codePostal}</span>
                                         <span className="fr-col-7">{permanence?.nomEnseigne}</span>
                                       </span>
                                     </span>

@@ -49,7 +49,7 @@ function BigDatePickerButton({ initDate }) {
       disabledKeyboardNavigation
       maxDate={new Date()}
       minDate={new Date('2020-01-01')}
-      formatWeekDay={nameOfDay => nameOfDay.substr(0, 1).toUpperCase()}
+      formatWeekDay={nameOfDay => nameOfDay?.toUpperCase()?.substr(0, 1)}
     />
   );
 }

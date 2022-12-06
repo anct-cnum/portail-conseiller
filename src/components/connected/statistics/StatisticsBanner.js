@@ -4,13 +4,14 @@ import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { conseillerActions } from '../../../actions';
+import dayjs from 'dayjs';
 
 function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePostal = null, ville = null, idSubordonne = null, nomSubordonneeCSV = null }) {
 
   const location = useLocation();
   const dispatch = useDispatch();
   const downloadError = useSelector(state => state.conseiller?.downloadError);
-  const user = useSelector(state => state.authentication.user.user);
+  const user = useSelector(state => state.authentication?.user?.user);
   const blob = useSelector(state => state.conseiller?.blob);
   const territoire = location?.territoire;
   let typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : null;
@@ -31,14 +32,26 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
     return typeTarget;
   }
 
-  function savePDF() {
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-    if (user?.role === 'conseiller') {
-      dispatch(conseillerActions.getStatistiquesPDF(user.entity.$id, dateDebut, dateFin, codePostal, ville));
+  function getTitlePDF() {
+    const datesPDF = '_' + dayjs(dateDebut).format('DD/MM/YYYY') + '_' + dayjs(dateFin).format('DD/MM/YYYY');
+    const identitePDF = nomSubordonneeCSV ?? user.prenom + '_' + user.nom;
+    let titlePDF = 'Statistiques';
+    if (typeStats) {
+      titlePDF += '_' + typeStats + datesPDF;
+    } else if (typeTerritoire) {
+      titlePDF += typeTerritoire === 'codeDepartement' ?
+        '_' + territoire?.nomDepartement + datesPDF :
+        '_' + territoire?.nomRegion + datesPDF;
     } else {
-      const type = getTypeStatistique(typeStats);
-      dispatch(conseillerActions.getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser, codePostal));
+      titlePDF += '_' + identitePDF + datesPDF;
     }
+    return titlePDF;
+  }
+
+  function savePDF() {
+    document.title = getTitlePDF();
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    window.print();
   }
 
   function saveCSV() {
@@ -71,11 +84,11 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
 
   return (
     <>
-      <div className="fr-col-offset-2 fr-col-8 no-print fr-mt-md-n15w">
+      <div className="fr-col-offset-2 fr-col-8 dont-print fr-mt-md-n15w">
         <hr className="fr-mx-5w"/>
         <div className="fr-m-5w fr-m-md-4w fr-m-xs-to-md-7v"></div>
       </div>
-      <div className="fr-col-12 no-print">
+      <div className="fr-col-12 dont-print">
         <div className="fr-container-fluid">
           <div className="fr-grid-row fr-grid-row--center">
             <div className="fr-col-xs-6 fr-col-sm-6 fr-col-md-5 fr-col-lg-4 fr-mt-5w centrerTexte">

@@ -111,18 +111,20 @@ function Horaires({ prefixId, horairesId }) {
                   <tbody key={idx}>
                     <tr className="tr-horaires">
                       <td className={`jour position-jour ${erreursHoraires?.includes(idx) ? 'invalid ' : ''}`}>
-                        {jour.charAt(0).toUpperCase() + jour.substring(1)}
+                        {jour.charAt(0)?.toUpperCase() + jour.substring(1)}
                       </td>
                       <td>
                         {!horaires[prefixId + 'horaires'][idx]?.fermeture[0] &&
                           <>
                             <input className="horaires-debut without_ampm" type="time"
                               value={ horaires[prefixId + 'horaires'][idx]?.matin[0] }
+                              step={(horaires[prefixId + 'horaires'][idx]?.matin[0] === 'Fermé') ? '3600' : '60'}
                               required name={prefixId + jour + 'MatinDebut'} min="06:00" max="13:00" onChange={e => {
                                 handleChange(e, idx, 'matin', 0);
                               }}/>
                             <input className="horaires-fin without_ampm" type="time" timeformat="24h"
                               value={ horaires[prefixId + 'horaires'][idx]?.matin[1] }
+                              step={ (horaires[prefixId + 'horaires'][idx]?.matin[1] === 'Fermé') ? '3600' : '60'}
                               required name={prefixId + jour + 'MatinFin'} min="06:00" max="13:00" onChange={e => {
                                 handleChange(e, idx, 'matin', 1);
                               }}/>
@@ -142,11 +144,13 @@ function Horaires({ prefixId, horairesId }) {
                           <>
                             <input className="horaires-debut without_ampm" type="time"
                               value={ horaires[prefixId + 'horaires'][idx]?.apresMidi[0] }
+                              step={(horaires[prefixId + 'horaires'][idx]?.apresMidi[0] === 'Fermé') ? '3600' : '60'}
                               required name={prefixId + jour + 'ApresMidiDebut'} min="13:00" max="22:00" onChange={e => {
                                 handleChange(e, idx, 'apresMidi', 0);
                               }}/>
                             <input className="horaires-fin without_ampm" type="time"
                               value={ horaires[prefixId + 'horaires'][idx]?.apresMidi[1] }
+                              step={(horaires[prefixId + 'horaires'][idx]?.apresMidi[1] === 'Fermé') ? '3600' : '60'}
                               required name={prefixId + jour + 'ApresMidiFin'} min="13:00" max="22:00" onChange={e => {
                                 handleChange(e, idx, 'apresMidi', 1);
                               }}/>

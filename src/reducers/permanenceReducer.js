@@ -107,7 +107,7 @@ export default function permanence(state = initialState, action) {
         fields: fields
       };
     case 'DISABLED_FIELD':
-      let disabledFields = state?.disabledFields;
+      let disabledFields = state?.disabledFields ?? [];
       delete disabledFields?.filter(field => field.id === action.field.id)[0]?.value;
       delete disabledFields?.filter(field => field.id === action.field.id)[0]?.id;
 
@@ -191,7 +191,7 @@ export default function permanence(state = initialState, action) {
         loadingGeocode: true,
       };
     case 'GEOCODE_ADRESSE_SUCCESS':
-      let geocodeAdresses = state?.geocodeAdresses;
+      let geocodeAdresses = state?.geocodeAdresses ?? [];
       if (geocodeAdresses?.length > 0) {
         delete geocodeAdresses?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.geocodeAdresse;
         delete geocodeAdresses?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.prefixId;
@@ -321,7 +321,7 @@ export default function permanence(state = initialState, action) {
       } else {
         delete state.permanencesReservees?.filter(perm => perm.prefixId === reservation.prefixId)[0]?.idPermanence;
         delete state.permanencesReservees?.filter(perm => perm.prefixId === reservation.prefixId)[0]?.prefixId;
-        state.permanencesReservees.push(reservation);
+        state.permanencesReservees?.push(reservation);
         state.permanencesReservees = nettoyageState(state.permanencesReservees);
       }
 

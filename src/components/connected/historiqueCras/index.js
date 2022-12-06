@@ -74,7 +74,7 @@ function HistoriqueCras() {
               </p>
             </FlashMessage>
           }
-          {error &&
+          {error && error !== 'Aucun CRA' &&
             <FlashMessage duration={5000}>
               <p className="fr-label flashBag invalid">
                 Une erreur s&rsquo;est produite lors du chargement de votre historique, veuillez re&eacute;ssayer ult&eacute;rieurement.
@@ -121,7 +121,7 @@ function HistoriqueCras() {
                   <a className="fr-btn fr-btn--secondary boutons-cras fr-mr-md-2w" href="/compte-rendu-activite">Enregistrer un nouvel accompagnement</a>
                   <a className="fr-btn fr-btn--secondary" href="/statistiques">Consulter mes statistiques</a>
                 </div>
-                <div className="fr-table fr-table--bordered fr-table--layout-fixed">
+                <div className="fr-table fr-table--bordered fr-table--layout-fixed cras">
                   <table>
                     <thead>
                       <tr>
@@ -201,7 +201,7 @@ function HistoriqueCras() {
                               dayjs(accompagnement.updatedAt).format('DD/MM/YY à HH:mm') : dayjs(accompagnement.createdAt).format('DD/MM/YY à HH:mm')}
                           </td>
                           <td>
-                            <a href={`/compte-rendu-activite/${accompagnement._id}`}>
+                            <a href={`/compte-rendu-activite/${accompagnement?._id}`}>
                               <i className="ri-pencil-fill ri-xl"></i>
                             </a>
                           </td>

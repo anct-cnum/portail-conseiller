@@ -28,7 +28,7 @@ function ElementDatePicker(props) {
     ({ value, onClick }, ref) => (
       <span className={active ? 'date-btn date-active' : 'date-btn' } onClick={onClick} ref={ref}>
         <b>{value}</b>
-        <i className={active ? 'ri-arrow-up-s-line chevron-stats' : 'ri-arrow-down-s-line chevron-stats' }></i>
+        <i className={`dont-print ${active ? 'ri-arrow-up-s-line chevron-stats' : 'ri-arrow-down-s-line chevron-stats'} `}></i>
       </span>
     ),
   );

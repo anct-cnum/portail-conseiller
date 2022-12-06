@@ -104,7 +104,8 @@ function MesPermanences() {
                       </thead>
                       <tbody>
                         {listPermanences?.length > 0 && mesPermanences?.map((permanence, idx) => {
-                          return (<MaPermanence key={idx} permanence={permanence} conseillerId={conseiller._id} trClass ={idx % 2 === 0 ? 'pair' : 'impair'}/>);
+                          return (<MaPermanence key={idx} permanence={permanence} conseillerId={conseiller?._id}
+                            trClass ={idx % 2 === 0 ? 'pair' : 'impair'}/>);
                         })}
                       </tbody>
                     </table>

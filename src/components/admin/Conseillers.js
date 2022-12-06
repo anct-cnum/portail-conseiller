@@ -138,7 +138,7 @@ function Conseillers() {
                           </span>
                         </button>
                       </th>
-                      {user.role === 'admin_coop' &&
+                      {user?.role === 'admin_coop' &&
                         <th>
                           <button className="filtre-btn" onClick={ordreColonne}>
                             <span id="nomStructure" className="name-column-table">
