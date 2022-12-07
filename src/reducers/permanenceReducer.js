@@ -145,6 +145,7 @@ export default function permanence(state = initialState, action) {
 
       let fieldsAdresse = state?.fields;
       let disabledAdresse = state?.disabledFields;
+      const rueVoie = (action.adresseParSiret?.type_voie ?? '') + ' ' + (action.adresseParSiret?.nom_voie ?? '');
 
       if (action.adresseParSiret !== null) {
         delete fieldsAdresse?.filter(field => field.name === action.champ + 'nomEnseigne')[0]?.value;
@@ -159,7 +160,7 @@ export default function permanence(state = initialState, action) {
         delete fieldsAdresse?.filter(field => field.name === action.champ + 'ville')[0]?.name;
         fieldsAdresse.push({ name: action.champ + 'nomEnseigne', value: action.adresseParSiret?.l1 });
         fieldsAdresse.push({ name: action.champ + 'numeroVoie', value: action.adresseParSiret?.numero_voie });
-        fieldsAdresse.push({ name: action.champ + 'rueVoie', value: action.adresseParSiret?.type_voie + ' ' + action.adresseParSiret?.nom_voie });
+        fieldsAdresse.push({ name: action.champ + 'rueVoie', value: rueVoie });
         fieldsAdresse.push({ name: action.champ + 'codePostal', value: action.adresseParSiret?.code_postal });
         fieldsAdresse.push({ name: action.champ + 'ville', value: action.adresseParSiret?.localite?.toUpperCase() });
 
@@ -167,7 +168,7 @@ export default function permanence(state = initialState, action) {
 
         delete disabledAdresse?.filter(field => field.id === action.champ)[0]?.value;
         delete disabledAdresse?.filter(field => field.id === action.champ)[0]?.id;
-        disabledAdresse?.push({ id: action.champ, value: true });
+        disabledAdresse?.push({ id: action.champ, value: !(rueVoie === ' ') });
         disabledAdresse = nettoyageState(disabledAdresse);
       }
 
