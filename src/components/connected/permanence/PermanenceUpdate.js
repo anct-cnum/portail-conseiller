@@ -63,7 +63,7 @@ function PermanenceUpdate({ match }) {
   };
 
   const fillPermanencePrincipale = (permanencePrincipale, estStructure) => {
-    const rue = (adresseStructure?.type_voie ?? '') + ' ' + (adresseStructure?.nom_voie ?? '');
+    const rue = [adresseStructure?.type_voie ?? '', adresseStructure?.nom_voie ?? ''].join(' ');
     dispatch(permanenceActions.updateField('principal_idPermanence', permanencePrincipale?._id ?? null));
     dispatch(permanenceActions.updateField('lieuPrincipalPour', permanencePrincipale?.lieuPrincipalPour));
     dispatch(permanenceActions.updateField('principal_numeroTelephone', permanencePrincipale?.numeroTelephone ?? null));
@@ -92,7 +92,7 @@ function PermanenceUpdate({ match }) {
       loadingHoraires[0] = true;
       dispatch(permanenceActions.setHorairesLoading(loadingHoraires));
     }
-    dispatch(permanenceActions.disabledField('principal_', rue === ' ' ? false : estStructure));
+    dispatch(permanenceActions.disabledField('principal_', rue.trim() === '' ? false : estStructure));
   };
 
   function handleAdresse(estStructure) {
@@ -118,10 +118,11 @@ function PermanenceUpdate({ match }) {
 
     const adresseGeoloc = estStructure ? {
       numero: maPermanence?.adresse?.numeroRue ?? adresseStructure?.numero_voie,
-      rue: maPermanence?.adresse?.rue ?? (adresseStructure?.type_voie ?? '') + ' ' + (adresseStructure?.nom_voie ?? ''),
+      rue: maPermanence?.adresse?.rue ?? [adresseStructure?.type_voie ?? '', adresseStructure?.nom_voie ?? ''].join(' '),
       codePostal: maPermanence?.adresse?.codePostal ?? adresseStructure.code_postal,
       ville: maPermanence?.adresse?.ville?.toUpperCase() ?? adresseStructure.localite?.toUpperCase()
     } : {};
+    console.log('adresseGeoloc:', adresseGeoloc);
 
     if (estStructure) {
       maPermanence = listPermanences?.filter(permanence => permanence?.estStructure === true)[0];
@@ -130,7 +131,7 @@ function PermanenceUpdate({ match }) {
     } else {
       dispatch(permanenceActions.rebootGeocodeAdresse(maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_'));
       // eslint-disable-next-line max-len
-      dispatch(permanenceActions.disabledField(maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_', adresseGeoloc?.rue === ' ' ? false : estStructure));
+      dispatch(permanenceActions.disabledField(maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_', adresseGeoloc?.rue.trim() === '' ? false : estStructure));
       dispatch(permanenceActions.updateLieuEnregistrable(maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_'));
       dispatch(permanenceActions.updateField(
         maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_checkboxSiret' : 'secondaire_0_checkboxSiret', false

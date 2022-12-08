@@ -20,8 +20,8 @@ function Recapitulatif({ nomStructure, siret, adresseStructure }) {
         <span className="libelle-adresse fr-mr-5w">Adresse</span>
         <span className="info-adresse">
           {adresseStructure?.numeroRue ?
-            numeroRue + ' ' + adresseStructure?.rue :
-            numeroVoie + ' ' + typeVoie + ' ' + nomVoie}
+            [numeroRue, adresseStructure?.rue].join(' ') :
+            [numeroVoie, typeVoie, nomVoie].join(' ')}
         </span>
         <br/>
         <span className="libelle-adresse fr-mr-5w">Code Postal</span>

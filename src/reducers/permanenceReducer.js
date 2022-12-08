@@ -145,7 +145,7 @@ export default function permanence(state = initialState, action) {
 
       let fieldsAdresse = state?.fields;
       let disabledAdresse = state?.disabledFields;
-      const rueVoie = (action.adresseParSiret?.type_voie ?? '') + ' ' + (action.adresseParSiret?.nom_voie ?? '');
+      const rueVoie = [action.adresseParSiret?.type_voie ?? '', action.adresseParSiret?.nom_voie ?? ''].join(' ');
 
       if (action.adresseParSiret !== null) {
         delete fieldsAdresse?.filter(field => field.name === action.champ + 'nomEnseigne')[0]?.value;
@@ -168,7 +168,7 @@ export default function permanence(state = initialState, action) {
 
         delete disabledAdresse?.filter(field => field.id === action.champ)[0]?.value;
         delete disabledAdresse?.filter(field => field.id === action.champ)[0]?.id;
-        disabledAdresse?.push({ id: action.champ, value: !(rueVoie === ' ') });
+        disabledAdresse?.push({ id: action.champ, value: !(rueVoie.trim() === '') });
         disabledAdresse = nettoyageState(disabledAdresse);
       }
 
