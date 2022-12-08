@@ -92,7 +92,7 @@ function PermanenceUpdate({ match }) {
       loadingHoraires[0] = true;
       dispatch(permanenceActions.setHorairesLoading(loadingHoraires));
     }
-    dispatch(permanenceActions.disabledField('principal_', rue !== ' ' ? estStructure : true));
+    dispatch(permanenceActions.disabledField('principal_', rue === ' ' ? false : estStructure));
   };
 
   function handleAdresse(estStructure) {
@@ -129,6 +129,7 @@ function PermanenceUpdate({ match }) {
       updateGeocodeAdress(maPermanence, 'principal_');
     } else {
       dispatch(permanenceActions.rebootGeocodeAdresse(maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_'));
+      // eslint-disable-next-line max-len
       dispatch(permanenceActions.disabledField(maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_', adresseGeoloc?.rue === ' ' ? false : estStructure));
       dispatch(permanenceActions.updateLieuEnregistrable(maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_'));
       dispatch(permanenceActions.updateField(
