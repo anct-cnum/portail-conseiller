@@ -60,7 +60,7 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
       ville: permanencePrincipale?.adresse?.ville?.toUpperCase() ?? adresseStructure?.localite?.toUpperCase()
     };
     dispatch(permanenceActions.getGeocodeAdresse(adresseGeoloc, 'principal_'));
-    dispatch(permanenceActions.disabledField('principal_', ruevoie.trim() === '' ? false : !isUpdate));
+    dispatch(permanenceActions.disabledField('principal_', ruevoie?.trim() === '' ? false : !isUpdate));
   };
 
   function handleAdresse(estStructure) {
