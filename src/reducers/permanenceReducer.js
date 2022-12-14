@@ -168,7 +168,7 @@ export default function permanence(state = initialState, action) {
 
         delete disabledAdresse?.filter(field => field.id === action.champ)[0]?.value;
         delete disabledAdresse?.filter(field => field.id === action.champ)[0]?.id;
-        disabledAdresse?.push({ id: action.champ, value: !(rueVoie.trim() === '') });
+        disabledAdresse?.push({ id: action.champ, value: !(rueVoie?.trim() === '') });
         disabledAdresse = nettoyageState(disabledAdresse);
       }
 
