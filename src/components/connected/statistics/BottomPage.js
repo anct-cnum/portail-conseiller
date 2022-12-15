@@ -13,13 +13,14 @@ function BottomPage({ donneesStats, print, type }) {
 
   const dispatch = useDispatch();
 
-  const listeAutres = useSelector(states => states.statistique.listeAutresReorientations);
+  const listeAutresReorientations = useSelector(states => states.statistique.listeAutresReorientations);
 
   const tabColorAge = ['#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e'];
   const tabColorStatut = ['#a2b4b1', '#ffdbd2', '#a3a6bc', '#ddb094', '#fff480'];
   const tabColorLieux = [
     '#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e', '#a2b4b1', '#ffdbd2', '#a3a6bc', '#ddb094', '#fff480',
-    '#cac5b0', '#abb8df', '#fdcf41', '#169b62', '#80d5c6', '#ff8d7e', '#714753', '#956052', '#ffed33', '#be9b31'
+    '#cac5b0', '#abb8df', '#fdcf41', '#169b62', '#80d5c6', '#ff8d7e', '#714753', '#956052', '#ffed33', '#be9b31',
+    '#caffb0', '#abbeef', '#11cf41', '#18eb62', '#a9d5c6', '#f18d7e', '#114753', '#bb6052', '#66ed33', '#b78b31'
   ];
 
   const get4lastMonths = (month, year) => {
@@ -73,25 +74,32 @@ function BottomPage({ donneesStats, print, type }) {
 
   //Tri liste des réorientations autres
   if (statsReorientations?.length > 0) {
-    let listeAutres = [];
+    let donneesAutre = { nom: 'Autres&#0;', valeur: 0 };
     let listDelete = [];
-    let donneesAutre = {
-      nom: 'Autres&#0;',
-      valeur: 0
-    };
+
     statsReorientations.forEach((donnees, i) => {
-      if (labelsCorrespondance.find(label => label.nom === donnees.nom)?.correspondance === undefined) {
-        donneesAutre.valeur += donnees.valeur;
-        listeAutres.push(donnees.nom);
+      if (donnees.valeur > 0) {
+        if (labelsCorrespondance.find(label => label.nom === donnees.nom)?.correspondance === undefined) {
+          donneesAutre.valeur += Number(donnees.valeur);
+          if (!listeAutresReorientations.find(autre => autre === donnees.nom)) {
+            listeAutresReorientations.push(donnees.nom);
+          }
+          listDelete.push(i);
+        } else {
+          donnees.valeur = Math.round(donnees.valeur);
+        }
+      } else {
         listDelete.push(i);
       }
     });
+
+    listDelete.forEach(i => {
+      delete statsReorientations[i];
+    });
     if (!statsReorientations.find(stats => stats?.nom === 'Autres&#0;')) {
+      donneesAutre.valeur = Math.round(donneesAutre.valeur);
       statsReorientations.push(donneesAutre);
-      listDelete.forEach(i => {
-        delete statsReorientations[i];
-      });
-      dispatch(statistiqueActions.updateListeAutresReorientations(listeAutres));
+      dispatch(statistiqueActions.updateListeAutresReorientations(listeAutresReorientations));
     }
   }
 
@@ -249,7 +257,8 @@ function BottomPage({ donneesStats, print, type }) {
           >
             <div className="fr-mt-6w"></div>
             {statsReorientations?.length > 0 &&
-              <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientations} listeAutres={listeAutres} print={print}/>
+              <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientations}
+                listeAutres={listeAutresReorientations} print={print}/>
             }
             <div className="fr-m-no-reorientation"></div>
           </div>
@@ -266,7 +275,8 @@ function BottomPage({ donneesStats, print, type }) {
       </div>
       <div className="fr-col-12 only-print">
         {statsReorientations?.length > 0 &&
-          <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientations} listeAutres={listeAutres} print={true}/>
+          <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientations}
+            listeAutres={listeAutresReorientations} print={true}/>
         }
       </div>
     </>

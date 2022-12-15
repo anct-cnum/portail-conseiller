@@ -22,6 +22,8 @@ function StatistiquesStructure() {
   const errorCSV = useSelector(state => state.conseiller?.errorCSV);
   const loadingPDF = useSelector(state => state.conseiller?.loadingPDF);
   const errorPDF = useSelector(state => state.conseiller?.errorPDF);
+  const loadingExcel = useSelector(state => state.conseiller?.loadingExcel);
+  const errorExcel = useSelector(state => state.conseiller?.errorExcel);
   const isPDFDownloaded = useSelector(state => state.conseiller?.statistiquesPDF);
   const statsDataError = useSelector(state => state.statistique?.statsDataError);
   const dateDebutStats = useSelector(state => state.statistique?.dateDebutStats);
@@ -52,7 +54,7 @@ function StatistiquesStructure() {
             color="#00BFFF"
             height={100}
             width={100}
-            visible={statsDataLoading === true || loadingPDF === true || structure === undefined || loadingCSV === true}
+            visible={statsDataLoading === true || loadingPDF === true || loadingExcel === true || structure === undefined || loadingCSV === true}
           />
         </div>
 
@@ -74,6 +76,13 @@ function StatistiquesStructure() {
           <FlashMessage duration={5000}>
             <p className="flashBag invalid">
               {errorCSV}
+            </p>
+          </FlashMessage>
+        }
+        {errorExcel &&
+          <FlashMessage duration={5000}>
+            <p className="flashBag invalid">
+              {errorExcel}
             </p>
           </FlashMessage>
         }
