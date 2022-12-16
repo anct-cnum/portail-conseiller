@@ -10,6 +10,7 @@ import Footer from '../../Footer';
 import Thematiques from './Thematiques';
 import Spinner from 'react-loader-spinner';
 import Pagination from '../../admin/Pagination';
+import FiltreCra from './FiltreCra';
 
 function HistoriqueCras() {
   const dispatch = useDispatch();
@@ -21,25 +22,29 @@ function HistoriqueCras() {
   const error = useSelector(state => state.historiqueCras?.error);
   const themes = useSelector(state => state.historiqueCras?.themes);
   const printFlashbag = useSelector(state => state.cra.printFlashbag);
-
+  const canaux = ['rattachement', 'autre', 'domicile', 'distance'];
+  const types = ['individuel', 'collectif', 'ponctuel'];
   const [thematique, setThematique] = useState(null);
+  const [canal, setCanal] = useState(null);
+  const [type, setType] = useState(null);
 
   /*Pagination */
   let [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
   const navigate = page => {
     setPage(page);
-    dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, page));
+    dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, canal, type, page));
   };
 
   useEffect(() => {
+    console.log(canal);
     if (accompagnements === undefined || thematique || !thematique) {
-      dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, page));
+      dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, canal, type, page));
     }
     if (themes === undefined) {
       dispatch(historiqueCrasActions.getHistoriqueCrasThematiques());
     }
-  }, [thematique]);
+  }, [thematique, canal, type]);
 
   //Forcer affichage en haut de la page pour voir le flashbag
   useEffect(() => {
@@ -113,7 +118,16 @@ function HistoriqueCras() {
           {(accompagnements && !loading) &&
             <div className="fr-grid-row">
               <div className="fr-col-lg-8 fr-mt-1w fr-mb-8w">
-                Vous avez enregistr&eacute; {total} accompagnements au cours des 30 derniers jours.
+                {(thematique === null && canal === null && type === null) &&
+                <>
+                  Vous avez enregistr&eacute; {total} accompagnements.
+                </>
+                }
+                {(thematique === null || canal === null || type === null) &&
+                <>
+                  Vous avez enregistr&eacute; {total} accompagnements en fonction de vos filtres.
+                </>
+                }
               </div>
 
               <div className="fr-col-12">
@@ -126,43 +140,16 @@ function HistoriqueCras() {
                     <thead>
                       <tr>
                         <th scope="col" className="medium-column">Date</th>
-                        <th scope="col" className="short-column">Canal</th>
+                        <th scope="col" className="medium-column">
+                          <FiltreCra texte="Canal" css="canal" datas={canaux} setDatas={setCanal} hasDatas={true} />
+                        </th>
                         <th scope="col">Lieu</th>
-                        <th scope="col" className="short-column">Type</th>
+                        <th scope="col" className="medium-column">
+                          <FiltreCra texte="Type" css="type" datas={types} setDatas={setType} hasDatas={true} />
+                        </th>
                         <th scope="col" className="medium-column">Usagers</th>
                         <th scope="col">
-                          <nav id="filtre-thematiques" className="fr-nav" role="navigation" aria-label="Filtre thématiques">
-                            <ul className="fr-nav__list">
-                              <li className="fr-nav__item">
-                                <button className="fr-nav__btn btn-thematiques" aria-expanded="false"
-                                  aria-controls="filtre-themes" aria-current="true">
-                                  Th&eacute;matiques
-                                </button>
-                                <div className="fr-collapse fr-menu" id="filtre-themes">
-                                  <ul className="fr-menu__list">
-                                    {thematique &&
-                                      <li className="fr-nav__item">
-                                        <button className="fr-nav__link" onClick={() => {
-                                          setThematique(null);
-                                        }} target="_self">
-                                          Afficher Tout
-                                        </button>
-                                      </li>
-                                    }
-                                    <li className="fr-nav__item">
-                                      {themes?.map((theme, idx) =>
-                                        <button key={idx} className="fr-nav__link" onClick={() => {
-                                          setThematique(theme);
-                                        }} target="_self">
-                                          {htmlDecode(labelsCorrespondance.find(label => label.nom === theme)?.correspondance)}
-                                        </button>
-                                      )}
-                                    </li>
-                                  </ul>
-                                </div>
-                              </li>
-                            </ul>
-                          </nav>
+                          <FiltreCra texte="Th&eacute;matiques" css="themes" datas={themes} setDatas={setThematique} hasDatas={thematique} />
                         </th>
                         <th scope="col" className="medium-column">Modifi&eacute; le</th>
                         <th scope="col" className="short-column">&Eacute;diter</th>
@@ -207,6 +194,13 @@ function HistoriqueCras() {
                           </td>
                         </tr>
                       )}
+                      {(total === 0 && !loading) &&
+                        <tr>
+                          <td colSpan={8} className="no-result">
+                            Nous n&rsquo;avons trouv&eacute; aucun cra en fonction de vos filtres
+                          </td>
+                        </tr>
+                      }
                     </tbody>
                   </table>
                   <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
