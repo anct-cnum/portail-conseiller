@@ -60,7 +60,7 @@ function UpdateCra({ match }) {
             </div>
           }
           <div className="fr-col-12 fr-mt-3w">
-            Dernier enregistrement de ce compte rendu d&rsquo;activit&eacute; le <b>{dayjs(dateUpdate).format('DD/MM/YYYY à HH:mm')}</b>
+            Dernier enregistrement de ce compte rendu d&rsquo;activit&eacute; le <b>{String(dayjs(dateUpdate).format('DD/MM/YYYY à HH:mm'))}</b>
           </div>
         </div>
         {(!error && !loading) &&

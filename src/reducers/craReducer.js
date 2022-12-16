@@ -1,5 +1,6 @@
 const initialState = {
   dateAccompagnement: new Date(),
+  updatedAt: new Date(),
   nbParticipantsRecurrents: null,
   errorsRequired: {
     cp: true,
