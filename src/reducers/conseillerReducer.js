@@ -65,7 +65,6 @@ export default function conseiller(state = initState, action) {
         blob: action.data,
         statistiquesPDF: action.download,
         loadingPDF: false,
-        errorPDF: false
       };
     case 'GET_STATS_ADMINCOOP_PDF_FAILURE':
       return {
@@ -83,9 +82,7 @@ export default function conseiller(state = initState, action) {
       return {
         ...state,
         blob: action.data,
-        statistiquesExcel: action.download,
         loadingExcel: false,
-        errorExcel: false
       };
     case 'GET_STATS_ADMINCOOP_EXCEL_FAILURE':
       return {
@@ -103,9 +100,7 @@ export default function conseiller(state = initState, action) {
       return {
         ...state,
         blob: action.data,
-        statistiquesCSV: action.download,
         loadingCSV: false,
-        errorCSV: false
       };
     case 'GET_STATS_HUB_CSV_FAILURE':
       return {
@@ -123,7 +118,6 @@ export default function conseiller(state = initState, action) {
       return {
         ...state,
         blob: action.data,
-        statistiquesCSV: action.download,
         loadingCSV: false
       };
     case 'GET_STATS_CSV_FAILURE':
@@ -142,9 +136,7 @@ export default function conseiller(state = initState, action) {
       return {
         ...state,
         blob: action.data,
-        statistiquesExcel: action.download,
         loadingExcel: false,
-        errorExcel: false
       };
     case 'GET_STATS_EXCEL_FAILURE':
       return {
@@ -163,7 +155,6 @@ export default function conseiller(state = initState, action) {
       return {
         ...state,
         blob: action.data,
-        statistiquesCSV: action.download,
         loadingCSV: false,
       };
     case 'GET_STATS_ADMINCOOP_CSV_FAILURE':
