@@ -272,7 +272,10 @@ export default function permanence(state = initialState, action) {
         error: action.error,
       };
     case 'SUSPENSION_FORM':
-      return { };
+      return {
+        ...state,
+        isReporter: false
+      };
     case 'DELETE_PERMANENCE_REQUEST':
       return {
         ...state,
