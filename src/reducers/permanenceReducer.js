@@ -168,7 +168,7 @@ export default function permanence(state = initialState, action) {
 
         delete disabledAdresse?.filter(field => field.id === action.champ)[0]?.value;
         delete disabledAdresse?.filter(field => field.id === action.champ)[0]?.id;
-        disabledAdresse?.push({ id: action.champ, value: !(rueVoie.trim() === '') });
+        disabledAdresse?.push({ id: action.champ, value: !(rueVoie?.trim() === '') });
         disabledAdresse = nettoyageState(disabledAdresse);
       }
 
@@ -272,7 +272,10 @@ export default function permanence(state = initialState, action) {
         error: action.error,
       };
     case 'SUSPENSION_FORM':
-      return { };
+      return {
+        ...state,
+        isReporter: false
+      };
     case 'DELETE_PERMANENCE_REQUEST':
       return {
         ...state,
