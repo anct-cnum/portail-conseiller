@@ -11,6 +11,7 @@ import Thematiques from './Thematiques';
 import Spinner from 'react-loader-spinner';
 import Pagination from '../../admin/Pagination';
 import FiltreCra from './FiltreCra';
+import { craActions } from '../../../actions/cra.actions';
 
 function HistoriqueCras() {
   const dispatch = useDispatch();
@@ -37,7 +38,6 @@ function HistoriqueCras() {
   };
 
   useEffect(() => {
-    console.log(canal);
     if (accompagnements === undefined || thematique || !thematique) {
       dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, canal, type, page));
     }
@@ -60,6 +60,9 @@ function HistoriqueCras() {
     }
   }, [accompagnements]);
 
+  const deleteCra = id => {
+    dispatch(craActions.deleteCra(id));
+  };
   return (
     <>
       <div className="historique-cras">
@@ -98,7 +101,7 @@ function HistoriqueCras() {
           {(!accompagnements && !loading) &&
             <div className="fr-grid-row fr-grid-row--center">
               <div className="fr-col-6 fr-mt-15w fr-mb-7w">
-                  Vous n&rsquo;avez pas d&rsquo;accompagnement enregistr&eacute; dans les 30 derniers jours.
+                  Vous n&rsquo;avez pas d&rsquo;accompagnement enregistr&eacute;.
               </div>
               <div className="fr-col-12"></div>
               <div className="fr-col-3">
@@ -120,10 +123,10 @@ function HistoriqueCras() {
               <div className="fr-col-lg-8 fr-mt-1w fr-mb-8w">
                 {(thematique === null && canal === null && type === null) &&
                 <>
-                  Vous avez enregistr&eacute; {total} accompagnements.
+                  Vous avez enregistr&eacute; {total} accompagnements au total.
                 </>
                 }
-                {(thematique === null || canal === null || type === null) &&
+                {(thematique !== null || canal !== null || type !== null) &&
                 <>
                   Vous avez enregistr&eacute; {total} accompagnements en fonction de vos filtres.
                 </>
@@ -141,15 +144,15 @@ function HistoriqueCras() {
                       <tr>
                         <th scope="col" className="medium-column">Date</th>
                         <th scope="col" className="medium-column">
-                          <FiltreCra texte="Canal" css="canal" datas={canaux} setDatas={setCanal} hasDatas={true} />
+                          <FiltreCra texte="Canal" css="canal" datas={canaux} setDatas={setCanal} />
                         </th>
                         <th scope="col">Lieu</th>
                         <th scope="col" className="medium-column">
-                          <FiltreCra texte="Type" css="type" datas={types} setDatas={setType} hasDatas={true} />
+                          <FiltreCra texte="Type" css="type" datas={types} setDatas={setType} />
                         </th>
                         <th scope="col" className="medium-column">Usagers</th>
                         <th scope="col">
-                          <FiltreCra texte="Th&eacute;matiques" css="themes" datas={themes} setDatas={setThematique} hasDatas={thematique} />
+                          <FiltreCra texte="Th&eacute;matiques" css="themes" datas={themes} setDatas={setThematique} />
                         </th>
                         <th scope="col" className="medium-column">Modifi&eacute; le</th>
                         <th scope="col" className="short-column">&Eacute;diter</th>
@@ -188,9 +191,14 @@ function HistoriqueCras() {
                               dayjs(accompagnement.updatedAt).format('DD/MM/YY à HH:mm') : dayjs(accompagnement.createdAt).format('DD/MM/YY à HH:mm')}
                           </td>
                           <td>
-                            <a href={`/compte-rendu-activite/${accompagnement?._id}`}>
+                            <a className="update-cra" href={`/compte-rendu-activite/${accompagnement?._id}`}>
                               <i className="ri-pencil-fill ri-xl"></i>
                             </a>
+                            <button className="delete-cra" onClick={() => {
+                              deleteCra(accompagnement._id);
+                            }}>
+                              <i className="ri-delete-bin-line ri-xl"></i>
+                            </button>
                           </td>
                         </tr>
                       )}

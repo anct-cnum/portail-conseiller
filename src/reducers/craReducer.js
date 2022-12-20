@@ -334,6 +334,25 @@ export default function cra(state = initialState, action) {
         saveInProgress: false,
         printFlashbag: false
       };
+    case 'DELETE_CRA_REQUEST':
+      return {
+        ...state,
+        loading: true,
+        error: false,
+        isDeleted: false,
+      };
+    case 'DELETE_CRA_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        isDeleted: action.isDeleted,
+      };
+    case 'DELETE_CRA_FAILURE':
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
+      };
     case 'COUNT_CRA_PERMANENCE_REQUEST':
       return {
         ...state,

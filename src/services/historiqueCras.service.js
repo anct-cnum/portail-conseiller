@@ -13,8 +13,6 @@ function getHistoriqueCrasListe(theme, canal, type, page) {
     method: 'GET',
     headers: authHeader()
   };
-  console.log(canal);
-  console.log(type);
   return fetch(`${apiUrlRoot}/historique-cras/liste?theme=${theme}&canal=${canal}&type=${type}&page=${page}`, requestOptions).then(handleResponse);
 }
 

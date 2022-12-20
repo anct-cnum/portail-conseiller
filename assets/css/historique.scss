@@ -4,6 +4,14 @@
   a {
     background-image: none !important;
   }
+  .update-cra, .delete-cra {
+    background-image: none !important;
+    display: inline-block;
+    --hover-tint: none;
+    color: #cecece;
+    height: 18px;
+    width: 19px;
+  }
   .titre {
     line-height: 72px;
     font-weight: 200;

@@ -27,6 +27,7 @@ export const craActions = {
   showSelectRedirection,
   getCra,
   updateCra,
+  deleteCra,
   countByPermanence,
 };
 
@@ -193,6 +194,32 @@ function updateCra(cra, conseillerId) {
   }
   function failure(error) {
     return { type: 'SET_CRA_FAILURE', error };
+  }
+}
+
+function deleteCra(craId) {
+  return dispatch => {
+    dispatch(request(craId));
+
+    craService.deleteCra(craId)
+    .then(
+      isDeleted => {
+        dispatch(success(isDeleted));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request(craId) {
+    return { type: 'DELETE_CRA_REQUEST', craId };
+  }
+  function success(isDeleted) {
+    return { type: 'DELETE_CRA_SUCCESS', isDeleted };
+  }
+  function failure(error) {
+    return { type: 'DELETE_CRA_FAILURE', error };
   }
 }
 
