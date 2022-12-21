@@ -23,6 +23,7 @@ function HistoriqueCras() {
   const error = useSelector(state => state.historiqueCras?.error);
   const themes = useSelector(state => state.historiqueCras?.themes);
   const printFlashbag = useSelector(state => state.cra.printFlashbag);
+  const isDeleted = useSelector(state => state.cra.isDeleted);
   const canaux = ['rattachement', 'autre', 'domicile', 'distance'];
   const types = ['individuel', 'collectif', 'ponctuel'];
   const [thematique, setThematique] = useState(null);
@@ -44,7 +45,7 @@ function HistoriqueCras() {
     if (themes === undefined) {
       dispatch(historiqueCrasActions.getHistoriqueCrasThematiques());
     }
-  }, [thematique, canal, type]);
+  }, [thematique, canal, type, isDeleted]);
 
   //Forcer affichage en haut de la page pour voir le flashbag
   useEffect(() => {
@@ -63,6 +64,7 @@ function HistoriqueCras() {
   const deleteCra = id => {
     dispatch(craActions.deleteCra(id));
   };
+
   return (
     <>
       <div className="historique-cras">
@@ -74,6 +76,14 @@ function HistoriqueCras() {
               </h1>
             </div>
           </div>
+          {isDeleted &&
+            <FlashMessage duration={5000}>
+              <p className="fr-label flashBag">
+                Votre suivi d&rsquo;activit&eacute; a bien &eacute;t&eacute; supprim&eacute;&nbsp;
+                <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+              </p>
+            </FlashMessage>
+          }
           { printFlashbag === true &&
             <FlashMessage duration={5000}>
               <p className="fr-label flashBag">
