@@ -199,7 +199,7 @@ function updateCra(cra, conseillerId) {
 
 function deleteCra(craId) {
   return dispatch => {
-    dispatch(request(craId));
+    dispatch(request());
 
     craService.deleteCra(craId)
     .then(
@@ -212,8 +212,8 @@ function deleteCra(craId) {
     );
   };
 
-  function request(craId) {
-    return { type: 'DELETE_CRA_REQUEST', craId };
+  function request() {
+    return { type: 'DELETE_CRA_REQUEST' };
   }
   function success(isDeleted) {
     return { type: 'DELETE_CRA_SUCCESS', isDeleted };

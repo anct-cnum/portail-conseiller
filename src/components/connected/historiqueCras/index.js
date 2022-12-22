@@ -3,6 +3,7 @@ import React, { useEffect, useState, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
 import FlashMessage from 'react-flash-message';
+import Pluralize from 'react-pluralize';
 import { historiqueCrasActions } from '../../../actions/historiqueCras.actions';
 import labelsCorrespondance from '../../../data/labelsCorrespondance.json';
 import { htmlDecode } from '../../../utils/functionEncodeDecode';
@@ -21,6 +22,7 @@ function HistoriqueCras() {
   const limit = useSelector(state => state.historiqueCras?.limit);
   const loading = useSelector(state => state.historiqueCras?.loading);
   const error = useSelector(state => state.historiqueCras?.error);
+  const errorSuppression = useSelector(state => state.cra?.error);
   const themes = useSelector(state => state.historiqueCras?.themes);
   const printFlashbag = useSelector(state => state.cra.printFlashbag);
   const isDeleted = useSelector(state => state.cra.isDeleted);
@@ -75,7 +77,7 @@ function HistoriqueCras() {
                   Historique des accompagnements
               </h1>
             </div>
-          </div>
+          </div> {error}
           {isDeleted &&
             <FlashMessage duration={5000}>
               <p className="fr-label flashBag">
@@ -92,10 +94,17 @@ function HistoriqueCras() {
               </p>
             </FlashMessage>
           }
-          {error && error !== 'Aucun CRA' &&
+          {error &&
             <FlashMessage duration={5000}>
               <p className="fr-label flashBag invalid">
-                Une erreur s&rsquo;est produite lors du chargement de votre historique, veuillez re&eacute;ssayer ult&eacute;rieurement.
+                {error}
+              </p>
+            </FlashMessage>
+          }
+          {errorSuppression &&
+            <FlashMessage duration={5000}>
+              <p className="fr-label flashBag invalid">
+                {errorSuppression}
               </p>
             </FlashMessage>
           }
@@ -132,14 +141,20 @@ function HistoriqueCras() {
             <div className="fr-grid-row">
               <div className="fr-col-lg-8 fr-mt-1w fr-mb-8w">
                 {(thematique === null && canal === null && type === null) &&
-                <>
-                  Vous avez enregistr&eacute; {total} accompagnements au total.
-                </>
+                  <Pluralize
+                    zero={'Vous n\'avez enregistré aucun accompagnement.'}
+                    singular={'Vous avez enregistré un accompagnement au total.'}
+                    plural={'Vous avez enregistré ' + total + ' accompagnements au total.'}
+                    count={total}
+                    showCount={false} />
                 }
                 {(thematique !== null || canal !== null || type !== null) &&
-                <>
-                  Vous avez enregistr&eacute; {total} accompagnements en fonction de vos filtres.
-                </>
+                  <Pluralize
+                    zero={'Vous n\'avez enregistré aucun accompagnement en fonction de vos filtres.'}
+                    singular={'Vous avez enregistré un accompagnement en fonction de vos filtres.'}
+                    plural={'Vous avez enregistré ' + total + ' accompagnements en fonction de vos filtres.'}
+                    count={total}
+                    showCount={false} />
                 }
               </div>
 
