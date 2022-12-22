@@ -11,7 +11,9 @@ export const conseillerService = {
   getStatistiquesPDF,
   getStatistiquesAdminCoopPDF,
   getStatistiquesCSV,
+  getStatistiquesExcel,
   getStatistiquesAdminCoopCSV,
+  getStatistiquesAdminCoopExcel,
   createSexeAge,
   getExportDonneesCnfs,
   exportDonneesSubordonnes,
@@ -148,6 +150,18 @@ function getStatistiquesCSV(dateDebut, dateFin, codePostal, ville, idSubordonne)
     requestOptions).then(handleFileResponse);
 }
 
+function getStatistiquesExcel(dateDebut, dateFin, codePostal, ville, idSubordonne) {
+  const requestOptions = {
+    method: 'GET',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+  };
+
+  return fetch(
+    // eslint-disable-next-line max-len
+    `${apiUrlRoot}/conseillers/statistiques.xlsx?dateDebut=${dateDebut}&dateFin=${dateFin}&codePostal=${codePostal}&ville=${ville}&idSubordonne=${idSubordonne}`,
+    requestOptions).then(handleFileResponse);
+}
+
 function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, conseillerIds, codePostal) {
   const requestOptions = {
     method: 'GET',
@@ -156,6 +170,17 @@ function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, conseille
 
   // eslint-disable-next-line max-len
   return fetch(`${apiUrlRoot}/stats/admincoop/statistiques.csv?dateDebut=${dateDebut}&dateFin=${dateFin}&type=${type}&idType=${idType}&codePostal=${codePostal}&conseillerIds=${conseillerIds}`,
+    requestOptions).then(handleFileResponse);
+}
+
+function getStatistiquesAdminCoopExcel(dateDebut, dateFin, type, idType, conseillerIds, codePostal) {
+  const requestOptions = {
+    method: 'GET',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+  };
+
+  // eslint-disable-next-line max-len
+  return fetch(`${apiUrlRoot}/stats/admincoop/statistiques.xlsx?dateDebut=${dateDebut}&dateFin=${dateFin}&type=${type}&idType=${idType}&codePostal=${codePostal}&conseillerIds=${conseillerIds}`,
     requestOptions).then(handleFileResponse);
 }
 

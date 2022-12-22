@@ -1,8 +1,10 @@
 const initState = {
   loadingCSV: false,
   loadingPDF: false,
+  loadingExcel: false,
   errorPDF: false,
   errorCSV: false,
+  errorExcel: false,
   downloadingExportCnfs: false,
   initConseiller: false,
   conseillersBeforeFilter: []
@@ -63,13 +65,30 @@ export default function conseiller(state = initState, action) {
         blob: action.data,
         statistiquesPDF: action.download,
         loadingPDF: false,
-        errorPDF: false
       };
     case 'GET_STATS_ADMINCOOP_PDF_FAILURE':
       return {
         ...state,
         errorPDF: action.error,
         loadingPDF: false
+      };
+    case 'GET_STATS_ADMINCOOP_EXCEL_REQUEST':
+      return {
+        ...state,
+        loadingExcel: true,
+        errorExcel: false
+      };
+    case 'GET_STATS_ADMINCOOP_EXCEL_SUCCESS':
+      return {
+        ...state,
+        blob: action.data,
+        loadingExcel: false,
+      };
+    case 'GET_STATS_ADMINCOOP_EXCEL_FAILURE':
+      return {
+        ...state,
+        errorExcel: action.error,
+        loadingExcel: false
       };
     case 'GET_STATS_HUB_CSV_REQUEST':
       return {
@@ -81,9 +100,7 @@ export default function conseiller(state = initState, action) {
       return {
         ...state,
         blob: action.data,
-        statistiquesCSV: action.download,
         loadingCSV: false,
-        errorCSV: false
       };
     case 'GET_STATS_HUB_CSV_FAILURE':
       return {
@@ -101,7 +118,6 @@ export default function conseiller(state = initState, action) {
       return {
         ...state,
         blob: action.data,
-        statistiquesCSV: action.download,
         loadingCSV: false
       };
     case 'GET_STATS_CSV_FAILURE':
@@ -110,6 +126,25 @@ export default function conseiller(state = initState, action) {
         errorCSV: action.error,
         loadingCSV: false
       };
+    case 'GET_STATS_EXCEL_REQUEST':
+      return {
+        ...state,
+        loadingExcel: true,
+        errorExcel: false
+      };
+    case 'GET_STATS_EXCEL_SUCCESS':
+      return {
+        ...state,
+        blob: action.data,
+        loadingExcel: false,
+      };
+    case 'GET_STATS_EXCEL_FAILURE':
+      return {
+        ...state,
+        errorExcel: action.error,
+        loadingExcel: false
+      };
+
     case 'GET_STATS_ADMINCOOP_CSV_REQUEST':
       return {
         ...state,
@@ -120,7 +155,6 @@ export default function conseiller(state = initState, action) {
       return {
         ...state,
         blob: action.data,
-        statistiquesCSV: action.download,
         loadingCSV: false,
       };
     case 'GET_STATS_ADMINCOOP_CSV_FAILURE':
