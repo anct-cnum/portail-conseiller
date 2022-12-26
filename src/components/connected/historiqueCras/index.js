@@ -12,7 +12,7 @@ import Thematiques from './Thematiques';
 import Spinner from 'react-loader-spinner';
 import Pagination from '../../admin/Pagination';
 import FiltreCra from './FiltreCra';
-import { craActions } from '../../../actions/cra.actions';
+import SupprimerCra from './SupprimerCra';
 
 function HistoriqueCras() {
   const dispatch = useDispatch();
@@ -62,10 +62,6 @@ function HistoriqueCras() {
       setPageCount(total % limit === 0 ? count : count + 1);
     }
   }, [accompagnements]);
-
-  const deleteCra = id => {
-    dispatch(craActions.deleteCra(id));
-  };
 
   return (
     <>
@@ -219,11 +215,7 @@ function HistoriqueCras() {
                             <a className="update-cra" href={`/compte-rendu-activite/${accompagnement?._id}`}>
                               <i className="ri-pencil-fill ri-xl"></i>
                             </a>
-                            <button className="delete-cra" onClick={() => {
-                              deleteCra(accompagnement._id);
-                            }}>
-                              <i className="ri-delete-bin-line ri-xl"></i>
-                            </button>
+                            <SupprimerCra cra={accompagnement} />
                           </td>
                         </tr>
                       )}
