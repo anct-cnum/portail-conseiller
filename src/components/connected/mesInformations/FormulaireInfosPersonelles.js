@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { formInfoPersonnelActions } from '../../../actions/infoPersonnel.actions';
+import PropTypes from 'prop-types';
 import ModalUpdateForm from './ModalUpdateForm';
 import telephoneHorsMetropole from '../../../data/indicatifs.json';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import fr from 'date-fns/locale/fr';
+import { Link } from 'react-router-dom';
 
 registerLocale('fr', fr);
-function FormulaireInfosPersonnelles() {
+function FormulaireInfosPersonnelles({ user }) {
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const erreursFormulaire = useSelector(state => state.formulaireInfoPersonnel?.errorsFormulaire);
   const erreurNumeroTelephone = erreursFormulaire?.errors?.filter(erreur => erreur?.telephone)[0]?.telephone;
@@ -90,6 +92,23 @@ function FormulaireInfosPersonnelles() {
   }
   return (
     <>
+      <div>
+        <h2 className="fr-mb-md-4w sous-titre">Mes informations personnelles</h2>
+        <div className="contact-mail">
+          <img src="/logos/home-connected/icone-courriel.svg" />
+          <div className="infos-user fr-mb-md-6w">
+            <span>{user?.name}</span>
+            <Link to={{
+              pathname: '/mot-de-passe-oublie',
+              state: {
+                fromModifPassword: true,
+              },
+            }} className="modif-password">
+              Modification de mon mot de passe
+            </Link>
+          </div>
+        </div>
+      </div>
       <ModalUpdateForm form={form} showModal={showModal} setShowModal={setShowModal} />
       <div className="fr-input-group fr-mb-5w">
         <label className="fr-label" htmlFor="conseiller-prenom">
@@ -256,5 +275,9 @@ function FormulaireInfosPersonnelles() {
     </>
   );
 }
+
+FormulaireInfosPersonnelles.propTypes = {
+  user: PropTypes.object
+};
 
 export default FormulaireInfosPersonnelles;
