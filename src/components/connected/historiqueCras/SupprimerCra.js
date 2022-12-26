@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { craActions } from '../../../actions';
 import PropTypes from 'prop-types';
 
-function SupprimerCra({ cra }) {
+function ConfirmationSuppressionCra({ cra }) {
   const dispatch = useDispatch();
   const [modalOpenClose, setModalOpenClose] = useState(false);
 
@@ -26,7 +26,7 @@ function SupprimerCra({ cra }) {
                   <h1 className="fr-modal__title fr-mb-6w">Suppression du compte rendu d&rsquo;activit&eacute;</h1>
                   <div className="centre">
                     <div>
-                      &Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce compte-rendu d&rsquo;activité ? ceci affectera vos statistiques.
+                      &Ecirc;tes-vous s&ucirc;r de vouloir supprimer ce compte-rendu d&rsquo;activité ? Ceci affectera vos statistiques.
                     </div>
                     <div className="fr-mt-3w">
                       <button className="fr-btn annuler-btn " onClick={() => {
@@ -52,8 +52,8 @@ function SupprimerCra({ cra }) {
   );
 }
 
-SupprimerCra.propTypes = {
+ConfirmationSuppressionCra.propTypes = {
   cra: PropTypes.object
 };
 
-export default SupprimerCra;
+export default ConfirmationSuppressionCra;
