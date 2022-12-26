@@ -59,6 +59,22 @@
     background: url(../../public/logos/historique/bouton_cra.svg) no-repeat;
     margin-bottom: -15px;
   }
+  .suppression-cra {
+    font-family: 'Marianne';
+    background: #E0000F;
+    text-align: center;
+    font-style: normal;
+    line-height: 24px;
+    font-weight: 400;
+    font-size: 16px;
+    color: #F5F5FE;
+    height: 42px;
+    margin-left: 5px;
+    &:hover {
+      background: #E0000F;
+      color: #F5F5FE;
+    }
+  }
   .texte-cra {
     display: inline-block;
     width: 170px;
