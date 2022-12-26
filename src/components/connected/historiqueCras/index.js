@@ -12,7 +12,7 @@ import Thematiques from './Thematiques';
 import Spinner from 'react-loader-spinner';
 import Pagination from '../../admin/Pagination';
 import FiltreCra from './FiltreCra';
-import SupprimerCra from './SupprimerCra';
+import ConfirmationSuppressionCra from './SupprimerCra';
 
 function HistoriqueCras() {
   const dispatch = useDispatch();
@@ -215,7 +215,7 @@ function HistoriqueCras() {
                             <a className="update-cra" href={`/compte-rendu-activite/${accompagnement?._id}`}>
                               <i className="ri-pencil-fill ri-xl"></i>
                             </a>
-                            <SupprimerCra cra={accompagnement} />
+                            <ConfirmationSuppressionCra cra={accompagnement} />
                           </td>
                         </tr>
                       )}
