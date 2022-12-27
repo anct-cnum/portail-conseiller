@@ -103,15 +103,13 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
       <div className="fr-col-12 dont-print">
         <div className="fr-container-fluid">
           <div className="fr-grid-row fr-grid-row--center">
-            <div className="fr-col-xs-6 fr-col-sm-6 fr-col-md-5 fr-col-lg-4 fr-mt-5w centrerTexte">
+            <div className="fr-col-xs-6 fr-mt-5w centrerTexte">
               <div className="fr-mb-2v">Exporter cette page</div>
               <button className="statistiques_nationales-btn" onClick={savePDF}>Format PDF</button>
-              &ensp;
-              <button className="statistiques_nationales-btn" onClick={saveCSV}>Format CSV</button>
-              &ensp;
               {user?.role === 'conseiller' &&
                 <button className="statistiques_nationales-btn" onClick={saveExcel}>Format Excel</button>
               }
+              <button className="statistiques_nationales-btn" onClick={saveCSV}>Format CSV</button>
             </div>
           </div>
 
