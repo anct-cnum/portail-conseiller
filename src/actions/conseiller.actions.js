@@ -10,7 +10,9 @@ export const conseillerActions = {
   getStatistiquesPDF,
   getStatistiquesAdminCoopPDF,
   getStatistiquesCSV,
+  getStatistiquesExcel,
   getStatistiquesAdminCoopCSV,
+  getStatistiquesAdminCoopExcel,
   getStatistiquesHubCSV,
   resetStatistiquesPDFFile,
   exportDonneesCnfs,
@@ -27,8 +29,8 @@ export const conseillerActions = {
 
 const formatDate = date => dayjs(date).format('DD-MM-YYYY');
 
-const statistiquesCnfsFileName = (dateDebut, dateFin, idSubordonne, nomSubordonneeCSV) =>
-  `${idSubordonne ? nomSubordonneeCSV : 'Mes_statistiques'}_${formatDate(dateDebut)}_${formatDate(dateFin)}`;
+const statistiquesCnfsFileName = (dateDebut, dateFin, nomSubordonneeCSV) =>
+  `${'Statistiques_' + nomSubordonneeCSV}_${formatDate(dateDebut)}_${formatDate(dateFin)}`;
 
 const removeCodePrefix = type =>
   type.startsWith('code') ? type.substring('code'.length) : type;
@@ -164,12 +166,12 @@ function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType, codePosta
   }
 }
 
-function getStatistiquesCSV(dateDebut, dateFin, codePostal, ville, idSubordonne, nomSubordonneeCSV) {
+function getStatistiquesCSV(dateDebut, dateFin, codePostal, ville, idSubordonne, nomFichier) {
   return dispatch => {
     dispatch(request());
     conseillerService.getStatistiquesCSV(dateDebut, dateFin, codePostal, ville, idSubordonne)
     .then(
-      data => dispatch(success(data, download(data, `${statistiquesCnfsFileName(dateDebut, dateFin, idSubordonne, nomSubordonneeCSV)}.csv`))),
+      data => dispatch(success(data, download(data, `${nomFichier}.csv`))),
       error => dispatch(failure(error))
     );
   };
@@ -182,6 +184,27 @@ function getStatistiquesCSV(dateDebut, dateFin, codePostal, ville, idSubordonne,
   }
   function failure(error) {
     return { type: 'GET_STATS_CSV_FAILURE', error };
+  }
+}
+
+function getStatistiquesExcel(dateDebut, dateFin, codePostal, ville, idSubordonne, nomFichier) {
+  return dispatch => {
+    dispatch(request());
+    conseillerService.getStatistiquesExcel(dateDebut, dateFin, codePostal, ville, idSubordonne)
+    .then(
+      data => dispatch(success(data, download(data, `${nomFichier}.xlsx`))),
+      error => dispatch(failure(error))
+    );
+  };
+
+  function request() {
+    return { type: 'GET_STATS_EXCEL_REQUEST' };
+  }
+  function success(data) {
+    return { type: 'GET_STATS_EXCEL_SUCCESS', data };
+  }
+  function failure(error) {
+    return { type: 'GET_STATS_EXCEL_FAILURE', error };
   }
 }
 
@@ -203,6 +226,27 @@ function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, conseille
   }
   function failure(error) {
     return { type: 'GET_STATS_ADMINCOOP_CSV_FAILURE', error };
+  }
+}
+
+function getStatistiquesAdminCoopExcel(dateDebut, dateFin, type, idType, conseillerIds, codePostal) {
+  return dispatch => {
+    dispatch(request());
+    conseillerService.getStatistiquesAdminCoopExcel(dateDebut, dateFin, type, idType, conseillerIds, codePostal)
+    .then(
+      data => dispatch(success(data, download(data, `${statistiquesAdminFileName(dateDebut, dateFin, type, idType, codePostal)}.xlsx`))),
+      error => dispatch(failure(error))
+    );
+  };
+
+  function request() {
+    return { type: 'GET_STATS_ADMINCOOP_EXCEL_REQUEST' };
+  }
+  function success(data, download) {
+    return { type: 'GET_STATS_ADMINCOOP_EXCEL_SUCCESS', data, download };
+  }
+  function failure(error) {
+    return { type: 'GET_STATS_ADMINCOOP_EXCEL_FAILURE', error };
   }
 }
 

@@ -16,7 +16,7 @@ function StatisticsAccompaniment({ type, nbAccompagnement }) {
           <Pluralize
             zero={'accompagnement total enregistré (dont récurrent)'}
             singular={'accompagnement total enregistré (dont récurrent)'}
-            plural={'accompagnements total enregistrés (dont récurrent)'}
+            plural={'accompagnements totaux enregistrés (dont récurrent)'}
             count={nbAccompagnement}
             showCount={false} />
         } classe={type ? 'text-' + type : 'text'}/></div>
@@ -27,7 +27,7 @@ function StatisticsAccompaniment({ type, nbAccompagnement }) {
           <Pluralize
             zero={'accompagnement total enregistré (dont récurrent)'}
             singular={'accompagnement total enregistré (dont récurrent)'}
-            plural={'accompagnements total enregistrés (dont récurrent)'}
+            plural={'accompagnements totaux enregistrés (dont récurrent)'}
             count={nbAccompagnement}
             showCount={false} className="text"/>
         </div>

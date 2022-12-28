@@ -32,7 +32,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
     return typeTarget;
   }
 
-  function getTitlePDF() {
+  function getTitleExport() {
     const datesPDF = '_' + dayjs(dateDebut).format('DD/MM/YYYY') + '_' + dayjs(dateFin).format('DD/MM/YYYY');
     const identitePDF = nomSubordonneeCSV ?? user.prenom + '_' + user.nom;
     let titlePDF = 'Statistiques';
@@ -49,7 +49,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
   }
 
   function savePDF() {
-    document.title = getTitlePDF();
+    document.title = getTitleExport();
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     window.print();
   }
@@ -58,11 +58,23 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     const type = getTypeStatistique(typeStats);
     if ((user?.role === 'conseiller' || user?.role === 'coordinateur_coop') && !idTerritoire && type !== 'nationales') {
-      dispatch(conseillerActions.getStatistiquesCSV(dateDebut, dateFin, codePostal, ville, idSubordonne, nomSubordonneeCSV));
+      dispatch(conseillerActions.getStatistiquesCSV(dateDebut, dateFin, codePostal, ville, idSubordonne, getTitleExport()));
     } else {
       const conseillerIds = territoire?.conseillerIds ?? undefined;
       // eslint-disable-next-line max-len
       dispatch(conseillerActions.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser, conseillerIds, codePostal));
+    }
+  }
+
+  function saveExcel() {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    const type = getTypeStatistique(typeStats);
+    if ((user?.role === 'conseiller' || user?.role === 'coordinateur_coop') && !idTerritoire && type !== 'nationales') {
+      dispatch(conseillerActions.getStatistiquesExcel(dateDebut, dateFin, codePostal, ville, idSubordonne, getTitleExport()));
+    } else {
+      const conseillerIds = territoire?.conseillerIds ?? undefined;
+      // eslint-disable-next-line max-len
+      dispatch(conseillerActions.getStatistiquesAdminCoopExcel(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser, conseillerIds, codePostal));
     }
   }
 
@@ -91,10 +103,12 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
       <div className="fr-col-12 dont-print">
         <div className="fr-container-fluid">
           <div className="fr-grid-row fr-grid-row--center">
-            <div className="fr-col-xs-6 fr-col-sm-6 fr-col-md-5 fr-col-lg-4 fr-mt-5w centrerTexte">
+            <div className="fr-col-xs-6 fr-mt-5w centrerTexte">
               <div className="fr-mb-2v">Exporter cette page</div>
               <button className="statistiques_nationales-btn" onClick={savePDF}>Format PDF</button>
-              &ensp;
+              {user?.role === 'conseiller' &&
+                <button className="statistiques_nationales-btn" onClick={saveExcel}>Format Excel</button>
+              }
               <button className="statistiques_nationales-btn" onClick={saveCSV}>Format CSV</button>
             </div>
           </div>

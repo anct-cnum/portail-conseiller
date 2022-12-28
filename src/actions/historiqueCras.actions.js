@@ -5,10 +5,10 @@ export const historiqueCrasActions = {
   getHistoriqueCrasThematiques,
 };
 
-function getHistoriqueCrasListe(theme = null, page) {
+function getHistoriqueCrasListe(theme = null, canal = null, type = null, page) {
   return dispatch => {
     dispatch(request());
-    historiqueCras.getHistoriqueCrasListe(theme, page)
+    historiqueCras.getHistoriqueCrasListe(theme, canal, type, page)
     .then(
       result => {
         dispatch(success(result.items));

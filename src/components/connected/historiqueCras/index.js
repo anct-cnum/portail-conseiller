@@ -3,6 +3,7 @@ import React, { useEffect, useState, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
 import FlashMessage from 'react-flash-message';
+import Pluralize from 'react-pluralize';
 import { historiqueCrasActions } from '../../../actions/historiqueCras.actions';
 import labelsCorrespondance from '../../../data/labelsCorrespondance.json';
 import { htmlDecode } from '../../../utils/functionEncodeDecode';
@@ -10,6 +11,8 @@ import Footer from '../../Footer';
 import Thematiques from './Thematiques';
 import Spinner from 'react-loader-spinner';
 import Pagination from '../../admin/Pagination';
+import FiltreCra from './FiltreCra';
+import ConfirmationSuppressionCra from './SupprimerCra';
 
 function HistoriqueCras() {
   const dispatch = useDispatch();
@@ -19,27 +22,32 @@ function HistoriqueCras() {
   const limit = useSelector(state => state.historiqueCras?.limit);
   const loading = useSelector(state => state.historiqueCras?.loading);
   const error = useSelector(state => state.historiqueCras?.error);
+  const errorSuppression = useSelector(state => state.cra?.error);
   const themes = useSelector(state => state.historiqueCras?.themes);
   const printFlashbag = useSelector(state => state.cra.printFlashbag);
-
+  const isDeleted = useSelector(state => state.cra.isDeleted);
+  const canaux = ['rattachement', 'autre', 'domicile', 'distance'];
+  const types = ['individuel', 'collectif', 'ponctuel'];
   const [thematique, setThematique] = useState(null);
+  const [canal, setCanal] = useState(null);
+  const [type, setType] = useState(null);
 
   /*Pagination */
   let [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
   const navigate = page => {
     setPage(page);
-    dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, page));
+    dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, canal, type, page));
   };
 
   useEffect(() => {
     if (accompagnements === undefined || thematique || !thematique) {
-      dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, page));
+      dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, canal, type, page));
     }
     if (themes === undefined) {
       dispatch(historiqueCrasActions.getHistoriqueCrasThematiques());
     }
-  }, [thematique]);
+  }, [thematique, canal, type, isDeleted]);
 
   //Forcer affichage en haut de la page pour voir le flashbag
   useEffect(() => {
@@ -65,7 +73,15 @@ function HistoriqueCras() {
                   Historique des accompagnements
               </h1>
             </div>
-          </div>
+          </div> {error}
+          {isDeleted &&
+            <FlashMessage duration={5000}>
+              <p className="fr-label flashBag">
+                Votre suivi d&rsquo;activit&eacute; a bien &eacute;t&eacute; supprim&eacute;&nbsp;
+                <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+              </p>
+            </FlashMessage>
+          }
           { printFlashbag === true &&
             <FlashMessage duration={5000}>
               <p className="fr-label flashBag">
@@ -74,10 +90,17 @@ function HistoriqueCras() {
               </p>
             </FlashMessage>
           }
-          {error && error !== 'Aucun CRA' &&
+          {error &&
             <FlashMessage duration={5000}>
               <p className="fr-label flashBag invalid">
-                Une erreur s&rsquo;est produite lors du chargement de votre historique, veuillez re&eacute;ssayer ult&eacute;rieurement.
+                {error}
+              </p>
+            </FlashMessage>
+          }
+          {errorSuppression &&
+            <FlashMessage duration={5000}>
+              <p className="fr-label flashBag invalid">
+                {errorSuppression}
               </p>
             </FlashMessage>
           }
@@ -93,7 +116,7 @@ function HistoriqueCras() {
           {(!accompagnements && !loading) &&
             <div className="fr-grid-row fr-grid-row--center">
               <div className="fr-col-6 fr-mt-15w fr-mb-7w">
-                  Vous n&rsquo;avez pas d&rsquo;accompagnement enregistr&eacute; dans les 30 derniers jours.
+                  Vous n&rsquo;avez pas d&rsquo;accompagnement enregistr&eacute;.
               </div>
               <div className="fr-col-12"></div>
               <div className="fr-col-3">
@@ -113,7 +136,22 @@ function HistoriqueCras() {
           {(accompagnements && !loading) &&
             <div className="fr-grid-row">
               <div className="fr-col-lg-8 fr-mt-1w fr-mb-8w">
-                Vous avez enregistr&eacute; {total} accompagnements au cours des 30 derniers jours.
+                {(thematique === null && canal === null && type === null) &&
+                  <Pluralize
+                    zero={'Vous n\'avez enregistré aucun accompagnement.'}
+                    singular={'Vous avez enregistré un accompagnement au total.'}
+                    plural={'Vous avez enregistré ' + total + ' accompagnements au total.'}
+                    count={total}
+                    showCount={false} />
+                }
+                {(thematique !== null || canal !== null || type !== null) &&
+                  <Pluralize
+                    zero={'Vous n\'avez enregistré aucun accompagnement en fonction de vos filtres.'}
+                    singular={'Vous avez enregistré un accompagnement en fonction de vos filtres.'}
+                    plural={'Vous avez enregistré ' + total + ' accompagnements en fonction de vos filtres.'}
+                    count={total}
+                    showCount={false} />
+                }
               </div>
 
               <div className="fr-col-12">
@@ -126,43 +164,16 @@ function HistoriqueCras() {
                     <thead>
                       <tr>
                         <th scope="col" className="medium-column">Date</th>
-                        <th scope="col" className="short-column">Canal</th>
+                        <th scope="col" className="medium-column">
+                          <FiltreCra texte="Canal" css="canal" datas={canaux} setDatas={setCanal} />
+                        </th>
                         <th scope="col">Lieu</th>
-                        <th scope="col" className="short-column">Type</th>
+                        <th scope="col" className="medium-column">
+                          <FiltreCra texte="Type" css="type" datas={types} setDatas={setType} />
+                        </th>
                         <th scope="col" className="medium-column">Usagers</th>
                         <th scope="col">
-                          <nav id="filtre-thematiques" className="fr-nav" role="navigation" aria-label="Filtre thématiques">
-                            <ul className="fr-nav__list">
-                              <li className="fr-nav__item">
-                                <button className="fr-nav__btn btn-thematiques" aria-expanded="false"
-                                  aria-controls="filtre-themes" aria-current="true">
-                                  Th&eacute;matiques
-                                </button>
-                                <div className="fr-collapse fr-menu" id="filtre-themes">
-                                  <ul className="fr-menu__list">
-                                    {thematique &&
-                                      <li className="fr-nav__item">
-                                        <button className="fr-nav__link" onClick={() => {
-                                          setThematique(null);
-                                        }} target="_self">
-                                          Afficher Tout
-                                        </button>
-                                      </li>
-                                    }
-                                    <li className="fr-nav__item">
-                                      {themes?.map((theme, idx) =>
-                                        <button key={idx} className="fr-nav__link" onClick={() => {
-                                          setThematique(theme);
-                                        }} target="_self">
-                                          {htmlDecode(labelsCorrespondance.find(label => label.nom === theme)?.correspondance)}
-                                        </button>
-                                      )}
-                                    </li>
-                                  </ul>
-                                </div>
-                              </li>
-                            </ul>
-                          </nav>
+                          <FiltreCra texte="Th&eacute;matiques" css="themes" datas={themes} setDatas={setThematique} />
                         </th>
                         <th scope="col" className="medium-column">Modifi&eacute; le</th>
                         <th scope="col" className="short-column">&Eacute;diter</th>
@@ -201,12 +212,20 @@ function HistoriqueCras() {
                               dayjs(accompagnement.updatedAt).format('DD/MM/YY à HH:mm') : dayjs(accompagnement.createdAt).format('DD/MM/YY à HH:mm')}
                           </td>
                           <td>
-                            <a href={`/compte-rendu-activite/${accompagnement?._id}`}>
+                            <a className="update-cra" href={`/compte-rendu-activite/${accompagnement?._id}`}>
                               <i className="ri-pencil-fill ri-xl"></i>
                             </a>
+                            <ConfirmationSuppressionCra cra={accompagnement} />
                           </td>
                         </tr>
                       )}
+                      {(total === 0 && !loading) &&
+                        <tr>
+                          <td colSpan={8} className="no-result">
+                            Nous n&rsquo;avons trouv&eacute; aucun cra en fonction de vos filtres
+                          </td>
+                        </tr>
+                      }
                     </tbody>
                   </table>
                   <ReactTooltip html={true} className="infobulle" arrowColor="white"/>

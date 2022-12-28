@@ -24,7 +24,7 @@ function CanalEtAdresse() {
             type="canal"
             label="Lieu d&rsquo;activit&eacute;"
             value="rattachement"
-            image="logoLieuRatachement"
+            image="logoLieuRattachement"
             classDiv="lieuRattachement"/>
         </div>
         <div className="responsiveElement2">

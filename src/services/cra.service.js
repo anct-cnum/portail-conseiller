@@ -5,6 +5,7 @@ export const craService = {
   createCra,
   getCra,
   updateCra,
+  deleteCra,
   countByPermanence,
 };
 
@@ -47,6 +48,14 @@ function updateCra(cra, conseillerId) {
     })
   };
   return fetch(`${apiUrlRoot}/cras`, requestOptions).then(handleResponse);
+}
+
+function deleteCra(craId) {
+  const requestOptions = {
+    method: 'DELETE',
+    headers: authHeader()
+  };
+  return fetch(`${apiUrlRoot}/cras?craId=${craId}`, requestOptions).then(handleResponse);
 }
 
 function countByPermanence(permanenceId) {

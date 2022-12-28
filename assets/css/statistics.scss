@@ -199,6 +199,7 @@
     border: 1px solid #fff;
     line-height: 1.25rem;
     border-radius: 40px;
+    margin-right: 5px;
     text-align:center;
     box-shadow: none;
     font-size: 16px;
@@ -345,6 +346,11 @@
     }
     .highcharts-title{
       margin-bottom: 1rem !important;
+    }
+  }
+  @media (max-width: 467px) {
+    .statistiques_nationales-btn {
+      margin: 10px 33%;
     }
   }
   @media (max-width: 349px) {
