@@ -32,7 +32,7 @@ function CanalEtAdresse() {
           <BigRadioButtonV2
             type="canal"
             label="Autre lieu"
-            value="autre"
+            value="autre lieu"
             image="logoAutreLieu"
             classDiv="autreLieu"/>
         </div>
