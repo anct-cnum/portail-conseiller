@@ -2,22 +2,26 @@
   font-family: "Marianne", Arial, sans-serif;
   background-color: #1e1e1e !important;
   padding-bottom: 6rem;
-  
-  a {
-    background-image: none;
-  }
   .titre {
     line-height: 72px;
     font-weight: 200;
     font-size: 56px;
     margin: 0;
   }
-  .sous-titre {
-    line-height: 40px;
-    line-height: 32px;
-    font-weight: 800;
-    font-size: 32px;
-
+  h2 {
+    font-size: 1.5rem;
+  }
+  a {
+    background-image: none;
+  }
+  .perennisation-btn {
+    img {
+      width: 32px;
+      margin: 0px 20px -8px 0;
+    }
+  }
+  hr {
+    color: #666666;
   }
   .react-datepicker-wrapper {
     display: block;
@@ -38,16 +42,20 @@
       display: flex;
       line-height: 24px;
       font-weight: 300;
-      font-size: 16px;
+      font-size: 12px;
       flex-direction: column;
       span:first-child {
         font-weight: 600;
+        margin-top: -10px;
       }
     }
+    a {
+      color: #8585f6;
+    }
     img {
+      margin-bottom: 56px;
       margin-right: 16px;
-      height: 29.8px;
-      width: 40px;
+      width: 28px;
     }
   }
   .username {
@@ -70,11 +78,13 @@
       color: #000091;
     }
   }
+  .radio-contrat {
+    width: 90px;
+  }
   .radio-genre {
     margin-right: 40px;
-    input[type="radio"]:checked + label::before {
-      background-color: #9a9aff;
-      border: 1px solid #9a9aff;
-    }
+  }
+  .react-datepicker__triangle {
+    margin-left: -95% !important;
   }
 }

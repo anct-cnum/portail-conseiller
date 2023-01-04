@@ -5,6 +5,7 @@ import Footer from '../Footer';
 import { conseillerActions } from '../../actions';
 import { userEntityId } from '../../helpers';
 import ReactTooltip from 'react-tooltip';
+import DemandeInformations from './DemandeInformations';
 
 function Welcome() {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ function Welcome() {
   }, []);
 
   const conseiller = useSelector(state => state.conseiller?.conseiller);
-
+  const informationsManquantes = useSelector(state => state?.mesInformations?.informationsManquantes);
   const user = useSelector(state => state.authentication.user.user);
   const lienPix = `${process.env.REACT_APP_PIX_URL}?control1714940=${conseiller?.prenom}&control1714939=${conseiller?.nom}&control1714941=${user?.name}`;
   const lienLaBase = `${process.env.REACT_APP_LABASE_URL}?email=${conseiller?.emailCN?.address}`;
@@ -22,10 +23,14 @@ function Welcome() {
   const lienWebmail = process.env.REACT_APP_WEBMAIL_URL;
   const lienRdvAideNumerique = process.env.REACT_APP_RDV_AIDE_NUMERIQUE_URL;
   const lienBlog = process.env.REACT_APP_BLOG_URL;
-
+  const plusTard = Boolean(localStorage.getItem('plusTard') === 'true');
+  
   return (
     <>
       <div className="welcome">
+        {(informationsManquantes.length > 0 && plusTard === false) &&
+          <DemandeInformations user={user} informationsManquantes={informationsManquantes}/>
+        }
         { conseiller && !conseiller?.supHierarchique &&
         <div className="fr-container">
           <div className="fr-grid-row fr-grid-row--center">

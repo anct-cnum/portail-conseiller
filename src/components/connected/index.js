@@ -5,7 +5,7 @@ import Statistics from './statistics/Statistics';
 import Cra from './cra';
 import Welcome from './Welcome';
 import { useDispatch, useSelector } from 'react-redux';
-import { conseillerActions, structureActions, permanenceActions } from '../../actions';
+import { conseillerActions, structureActions, permanenceActions, mesInformationsActions } from '../../actions';
 import { userEntityId } from '../../helpers';
 import FormulaireSexeAge from './FormulaireSexeAge';
 import Permanence from './permanence/index';
@@ -24,7 +24,6 @@ function Connected() {
   const voirFormulaire = useSelector(state => state?.conseiller?.showFormular);
   const voirPermanence = useSelector(state => state?.permanence?.showFormular);
   const formulaireIsUpdated = useSelector(state => state?.conseiller?.isUpdated);
-
   const structure = useSelector(state => state?.structure?.structure);
   const mesPermanences = useSelector(state => state?.permanence?.mesPermanences);
   const suspendrePermanence = localStorage.getItem('suspension_permanence');
@@ -33,7 +32,8 @@ function Connected() {
     if (conseiller) {
       dispatch(conseillerActions.isFormulaireChecked(conseiller?.sexe, formulaireIsUpdated));
       dispatch(permanenceActions.isPermanenceChecked(conseiller?.hasPermanence));
-
+      dispatch(mesInformationsActions.getContratActif(conseiller?.contrats));
+      dispatch(mesInformationsActions.getInformationsManquantes(conseiller));
       if (!structure || structure === undefined) {
         dispatch(structureActions.get(conseiller?.structureId));
       }

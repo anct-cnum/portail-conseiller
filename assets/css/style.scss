@@ -380,7 +380,7 @@
   opacity: 1;
   visibility: visible;
 }
-.modal-sexe-age, .modal-remerciement, .modal-ouverture, .modal-suppression {
+.modal-sexe-age, .modal-remerciement, .modal-ouverture, .modal-suppression, .modal-informations {
   background-color: #fff;
   padding: 4em 2.5em;
   color: #1e1e1e;
@@ -460,8 +460,9 @@
       background-color: #fff;
     }
   }
-  .ouverture-btn, .remerciement-btn, .suppression-btn {
+  .ouverture-btn, .remerciement-btn, .suppression-btn, .informations-btn {
     background-color: #000091;
+    border: 1px solid #000091;
     color: #fff;
   }
   .plus-tard-btn, .annuler-btn {

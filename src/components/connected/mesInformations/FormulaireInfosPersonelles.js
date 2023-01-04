@@ -1,29 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { formInfoPersonnelActions } from '../../../actions/infoPersonnel.actions';
-import PropTypes from 'prop-types';
-import ModalUpdateForm from './ModalUpdateForm';
+
 import telephoneHorsMetropole from '../../../data/indicatifs.json';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import fr from 'date-fns/locale/fr';
-import { Link } from 'react-router-dom';
+import ModalUpdateForm from './ModalUpdateForm';
 
 registerLocale('fr', fr);
-function FormulaireInfosPersonnelles({ user }) {
+function FormulaireInfosPersonnelles() {
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const erreursFormulaire = useSelector(state => state.formulaireInfoPersonnel?.errorsFormulaire);
   const erreurNumeroTelephone = erreursFormulaire?.errors?.filter(erreur => erreur?.telephone)[0]?.telephone;
-  const erreurNumeroTelephonePro = erreursFormulaire?.errors?.filter(erreur => erreur?.telephonePro)[0]?.telephonePro;
   const erreurEmailPerso = erreursFormulaire?.errors?.filter(erreur => erreur?.email)[0]?.email;
-  const erreurEmailPro = erreursFormulaire?.errors?.filter(erreur => erreur?.emailPro)[0]?.emailPro;
   const form = useSelector(state => state.formulaireInfoPersonnel);
   const structure = useSelector(state => state.structure?.structure);
   const dispatch = useDispatch();
 
   const [inputs, setInputs] = useState({
     conseillerTelephone: '',
-    conseillerTelephonePro: '',
-    conseillerEmailPro: '',
     conseillerEmail: '',
     conseillerDateDeNaissance: new Date(),
     conseillerSexe: ''
@@ -49,6 +44,7 @@ function FormulaireInfosPersonnelles({ user }) {
     }
     setSubmitted(false);
   }, [erreursFormulaire]);
+
   useEffect(() => {
     if (conseiller !== null && conseiller !== undefined) {
       const telephone = formatTelephone(conseiller.telephone);
@@ -62,12 +58,12 @@ function FormulaireInfosPersonnelles({ user }) {
         conseiller.sexe
       ));
       setInputs({
-        conseillerTelephone: telephone,
-        conseillerTelephonePro: telephonePro,
-        conseillerEmailPro: conseiller.emailPro,
-        conseillerEmail: conseiller.email,
-        conseillerDateDeNaissance: conseiller.dateDeNaissance,
-        conseillerSexe: conseiller.sexe
+        conseillerTelephone: telephone ?? '',
+        conseillerTelephonePro: telephonePro ?? '',
+        conseillerEmailPro: conseiller.emailPro ?? '',
+        conseillerEmail: conseiller.email ?? '',
+        conseillerDateDeNaissance: conseiller.dateDeNaissance ?? '',
+        conseillerSexe: conseiller.sexe ?? ''
       });
     }
   }, [conseiller]);
@@ -75,7 +71,7 @@ function FormulaireInfosPersonnelles({ user }) {
   function handleChange(e) {
     if (e?.target) {
       let { name, value } = e.target;
-      if ((name === 'conseillerTelephone' || name === 'conseillerTelephonePro') && (value.length >= 10)) {
+      if ((name === 'conseillerTelephone') && (value.length >= 10)) {
         value = formatTelephone(value);
       }
       setInputs(inputs => ({ ...inputs, [name]: value }));
@@ -91,94 +87,11 @@ function FormulaireInfosPersonnelles({ user }) {
     dispatch(formInfoPersonnelActions.verifyFormulaire(form, conseiller.telephone));
   }
   return (
-    <>
+    <div className="fr-col-5">
       <div>
-        <h2 className="fr-mb-md-4w sous-titre">Mes informations personnelles</h2>
-        <div className="contact-mail">
-          <img src="/logos/home-connected/icone-courriel.svg" />
-          <div className="infos-user fr-mb-md-6w">
-            <span>{user?.name}</span>
-            <Link to={{
-              pathname: '/mot-de-passe-oublie',
-              state: {
-                fromModifPassword: true,
-              },
-            }} className="modif-password">
-              Modification de mon mot de passe
-            </Link>
-          </div>
-        </div>
+        <h2 className="">Mes informations personnelles</h2>
       </div>
       <ModalUpdateForm form={form} showModal={showModal} setShowModal={setShowModal} />
-      <div className="fr-input-group fr-mb-5w">
-        <label className="fr-label" htmlFor="conseiller-prenom">
-          Pr&eacute;nom
-        </label>
-        <input
-          className="fr-input"
-          aria-describedby="text-input-error-desc-error"
-          type="text"
-          id="conseiller-prenom"
-          name="conseillerPrenom"
-          disabled
-          value={conseiller?.prenom}
-        />
-      </div>
-      <div className="fr-input-group fr-mb-5w">
-        <label className="fr-label" htmlFor="conseiller-nom">
-          Nom
-        </label>
-        <input
-          className="fr-input"
-          aria-describedby="text-input-error-desc-error"
-          type="text"
-          id="conseiller-nom"
-          name="conseillerNom"
-          disabled
-          value={conseiller?.nom}
-        />
-      </div>
-      <div className={`fr-input-group ${erreurEmailPro ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
-        <label className="fr-label" htmlFor="conseiller-email-pro">
-          Adresse mail professionnelle
-          <span className="fr-hint-text desc-input">Si votre structure vous en a fourni une.</span>
-        </label>
-        <input
-          className={`fr-input ${erreurEmailPro ? 'fr-input--error' : ''}`}
-          aria-describedby="text-input-error-desc-error"
-          type="email"
-          id="conseiller-email-pro"
-          name="conseillerEmailPro"
-          value={inputs?.conseillerEmailPro}
-          onChange={handleChange}
-        />
-        {erreurEmailPro &&
-          <p id="text-input-error-desc-error" className="fr-error-text">
-            {erreurEmailPro}
-          </p>
-        }
-      </div>
-      <div className={`fr-input-group ${erreurNumeroTelephonePro ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
-        <label className="fr-label" htmlFor="conseiller-telephone-pro">
-          T&eacute;l&eacute;phone professionnel
-          <span className="fr-hint-text desc-input">Si votre structure vous en a fourni un.</span>
-        </label>
-        <input
-          className={`fr-input ${erreurNumeroTelephonePro ? 'fr-input--error' : ''}`}
-          aria-describedby="text-input-error-desc-error"
-          type="tel"
-          id="conseiller-telephone-pro"
-          placeholder="+33XXXXXXXXX ou +262XXXXXXXXX, ..."
-          name="conseillerTelephonePro"
-          value={inputs?.conseillerTelephonePro ?? ''}
-          onChange={handleChange}
-        />
-        {erreurNumeroTelephonePro &&
-          <p id="text-input-error-desc-error" className="fr-error-text">
-            {erreurNumeroTelephonePro}
-          </p>
-        }
-      </div>
       <div className={`fr-input-group ${erreurNumeroTelephone ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
         <label className="fr-label" htmlFor="conseiller-telephone">
           T&eacute;l&eacute;phone personnel
@@ -194,7 +107,7 @@ function FormulaireInfosPersonnelles({ user }) {
           onChange={handleChange}
         />
         {erreurNumeroTelephone &&
-          <p id="text-input-error-desc-error" className="fr-error-text">
+          <p className="fr-error-text">
             {erreurNumeroTelephone}
           </p>
         }
@@ -214,7 +127,7 @@ function FormulaireInfosPersonnelles({ user }) {
           onChange={handleChange}
         />
         {erreurEmailPerso &&
-          <p id="text-input-error-desc-error" className="fr-error-text">
+          <p className="fr-error-text">
             {erreurEmailPerso}
           </p>
         }
@@ -272,12 +185,8 @@ function FormulaireInfosPersonnelles({ user }) {
       <button className="form-button fr-btn fr-mb-4w" onClick={handleSubmit}>
         Enregistrer
       </button>
-    </>
+    </div>
   );
 }
-
-FormulaireInfosPersonnelles.propTypes = {
-  user: PropTypes.object
-};
 
 export default FormulaireInfosPersonnelles;

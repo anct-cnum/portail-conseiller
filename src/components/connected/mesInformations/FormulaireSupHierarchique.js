@@ -26,6 +26,7 @@ function FormulaireSuperieurHierarchique() {
   const [submitted, setSubmitted] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const { prenom, nom, fonction, email, numeroTelephone } = inputs;
+
   const formatTelephone = value => {
     if (value?.substr(0, 1) !== '+') {
       const findIndicatif = telephoneHorsMetropole.find(r => r.codeDepartement === structure?.codeDepartement);
@@ -46,11 +47,11 @@ function FormulaireSuperieurHierarchique() {
       const numeroTelephone = formatTelephone(supHierarchique.numeroTelephone);
       dispatch(formSupHierarchiqueActions.initFormSupHierarchique(supHierarchique));
       setInputs({
-        prenom: supHierarchique.prenom,
-        nom: supHierarchique.nom,
-        numeroTelephone,
-        email: supHierarchique.email,
-        fonction: supHierarchique.fonction,
+        prenom: supHierarchique.prenom ?? '',
+        nom: supHierarchique.nom ?? '',
+        numeroTelephone: numeroTelephone ?? '',
+        email: supHierarchique.email ?? '',
+        fonction: supHierarchique.fonction ?? '',
       });
     }
   }, [supHierarchique]);
@@ -69,7 +70,12 @@ function FormulaireSuperieurHierarchique() {
     dispatch(formSupHierarchiqueActions.verifyFormulaire(form));
   }
   return (
-    <>
+    <div className="fr-col-5">
+      <h2>Contact de mon responsable</h2>
+      <p className="paragraphe fr-mb-md-3w">Ces coordonn&eacute;es pourront &ecirc;tre utilis&eacute;es pour communiquer des informations concernant
+        le dispositif et l&rsquo;animation du r&eacute;seau à votre employeur (ex: invitation à des webinaires,
+        envoi de documents explicatifs, newsletter, etc.)
+      </p>
       <ModalUpdateForm form={form} isSupHierarchique={true} showModal={showModal} setShowModal={setShowModal} />
       <div className={`fr-input-group ${erreurPrenom ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
         <label className="fr-label" htmlFor="prenom">
@@ -85,7 +91,7 @@ function FormulaireSuperieurHierarchique() {
           onChange={handleChange}
         />
         {erreurPrenom &&
-          <p id="text-input-error-desc-error" className="fr-error-text">
+          <p className="fr-error-text">
             {erreurPrenom}
           </p>
         }
@@ -104,7 +110,7 @@ function FormulaireSuperieurHierarchique() {
           onChange={handleChange}
         />
         {erreurNom &&
-          <p id="text-input-error-desc-error" className="fr-error-text">
+          <p className="fr-error-text">
             {erreurNom}
           </p>
         }
@@ -123,7 +129,7 @@ function FormulaireSuperieurHierarchique() {
           onChange={handleChange}
         />
         {erreurFonction &&
-          <p id="text-input-error-desc-error" className="fr-error-text">
+          <p className="fr-error-text">
             {erreurFonction}
           </p>
         }
@@ -142,7 +148,7 @@ function FormulaireSuperieurHierarchique() {
           onChange={handleChange}
         />
         {erreurEmail &&
-          <p id="text-input-error-desc-error" className="fr-error-text">
+          <p className="fr-error-text">
             {erreurEmail}
           </p>
         }
@@ -162,7 +168,7 @@ function FormulaireSuperieurHierarchique() {
           onChange={handleChange}
         />
         {erreurNumeroTelephone &&
-          <p id="text-input-error-desc-error" className="fr-error-text">
+          <p className="fr-error-text">
             {erreurNumeroTelephone}
           </p>
         }
@@ -170,7 +176,7 @@ function FormulaireSuperieurHierarchique() {
       <button className="form-button fr-btn fr-mb-4w" onClick={handleSubmit}>
         Enregistrer
       </button>
-    </>
+    </div>
   );
 }
 
