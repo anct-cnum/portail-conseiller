@@ -114,7 +114,7 @@ function getInformationsManquantes(conseiller) {
   if (conseiller?.contrats) {
     let boolInfoManquante = true;
     for (let contrat of conseiller?.contrats) {
-      if (contrat.typeContrat === 'CDI') {
+      if (new Date(contrat.dateDebut) <= new Date() && contrat.typeContrat === 'CDI') {
         boolInfoManquante = false;
       } else if (new Date(contrat.dateDebut) <= new Date() && new Date(contrat.dateFin) >= new Date()) {
         boolInfoManquante = false;
