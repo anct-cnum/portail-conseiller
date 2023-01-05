@@ -73,7 +73,7 @@ function FormulaireSuperieurHierarchique() {
     <div className="fr-col-5">
       <h2>Contact de mon responsable</h2>
       <p className="paragraphe fr-mb-md-3w">Ces coordonn&eacute;es pourront &ecirc;tre utilis&eacute;es pour communiquer des informations concernant
-        le dispositif et l&rsquo;animation du r&eacute;seau à votre employeur (ex: invitation à des webinaires,
+        le dispositif et l&rsquo;animation du r&eacute;seau &agrave; votre employeur (ex: invitation &agrave; des webinaires,
         envoi de documents explicatifs, newsletter, etc.)
       </p>
       <ModalUpdateForm form={form} isSupHierarchique={true} showModal={showModal} setShowModal={setShowModal} />

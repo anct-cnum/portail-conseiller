@@ -23,8 +23,8 @@ function Welcome() {
   const lienWebmail = process.env.REACT_APP_WEBMAIL_URL;
   const lienRdvAideNumerique = process.env.REACT_APP_RDV_AIDE_NUMERIQUE_URL;
   const lienBlog = process.env.REACT_APP_BLOG_URL;
-  const plusTard = Boolean(localStorage.getItem('plusTard') === 'true');
-  
+  const plusTard = Boolean(localStorage.getItem('contratPlusTard') === 'true');
+
   return (
     <>
       <div className="welcome">

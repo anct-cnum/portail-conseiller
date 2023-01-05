@@ -20,7 +20,7 @@ function login(username, password, to) {
         data.user = getRole(data.user);
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(data));
-        localStorage.setItem('plusTard', false);
+        localStorage.setItem('contratPlusTard', false);
         dispatch(success(data));
         if (to.pathname === '/') {
           history.push('/accueil');

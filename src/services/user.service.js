@@ -35,7 +35,7 @@ function login(username, password) {
 function logout() {
   localStorage.removeItem('user');
   localStorage.removeItem('suspension_permanence');
-  localStorage.removeItem('plusTard');
+  localStorage.removeItem('contratPlusTard');
 }
 
 function handleResponse(response) {

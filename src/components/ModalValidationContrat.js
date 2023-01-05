@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { mesInformationsActions } from '../actions/mesInformations.actions';
 
-function ModalValidationContrat({ form, showModal, setShowModal }) {
+function ModalValidationContrat({ form, showModal, setShowModal, setDisabled }) {
   const [active, setActive] = useState(false);
   const dispatch = useDispatch();
   const conseiller = useSelector(state => state.conseiller?.conseiller);
@@ -11,6 +11,7 @@ function ModalValidationContrat({ form, showModal, setShowModal }) {
   const [password, setPassword] = useState('');
   function closeModal() {
     setShowModal(false);
+    setDisabled(false);
   }
   function handleChange(e) {
     if (e?.target) {
@@ -26,9 +27,10 @@ function ModalValidationContrat({ form, showModal, setShowModal }) {
     dispatch(mesInformationsActions.updateContratActif({
       typeContrat: form?.typeContrat,
       dateDebut: form?.dateDebut,
-      dateFin: form?.dateFin
+      dateFin: form?.typeContrat !== 'CDI' ? form?.dateFin : null,
     }, conseiller?._id, user.name, password));
     closeModal();
+    setDisabled(true);
   }
   return (
     <>
@@ -83,7 +85,8 @@ function ModalValidationContrat({ form, showModal, setShowModal }) {
 ModalValidationContrat.propTypes = {
   form: PropTypes.object,
   showModal: PropTypes.bool,
-  setShowModal: PropTypes.func
+  setShowModal: PropTypes.func,
+  setDisabled: PropTypes.func,
 };
 
 export default ModalValidationContrat;

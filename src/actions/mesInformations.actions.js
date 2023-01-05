@@ -3,22 +3,22 @@ import { userService } from '../services/user.service';
 import { mesInformationsService } from '../services/mesInformations.service';
 
 export const mesInformationsActions = {
-  verifyFormulaire,
+  verifyFormulaireContrat,
   getContratActif,
   updateField,
   updateContratActif,
   getInformationsManquantes,
-  getPlusTard,
+  getContratPlusTard,
 };
 
-function verifyFormulaire(form) {
+function verifyFormulaireContrat(form) {
   let errors = [];
   // eslint-disable-next-line max-len
   let { typeContrat, dateDebut, dateFin } = form;
 
   errors.push({
     typeContrat: (Joi.object({
-      typeContrat: Joi.string().trim().required()
+      typeContrat: Joi.string().trim().required().valid('CDI', 'CDD', 'Agent titulaire')
     }).validate({ typeContrat: typeContrat }).error) ?
       'Un type de contrat doit obligatoirement être saisi' : null
   });
@@ -37,9 +37,17 @@ function verifyFormulaire(form) {
       }).validate({ dateFin: dateFin }).error) ?
         'Une date de fin de contrat doit obligatoirement être saisi' : null
     });
+  } else {
+    errors.push({
+      dateFin: (Joi.object({
+        dateFin: Joi.valid(null)
+      }).validate({ dateFin: dateFin }).error) ?
+        'La date de fin de contrat ne doit pas être saisi' : null
+    });
   }
 
   let nbErrors = 0;
+
   errors.forEach(error => {
     if (error[Object.keys(error)[0]]) {
       nbErrors++;
@@ -48,7 +56,7 @@ function verifyFormulaire(form) {
 
   const errorsForm = { errors: errors, lengthError: nbErrors };
 
-  return { type: 'VERIFY_FORMULAIRE', errorsForm };
+  return { type: 'VERIFY_FORMULAIRE_CONTRAT', errorsForm };
 }
 
 function updateField(name, value) {
@@ -66,7 +74,7 @@ function getContratActif(contrats) {
       }
     }
   }
-  return { type: 'INIT_MES_INFORMATIONS', contratActif };
+  return { type: 'INIT_CONTRAT_ACTIF', contratActif };
 }
 
 function updateContratActif(contratActif, conseillerId, username, password) {
@@ -124,7 +132,7 @@ function getInformationsManquantes(conseiller) {
   return { type: 'GET_INFORMATIONS_MANQUANTES', informationsManquantes };
 }
 
-function getPlusTard() {
-  localStorage.setItem('plusTard', true);
-  return { type: 'GET_PLUS_TARD' };
+function getContratPlusTard() {
+  localStorage.setItem('contratPlusTard', true);
+  return { type: 'GET_CONTRAT_PLUS_TARD' };
 }

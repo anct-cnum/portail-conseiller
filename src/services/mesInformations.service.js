@@ -11,11 +11,7 @@ function updateContratActif(contratActif, idConseiller) {
   const requestOptions = {
     method: 'PATCH',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
-    body: JSON.stringify({
-      typeContrat: contratActif.typeContrat,
-      dateDebut: contratActif.dateDebut,
-      dateFin: contratActif.dateFin,
-    })
+    body: JSON.stringify(contratActif)
   };
 
   return fetch(`${apiUrlRoot}/conseillers/updateContratActif/${idConseiller}`, requestOptions).then(handleResponse);

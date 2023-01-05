@@ -6,7 +6,7 @@ import { mesInformationsActions } from '../../actions';
 function DemandeInformations({ user, informationsManquantes }) {
   const dspatch = useDispatch();
   const clickPlusTard = () => {
-    dspatch(mesInformationsActions.getPlusTard());
+    dspatch(mesInformationsActions.getContratPlusTard());
   };
   return (
     <dialog aria-labelledby="fr-modal-informations" role="dialog" id="fr-modal-informations" className="fr-modal modalOpened">

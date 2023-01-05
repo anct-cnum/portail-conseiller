@@ -46,12 +46,14 @@ function FormulaireContrat() {
   }
   function handleSubmit() {
     setSubmitted(true);
-    dispatch(mesInformationsActions.verifyFormulaire(form));
+    dispatch(mesInformationsActions.verifyFormulaireContrat(form));
   }
 
   useEffect(() => {
+    setDisabled(false);
     if (erreursFormulaire?.lengthError === 0 && submitted) {
       setShowModal(true);
+      setDisabled(true);
       window.scrollTo(0, 0);
     }
     setSubmitted(false);
@@ -59,7 +61,11 @@ function FormulaireContrat() {
 
   useEffect(() => {
     if (contratActif) {
-      setInputs({ dateDebut: new Date(contratActif?.dateDebut), dateFin: new Date(contratActif?.dateFin), typeContrat: contratActif?.typeContrat });
+      setInputs({
+        dateDebut: new Date(contratActif?.dateDebut),
+        dateFin: contratActif?.dateFin === null ? null : new Date(contratActif?.dateFin),
+        typeContrat: contratActif?.typeContrat
+      });
       setDisabled(true);
     }
   }, [contratActif]);
@@ -68,7 +74,7 @@ function FormulaireContrat() {
     <div className="fr-col-5">
       <h2>Mon contrat de travail</h2>
       <p className="paragraphe">Informations inscrites dans le contrat de travail</p>
-      <ModalValidationContrat form={form} showModal={showModal} setShowModal={setShowModal} />
+      <ModalValidationContrat form={form} showModal={showModal} setShowModal={setShowModal} setDisabled={setDisabled} />
       <div className="fr-input-group fr-col-9">
         <fieldset className={`fr-fieldset fr-fieldset--inline ${erreurTypeContrat ? 'fr-fieldset--error' : ''}`}>
           <legend className="fr-fieldset__legend fr-text--regular" id="contrat-legend">

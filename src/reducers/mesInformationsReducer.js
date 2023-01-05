@@ -5,12 +5,12 @@ const initialState = {
 
 export default function mesInformations(state = initialState, action) {
   switch (action.type) {
-    case 'VERIFY_FORMULAIRE':
+    case 'VERIFY_FORMULAIRE_CONTRAT':
       return {
         ...state,
         errorsFormulaire: action.errorsForm
       };
-    case 'INIT_MES_INFORMATIONS':
+    case 'INIT_CONTRAT_ACTIF':
       return {
         ...state,
         contratActif: action.contratActif
@@ -63,7 +63,7 @@ export default function mesInformations(state = initialState, action) {
         ...state,
         informationsManquantes: action.informationsManquantes,
       };
-    case 'GET_PLUS_TARD':
+    case 'GET_CONTRAT_PLUS_TARD':
       return {
         ...state
       };
