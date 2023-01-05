@@ -105,7 +105,7 @@ function FormulaireContrat() {
         }
       </div>
       <div className="fr-input-group fr-mb-5w">
-        <label className="fr-label" htmlFor="dateDebut">Date de début du contrat</label>
+        <label className="fr-label" htmlFor="dateDebut">Date de d&eacute;but du contrat</label>
         <DatePicker
           placeholderText="../../...."
           id="dateDebut"
@@ -160,7 +160,7 @@ function FormulaireContrat() {
         </button>
       </div>
       <div className="fr-col-10 fr-mt-5w">
-        <p>Pour suivre l&rsquo;actualit&eacute; du reconventionnement du dispositif et &eacute;changer avec les CnFS, rendez-vous sur :</p>
+        <p>Pour suivre l&rsquo;actualit&eacute; du reconventionnement du dispositif et &eacute;changer avec les CnFS, rendez-vous sur&nbsp;:</p>
         <a href={perennisation} className="fr-link fr-fi-external-link-line fr-link--icon-right perennisation-btn">
           <img src="/logos/bulle-ressourcerie.svg" alt="liens Mattermost vers le sujet de la p&eacute;rennisation"/>
           <span>#P&eacute;rennisation des CnFS</span>
