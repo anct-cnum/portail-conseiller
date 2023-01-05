@@ -67,7 +67,7 @@ function getContratActif(contrats) {
   let contratActif = null;
   if (contrats) {
     for (let contrat of contrats) {
-      if (contrat.typeContrat === 'CDI') {
+      if (new Date(contrat.dateDebut) <= new Date() && contrat.typeContrat === 'CDI') {
         contratActif = contrat;
       } else if (new Date(contrat.dateDebut) <= new Date() && new Date(contrat.dateFin) >= new Date()) {
         contratActif = contrat;
