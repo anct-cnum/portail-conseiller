@@ -17,7 +17,7 @@ function Canal() {
       <div className="responsiveRadioCanal1">
         <BigRadioButton
           type="canal"
-          label="Lieu de rattachement"
+          label="Lieu d&rsquo;activit&eacute;"
           value="rattachement"
           image="/logos/cra/logo-lieu-rattachement.svg"
           imageSelected="/logos/cra/logo-lieu-rattachement-n.svg"
