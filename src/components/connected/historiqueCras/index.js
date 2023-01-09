@@ -26,7 +26,7 @@ function HistoriqueCras() {
   const themes = useSelector(state => state.historiqueCras?.themes);
   const printFlashbag = useSelector(state => state.cra.printFlashbag);
   const isDeleted = useSelector(state => state.cra.isDeleted);
-  const canaux = ['rattachement', 'autre', 'domicile', 'distance'];
+  const canaux = ['rattachement', 'autre lieu', 'domicile', 'distance'];
   const types = ['individuel', 'collectif', 'ponctuel'];
   const [thematique, setThematique] = useState(null);
   const [canal, setCanal] = useState(null);
