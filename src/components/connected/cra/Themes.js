@@ -160,6 +160,18 @@ function Themes() {
           heightImage="56px" />
       </div>
 
+      {cra?.themes?.includes('autre') &&
+        <div className="responsiveCheckboxNewRow1">
+          <div className="checkboxButton">
+            <button id="checkboxRattachement" className="checkboxRattachement checkboxRattachement-selected" style={{ height: '108px' }}>
+              <span className="fr-label labelCheckboxCustom checkboxRattachement-selected" style={{ marginLeft: '105px' }}>Autre <br/>
+                <span className="baseline">(Ancienne th&egrave;matique, non-modifiable)</span>
+              </span>
+            </button>
+          </div>
+        </div>
+      }
+      
     </div>
   );
 }

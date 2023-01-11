@@ -6,7 +6,7 @@ import SmallRadioButton from './Components/SmallRadioButton';
 function Canal() {
 
   let cra = useSelector(state => state.cra);
-  
+
   return (
     <div className="fr-grid-row fr-grid-row--gutters fr-grid-row--middle espacement">
       <div className="fr-col-xs-11 fr-col-sm-11 fr-col-md-2 questionResponsive">
@@ -17,7 +17,7 @@ function Canal() {
       <div className="responsiveRadioCanal1">
         <BigRadioButton
           type="canal"
-          label="Lieu de rattachement"
+          label="Lieu d&rsquo;activit&eacute;"
           value="rattachement"
           image="/logos/cra/logo-lieu-rattachement.svg"
           imageSelected="/logos/cra/logo-lieu-rattachement-n.svg"
@@ -28,7 +28,7 @@ function Canal() {
         <BigRadioButton
           type="canal"
           label="Autre lieu"
-          value="autre"
+          value="autre lieu"
           image="/logos/cra/logo-autre-lieu.svg"
           imageSelected="/logos/cra/logo-autre-lieu-n.svg"
           heightImage="56px"
