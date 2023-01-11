@@ -33,7 +33,7 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
         if (cra?.canal !== 'distance' && cra?.canal !== 'domicile') {
           dispatch(craActions.updateCanal(value));
         }
-        if (value === 'autre') {
+        if (value === 'autre lieu') {
           dispatch(craActions.getButtonCP());
           setTimeout(() => {
             if (document.getElementById('dropdown')) {
