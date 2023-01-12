@@ -36,7 +36,7 @@ function Activite() {
           heightImage="56px"
           classDiv="atelierCollectif"/>
         <div className={`${voirInformation ? 'information-message width-message-pourcent' : 'close-information'}`}>
-          Ateliers, accompagnements menés avec plusieurs personnes. Vous pouvez optionnellement comptabiliser les absences.
+          Ateliers, accompagnements men&eacute;s avec plusieurs personnes. Vous pouvez optionnellement comptabiliser les absences.
         </div>
       </div>
       }
@@ -46,7 +46,7 @@ function Activite() {
           type="participants"
           label="participants"/>
         <div className={`${voirInformation ? 'information-message width-message-pourcent' : 'close-information'}`}>
-          Ateliers, accompagnements menés avec plusieurs personnes. Vous pouvez optionnellement comptabiliser les absences.
+          Ateliers, accompagnements men&eacute;s avec plusieurs personnes. Vous pouvez optionnellement comptabiliser les absences.
         </div>
       </div>
       }
@@ -60,7 +60,8 @@ function Activite() {
           heightImage="56px"
           classDiv="accIndividuel"/>
         <div className={`${voirInformation ? 'information-message width-message-pourcent' : 'close-information'}`}>
-        Lorsqu’une seule personne est accompagnée. Vous pouvez enregistrer plusieurs accompagnements individuels en une fois en incrémentant le bouton.
+        Lorsqu&rsquo;une seule personne est accompagn&eacute;e. Vous pouvez enregistrer plusieurs accompagnements individuels en une
+        fois en incr&eacute;mentant le bouton.
         </div>
       </div>
       <div className={`responsiveRadioActivity3Big ${voirInformation ? 'info-top-24 activite-height' : ''}`}>
@@ -73,7 +74,7 @@ function Activite() {
           heightImage="56px"
           classDiv="demPonctuelle"/>
         <div className={`${voirInformation ? 'information-message width-message-pourcent' : 'close-information'}`}>
-          Conseils et services ponctuels, informels, que vous estimez comme étant du temps de travail.
+          Conseils et services ponctuels, informels, que vous estimez comme &eacute;tant du temps de travail.
         </div>
       </div>
       <div className={`responsiveRadioActivity3Small ${voirInformation ? 'open-activite' : ''}`}>
@@ -85,7 +86,7 @@ function Activite() {
           imageSelected="/logos/cra/logo-demande-ponctuelle-n.svg"
           heightImage="32px" />
         <div className={`${voirInformation ? 'information-message' : 'close-information'}`}>
-          Conseils et services ponctuels, informels, que vous estimez comme étant du temps de travail.
+          Conseils et services ponctuels, informels, que vous estimez comme &eacute;tant du temps de travail.
         </div>
       </div>
     </div>
