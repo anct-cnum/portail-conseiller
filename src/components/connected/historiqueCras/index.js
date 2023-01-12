@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
 import FlashMessage from 'react-flash-message';
@@ -31,18 +31,24 @@ function HistoriqueCras() {
   const [thematique, setThematique] = useState(null);
   const [canal, setCanal] = useState(null);
   const [type, setType] = useState(null);
+  const [sort, setSort] = useState(null);
 
   /*Pagination */
   let [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
   const navigate = page => {
     setPage(page);
-    dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, canal, type, page));
+    dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, canal, type, sort, page));
+  };
+
+  const sortByDate = () => {
+    setSort(sort === 'desc' ? 'asc' : 'desc');
+    dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, canal, type, sort, page));
   };
 
   useEffect(() => {
     if (accompagnements === undefined || thematique || !thematique) {
-      dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, canal, type, page));
+      dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, canal, type, sort, page));
     }
     if (themes === undefined) {
       dispatch(historiqueCrasActions.getHistoriqueCrasThematiques());
@@ -175,7 +181,13 @@ function HistoriqueCras() {
                         <th scope="col">
                           <FiltreCra texte="Th&eacute;matiques" css="themes" datas={themes} setDatas={setThematique} />
                         </th>
-                        <th scope="col" className="medium-column">Modifi&eacute; le</th>
+                        <th scope="col" className="medium-column">
+                          <span className="tri-date" onClick={() => {
+                            sortByDate();
+                          }}>Modifi&eacute; le&ensp;
+                            <i className={`ri-sort-${sort ?? 'desc'}`} ></i>
+                          </span>
+                        </th>
                         <th scope="col" className="short-column">&Eacute;diter</th>
                       </tr>
                     </thead>

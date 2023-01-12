@@ -75,6 +75,28 @@
       color: #F5F5FE;
     }
   }
+  .tri-date {
+    display: inline-block;
+    position: absolute;
+    text-align: center;
+    margin-left: -12px;
+    cursor: pointer;
+    height: 55.5px;
+    width: 120px;
+    top: 17px;
+    padding-top: 12px;
+    &:hover {
+      background-color: #9a9aff;
+      color: #000091;
+    }
+    i {
+      position: relative;
+      top: 3px;
+      &:hover {
+        color: #000091;
+      }
+    }
+  }
   .texte-cra {
     display: inline-block;
     width: 170px;
