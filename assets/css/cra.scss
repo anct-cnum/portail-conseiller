@@ -60,7 +60,30 @@ $blue: #2b8bf7;
     position: relative;
   }
   .q1 {
-    top: -98px;
+    top: -83px;
+  }
+  .info-rattachement {
+    top: -109px;
+  }
+  .info-autre {
+    top: -86px;
+  }
+  .info-dom-dis-message {
+    top: 30px;
+  }
+  @supports (-moz-appearance:none) {
+    .q1 {
+      top: -98px;
+    }
+    .info-rattachement{
+      top: -139px;
+    }
+    .info-autre{
+      top: -114px;
+    }
+    .info-dom-dis-message {
+      top: 0px;
+    }
   }
   .q2 {
     top: -65px;
@@ -73,12 +96,6 @@ $blue: #2b8bf7;
   }
   .info-rattachement, .info-autre, .info-date-dist-dom, .info-individuel, .info-top-12, .info-top-12-bis, .info-top-24,  .info-top-24-bis, .info-top-34, .info-fraude {
     position: relative;
-  }
-  .info-rattachement{
-    top: -139px;
-  }
-  .info-autre{
-    top: -114px;
   }
   .info-fraude {
     top: 24px;
@@ -1288,7 +1305,16 @@ $blue: #2b8bf7;
       width: 231px;
     }
     .info-rattachement{
-      top: -115px;
+      top: -95px;
+      @supports (-moz-appearance:none) {
+        top: -115px;
+      }
+    }
+    .info-autre{
+      top: -96px;
+      @supports (-moz-appearance:none) {
+        top: -114px;
+      }
     }
     .info-top-12, .info-top-12-bis {
       top: -24px;
@@ -1314,6 +1340,13 @@ $blue: #2b8bf7;
         top: 0px;
       }
     }
+    .q1 {
+      top: -89px;
+      @supports (-moz-appearance:none) {
+        top: -98px;
+      }
+    }
+
   }
   @media (max-width: 1060px) {
     .info-top-12-bis {
@@ -1334,6 +1367,15 @@ $blue: #2b8bf7;
     }
     .info-top-24-bis {
       top: -36px;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 912px) {
+    .individuel-height {
+      height: 368px;
+    }
+    .activite-height {
+      height: 320px;
     }
   }
   @media (max-width: 867px) {
@@ -1382,16 +1424,25 @@ $blue: #2b8bf7;
       width: 100%;
     }
     .q1 {
-      top: -128px;
+      top: -125px;
+      @supports (-moz-appearance:none) {
+        top: -128px;
+      }
     }
     .q2 {
       top: -113px;
     }
     .info-rattachement {
-      top: -176px;
+      top: -167px;
+      @supports (-moz-appearance:none) {
+        top: -176px;
+      }
     }
     .info-autre {
-      top: -175px;
+      top: -168px;
+      @supports (-moz-appearance:none) {
+        top: -175px;
+      }
     }
     .textInformation {
       width: 576px;
@@ -1427,6 +1478,9 @@ $blue: #2b8bf7;
       }
       .buttonPermanence-filled {
         width: 48%;
+      }
+      .force-width {
+        width: 100% !important;
       }
       #buttonPermanences{
         width: 96%;
@@ -1476,23 +1530,47 @@ $blue: #2b8bf7;
         width: 50%;
       }
     }
-    .q1, .q2,.q6, .info-rattachement, .info-autre, .info-top-12, .info-top-12-bis {
+    .q1, .q2,.q6, .info-rattachement, .info-autre, .info-top-12 {
       top: 0;
+    }
+    .info-top-12-bis {
+      top: 0px;
     }
     .information-message{
       width: 100%;
       margin-bottom: 15px;
     }
   }
+  @media (max-width: 683px) {
+    .info-top-12-bis {
+      top: -12px;
+    }
+  }
+  @media (max-width: 622px) {
+    .info-top-12-bis {
+      top: -24px;
+    }
+  }
+  @media (max-width: 586px) {
+    .info-top-12-bis {
+      top: -12px;
+    }
+  }
   @media (max-width: 576px) {
     .responsiveElement2, .responsiveRadioActivity1, .responsiveRadioActivity2 {
       width: 100%;
+    }
+    .responsiveElement2 .dropdown, .responsiveElement2 .buttonPermanence-filled {
+      width: 95%;
     }
     .information-message-theme {
       height: 225px;
     }
     .questionResponsive {
       width: calc(1200%/12);
+    }
+    .info-top-12-bis {
+      top: 0px;
     }
   }
 }

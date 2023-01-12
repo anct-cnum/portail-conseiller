@@ -26,7 +26,7 @@ function Activite() {
         </span>
       </div>
       {cra?.activite !== 'collectif' &&
-      <div className={`responsiveRadioActivity1 ${voirInformation ? 'info-top-12-bis' : ''}`}>
+      <div className={`responsiveRadioActivity1 ${voirInformation ? 'info-top-12-bis activite-height' : ''}`}>
         <BigRadioButton
           type="activite"
           label="Atelier Collectif"
@@ -50,7 +50,7 @@ function Activite() {
         </div>
       </div>
       }
-      <div className={`responsiveRadioActivity2 ${voirInformation ? 'info-individuel' : ''}`}>
+      <div className={`responsiveRadioActivity2 ${voirInformation ? 'info-individuel individuel-height' : ''}`}>
         <BigRadioButton
           type="activite"
           label="Accompagnement individuel"
@@ -63,7 +63,7 @@ function Activite() {
         Lorsqu’une seule personne est accompagnée. Vous pouvez enregistrer plusieurs accompagnements individuels en une fois en incrémentant le bouton.
         </div>
       </div>
-      <div className={`responsiveRadioActivity3Big ${voirInformation ? 'info-top-24' : ''}`}>
+      <div className={`responsiveRadioActivity3Big ${voirInformation ? 'info-top-24 activite-height' : ''}`}>
         <BigRadioButton
           type="activite"
           label="Demande ponctuelle"

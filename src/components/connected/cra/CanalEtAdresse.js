@@ -28,7 +28,7 @@ function CanalEtAdresse() {
       </div>
       <div className="fr-col-12 fr-col-md-10">
         <div className={`responsiveElement2 ${voirInformation ? 'info-rattachement' : ''}`}>
-          <SelectPermanence/>
+          <SelectPermanence voirInformation={voirInformation}/>
           <BigRadioButtonV2
             type="canal"
             label="Lieu d&rsquo;activit&eacute;"
@@ -38,11 +38,11 @@ function CanalEtAdresse() {
           />
           <div className={`${voirInformation ? 'information-message' : 'close-information'}`}>
             Les lieux pr&eacute;-enregistr&eacute;s via votre <a href="/mon-nouveau-lieu-activite"
-              className="fr-link fr-fi-external-link-line fr-link--icon-right">formulaire lieux &rsquo;activit&eacute;s</a>
+              className="fr-link fr-fi-external-link-line fr-link--icon-right">formulaire lieux d&rsquo;activit&eacute;s</a>
           </div>
         </div>
         <div className={`responsiveElement2 ${voirInformation ? 'info-autre' : ''}`}>
-          <SelectCP/>
+          <SelectCP voirInformation={voirInformation}/>
           <BigRadioButtonV2
             type="canal"
             label="Autre lieu"
@@ -67,7 +67,7 @@ function CanalEtAdresse() {
             label="&Agrave; domicile"
             value="domicile"
             image="logoDomicile" />
-          <div className={`${voirInformation ? 'information-message' : 'close-information'}`}>
+          <div className={`${voirInformation ? 'information-message info-dom-dis-message' : 'close-information'}`}>
             <div>Date : vous avez la possibilit&eacute; d&rsquo;enregistrer un accompagnement en diff&eacute;r&eacute;.</div>
             <div>&Agrave; distance : vous avez r&eacute;alis&eacute; l&rsquo;accompagnement par t&eacute;l&eacute;phone ou visio-conf&eacute;rence.</div>
             <div>&Agrave; domicile : l&rsquo;accompagnement a &eacute;t&eacute; r&eacute;alis&eacute; chez l&rsquo;usager.</div>
