@@ -95,7 +95,7 @@ function Themes() {
           <ul>
             <li>Pr&eacute;sentation des dangers du web (virus, cyber-attaques, arnaques).</li>
             <li>Utiliser un mot de passe, le contr&ocirc;le parental, un &eacute;cran de verrouillage, etc.</li>
-            <li>Sauvegarder ses donn&eacute;es (disque dur, cloud, etc.), comprendre les RGPD.</li>
+            <li>Sauvegarder ses donn&eacute;es (disque dur, cloud, etc.), comprendre le RGPD.</li>
           </ul>
         </div>
       </div>
