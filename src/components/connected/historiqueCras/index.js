@@ -13,6 +13,9 @@ import Spinner from 'react-loader-spinner';
 import Pagination from '../../admin/Pagination';
 import FiltreCra from './FiltreCra';
 import ConfirmationSuppressionCra from './SupprimerCra';
+import FiltreDate from './FiltreDate';
+import FiltreLieu from './FiltreLieu';
+import { statistiqueActions } from '../../../actions';
 
 function HistoriqueCras() {
   const dispatch = useDispatch();
@@ -26,34 +29,44 @@ function HistoriqueCras() {
   const themes = useSelector(state => state.historiqueCras?.themes);
   const printFlashbag = useSelector(state => state.cra.printFlashbag);
   const isDeleted = useSelector(state => state.cra.isDeleted);
+  const listeCodesPostaux = useSelector(state => state.statistique?.listeCodesPostaux);
+  const dateDebutCra = useSelector(state => state.historiqueCras?.dateCraDebut);
+  const dateFinCra = useSelector(state => state.historiqueCras?.dateCraFin);
+  const codePostal = useSelector(state => state.historiqueCras?.codePostalCra);
+  const ville = useSelector(state => state.historiqueCras?.villeCra);
   const canaux = ['rattachement', 'autre lieu', 'domicile', 'distance'];
   const types = ['individuel', 'collectif', 'ponctuel'];
   const [thematique, setThematique] = useState(null);
   const [canal, setCanal] = useState(null);
   const [type, setType] = useState(null);
   const [sort, setSort] = useState(null);
+  const [optionList, setOptionList] = useState([]);
 
   /*Pagination */
   let [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
   const navigate = page => {
     setPage(page);
-    dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, canal, type, sort, page));
+    dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, canal, type, sort,
+      dateDebutCra, dateFinCra, codePostal, ville, page));
   };
 
   const sortByDate = () => {
     setSort(sort === 'desc' ? 'asc' : 'desc');
-    dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, canal, type, sort, page));
+    dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, canal, type, sort,
+      dateDebutCra, dateFinCra, codePostal, ville, page));
   };
 
   useEffect(() => {
     if (accompagnements === undefined || thematique || !thematique) {
-      dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, canal, type, sort, page));
+      dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, canal, type, sort,
+        dateDebutCra, dateFinCra, codePostal, ville, page));
     }
     if (themes === undefined) {
       dispatch(historiqueCrasActions.getHistoriqueCrasThematiques());
     }
-  }, [thematique, canal, type, isDeleted]);
+    dispatch(statistiqueActions.getCodesPostauxCrasConseiller());
+  }, [thematique, canal, type, dateDebutCra, dateFinCra, codePostal, ville, isDeleted]);
 
   //Forcer affichage en haut de la page pour voir le flashbag
   useEffect(() => {
@@ -68,6 +81,34 @@ function HistoriqueCras() {
       setPageCount(total % limit === 0 ? count : count + 1);
     }
   }, [accompagnements]);
+
+  useEffect(() => {
+    if (!listeCodesPostaux) {
+      dispatch(statistiqueActions.getCodesPostauxCrasConseiller());
+    } else if (listeCodesPostaux && optionList?.length === 0) {
+      listeCodesPostaux.forEach(codePostal => {
+        if (codePostal.villes?.length === 1) {
+          optionList.push({
+            text: codePostal.id + ' - ' + codePostal.villes[0]?.toUpperCase(),
+            value: codePostal.id + '-' + codePostal.villes[0]
+          });
+        } else if (codePostal.villes?.length > 1) {
+          optionList.push({
+            text: codePostal.id + ' - TOUTES COMMUNES',
+            value: codePostal.id
+          });
+          codePostal.villes.forEach(ville => {
+            optionList.push({
+              text: ville,
+              value: codePostal.id + '-' + ville,
+              marge: '- - '
+            });
+          });
+        }
+      });
+      setOptionList(optionList);
+    }
+  });
 
   return (
     <>
@@ -163,7 +204,16 @@ function HistoriqueCras() {
               <div className="fr-col-12">
                 <div className="boutons-cras">
                   <a className="fr-btn fr-btn--secondary boutons-cras fr-mr-md-2w" href="/compte-rendu-activite">Enregistrer un nouvel accompagnement</a>
-                  <a className="fr-btn fr-btn--secondary" href="/statistiques">Consulter mes statistiques</a>
+                  <a className="fr-btn fr-btn--secondary fr-mr-md-2w" href="/statistiques">Consulter mes statistiques</a>
+                  <span>P&eacute;riode du &nbsp;</span>
+                  <span id="span-datePickerDebut" >
+                    <FiltreDate idDate="dateCraDebut"/>
+                  </span>
+                  <span id="span-datePickerFin" >
+                    &nbsp;au&nbsp;
+                    <FiltreDate idDate="dateCraFin"/>
+                  </span>
+                  <FiltreLieu optionList={optionList}/>
                 </div>
                 <div className="fr-table fr-table--bordered fr-table--layout-fixed cras">
                   <table>
