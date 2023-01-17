@@ -44,7 +44,7 @@ function BigCountRadioButton({ type, value, label }) {
   const onClickLess = () => {
     switch (type) {
       case 'participants':
-        if (cra?.nbParticipants > 2) {
+        if (cra?.nbParticipants > 1) {
           dispatch(craActions.updateNbParticipants(Number(cra?.nbParticipants) - 1));
         }
         break;

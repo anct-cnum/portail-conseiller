@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { craActions } from '.././../../../actions';
 import codesPostaux from '../../../../data/codesPostaux.json';
+import PropTypes from 'prop-types';
 
-function SelectCP() {
+function SelectCP({ voirInformation }) {
   const [codePostalList, setCodePostalList] = useState([]);
   const dispatch = useDispatch();
   let cra = useSelector(state => state.cra);
@@ -74,7 +75,7 @@ function SelectCP() {
   return (
     <>
       {(!cra?.idPermanence && cra?.canal !== 'rattachement') &&
-        <div id="dropdown" className="dropdown" onClick={() => {
+        <div id="dropdown" className={ `dropdown ${voirInformation ? 'force-width' : ''}`} onClick={() => {
           if (document.getElementById('buttonCP')) {
             onClickButton();
           } else {
@@ -111,5 +112,9 @@ function SelectCP() {
   );
 
 }
+
+SelectCP.propTypes = {
+  voirInformation: PropTypes.bool,
+};
 
 export default SelectCP;

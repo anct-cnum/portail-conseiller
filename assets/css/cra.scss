@@ -23,6 +23,96 @@ $blue: #2b8bf7;
     text-align: right;
     margin-top: 18px;
   }
+  .information {
+    position: relative;
+    margin-left: 5px;
+    color: #518fff;
+    cursor: pointer;
+    top: 2px;
+  }
+  .close-information {
+    display: none;
+  }
+  .information-message, .information-message-important {
+    position: relative;
+    color: #518fff;
+    padding: 10px 10px 0 0;
+    font-size: 14px;
+    width: 264px;
+    a {
+      font-size: 14px;
+    }
+    div {
+      position: relative;
+      font-size: 14px;
+      top: 5px;
+    }
+  }
+  .information-message-important {
+    text-align: center;
+    width: 83%;
+  }
+  .information-message-theme {
+    color: #518fff;
+    font-size: 14px;
+  }
+  .open-information {
+    position: relative;
+  }
+  .q1 {
+    top: -83px;
+  }
+  .info-rattachement {
+    top: -109px;
+  }
+  .info-autre {
+    top: -86px;
+  }
+  .info-dom-dis-message {
+    top: 30px;
+  }
+  @supports (-moz-appearance:none) {
+    .q1 {
+      top: -98px;
+    }
+    .info-rattachement{
+      top: -139px;
+    }
+    .info-autre{
+      top: -114px;
+    }
+    .info-dom-dis-message {
+      top: 0px;
+    }
+  }
+  .q2 {
+    top: -65px;
+  }
+  .q3 {
+    top: -29px;
+  }
+  .q6 {
+    top: -62px;
+  }
+  .info-rattachement, .info-autre, .info-date-dist-dom, .info-individuel, .info-top-12, .info-top-12-bis, .info-top-24,  .info-top-24-bis, .info-top-34, .info-fraude {
+    position: relative;
+  }
+  .info-fraude {
+    top: 24px;
+  }
+  .info-individuel {
+    top: 0px;
+  }
+  .info-top-12, .info-top-12-bis {
+    top: -12px;
+  }
+  .info-top-24, .info-top-24-bis {
+    top: -24px;
+  }
+  .info-top-34 {
+    top: -34px;
+  }
+
   .questionRequired, .labelError {
     color: $errorDarkMode;
   }
@@ -229,13 +319,17 @@ $blue: #2b8bf7;
 
   /* custom point de rupture LG du DS */
   @media (max-width: 1024px) {
-
     .responsiveRecurrence {
       padding-left: 0.5rem;
     }
-
   }
 
+  @media (max-width: 1210px) {
+    .theme-height {
+      height: 320px;
+      top: 0px !important;
+    }
+  }
   /* custom point de rupture MD du DS */
   @media (max-width: 767px) {
     .questionResponsive {
@@ -251,6 +345,9 @@ $blue: #2b8bf7;
       display: block;
       top: -15px;
       right: 0;
+    }
+    .information-message-important {
+      width: 100%;
     }
   }
 
@@ -1204,6 +1301,30 @@ $blue: #2b8bf7;
         width: 230px;
       }
     }
+    .information-message {
+      width: 231px;
+    }
+    .info-rattachement{
+      top: -95px;
+      @supports (-moz-appearance:none) {
+        top: -115px;
+      }
+    }
+    .info-autre{
+      top: -96px;
+      @supports (-moz-appearance:none) {
+        top: -114px;
+      }
+    }
+    .info-top-12, .info-top-12-bis {
+      top: -24px;
+    }
+    .q2 {
+      top: -77px;
+    }
+    .width-message-pourcent {
+      width: 100%;
+    }
     .textInformation {
       width: 694px;
     }
@@ -1219,14 +1340,44 @@ $blue: #2b8bf7;
         top: 0px;
       }
     }
-  }
+    .q1 {
+      top: -89px;
+      @supports (-moz-appearance:none) {
+        top: -98px;
+      }
+    }
 
+  }
+  @media (max-width: 1060px) {
+    .info-top-12-bis {
+      top: -12px;
+    }
+  }
   @media (max-width: 991px) {
     .centrer {
       text-align: center;
     }
   }
+  @media (max-width: 912px) {
+    .q2 {
+      top: -89px;
+    }
+    .info-top-12-bis {
+      top: -24px;
+    }
+    .info-top-24-bis {
+      top: -36px;
+    }
+  }
 
+  @media (min-width: 768px) and (max-width: 912px) {
+    .individuel-height {
+      height: 368px;
+    }
+    .activite-height {
+      height: 320px;
+    }
+  }
   @media (max-width: 867px) {
     .responsiveElement2, .responsiveElementEnd2 {
       button {
@@ -1266,6 +1417,33 @@ $blue: #2b8bf7;
         width: 191px;
       }
     }
+    .information-message {
+      width: 190px;
+    }
+    .width-message-pourcent {
+      width: 100%;
+    }
+    .q1 {
+      top: -125px;
+      @supports (-moz-appearance:none) {
+        top: -128px;
+      }
+    }
+    .q2 {
+      top: -113px;
+    }
+    .info-rattachement {
+      top: -167px;
+      @supports (-moz-appearance:none) {
+        top: -176px;
+      }
+    }
+    .info-autre {
+      top: -168px;
+      @supports (-moz-appearance:none) {
+        top: -175px;
+      }
+    }
     .textInformation {
       width: 576px;
     }
@@ -1300,6 +1478,9 @@ $blue: #2b8bf7;
       }
       .buttonPermanence-filled {
         width: 48%;
+      }
+      .force-width {
+        width: 100% !important;
       }
       #buttonPermanences{
         width: 96%;
@@ -1349,11 +1530,47 @@ $blue: #2b8bf7;
         width: 50%;
       }
     }
+    .q1, .q2,.q6, .info-rattachement, .info-autre, .info-top-12 {
+      top: 0;
+    }
+    .info-top-12-bis {
+      top: 0px;
+    }
+    .information-message{
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  }
+  @media (max-width: 683px) {
+    .info-top-12-bis {
+      top: -12px;
+    }
+  }
+  @media (max-width: 622px) {
+    .info-top-12-bis {
+      top: -24px;
+    }
+  }
+  @media (max-width: 586px) {
+    .info-top-12-bis {
+      top: -12px;
+    }
   }
   @media (max-width: 576px) {
-
+    .responsiveElement2, .responsiveRadioActivity1, .responsiveRadioActivity2 {
+      width: 100%;
+    }
+    .responsiveElement2 .dropdown, .responsiveElement2 .buttonPermanence-filled {
+      width: 95%;
+    }
+    .information-message-theme {
+      height: 225px;
+    }
     .questionResponsive {
       width: calc(1200%/12);
+    }
+    .info-top-12-bis {
+      top: 0px;
     }
   }
 }
