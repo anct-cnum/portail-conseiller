@@ -73,7 +73,7 @@ function HistoriqueCras() {
                   Historique des accompagnements
               </h1>
             </div>
-          </div> {error}
+          </div>
           {isDeleted &&
             <FlashMessage duration={5000}>
               <p className="fr-label flashBag">
@@ -180,7 +180,7 @@ function HistoriqueCras() {
                       </tr>
                     </thead>
                     <tbody>
-                      {accompagnements?.map((accompagnement, idx) =>
+                      {accompagnements && accompagnements?.map((accompagnement, idx) =>
                         <tr key={idx}>
                           <td>
                             {dayjs(accompagnement.cra.dateAccompagnement).format('DD/MM/YY')}
