@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { getCraValue } from '../utils/CraFunctions';
 import sousThemes from '../../../../data/sousThemes.json';
 
-function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, heightImage, baseline }) {
+function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, baseline }) {
 
   const dispatch = useDispatch();
   let cra = useSelector(state => state.cra);
@@ -63,49 +63,47 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, h
 
   return (
     <div className="checkboxButton" onClick={onClickCheckbox} value={value}>
-      <button id="checkboxRattachement"
-        className={`checkboxRattachement ${controlSelected?.includes(value) ? 'checkboxRattachement-selected' : ''}`}
-        style={{ height: '108px' }}
-        value={value}>
-        <div value={value} style={{ display: `${controlSelected?.includes(value) ? '' : 'flex'}` }}>
-          { !controlSelected?.includes(value) &&
-            <>
-              <img
-                src={!controlSelected?.includes(value) ? image : imageSelected}
-                alt={label} height={heightImage}
-                style={{ margin: '24px' }}
-                value={value}/>
-              <span
-                className={`fr-label labelCheckboxCustom ${controlSelected?.includes(value) ? 'checkboxRattachement-selected' : ''}`}
-                value={value}>
-                {label}
-                {baseline &&
-                  <>
-                    <br/>
-                    <span value={value} className="baseline">{baseline}</span>
-                  </>
-                }
-              </span>
-            </>
-          }
-          { controlSelected?.includes(value) &&
-            <div className="checkbox-selected fr-mt-3w fr-mb-3w">
-              <label className="fr-label fr-text--sm" style={{ color: 'black', margin: 'auto' }}>Optionnellement, pr&eacute;cisez&nbsp;:</label>
-              <div className="fr-checkbox-group">
-                { sousThemes.filter(t => t.theme === value).map((sous, key) => {
-                  const matchingTheme = cra?.sousThemes ? cra?.sousThemes.find(s => s[value]) : undefined;
-                  const checked = matchingTheme ? matchingTheme[value]?.includes(sous.value) : false;
-                  return <div key={key} style={{ margin: '-0.5rem' }}>
-                    <input type="checkbox" id={sous.value} name={sous.value} value={sous.value} defaultChecked={checked} onClick={clickSousTheme}/>
-                    <label className="fr-label fr-text--sm" htmlFor={sous.value}>{sous.label}</label>
-                  </div>;
-                }
-                )}
+      <div className="gradient-box">
+        <button id="checkboxRattachement"
+          className={`checkboxRattachement2 ${controlSelected?.includes(value) ? 'checkboxRattachement2-selected' : ''}`}
+          style={{ height: '104px' }}
+          value={value}>
+          <div value={value} style={{ display: `${controlSelected?.includes(value) ? '' : 'flex'}` }}>
+            { !controlSelected?.includes(value) &&
+              <>
+                <span className={`imageTheme ${!controlSelected?.includes(value) ? image : imageSelected}`}></span>
+                <span
+                  className={`fr-label labelCheckboxCustom ${controlSelected?.includes(value) ? 'checkboxRattachement-selected' : ''}`}
+                  value={value}>
+                  {label}
+                  {baseline &&
+                    <>
+                      <br/>
+                      <span value={value} className="baseline">{baseline}</span>
+                    </>
+                  }
+                </span>
+              </>
+            }
+            { controlSelected?.includes(value) &&
+              <div className="checkbox-selected fr-mt-3w fr-mb-3w">
+                <label className="fr-label fr-text--sm" style={{ color: 'black', margin: 'auto' }}>Optionnellement, pr&eacute;cisez&nbsp;:</label>
+                <div className="fr-checkbox-group">
+                  { sousThemes.filter(t => t.theme === value).map((sous, key) => {
+                    const matchingTheme = cra?.sousThemes ? cra?.sousThemes.find(s => s[value]) : undefined;
+                    const checked = matchingTheme ? matchingTheme[value]?.includes(sous.value) : false;
+                    return <div key={key} style={{ margin: '-0.5rem' }}>
+                      <input type="checkbox" id={sous.value} name={sous.value} value={sous.value} defaultChecked={checked} onClick={clickSousTheme}/>
+                      <label className="fr-label fr-text--sm" htmlFor={sous.value}>{sous.label}</label>
+                    </div>;
+                  }
+                  )}
+                </div>
               </div>
-            </div>
-          }
-        </div>
-      </button>
+            }
+          </div>
+        </button>
+      </div>
     </div>
   );
 }
@@ -116,7 +114,6 @@ BigCheckboxMultipleButton.propTypes = {
   value: PropTypes.string,
   image: PropTypes.string,
   imageSelected: PropTypes.string,
-  heightImage: PropTypes.string,
   baseline: PropTypes.string,
 };
 

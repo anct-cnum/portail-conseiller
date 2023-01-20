@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import BigButtonSuggestion from './Components/BigButtonSuggestion';
 import BigCheckboxButton from './Components/BigCheckboxButton';
 import BigCheckboxMultipleButton from './Components/BigCheckBoxMultipleButton';
 
@@ -33,12 +34,24 @@ function Themes() {
       <div className={`responsiveCheckbox1 ${voirInformation ? 'info-top-12 theme-height' : ''}`}>
         <BigCheckboxButton
           type="themes"
+          label="Diagnostic num&eacute;rique"
+          baseline="&Eacute;valuation du niveau des usagers."
+          value="diagnostic numérique"
+          image="diagnostic"
+          imageSelected="diagnosticSelected"/>
+        <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
+          <ul>
+          </ul>
+        </div>
+      </div>
+      <div className={`responsiveCheckbox2 ${voirInformation ? 'info-top-12 theme-height' : ''}`}>
+        <BigCheckboxMultipleButton
+          type="themes"
           label="Prendre en main du mat&eacute;riel"
           baseline="Installer des applications, etc."
           value="equipement informatique"
-          image="/logos/cra/logo-equip-info.svg"
-          imageSelected="/logos/cra/logo-equip-info-n.svg"
-          heightImage="56px" />
+          image="equipement"
+          imageSelected="equipementSelected"/>
         <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
           <ul>
             <li>Prendre en main un ordinateur ou un smartphone.</li>
@@ -48,15 +61,15 @@ function Themes() {
         </div>
       </div>
 
-      <div className={`responsiveCheckbox2 ${voirInformation ? 'theme-height' : ''}`}>
+      <div className={`responsiveCheckboxNewRow1 ${voirInformation ? 'theme-height' : ''}`}>
         <BigCheckboxButton
           type="themes"
           label="Culture num&eacute;rique"
           baseline="Vocabulaire, r&eacute;glementations, etc. "
           value="vocabulaire"
-          image="/logos/cra/logo-vocabulaire-info.svg"
-          imageSelected="/logos/cra/logo-vocabulaire-info-n.svg"
-          heightImage="56px" />
+          image="cultureNumerique"
+          imageSelected="cultureNumeriqueSelected"
+        />
         <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
           <ul>
             <li>Introduction &agrave; l&rsquo;informatique et aux &eacute;quipements.</li>
@@ -66,14 +79,14 @@ function Themes() {
         </div>
       </div>
 
-      <div className={`responsiveCheckboxNewRow1 ${voirInformation ? 'info-top-24 theme-height' : ''}`}>
+      <div className={`responsiveCheckbox2 ${voirInformation ? 'info-top-24 theme-height' : ''}`}>
         <BigCheckboxButton
           type="themes"
-          label="Naviguer sur Internet"
+          label="Comment naviguer sur Internet"
           value="internet"
-          image="/logos/cra/logo-naviguer-internet.svg"
-          imageSelected="/logos/cra/logo-naviguer-internet-n.svg"
-          heightImage="56px" />
+          image="navigateur"
+          imageSelected="navigateurSelected"
+        />
         <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
           <ul>
             <li>Pr&eacute;sentation, choix des diff&eacute;rents navigateurs et moteurs de recherche.</li>
@@ -83,14 +96,15 @@ function Themes() {
         </div>
       </div>
 
-      <div className={`responsiveCheckbox2 ${voirInformation ? 'theme-height' : ''}`}>
+      <div className={`responsiveCheckboxNewRow1 ${voirInformation ? 'theme-height' : ''}`}>
         <BigCheckboxButton
           type="themes"
-          label="Apprendre à s&eacute;curiser un &eacute;quipement"
+          label="S&eacute;curiser un &eacute;quipement"
+          baseline="Antivirus, protection des donn&eacute;es"
           value="securite"
-          image="/logos/cra/logo-securite.svg"
-          imageSelected="/logos/cra/logo-securite-n.svg"
-          heightImage="56px" />
+          image="securite"
+          imageSelected="securiteSelected"
+        />
         <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
           <ul>
             <li>Pr&eacute;sentation des dangers du web (virus, cyber-attaques, arnaques).</li>
@@ -100,14 +114,14 @@ function Themes() {
         </div>
       </div>
 
-      <div className={`responsiveCheckboxNewRow1 ${voirInformation ? 'info-top-12 theme-height' : ''}`}>
+      <div className={`responsiveCheckbox2 ${voirInformation ? 'info-top-12 theme-height' : ''}`}>
         <BigCheckboxButton
           type="themes"
           label="G&eacute;rer ses courriels"
           value="courriel"
-          image="/logos/cra/logo-courriel.svg"
-          imageSelected="/logos/cra/logo-courriel-n.svg"
-          heightImage="56px" />
+          image="courriel"
+          imageSelected="courrielSelected"
+        />
         <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
           <ul>
             <li>Choix d&rsquo;une bo&icirc;te mail, cr&eacute;ation d&rsquo;un compte.</li>
@@ -117,14 +131,14 @@ function Themes() {
         </div>
       </div>
 
-      <div className={`responsiveCheckbox2 ${voirInformation ? 'theme-height' : ''}`}>
+      <div className={`responsiveCheckboxNewRow1 ${voirInformation ? 'theme-height' : ''}`}>
         <BigCheckboxButton
           type="themes"
           label="&Eacute;changer avec ses proches"
           value="echanger"
-          image="/logos/cra/logo-echanger-proches.svg"
-          imageSelected="/logos/cra/logo-echanger-proches-n.svg"
-          heightImage="56px" />
+          image="echanger"
+          imageSelected="echangerSelected"
+        />
         <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
           <ul>
             <li>Comment utiliser un logiciel de messagerie instantan&eacute;e, un r&eacute;seau social. </li>
@@ -134,14 +148,14 @@ function Themes() {
         </div>
       </div>
 
-      <div className={`responsiveCheckboxNewRow1 ${voirInformation ? 'info-top-24 theme-height' : ''}`}>
+      <div className={`responsiveCheckbox2 ${voirInformation ? 'info-top-24 theme-height' : ''}`}>
         <BigCheckboxButton
           type="themes"
-          label="Apprendre les bases de la bureautique"
+          label="Bureautique"
           value="traitement texte"
-          image="/logos/cra/logo-traitement-texte.svg"
-          imageSelected="/logos/cra/logo-traitement-texte-n.svg"
-          heightImage="56px" />
+          image="bureautique"
+          imageSelected="bureautique"
+        />
         <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
           <ul>
             <li>Prendre en main OpenOffice, Word, Excel, Powerpoint.</li>
@@ -152,14 +166,15 @@ function Themes() {
         </div>
       </div>
 
-      <div className={`responsiveCheckbox2 ${voirInformation ? 'theme-height' : ''}`}>
+      <div className={`responsiveCheckboxNewRow1 ${voirInformation ? 'theme-height' : ''}`}>
         <BigCheckboxButton
           type="themes"
-          label="Cr&eacute;er, g&eacute;rer ses contenus num&eacute;riques"
+          label="Contenus num&eacute;riques"
+          baseline="Photos, vid&eacute;os, impression 3D, code..."
           value="contenus numeriques"
-          image="/logos/cra/logo-contenus-numeriques.svg"
-          imageSelected="/logos/cra/logo-contenus-numeriques-n.svg"
-          heightImage="56px" />
+          image="contenus"
+          imageSelected="contenusSelected"
+        />
         <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
           <ul>
             <li>&Eacute;dition de base (ex : int&eacute;gration de photos dans des documents).</li>
@@ -169,14 +184,14 @@ function Themes() {
         </div>
       </div>
 
-      <div className={`responsiveCheckboxNewRow1 ${voirInformation ? 'info-top-12 theme-height' : ''}`}>
+      <div className={`responsiveCheckbox2 ${voirInformation ? 'info-top-12 theme-height' : ''}`}>
         <BigCheckboxButton
           type="themes"
-          label="Trouver un emploi ou une formation"
+          label="Emploi, formation"
           value="trouver emploi"
-          image="/logos/cra/logo-trouver-emploi.svg"
-          imageSelected="/logos/cra/logo-trouver-emploi-n.svg"
-          heightImage="56px" />
+          image="emploi"
+          imageSelected="emploiSelected"
+        />
         <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
           <ul>
             <li>S&rsquo;inscrire, prendre en main le site de P&ocirc;le emploi.</li>
@@ -186,15 +201,15 @@ function Themes() {
         </div>
       </div>
 
-      <div className={`responsiveCheckbox2 ${voirInformation ? 'theme-height' : ''}`}>
+      <div className={`responsiveCheckboxNewRow1 ${voirInformation ? 'theme-height' : ''}`}>
         <BigCheckboxButton
           type="themes"
           label="Assister un professionnel"
-          baseline="TPE, PME..."
+          baseline="TPE, PME, structure associative..."
           value="tpe/pme"
-          image="/logos/cra/logo-tpe-pme.svg"
-          imageSelected="/logos/cra/logo-tpe-pme-n.svg"
-          heightImage="56px" />
+          image="tpePme"
+          imageSelected="tpePmeSelected"
+        />
         <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
           <ul>
             <li>D&eacute;velopper sa communication (ex : r&eacute;seaux sociaux).</li>
@@ -204,15 +219,14 @@ function Themes() {
         </div>
       </div>
 
-      <div className={`responsiveCheckboxNewRow1 ${voirInformation ? 'info-top-34 theme-height' : ''}`}>
+      <div className={`responsiveCheckbox2 ${voirInformation ? 'info-top-34 theme-height' : ''}`}>
         <BigCheckboxButton
           type="themes"
           label="Accompagner un aidant"
-          baseline="parent, &eacute;ducateur, professeur..."
           value="accompagner enfant"
-          image="/logos/cra/logo-accompagner-enfant.svg"
-          imageSelected="/logos/cra/logo-accompagner-enfant-n.svg"
-          heightImage="56px" />
+          image="accompagner"
+          imageSelected="accompagnerSelected"
+        />
         <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
           <ul>
             <li>D&eacute;couvrir les usages num&eacute;riques des enfants.</li>
@@ -222,15 +236,14 @@ function Themes() {
         </div>
       </div>
 
-      <div className={`responsiveCheckbox2 ${voirInformation ? 'theme-height' : ''}`}>
+      <div className={`responsiveCheckboxNewRow1 ${voirInformation ? 'theme-height' : ''}`}>
         <BigCheckboxButton
           type="themes"
-          label="R&eacute;aliser une d&eacute;marche en ligne"
-          baseline="vers l&rsquo;autonomie"
+          label="D&eacute;marches administratives"
           value="demarche en ligne"
-          image="/logos/cra/logo-demarche-en-ligne.svg"
-          imageSelected="/logos/cra/logo-demarche-en-ligne-n.svg"
-          heightImage="56px" />
+          image="demarche"
+          imageSelected="demarcheSelected"
+        />
         <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
           <ul>
             <li>Aider l&rsquo;usager &agrave; trouver la bonne plateforme pour sa d&eacute;marche.</li>
@@ -240,14 +253,14 @@ function Themes() {
         </div>
       </div>
 
-      <div className={`responsiveCheckboxNewRow1 ${voirInformation ? 'info-fraude theme-height' : ''}`}>
+      <div className={`responsiveCheckbox2 ${voirInformation ? 'info-fraude theme-height' : ''}`}>
         <BigCheckboxButton
           type="themes"
-          label="Pr&eacute;venir les fraudes et/ou le harc&egrave;lement"
+          label="Pr&eacute;venir les fraudes, le harc&egrave;lement"
           value="fraude et harcelement"
-          image="/logos/cra/logo-fraude.svg"
-          imageSelected="/logos/cra/logo-fraude-n.svg"
-          heightImage="56px" />
+          image="fraude"
+          imageSelected="fraudeSelected"
+        />
         <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
           <ul>
             <li>Sensibiliser aux infox, savoir v&eacute;rifier une information, avoir un usage raisonn&eacute; des r&eacute;seaux sociaux.</li>
@@ -256,16 +269,32 @@ function Themes() {
           </ul>
         </div>
       </div>
-
+      <div className={`responsiveCheckboxNewRow1 ${voirInformation ? 'info-budget theme-height' : ''}`}>
+        <BigCheckboxButton
+          type="themes"
+          label="Budget"
+          baseline="Inclusion bancaire, achats en ligne,etc."
+          value="budget"
+          image="budget"
+          imageSelected="budgetSelected"
+        />
+        <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
+          <ul>
+            <li>Effectuer un achat en ligne.</li>
+            <li>Installer une application bancaire et mettre en place une double authentification.</li>
+            <li>D&eacute;couvrir les outils pour g&eacute; pour son budget (tableurs, etc.).</li>
+          </ul>
+        </div>
+      </div>
       <div className={`responsiveCheckbox2 ${voirInformation ? 'theme-height' : ''}`}>
         <BigCheckboxMultipleButton
           type="themes"
           label="Sant&eacute;"
           baseline="cr&eacute;ation de compte Ameli, etc."
           value="sante"
-          image="/logos/cra/logo-sante.svg"
-          imageSelected="/logos/cra/logo-sante-n.svg"
-          heightImage="56px" />
+          image="sante"
+          imageSelected="santeSelected"
+        />
         <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
           <ul>
             <li>Trouver une consultation, prendre Doctolib en main.</li>
@@ -274,19 +303,29 @@ function Themes() {
           </ul>
         </div>
       </div>
+      <div className={`responsiveCheckboxNewRow1 ${voirInformation ? 'info-suggestion theme-height' : ''}`}>
+        <BigButtonSuggestion />
+        <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
+          <ul>
+            <li>Effectuer un achat en ligne.</li>
+            <li>Installer une application bancaire et mettre en place une double authentification.</li>
+            <li>D&eacute;couvrir les outils pour g&eacute; pour son budget (tableurs, etc.).</li>
+          </ul>
+        </div>
+      </div>
 
       {cra?.themes?.includes('autre') &&
         <div className="responsiveCheckboxNewRow1">
           <div className="checkboxButton">
-            <button id="checkboxRattachement" className="checkboxRattachement checkboxRattachement-selected" style={{ height: '108px' }}>
-              <span className="fr-label labelCheckboxCustom checkboxRattachement-selected" style={{ marginLeft: '105px' }}>Autre <br/>
+            <button id="checkboxRattachement" className="checkboxRattachement21 checkboxRattachement21-selected" style={{ height: '104px' }}>
+              <span className="fr-label labelCheckboxCustom" style={{ marginLeft: '105px' }}>Autre <br/>
                 <span className="baseline">(Ancienne th&egrave;matique, non-modifiable)</span>
               </span>
             </button>
           </div>
         </div>
       }
-      
+
     </div>
   );
 }

@@ -71,7 +71,7 @@
   },
   {
     "nom": "traitement texte",
-    "correspondance": "Traitement de texte",
+    "correspondance": "Bureautique",
     "image": "/logos/cra/logo-traitement-texte.svg"
   },
   {
@@ -108,6 +108,11 @@
     "nom": "sante",
     "correspondance": "Sant&eacute;",
     "image": "/logos/cra/logo-sante.svg"
+  },
+  {
+    "nom": "budget",
+    "correspondance": "Budget",
+    "image": "/logos/cra/logo-budget.svg"
   },
   {
     "nom": "autre",

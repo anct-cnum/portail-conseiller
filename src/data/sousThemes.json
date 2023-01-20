@@ -3,5 +3,10 @@
     "theme": "sante",
     "value": "espace-sante",
     "label": "Mon espace santé"
+  },
+  {
+    "theme": "equipement informatique",
+    "value": ["ordinateur","tablette", "telephone"],
+    "label": ["Ordinateur", "Tablette",  "Téléphone"]
   }
 ]

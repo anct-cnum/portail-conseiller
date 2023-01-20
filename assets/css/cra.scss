@@ -2,6 +2,58 @@ $errorDarkMode: #ff3333;
 $background: #1e1e1e;
 $blue: #2b8bf7;
 
+$lieuRattachementSelected: url(../../public/logos/cra/logo-lieu-rattachement-selected.svg) no-repeat;
+$lieuRattachementActif: url(../../public/logos/cra/logo-lieu-rattachement-actif.svg) no-repeat;
+$lieuRattachement: url(../../public/logos/cra/logo-lieu-rattachement.svg) no-repeat;
+$lieuAutre: url(../../public/logos/cra/logo-autre-lieu.svg) no-repeat;
+$lieuDistance: url(../../public/logos/cra/logo-a-distance.svg) no-repeat;
+$lieuDomicile: url(../../public/logos/cra/logo-a-domicile.svg) no-repeat;
+$calendrier: url(../../public/logos/cra/logo-calendrier.svg) no-repeat;
+$lieuRattachementHover: url(../../public/logos/cra/logo-lieu-rattachement-n.svg) no-repeat;
+$lieuAutreHover: url(../../public/logos/cra/logo-autre-lieu-n.svg) no-repeat;
+$lieuDistanceHover: url(../../public/logos/cra/logo-a-distance-n.svg) no-repeat;
+$lieuDomicileHover: url(../../public/logos/cra/logo-a-domicile-n.svg) no-repeat;
+$calendrierHover: url(../../public/logos/cra/logo-calendrier-n.svg) no-repeat;
+
+$diagnostic: url(../../public/logos/cra/logo-diagnostic-numerique.svg) no-repeat;
+$equipeInfo: url(../../public/logos/cra/logo-equip-info.svg) no-repeat;
+$cultureNum: url(../../public/logos/cra/logo-vocabulaire-info.svg) no-repeat;
+$navigateur: url(../../public/logos/cra/logo-naviguer-internet.svg) no-repeat;
+$securite: url(../../public/logos/cra/logo-securite.svg) no-repeat;
+$courriel: url(../../public/logos/cra/logo-courriel.svg) no-repeat;
+$echanger: url(../../public/logos/cra/logo-echanger-proches.svg) no-repeat;
+$bureautique: url(../../public/logos/cra/logo-traitement-texte.svg) no-repeat;
+$contenus: url(../../public/logos/cra/logo-contenus-numeriques.svg) no-repeat;
+$emploi: url(../../public/logos/cra/logo-trouver-emploi.svg) no-repeat;
+$tpePme: url(../../public/logos/cra/logo-tpe-pme.svg) no-repeat;
+$accompagner: url(../../public/logos/cra/logo-accompagner-enfant.svg) no-repeat;
+$demarche: url(../../public/logos/cra/logo-demarche-en-ligne.svg) no-repeat;
+$fraude: url(../../public/logos/cra/logo-fraude.svg) no-repeat;
+$budget : url(../../public/logos/cra/logo-budget.svg) no-repeat;
+$sante: url(../../public/logos/cra/logo-sante.svg) no-repeat;
+$suggestion: url(../../public/logos/cra/logo-suggestion.svg) no-repeat;
+$suggestionInactif: url(../../public/logos/cra/logo-suggestion-inactif.svg) no-repeat;
+
+$diagnosticSelected: url(../../public/logos/cra/logo-diagnostic-numerique-n.svg) no-repeat;
+$equipeInfoSelected: url(../../public/logos/cra/logo-equip-info-n.svg) no-repeat;
+$cultureNumSelected: url(../../public/logos/cra/logo-vocabulaire-info-n.svg) no-repeat;
+$navigateurSelected: url(../../public/logos/cra/logo-naviguer-internet-n.svg) no-repeat;
+$securiteSelected: url(../../public/logos/cra/logo-securite-n.svg) no-repeat;
+$courrielSelected: url(../../public/logos/cra/logo-courriel-n.svg) no-repeat;
+$echangerSelected: url(../../public/logos/cra/logo-echanger-proches-n.svg) no-repeat;
+$bureautiqueSelected: url(../../public/logos/cra/logo-traitement-texte-n.svg) no-repeat;
+$contenusSelected: url(../../public/logos/cra/logo-contenus-numeriques-n.svg) no-repeat;
+$emploiSelected: url(../../public/logos/cra/logo-trouver-emploi-n.svg) no-repeat;
+$tpePmeSelected: url(../../public/logos/cra/logo-tpe-pme-n.svg) no-repeat;
+$accompagnerSelected: url(../../public/logos/cra/logo-accompagner-enfant-n.svg) no-repeat;
+$demarcheSelected: url(../../public/logos/cra/logo-demarche-en-ligne-n.svg) no-repeat;
+$fraudeSelected: url(../../public/logos/cra/logo-fraude-n.svg) no-repeat;
+$budgetSelected : url(../../public/logos/cra/logo-budget-n.svg) no-repeat;
+$santeSelected: url(../../public/logos/cra/logo-sante-n.svg) no-repeat;
+
+$chevronGauche: url(../../public/logos/cra/logo-chevron-gauche.svg) no-repeat;
+$chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
+
 .cra {
   .espacement {
     margin-bottom: 3.75rem !important;
@@ -94,11 +146,11 @@ $blue: #2b8bf7;
   .q6 {
     top: -62px;
   }
-  .info-rattachement, .info-autre, .info-date-dist-dom, .info-individuel, .info-top-12, .info-top-12-bis, .info-top-24,  .info-top-24-bis, .info-top-34, .info-fraude {
+  .info-rattachement, .info-autre, .info-date-dist-dom, .info-individuel, .info-top-12, .info-top-12-bis, .info-top-24,  .info-top-24-bis, .info-top-34, .info-fraude, .info-suggestion {
     position: relative;
   }
-  .info-fraude {
-    top: 24px;
+  .info-fraude, .info-suggestion  {
+    top: 12px;
   }
   .info-individuel {
     top: 0px;
@@ -702,6 +754,220 @@ $blue: #2b8bf7;
   }
   /** END SQUARE BUTTON TIME **/
   /** START CHECKBOX BUTTON THEMES **/
+  .gradient-box, .inactif-box {
+    background: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%);    border: solid 1px transparent;
+    background-clip: padding-box;
+    box-sizing: border-box;
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    width: 100%;
+    margin: auto;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      z-index: -1;
+      margin: -1px;
+      border-radius: inherit;
+      background: linear-gradient(0deg,#3558A2,#9A9AFF) border-box;
+    }
+  }
+  .inactif-box:after {
+      background: #666666 !important;
+  }
+  .checkboxButton {
+    .checkboxRattachement2 {
+      background: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%);
+      border-radius: 20px;
+      cursor: pointer;
+      width: 100%;
+      .baseline, .text-suggestion-inactif {
+        color: #666666 !important;
+      }
+      .text-suggestion {
+        color: #8585f6;
+      }
+      &.inactif-btn:hover {
+        background: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%);
+      }
+      &:hover {
+        background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
+        color: black!important;
+        span {
+          color: black;
+        }
+        .diagnostic {
+          background: $diagnosticSelected;
+        }
+        .equipement {
+          background: $equipeInfoSelected;
+        }
+        .cultureNumerique {
+          background: $cultureNumSelected;
+        }
+        .navigateur {
+          background: $navigateurSelected;
+        }
+        .securite {
+          background: $securiteSelected;
+        }
+        .courriel {
+          background: $courrielSelected;
+        }
+        .echanger {
+          background: $echangerSelected;
+        }
+        .bureautique {
+          background: $bureautiqueSelected;
+        }
+        .contenus {
+          background: $contenusSelected;
+        }
+        .emploi {
+          background: $emploiSelected;
+        }
+        .tpePme {
+          background: $tpePmeSelected;
+        }
+        .accompagner {
+          background: $accompagnerSelected;
+        }
+        .demarche {
+          background: $demarcheSelected;
+        }
+        .fraude {
+          background: $fraudeSelected;
+        }
+        .budget {
+          background: $budgetSelected;
+        }
+        .sante {
+          background: $santeSelected;
+        }
+        .suggestion {
+          background: $suggestion;
+        }
+        .text-suggestion {
+          color: #8585f6;
+        }
+      }
+      .imageTheme {
+        margin: 24px;
+        width: 56px;
+        height: 56px;
+      }
+      .diagnostic {
+        background: $diagnostic;
+      }
+      .diagnosticSelected {
+        background: $diagnosticSelected;
+      }
+      .equipement {
+        background: $equipeInfo;
+      }
+      .equipementSelected {
+        background: $equipeInfoSelected;
+      }
+      .cultureNumerique {
+        background: $cultureNum;
+      }
+      .cultureNumeriqueSelected {
+        background: $cultureNumSelected;
+      }
+      .navigateur {
+        background: $navigateur;
+      }
+      .navigateurSelected {
+        background: $navigateurSelected;
+      }
+      .securite {
+        background: $securite;
+      }
+      .securiteSelected {
+        background: $securiteSelected;
+      }
+     .courriel {
+        background: $courriel;
+      }
+      .courrielSelected {
+        background: $courrielSelected;
+      }
+      .echanger {
+        background: $echanger;
+      }
+      .echangerSelected {
+        background: $echangerSelected;
+      }
+      .bureautique {
+        background: $bureautique;
+      }
+      .bureautiqueSelected {
+        background: $bureautiqueSelected;
+      }
+      .contenus {
+        background: $contenus;
+      }
+      .contenusSelected {
+        background: $contenusSelected;
+      }
+      .emploi {
+        background: $emploi;
+      }
+      .emploiSelected {
+        background: $emploiSelected;
+      }
+      .tpePme {
+        background: $tpePme;
+      }
+      .tpePmeSelected {
+        background: $tpePmeSelected;
+      }
+      .accompagner {
+        background: $accompagner;
+      }
+      .accompagnerSelected {
+        background: $accompagnerSelected;
+      }
+      .demarche {
+        background: $demarche;
+      }
+      .demarcheSelected {
+        background: $demarcheSelected;
+      }
+      .fraude {
+        background: $fraude;
+      }
+      .fraudeSelected {
+        background: $fraudeSelected;
+      }
+      .budget {
+        background: $budget;
+      }
+      .budgetSelected {
+        background: $budgetSelected;
+      }
+      .sante {
+        background: $sante;
+      }
+      .santeSelected {
+        background: $santeSelected;
+      }
+      .suggestion {
+        background: $suggestion;
+      }
+      .suggestionInactif {
+        background: $suggestionInactif;
+      }
+    }
+    .checkboxRattachement2-selected {
+      background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
+      color: black!important;
+      .baseline {
+        color: #666666;
+      }
+    }
+  }
   .checkboxRattachement {
     width: 100%;
     border-radius: 20px;
@@ -711,7 +977,6 @@ $blue: #2b8bf7;
   }
 
   .checkboxRattachement-selected {
-    background-color: white!important;
     color: black!important;
     .baseline {
       color: #2a2a2a;
@@ -722,18 +987,22 @@ $blue: #2b8bf7;
     text-align: start;
     align-self: center;
   }
-
+  .radioRattachement2 {
+    border-radius: 20px;
+    position: relative;
+    z-index: 1;
+  }
   .responsiveCheckbox1 {
-    width: calc(400%/12);
+    width: calc(388%/12);
     margin-left: 0.75rem;
   }
 
   .responsiveCheckbox2, .responsiveCheckboxNewRow2 {
-    width: calc(400%/12);
+    width: calc(388%/12);
   }
 
   .responsiveCheckboxNewRow1 {
-    width: calc(400%/12);
+    width: calc(388%/12);
     margin-left: calc(211%/12);
   }
 
@@ -964,13 +1233,13 @@ $blue: #2b8bf7;
       height: 144px;
       width: 264px;
       .logoLieuRattachement, .logoAutreLieu {
-        background: url(../../public/logos/cra/logo-lieu-rattachement.svg) no-repeat;
+        background: $lieuRattachement;
         display: inline-block;
         height: 56px;
         width: 56px;
       }
       .logoAutreLieu {
-        background: url(../../public/logos/cra/logo-autre-lieu.svg) no-repeat;
+        background: $lieuAutre;
       }
       .logoCalendrier, .logoDistance, .logoDomicile {
         display: inline-block;
@@ -978,14 +1247,14 @@ $blue: #2b8bf7;
         width: 24px;
       }
       .logoCalendrier {
-        background: url(../../public/logos/cra/logo-calendrier.svg) no-repeat;
+        background: $calendrier;
         margin: 0px 16px 0px 0px;
       }
       .logoDistance {
-        background: url(../../public/logos/cra/logo-a-distance.svg) no-repeat;
+        background: $lieuDistance;
       }
       .logoDomicile {
-        background: url(../../public/logos/cra/logo-a-domicile.svg) no-repeat;
+        background: $lieuDomicile;
       }
       .texteDatePicker {
         position: relative;
@@ -1010,24 +1279,24 @@ $blue: #2b8bf7;
           color: #2a2a2a;
         }
         .logoLieuRattachement{
-          background: url(../../public/logos/cra/logo-lieu-rattachement-n.svg) no-repeat;
+          background: $lieuRattachementHover;
         }
         .logoAutreLieu {
-          background: url(../../public/logos/cra/logo-autre-lieu-n.svg) no-repeat;
+          background: $lieuAutreHover;
         }
         .logoCalendrier {
-          background: url(../../public/logos/cra/logo-calendrier-n.svg) no-repeat;
+          background: $calendrierHover;
         }
         .logoDistance {
-          background: url(../../public/logos/cra/logo-a-distance-n.svg) no-repeat;
+          background: $lieuDistanceHover;
         }
         .logoDomicile {
-          background: url(../../public/logos/cra/logo-a-domicile-n.svg) no-repeat;
+          background: $lieuDomicileHover;
         }
       }
     }
     .logoRattachementSelected {
-      background: url(../../public/logos/cra/logo-lieu-rattachement-selected.svg) no-repeat;
+      background: $lieuRattachementSelected;
       margin: 5px auto;
       display: block;
       height: 56px;
@@ -1080,7 +1349,7 @@ $blue: #2b8bf7;
         }
       }
       .logoRattachementActif {
-        background: url(../../public/logos/cra/logo-lieu-rattachement-actif.svg) no-repeat;
+        background: $lieuRattachementActif;
         margin: 0px 8px 16px 24px;
         display: inline-block;
         height: 24px;
@@ -1107,7 +1376,7 @@ $blue: #2b8bf7;
       background: #fff;
       color: #2a2a2a;
       .logoCalendrier {
-        background: url(../../public/logos/cra/logo-calendrier-n.svg) no-repeat;
+        background: $calendrierHover;
       }
     }
   }
@@ -1171,10 +1440,10 @@ $blue: #2b8bf7;
       background: none !important;
     }
     .logoLieuRattachement {
-      background: url(../../public/logos/cra/logo-lieu-rattachement-n.svg) no-repeat !important;
+      background: $lieuRattachementHover !important;
     }
     .logoAutreLieu{
-      background: url(../../public/logos/cra/logo-autre-lieu-n.svg) no-repeat !important;
+      background: $lieuAutreHover !important;
     }
     .labelBigRadioCustom {
       color: #3d3d3d !important;
@@ -1200,23 +1469,23 @@ $blue: #2b8bf7;
       display: none;
     }
     .react-datepicker__navigation--previous {
-      background: url(../../public/logos/cra/logo-chevron-gauche.svg) no-repeat;
+      background: $chevronGauche;
       margin-left: 11px;
       border: none;
       height: 16px;
       width: 10px;
       &:hover {
-        background: url(../../public/logos/cra/logo-chevron-gauche.svg) no-repeat;
+        background: $chevronGauche;
       }
     }
     .react-datepicker__navigation--next {
-      background: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
+      background: $chevronDroite;
       margin-right: 11px;
       border: none;
       height: 16px;
       width: 10px;
       &:hover {
-        background: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
+        background: $chevronDroite;
       }
     }
     .react-datepicker__header {

@@ -119,6 +119,11 @@ export default function cra(state = initialState, action) {
           cp: !state.buttonCP
         },
       };
+    case 'CLEAR_SUGGESTION':
+      return {
+        ...state,
+        suggestion: null,
+      };
     case 'UPDATE_ACTIVITE':
       return {
         ...state,
@@ -371,6 +376,39 @@ export default function cra(state = initialState, action) {
         loading: false,
         error: action.error,
         printFlashbag: true
+      };
+    case 'SEARCH_SOUS_THEMES_CRA_REQUEST':
+      return {
+        ...state,
+        loading: true,
+        error: false
+      };
+    case 'SEARCH_SOUS_THEMES_CRA_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        listeSousThemes: action.sousThemes,
+        errorSousTheme: null
+      };
+    case 'SEARCH_SOUS_THEMES_CRA_FAILURE':
+      return {
+        ...state,
+        loading: false,
+        error: action.error
+      };
+    case 'CLEAR_SOUS_THEMES':
+      return {
+        ...state,
+        listeSousThemes: [],
+      };
+    case 'VERIFY_SOUS_THEMES':
+      return {
+        ...state,
+        errorSousTheme: action.error
+      };
+    case 'UPDATE_SOUS_THEME':
+      return {
+        ...state
       };
     default:
       return state;

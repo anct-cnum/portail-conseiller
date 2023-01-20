@@ -11,3 +11,16 @@ export function sortByMonthAndYear(a, b) {
     return a.annee < b.annee ? -1 : 1;
   }
 }
+
+export function sortSousThemes(sousThemes) {
+  return sousThemes.sort(function compare(a, b) {
+    if (a < b) {
+      return -1;
+    }
+    if (a > b) {
+      return 1;
+    }
+    return 0;
+  });
+}
+

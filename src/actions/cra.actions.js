@@ -1,3 +1,4 @@
+import Joi from 'joi';
 import { craService } from '../services/cra.service.js';
 
 export const craActions = {
@@ -10,6 +11,7 @@ export const craActions = {
   updateCanal,
   deleteCanalValue,
   clearCanal,
+  clearSuggestion,
   updateActivite,
   updateNbParticipants,
   updateRecurrence,
@@ -29,6 +31,10 @@ export const craActions = {
   updateCra,
   deleteCra,
   countByPermanence,
+  searchSuggestion,
+  clearListeSousThemes,
+  verifySuggestion,
+  submitSuggestion,
 };
 
 function getButtonPermanences() {
@@ -60,6 +66,9 @@ function deleteCanalValue() {
 }
 function clearCanal() {
   return { type: 'CLEAR_CANAL' };
+}
+function clearSuggestion() {
+  return { type: 'CLEAR_SUGGESTION' };
 }
 function updateActivite(activite) {
   return { type: 'UPDATE_ACTIVITE', activite };
@@ -247,4 +256,44 @@ function countByPermanence(permanenceId) {
   function failure(error) {
     return { type: 'COUNT_CRA_PERMANENCE_FAILURE', error };
   }
+}
+function searchSuggestion(theme, sousTheme) {
+  return dispatch => {
+    dispatch(request());
+
+    craService.searchSuggestion(theme, sousTheme)
+    .then(
+      result => {
+        dispatch(success(result.sousThemes));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+  function request() {
+    return { type: 'SEARCH_SOUS_THEMES_CRA_REQUEST' };
+  }
+  function success(sousThemes) {
+    return { type: 'SEARCH_SOUS_THEMES_CRA_SUCCESS', sousThemes };
+  }
+  function failure(error) {
+    return { type: 'SEARCH_SOUS_THEMES_CRA_FAILURE', error };
+  }
+}
+function clearListeSousThemes() {
+  return { type: 'CLEAR_SOUS_THEMES' };
+}
+function verifySuggestion(suggestion) {
+  const error = {
+    sousTheme: (Joi.object({
+      sousTheme: Joi.string().min(3).max(35)
+    }).validate({ sousTheme: suggestion }).error) ?
+      'La proposition de sous-thème doit comporter entre 3 et 35 caractères' : null
+  };
+  return { type: 'VERIFY_SOUS_THEMES', error };
+}
+
+function submitSuggestion(suggestion) {
+  return { type: 'UPDATE_SOUS_THEME', suggestion };
 }

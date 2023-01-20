@@ -7,6 +7,7 @@ export const craService = {
   updateCra,
   deleteCra,
   countByPermanence,
+  searchSuggestion,
 };
 
 const apiUrlRoot = process.env.REACT_APP_API;
@@ -64,6 +65,14 @@ function countByPermanence(permanenceId) {
     headers: authHeader()
   };
   return fetch(`${apiUrlRoot}/cras/countByPermanence?permanenceId=${permanenceId}`, requestOptions).then(handleResponse);
+}
+
+function searchSuggestion(theme, sousTheme) {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  };
+  return fetch(`${apiUrlRoot}/cras/searchSousThemes?theme=${theme}&sousTheme=${sousTheme}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
