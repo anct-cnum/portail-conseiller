@@ -58,10 +58,8 @@ function HistoriqueCras() {
   };
 
   useEffect(() => {
-    if (accompagnements === undefined || thematique || !thematique) {
-      dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, canal, type, sort,
-        dateDebutCra, dateFinCra, codePostal, ville, page));
-    }
+    dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, canal, type, sort,
+      dateDebutCra, dateFinCra, codePostal, ville, page));
     if (themes === undefined) {
       dispatch(historiqueCrasActions.getHistoriqueCrasThematiques());
     }
