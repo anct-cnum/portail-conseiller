@@ -8,12 +8,13 @@ export const historiqueCras = {
   getHistoriqueCrasThematiques,
 };
 
-function getHistoriqueCrasListe(theme, canal, type, page) {
+function getHistoriqueCrasListe(theme, canal, type, sort, dateDebutCra, dateFinCra, codePostal, ville, page) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
   };
-  return fetch(`${apiUrlRoot}/historique-cras/liste?theme=${theme}&canal=${canal}&type=${type}&page=${page}`, requestOptions).then(handleResponse);
+  // eslint-disable-next-line max-len
+  return fetch(`${apiUrlRoot}/historique-cras/liste?theme=${theme}&canal=${canal}&type=${type}&sort=${sort}&dateDebut=${dateDebutCra}&dateFin=${dateFinCra}&codePostal=${codePostal}&ville=${ville}&page=${page}`, requestOptions).then(handleResponse);
 }
 
 function getHistoriqueCrasThematiques() {

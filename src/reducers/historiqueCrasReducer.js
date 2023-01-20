@@ -1,4 +1,9 @@
-const initialState = {};
+const initialState = {
+  dateCraDebut: new Date('2021/01/01'),
+  dateCraFin: new Date(),
+  codePostalCra: '',
+  villeCra: '',
+};
 
 export default function historiqueCras(state = initialState, action) {
   switch (action.type) {
@@ -39,6 +44,24 @@ export default function historiqueCras(state = initialState, action) {
         ...state,
         error: action.error,
         loading: false,
+      };
+
+    case 'CHANGE_DATE_CRA_DEBUT':
+      return {
+        ...state,
+        dateCraDebut: action.dateDebut
+      };
+    case 'CHANGE_DATE_CRA_FIN':
+      return {
+        ...state,
+        dateCraFin: action.dateFin
+      };
+    case 'CHANGE_CODE_POSTAL_CRA':
+      return {
+        ...state,
+        codePostalCra: action.codePostal,
+        villeCra: action.ville,
+        selectedCra: action.selected,
       };
     default:
       return state;
