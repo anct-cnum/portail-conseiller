@@ -56,7 +56,17 @@ function BigButtonSuggestion() {
 
   useEffect(() => {
     if (error?.sousTheme === null) {
-      dispatch(craActions.submitSuggestion(suggestion));
+      const sousThemes = [];
+      if (cra?.sousThemes) {
+        const theme = cra?.themes[0];
+        const sousThemesExistants = cra?.sousThemes[0]?.[theme];
+        sousThemesExistants.push(suggestion);
+        sousThemes.push({ [theme]: sousThemesExistants });
+      } else {
+        sousThemes.push({ [cra?.themes[0]]: [suggestion] });
+      }
+      dispatch(craActions.updateMultipleThemes(sousThemes));
+      setModalOpenClose(false);
     }
   }, [error]);
 

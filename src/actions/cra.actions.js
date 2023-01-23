@@ -34,7 +34,6 @@ export const craActions = {
   searchSuggestion,
   clearListeSousThemes,
   verifySuggestion,
-  submitSuggestion,
 };
 
 function getButtonPermanences() {
@@ -260,7 +259,6 @@ function countByPermanence(permanenceId) {
 function searchSuggestion(theme, sousTheme) {
   return dispatch => {
     dispatch(request());
-
     craService.searchSuggestion(theme, sousTheme)
     .then(
       result => {
@@ -292,8 +290,4 @@ function verifySuggestion(suggestion) {
       'La proposition de sous-thème doit comporter entre 3 et 35 caractères' : null
   };
   return { type: 'VERIFY_SOUS_THEMES', error };
-}
-
-function submitSuggestion(suggestion) {
-  return { type: 'UPDATE_SOUS_THEME', suggestion };
 }

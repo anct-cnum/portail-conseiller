@@ -33,6 +33,7 @@ $budget : url(../../public/logos/cra/logo-budget.svg) no-repeat;
 $sante: url(../../public/logos/cra/logo-sante.svg) no-repeat;
 $suggestion: url(../../public/logos/cra/logo-suggestion.svg) no-repeat;
 $suggestionInactif: url(../../public/logos/cra/logo-suggestion-inactif.svg) no-repeat;
+$scolaire : url(../../public/logos/cra/logo-scolaire.svg) no-repeat;
 
 $diagnosticSelected: url(../../public/logos/cra/logo-diagnostic-numerique-n.svg) no-repeat;
 $equipeInfoSelected: url(../../public/logos/cra/logo-equip-info-n.svg) no-repeat;
@@ -50,6 +51,7 @@ $demarcheSelected: url(../../public/logos/cra/logo-demarche-en-ligne-n.svg) no-r
 $fraudeSelected: url(../../public/logos/cra/logo-fraude-n.svg) no-repeat;
 $budgetSelected : url(../../public/logos/cra/logo-budget-n.svg) no-repeat;
 $santeSelected: url(../../public/logos/cra/logo-sante-n.svg) no-repeat;
+$scolaireSelected : url(../../public/logos/cra/logo-scolaire-n.svg) no-repeat;
 
 $chevronGauche: url(../../public/logos/cra/logo-chevron-gauche.svg) no-repeat;
 $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
@@ -845,6 +847,9 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
         .sante {
           background: $santeSelected;
         }
+        .scolaire {
+          background: $scolaireSelected;
+        }
         .suggestion {
           background: $suggestion;
         }
@@ -958,6 +963,12 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
       }
       .suggestionInactif {
         background: $suggestionInactif;
+      }
+      .scolaire {
+        background: $scolaire;
+      }
+      .scolaireSelected {
+        background: $scolaireSelected;
       }
     }
     .checkboxRattachement2-selected {

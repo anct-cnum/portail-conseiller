@@ -408,7 +408,8 @@ export default function cra(state = initialState, action) {
       };
     case 'UPDATE_SOUS_THEME':
       return {
-        ...state
+        ...state,
+        sousThemes: action.sousThemes
       };
     default:
       return state;

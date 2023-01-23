@@ -14,6 +14,16 @@ function Themes() {
   };
   return (
     <div className="fr-grid-row fr-grid-row--gutters fr-grid-row--middle espacement">
+      <div className="fr-col-xs-11 fr-col-sm-11 fr-col-md-2 questionCheckboxResponsive">
+        <span className={`question
+        ${voirInformation ? 'open-information q6' : ''}
+        ${cra?.printError && cra?.errorsRequired?.themes ? 'questionRequired' : ''}`}>
+          Th&eacute;matique(s) d&rsquo;accompagnement&nbsp;
+          <i className="ri-information-line information" onClick={() => {
+            handleClick();
+          }}></i>
+        </span>
+      </div>
       <div className="fr-col-xs-11 fr-col-offset-md-2 fr-col-md-10">
         <div className={`${voirInformation ? 'information-message-important fr-mb-2w' : 'close-information'}`}>
           <b>Important : </b>Trois exemples d&rsquo;ateliers sont donn&eacute;s pour illustrer chaque th&eacute;matique d&rsquo;accompagnement,
@@ -21,22 +31,12 @@ function Themes() {
           il est possible de cocher plusieurs th&eacute;matiques lorsque l&rsquo;on enregistre un accompagnement.
         </div>
       </div>
-      <div className="fr-col-xs-11 fr-col-sm-11 fr-col-md-2 questionCheckboxResponsive">
-        <span className={`question
-        ${voirInformation ? 'open-information q6' : ''}
-        ${cra?.printError && cra?.errorsRequired?.themes ? 'questionRequired' : ''}`}>
-          Quelle(s) a / ont &eacute;t&eacute; la / les th&eacute;matique(s) de l&rsquo;accompagnement&nbsp;? (choix multiple)
-          <i className="ri-information-line information" onClick={() => {
-            handleClick();
-          }}></i>
-        </span>
-      </div>
       <div className={`responsiveCheckbox1 ${voirInformation ? 'info-top-12 theme-height' : ''}`}>
         <BigCheckboxButton
           type="themes"
           label="Diagnostic num&eacute;rique"
           baseline="&Eacute;valuation du niveau des usagers."
-          value="diagnostic numérique"
+          value="diagnostic"
           image="diagnostic"
           imageSelected="diagnosticSelected"/>
         <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
@@ -44,6 +44,7 @@ function Themes() {
           </ul>
         </div>
       </div>
+
       <div className={`responsiveCheckbox2 ${voirInformation ? 'info-top-12 theme-height' : ''}`}>
         <BigCheckboxMultipleButton
           type="themes"
@@ -61,7 +62,25 @@ function Themes() {
         </div>
       </div>
 
-      <div className={`responsiveCheckboxNewRow1 ${voirInformation ? 'theme-height' : ''}`}>
+      <div className={`responsiveCheckbox2 ${voirInformation ? 'info-budget theme-height' : ''}`}>
+        <BigCheckboxButton
+          type="themes"
+          label="Budget"
+          baseline="Inclusion bancaire, achats en ligne,etc."
+          value="budget"
+          image="budget"
+          imageSelected="budgetSelected"
+        />
+        <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
+          <ul>
+            <li>Effectuer un achat en ligne.</li>
+            <li>Installer une application bancaire et mettre en place une double authentification.</li>
+            <li>D&eacute;couvrir les outils pour g&eacute; pour son budget (tableurs, etc.).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div className={`responsiveCheckbox1 ${voirInformation ? 'theme-height' : ''}`}>
         <BigCheckboxButton
           type="themes"
           label="Culture num&eacute;rique"
@@ -96,94 +115,6 @@ function Themes() {
         </div>
       </div>
 
-      <div className={`responsiveCheckboxNewRow1 ${voirInformation ? 'theme-height' : ''}`}>
-        <BigCheckboxButton
-          type="themes"
-          label="S&eacute;curiser un &eacute;quipement"
-          baseline="Antivirus, protection des donn&eacute;es"
-          value="securite"
-          image="securite"
-          imageSelected="securiteSelected"
-        />
-        <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
-          <ul>
-            <li>Pr&eacute;sentation des dangers du web (virus, cyber-attaques, arnaques).</li>
-            <li>Utiliser un mot de passe, le contr&ocirc;le parental, un &eacute;cran de verrouillage, etc.</li>
-            <li>Sauvegarder ses donn&eacute;es (disque dur, cloud, etc.), comprendre le RGPD.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div className={`responsiveCheckbox2 ${voirInformation ? 'info-top-12 theme-height' : ''}`}>
-        <BigCheckboxButton
-          type="themes"
-          label="G&eacute;rer ses courriels"
-          value="courriel"
-          image="courriel"
-          imageSelected="courrielSelected"
-        />
-        <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
-          <ul>
-            <li>Choix d&rsquo;une bo&icirc;te mail, cr&eacute;ation d&rsquo;un compte.</li>
-            <li>Explication et prise en main de l&rsquo;interface, bonnes pratiques.</li>
-            <li>Usage de pi&egrave;ces-jointes, tri, raccourci bureau.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div className={`responsiveCheckboxNewRow1 ${voirInformation ? 'theme-height' : ''}`}>
-        <BigCheckboxButton
-          type="themes"
-          label="&Eacute;changer avec ses proches"
-          value="echanger"
-          image="echanger"
-          imageSelected="echangerSelected"
-        />
-        <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
-          <ul>
-            <li>Comment utiliser un logiciel de messagerie instantan&eacute;e, un r&eacute;seau social. </li>
-            <li>Utiliser son t&eacute;l&eacute;phone pour les diff&eacute;rents &eacute;changes : mails, sms, Whatsapp, Skype, etc.</li>
-            <li>Prendre en main un logiciel de visioconf&eacute;rence.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div className={`responsiveCheckbox2 ${voirInformation ? 'info-top-24 theme-height' : ''}`}>
-        <BigCheckboxButton
-          type="themes"
-          label="Bureautique"
-          value="traitement texte"
-          image="bureautique"
-          imageSelected="bureautique"
-        />
-        <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
-          <ul>
-            <li>Prendre en main OpenOffice, Word, Excel, Powerpoint.</li>
-            <li>Organiser ses fichiers, ses dossiers.</li>
-            <li>Apprendre &agrave; faire un partage d&rsquo;&eacute;cran.</li>
-            <li>Apprendre &agrave; envoyer des dossiers importants.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div className={`responsiveCheckboxNewRow1 ${voirInformation ? 'theme-height' : ''}`}>
-        <BigCheckboxButton
-          type="themes"
-          label="Contenus num&eacute;riques"
-          baseline="Photos, vid&eacute;os, impression 3D, code..."
-          value="contenus numeriques"
-          image="contenus"
-          imageSelected="contenusSelected"
-        />
-        <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
-          <ul>
-            <li>&Eacute;dition de base (ex : int&eacute;gration de photos dans des documents).</li>
-            <li>Cr&eacute;ation de m&eacute;dias : retouche d&rsquo;images, vid&eacute;os, BD num&eacute;rique.</li>
-            <li>Conceptions avanc&eacute;es : impression 3D / mod&eacute;lisation, code, Raspberry Pi, Makey Makey, etc.</li>
-          </ul>
-        </div>
-      </div>
-
       <div className={`responsiveCheckbox2 ${voirInformation ? 'info-top-12 theme-height' : ''}`}>
         <BigCheckboxButton
           type="themes"
@@ -201,7 +132,41 @@ function Themes() {
         </div>
       </div>
 
-      <div className={`responsiveCheckboxNewRow1 ${voirInformation ? 'theme-height' : ''}`}>
+      <div className={`responsiveCheckbox1 ${voirInformation ? 'info-top-12 theme-height' : ''}`}>
+        <BigCheckboxButton
+          type="themes"
+          label="G&eacute;rer ses courriels"
+          value="courriel"
+          image="courriel"
+          imageSelected="courrielSelected"
+        />
+        <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
+          <ul>
+            <li>Choix d&rsquo;une bo&icirc;te mail, cr&eacute;ation d&rsquo;un compte.</li>
+            <li>Explication et prise en main de l&rsquo;interface, bonnes pratiques.</li>
+            <li>Usage de pi&egrave;ces-jointes, tri, raccourci bureau.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div className={`responsiveCheckbox2 ${voirInformation ? 'theme-height' : ''}`}>
+        <BigCheckboxButton
+          type="themes"
+          label="&Eacute;changer avec ses proches"
+          value="echanger"
+          image="echanger"
+          imageSelected="echangerSelected"
+        />
+        <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
+          <ul>
+            <li>Comment utiliser un logiciel de messagerie instantan&eacute;e, un r&eacute;seau social. </li>
+            <li>Utiliser son t&eacute;l&eacute;phone pour les diff&eacute;rents &eacute;changes : mails, sms, Whatsapp, Skype, etc.</li>
+            <li>Prendre en main un logiciel de visioconf&eacute;rence.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div className={`responsiveCheckbox2 ${voirInformation ? 'theme-height' : ''}`}>
         <BigCheckboxButton
           type="themes"
           label="Assister un professionnel"
@@ -219,8 +184,44 @@ function Themes() {
         </div>
       </div>
 
-      <div className={`responsiveCheckbox2 ${voirInformation ? 'info-top-34 theme-height' : ''}`}>
+      <div className={`responsiveCheckbox1 ${voirInformation ? 'theme-height' : ''}`}>
         <BigCheckboxButton
+          type="themes"
+          label="S&eacute;curiser un &eacute;quipement"
+          baseline="Antivirus, protection des donn&eacute;es"
+          value="securite"
+          image="securite"
+          imageSelected="securiteSelected"
+        />
+        <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
+          <ul>
+            <li>Pr&eacute;sentation des dangers du web (virus, cyber-attaques, arnaques).</li>
+            <li>Utiliser un mot de passe, le contr&ocirc;le parental, un &eacute;cran de verrouillage, etc.</li>
+            <li>Sauvegarder ses donn&eacute;es (disque dur, cloud, etc.), comprendre le RGPD.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div className={`responsiveCheckbox2 ${voirInformation ? 'theme-height' : ''}`}>
+        <BigCheckboxButton
+          type="themes"
+          label="Contenus num&eacute;riques"
+          baseline="Photos, vid&eacute;os, impression 3D, code..."
+          value="contenus numeriques"
+          image="contenus"
+          imageSelected="contenusSelected"
+        />
+        <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
+          <ul>
+            <li>&Eacute;dition de base (ex : int&eacute;gration de photos dans des documents).</li>
+            <li>Cr&eacute;ation de m&eacute;dias : retouche d&rsquo;images, vid&eacute;os, BD num&eacute;rique.</li>
+            <li>Conceptions avanc&eacute;es : impression 3D / mod&eacute;lisation, code, Raspberry Pi, Makey Makey, etc.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div className={`responsiveCheckbox2 ${voirInformation ? 'info-top-34 theme-height' : ''}`}>
+        <BigCheckboxMultipleButton
           type="themes"
           label="Accompagner un aidant"
           value="accompagner enfant"
@@ -236,24 +237,7 @@ function Themes() {
         </div>
       </div>
 
-      <div className={`responsiveCheckboxNewRow1 ${voirInformation ? 'theme-height' : ''}`}>
-        <BigCheckboxButton
-          type="themes"
-          label="D&eacute;marches administratives"
-          value="demarche en ligne"
-          image="demarche"
-          imageSelected="demarcheSelected"
-        />
-        <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
-          <ul>
-            <li>Aider l&rsquo;usager &agrave; trouver la bonne plateforme pour sa d&eacute;marche.</li>
-            <li>Apprendre &agrave; s&rsquo;inscrire et utiliser les services : CAF, Imp&ocirc;ts, France Connect, etc.</li>
-            <li>Processus divers (ex : s&rsquo;inscrire aux &eacute;lections, trouver son bureau de vote).</li>
-          </ul>
-        </div>
-      </div>
-
-      <div className={`responsiveCheckbox2 ${voirInformation ? 'info-fraude theme-height' : ''}`}>
+      <div className={`responsiveCheckbox1 ${voirInformation ? 'info-fraude theme-height' : ''}`}>
         <BigCheckboxButton
           type="themes"
           label="Pr&eacute;venir les fraudes, le harc&egrave;lement"
@@ -269,24 +253,40 @@ function Themes() {
           </ul>
         </div>
       </div>
-      <div className={`responsiveCheckboxNewRow1 ${voirInformation ? 'info-budget theme-height' : ''}`}>
-        <BigCheckboxButton
+
+      <div className={`responsiveCheckbox2 ${voirInformation ? 'info-top-24 theme-height' : ''}`}>
+        <BigCheckboxMultipleButton
           type="themes"
-          label="Budget"
-          baseline="Inclusion bancaire, achats en ligne,etc."
-          value="budget"
-          image="budget"
-          imageSelected="budgetSelected"
+          label="Bureautique"
+          value="traitement texte"
+          image="bureautique"
+          imageSelected="bureautique"
         />
         <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
           <ul>
-            <li>Effectuer un achat en ligne.</li>
-            <li>Installer une application bancaire et mettre en place une double authentification.</li>
-            <li>D&eacute;couvrir les outils pour g&eacute; pour son budget (tableurs, etc.).</li>
+            <li>Prendre en main OpenOffice, Word, Excel, Powerpoint.</li>
+            <li>Organiser ses fichiers, ses dossiers.</li>
+            <li>Apprendre &agrave; faire un partage d&rsquo;&eacute;cran.</li>
+            <li>Apprendre &agrave; envoyer des dossiers importants.</li>
           </ul>
         </div>
       </div>
-      <div className={`responsiveCheckbox2 ${voirInformation ? 'theme-height' : ''}`}>
+
+      <div className={`responsiveCheckbox2 ${voirInformation ? 'info-fraude theme-height' : ''}`}>
+        <BigCheckboxButton
+          type="themes"
+          label="Scolaire"
+          value="scolaire"
+          image="scolaire"
+          imageSelected="scolaireSelected"
+        />
+        <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
+          <ul>
+          </ul>
+        </div>
+      </div>
+
+      <div className={`responsiveCheckbox1 ${voirInformation ? 'theme-height' : ''}`}>
         <BigCheckboxMultipleButton
           type="themes"
           label="Sant&eacute;"
@@ -303,13 +303,29 @@ function Themes() {
           </ul>
         </div>
       </div>
-      <div className={`responsiveCheckboxNewRow1 ${voirInformation ? 'info-suggestion theme-height' : ''}`}>
+
+      <div className={`responsiveCheckbox2 ${voirInformation ? 'theme-height' : ''}`}>
+        <BigCheckboxButton
+          type="themes"
+          label="D&eacute;marches administratives"
+          value="demarche en ligne"
+          image="demarche"
+          imageSelected="demarcheSelected"
+        />
+        <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
+          <ul>
+            <li>Aider l&rsquo;usager &agrave; trouver la bonne plateforme pour sa d&eacute;marche.</li>
+            <li>Apprendre &agrave; s&rsquo;inscrire et utiliser les services : CAF, Imp&ocirc;ts, France Connect, etc.</li>
+            <li>Processus divers (ex : s&rsquo;inscrire aux &eacute;lections, trouver son bureau de vote).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div className={`responsiveCheckbox2 ${voirInformation ? 'info-suggestion theme-height' : ''}`}>
         <BigButtonSuggestion />
         <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
           <ul>
-            <li>Effectuer un achat en ligne.</li>
-            <li>Installer une application bancaire et mettre en place une double authentification.</li>
-            <li>D&eacute;couvrir les outils pour g&eacute; pour son budget (tableurs, etc.).</li>
+            <li></li>
           </ul>
         </div>
       </div>
