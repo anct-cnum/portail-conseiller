@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { craActions } from '../../../../actions';
+import PropTypes from 'prop-types';
 
-function SelectPermanence() {
+function SelectPermanence({ voirInformation }) {
   const dispatch = useDispatch();
   const idPermanence = sessionStorage.getItem('idPermanence');
   let cra = useSelector(state => state.cra);
@@ -41,7 +42,7 @@ function SelectPermanence() {
   return (
     <>
       {cra?.idPermanence &&
-        <button className="buttonPermanence-filled" onClick={onClickButtonFilled}>
+        <button className={`buttonPermanence-filled ${voirInformation ? 'force-width' : ''}`} onClick={onClickButtonFilled}>
           <span className="logoRattachementSelected"></span>
           <span>{cra?.nomEnseigne?.length > 40 ? cra?.nomEnseigne?.toUpperCase().substr(0, 40) + ' [...]' : cra?.nomEnseigne?.toUpperCase()}</span>
         </button>
@@ -88,5 +89,9 @@ function SelectPermanence() {
   );
 
 }
+
+SelectPermanence.propTypes = {
+  voirInformation: PropTypes.bool,
+};
 
 export default SelectPermanence;
