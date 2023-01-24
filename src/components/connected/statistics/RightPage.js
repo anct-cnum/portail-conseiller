@@ -13,7 +13,7 @@ function RightPage({ donneesStats, print }) {
   const barGraphique = {
     graphique: {
       typeGraphique: 'bar',
-      largeurGraphique: null,
+      largeurGraphique: 950,
       hauteurGraphique: 428,
       margeGaucheGraphique: 300,
       margeDroiteGraphique: 0,
