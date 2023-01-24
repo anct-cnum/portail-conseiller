@@ -19,7 +19,7 @@ function Recurrence() {
       <div className="responsiveRecurrence">
         <RecurrenceButton />
         <div className={`${voirInformation ? 'information-message' : 'close-information'}`} style={{ width: '100%' }}>
-        Renseignez ici les usagers redondants afin de compatibiliser le nombre de personnes individuelles que vous accompagnez.
+        Renseigner si la ou les personnes ont déjà été accompagnées. Ceci sert à compter le nombre de nouvelles personnes que vous rencontrez.
         </div>
       </div>
     </div>

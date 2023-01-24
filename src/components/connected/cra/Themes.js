@@ -252,7 +252,7 @@ function Themes() {
           <ul>
             <li>Sensibiliser aux infox, savoir v&eacute;rifier une information, avoir un usage raisonn&eacute; des r&eacute;seaux sociaux.</li>
             <li>Pr&eacute;venir le cyberharc&egrave;lement, apprendre &agrave; avoir le bon comportement sur le net.</li>
-            <li>Savoir reconna&icric;tre une arnaque : mail frauduleux, une publicit&eacute; douteuse, etc. </li>
+            <li>Savoir reconna&icirc;tre une arnaque : mail frauduleux, une publicit&eacute; douteuse, etc. </li>
           </ul>
         </div>
       </div>
@@ -286,7 +286,7 @@ function Themes() {
           </div>
         </div>
       }
-      
+
     </div>
   );
 }
