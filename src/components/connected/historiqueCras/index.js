@@ -8,11 +8,12 @@ import { historiqueCrasActions } from '../../../actions/historiqueCras.actions';
 import labelsCorrespondance from '../../../data/labelsCorrespondance.json';
 import { htmlDecode } from '../../../utils/functionEncodeDecode';
 import Footer from '../../Footer';
-import Thematiques from './Thematiques';
+import Thematique from './Thematique';
 import Spinner from 'react-loader-spinner';
 import Pagination from '../../admin/Pagination';
 import FiltreCra from './FiltreCra';
 import ConfirmationSuppressionCra from './SupprimerCra';
+import SousTheme from './SousTheme';
 
 function HistoriqueCras() {
   const dispatch = useDispatch();
@@ -175,6 +176,7 @@ function HistoriqueCras() {
                         <th scope="col">
                           <FiltreCra texte="Th&eacute;matiques" css="themes" datas={themes} setDatas={setThematique} />
                         </th>
+                        <th scope="col"> Annotations</th>
                         <th scope="col" className="medium-column">Modifi&eacute; le</th>
                         <th scope="col" className="short-column">&Eacute;diter</th>
                       </tr>
@@ -204,8 +206,13 @@ function HistoriqueCras() {
                             {accompagnement.cra.nbParticipants}
                           </td>
                           <td>{accompagnement.cra.themes.map((theme, idx) =>
-                            <Thematiques key={idx} texte={theme} />
+                            <Thematique key={idx} texte={theme} />
                           )}
+                          </td>
+                          <td>
+                            {accompagnement.cra?.sousThemes?.map((sousTheme, idx) =>
+                              <SousTheme key={idx} sousTheme={sousTheme}/>
+                            )}
                           </td>
                           <td className="modifie-le" style={{ textAlign: 'center' }}>
                             {accompagnement?.updatedAt ?

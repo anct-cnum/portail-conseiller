@@ -41,6 +41,8 @@ function Themes() {
           imageSelected="diagnosticSelected"/>
         <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
           <ul>
+            <li>&Eacute;valuer les connaissances num&eacute;riques, et le mat&eacute;riel des usagers.</li>
+            <li>Conduire un questionnaire d&rsquo;&eacute;valuation (ex : Pix).</li>
           </ul>
         </div>
       </div>
@@ -282,6 +284,9 @@ function Themes() {
         />
         <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
           <ul>
+            <li>Apprendre &agrave; utiliser un logiciel de suivi scolaire.</li>
+            <li>Utiliser un logiciel d&rsquo;accompagnement scolaire.</li>
+            <li>&Eacute;valuer le niveau des jeunes avec un logiciel (maths, français, etc).</li>
           </ul>
         </div>
       </div>
