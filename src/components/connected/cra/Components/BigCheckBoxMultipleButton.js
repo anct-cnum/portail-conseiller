@@ -61,16 +61,19 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, b
     }
   };
 
-  const checkbox = (values, texts) => {
-    const contents = [];
-    for (let i = 0; i < values.length; i++) {
+  const checkboxHtml = (values, texts) => {
+    let contents;
+    //update
+    // const matchingTheme = cra?.sousThemes ? cra?.sousThemes.find(s => s[value]) : undefined;
+    // const checked = matchingTheme ? matchingTheme[value]?.includes(sous.value) : false;
+    console.log(values);
+    for (let i = 0; i >= values.length; i++) {
       const checked = false;
-      contents.push(
+      contents +=
         <>
           <input type="checkbox" id={values[i]} name={values[i]} value={values[i]} defaultChecked={checked} onClick={clickSousTheme}/>
           <label className="fr-label fr-text--sm" htmlFor={values[i]}>{texts[i]}</label>
-        </>
-      );
+        </>;
     }
     return contents;
   };
@@ -103,14 +106,8 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, b
                 <label className="fr-label fr-text--sm" style={{ color: 'black', margin: 'auto' }}>Optionnellement, pr&eacute;cisez&nbsp;:</label>
                 <div className="fr-checkbox-group">
                   { sousThemes.filter(t => t.theme === value).map((sous, key) => {
-                    console.log(sous);
-                    //update
-                    const matchingTheme = cra?.sousThemes ? cra?.sousThemes.find(s => s[value]) : undefined;
-                    const checked = matchingTheme ? matchingTheme[value]?.includes(sous.value) : false;
-
                     return <div key={key} style={{ margin: '-0.5rem' }}>
-                      <input type="checkbox" id={sous.value} name={sous.value} value={sous.value} defaultChecked={checked} onClick={clickSousTheme}/>
-                      <label className="fr-label fr-text--sm" htmlFor={sous.value}>{sous.label}</label>
+                      {checkboxHtml(sous.value, sous.label)}
                     </div>;
 
                   }
