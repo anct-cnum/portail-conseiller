@@ -15,7 +15,7 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, b
     ...sousThemes.map(test => test.value),
     null
   ];
-
+console.log(arrayValueSousTheme);
   const clickSousTheme = async e => {
     const valueOnClick = e.target.getAttribute('value');
     let sousthemesList = cra?.sousThemes ? cra?.sousThemes : [];
@@ -66,10 +66,12 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, b
     //update
     // const matchingTheme = cra?.sousThemes ? cra?.sousThemes.find(s => s[value]) : undefined;
     // const checked = matchingTheme ? matchingTheme[value]?.includes(sous.value) : false;
+    console.log(value);
     console.log(values);
+    console.log(texts);
     for (let i = 0; i >= values.length; i++) {
       const checked = false;
-      contents +=
+      contents =
         <>
           <input type="checkbox" id={values[i]} name={values[i]} value={values[i]} defaultChecked={checked} onClick={clickSousTheme}/>
           <label className="fr-label fr-text--sm" htmlFor={values[i]}>{texts[i]}</label>
@@ -77,6 +79,12 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, b
     }
     return contents;
   };
+
+  const inputCheckbox = val => {
+    return <input type="checkbox" id={val} name={val} value={val} onClick={clickSousTheme}/>;
+  };
+
+  console.log(sousThemes);
   return (
     <div className="checkboxButton" onClick={onClickCheckbox} value={value}>
       <div className="gradient-box">
@@ -107,7 +115,7 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, b
                 <div className="fr-checkbox-group">
                   { sousThemes.filter(t => t.theme === value).map((sous, key) => {
                     return <div key={key} style={{ margin: '-0.5rem' }}>
-                      {checkboxHtml(sous.value, sous.label)}
+
                     </div>;
 
                   }
