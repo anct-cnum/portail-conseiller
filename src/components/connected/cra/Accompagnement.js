@@ -57,7 +57,7 @@ function Accompagnement() {
           {accompagnement?.redirection === 0 &&
             <BigRadioButton
               type="accompagnement"
-              label="Redirection vers un &eacute;tablissement agr&eacute;&eacute;"
+              label="Redirection vers une structure"
               value="redirection"
               image="/logos/cra/logo-redirection-structure.svg"
               imageSelected="/logos/cra/logo-redirection-structure-n.svg"
@@ -75,7 +75,7 @@ function Accompagnement() {
           {accompagnement?.redirection === 0 &&
             <SmallRadioButton
               type="accompagnement"
-              label="Redirection vers un &eacute;tablissement agr&eacute;&eacute;"
+              label="Redirection vers une structure"
               value="redirection"
               image="/logos/cra/logo-redirection-structure.svg"
               imageSelected="/logos/cra/logo-redirection-structure-n.svg"

@@ -141,7 +141,7 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
     }
   }
   .q2 {
-    top: -65px;
+    top: -41px;
   }
   .q3 {
     top: -29px;
@@ -149,19 +149,23 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
   .q6 {
     top: -62px;
   }
-  .info-rattachement, .info-autre, .info-date-dist-dom, .info-individuel, .info-top-12, .info-top-12-bis, .info-top-24,  .info-top-24-bis, .info-top-34, .info-fraude, .info-suggestion {
+  .info-rattachement, .info-autre, .info-date-dist-dom, .info-individuel, .info-ponctuelle, .info-collectif, .info-fraude, .info-suggestion, .info-top-12, .info-top-24, .info-top-34  {
+
     position: relative;
   }
   .info-fraude, .info-suggestion  {
     top: 12px;
   }
   .info-individuel {
-    top: 0px;
-  }
-  .info-top-12, .info-top-12-bis {
     top: -12px;
   }
-  .info-top-24, .info-top-24-bis {
+  .info-ponctuelle {
+    top: 0px;
+  }
+  .info-top-12, .info-collectif {
+    top: -12px;
+  }
+  .info-top-24 {
     top: -24px;
   }
   .info-top-34 {
@@ -1605,12 +1609,6 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
         top: -114px;
       }
     }
-    .info-top-12, .info-top-12-bis {
-      top: -24px;
-    }
-    .q2 {
-      top: -77px;
-    }
     .width-message-pourcent {
       width: 100%;
     }
@@ -1637,8 +1635,16 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
     }
 
   }
+  @media (max-width: 1102px) {
+    .q2 {
+      top: -53px;
+    }
+    .info-collectif, .info-individuel {
+      top: -24px;
+    }
+  }
   @media (max-width: 1060px) {
-    .info-top-12-bis {
+    .info-collectif {
       top: -12px;
     }
   }
@@ -1649,22 +1655,22 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
   }
   @media (max-width: 912px) {
     .q2 {
-      top: -89px;
+      top: -53px;
     }
-    .info-top-12-bis {
+    .info-collectif, .info-ponctuelle {
       top: -24px;
     }
-    .info-top-24-bis {
-      top: -36px;
+    .info-individuel {
+      top: 0px;
     }
   }
 
   @media (min-width: 768px) and (max-width: 912px) {
     .individuel-height {
-      height: 368px;
+      height: 250px;
     }
     .activite-height {
-      height: 320px;
+      height: 200px;
     }
   }
   @media (max-width: 867px) {
@@ -1717,9 +1723,6 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
       @supports (-moz-appearance:none) {
         top: -128px;
       }
-    }
-    .q2 {
-      top: -113px;
     }
     .info-rattachement {
       top: -167px;
@@ -1822,7 +1825,7 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
     .q1, .q2,.q6, .info-rattachement, .info-autre, .info-top-12 {
       top: 0;
     }
-    .info-top-12-bis {
+    .info-collectif {
       top: 0px;
     }
     .information-message{
@@ -1831,17 +1834,17 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
     }
   }
   @media (max-width: 683px) {
-    .info-top-12-bis {
+    .info-collectif {
       top: -12px;
     }
   }
   @media (max-width: 622px) {
-    .info-top-12-bis {
+    .info-collectif {
       top: -24px;
     }
   }
   @media (max-width: 586px) {
-    .info-top-12-bis {
+    .info-collectif {
       top: -12px;
     }
   }
@@ -1858,7 +1861,7 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
     .questionResponsive {
       width: calc(1200%/12);
     }
-    .info-top-12-bis {
+    .info-collectif {
       top: 0px;
     }
   }
