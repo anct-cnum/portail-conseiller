@@ -12,6 +12,7 @@ function Themes() {
   const handleClick = () => {
     setVoirInformation(!voirInformation);
   };
+
   return (
     <div className="fr-grid-row fr-grid-row--gutters fr-grid-row--middle espacement">
       <div className="fr-col-xs-11 fr-col-sm-11 fr-col-md-2 questionCheckboxResponsive">
@@ -336,13 +337,21 @@ function Themes() {
       </div>
 
       {cra?.themes?.includes('autre') &&
-        <div className="responsiveCheckboxNewRow1">
+        <div className="responsiveCheckbox1">
           <div className="checkboxButton">
-            <button id="checkboxRattachement" className="checkboxRattachement21 checkboxRattachement21-selected" style={{ height: '104px' }}>
-              <span className="fr-label labelCheckboxCustom" style={{ marginLeft: '105px' }}>Autre <br/>
-                <span className="baseline">(Ancienne th&egrave;matique, non-modifiable)</span>
-              </span>
-            </button>
+            <div className="gradient-box">
+              <button className="checkboxRattachement2 checkboxRattachement2-selected" style={{ height: '104px' }}>
+                <div style={{ display: 'flex' }}>
+                  <span className="imageTheme autreSelected"></span>
+                  <span
+                    className="fr-label labelCheckboxCustom checkboxRattachement-selected">
+                    Autre
+                    <br/>
+                    <span className="baseline">(Ancienne th&egrave;matique, non-modifiable)</span>
+                  </span>
+                </div>
+              </button>
+            </div>
           </div>
         </div>
       }

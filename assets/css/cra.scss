@@ -52,6 +52,7 @@ $fraudeSelected: url(../../public/logos/cra/logo-fraude-n.svg) no-repeat;
 $budgetSelected : url(../../public/logos/cra/logo-budget-n.svg) no-repeat;
 $santeSelected: url(../../public/logos/cra/logo-sante-n.svg) no-repeat;
 $scolaireSelected : url(../../public/logos/cra/logo-scolaire-n.svg) no-repeat;
+$autreSelected: url(../../public/logos/cra/logo-autre-n.svg) no-repeat;
 
 $chevronGauche: url(../../public/logos/cra/logo-chevron-gauche.svg) no-repeat;
 $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
@@ -369,6 +370,11 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
     color: black;
     height: 104px;
     width: 100%;
+  }
+
+  .fr-checkbox-group span label {
+    font-size: 0.8rem !important;
+    margin-right: 5px;
   }
 
   /* custom point de rupture LG du DS */
@@ -969,6 +975,9 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
       }
       .scolaireSelected {
         background: $scolaireSelected;
+      }
+      .autreSelected {
+        background: $autreSelected;
       }
     }
     .checkboxRattachement2-selected {

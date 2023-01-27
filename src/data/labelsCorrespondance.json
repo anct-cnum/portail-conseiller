@@ -126,7 +126,8 @@
   },
   {
     "nom": "autre",
-    "correspondance": "Autre"
+    "correspondance": "Autre",
+    "image": "/logos/cra/logo-autre-n.svg"
   },
   {
     "nom": "0-30",

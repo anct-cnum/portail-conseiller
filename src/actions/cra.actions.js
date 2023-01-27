@@ -11,7 +11,6 @@ export const craActions = {
   updateCanal,
   deleteCanalValue,
   clearCanal,
-  clearSuggestion,
   updateActivite,
   updateNbParticipants,
   updateRecurrence,
@@ -65,9 +64,6 @@ function deleteCanalValue() {
 }
 function clearCanal() {
   return { type: 'CLEAR_CANAL' };
-}
-function clearSuggestion() {
-  return { type: 'CLEAR_SUGGESTION' };
 }
 function updateActivite(activite) {
   return { type: 'UPDATE_ACTIVITE', activite };
@@ -256,9 +252,10 @@ function countByPermanence(permanenceId) {
     return { type: 'COUNT_CRA_PERMANENCE_FAILURE', error };
   }
 }
+
 function searchSuggestion(theme, sousTheme) {
   return dispatch => {
-    dispatch(request());
+    dispatch(request(sousTheme));
     craService.searchSuggestion(theme, sousTheme)
     .then(
       result => {
@@ -269,8 +266,9 @@ function searchSuggestion(theme, sousTheme) {
       }
     );
   };
-  function request() {
-    return { type: 'SEARCH_SOUS_THEMES_CRA_REQUEST' };
+
+  function request(suggestion) {
+    return { type: 'SEARCH_SOUS_THEMES_CRA_REQUEST', suggestion };
   }
   function success(sousThemes) {
     return { type: 'SEARCH_SOUS_THEMES_CRA_SUCCESS', sousThemes };
@@ -279,9 +277,11 @@ function searchSuggestion(theme, sousTheme) {
     return { type: 'SEARCH_SOUS_THEMES_CRA_FAILURE', error };
   }
 }
+
 function clearListeSousThemes() {
   return { type: 'CLEAR_SOUS_THEMES' };
 }
+
 function verifySuggestion(suggestion) {
   const error = {
     sousTheme: (Joi.object({
@@ -291,3 +291,4 @@ function verifySuggestion(suggestion) {
   };
   return { type: 'VERIFY_SOUS_THEMES', error };
 }
+

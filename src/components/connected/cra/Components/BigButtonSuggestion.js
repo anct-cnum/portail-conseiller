@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { craActions } from '../../../../actions';
 import { sortSousThemes } from '../../../../utils/functionsSort';
+import labelsCorrespondance from '../../../../data/labelsCorrespondance.json';
+import correspondencesSousThemes from '../../../../data/sousThemes.json';
+import { decodeEntitiesSuggestion } from '../utils/CraFunctions';
 
 function BigButtonSuggestion() {
   const dispatch = useDispatch();
@@ -15,8 +18,8 @@ function BigButtonSuggestion() {
 
   const clearSuggestion = () => {
     setSuggestion('');
-    dispatch(craActions.clearSuggestion());
     dispatch(craActions.clearListeSousThemes());
+    dispatch(craActions.updateMultipleThemes([]));
   };
 
   const searchSuggestion = e => {
@@ -59,7 +62,7 @@ function BigButtonSuggestion() {
       const sousThemes = [];
       if (cra?.sousThemes) {
         const theme = cra?.themes[0];
-        const sousThemesExistants = cra?.sousThemes[0]?.[theme];
+        const sousThemesExistants = cra?.sousThemes[0]?.[theme] ?? [];
         sousThemesExistants.push(suggestion);
         sousThemes.push({ [theme]: sousThemesExistants });
       } else {
@@ -69,6 +72,22 @@ function BigButtonSuggestion() {
       setModalOpenClose(false);
     }
   }, [error]);
+
+  useEffect(() => {
+    if (cra?.themes?.length !== 1 && suggestion) {
+      setSuggestion('');
+      dispatch(craActions.updateMultipleThemes([]));
+    } else if (cra?.themes?.length === 1 && cra?.sousThemes?.length > 0) {
+      const theme = cra?.themes[0];
+      const sousTheme = cra?.sousThemes[0][theme] ? cra?.sousThemes[0][theme][0] : '';
+      if (!correspondencesSousThemes.find(label => label.theme === theme)) {
+        setSuggestion(sousTheme);
+      } else if (correspondencesSousThemes.find(label => label.theme === theme) &&
+        !correspondencesSousThemes.find(label => label.theme === theme).values.includes(sousTheme)) {
+        setSuggestion(sousTheme);
+      }
+    }
+  }, [cra]);
 
   return (
     <>
@@ -85,10 +104,22 @@ function BigButtonSuggestion() {
               <span className={`imageTheme ${cra?.themes?.length !== 1 ? 'suggestionInactif' : 'suggestion'}`}></span>
               <span
                 className={`fr-label labelCheckboxCustom ${cra?.themes?.length !== 1 ? 'text-suggestion-inactif' : 'text-suggestion'} `} value="suggestion">
-                  Pr&eacute;ciser la thématique coch&eacute;e
+                {(suggestion && cra?.themes?.length) === 1 &&
+                <>{decodeEntitiesSuggestion(labelsCorrespondance.find(label => label.nom === cra?.themes[0])?.correspondance)}</>
+                }
+                {(!suggestion || cra?.themes?.length !== 1) &&
+                  <>
+                    Pr&eacute;ciser la thématique coch&eacute;e
+                  </>
+                }
                 <br/>
                 <span value="suggestion" className="baseline">
-                Annoter l&rsquo;activit&eacute; et proposer une &eacute;volution future
+                  {suggestion &&
+                    <>{ suggestion }</>
+                  }
+                  {!suggestion &&
+                    <>Annoter l&rsquo;activit&eacute; et proposer une &eacute;volution future</>
+                  }
                 </span>
               </span>
             </div>

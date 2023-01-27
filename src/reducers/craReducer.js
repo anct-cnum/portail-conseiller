@@ -119,11 +119,6 @@ export default function cra(state = initialState, action) {
           cp: !state.buttonCP
         },
       };
-    case 'CLEAR_SUGGESTION':
-      return {
-        ...state,
-        suggestion: null,
-      };
     case 'UPDATE_ACTIVITE':
       return {
         ...state,
@@ -380,20 +375,20 @@ export default function cra(state = initialState, action) {
     case 'SEARCH_SOUS_THEMES_CRA_REQUEST':
       return {
         ...state,
-        loading: true,
+        loadingSuggestion: true,
         error: false
       };
     case 'SEARCH_SOUS_THEMES_CRA_SUCCESS':
       return {
         ...state,
-        loading: false,
+        loadingSuggestion: false,
         listeSousThemes: action.sousThemes,
         errorSousTheme: null
       };
     case 'SEARCH_SOUS_THEMES_CRA_FAILURE':
       return {
         ...state,
-        loading: false,
+        loadingSuggestion: false,
         error: action.error
       };
     case 'CLEAR_SOUS_THEMES':

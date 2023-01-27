@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
 import { getCraValue } from '../utils/CraFunctions';
-import sousThemes from '../../../../data/sousThemes.json';
+import correspondencesSousThemes from '../../../../data/sousThemes.json';
+import CheckboxButton from './CheckboxButton';
 
 function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, baseline }) {
 
@@ -12,12 +13,12 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, b
   let controlSelected = getCraValue(type);
 
   const arrayValueSousTheme = [
-    ...sousThemes.map(test => test.value),
+    ...correspondencesSousThemes.map(test => test.values),
     null
   ];
-console.log(arrayValueSousTheme);
+
   const clickSousTheme = async e => {
-    const valueOnClick = e.target.getAttribute('value');
+    const valueOnClick = e.target.getAttribute('data-sous-theme');
     let sousthemesList = cra?.sousThemes ? cra?.sousThemes : [];
     if (!sousthemesList.find(name => name[value])) {
       sousthemesList.push({ [value]: [valueOnClick] });
@@ -41,10 +42,9 @@ console.log(arrayValueSousTheme);
   const onClickCheckbox = e => {
     switch (type) {
       case 'themes':
-        const valueOnClick = e.target.getAttribute('value');
+        const valueOnClick = e.target.getAttribute('data-theme');
         let newthemesList = cra?.themes ? cra?.themes : [];
         let sousthemesList = cra?.sousThemes ? cra?.sousThemes : [];
-
         if (!newthemesList.includes(valueOnClick) && !arrayValueSousTheme.includes(valueOnClick)) {
           newthemesList.push(valueOnClick);
         } else {
@@ -61,49 +61,25 @@ console.log(arrayValueSousTheme);
     }
   };
 
-  const checkboxHtml = (values, texts) => {
-    let contents;
-    //update
-    // const matchingTheme = cra?.sousThemes ? cra?.sousThemes.find(s => s[value]) : undefined;
-    // const checked = matchingTheme ? matchingTheme[value]?.includes(sous.value) : false;
-    console.log(value);
-    console.log(values);
-    console.log(texts);
-    for (let i = 0; i >= values.length; i++) {
-      const checked = false;
-      contents =
-        <>
-          <input type="checkbox" id={values[i]} name={values[i]} value={values[i]} defaultChecked={checked} onClick={clickSousTheme}/>
-          <label className="fr-label fr-text--sm" htmlFor={values[i]}>{texts[i]}</label>
-        </>;
-    }
-    return contents;
-  };
-
-  const inputCheckbox = val => {
-    return <input type="checkbox" id={val} name={val} value={val} onClick={clickSousTheme}/>;
-  };
-
-  console.log(sousThemes);
   return (
-    <div className="checkboxButton" onClick={onClickCheckbox} value={value}>
+    <div className="checkboxButton" onClick={onClickCheckbox} data-theme={value}>
       <div className="gradient-box">
         <button id="checkboxRattachement"
           className={`checkboxRattachement2 ${controlSelected?.includes(value) ? 'checkboxRattachement2-selected' : ''}`}
           style={{ height: '104px' }}
-          value={value}>
-          <div value={value} style={{ display: `${controlSelected?.includes(value) ? '' : 'flex'}` }}>
+          data-theme={value}>
+          <div data-theme={value} style={{ display: `${controlSelected?.includes(value) ? '' : 'flex'}` }}>
             { !controlSelected?.includes(value) &&
               <>
-                <span className={`imageTheme ${!controlSelected?.includes(value) ? image : imageSelected}`}></span>
+                <span data-theme={value} className={`imageTheme ${!controlSelected?.includes(value) ? image : imageSelected}`}></span>
                 <span
                   className={`fr-label labelCheckboxCustom ${controlSelected?.includes(value) ? 'checkboxRattachement-selected' : ''}`}
-                  value={value}>
+                  data-theme={value}>
                   {label}
                   {baseline &&
                     <>
                       <br/>
-                      <span value={value} className="baseline">{baseline}</span>
+                      <span data-theme={value} className="baseline">{baseline}</span>
                     </>
                   }
                 </span>
@@ -111,13 +87,15 @@ console.log(arrayValueSousTheme);
             }
             { controlSelected?.includes(value) &&
               <div className="checkbox-selected fr-mt-3w fr-mb-3w">
-                <label className="fr-label fr-text--sm" style={{ color: 'black', margin: 'auto' }}>Optionnellement, pr&eacute;cisez&nbsp;:</label>
-                <div className="fr-checkbox-group">
-                  { sousThemes.filter(t => t.theme === value).map((sous, key) => {
-                    return <div key={key} style={{ margin: '-0.5rem' }}>
-
+                <label className="fr-label fr-text--sm" style={{ color: 'black', margin: 'auto' }}>
+                  Optionnellement, pr&eacute;cisez&nbsp;:
+                </label>
+                <div className="fr-fieldset fr-fieldset--inline">
+                  { correspondencesSousThemes.filter(t => t.theme === value).map((sous, key) => {
+                    return <div key={key} className="fr-checkbox-group">
+                      <CheckboxButton values= {sous.values} labels={sous.labels} clickSousTheme={clickSousTheme}
+                        craSousThemes={cra?.sousThemes?.length >= 1 ? cra?.sousThemes[0][value] : []} />
                     </div>;
-
                   }
                   )}
                 </div>
