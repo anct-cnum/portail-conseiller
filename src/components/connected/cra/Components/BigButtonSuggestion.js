@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { craActions } from '../../../../actions';
-import { sortSousThemes } from '../../../../utils/functionsSort';
+import { sortByString } from '../../../../utils/functionsSort';
 import labelsCorrespondance from '../../../../data/labelsCorrespondance.json';
-import correspondencesSousThemes from '../../../../data/sousThemes.json';
-import { decodeEntitiesSuggestion } from '../utils/CraFunctions';
+import correspondancesSousThemes from '../../../../data/sousThemes.json';
+import { changeToMinusculeWithTrim, decodeEntitiesSuggestion } from '../utils/CraFunctions';
 
 function BigButtonSuggestion() {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ function BigButtonSuggestion() {
 
   const searchSuggestion = e => {
     const value = e.target.value;
-    setSuggestion(value);
+    setSuggestion(changeToMinusculeWithTrim(value));
     if (value.length > 2) {
       dispatch(craActions.searchSuggestion(cra.themes[0], value));
     } else {
@@ -34,14 +34,14 @@ function BigButtonSuggestion() {
 
   const onClickOption = e => {
     const value = e.target.getAttribute('value');
-    setSuggestion(value);
+    setSuggestion(changeToMinusculeWithTrim(value));
     dispatch(craActions.clearListeSousThemes());
   };
 
   const selectSousThemes = sousThemes => {
     const options = [];
     if (sousThemes?.length > 0) {
-      const sousThemesFiltered = sortSousThemes(sousThemes);
+      const sousThemesFiltered = sortByString(sousThemes);
       sousThemesFiltered?.forEach(sousTheme => options.push(
         <div key={`${sousTheme}`}
           value={`${sousTheme}`}
@@ -80,11 +80,11 @@ function BigButtonSuggestion() {
     } else if (cra?.themes?.length === 1 && cra?.sousThemes?.length > 0) {
       const theme = cra?.themes[0];
       const sousTheme = cra?.sousThemes[0][theme] ? cra?.sousThemes[0][theme][0] : '';
-      if (!correspondencesSousThemes.find(label => label.theme === theme)) {
-        setSuggestion(sousTheme);
-      } else if (correspondencesSousThemes.find(label => label.theme === theme) &&
-        !correspondencesSousThemes.find(label => label.theme === theme).values.includes(sousTheme)) {
-        setSuggestion(sousTheme);
+      if (!correspondancesSousThemes.find(label => label.theme === theme)) {
+        setSuggestion(changeToMinusculeWithTrim(sousTheme));
+      } else if (correspondancesSousThemes.find(label => label.theme === theme) &&
+        !correspondancesSousThemes.find(label => label.theme === theme).values.includes(sousTheme)) {
+        setSuggestion(changeToMinusculeWithTrim(sousTheme));
       }
     }
   }, [cra]);

@@ -376,14 +376,14 @@ export default function cra(state = initialState, action) {
       return {
         ...state,
         loadingSuggestion: true,
-        error: false
+        error: false,
+        errorSousTheme: null
       };
     case 'SEARCH_SOUS_THEMES_CRA_SUCCESS':
       return {
         ...state,
         loadingSuggestion: false,
         listeSousThemes: action.sousThemes,
-        errorSousTheme: null
       };
     case 'SEARCH_SOUS_THEMES_CRA_FAILURE':
       return {

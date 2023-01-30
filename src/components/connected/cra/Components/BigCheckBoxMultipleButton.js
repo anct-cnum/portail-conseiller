@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
 import { getCraValue } from '../utils/CraFunctions';
-import correspondencesSousThemes from '../../../../data/sousThemes.json';
+import correspondancesSousThemes from '../../../../data/sousThemes.json';
 import CheckboxButton from './CheckboxButton';
 
 function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, baseline }) {
@@ -13,7 +13,7 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, b
   let controlSelected = getCraValue(type);
 
   const arrayValueSousTheme = [
-    ...correspondencesSousThemes.map(test => test.values),
+    ...correspondancesSousThemes.map(test => test.values),
     null
   ];
 
@@ -91,7 +91,7 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, b
                   Optionnellement, pr&eacute;cisez&nbsp;:
                 </label>
                 <div className="fr-fieldset fr-fieldset--inline">
-                  { correspondencesSousThemes.filter(t => t.theme === value).map((sous, key) => {
+                  { correspondancesSousThemes.filter(t => t.theme === value).map((sous, key) => {
                     return <div key={key} className="fr-checkbox-group">
                       <CheckboxButton values= {sous.values} labels={sous.labels} clickSousTheme={clickSousTheme}
                         craSousThemes={cra?.sousThemes?.length >= 1 ? cra?.sousThemes[0][value] : []} />
