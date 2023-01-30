@@ -147,13 +147,16 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
     top: -29px;
   }
   .q6 {
-    top: -62px;
+    top: 0px;
   }
-  .info-rattachement, .info-autre, .info-date-dist-dom, .info-individuel, .info-ponctuelle, .info-collectif, .info-fraude, .info-suggestion, .info-top-12, .info-top-24, .info-top-34  {
-
+  .info-rattachement, .info-autre, .info-date-dist-dom, .info-individuel, .info-ponctuelle, .info-collectif,
+  .info-diagnostic, .info-fraude, .info-demarche, .info-suggestion, .info-top-12, .info-top-24, .info-top-34  {
     position: relative;
   }
-  .info-fraude, .info-suggestion  {
+  .info-fraude, .info-demarche {
+    top: 24px;
+  }
+  .info-suggestion  {
     top: 12px;
   }
   .info-individuel {
@@ -167,6 +170,9 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
   }
   .info-top-24 {
     top: -24px;
+  }
+  .info-diagnostic {
+    top: -27px;
   }
   .info-top-34 {
     top: -34px;
@@ -1016,22 +1022,17 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
     position: relative;
     z-index: 1;
   }
-  .responsiveCheckbox1 {
+  .responsiveCheckbox1, .responsiveCheckbox1_2 {
     width: calc(388%/12);
     margin-left: 0.75rem;
   }
 
-  .responsiveCheckbox2, .responsiveCheckboxNewRow2 {
+  .responsiveCheckbox2, .responsiveCheckbox2_1, .responsiveCheckbox3, .responsiveCheckbox3_1 {
     width: calc(388%/12);
   }
 
   .responsiveCheckboxNewRow1 {
     width: calc(388%/12);
-    margin-left: calc(211%/12);
-  }
-
-  .responsiveSmallCheckbox {
-    width: calc(800%/12);
     margin-left: calc(211%/12);
   }
 
@@ -1070,33 +1071,31 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
   /* custom point de rupture MD du DS */
   @media (max-width: 767px) {
 
-    .responsiveCheckbox1, .responsiveCheckboxNewRow1 {
+    .responsiveCheckbox1, .responsiveCheckbox3_1, .responsiveCheckbox2_1 {
       width: calc(500%/12);
       margin-left: calc(100%/12);
       padding-left: 0.5rem;
     }
 
-    .responsiveCheckbox2, .responsiveCheckboxNewRow2 {
+    .responsiveCheckbox2, .responsiveCheckbox1_2, .responsiveCheckbox3 {
       width: calc(500%/12);
-    }
-
-    .responsiveSmallCheckbox {
-      width: calc(1000%/12);
-      margin-left: calc(100%/12);
-      padding-left: 0.5rem;
+      margin-left: 0px;
     }
 
     .questionCheckboxResponsive {
       text-align: center;
       height: unset;
     }
-
+    .text-suggestion-inactif {
+      overflow: auto;
+      max-height: 100px;
+    }
   }
 
   /* custom point de rupture SM du DS */
   @media (max-width: 576px) {
 
-    .responsiveCheckbox1, .responsiveCheckbox2, .responsiveCheckboxNewRow1, .responsiveCheckboxNewRow2, .responsiveSmallCheckbox {
+    .responsiveCheckbox1, .responsiveCheckbox2, .responsiveCheckbox1_2, .responsiveCheckbox3_1, .responsiveCheckbox2_1, .responsiveCheckbox3 {
       width: calc(1200%/12);
       margin-left: 0;
       padding-left: 0.5rem;
@@ -1856,7 +1855,11 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
       width: 95%;
     }
     .information-message-theme {
-      height: 225px;
+      max-height: 225px;
+    }
+    .theme-height {
+      max-height: 320px;
+      height: auto;
     }
     .questionResponsive {
       width: calc(1200%/12);
