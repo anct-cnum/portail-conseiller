@@ -140,7 +140,7 @@ function BigButtonSuggestion() {
               <div className="fr-modal__content">
                 <h1 className="fr-modal__title fr-mb-2w">Annoter l&rsquo;activit&eacute; et proposer une &eacute;volution.</h1>
                 <label htmlFor="suggestion" className={`label-suggestion ${error?.sousTheme ? 'text-error' : ''}`}>
-                  Saisissez votre intitul&eacute; (35 caractères max.)
+                  Saisissez votre intitul&eacute; (35 caract&egrave;res max.)
                   <input id="suggestion" name="suggestion" className={`fr-input input-suggestion fr-mt-1w ${error?.sousTheme ? 'input-error' : ''}`} type="text"
                     style={{ width: '470px' }} value={suggestion} onChange={
                       e => {
