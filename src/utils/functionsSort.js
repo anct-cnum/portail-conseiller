@@ -12,8 +12,8 @@ export function sortByMonthAndYear(a, b) {
   }
 }
 
-export function sortSousThemes(sousThemes) {
-  return sousThemes.sort(function compare(a, b) {
+export function sortByString(array) {
+  return array.sort(function compare(a, b) {
     if (a < b) {
       return -1;
     }
