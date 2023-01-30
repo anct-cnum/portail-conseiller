@@ -132,7 +132,7 @@ function BigButtonSuggestion() {
           <div className="fr-grid-row fr-grid-row--center">
             <div className="fr-col-12 fr-col-sm-10 fr-col-md-9 fr-modal__body modal-suggestion">
               <div className="fr-modal__header fr-mt-n3w">
-                <button className="fr-btn--close fr-btn fr-mt-n3w" title="Fermer la fenêtre modale" aria-controls="fr-modal-suggestion" onClick={() => {
+                <button className="fr-btn--close fr-btn fr-mt-n3w" title="Fermer la fen&ecirc;tre modale" aria-controls="fr-modal-suggestion" onClick={() => {
                   setModalOpenClose(false);
                   clearSuggestion();
                 }}>Fermer</button>
