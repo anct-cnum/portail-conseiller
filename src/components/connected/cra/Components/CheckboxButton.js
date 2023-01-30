@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 function CheckboxButton({ labels, values, clickSousTheme, craSousThemes }) {
   return (
     <>
-      {values.map((value, key) => {
+      {values?.map((value, key) => {
         const checked = craSousThemes ? craSousThemes?.includes(value) : false;
         return <span key={key}>
           <input type="checkbox" id={value} name={value} data-sous-theme={value} onClick={clickSousTheme} defaultChecked={checked}/>
