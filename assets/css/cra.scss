@@ -34,6 +34,7 @@ $sante: url(../../public/logos/cra/logo-sante.svg) no-repeat;
 $suggestion: url(../../public/logos/cra/logo-suggestion.svg) no-repeat;
 $suggestionInactif: url(../../public/logos/cra/logo-suggestion-inactif.svg) no-repeat;
 $scolaire : url(../../public/logos/cra/logo-scolaire.svg) no-repeat;
+$autre: url(../../public/logos/cra/logo-autre.svg) no-repeat;
 
 $diagnosticSelected: url(../../public/logos/cra/logo-diagnostic-numerique-n.svg) no-repeat;
 $equipeInfoSelected: url(../../public/logos/cra/logo-equip-info-n.svg) no-repeat;
@@ -985,6 +986,9 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
       }
       .scolaireSelected {
         background: $scolaireSelected;
+      }
+      .autre {
+        background:$autre;
       }
       .autreSelected {
         background: $autreSelected;
