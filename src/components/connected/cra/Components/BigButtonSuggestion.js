@@ -109,7 +109,7 @@ function BigButtonSuggestion() {
                 }
                 {(!suggestion || cra?.themes?.length !== 1) &&
                   <>
-                    Pr&eacute;ciser la thématique coch&eacute;e
+                    Pr&eacute;ciser la th&eacute;matique coch&eacute;e
                   </>
                 }
                 <br/>
