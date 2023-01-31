@@ -268,7 +268,7 @@ function searchSuggestion(theme, sousTheme) {
   };
 
   function request() {
-    return { type: 'SEARCH_SOUS_THEMES_CRA_REQUEST'};
+    return { type: 'SEARCH_SOUS_THEMES_CRA_REQUEST' };
   }
   function success(sousThemes) {
     return { type: 'SEARCH_SOUS_THEMES_CRA_SUCCESS', sousThemes };
