@@ -240,7 +240,7 @@ function HistoriqueCras() {
                       </tr>
                     </thead>
                     <tbody>
-                      {accompagnements && accompagnements?.map((accompagnement, idx) =>
+                      {accompagnements?.map((accompagnement, idx) =>
                         <tr key={idx}>
                           <td>
                             {dayjs(accompagnement.cra.dateAccompagnement).format('DD/MM/YY')}
