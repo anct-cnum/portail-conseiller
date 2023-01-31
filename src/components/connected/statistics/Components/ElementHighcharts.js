@@ -45,7 +45,6 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
   function setStatistiquesGraphique(
     typeGraphique, largeurGraphique, largeurGraphiquePrint, hauteurGraphique, hauteurGraphiquePrint, margeGaucheGraphique, margeDroiteGraphique) {
     const type = typeGraphique === 'stacked' ? 'bar' : typeGraphique;
-
     let chart = {
       width: print ? largeurGraphiquePrint : largeurGraphique,
       height: print ? hauteurGraphiquePrint : hauteurGraphique,
@@ -64,6 +63,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
 
     if (typeGraphique !== 'xy') {
       chart.type = type;
+      chart.colorCount = 30;
     } else {
       chart.zoomType = type;
     }
@@ -694,6 +694,28 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
     plotOptions: plotOptionsStatistiques
   };
 
+  if (isReoriente) {
+    Highcharts.getOptions().colors.push('#cac5b0');
+    Highcharts.getOptions().colors.push('#abb8df');
+    Highcharts.getOptions().colors.push('#fdcf41');
+    Highcharts.getOptions().colors.push('#169b62');
+    Highcharts.getOptions().colors.push('#80d5c6');
+    Highcharts.getOptions().colors.push('#ff8d7e');
+    Highcharts.getOptions().colors.push('#714753');
+    Highcharts.getOptions().colors.push('#956052');
+    Highcharts.getOptions().colors.push('#ffed33');
+    Highcharts.getOptions().colors.push('#be9b31');
+    Highcharts.getOptions().colors.push('#caffb0');
+    Highcharts.getOptions().colors.push('#abbeef');
+    Highcharts.getOptions().colors.push('#11cf41');
+    Highcharts.getOptions().colors.push('#18eb62');
+    Highcharts.getOptions().colors.push('#a9d5c6');
+    Highcharts.getOptions().colors.push('#f18d7e');
+    Highcharts.getOptions().colors.push('#114753');
+    Highcharts.getOptions().colors.push('#bb6052');
+    Highcharts.getOptions().colors.push('#66ed33');
+    Highcharts.getOptions().colors.push('#b78b31');
+  }
   return (
     <>
       <HighchartsReact highcharts={Highcharts} options={optionsStatistiques} />

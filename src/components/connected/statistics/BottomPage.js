@@ -17,11 +17,7 @@ function BottomPage({ donneesStats, print, type }) {
 
   const tabColorAge = ['#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e'];
   const tabColorStatut = ['#a2b4b1', '#ffdbd2', '#a3a6bc', '#ddb094', '#fff480'];
-  const tabColorLieux = [
-    '#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e', '#a2b4b1', '#ffdbd2', '#a3a6bc', '#ddb094', '#fff480',
-    '#cac5b0', '#abb8df', '#fdcf41', '#169b62', '#80d5c6', '#ff8d7e', '#714753', '#956052', '#ffed33', '#be9b31',
-    '#caffb0', '#abbeef', '#11cf41', '#18eb62', '#a9d5c6', '#f18d7e', '#114753', '#bb6052', '#66ed33', '#b78b31'
-  ];
+  const tabColorLieux = ['#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e', '#a2b4b1', '#ffdbd2', '#a3a6bc', '#ddb094', '#fff480'];
 
   const get4lastMonths = (month, year) => {
     let monthToPrint = [month];

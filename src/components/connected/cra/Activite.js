@@ -26,7 +26,7 @@ function Activite() {
         </span>
       </div>
       {cra?.activite !== 'collectif' &&
-      <div className={`responsiveRadioActivity1 ${voirInformation ? 'info-top-12-bis activite-height' : ''}`}>
+      <div className={`responsiveRadioActivity1 ${voirInformation ? 'info-collectif activite-height' : ''}`}>
         <BigRadioButton
           type="activite"
           label="Atelier Collectif"
@@ -36,17 +36,17 @@ function Activite() {
           heightImage="56px"
           classDiv="atelierCollectif"/>
         <div className={`${voirInformation ? 'information-message width-message-pourcent' : 'close-information'}`}>
-          Ateliers, accompagnements men&eacute;s avec plusieurs personnes. Vous pouvez optionnellement comptabiliser les absences.
+          Ateliers, accompagnements men&eacute;s avec plusieurs personnes.
         </div>
       </div>
       }
       {cra?.activite === 'collectif' &&
-      <div className={`responsiveRadioActivity1 ${voirInformation ? 'info-top-12-bis' : ''}`}>
+      <div className={`responsiveRadioActivity1 ${voirInformation ? 'info-collectif' : ''}`}>
         <BigCountRadioButton
           type="participants"
           label="participants"/>
         <div className={`${voirInformation ? 'information-message width-message-pourcent' : 'close-information'}`}>
-          Ateliers, accompagnements men&eacute;s avec plusieurs personnes. Vous pouvez optionnellement comptabiliser les absences.
+          Ateliers, accompagnements men&eacute;s avec plusieurs personnes.
         </div>
       </div>
       }
@@ -60,11 +60,10 @@ function Activite() {
           heightImage="56px"
           classDiv="accIndividuel"/>
         <div className={`${voirInformation ? 'information-message width-message-pourcent' : 'close-information'}`}>
-        Lorsqu&rsquo;une seule personne est accompagn&eacute;e. Vous pouvez enregistrer plusieurs accompagnements individuels en une
-        fois en incr&eacute;mentant le bouton.
+        Lorsqu&rsquo;une seule personne est accompagn&eacute;e.
         </div>
       </div>
-      <div className={`responsiveRadioActivity3Big ${voirInformation ? 'info-top-24 activite-height' : ''}`}>
+      <div className={`responsiveRadioActivity3Big ${voirInformation ? 'info-ponctuelle activite-height' : ''}`}>
         <BigRadioButton
           type="activite"
           label="Demande ponctuelle"

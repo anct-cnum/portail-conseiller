@@ -3,12 +3,16 @@ import { historiqueCras } from '../services/historiqueCras.service.js';
 export const historiqueCrasActions = {
   getHistoriqueCrasListe,
   getHistoriqueCrasThematiques,
+  changeDateCraDebut,
+  changeDateCraFin,
+  changeCraCodePostal
 };
 
-function getHistoriqueCrasListe(theme = null, canal = null, type = null, page) {
+function getHistoriqueCrasListe(theme = null, canal = null, type = null, sort = null,
+  dateDebutCra = null, dateFinCra = null, codePostal = null, ville = null, page) {
   return dispatch => {
     dispatch(request());
-    historiqueCras.getHistoriqueCrasListe(theme, canal, type, page)
+    historiqueCras.getHistoriqueCrasListe(theme, canal, type, sort, dateDebutCra, dateFinCra, codePostal, ville, page)
     .then(
       result => {
         dispatch(success(result.items));
@@ -53,4 +57,17 @@ function getHistoriqueCrasThematiques() {
   function failure(error) {
     return { type: 'GET_HISTORIQUE_CRAS_THEMES_FAILURE', error };
   }
+}
+
+function changeDateCraDebut(dateDebut) {
+  return { type: 'CHANGE_DATE_CRA_DEBUT', dateDebut };
+}
+
+function changeDateCraFin(dateFin) {
+  return { type: 'CHANGE_DATE_CRA_FIN', dateFin };
+}
+
+function changeCraCodePostal(codePostal, ville, selected) {
+  return { type: 'CHANGE_CODE_POSTAL_CRA', codePostal, ville, selected };
+
 }
