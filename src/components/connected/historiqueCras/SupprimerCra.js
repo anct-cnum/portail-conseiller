@@ -34,9 +34,11 @@ function ConfirmationSuppressionCra({ cra }) {
                       }} >
                         Annuler
                       </button>
-                      <button className="fr-btn suppression-cra" onClick={() => {
-                        deleteCra(cra?._id);
-                      }} >
+                      <button className="fr-btn suppression-cra" onClick={e => {
+                        if (e.detail === 1) {
+                          deleteCra(cra?._id);
+                        }
+                      }}>
                         Supprimer
                       </button>
 

@@ -1,4 +1,9 @@
 const initialState = {
+  liste: [],
+  total: 0,
+  limit: 30,
+  loading: false,
+  themes: [],
   dateCraDebut: new Date('2021/01/01'),
   dateCraFin: new Date(),
   codePostalCra: '',
@@ -24,7 +29,7 @@ export default function historiqueCras(state = initialState, action) {
     case 'GET_HISTORIQUE_CRAS_LIST_FAILURE':
       return {
         ...state,
-        error: action.error,
+        error: action.error?.message ?? action.error,
         loading: false,
       };
     case 'GET_HISTORIQUE_CRAS_THEMES_REQUEST':
@@ -67,4 +72,3 @@ export default function historiqueCras(state = initialState, action) {
       return state;
   }
 }
-
