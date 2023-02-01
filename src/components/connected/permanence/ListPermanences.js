@@ -17,7 +17,7 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
   const [showList, setShowList] = useState(0);
 
   const handleClick = e => {
-    const permanence = listPermanences.find(permanence => permanence?._id === e.target.value);
+    const permanence = listPermanences?.find(permanence => permanence?._id === e.target.value);
     if (permanence?._id) {
       dispatch(permanenceActions.reserverPermanence({ prefixId: prefixId, idPermanence: permanence?._id }));
     }
@@ -30,10 +30,10 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
     dispatch(permanenceActions.updateField(prefixId + 'nomEnseigne', permanence?.nomEnseigne));
     dispatch(permanenceActions.updateField(prefixId + 'siret', permanence?.siret));
     dispatch(permanenceActions.updateField(prefixId + 'checkboxSiret', e.target.value === 'nouveau' ? false : !permanence?.siret));
-    dispatch(permanenceActions.updateField(prefixId + 'numeroVoie', permanence?.adresse.numeroRue));
-    dispatch(permanenceActions.updateField(prefixId + 'rueVoie', permanence?.adresse.rue));
-    dispatch(permanenceActions.updateField(prefixId + 'codePostal', permanence?.adresse.codePostal));
-    dispatch(permanenceActions.updateField(prefixId + 'ville', permanence?.adresse.ville?.toUpperCase()));
+    dispatch(permanenceActions.updateField(prefixId + 'numeroVoie', permanence?.adresse?.numeroRue));
+    dispatch(permanenceActions.updateField(prefixId + 'rueVoie', permanence?.adresse?.rue));
+    dispatch(permanenceActions.updateField(prefixId + 'codePostal', permanence?.adresse?.codePostal));
+    dispatch(permanenceActions.updateField(prefixId + 'ville', permanence?.adresse?.ville?.toUpperCase()));
     dispatch(permanenceActions.updateField(prefixId + 'location', permanence?.location));
     dispatch(permanenceActions.updateField(prefixId + 'numeroTelephone', permanence?.numeroTelephone));
     dispatch(permanenceActions.updateField(prefixId + 'email', permanence?.email));
@@ -59,10 +59,10 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
     }
 
     const adresse = {
-      numero: permanence?.adresse.numeroRue,
-      rue: permanence?.adresse.rue,
-      codePostal: permanence?.adresse.codePostal,
-      ville: permanence?.adresse.ville
+      numero: permanence?.adresse?.numeroRue,
+      rue: permanence?.adresse?.rue,
+      codePostal: permanence?.adresse?.codePostal,
+      ville: permanence?.adresse?.ville
     };
     dispatch(permanenceActions.getGeocodeAdresse(adresse, prefixId));
     dispatch(permanenceActions.setHorairesLoading(loadingHoraires));

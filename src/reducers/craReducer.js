@@ -57,7 +57,8 @@ export default function cra(state = initialState, action) {
         cp: action?.permanence?.adresse?.codePostal + ' ' + action?.permanence?.adresse?.ville,
         errorsRequired: {
           ...state.errorsRequired,
-          cp: false },
+          cp: false,
+          canal: false },
       };
     case 'GET_BUTTON_CP':
       return {
@@ -67,6 +68,9 @@ export default function cra(state = initialState, action) {
         cp: undefined,
         buttonCP: true,
         buttonPermanences: false,
+        errorsRequired: {
+          ...state.errorsRequired,
+          canal: true },
       };
     case 'GET_SEARCH_LIST':
       return {
@@ -86,7 +90,8 @@ export default function cra(state = initialState, action) {
         cp: action.cp,
         errorsRequired: {
           ...state.errorsRequired,
-          cp: false },
+          cp: false,
+          canal: false },
       };
     case 'UPDATE_CANAL':
       return {
@@ -94,7 +99,7 @@ export default function cra(state = initialState, action) {
         canal: action.canal,
         errorsRequired: {
           ...state.errorsRequired,
-          canal: false },
+          canal: true },
       };
     case 'DELETE_CANAL_VALUE':
       const canal = state?.idPermanence ? 'rattachement' : 'autre';

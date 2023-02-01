@@ -118,7 +118,7 @@ function HistoriqueCras() {
                   Historique des accompagnements
               </h1>
             </div>
-          </div> {error}
+          </div>
           {isDeleted &&
             <FlashMessage duration={5000}>
               <p className="fr-label flashBag">
