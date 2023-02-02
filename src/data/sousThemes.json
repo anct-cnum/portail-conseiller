@@ -1,7 +1,22 @@
 [
   {
     "theme": "sante",
-    "value": "espace-sante",
-    "label": "Mon espace santé"
+    "values": ["espace-sante"],
+    "labels": ["Mon espace santé"]
+  },
+  {
+    "theme": "traitement texte",
+    "values": ["fourniture"],
+    "labels": ["Fourniture (impression, scanner)"]
+  },
+  {
+    "theme": "equipement informatique",
+    "values": ["ordinateur","tablette", "telephone"],
+    "labels": ["Ordinateur", "Tablette",  "Téléphone"]
+  },
+  {
+    "theme": "accompagner enfant",
+    "values": ["parent","social", "enseignant"],
+    "labels": ["Parent, proche", "Travailleur social",  "Enseignant"]
   }
 ]

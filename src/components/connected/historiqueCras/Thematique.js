@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import labelsCorrespondance from '../../../data/labelsCorrespondance.json';
 
-function Thematiques({ texte }) {
+function Thematique({ texte }) {
 
   const image = labelsCorrespondance.find(label => label.nom === texte)?.image;
   const alt = labelsCorrespondance.find(label => label.nom === texte)?.correspondance;
@@ -16,8 +16,8 @@ function Thematiques({ texte }) {
   );
 }
 
-Thematiques.propTypes = {
+Thematique.propTypes = {
   texte: PropTypes.string,
 };
 
-export default Thematiques;
+export default Thematique;

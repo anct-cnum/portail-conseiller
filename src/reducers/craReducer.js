@@ -377,6 +377,40 @@ export default function cra(state = initialState, action) {
         error: action.error,
         printFlashbag: true
       };
+    case 'SEARCH_SOUS_THEMES_CRA_REQUEST':
+      return {
+        ...state,
+        loadingSuggestion: true,
+        error: false,
+        errorSousTheme: null
+      };
+    case 'SEARCH_SOUS_THEMES_CRA_SUCCESS':
+      return {
+        ...state,
+        loadingSuggestion: false,
+        listeSousThemes: action.sousThemes,
+      };
+    case 'SEARCH_SOUS_THEMES_CRA_FAILURE':
+      return {
+        ...state,
+        loadingSuggestion: false,
+        error: action.error
+      };
+    case 'CLEAR_SOUS_THEMES':
+      return {
+        ...state,
+        listeSousThemes: [],
+      };
+    case 'VERIFY_SOUS_THEMES':
+      return {
+        ...state,
+        errorSousTheme: action.error
+      };
+    case 'UPDATE_SOUS_THEME':
+      return {
+        ...state,
+        sousThemes: action.sousThemes
+      };
     default:
       return state;
   }

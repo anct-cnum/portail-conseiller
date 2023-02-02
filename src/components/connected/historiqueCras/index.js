@@ -4,18 +4,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
 import FlashMessage from 'react-flash-message';
 import Pluralize from 'react-pluralize';
-import { historiqueCrasActions } from '../../../actions/historiqueCras.actions';
 import labelsCorrespondance from '../../../data/labelsCorrespondance.json';
 import { htmlDecode } from '../../../utils/functionEncodeDecode';
+import { statistiqueActions, historiqueCrasActions } from '../../../actions';
 import Footer from '../../Footer';
-import Thematiques from './Thematiques';
+import Thematique from './Thematique';
 import Spinner from 'react-loader-spinner';
 import Pagination from '../../admin/Pagination';
 import FiltreCra from './FiltreCra';
 import ConfirmationSuppressionCra from './SupprimerCra';
+import SousTheme from './SousTheme';
 import FiltreDate from './FiltreDate';
 import FiltreLieu from './FiltreLieu';
-import { statistiqueActions } from '../../../actions';
 
 function HistoriqueCras() {
   const dispatch = useDispatch();
@@ -229,6 +229,7 @@ function HistoriqueCras() {
                         <th scope="col">
                           <FiltreCra texte="Th&eacute;matiques" css="themes" datas={themes} setDatas={setThematique} />
                         </th>
+                        <th scope="col"> Annotations</th>
                         <th scope="col" className="medium-column">
                           <span className="tri-date" onClick={() => {
                             sortByDate();
@@ -264,8 +265,13 @@ function HistoriqueCras() {
                             {accompagnement.cra.nbParticipants}
                           </td>
                           <td>{accompagnement.cra.themes.map((theme, idx) =>
-                            <Thematiques key={idx} texte={theme} />
+                            <Thematique key={idx} texte={theme} />
                           )}
+                          </td>
+                          <td>
+                            {accompagnement.cra?.sousThemes?.map((sousTheme, idx) =>
+                              <SousTheme key={idx} sousTheme={sousTheme}/>
+                            )}
                           </td>
                           <td className="modifie-le" style={{ textAlign: 'center' }}>
                             {accompagnement?.updatedAt ?

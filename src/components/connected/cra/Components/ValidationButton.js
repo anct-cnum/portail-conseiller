@@ -23,10 +23,10 @@ function ValidationButton() {
     } else {
       /* eslint-disable */
       let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error, showSelectRedirection, nbParticipantsAge, nbParticipantsStatut,
-        nbParticipantsAccompagnement, printFlashbag, buttonCP, buttonPermanences, buttonPermanence, nomEnseigne, ...dataCraToSend } = cra;
+        nbParticipantsAccompagnement, printFlashbag, buttonCP, buttonPermanences, buttonPermanence, nomEnseigne, listeSousThemes, errorSousTheme, loadingSuggestion,
+        ...dataCraToSend } = cra;
       dataCraToSend.idStructure = conseiller?.structureId;
       /* eslint-enable */
-
 
       if (dataCraToSend?.sousThemes?.length === 0) {
         delete dataCraToSend.sousThemes;

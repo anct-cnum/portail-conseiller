@@ -71,7 +71,7 @@
   },
   {
     "nom": "traitement texte",
-    "correspondance": "Traitement de texte",
+    "correspondance": "Bureautique",
     "image": "/logos/cra/logo-traitement-texte.svg"
   },
   {
@@ -110,8 +110,24 @@
     "image": "/logos/cra/logo-sante.svg"
   },
   {
+    "nom": "budget",
+    "correspondance": "Budget",
+    "image": "/logos/cra/logo-budget.svg"
+  },
+  {
+    "nom": "diagnostic",
+    "correspondance": "Diagnostic num&eacute;rique",
+    "image": "/logos/cra/logo-diagnostic-numerique.svg"
+  },
+  {
+    "nom": "scolaire",
+    "correspondance": "Scolaire",
+    "image": "/logos/cra/logo-scolaire.svg"
+  },
+  {
     "nom": "autre",
-    "correspondance": "Autre"
+    "correspondance": "Autre",
+    "image": "/logos/cra/logo-autre.svg"
   },
   {
     "nom": "0-30",
