@@ -7,7 +7,7 @@ function SousTheme({ sousTheme }) {
   const theme = Object.keys(sousTheme)[0];
 
   sousTheme[theme]?.forEach(element => {
-    const index = correspondancesSousThemes.find(corres => corres.theme === theme)?.values.indexOf(element);
+    const index = correspondancesSousThemes.find(corres => corres.theme === theme)?.values?.indexOf(element);
     if (index > -1) {
       annotations.push(correspondancesSousThemes.find(corres => corres.theme === theme)?.labels[index]);
     } else {
