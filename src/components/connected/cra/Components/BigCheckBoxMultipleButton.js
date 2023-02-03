@@ -92,9 +92,15 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, b
                 </label>
                 <div className="fr-fieldset fr-fieldset--inline">
                   { correspondancesSousThemes.filter(t => t.theme === value).map((sous, key) => {
+                    let st = [];
+                    cra?.sousThemes?.forEach(sousTheme => {
+                      if (sousTheme[value]) {
+                        st = sousTheme;
+                      }
+                    });
                     return <div key={key} className="fr-checkbox-group">
                       <CheckboxButton values= {sous.values} labels={sous.labels} clickSousTheme={clickSousTheme}
-                        craSousThemes={cra?.sousThemes?.length >= 1 ? cra?.sousThemes[0][value] : []} />
+                        craSousThemes={st[value] ?? []} />
                     </div>;
                   }
                   )}
