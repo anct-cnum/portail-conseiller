@@ -67,12 +67,12 @@ function countByPermanence(permanenceId) {
   return fetch(`${apiUrlRoot}/cras/countByPermanence?permanenceId=${permanenceId}`, requestOptions).then(handleResponse);
 }
 
-function searchSuggestion(theme, sousTheme) {
+function searchSuggestion(sousTheme) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
   };
-  return fetch(`${apiUrlRoot}/cras/searchSousThemes?theme=${theme}&sousTheme=${sousTheme}`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/cras/searchSousThemes?sousTheme=${sousTheme}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

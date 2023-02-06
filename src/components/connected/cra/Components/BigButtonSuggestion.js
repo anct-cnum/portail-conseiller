@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { craActions } from '../../../../actions';
 import { sortByString } from '../../../../utils/functionsSort';
-import labelsCorrespondance from '../../../../data/labelsCorrespondance.json';
-import correspondancesSousThemes from '../../../../data/sousThemes.json';
-import { changeToMinusculeWithTrim, decodeEntitiesSuggestion } from '../utils/CraFunctions';
+import { changeToMinusculeWithTrim } from '../utils/CraFunctions';
 
 function BigButtonSuggestion() {
   const dispatch = useDispatch();
@@ -18,15 +16,16 @@ function BigButtonSuggestion() {
 
   const clearSuggestion = () => {
     setSuggestion('');
+    const sousThemes = cra?.sousThemes.filter(sousTheme => Object.keys(sousTheme)[0] !== 'annotation');
     dispatch(craActions.clearListeSousThemes());
-    dispatch(craActions.updateMultipleThemes([]));
+    dispatch(craActions.updateMultipleThemes(sousThemes));
   };
 
   const searchSuggestion = e => {
     const value = e.target.value;
     setSuggestion(changeToMinusculeWithTrim(value));
     if (value.length > 2) {
-      dispatch(craActions.searchSuggestion(cra.themes[0], value));
+      dispatch(craActions.searchSuggestion(changeToMinusculeWithTrim(value)));
     } else {
       dispatch(craActions.clearListeSousThemes());
     }
@@ -60,13 +59,21 @@ function BigButtonSuggestion() {
   useEffect(() => {
     if (error?.sousTheme === null) {
       const sousThemes = [];
-      if (cra?.sousThemes) {
-        const theme = cra?.themes[0];
-        const sousThemesExistants = cra?.sousThemes[0]?.[theme] ?? [];
-        sousThemesExistants.push(suggestion);
-        sousThemes.push({ [theme]: sousThemesExistants });
+      if (cra?.sousThemes?.length > 0) {
+        let insertAnnotation = false;
+        cra?.sousThemes.forEach(sousTheme => {
+          if (sousTheme?.annotation?.length > 0) {
+            sousThemes.push({ 'annotation': [suggestion] });
+            insertAnnotation = true;
+          } else {
+            sousThemes.push(sousTheme);
+          }
+        });
+        if (!insertAnnotation) {
+          sousThemes.push({ 'annotation': [suggestion] });
+        }
       } else {
-        sousThemes.push({ [cra?.themes[0]]: [suggestion] });
+        sousThemes.push({ 'annotation': [suggestion] });
       }
       dispatch(craActions.updateMultipleThemes(sousThemes));
       setModalOpenClose(false);
@@ -74,48 +81,43 @@ function BigButtonSuggestion() {
   }, [error]);
 
   useEffect(() => {
-    if (cra?.themes?.length !== 1 && suggestion) {
+    if (cra?.themes?.length === 0 && suggestion) {
       setSuggestion('');
       dispatch(craActions.updateMultipleThemes([]));
-    } else if (cra?.themes?.length === 1 && cra?.sousThemes?.length > 0) {
-      const theme = cra?.themes[0];
-      const sousTheme = cra?.sousThemes[0][theme] ? cra?.sousThemes[0][theme][0] : '';
-      if (!correspondancesSousThemes.find(label => label.theme === theme)) {
-        setSuggestion(changeToMinusculeWithTrim(sousTheme));
-      } else if (correspondancesSousThemes.find(label => label.theme === theme) &&
-        !correspondancesSousThemes.find(label => label.theme === theme).values.includes(sousTheme)) {
-        setSuggestion(changeToMinusculeWithTrim(sousTheme));
-      }
+    } else if (cra?.themes?.length > 0 && cra?.sousThemes?.length > 0) {
+      cra?.sousThemes.forEach(sousTheme => {
+        if (sousTheme?.annotation?.length > 0) {
+          setSuggestion(changeToMinusculeWithTrim(sousTheme?.annotation[0]));
+        }
+      });
     }
   }, [cra]);
 
   return (
     <>
       <div className="checkboxButton" onClick={() => {
-        if (cra?.themes?.length === 1) {
+        if (cra?.themes?.length >= 1) {
           setModalOpenClose(true);
         }
       }}>
-        <div className={`${cra?.themes?.length !== 1 ? 'inactif-box' : 'gradient-box'}`}>
-          <button className={`checkboxRattachement2 ${cra?.themes?.length !== 1 ? 'inactif-btn' : ''}`}
+        <div className={`${cra?.themes?.length === 0 ? 'inactif-box' : 'gradient-box'}`}>
+          <button className={`checkboxRattachement2 ${cra?.themes?.length === 0 || !cra?.themes ? 'inactif-btn' : ''}`}
             style={{ height: '104px' }}
             value="suggestion">
             <div value="suggestion" style={{ display: 'flex' }}>
-              <span className={`imageTheme ${cra?.themes?.length !== 1 ? 'suggestionInactif' : 'suggestion'}`}></span>
+              <span className={`imageTheme ${cra?.themes?.length === 0 || !cra?.themes ? 'suggestionInactif' : 'suggestion'}`}></span>
               <span
-                className={`fr-label labelCheckboxCustom ${cra?.themes?.length !== 1 ? 'text-suggestion-inactif' : 'text-suggestion'} `} value="suggestion">
-                {(suggestion && cra?.themes?.length) === 1 &&
-                <>{decodeEntitiesSuggestion(labelsCorrespondance.find(label => label.nom === cra?.themes[0])?.correspondance)}</>
-                }
-                {(!suggestion || cra?.themes?.length !== 1) &&
-                  <>
-                    Pr&eacute;ciser la th&eacute;matique coch&eacute;e
-                  </>
+                className={`fr-label labelCheckboxCustom ${cra?.themes?.length === 0 || !cra?.themes ?
+                  'text-suggestion-inactif' : 'text-suggestion'} `} value="suggestion">
+                {!suggestion &&
+                 <>
+                  Pr&eacute;ciser la th&eacute;matique coch&eacute;e
+                 </>
                 }
                 <br/>
                 <span value="suggestion" className="baseline">
-                  {suggestion &&
-                    <>{ suggestion }</>
+                  {suggestion && suggestion.length <= 35 &&
+                    <span style={{ top: '-15px', position: 'relative' }}>{ suggestion }</span>
                   }
                   {!suggestion &&
                     <>Annoter l&rsquo;activit&eacute; et proposer une &eacute;volution future</>

@@ -270,7 +270,12 @@ function HistoriqueCras() {
                           </td>
                           <td>
                             {accompagnement.cra?.sousThemes?.map((sousTheme, idx) =>
-                              <SousTheme key={idx} sousTheme={sousTheme}/>
+                              <span key={idx} >
+                                <SousTheme sousTheme={sousTheme}/>
+                                {idx + 1 < accompagnement.cra?.sousThemes.length &&
+                                  <>&nbsp;/&nbsp;</>
+                                }
+                              </span>
                             )}
                           </td>
                           <td className="modifie-le" style={{ textAlign: 'center' }}>

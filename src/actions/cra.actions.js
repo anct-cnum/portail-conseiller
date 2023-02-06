@@ -253,10 +253,10 @@ function countByPermanence(permanenceId) {
   }
 }
 
-function searchSuggestion(theme, sousTheme) {
+function searchSuggestion(sousTheme) {
   return dispatch => {
     dispatch(request(sousTheme));
-    craService.searchSuggestion(theme, sousTheme)
+    craService.searchSuggestion(sousTheme)
     .then(
       result => {
         dispatch(success(result.sousThemes));
