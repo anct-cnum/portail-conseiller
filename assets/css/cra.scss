@@ -106,11 +106,13 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
   }
   .information-message-important {
     text-align: center;
+    margin: 0 auto;
     width: 83%;
   }
   .information-message-theme {
     color: #518fff;
     font-size: 14px;
+    padding: 8px 16px 40px 8px;
   }
   .open-information {
     position: relative;
@@ -806,6 +808,7 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
       }
       .text-suggestion {
         color: #8585f6;
+        overflow: auto;
       }
       &.inactif-btn:hover {
         background: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%);
@@ -965,9 +968,11 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
       }
       .budget {
         background: $budget;
+        height: 37px;
       }
       .budgetSelected {
         background: $budgetSelected;
+        height: 37px;
       }
       .sante {
         background: $sante;
@@ -983,15 +988,19 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
       }
       .scolaire {
         background: $scolaire;
+        height: 37px;
       }
       .scolaireSelected {
         background: $scolaireSelected;
+        height: 37px;
       }
       .autre {
         background:$autre;
+        height: 37px;
       }
       .autreSelected {
         background: $autreSelected;
+        height: 37px;
       }
     }
     .checkboxRattachement2-selected {
@@ -1069,7 +1078,12 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
     .labelCheckboxCustom {
       font-size: 12px;
     }
-
+    .multi-select {
+      margin-top: 5px !important;
+      overflow: auto;
+      width: 100%;
+      height: 90px;
+    }
   }
 
   /* custom point de rupture MD du DS */

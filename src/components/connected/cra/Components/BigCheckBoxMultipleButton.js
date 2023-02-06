@@ -86,7 +86,7 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, b
               </>
             }
             { controlSelected?.includes(value) &&
-              <div className="checkbox-selected fr-mt-3w fr-mb-3w">
+              <div className="checkbox-selected multi-select fr-mt-3w fr-mb-3w">
                 <label className="fr-label fr-text--sm" style={{ color: 'black', margin: 'auto' }}>
                   Optionnellement, pr&eacute;cisez&nbsp;:
                 </label>

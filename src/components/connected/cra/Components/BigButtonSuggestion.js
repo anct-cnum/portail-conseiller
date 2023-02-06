@@ -16,14 +16,14 @@ function BigButtonSuggestion() {
 
   const clearSuggestion = () => {
     setSuggestion('');
-    const sousThemes = cra?.sousThemes.filter(sousTheme => Object.keys(sousTheme)[0] !== 'annotation');
+    const sousThemes = cra?.sousThemes.filter(sousTheme => Object.keys(sousTheme)[0] !== 'annotation') ?? [];
     dispatch(craActions.clearListeSousThemes());
     dispatch(craActions.updateMultipleThemes(sousThemes));
   };
 
   const searchSuggestion = e => {
     const value = e.target.value;
-    setSuggestion(changeToMinusculeWithTrim(value));
+    setSuggestion(value);
     if (value.length > 2) {
       dispatch(craActions.searchSuggestion(changeToMinusculeWithTrim(value)));
     } else {
