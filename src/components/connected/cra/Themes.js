@@ -101,7 +101,7 @@ function Themes() {
         </div>
       </div>
 
-      <div className={`responsiveCheckbox2_1 ${voirInformation ? 'theme-height' : ''}`}>
+      <div className={`responsiveCheckbox2_1 ${voirInformation ? 'theme-height info-naviguer' : ''}`}>
         <BigCheckboxButton
           type="themes"
           label="Comment naviguer sur Internet"
@@ -169,7 +169,7 @@ function Themes() {
         </div>
       </div>
 
-      <div className={`responsiveCheckbox3_1 ${voirInformation ? 'theme-height' : ''}`}>
+      <div className={`responsiveCheckbox3_1 ${voirInformation ? 'info-pro theme-height ' : ''}`}>
         <BigCheckboxButton
           type="themes"
           label="Assister un professionnel"
@@ -223,7 +223,7 @@ function Themes() {
         </div>
       </div>
 
-      <div className={`responsiveCheckbox3 ${voirInformation ? 'info-top-34 theme-height' : ''}`}>
+      <div className={`responsiveCheckbox3 ${voirInformation ? 'info-aidant theme-height' : ''}`}>
         <BigCheckboxMultipleButton
           type="themes"
           label="Accompagner un aidant"
@@ -275,7 +275,7 @@ function Themes() {
         </div>
       </div>
 
-      <div className={`responsiveCheckbox3_1 ${voirInformation ? 'theme-height' : ''}`}>
+      <div className={`responsiveCheckbox3_1 ${voirInformation ? 'theme-height info-scolaire' : ''}`}>
         <BigCheckboxButton
           type="themes"
           label="Scolaire"

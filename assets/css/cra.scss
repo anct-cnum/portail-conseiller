@@ -152,24 +152,27 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
   .q6 {
     top: 0px;
   }
-  .info-rattachement, .info-autre, .info-date-dist-dom, .info-individuel, .info-ponctuelle, .info-collectif,
-  .info-diagnostic, .info-fraude, .info-demarche, .info-suggestion, .info-top-12, .info-top-24, .info-top-34  {
+  .info-rattachement, .info-autre, .info-date-dist-dom, .info-individuel, .info-ponctuelle, .info-collectif, .info-diagnostic, .info-naviguer,
+  .info-fraude, .info-demarche, .info-pro, .info-aidant, .info-scolaire, .info-suggestion, .info-top-12, .info-top-24, .info-top-34  {
     position: relative;
   }
-  .info-fraude, .info-demarche {
+  .info-demarche, .info-suggestion {
     top: 24px;
   }
-  .info-suggestion  {
-    top: 12px;
+  .info-fraude {
+    top: 22px;
   }
-  .info-individuel {
-    top: -12px;
+  .info-naviguer, .info-pro {
+    top: 12px;
   }
   .info-ponctuelle {
     top: 0px;
   }
-  .info-top-12, .info-collectif {
+  .info-top-12, .info-individuel, .info-collectif {
     top: -12px;
+  }
+  .info-scolaire {
+    top: -14px;
   }
   .info-top-24 {
     top: -24px;
@@ -180,7 +183,9 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
   .info-top-34 {
     top: -34px;
   }
-
+  .info-aidant {
+    top: -36px;
+  }
   .questionRequired, .labelError {
     color: $errorDarkMode;
   }
