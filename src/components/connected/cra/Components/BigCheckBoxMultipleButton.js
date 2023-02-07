@@ -86,15 +86,21 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, b
               </>
             }
             { controlSelected?.includes(value) &&
-              <div className="checkbox-selected fr-mt-3w fr-mb-3w">
+              <div className="checkbox-selected multi-select fr-mt-3w fr-mb-3w">
                 <label className="fr-label fr-text--sm" style={{ color: 'black', margin: 'auto' }}>
                   Optionnellement, pr&eacute;cisez&nbsp;:
                 </label>
                 <div className="fr-fieldset fr-fieldset--inline">
                   { correspondancesSousThemes.filter(t => t.theme === value).map((sous, key) => {
+                    let st = [];
+                    cra?.sousThemes?.forEach(sousTheme => {
+                      if (sousTheme[value]) {
+                        st = sousTheme;
+                      }
+                    });
                     return <div key={key} className="fr-checkbox-group">
                       <CheckboxButton values= {sous.values} labels={sous.labels} clickSousTheme={clickSousTheme}
-                        craSousThemes={cra?.sousThemes?.length >= 1 ? cra?.sousThemes[0][value] : []} />
+                        craSousThemes={st[value] ?? []} />
                     </div>;
                   }
                   )}

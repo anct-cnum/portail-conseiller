@@ -5,7 +5,6 @@ import correspondancesSousThemes from '../../../data/sousThemes.json';
 function SousTheme({ sousTheme }) {
   let annotations = [];
   const theme = Object.keys(sousTheme)[0];
-
   sousTheme[theme]?.forEach(element => {
     const index = correspondancesSousThemes.find(corres => corres.theme === theme)?.values?.indexOf(element);
     if (index > -1) {

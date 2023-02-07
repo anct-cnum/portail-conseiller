@@ -331,7 +331,9 @@ function Themes() {
         <BigButtonSuggestion />
         <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
           <ul>
-            <li></li>
+            <li>Permet de pr&eacute;ciser la, ou les th&eacute;matiques coch&eacute;es. </li>
+            <li>Les annotations sont visibles dans votre historique de CRA.</li>
+            <li>Mutualise &eacute;galement l&rsquo;annotation dans la base de donn&eacute;es CnFS pour les &eacute;volutions futures pour l&rsquo;outil.</li>
           </ul>
         </div>
       </div>
