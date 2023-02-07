@@ -16,7 +16,7 @@ function BigButtonSuggestion() {
 
   const clearSuggestion = () => {
     setSuggestion('');
-    const sousThemes = cra?.sousThemes.filter(sousTheme => Object.keys(sousTheme)[0] !== 'annotation') ?? [];
+    const sousThemes = cra?.sousThemes?.filter(sousTheme => Object.keys(sousTheme)[0] !== 'annotation') ?? [];
     dispatch(craActions.clearListeSousThemes());
     dispatch(craActions.updateMultipleThemes(sousThemes));
   };
