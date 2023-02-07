@@ -39,7 +39,7 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
         conseillers.push(conseillerId);
       }
 
-      const nouveauLieu = {
+      let nouveauLieu = {
         //Données du CNFS
         estCoordinateur: fields.filter(field => field.name === 'estCoordinateur')[0]?.value ?? null,
         emailPro: fields.filter(field => field.name === 'emailPro')[0]?.value ?? null,
@@ -87,6 +87,8 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
       nouveauLieu.adresse = JSON.parse(JSON.stringify(nouveauLieu.adresse,
         (key, value) => (value === '') ? null : value
       ));
+      nouveauLieu = JSON.parse(JSON.stringify(nouveauLieu).replace(/"\s+|\s+"/g, '"'));
+
       if (redirection === 'cartographie') {
         redirection = nouveauLieu?._id ?? conseillerId;
       }
