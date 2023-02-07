@@ -84,7 +84,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
       if (!lieuPrincipalPour.includes(conseillerId)) {
         lieuPrincipalPour.push(conseillerId);
       }
-      const nouveauLieu = {
+      let nouveauLieu = {
         //Données du CNFS
         estCoordinateur: fields.filter(field => field.name === 'estCoordinateur')[0]?.value ?? null,
         emailPro: fields.filter(field => field.name === 'emailPro')[0]?.value ?? null,
@@ -113,7 +113,8 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
       };
       nouveauLieu.telephonePro = formatTelephone(nouveauLieu.telephonePro, codeDepartement);
       nouveauLieu.numeroTelephone = formatTelephone(nouveauLieu.numeroTelephone, codeDepartement);
-
+      nouveauLieu = JSON.parse(JSON.stringify(nouveauLieu).replace(/"\s+|\s+"/g, '"'));
+      
       if (nouveauLieu?._id !== null && nouveauLieu?._id !== 'nouveau') {
         await dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, false, 'secondaire_0_'));
       } else if (prefixId) {
