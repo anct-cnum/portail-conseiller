@@ -17,17 +17,17 @@ $calendrierHover: url(../../public/logos/cra/logo-calendrier-n.svg) no-repeat;
 
 $diagnostic: url(../../public/logos/cra/logo-diagnostic-numerique.svg) no-repeat;
 $equipeInfo: url(../../public/logos/cra/logo-equip-info.svg) no-repeat;
-$cultureNum: url(../../public/logos/cra/logo-vocabulaire-info.svg) no-repeat;
-$navigateur: url(../../public/logos/cra/logo-naviguer-internet.svg) no-repeat;
+$cultureNum: url(../../public/logos/cra/logo-culture.svg) no-repeat;
+$navigateur: url(../../public/logos/cra/logo-naviguer.svg) no-repeat;
 $securite: url(../../public/logos/cra/logo-securite.svg) no-repeat;
 $courriel: url(../../public/logos/cra/logo-courriel.svg) no-repeat;
 $echanger: url(../../public/logos/cra/logo-echanger-proches.svg) no-repeat;
-$bureautique: url(../../public/logos/cra/logo-traitement-texte.svg) no-repeat;
+$bureautique: url(../../public/logos/cra/logo-bureautique.svg) no-repeat;
 $contenus: url(../../public/logos/cra/logo-contenus-numeriques.svg) no-repeat;
-$emploi: url(../../public/logos/cra/logo-trouver-emploi.svg) no-repeat;
+$emploi: url(../../public/logos/cra/logo-emploi.svg) no-repeat;
 $tpePme: url(../../public/logos/cra/logo-tpe-pme.svg) no-repeat;
 $accompagner: url(../../public/logos/cra/logo-accompagner-enfant.svg) no-repeat;
-$demarche: url(../../public/logos/cra/logo-demarche-en-ligne.svg) no-repeat;
+$demarche: url(../../public/logos/cra/logo-demarches.svg) no-repeat;
 $fraude: url(../../public/logos/cra/logo-fraude.svg) no-repeat;
 $budget : url(../../public/logos/cra/logo-budget.svg) no-repeat;
 $sante: url(../../public/logos/cra/logo-sante.svg) no-repeat;
@@ -38,20 +38,21 @@ $autre: url(../../public/logos/cra/logo-autre.svg) no-repeat;
 
 $diagnosticSelected: url(../../public/logos/cra/logo-diagnostic-numerique-n.svg) no-repeat;
 $equipeInfoSelected: url(../../public/logos/cra/logo-equip-info-n.svg) no-repeat;
-$cultureNumSelected: url(../../public/logos/cra/logo-vocabulaire-info-n.svg) no-repeat;
-$navigateurSelected: url(../../public/logos/cra/logo-naviguer-internet-n.svg) no-repeat;
+$cultureNumSelected: url(../../public/logos/cra/logo-culture-n.svg) no-repeat;
+$navigateurSelected: url(../../public/logos/cra/logo-naviguer-n.svg) no-repeat;
 $securiteSelected: url(../../public/logos/cra/logo-securite-n.svg) no-repeat;
 $courrielSelected: url(../../public/logos/cra/logo-courriel-n.svg) no-repeat;
 $echangerSelected: url(../../public/logos/cra/logo-echanger-proches-n.svg) no-repeat;
-$bureautiqueSelected: url(../../public/logos/cra/logo-traitement-texte-n.svg) no-repeat;
+$bureautiqueSelected: url(../../public/logos/cra/logo-bureautique-n.svg) no-repeat;
 $contenusSelected: url(../../public/logos/cra/logo-contenus-numeriques-n.svg) no-repeat;
-$emploiSelected: url(../../public/logos/cra/logo-trouver-emploi-n.svg) no-repeat;
+$emploiSelected: url(../../public/logos/cra/logo-emploi-n.svg) no-repeat;
 $tpePmeSelected: url(../../public/logos/cra/logo-tpe-pme-n.svg) no-repeat;
 $accompagnerSelected: url(../../public/logos/cra/logo-accompagner-enfant-n.svg) no-repeat;
-$demarcheSelected: url(../../public/logos/cra/logo-demarche-en-ligne-n.svg) no-repeat;
+$demarcheSelected: url(../../public/logos/cra/logo-demarches-n.svg) no-repeat;
 $fraudeSelected: url(../../public/logos/cra/logo-fraude-n.svg) no-repeat;
 $budgetSelected : url(../../public/logos/cra/logo-budget-n.svg) no-repeat;
 $santeSelected: url(../../public/logos/cra/logo-sante-n.svg) no-repeat;
+$suggestionSelected: url(../../public/logos/cra/logo-suggestion-n.svg) no-repeat;
 $scolaireSelected : url(../../public/logos/cra/logo-scolaire-n.svg) no-repeat;
 $autreSelected: url(../../public/logos/cra/logo-autre-n.svg) no-repeat;
 
@@ -817,6 +818,7 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
       }
       &.inactif-btn:hover {
         background: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%);
+        cursor: not-allowed;
       }
       &:hover {
         background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
@@ -876,7 +878,10 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
           background: $scolaireSelected;
         }
         .suggestion {
-          background: $suggestion;
+          background: $suggestionSelected;
+        }
+        .suggestionInactif {
+          background: $suggestionInactif;
         }
         .text-suggestion {
           color: #8585f6;
@@ -973,11 +978,9 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
       }
       .budget {
         background: $budget;
-        height: 37px;
       }
       .budgetSelected {
         background: $budgetSelected;
-        height: 37px;
       }
       .sante {
         background: $sante;
@@ -988,29 +991,29 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
       .suggestion {
         background: $suggestion;
       }
+      .suggestionSelected {
+        background: $suggestionSelected;
+      }
       .suggestionInactif {
         background: $suggestionInactif;
+        cursor: not-allowed;
       }
       .scolaire {
         background: $scolaire;
-        height: 37px;
       }
       .scolaireSelected {
         background: $scolaireSelected;
-        height: 37px;
       }
       .autre {
         background:$autre;
-        height: 37px;
       }
       .autreSelected {
         background: $autreSelected;
-        height: 37px;
       }
     }
     .checkboxRattachement2-selected {
       background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
-      color: black!important;
+      color: #161616!important;
       .baseline {
         color: #666666;
       }
@@ -1089,22 +1092,14 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
       width: 100%;
       height: 90px;
     }
+    .responsiveCheckbox1, .responsiveCheckbox3_1, .responsiveCheckbox2_1, .responsiveCheckbox2, .responsiveCheckbox1_2, .responsiveCheckbox3 {
+      width: 50%;
+      margin-left: 0px;
+    }
   }
 
   /* custom point de rupture MD du DS */
   @media (max-width: 767px) {
-
-    .responsiveCheckbox1, .responsiveCheckbox3_1, .responsiveCheckbox2_1 {
-      width: calc(500%/12);
-      margin-left: calc(100%/12);
-      padding-left: 0.5rem;
-    }
-
-    .responsiveCheckbox2, .responsiveCheckbox1_2, .responsiveCheckbox3 {
-      width: calc(500%/12);
-      margin-left: 0px;
-    }
-
     .questionCheckboxResponsive {
       text-align: center;
       height: unset;
@@ -1873,6 +1868,9 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
   @media (max-width: 576px) {
     .responsiveElement2, .responsiveRadioActivity1, .responsiveRadioActivity2 {
       width: 100%;
+    }
+    .responsiveRadioActivity2 {
+      margin-left: 8px;
     }
     .responsiveElement2 .dropdown, .responsiveElement2 .buttonPermanence-filled {
       width: 95%;

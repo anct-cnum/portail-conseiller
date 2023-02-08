@@ -101,11 +101,12 @@ function BigButtonSuggestion() {
         }
       }}>
         <div className={`${cra?.themes?.length === 0 ? 'inactif-box' : 'gradient-box'}`}>
-          <button className={`checkboxRattachement2 ${cra?.themes?.length === 0 || !cra?.themes ? 'inactif-btn' : ''}`}
-            style={{ height: '104px' }}
-            value="suggestion">
+          <button className={`checkboxRattachement2 ${cra?.themes?.length === 0 || !cra?.themes ? 'inactif-btn' : ''}
+            ${suggestion ? 'checkboxRattachement2-selected' : ''}`} style={{ height: '104px' }} value="suggestion">
             <div value="suggestion" style={{ display: 'flex' }}>
-              <span className={`imageTheme ${cra?.themes?.length === 0 || !cra?.themes ? 'suggestionInactif' : 'suggestion'}`}></span>
+              <span className={`imageTheme ${cra?.themes?.length === 0 || !cra?.themes ? 'suggestionInactif' : ''}
+                ${suggestion ? 'suggestionSelected' : 'suggestion'}
+              `}></span>
               <span
                 className={`fr-label labelCheckboxCustom ${cra?.themes?.length === 0 || !cra?.themes ?
                   'text-suggestion-inactif' : 'text-suggestion'} `} value="suggestion">
@@ -117,7 +118,7 @@ function BigButtonSuggestion() {
                 <br/>
                 <span value="suggestion" className="baseline">
                   {suggestion && suggestion.length <= 35 &&
-                    <span style={{ top: '-15px', position: 'relative' }}>{ suggestion }</span>
+                    <span style={{ top: '-15px', position: 'relative', color: '#000' }}>{ suggestion }</span>
                   }
                   {!suggestion &&
                     <>Annoter l&rsquo;activit&eacute; et proposer une &eacute;volution future</>
@@ -143,7 +144,8 @@ function BigButtonSuggestion() {
                 <h1 className="fr-modal__title fr-mb-2w">Annoter l&rsquo;activit&eacute; et proposer une &eacute;volution.</h1>
                 <label htmlFor="suggestion" className={`label-suggestion ${error?.sousTheme ? 'text-error' : ''}`}>
                   Saisissez votre intitul&eacute; (35 caract&egrave;res max.)
-                  <input id="suggestion" name="suggestion" className={`fr-input input-suggestion fr-mt-1w ${error?.sousTheme ? 'input-error' : ''}`} type="text"
+                  <input id="suggestion" name="suggestion" maxLength="35" type="text"
+                    className={`fr-input input-suggestion fr-mt-1w ${error?.sousTheme ? 'input-error' : ''}`}
                     style={{ width: '470px' }} value={suggestion} onChange={
                       e => {
                         searchSuggestion(e);
