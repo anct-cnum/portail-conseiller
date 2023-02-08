@@ -58,6 +58,14 @@ $autreSelected: url(../../public/logos/cra/logo-autre-n.svg) no-repeat;
 $chevronGauche: url(../../public/logos/cra/logo-chevron-gauche.svg) no-repeat;
 $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
 
+$individuel: url(../../public/logos/cra/logo-acc-individuel.svg) no-repeat;
+$atelier: url(../../public/logos/cra/logo-atelier.svg) no-repeat;
+$redirection: url(../../public/logos/cra/logo-redirection-structure.svg) no-repeat;
+
+$individuelSelected: url(../../public/logos/cra/logo-acc-individuel-n.svg) no-repeat;
+$atelierSelected: url(../../public/logos/cra/logo-atelier-n.svg) no-repeat;
+$redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.svg) no-repeat;
+
 .cra {
   .espacement {
     margin-bottom: 3.75rem !important;
@@ -1301,6 +1309,18 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
       }
       .logoDomicile {
         background: $lieuDomicile;
+      }
+      .logoIndividuel, .atelier,.logoRedirection {
+        background: $individuel;
+        display: inline-block;
+        height: 56px;
+        width: 56px;
+      }
+      .atelier{
+        background: $atelier;
+      }
+      .logoRedirection {
+        background: $redirection;
       }
       .texteDatePicker {
         position: relative;

@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import BigCountRadioButton from './Components/BigCountRadioButton';
 import SmallRadioButton from './Components/SmallRadioButton';
 import BigRadioButton from './Components/BigRadioButton';
+import BigRadioButtonV2 from './Components/BigRadioButtonV2';
 
 function Accompagnement() {
 
@@ -18,15 +19,22 @@ function Accompagnement() {
           <span className="question">L&rsquo;accompagnement va-t-il &ecirc;tre poursuivi&nbsp;? (Optionnel)</span>
         </div>
         <div className="responsiveRadioActivity1">
+
           {accompagnement?.individuel === 0 &&
-            <BigRadioButton
+            <BigRadioButtonV2
+              type="accompagnement"
+              label="Accompagnement individuel"
+              value="individuel"
+              image="logoIndividuel"
+              classDiv="accIndividuel"
+            />
+            /*<BigRadioButton
               type="accompagnement"
               label="Accompagnement individuel"
               value="individuel"
               image="/logos/cra/logo-acc-individuel.svg"
               imageSelected="/logos/cra/logo-acc-individuel-n.svg"
-              heightImage="56px"
-              classDiv="accIndividuel"/>
+              classDiv="accIndividuel"/>*/
           }
           {accompagnement?.individuel > 0 &&
             <BigCountRadioButton
