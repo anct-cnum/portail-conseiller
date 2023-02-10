@@ -161,7 +161,10 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
     top: 24px;
   }
   .info-fraude {
-    top: 22px;
+    top: 11px;
+    @supports (-moz-appearance:none) {
+      top: 22px;
+    }
   }
   .info-naviguer, .info-pro {
     top: 12px;
