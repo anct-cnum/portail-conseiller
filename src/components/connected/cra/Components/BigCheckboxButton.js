@@ -4,7 +4,7 @@ import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
 import { getCraValue } from '../utils/CraFunctions';
 
-function BigCheckboxButton({ type, label, value, image, imageSelected, heightImage, baseline }) {
+function BigCheckboxButton({ type, label, value, image, imageSelected, baseline }) {
 
   const dispatch = useDispatch();
   let cra = useSelector(state => state.cra);
@@ -28,29 +28,27 @@ function BigCheckboxButton({ type, label, value, image, imageSelected, heightIma
 
   return (
     <div className="checkboxButton" onClick={onClickCheckbox} value={value}>
-      <button id="checkboxRattachement"
-        className={`checkboxRattachement ${controlSelected?.includes(value) ? 'checkboxRattachement-selected' : ''}`}
-        style={{ height: '108px' }}
-        value={value}>
-        <div value={value} style={{ display: 'flex' }}>
-          <img
-            src={!controlSelected?.includes(value) ? image : imageSelected}
-            alt={label} height={heightImage}
-            style={{ margin: '24px' }}
-            value={value}/>
-          <span
-            className={`fr-label labelCheckboxCustom ${controlSelected?.includes(value) ? 'checkboxRattachement-selected' : ''}`}
-            value={value}>
-            {label}
-            {baseline &&
-              <>
-                <br/>
-                <span value={value} className="baseline">{baseline}</span>
-              </>
-            }
-          </span>
-        </div>
-      </button>
+      <div className="gradient-box">
+        <button className={`checkboxRattachement2 ${controlSelected?.includes(value) ? 'checkboxRattachement2-selected' : ''}`}
+          style={{ height: '104px' }}
+          value={value}>
+          <div value={value} style={{ display: 'flex' }}>
+            <span value={value} className={`imageTheme ${!controlSelected?.includes(value) ? image : imageSelected}`}></span>
+            <span
+              className={`fr-label labelCheckboxCustom
+                ${controlSelected?.includes(value) ? 'checkboxRattachement-selected' : ''}`}
+              value={value}>
+              {label}
+              {baseline &&
+                <>
+                  <br/>
+                  <span value={value} className="baseline">{baseline}</span>
+                </>
+              }
+            </span>
+          </div>
+        </button>
+      </div>
     </div>
   );
 }
@@ -61,7 +59,6 @@ BigCheckboxButton.propTypes = {
   value: PropTypes.string,
   image: PropTypes.string,
   imageSelected: PropTypes.string,
-  heightImage: PropTypes.string,
   baseline: PropTypes.string,
 };
 

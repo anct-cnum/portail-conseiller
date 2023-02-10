@@ -380,10 +380,21 @@
   opacity: 1;
   visibility: visible;
 }
-.modal-sexe-age, .modal-remerciement, .modal-ouverture, .modal-suppression {
+.modal-sexe-age, .modal-remerciement, .modal-ouverture, .modal-suppression, .modal-suggestion {
   background-color: #fff;
   padding: 4em 2.5em;
   color: #1e1e1e;
+  .fr-btn--close {
+    color:#000091;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    min-height: 2rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    &:hover {
+      background-color: #efefef;
+    }
+  }
   h1, legend, label {
     color: #1e1e1e;
   }
@@ -413,10 +424,35 @@
   .label {
     font-weight: 600;
   }
-  #date {
+  .label-suggestion {
+    font-size: 1rem !important;
+  }
+  .input-suggestion,  #date {
     background-color: #f0f0f0;
     border-bottom: 2px solid #6A6A6A;
     color:#a1a2a5;
+  }
+  .input-suggestion {
+    color:#000;
+  }
+  .scrollOptionsSuggestion {
+    background-color: #fff;
+    position: absolute;
+    overflow-x: hidden;
+    max-height: 264px;
+    overflow: scroll;
+    width: 470px;
+    div {
+      padding-left: 16px;
+      line-height: 44px;
+      font-weight: 400;
+      font-size: 14px;
+      color: #3a3a3a;
+      &:hover {
+        background: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
+        color: #fff;
+      }
+    }
   }
   .ouverture-link {
     font-weight: 600;
@@ -460,14 +496,18 @@
       background-color: #fff;
     }
   }
-  .ouverture-btn, .remerciement-btn, .suppression-btn {
+  .ouverture-btn, .remerciement-btn, .suppression-btn, .suggestion-create-btn {
     background-color: #000091;
     color: #fff;
   }
-  .plus-tard-btn, .annuler-btn {
+  .plus-tard-btn, .annuler-btn, .suggestion-delete-btn {
     background-color: #fff;
     border: 1px solid #000091;
     color: #000091;
+  }
+  .disabled-btn {
+    background-color: #666666;
+    color: #fff;
   }
 }
 

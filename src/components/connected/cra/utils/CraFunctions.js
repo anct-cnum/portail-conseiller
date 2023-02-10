@@ -31,3 +31,8 @@ export function changeToMinusculeWithTrim(value) {
   return value.toLowerCase().trim();
 }
 
+export function decodeEntitiesSuggestion(theme) {
+  let txt = document.createElement('textarea');
+  txt.innerHTML = theme;
+  return txt.value;
+}
