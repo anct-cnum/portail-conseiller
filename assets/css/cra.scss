@@ -1,6 +1,13 @@
+$black-gradient: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%);
+$white-gradient: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
+$blue-gradient: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
+$small-blue-gradient: linear-gradient(0deg,#3558A2,#9A9AFF) border-box;
+$mask-gradient: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+$red-gradient: linear-gradient(0deg,red,orange) border-box;
 $errorDarkMode: #ff3333;
 $background: #1e1e1e;
 $blue: #2b8bf7;
+
 
 $lieuRattachementSelected: url(../../public/logos/cra/logo-lieu-rattachement-selected.svg) no-repeat;
 $lieuRattachementActif: url(../../public/logos/cra/logo-lieu-rattachement-actif.svg) no-repeat;
@@ -60,13 +67,29 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
 
 $individuel: url(../../public/logos/cra/logo-acc-individuel.svg) no-repeat;
 $atelier: url(../../public/logos/cra/logo-atelier.svg) no-repeat;
+$logoDemande: url(../../public/logos/cra/logo-demande-ponctuelle.svg) no-repeat;
 $redirection: url(../../public/logos/cra/logo-redirection-structure.svg) no-repeat;
 
 $individuelSelected: url(../../public/logos/cra/logo-acc-individuel-n.svg) no-repeat;
 $atelierSelected: url(../../public/logos/cra/logo-atelier-n.svg) no-repeat;
+$logoDemandeSelected: url(../../public/logos/cra/logo-demande-ponctuelle-n.svg) no-repeat;
 $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.svg) no-repeat;
 
 .cra {
+
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+  }
+/* Firefox */
+  input[type=number] {
+    -moz-appearance:textfield;
+    appearance: textfield;
+  }
   .espacement {
     margin-bottom: 3.75rem !important;
   }
@@ -296,20 +319,21 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
   .selectAccompagnementRedirection {
     border-radius: 20px 20px 0 0;
     border: solid 1px #5398FF;
-    background: #1e1e1e;
+    background: #fff;
     border-bottom: none;
     height: 230px;
   }
   .listRedirection {
-    display: block;
+    overflow-y: scroll;
     position: relative;
     list-style: none;
-    overflow-y: scroll;
+    margin: 20px 0 0;
+    display: block;
     height: 200px;
-    color: #fff;
+    color: #000;
     padding: 0;
     &::-webkit-scrollbar {
-      width: 12px;
+      width: 16px;
       height: 48px;
       border-radius: 8px;
       // background-color: #cccccc
@@ -320,27 +344,37 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     }
   }
   .selecteurList:hover, .selecteurList:active {
-  color: #1e1e10;
-  height: 48px;
+  color: #fff;
   width: auto;
-  background-color: #FFFFFF;
+  background: $blue-gradient;
   }
   .selecteurList {
+    text-align: left;
     padding: 1em 2em;
-     text-align: left
+    height: 48px;
   }
   .styleInputAutre {
-    background-color: #1e1e1e;
-    border: solid 1px #929292;
+    border: solid 1px #3558a2;
+    background-color: #fff;
     padding: 1em 2em;
     font-size: 1rem;
     text-align: left;
+    color: #000;
+    height: 48px;
     width: 100%;
-    color: #fff;
     &:hover, &:focus, &:active   {
-      background-color: #fff;
-      border-color: #1e1e1e;
-      color: #1e1e1e;
+      background: $blue-gradient;
+      border-color: #3558a2;
+      color: #fff;
+    }
+  }
+  .styleButtonEnregistrer {
+    text-align: center;
+    line-height: 24px;
+    color: #000091;
+    font-size: 14px;
+    &:hover {
+      background: none !important;
     }
   }
   .styleButtonRedirection {
@@ -453,8 +487,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
    .radioRattachement, .radioRattachementAlt {
     width: 100%;
     border-radius: 20px;
-    border: 1px solid white;
-    background-color: $background;
+    background: $black-gradient;
     cursor: pointer;
     height: 144px;
     padding: 0px;
@@ -462,8 +495,17 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
   }
 
   .radioRattachement-selected {
-    background-color: white!important;
+    background: $white-gradient!important;
     color: black!important;
+    span {
+      color: #000 !important;
+    }
+    .logoIndividuel {
+      background: $individuelSelected !important;
+    }
+    .logoDemande {
+      background: $logoDemandeSelected !important;
+    }
   }
 
   .labelBigRadioCustom {
@@ -483,11 +525,11 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
   }
 
   .countRadioCalcul:hover {
-    background-color: $background;
+    background: $blue-gradient;
     border-radius: 0 0 0 20px;
 
     .labelCalculCustom {
-      color: white;
+      color: white !important;
     }
   }
 
@@ -789,7 +831,8 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
   /** END SQUARE BUTTON TIME **/
   /** START CHECKBOX BUTTON THEMES **/
   .gradient-box, .inactif-box {
-    background: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%);    border: solid 1px transparent;
+    background: $black-gradient;
+    border: solid 1px transparent;
     background-clip: padding-box;
     box-sizing: border-box;
     border-radius: 20px;
@@ -804,7 +847,13 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       z-index: -1;
       margin: -1px;
       border-radius: inherit;
-      background: linear-gradient(0deg,#3558A2,#9A9AFF) border-box;
+      background: $small-blue-gradient;
+    }
+  }
+  .gradient-box button:hover {
+    background: $white-gradient;
+    .radioRattachement {
+      color: #000;
     }
   }
   .inactif-box:after {
@@ -812,7 +861,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
   }
   .checkboxButton {
     .checkboxRattachement2 {
-      background: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%);
+      background: $black-gradient;
       border-radius: 20px;
       cursor: pointer;
       width: 100%;
@@ -824,10 +873,10 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
         overflow: auto;
       }
       &.inactif-btn:hover {
-        background: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%);
+        background: $black-gradient;
       }
       &:hover {
-        background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
+        background: $white-gradient;
         color: black!important;
         span {
           color: black;
@@ -1017,7 +1066,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       }
     }
     .checkboxRattachement2-selected {
-      background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
+      background: $white-gradient;
       color: black!important;
       .baseline {
         color: #666666;
@@ -1198,7 +1247,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     border-radius: 20px;
     /** START SELECT CP **/
     .dropdown {
-      background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
+      background: $white-gradient;
       border-radius: 20px;
       position: absolute;
       cursor: pointer;
@@ -1211,7 +1260,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       width: 528px;
     }
     .buttonCP, .inputCP {
-      background: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
+      background: $blue-gradient;
       border-radius: 20px 20px 0px 0px;
       line-height: 24px;
       font-weight: 700;
@@ -1221,7 +1270,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       width: 528px;
       height: 72px;
       &:hover {
-        background: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
+        background: $blue-gradient;
         color: #fff;
       }
       div {
@@ -1242,7 +1291,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
 
     }
     div.scrollOptions2 {
-      background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
+      background: $white-gradient;
       border-radius: 0 0 20px 20px;
       overflow-x: hidden;
       max-height: 200px;
@@ -1255,13 +1304,14 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
         padding: 12px 0 0 25px;
         height: 47px;
         &:hover {
-          background: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
+          background: $blue-gradient;
           color: #fff;
         }
       }
     }
     .buttonCP-filled, .buttonPermanence-filled {
-      background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);color: #2a2a2a;
+      background: $white-gradient;
+      color: #2a2a2a;
       text-align: center;
       line-height: 24px;
       font-weight: 700;
@@ -1281,7 +1331,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
 
     /** END SELECT CP **/
     button {
-      background: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%);
+      background: $black-gradient;
       border-radius: 20px;
       color: #fff;
       height: 144px;
@@ -1310,18 +1360,6 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       .logoDomicile {
         background: $lieuDomicile;
       }
-      .logoIndividuel, .atelier,.logoRedirection {
-        background: $individuel;
-        display: inline-block;
-        height: 56px;
-        width: 56px;
-      }
-      .atelier{
-        background: $atelier;
-      }
-      .logoRedirection {
-        background: $redirection;
-      }
       .texteDatePicker {
         position: relative;
         top: -5px;
@@ -1339,7 +1377,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
         bottom: 5px;
       }
       &:hover, &.selected {
-        background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 58.33%, #518FFF 100%);
+        background: $white-gradient;
         color: #2a2a2a;
         .labelBigRadioCustom, .labelSmallRadioCustom {
           color: #2a2a2a;
@@ -1359,6 +1397,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
         .logoDomicile {
           background: $lieuDomicileHover;
         }
+
       }
     }
     .logoRattachementSelected {
@@ -1369,7 +1408,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       width: 33px;
     }
     #buttonPermanences {
-      background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
+      background: $white-gradient;
       border-radius: 20px;
       position: absolute;
       max-height: 344px;
@@ -1399,7 +1438,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
             font-size: 12px;
           }
           &:hover {
-            background: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
+            background: $blue-gradient;
             .nomEnseigne, .adresse {
               color: #fff;
             }
@@ -1447,15 +1486,49 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     }
   }
   .radioButton2 {
+    .radioRattachement {
+      .logoIndividuel, .logoAtelier, .logoDemande, .logoRedirection {
+        background: $individuel;
+        display: inline-block;
+        height: 56px;
+        width: 56px;
+      }
+      .logoAtelier{
+        background: $atelier;
+      }
+      .logoDemande {
+        background: $logoDemande;
+      }
+      .logoRedirection {
+        background: $redirection;
+      }
+      &:hover, &:active {
+        span {
+          color: #000 !important;
+        }
+        .logoIndividuel {
+          background: $individuelSelected;
+        }
+        .logoAtelier{
+          background: $atelierSelected;
+        }
+        .logoDemande {
+          background: $logoDemandeSelected;
+        }
+        .logoRedirection {
+          background: $redirectionSelected;
+        }
+      }
+    }
     .radioRattachement2::after, .smallRadioRattachement2::after {
       content: "";
       position: absolute;
       inset: 0;
       border-radius: 20px;
       border: 1px solid transparent;
-      background: linear-gradient(0deg,#3558A2,#9A9AFF) border-box;
-      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-        mask:linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      background: $small-blue-gradient;
+      -webkit-mask: $mask-gradient;
+        mask:$mask-gradient;
       -webkit-mask-composite: xor;
       mask-composite: exclude;
     }
@@ -1487,9 +1560,9 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     inset: 0;
     border-radius: 20px;
     border: 1px solid transparent;
-    background: linear-gradient(0deg,red,orange) border-box !important;
-    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-      mask:linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    background: $red-gradient !important;
+    -webkit-mask: $mask-gradient;
+      mask:$mask-gradient;
     -webkit-mask-composite: xor;
     mask-composite: exclude;
   }
@@ -1577,7 +1650,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       margin: 6px;
     }
     .react-datepicker__month-container {
-      background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
+      background: $white-gradient;
       border-radius: 0 0 20px 20px;
     }
     .react-datepicker__week {
@@ -1598,7 +1671,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     }
     .react-datepicker__day--selected, .react-datepicker__day--keyboard-selected {
       color: #fff;
-      background: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
+      background: $blue-gradient;
       border-radius: 8px;
     }
     .react-date-picker__calendar--open {

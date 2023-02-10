@@ -36,3 +36,19 @@ export function decodeEntitiesSuggestion(theme) {
   txt.innerHTML = theme;
   return txt.value;
 }
+
+export function getValeurMax(value, nbParticipants, accompagnements) {
+  console.log(value);
+  console.log(nbParticipants);
+  console.log(accompagnements);
+  let nbParticipantsAccompagnement = 0;
+  for (let key in accompagnements) {
+    if (key !== value) {
+      nbParticipantsAccompagnement += accompagnements[key];
+    }
+  }
+  let valeurMax = nbParticipants - nbParticipantsAccompagnement;
+
+  return valeurMax < 0 ? 0 : valeurMax;
+}
+

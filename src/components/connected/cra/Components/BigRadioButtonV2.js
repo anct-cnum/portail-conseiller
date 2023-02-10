@@ -2,14 +2,16 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
+import { getCraValue } from '../utils/CraFunctions';
 
 function BigRadioButton({ type, label, value, image, classDiv }) {
 
   const dispatch = useDispatch();
   const cra = useSelector(state => state.cra);
+  let controlSelected = getCraValue(type);
 
   //Gestion du style du bouton
-  let styleClass = 'radioRattachement2';
+  let styleClass = 'radioRattachement';
   switch (type) {
     case 'canal':
       if (cra?.canal === 'domicile') {
@@ -22,6 +24,11 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
         styleClass += ' buttonError';
       }
       styleClass += cra?.canal === 'distance' && cra?.errorsRequired.cp ? ' buttonError' : '';
+      break;
+    case 'activite':
+      styleClass += controlSelected === value ? ' radioRattachement-selected' : '';
+      break;
+    case 'rattachement':
       break;
     default:
       break;
@@ -57,6 +64,24 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
           }, 100);
         }
         break;
+      case 'activite':
+        dispatch(craActions.updateActivite(value));
+        break;
+      case 'accompagnement':
+        if (cra?.nbParticipants > cra?.nbParticipantsAccompagnement) {
+          const accompagnement = cra?.accompagnement;
+          for (let key in cra?.accompagnement) {
+            if (key === value) {
+              accompagnement[key] += 1;
+            }
+          }
+          dispatch(craActions.updateAccompagnement(accompagnement, cra?.nbParticipantsAccompagnement + 1));
+          if (value === 'redirection') {
+            dispatch(craActions.updateOrganisme(null));
+            dispatch(craActions.showSelectRedirection(true));
+          }
+        }
+        break;
       default:
         break;
     }
@@ -64,16 +89,31 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
 
   return (
     <div className="radioButton2" onClick={onClickRadio} value={value}>
-      <button id="radioRattachement2" className={styleClass} value={value} disabled={cra?.canal === 'domicile' && value === 'rattachement'}>
-        <div value={value}>
-          <div className={classDiv !== undefined ? classDiv : '' } value={value}>
-            <span className={image}></span>
-          </div>
-          <span className="fr-label labelBigRadioCustom" value={value}>
-            {label}
-          </span>
+      {type === 'canal' &&
+        <div className="gradient-box">
+          <button className={styleClass} value={value} disabled={cra?.canal === 'domicile' && value === 'rattachement'}>
+            <div value={value}>
+              <div className={classDiv !== undefined ? classDiv : '' } value={value}>
+                <span className={image}></span>
+              </div>
+              <span className="fr-label labelBigRadioCustom" value={value}>
+                {label}
+              </span>
+            </div>
+          </button>
         </div>
-      </button>
+      }
+      {(type === 'accompagnement' || type === 'activite') &&
+        <div className="gradient-box" value={value}>
+          <button className={styleClass} value={value}>
+            <span className={image} value={value}></span>
+            <span className={`fr-label`} value={value}>
+              {label}
+            </span>
+          </button>
+        </div>
+      }
+
     </div>
   );
 }

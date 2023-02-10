@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import BigRadioButton from './Components/BigRadioButton';
+import BigRadioButtonV2 from './Components/BigRadioButtonV2';
 import SmallRadioButton from './Components/SmallRadioButton';
 import BigCountRadioButton from './Components/BigCountRadioButton';
 
@@ -27,14 +27,13 @@ function Activite() {
       </div>
       {cra?.activite !== 'collectif' &&
       <div className={`responsiveRadioActivity1 ${voirInformation ? 'info-collectif activite-height' : ''}`}>
-        <BigRadioButton
+        <BigRadioButtonV2
           type="activite"
           label="Atelier Collectif"
           value="collectif"
-          image="/logos/cra/logo-atelier.svg"
-          imageSelected="/logos/cra/logo-atelier-n.svg"
-          heightImage="56px"
-          classDiv="atelierCollectif"/>
+          image="logoAtelier"
+          classDiv="atelierCollectif"
+        />
         <div className={`${voirInformation ? 'information-message width-message-pourcent' : 'close-information'}`}>
           Ateliers, accompagnements men&eacute;s avec plusieurs personnes.
         </div>
@@ -51,27 +50,25 @@ function Activite() {
       </div>
       }
       <div className={`responsiveRadioActivity2 ${voirInformation ? 'info-individuel individuel-height' : ''}`}>
-        <BigRadioButton
+        <BigRadioButtonV2
           type="activite"
           label="Accompagnement individuel"
           value="individuel"
-          image="/logos/cra/logo-acc-individuel.svg"
-          imageSelected="/logos/cra/logo-acc-individuel-n.svg"
-          heightImage="56px"
-          classDiv="accIndividuel"/>
+          image="logoIndividuel"
+          classDiv="accIndividuel"
+        />
         <div className={`${voirInformation ? 'information-message width-message-pourcent' : 'close-information'}`}>
         Lorsqu&rsquo;une seule personne est accompagn&eacute;e.
         </div>
       </div>
       <div className={`responsiveRadioActivity3Big ${voirInformation ? 'info-ponctuelle activite-height' : ''}`}>
-        <BigRadioButton
+        <BigRadioButtonV2
           type="activite"
           label="Demande ponctuelle"
           value="ponctuel"
-          image="/logos/cra/logo-demande-ponctuelle.svg"
-          imageSelected="/logos/cra/logo-demande-ponctuelle-n.svg"
-          heightImage="56px"
-          classDiv="demPonctuelle"/>
+          image="logoDemande"
+          classDiv="demPonctuelle"
+        />
         <div className={`${voirInformation ? 'information-message width-message-pourcent' : 'close-information'}`}>
           Conseils et services ponctuels, informels, que vous estimez comme &eacute;tant du temps de travail.
         </div>

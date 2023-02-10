@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 
 import BigCountRadioButton from './Components/BigCountRadioButton';
 import SmallRadioButton from './Components/SmallRadioButton';
-import BigRadioButton from './Components/BigRadioButton';
 import BigRadioButtonV2 from './Components/BigRadioButtonV2';
 
 function Accompagnement() {
@@ -19,7 +18,6 @@ function Accompagnement() {
           <span className="question">L&rsquo;accompagnement va-t-il &ecirc;tre poursuivi&nbsp;? (Optionnel)</span>
         </div>
         <div className="responsiveRadioActivity1">
-
           {accompagnement?.individuel === 0 &&
             <BigRadioButtonV2
               type="accompagnement"
@@ -28,13 +26,6 @@ function Accompagnement() {
               image="logoIndividuel"
               classDiv="accIndividuel"
             />
-            /*<BigRadioButton
-              type="accompagnement"
-              label="Accompagnement individuel"
-              value="individuel"
-              image="/logos/cra/logo-acc-individuel.svg"
-              imageSelected="/logos/cra/logo-acc-individuel-n.svg"
-              classDiv="accIndividuel"/>*/
           }
           {accompagnement?.individuel > 0 &&
             <BigCountRadioButton
@@ -45,14 +36,13 @@ function Accompagnement() {
         </div>
         <div className="responsiveRadioActivity2">
           {accompagnement?.atelier === 0 &&
-            <BigRadioButton
+            <BigRadioButtonV2
               type="accompagnement"
               label="En atelier"
               value="atelier"
-              image="/logos/cra/logo-atelier.svg"
-              imageSelected="/logos/cra/logo-atelier-n.svg"
-              heightImage="56px"
-              classDiv="atelierCollectif"/>
+              image="logoAtelier"
+              classDiv="atelierCollectif"
+            />
           }
           {accompagnement?.atelier > 0 &&
             <BigCountRadioButton
@@ -63,14 +53,13 @@ function Accompagnement() {
         </div>
         <div className="responsiveRadioActivity3Big">
           {accompagnement?.redirection === 0 &&
-            <BigRadioButton
+            <BigRadioButtonV2
               type="accompagnement"
               label="Redirection vers une structure"
               value="redirection"
-              image="/logos/cra/logo-redirection-structure.svg"
-              imageSelected="/logos/cra/logo-redirection-structure-n.svg"
-              heightImage="56px"
-              classDiv="demPonctuelle"/>
+              image="logoRedirection"
+              classDiv="demPonctuelle"
+            />
           }
           {accompagnement?.redirection > 0 &&
             <BigCountRadioButton
