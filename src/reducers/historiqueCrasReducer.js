@@ -3,7 +3,7 @@ const initialState = {
   total: 0,
   limit: 30,
   loading: false,
-  themes: [],
+  themes: undefined,
   dateCraDebut: new Date('2021/01/01'),
   dateCraFin: new Date(),
   codePostalCra: '',

@@ -4,7 +4,6 @@ import labelsCorrespondance from '../../../data/labelsCorrespondance.json';
 import { htmlDecode } from '../../../utils/functionEncodeDecode';
 
 function FiltreCra({ texte, css, datas, setDatas }) {
-
   return (
     <nav id={`filtre-cra-${css}`} className="fr-nav" role="navigation" aria-label={`Filtre ${css}`}>
       <ul className="fr-nav__list">
@@ -22,15 +21,17 @@ function FiltreCra({ texte, css, datas, setDatas }) {
                   Afficher Tout
                 </button>
               </li>
-              <li className="fr-nav__item">
-                {datas?.map((data, idx) =>
-                  <button key={idx} className="fr-nav__link" onClick={() => {
-                    setDatas(data);
-                  }} target="_self">
-                    {htmlDecode(labelsCorrespondance.find(label => label.nom === data)?.correspondance)}
-                  </button>
-                )}
-              </li>
+              {datas !== undefined || datas?.length > 0 &&
+                <li className="fr-nav__item">
+                  {datas?.map((data, idx) =>
+                    <button key={idx} className="fr-nav__link" onClick={() => {
+                      setDatas(data);
+                    }} target="_self">
+                      {htmlDecode(labelsCorrespondance.find(label => label.nom === data)?.correspondance)}
+                    </button>
+                  )}
+                </li>
+              }
             </ul>
           </div>
         </li>
