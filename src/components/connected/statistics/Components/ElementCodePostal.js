@@ -10,7 +10,7 @@ function ElementCodePostal({ idStructure = '' }) {
   const [printCP, setPrintCP] = useState('Tous les codes Postaux');
   const setCodePostal = e => {
     const codePostal = e.target.value.split('-')[0];
-    const ville = e.target.value.split('-')[1];
+    const ville = e.target.value.substr(e.target.value.indexOf('-') + 1);
     setPrintCP(e.target.value);
     dispatch(statistiqueActions.changeCodePostalStats(codePostal, ville));
   };
