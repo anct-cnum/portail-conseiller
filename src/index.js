@@ -10,6 +10,11 @@ import rootReducer from './reducers/rootReducer';
 import * as Sentry from '@sentry/react';
 import { Integrations } from '@sentry/tracing';
 
+const loginUrl = process.env.REACT_APP_ESPACE_COOP_URL + '/login';
+if (window.location.href.split(':').includes('file')) {
+  window.location.href = loginUrl;
+}
+
 if (process.env.REACT_APP_SENTRY_ENABLED === 'true') {
   Sentry.init({
     dsn: process.env.REACT_APP_SENTRY_DSN,
