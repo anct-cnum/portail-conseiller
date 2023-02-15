@@ -13,7 +13,6 @@ import { Integrations } from '@sentry/tracing';
 const loginUrl = process.env.REACT_APP_ESPACE_COOP_URL + '/login';
 if (window.location.href.split(':').includes('file')) {
   window.location.href = loginUrl;
-  console.log(window.location.href);
 }
 
 if (process.env.REACT_APP_SENTRY_ENABLED === 'true') {
