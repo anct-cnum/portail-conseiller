@@ -56,10 +56,10 @@ function ElementCodePostal({ idStructure = '' }) {
       </div>
       <select className="fr-select code-postal-select fr-my-2w dont-print" onChange={setCodePostal}>
         <option value="">codes postaux, villes</option>
-        {idStructure?.length > 0 && listeCodesPostaux && listeCodesPostaux?.map((codePostal, idx) => {
+        {idStructure.length > 0 && listeCodesPostaux && listeCodesPostaux?.map((codePostal, idx) => {
           return (<option key={idx} value={codePostal}>{codePostal}</option>);
         })}
-        {idStructure?.length === 0 && listeCodesPostaux && optionList?.map((option, idx) => {
+        {idStructure.length === 0 && listeCodesPostaux && optionList?.map((option, idx) => {
           return (
             <option key={idx} value={option.value}>
               {option?.marge}{option.text}
