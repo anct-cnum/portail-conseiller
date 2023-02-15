@@ -285,8 +285,7 @@ function Themes() {
         />
         <div className={`${voirInformation ? 'information-message-theme' : 'close-information'}`}>
           <ul>
-            <li>Apprendre &agrave; utiliser un logiciel de suivi scolaire.</li>
-            <li>Utiliser un logiciel d&rsquo;accompagnement scolaire.</li>
+            <li>Accompagner un groupe scolaire et/ou un enfant sur un outil num&eacute;rique.</li>
             <li>&Eacute;valuer le niveau des jeunes avec un logiciel (maths, français, etc).</li>
           </ul>
         </div>
