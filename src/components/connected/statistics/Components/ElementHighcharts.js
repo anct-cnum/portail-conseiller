@@ -139,11 +139,11 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
 
     if (typeGraphique === 'stacked') {
 
-      if (valeurs[0].data[0] >= 8 && valeurs[valeurs.length - 1].data[0] >= 8) {
+      if (valeurs[0].data[0] >= 8 && valeurs[valeurs?.length - 1].data[0] >= 8) {
         valeurs[0].borderRadiusTopLeft = '100%';
         valeurs[0].borderRadiusTopRight = '100%';
-        valeurs[valeurs.length - 1].borderRadiusBottomLeft = '100%';
-        valeurs[valeurs.length - 1].borderRadiusBottomRight = '100%';
+        valeurs[valeurs?.length - 1].borderRadiusBottomLeft = '100%';
+        valeurs[valeurs?.length - 1].borderRadiusBottomRight = '100%';
       }
       donnees = valeurs;
     } else if (typeGraphique === 'xy') {
