@@ -32,6 +32,8 @@ const initialState = {
     redirection: 0,
   },
   nbParticipantsAccompagnement: 0,
+  nbRedirection: 0,
+  organismes: [],
   organisme: null
 };
 
@@ -130,6 +132,9 @@ export default function cra(state = initialState, action) {
         activite: action.activite,
         nbParticipants: action.activite === 'collectif' ? 5 : 1,
         nbParticipantsAccompagnement: 0,
+        nbRedirection: 0,
+        organismes: [],
+        organisme: null,
         nbParticipantsAge: 0,
         nbParticipantsStatut: 0,
         age: {
@@ -234,10 +239,27 @@ export default function cra(state = initialState, action) {
         accompagnement: action.accompagnement,
         nbParticipantsAccompagnement: action.nbParticipantsAccompagnement
       };
+    case 'UPDATE_ACCOMPAGNEMENT_REDIRECTION':
+      return {
+        ...state,
+        accompagnement: action.accompagnement,
+        nbParticipantsAccompagnement: action.nbParticipantsAccompagnement,
+        organismes: action.organismes,
+        nbRedirection: action.nbRedirection,
+      };
     case 'UPDATE_ORGAMNISME':
       return {
         ...state,
         organisme: action.organisme
+      };
+    case 'UPDATE_ORGAMNISMES':
+      return {
+        ...state,
+        accompagnement: action.accompagnement,
+        organismes: action.organismes,
+        organisme: null,
+        nbRedirection: 0,
+        nbParticipantsAccompagnement: action.nbParticipantsAccompagnement,
       };
     case 'UPDATE_DATE':
       return {

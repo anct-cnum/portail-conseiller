@@ -4,12 +4,14 @@ import { useSelector } from 'react-redux';
 import BigCountRadioButton from './Components/BigCountRadioButton';
 import SmallRadioButton from './Components/SmallRadioButton';
 import BigRadioButtonV2 from './Components/BigRadioButtonV2';
+import BigCountRadioButtonRedirection from './Components/BigCountRadionButtonRedirection';
 
 function Accompagnement() {
 
   const cra = useSelector(state => state.cra);
   const accompagnement = cra?.accompagnement;
   const organisme = cra?.organisme;
+  const nbRedirection = cra?.nbRedirection;
 
   return (
     <>
@@ -52,7 +54,7 @@ function Accompagnement() {
           }
         </div>
         <div className="responsiveRadioActivity3Big">
-          {accompagnement?.redirection === 0 &&
+          {nbRedirection === 0 &&
             <BigRadioButtonV2
               type="accompagnement"
               label="Redirection vers une structure"
@@ -61,15 +63,13 @@ function Accompagnement() {
               classDiv="demPonctuelle"
             />
           }
-          {accompagnement?.redirection > 0 &&
-            <BigCountRadioButton
-              type="accompagnement"
-              value="redirection"
+          {nbRedirection > 0 &&
+            <BigCountRadioButtonRedirection
               label={organisme ?? 'Redirection vers ...'}/>
           }
         </div>
         <div className="responsiveRadioActivity3Small">
-          {accompagnement?.redirection === 0 &&
+          {nbRedirection === 0 &&
             <SmallRadioButton
               type="accompagnement"
               label="Redirection vers une structure"
@@ -78,10 +78,8 @@ function Accompagnement() {
               imageSelected="/logos/cra/logo-redirection-structure-n.svg"
               heightImage="32px" />
           }
-          {accompagnement?.redirection > 0 &&
-            <BigCountRadioButton
-              type="accompagnement"
-              value="redirection"
+          {nbRedirection > 0 &&
+            <BigCountRadioButtonRedirection
               label={organisme ?? 'Redirection vers ...'}/>
           }
         </div>

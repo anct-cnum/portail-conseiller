@@ -20,7 +20,10 @@ export const craActions = {
   updateMultipleThemes,
   updateDuree,
   updateAccompagnement,
+  updateAccompagnementRedirection,
   updateOrganisme,
+  updateOrganismes,
+  deleteOrganisme,
   verifyCra,
   submitCra,
   changeDate,
@@ -98,8 +101,26 @@ function updateDuree(duree) {
 function updateAccompagnement(accompagnement, nbParticipantsAccompagnement) {
   return { type: 'UPDATE_ACCOMPAGNEMENT', accompagnement, nbParticipantsAccompagnement };
 }
+function updateAccompagnementRedirection(accompagnement, nbParticipantsAccompagnement, organismes, nbRedirection) {
+  accompagnement.redirection = 0;
+  console.log(organismes);
+  if (organismes.length > 0) {
+    organismes?.forEach(organisme => {
+      console.log(organisme);
+    });
+  }
+  return { type: 'UPDATE_ACCOMPAGNEMENT_REDIRECTION', accompagnement, nbParticipantsAccompagnement, organismes, nbRedirection };
+}
 function updateOrganisme(organisme) {
   return { type: 'UPDATE_ORGAMNISME', organisme };
+}
+function updateOrganismes(organismes, nbRedirection, accompagnement, nbParticipantsAccompagnement) {
+  accompagnement.redirection += nbRedirection;
+  return { type: 'UPDATE_ORGAMNISMES', organismes, accompagnement, nbParticipantsAccompagnement };
+}
+function deleteOrganisme(organismes, nbSuppression, accompagnement) {
+  accompagnement.redirection -= nbSuppression;
+  return { type: 'UPDATE_ORGAMNISMES', organismes, accompagnement };
 }
 function changeDate(date) {
   return { type: 'UPDATE_DATE', date };

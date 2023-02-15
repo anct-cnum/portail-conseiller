@@ -856,6 +856,9 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       color: #000;
     }
   }
+  .border-top-none {
+    border-radius: 0 0 20px 20px !important;
+  }
   .inactif-box:after {
       background: #666666 !important;
   }
@@ -1683,6 +1686,34 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     position: absolute;
     top: 0px;
     left: -93px;
+  }
+  .first-el {
+    margin-left: 15px;
+  }
+  .redirection-btn {
+    background: $blue-gradient;
+    padding: 4px 12px 4px 8px;
+    display: inline-block;
+    border-radius: 53px;
+    margin-right: 12px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 14px;
+    color : #fff;
+    height: 32px;
+    button {
+      font-size: 14px;
+      color: #fff;
+      i {
+        position: relative;
+        top: 2px;
+      }
+      &:hover{
+        background: none !important;
+        color: #fff;
+        text-decoration: none;
+      }
+    }
   }
   @media (max-width: 1111px) {
     .responsiveElement2, .responsiveElementEnd2{
