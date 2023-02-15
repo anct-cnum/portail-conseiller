@@ -22,7 +22,6 @@ function getHistoriqueCrasThematiques() {
     method: 'GET',
     headers: authHeader()
   };
-
   return fetch(`${apiUrlRoot}/historique-cras/thematiques`, requestOptions).then(handleResponse);
 }
 
