@@ -40,7 +40,7 @@ function getHistoriqueCrasThematiques() {
     historiqueCras.getHistoriqueCrasThematiques()
     .then(
       result => {
-        dispatch(success(result.themes));
+        dispatch(success(result?.themes));
       },
       error => {
         dispatch(failure(error));

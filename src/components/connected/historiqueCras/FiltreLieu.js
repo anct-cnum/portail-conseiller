@@ -9,7 +9,7 @@ function FiltreLieu({ optionList }) {
 
   const setCodePostal = e => {
     const codePostal = e.target.value.split('-')[0];
-    const ville = e.target.value.split('-')[1] ?? '';
+    const ville = e.target.value.substr(e.target.value.indexOf('-') + 1);
     const selected = e.target.value;
     dispatch(historiqueCrasActions.changeCraCodePostal(codePostal, ville, selected));
   };
