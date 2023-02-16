@@ -27,7 +27,9 @@ function ChoosePasswordMailBox({ match }) {
   const { loadingChangeMailbox, changeMailboxMessage, changeMailboxMessageError } = useSelector(state => state.createAccount);
 
   useEffect(() => {
-    dispatch(userActions.verifyToken(token));
+    if (token) {
+      dispatch(userActions.verifyToken(token));
+    }
   }, []);
 
   function handleChange(e) {

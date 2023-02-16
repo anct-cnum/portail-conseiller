@@ -47,7 +47,7 @@ export default function historiqueCras(state = initialState, action) {
     case 'GET_HISTORIQUE_CRAS_THEMES_FAILURE':
       return {
         ...state,
-        error: action.error,
+        error: action.error?.message ?? action.error,
         loading: false,
       };
 
