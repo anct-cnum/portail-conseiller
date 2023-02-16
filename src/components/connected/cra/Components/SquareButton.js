@@ -11,7 +11,7 @@ function SquareButton({ value, label, type, cra }) {
 
   const ajoutNbParticipants = (valeur, groupe, groupeNbParticipants, totalNbParticipants, action) => {
 
-    const filtre = Object.values(groupe).filter(tranche => tranche === totalNbParticipants).length;
+    const filtre = Object.values(groupe).filter(tranche => tranche === totalNbParticipants)?.length;
 
     if (groupeNbParticipants === 0) {
       groupe[valeur] = totalNbParticipants;

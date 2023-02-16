@@ -13,7 +13,7 @@ export default function authentication(state = {}, action) {
     case 'VERIFY_TOKEN_FAILURE':
       return {
         tokenVerified: false,
-        error: action.error
+        error: action.error?.message ?? action.error
       };
     case 'CHOOSE_PASSWORD_REQUEST':
       return {
