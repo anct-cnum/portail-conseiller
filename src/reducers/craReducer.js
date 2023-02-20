@@ -319,7 +319,7 @@ export default function cra(state = initialState, action) {
       };
     case 'GET_CRA_FAILURE':
       return {
-        error: action.error,
+        error: action.error?.message ?? action.error,
         loading: false,
       };
     case 'SET_CRA_REQUEST':

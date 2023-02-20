@@ -95,7 +95,8 @@ export default function permanence(state = initialState, action) {
       };
     case 'UPDATE_FIELD':
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.[action.field.name])[0]?.[action.field.name];
-      let fields = state?.fields;
+
+      let fields = state?.fields ?? [];
       delete fields?.filter(field => field.name === action.field.name)[0]?.value;
       delete fields?.filter(field => field.name === action.field.name)[0]?.name;
 
@@ -143,8 +144,8 @@ export default function permanence(state = initialState, action) {
       };
     case 'VERIFY_SIRET_SUCCESS':
 
-      let fieldsAdresse = state?.fields;
-      let disabledAdresse = state?.disabledFields;
+      let fieldsAdresse = state?.fields ?? [];
+      let disabledAdresse = state?.disabledFields ?? [];
       const rueVoie = [action.adresseParSiret?.type_voie ?? '', action.adresseParSiret?.nom_voie ?? ''].join(' ');
 
       if (action.adresseParSiret !== null) {
@@ -158,11 +159,11 @@ export default function permanence(state = initialState, action) {
         delete fieldsAdresse?.filter(field => field.name === action.champ + 'rueVoie')[0]?.name;
         delete fieldsAdresse?.filter(field => field.name === action.champ + 'codePostal')[0]?.name;
         delete fieldsAdresse?.filter(field => field.name === action.champ + 'ville')[0]?.name;
-        fieldsAdresse.push({ name: action.champ + 'nomEnseigne', value: action.adresseParSiret?.l1 });
-        fieldsAdresse.push({ name: action.champ + 'numeroVoie', value: action.adresseParSiret?.numero_voie });
-        fieldsAdresse.push({ name: action.champ + 'rueVoie', value: rueVoie });
-        fieldsAdresse.push({ name: action.champ + 'codePostal', value: action.adresseParSiret?.code_postal });
-        fieldsAdresse.push({ name: action.champ + 'ville', value: action.adresseParSiret?.localite?.toUpperCase() });
+        fieldsAdresse?.push({ name: action.champ + 'nomEnseigne', value: action.adresseParSiret?.l1 });
+        fieldsAdresse?.push({ name: action.champ + 'numeroVoie', value: action.adresseParSiret?.numero_voie });
+        fieldsAdresse?.push({ name: action.champ + 'rueVoie', value: rueVoie });
+        fieldsAdresse?.push({ name: action.champ + 'codePostal', value: action.adresseParSiret?.code_postal });
+        fieldsAdresse?.push({ name: action.champ + 'ville', value: action.adresseParSiret?.localite?.toUpperCase() });
 
         fieldsAdresse = nettoyageState(fieldsAdresse);
 
@@ -197,7 +198,7 @@ export default function permanence(state = initialState, action) {
         delete geocodeAdresses?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.geocodeAdresse;
         delete geocodeAdresses?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.prefixId;
       }
-      geocodeAdresses.push({ geocodeAdresse: action.geocodeAdresse, prefixId: action.prefixId });
+      geocodeAdresses?.push({ geocodeAdresse: action.geocodeAdresse, prefixId: action.prefixId });
       geocodeAdresses = nettoyageState(geocodeAdresses);
 
       return {
@@ -213,13 +214,11 @@ export default function permanence(state = initialState, action) {
         loadingGeocode: false,
       };
     case 'GEOCODE_ADRESSE_REBOOT':
-      let geocodeToDelete = state?.geocodeAdresses;
+      let geocodeToDelete = state?.geocodeAdresses ?? [];
       if (geocodeToDelete?.length > 0) {
         delete geocodeToDelete?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.geocodeAdresse;
         delete geocodeToDelete?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.prefixId;
         geocodeToDelete = nettoyageState(geocodeToDelete);
-      } else {
-        geocodeToDelete = [];
       }
       return {
         ...state,

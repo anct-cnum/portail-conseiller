@@ -24,7 +24,9 @@ function ChoosePasswordHub({ match }) {
   const choosingPassword = useSelector(state => state.createAccount.choosingPassword);
 
   useEffect(() => {
-    dispatch(userActions.verifyToken(token));
+    if (token) {
+      dispatch(userActions.verifyToken(token));
+    }
   }, []);
 
   function handleChange(e) {

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { conseillerActions } from '../../../actions';
 import dayjs from 'dayjs';
+import { isNavigatorFirefoxForAndroid } from '../../../utils/functionGetNavigatorPlateform';
 
 function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePostal = null, ville = null, idSubordonne = null, nomSubordonneeCSV = null }) {
 
@@ -15,6 +16,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
   const blob = useSelector(state => state.conseiller?.blob);
   const territoire = location?.territoire;
   let typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : null;
+  const isFirefoxForAndroid = isNavigatorFirefoxForAndroid();
 
   function getTypeStatistique(type) {
     let typeTarget = '';
@@ -102,6 +104,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
       </div>
       <div className="fr-col-12 dont-print">
         <div className="fr-container-fluid">
+          {!isFirefoxForAndroid &&
           <div className="fr-grid-row fr-grid-row--center">
             <div className="fr-col-xs-6 fr-mt-5w centrerTexte">
               <div className="fr-mb-2v">Exporter cette page</div>
@@ -112,7 +115,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
               <button className="statistiques_nationales-btn" onClick={saveCSV}>Format CSV</button>
             </div>
           </div>
-
+          }
           { (typeTerritoire || location?.idUser) &&
           <div className="fr-grid-row fr-grid-row--center">
             <div className="fr-col-xs-6 fr-col-sm-6 fr-col-md-7 fr-col-lg-8 afficher-etapes">
