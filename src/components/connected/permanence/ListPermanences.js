@@ -14,6 +14,7 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
   const fields = useSelector(state => state.permanence?.fields);
   const geocodeAdresses = useSelector(state => state.permanence?.geocodeAdresses);
 
+  console.log(loadingHoraires);
   const [showList, setShowList] = useState(0);
 
   const handleClick = e => {
@@ -140,7 +141,9 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
                                 <>
                                   <input type="radio" id={prefixId + permanence?._id} className="permanence-existante"
                                     defaultChecked={permanenceActuelId === String(permanence?._id)}
-                                    name={prefixId + 'permancenceSecondaire'} value={permanence?._id} required="required" onClick={handleClick}/>
+                                    name={prefixId + 'permancenceSecondaire'} value={permanence?._id} required="required" onClick={e => {
+                                      handleClick(e);
+                                    }}/>
                                   <label className="fr-label fr-my-2w permanence-existante" htmlFor={prefixId + permanence?._id}>
                                     <span className="fr-container fr-container--fluid">
                                       <span className="fr-grid-row">
@@ -158,7 +161,9 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
                     })) }
                     <div className="fr-radio-group fr-radio-rich radio-permanence">
                       <input type="radio" className="permanence-existante" id={prefixId + 'nouveau'} name={prefixId + 'permancenceSecondaire'} value="nouveau"
-                        defaultChecked={permanenceActuelId === null} required="required" onClick={handleClick} />
+                        defaultChecked={permanenceActuelId === null} required="required" onClick={e => {
+                          handleClick(e);
+                        }} />
                       <label className="fr-label fr-my-2w permanence-existante" htmlFor={prefixId + 'nouveau'} >
                         Ajouter un nouveau lieu d&rsquo;activit&eacute;
                       </label>

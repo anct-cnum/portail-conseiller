@@ -15,6 +15,11 @@ if (window.location.href.split(':').includes('file')) {
   window.location.href = loginUrl;
 } else if (process.env.REACT_APP_SENTRY_ENABLED === 'true') {
   Sentry.init({
+    ignoreErrors: [
+      // plugins/extensions
+      `undefined is not an object (evaluating 'e.optionsAutoSave')`,
+      `CustomElementRegistry.define: 'wtd-root' has already been defined as a custom element`
+    ],
     dsn: process.env.REACT_APP_SENTRY_DSN,
     environment: process.env.REACT_APP_SENTRY_ENVIRONMENT,
     integrations: [new Integrations.BrowserTracing()],
