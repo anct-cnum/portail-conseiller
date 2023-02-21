@@ -17,8 +17,10 @@ if (window.location.href.split(':').includes('file')) {
   Sentry.init({
     ignoreErrors: [
       // plugins/extensions
-      // SingleFile Blackbox
+      // SingleFile
       `undefined is not an object (evaluating 'e.optionsAutoSave')`,
+      // Blackbox
+      `Cannot read properties of null (reading 'CodeMirror')`,
     ],
     dsn: process.env.REACT_APP_SENTRY_DSN,
     environment: process.env.REACT_APP_SENTRY_ENVIRONMENT,
