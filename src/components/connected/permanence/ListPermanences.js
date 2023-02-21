@@ -14,7 +14,6 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
   const fields = useSelector(state => state.permanence?.fields);
   const geocodeAdresses = useSelector(state => state.permanence?.geocodeAdresses);
 
-  console.log(loadingHoraires);
   const [showList, setShowList] = useState(0);
 
   const handleClick = e => {
