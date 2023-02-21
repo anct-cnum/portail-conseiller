@@ -42,6 +42,8 @@ function HistoriqueCras() {
   const [sort, setSort] = useState(null);
   const [optionList, setOptionList] = useState([]);
 
+  console.log(ville);
+  console.log(codePostal);
   /*Pagination */
   let [page, setPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
