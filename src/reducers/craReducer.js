@@ -272,7 +272,7 @@ export default function cra(state = initialState, action) {
     case 'SUBMIT_CRA_FAILURE':
       return {
         ...state,
-        error: action.error,
+        error: action.error?.message ?? action.error,
         saveInProgress: false,
         printFlashbag: false
       };
@@ -397,7 +397,7 @@ export default function cra(state = initialState, action) {
       return {
         ...state,
         loadingSuggestion: false,
-        error: action.error
+        error: action.error?.message ?? action.error,
       };
     case 'CLEAR_SOUS_THEMES':
       return {

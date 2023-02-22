@@ -184,7 +184,7 @@ export default function permanence(state = initialState, action) {
       return {
         ...state,
         showError: true,
-        error: action.error,
+        error: action.error?.message ?? action.error,
       };
     case 'GEOCODE_ADRESSE_REQUEST':
       return {
@@ -210,7 +210,7 @@ export default function permanence(state = initialState, action) {
       return {
         ...state,
         showError: true,
-        error: action.error,
+        error: action.error?.message ?? action.error,
         loadingGeocode: false,
       };
     case 'GEOCODE_ADRESSE_REBOOT':
@@ -268,7 +268,7 @@ export default function permanence(state = initialState, action) {
         ...state,
         isUpdated: false,
         showError: true,
-        error: action.error,
+        error: action.error?.message ?? action.error,
       };
     case 'SUSPENSION_FORM':
       return {
@@ -318,7 +318,7 @@ export default function permanence(state = initialState, action) {
         errorConseillerDeleted: action.error,
       };
     case 'RESERVE_LIEU_ACTIVITE':
-      const reservation = action.reservationPermanence;
+      const reservation = action.reservationPermanence ?? [];
       if (state?.permanencesReservees?.length === 0) {
         state.permanencesReservees = [reservation];
       } else {
