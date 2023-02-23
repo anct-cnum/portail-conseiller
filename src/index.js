@@ -21,6 +21,8 @@ if (window.location.href.split(':').includes('file')) {
       `undefined is not an object (evaluating 'e.optionsAutoSave')`,
       // Blackbox
       `Cannot read properties of null (reading 'CodeMirror')`,
+      //Firefox interdit aux addOns de conserver des références fortes aux objets DOM après la destruction de leur document parent.
+      `can't access dead object`
     ],
     dsn: process.env.REACT_APP_SENTRY_DSN,
     environment: process.env.REACT_APP_SENTRY_ENVIRONMENT,
