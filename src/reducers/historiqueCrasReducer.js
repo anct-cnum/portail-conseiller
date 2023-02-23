@@ -6,8 +6,8 @@ const initialState = {
   themes: undefined,
   dateCraDebut: new Date('2021/01/01'),
   dateCraFin: new Date(),
-  codePostalCra: '',
-  villeCra: '',
+  codePostalCra: null,
+  villeCra: null,
 };
 
 export default function historiqueCras(state = initialState, action) {
