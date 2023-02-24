@@ -80,7 +80,7 @@ export default function permanence(state = initialState, action) {
     case 'GET_PERMANENCES_FAILURE':
       return {
         ...state,
-        error: action.error,
+        error: action.error?.message ?? action.error,
         loading: false
       };
     case 'SHOW_FORMULAIRE_PERMANENCE':
