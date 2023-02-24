@@ -407,7 +407,7 @@ export default function cra(state = initialState, action) {
     case 'VERIFY_SOUS_THEMES':
       return {
         ...state,
-        errorSousTheme: action.error
+        errorSousTheme: action.error?.message ?? action.error
       };
     case 'UPDATE_SOUS_THEME':
       return {
