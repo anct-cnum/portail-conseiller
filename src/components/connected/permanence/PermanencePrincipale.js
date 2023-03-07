@@ -10,6 +10,7 @@ import Recapitulatif from './Recapitulatif';
 import Horaires from './Horaires';
 import Adresse from './Adresse';
 import TypeAcces from './TypeAcces';
+import { formatAdresse, formatRue } from '../../../utils/functionFormats';
 
 function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
   const dispatch = useDispatch();
@@ -25,7 +26,8 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
   const [estClique, setEstClique] = useState(false);
 
   const fillPermanencePrincipale = permanencePrincipale => {
-    const ruevoie = permanencePrincipale?.adresse?.rue ?? [adresseStructure?.type_voie ?? '', adresseStructure?.nom_voie ?? ''].join(' ');
+    const ruevoie = formatRue(permanencePrincipale?.adresse?.rue, adresseStructure?.type_voie ?? '', adresseStructure?.nom_voie ?? '');
+    const adresse = formatAdresse(permanencePrincipale?.adresse, adresseStructure, ruevoie, permanencePrincipale?.adresseIntrouvable);
     dispatch(permanenceActions.updateField('principal_idPermanence', permanencePrincipale?._id ?? null));
     dispatch(permanenceActions.updateField('lieuPrincipalPour', permanencePrincipale?.lieuPrincipalPour));
     dispatch(permanenceActions.updateField('principal_numeroTelephone', permanencePrincipale?.numeroTelephone ?? null));
@@ -48,6 +50,7 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
       permanencePrincipale?.adresse?.codePostal ?? adresseStructure?.code_postal));
     dispatch(permanenceActions.updateField('principal_ville',
       permanencePrincipale?.adresse?.ville?.toUpperCase() ?? adresseStructure?.localite?.toUpperCase()));
+    dispatch(permanenceActions.updateField('principal_adresse', adresse.toUpperCase()));
     dispatch(permanenceActions.updateField('principal_location', structure?.location));
     if (loadingHoraires) {
       loadingHoraires[0] = true;

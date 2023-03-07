@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import Spinner from 'react-loader-spinner';
 
 import horairesInitiales from '../../../data/horairesInitiales.json';
 import { permanenceActions, conseillerActions } from '../../../actions';
@@ -15,6 +16,7 @@ import TypeAcces from './TypeAcces';
 import Horaires from './Horaires';
 import Validation from './Validation';
 import Footer from '../../Footer';
+import { formatAdresse, formatRue } from '../../../utils/functionFormats';
 
 
 function PermanenceUpdate({ match }) {
@@ -23,6 +25,7 @@ function PermanenceUpdate({ match }) {
 
   const idPermanence = match.params.idPermanence;
 
+  const loading = useSelector(state => state.permanence?.loading);
   const listPermanences = useSelector(state => state.permanence?.permanences);
   const maPermanenceError = useSelector(state => state.permanence?.maPermanenceError);
   const maPermanenceLoading = useSelector(state => state.permanence?.maPermanenceLoading);
@@ -63,7 +66,9 @@ function PermanenceUpdate({ match }) {
   };
 
   const fillPermanencePrincipale = (permanencePrincipale, estStructure) => {
-    const rue = [adresseStructure?.type_voie ?? '', adresseStructure?.nom_voie ?? ''].join(' ');
+    const rue = formatRue(null, adresseStructure?.type_voie, adresseStructure?.nom_voie);
+    const adresse = formatAdresse(permanencePrincipale?.adresse, adresseStructure, rue, permanencePrincipale?.adresseIntrouvable);
+
     dispatch(permanenceActions.updateField('principal_idPermanence', permanencePrincipale?._id ?? null));
     dispatch(permanenceActions.updateField('lieuPrincipalPour', permanencePrincipale?.lieuPrincipalPour));
     dispatch(permanenceActions.updateField('principal_numeroTelephone', permanencePrincipale?.numeroTelephone ?? null));
@@ -87,6 +92,7 @@ function PermanenceUpdate({ match }) {
       permanencePrincipale?.adresse?.codePostal ?? adresseStructure?.code_postal));
     dispatch(permanenceActions.updateField('principal_ville',
       permanencePrincipale?.adresse?.ville?.toUpperCase() ?? adresseStructure?.localite?.toUpperCase()));
+    dispatch(permanenceActions.updateField('principal_adresse', adresse.toUpperCase()));
     dispatch(permanenceActions.updateField('principal_location', estStructure ? structure?.location : null));
     if (loadingHoraires) {
       loadingHoraires[0] = true;
@@ -113,12 +119,13 @@ function PermanenceUpdate({ match }) {
     dispatch(permanenceActions.updateField('principal_rueVoie', null));
     dispatch(permanenceActions.updateField('principal_codePostal', null));
     dispatch(permanenceActions.updateField('principal_ville', null));
+    dispatch(permanenceActions.updateField('principal_adresse', null));
     dispatch(permanenceActions.updateField('principal_location', null));
     dispatch(permanenceActions.setHorairesLoading(loadingHoraires));
 
     const adresseGeoloc = estStructure ? {
       numero: maPermanence?.adresse?.numeroRue ?? adresseStructure?.numero_voie,
-      rue: maPermanence?.adresse?.rue ?? [adresseStructure?.type_voie ?? '', adresseStructure?.nom_voie ?? ''].join(' '),
+      rue: formatRue(maPermanence?.adresse?.rue, adresseStructure?.type_voie, adresseStructure?.nom_voie),
       codePostal: maPermanence?.adresse?.codePostal ?? adresseStructure.code_postal,
       ville: maPermanence?.adresse?.ville?.toUpperCase() ?? adresseStructure.localite?.toUpperCase()
     } : {};
@@ -186,6 +193,10 @@ function PermanenceUpdate({ match }) {
       dispatch(permanenceActions.updateField(
         maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_checkboxSiret' : 'secondaire_0_checkboxSiret', false
       ));
+      const adresseIntrouvable = Boolean(maPermanence?.adresseIntrouvable.length > 0 ?? false);
+      dispatch(permanenceActions.updateField(
+        maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_adresseIntrouvable' : 'secondaire_0_adresseIntrouvable', adresseIntrouvable
+      ));
       // eslint-disable-next-line max-len
       dispatch(permanenceActions.disabledField(maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_', adresse?.rue === '' ? false : maPermanence?.estStructure));
 
@@ -212,6 +223,15 @@ function PermanenceUpdate({ match }) {
 
   return (
     <>
+      <div className="spinnerCustom">
+        <Spinner
+          type="Oval"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          visible={loading === true }
+        />
+      </div>
       {(!maPermanenceLoading && !maPermanenceError) &&
         <>
           <div id="formulaire-horaires-adresse" >
@@ -233,8 +253,8 @@ function PermanenceUpdate({ match }) {
             {showError &&
               <p className="fr-label flashBag invalid">
                 {showErrorMessage ?? errorUpdated ?
-                  'Une erreur est survenue lors de la mise à jour de votre lieu d’activité' :
-                  'Une erreur est survenue lors du traitement de vos informations'}
+                  'Une erreur est survenue lors de la mise à jour de votre lieu d’activité.' :
+                  'Une erreur est survenue lors du traitement de vos informations.'}
                   &nbsp;{errorUpdated}
               </p>
             }
@@ -311,9 +331,7 @@ function PermanenceUpdate({ match }) {
                     <Adresse
                       codeDepartement={structure?.codeDepartement}
                       prefixId={estlieuPrincipal ? 'principal_' : 'secondaire_0_' }
-                      isUpdate={true}
                       permanence={maPermanence}
-                      conseillerId={conseiller?._id}
                     />
                     <TypeAcces
                       prefixId={estlieuPrincipal ? 'principal_' : 'secondaire_0_' }

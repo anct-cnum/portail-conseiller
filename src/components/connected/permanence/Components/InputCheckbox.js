@@ -9,7 +9,6 @@ function InputCheckbox({ textLabel, errorInput, prefixId, nameInput, baselineInp
 
   const fields = useSelector(state => state.permanence?.fields);
   const checked = fields?.filter(field => field.name === prefixId + nameInput)[0]?.value;
-
   const types = ['libre', 'rdv', 'prive'];
 
   const onClick = e => {
@@ -18,6 +17,7 @@ function InputCheckbox({ textLabel, errorInput, prefixId, nameInput, baselineInp
     dispatch(permanenceActions.updateField(prefixId + nameInput, checked));
 
     if (nameInput.slice(-5) === 'Siret') {
+      dispatch(permanenceActions.updateField(prefixId + 'adresse', ''));
       dispatch(permanenceActions.updateField(prefixId + 'nomEnseigne', ''));
       dispatch(permanenceActions.updateField(prefixId + 'numeroVoie', ''));
       dispatch(permanenceActions.updateField(prefixId + 'rueVoie', ''));
@@ -25,7 +25,13 @@ function InputCheckbox({ textLabel, errorInput, prefixId, nameInput, baselineInp
       dispatch(permanenceActions.updateField(prefixId + 'ville', ''));
       dispatch(permanenceActions.disabledField(prefixId, false));
     }
-
+    if (nameInput === 'adresseIntrouvable') {
+      dispatch(permanenceActions.updateField(prefixId + 'numeroVoie', ''));
+      dispatch(permanenceActions.updateField(prefixId + 'rueVoie', ''));
+      dispatch(permanenceActions.updateField(prefixId + 'codePostal', ''));
+      dispatch(permanenceActions.updateField(prefixId + 'ville', ''));
+      dispatch(permanenceActions.rebootListeAdresses());
+    }
     if (types.includes(nameInput)) {
       const typeAcces = [
         fields?.filter(field => field.name === prefixId + 'libre')[0]?.value ? 'libre' : null,

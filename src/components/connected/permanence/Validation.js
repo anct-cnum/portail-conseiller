@@ -64,8 +64,11 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
         conseillers: conseillers,
         structureId: structureId,
         hasPermanence: true,
+        adresseIntrouvable: null,
       };
-
+      if (fields.filter(field => field.name === prefixId + 'adresseIntrouvable')[0]?.value === true) {
+        nouveauLieu.adresseIntrouvable = fields.filter(field => field.name === prefixId + 'adresse')[0]?.value ?? null;
+      }
       if (prefixId === 'principal_') {
         const lieuPrincipalPour = fields?.filter(field => field.name === 'lieuPrincipalPour')[0]?.value ?? [];
         if (!lieuPrincipalPour.includes(conseillerId)) {
@@ -106,7 +109,6 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
       } else if (prefixId === null) {
         dispatch(permanenceActions.validerPermanenceForm(conseillerId));
       }
-
     } else if (errorsForm?.lengthError > 0 && clickSubmit === true) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -120,7 +122,7 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
         <button className="fr-link fr-fi-external-link-line fr-link--icon-right validation-extern-btn" onClick={() => {
           handleSubmit('cartographie');
         }}>
-          Enregistrer et afficher sur la carte nationale
+          Enregistrer et voir la carte nationale
         </button>
         <div className="fr-mb-12w fr-mt-4w">
           ( <span className="obligatoire">*</span> ) champs obligatoires

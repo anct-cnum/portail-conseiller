@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import SupprimerPermanence from './SupprimerPermanence';
 import { useDispatch, useSelector } from 'react-redux';
 import { craActions } from '../../../actions';
+import ReactTooltip from 'react-tooltip';
 
 function MaPermanence({ permanence, conseillerId, trClass }) {
   const dispatch = useDispatch();
@@ -32,13 +33,26 @@ function MaPermanence({ permanence, conseillerId, trClass }) {
 
   return (
     <tr className={trClass + ' permanence'}>
-      <td>{permanence?.nomEnseigne}</td>
+      <td>
+        <span className="ri-error-warning-fill warning-adresse"
+          data-tip="Vous avez remontez un probl&egrave;me d&rsquo;adresse, celui-ci est en cours de traitement."></span>
+        <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
+        {permanence?.nomEnseigne}</td>
       <td>
         <span className={islieuPrincipal ? 'circle-true' : 'circle-false'}/>
       </td>
       <td>
-        {(permanence?.adresse?.numeroRue ?? '') + ' ' + permanence?.adresse?.rue }<br/>
-        {permanence?.adresse?.codePostal + ' ' + permanence?.adresse?.ville}
+        {permanence?.adresseIntrouvable &&
+          <div className="adresse-introuvable">
+            {permanence?.adresseIntrouvable}
+          </div>
+        }
+        {permanence?.adresse?.rue?.length > 0 &&
+          <>
+            {(permanence?.adresse?.numeroRue ?? '') + ' ' + permanence?.adresse?.rue }<br/>
+            {permanence?.adresse?.codePostal + ' ' + permanence?.adresse?.ville}
+          </>
+        }
       </td>
       <td>
         <ul>

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { permanenceActions } from '../../../actions';
 
 import horairesInitiales from '../../../data/horairesInitiales.json';
+import { formatAdresse } from '../../../utils/functionFormats';
 
 function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, firstTime }) {
   const dispatch = useDispatch();
@@ -25,15 +26,15 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
     if (permanence?._id !== permanenceActuelId) {
       dispatch(permanenceActions.updateField('idOldPermanence', permanenceActuelId));
     }
-
     dispatch(permanenceActions.updateField(prefixId + 'idPermanence', permanence?._id ?? 'nouveau'));
     dispatch(permanenceActions.updateField(prefixId + 'nomEnseigne', permanence?.nomEnseigne));
     dispatch(permanenceActions.updateField(prefixId + 'siret', permanence?.siret));
     dispatch(permanenceActions.updateField(prefixId + 'checkboxSiret', e.target.value === 'nouveau' ? false : !permanence?.siret));
-    dispatch(permanenceActions.updateField(prefixId + 'numeroVoie', permanence?.adresse?.numeroRue));
-    dispatch(permanenceActions.updateField(prefixId + 'rueVoie', permanence?.adresse?.rue));
+    dispatch(permanenceActions.updateField(prefixId + 'numeroVoie', permanence?.adresse?.numeroRue?.toUpperCase()));
+    dispatch(permanenceActions.updateField(prefixId + 'rueVoie', permanence?.adresse?.rue?.toUpperCase()));
     dispatch(permanenceActions.updateField(prefixId + 'codePostal', permanence?.adresse?.codePostal));
     dispatch(permanenceActions.updateField(prefixId + 'ville', permanence?.adresse?.ville?.toUpperCase()));
+    dispatch(permanenceActions.updateField(prefixId + 'adresse', formatAdresse(permanence?.adresse)));
     dispatch(permanenceActions.updateField(prefixId + 'location', permanence?.location));
     dispatch(permanenceActions.updateField(prefixId + 'numeroTelephone', permanence?.numeroTelephone));
     dispatch(permanenceActions.updateField(prefixId + 'email', permanence?.email));

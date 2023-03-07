@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Spinner from 'react-loader-spinner';
 
 import { conseillerActions, permanenceActions } from '../../../actions';
 import { userEntityId } from '../../../helpers';
@@ -13,12 +14,13 @@ function MesPermanences() {
   const dispatch = useDispatch();
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const listPermanences = useSelector(state => state.permanence?.mesPermanences);
+  const loading = useSelector(state => state.permanence?.loading);
   const reloadList = useSelector(state => state.permanence?.reloadList);
 
   const [mesPermanences, setMesPermanences] = useState([]);
 
-  const isDeleted = useSelector(state => state.permanence.isDeleted);
-  const isConseillerDeleted = useSelector(state => state.permanence.isConseillerDeleted);
+  const isDeleted = useSelector(state => state.permanence?.isDeleted);
+  const isConseillerDeleted = useSelector(state => state.permanence?.isConseillerDeleted);
 
   const isCreated = useSelector(state => state.permanence?.isCreated);
   const isUpdated = useSelector(state => state.permanence?.isUpdated);
@@ -33,6 +35,9 @@ function MesPermanences() {
         } else {
           mesPermanences[i + 1] = listPermanences[i];
         }
+      }
+      if (listPermanences?.length < mesPermanences?.length) {
+        mesPermanences.pop();
       }
       setMesPermanences(mesPermanences);
     }
@@ -58,15 +63,24 @@ function MesPermanences() {
 
   useEffect(() => {
     if (reloadList && conseiller) {
-      dispatch(permanenceActions.getMesPermanences(conseiller?._id));
-      dispatch(permanenceActions.reloadList(false));
       setMesPermanences([]);
+      dispatch(permanenceActions.reloadList(false));
+      dispatch(permanenceActions.getMesPermanences(conseiller?._id));
     }
   }, [reloadList]);
 
   return (
     <>
-      {conseiller &&
+      <div className="spinnerCustom">
+        <Spinner
+          type="Oval"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          visible={loading === true }
+        />
+      </div>
+      {(conseiller && !loading) &&
       <>
         { ((location.pathname === '/mes-lieux-activite' && conseiller?.hasPermanence) ||
           (location.pathname !== '/mes-lieux-activite' && !conseiller?.hasPermanence)) &&
@@ -103,7 +117,7 @@ function MesPermanences() {
                         </tr>
                       </thead>
                       <tbody>
-                        {listPermanences?.length > 0 && mesPermanences?.map((permanence, idx) => {
+                        {mesPermanences?.length > 0 && mesPermanences?.map((permanence, idx) => {
                           return (<MaPermanence key={idx} permanence={permanence} conseillerId={conseiller?._id}
                             trClass ={idx % 2 === 0 ? 'pair' : 'impair'}/>);
                         })}

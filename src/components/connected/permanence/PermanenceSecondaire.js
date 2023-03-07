@@ -17,7 +17,6 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
 
   const form = useSelector(state => state.permanence);
   const lieuxSecondaires = Array.from({ length: process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE }, () => ({}));
-  const adresseStructure = structure?.insee?.etablissement?.adresse;
   const fields = useSelector(state => state.permanence?.fields);
   const errorsForm = useSelector(state => state.permanence?.errorsFormulaire);
   const validForms = useSelector(state => state.permanence.formulairesValides);
@@ -44,7 +43,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
       dispatch(permanenceActions.updateField('submit_and_next_0', false));
     }
   }
-
+  
   function handleSecondaire(hasSecondaire) {
     if (hasSecondaire) {
 
@@ -114,7 +113,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
       nouveauLieu.telephonePro = formatTelephone(nouveauLieu.telephonePro, codeDepartement);
       nouveauLieu.numeroTelephone = formatTelephone(nouveauLieu.numeroTelephone, codeDepartement);
       nouveauLieu = JSON.parse(JSON.stringify(nouveauLieu).replace(/"\s+|\s+"/g, '"'));
-      
+
       if (nouveauLieu?._id !== null && nouveauLieu?._id !== 'nouveau') {
         await dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, false, 'secondaire_0_'));
       } else if (prefixId) {
@@ -230,12 +229,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
                   <ListPermanences prefixId={ 'secondaire_' + idx + '_'} conseillerId={conseillerId} firstTime={true}/>
                   <Adresse
                     codeDepartement={structure?.codeDepartement}
-                    adressePermanence={adresseStructure}
-                    nomEnseignePermanence={structure?.nom}
                     prefixId={ 'secondaire_' + idx + '_'}
-                    secondaireId={ idx }
-                    islieuPrincipal={false}
-                    conseillerId={conseillerId}
                     chargeCarteFistSecondaire={(prefixId === `secondaire_${idx}_`) ? 'loading' : 'notLoading'}
                   />
                   <TypeAcces prefixId={ 'secondaire_' + idx + '_'} islieuPrincipal={false} />

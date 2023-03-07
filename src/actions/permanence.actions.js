@@ -1,6 +1,7 @@
 import { permanenceService } from '../services/permanence.service';
 import { history } from '../helpers';
 import Joi from 'joi';
+import { formatAdresse } from '../utils/functionFormats';
 
 export const permanenceActions = {
   getMaPermanence,
@@ -14,6 +15,9 @@ export const permanenceActions = {
   validerPermanenceForm,
   verifySiret,
   getGeocodeAdresse,
+  getAdresseByApi,
+  setAdresse,
+  rebootListeAdresses,
   rebootGeocodeAdresse,
   updateLieuPrincipal,
   updateField,
@@ -58,7 +62,6 @@ function getMaPermanence(idPermanence) {
 function getMesPermanences(idConseiller) {
   return dispatch => {
     dispatch(request());
-
     permanenceService.getMesPermanences(idConseiller)
     .then(
       result => dispatch(success(result.permanences)),
@@ -166,19 +169,8 @@ function verifyFormulaire(form, statut) {
       message: 'Une adresse email valide doit être saisie'
     },
     {
-      nom: 'numeroVoie', validation: Joi.string().trim().required().allow('', null),
-      message: 'Un numéro de voie doit obligatoirement être saisi'
-    },
-    {
-      nom: 'rueVoie', validation: Joi.string().trim().required().min(5).max(120),
-      message: 'Une rue doit obligatoirement être saisie' },
-    {
-      nom: 'codePostal', validation: Joi.string().trim().required().min(5).max(5),
-      message: 'Un code postal doit obligatoirement être saisi'
-    },
-    {
-      nom: 'ville', validation: Joi.string().trim().required().min(3).max(60),
-      message: 'Une ville doit obligatoirement être saisie'
+      nom: 'adresse', validation: Joi.string().trim().required(),
+      message: 'Une adresse doit obligatoirement être saisie'
     },
     {
       nom: 'location', validation: Joi.object().required(),
@@ -210,13 +202,16 @@ function verifyFormulaire(form, statut) {
                 [champ + id + '_' + accepte.nom]:
                   controleHoraires(form?.fields?.filter(field => field.name === champ + id + '_' + accepte.nom)[0]?.value[champ + id + '_horaires'])
               });
-            } else {
+            } else if (
+              (form?.fields?.filter(field => field.name === champ + id + '_adresseIntrouvable')[0]?.value && accepte.nom !== 'location') ||
+              !form?.fields?.filter(field => field.name === champ + id + '_adresseIntrouvable')[0]?.value) {
               errors.push({
                 [champ + id + '_' + accepte.nom]: (Joi.object({
                   [champ + id + '_' + accepte.nom]: accepte.validation }).validate(
                   { [champ + id + '_' + accepte.nom]:
                     form?.fields?.filter(field => field.name === champ + id + '_' + accepte.nom)[0]?.value }).error) ? accepte.message : null
               });
+
             }
           });
         }
@@ -359,7 +354,7 @@ function validerPermanenceForm(idConseiller) {
     return { type: 'UPDATE_STATUT_FORM_FAILURE', error };
   }
 }
-
+//500 569 405 03239
 function verifySiret(champ, siret) {
   return dispatch => {
     dispatch(request());
@@ -408,6 +403,39 @@ function getGeocodeAdresse(adresse, prefixId) {
   function failure(error) {
     return { type: 'GEOCODE_ADRESSE_FAILURE', error };
   }
+}
+
+function getAdresseByApi(adresse, prefixId) {
+  return dispatch => {
+    dispatch(request());
+    permanenceService.getAdresseByApi(adresse.trim())
+    .then(
+      result => {
+        dispatch(success(result.adresseApi, prefixId, adresse));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'GET_ADRESSE_REQUEST' };
+  }
+  function success(adresses, prefixId, adresse) {
+    return { type: 'GET_ADRESSE_SUCCESS', adresses, prefixId, adresse };
+  }
+  function failure(error) {
+    return { type: 'GET_ADRESSE_FAILURE', error };
+  }
+}
+
+function setAdresse(adresse, prefixId) {
+  return { type: 'SET_ADRESSE', adresse, prefixId };
+}
+
+function rebootListeAdresses() {
+  return { type: 'LISTE_ADRESSES_REBOOT' };
 }
 
 function rebootGeocodeAdresse(prefixId) {
@@ -523,6 +551,7 @@ function reporterPermanence() {
 }
 
 function setChampsMaPermanence(permanence, prefixId, conseiller) {
+
   const fields = [
     { name: prefixId + 'idPermanence', value: permanence?._id },
     { name: 'estStructure', value: permanence?.estStructure },
@@ -538,6 +567,7 @@ function setChampsMaPermanence(permanence, prefixId, conseiller) {
     { name: prefixId + 'rueVoie', value: permanence?.adresse?.rue },
     { name: prefixId + 'codePostal', value: permanence?.adresse.codePostal },
     { name: prefixId + 'ville', value: permanence?.adresse.ville?.toUpperCase() },
+    { name: prefixId + 'adresse', value: formatAdresse(permanence?.adresse, null, null, permanence?.adresseIntrouvable) },
     { name: prefixId + 'location', value: permanence?.location },
     { name: prefixId + 'conseillers', value: permanence?.conseillers },
     { name: prefixId + 'itinerant', value: permanence?.conseillersItinerants.includes(conseiller?._id) },

@@ -17,3 +17,19 @@ export const formatTelephone = (tel, codeDepartement) => {
 
   return telephone;
 };
+
+export const formatRue = (rue, type, voie) => {
+  return rue?.toUpperCase() ?? [type ?? '', voie ?? ''].join(' ').toUpperCase();
+};
+
+export const formatAdresse = (adressePermanence, adresseStructure = null, rue = null, adresseIntrouvable = null) => {
+  if (adresseIntrouvable) {
+    return adresseIntrouvable;
+  }
+  return [
+    adressePermanence?.numeroRue ?? adresseStructure?.numero_voie ?? '',
+    adressePermanence?.rue ?? rue ?? '',
+    adressePermanence?.codePostal ?? adresseStructure?.code_postal ?? '',
+    adressePermanence?.ville ?? adresseStructure?.localite ?? ''
+  ].join(' ').toUpperCase();
+};
