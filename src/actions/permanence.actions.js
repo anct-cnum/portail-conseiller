@@ -354,7 +354,7 @@ function validerPermanenceForm(idConseiller) {
     return { type: 'UPDATE_STATUT_FORM_FAILURE', error };
   }
 }
-//500 569 405 03239
+
 function verifySiret(champ, siret) {
   return dispatch => {
     dispatch(request());
