@@ -22,8 +22,8 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
   const erreurSiteWeb = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'siteWeb'])[0]?.[prefixId + 'siteWeb'];
   const erreurAdresse = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'adresse'])[0]?.[prefixId + 'adresse'];
   const erreurLocalisation = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'location'])[0]?.[prefixId + 'location'];
-  const listeAdresses = useSelector(state => state.permanence.listeAdresses);
-  const loadingAdresses = useSelector(state => state.permanence.loadingAdresses);
+  const listeAdresses = useSelector(state => state.permanence?.listeAdresses);
+  const loadingAdresses = useSelector(state => state.permanence?.loadingAdresses);
   const geocodeAdresses = useSelector(state => state.permanence?.geocodeAdresses);
   const geocodeAdresse = geocodeAdresses?.filter(geocode => geocode.prefixId === prefixId)[0]?.geocodeAdresse;
   const estDisabled = disabledFields?.filter(field => field.id === prefixId)[0]?.value;
