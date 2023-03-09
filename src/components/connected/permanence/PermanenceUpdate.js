@@ -92,7 +92,7 @@ function PermanenceUpdate({ match }) {
       permanencePrincipale?.adresse?.codePostal ?? adresseStructure?.code_postal));
     dispatch(permanenceActions.updateField('principal_ville',
       permanencePrincipale?.adresse?.ville?.toUpperCase() ?? adresseStructure?.localite?.toUpperCase()));
-    dispatch(permanenceActions.updateField('principal_adresse', adresse.toUpperCase()));
+    dispatch(permanenceActions.updateField('principal_adresse', adresse?.toUpperCase()));
     dispatch(permanenceActions.updateField('principal_location', estStructure ? structure?.location : null));
     if (loadingHoraires) {
       loadingHoraires[0] = true;
