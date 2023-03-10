@@ -50,7 +50,7 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
       permanencePrincipale?.adresse?.codePostal ?? adresseStructure?.code_postal));
     dispatch(permanenceActions.updateField('principal_ville',
       permanencePrincipale?.adresse?.ville?.toUpperCase() ?? adresseStructure?.localite?.toUpperCase()));
-    dispatch(permanenceActions.updateField('principal_adresse', adresse.toUpperCase()));
+    dispatch(permanenceActions.updateField('principal_adresse', adresse?.toUpperCase()));
     dispatch(permanenceActions.updateField('principal_location', structure?.location));
     if (loadingHoraires) {
       loadingHoraires[0] = true;
