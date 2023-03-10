@@ -9,7 +9,7 @@ import { sortByMonthAndYear } from '../../../utils/functionsSort';
 import labelsCorrespondance from '../../../data/labelsCorrespondance.json';
 import { statistiqueActions } from '../../../actions/statistique.actions';
 
-function BottomPage({ donneesStats, print, type }) {
+function BottomPage({ donneesStats, print, type = null }) {
 
   const dispatch = useDispatch();
 
@@ -108,7 +108,7 @@ function BottomPage({ donneesStats, print, type }) {
       margeDroiteGraphique: 80,
       optionResponsive: false,
       couleursGraphique: tabColorAge,
-      largeurGraphiquePrint: 1100,
+      largeurGraphiquePrint: type !== null ? 700 : 1100,
       hauteurGraphiquePrint: 500,
       margeGaucheGraphiquePrint: 100,
       margeDroiteGraphiquePrint: 200,
@@ -145,7 +145,7 @@ function BottomPage({ donneesStats, print, type }) {
       margeDroiteGraphique: 0,
       optionResponsive: false,
       couleursGraphique: tabColorAge,
-      largeurGraphiquePrint: 1100,
+      largeurGraphiquePrint: type !== null ? 700 : 1100,
       hauteurGraphiquePrint: 300,
       margeGaucheGraphiquePrint: 0,
       margeDroiteGraphiquePrint: 0,
@@ -165,7 +165,7 @@ function BottomPage({ donneesStats, print, type }) {
       margeDroiteGraphique: 0,
       optionResponsive: false,
       couleursGraphique: tabColorStatut,
-      largeurGraphiquePrint: 1100,
+      largeurGraphiquePrint: type !== null ? 700 : 1100,
       hauteurGraphiquePrint: 300,
       margeGaucheGraphiquePrint: 0,
       margeDroiteGraphiquePrint: 0,
@@ -200,8 +200,7 @@ function BottomPage({ donneesStats, print, type }) {
       margeGaucheGraphique: -730,
       optionResponsive: false,
       couleursGraphique: tabColorLieux,
-
-      largeurGraphiquePrint: 1100,
+      largeurGraphiquePrint: type !== null ? 700 : 1100,
       hauteurGraphiquePrint: 500,
       margeGaucheGraphiquePrint: -315,
       margeDroiteGraphiquePrint: 0,
@@ -221,10 +220,10 @@ function BottomPage({ donneesStats, print, type }) {
           <div className="fr-col-12 fr-col-md-5 fr-col-lg-3 evolution-print">
             <div className="fr-mt-6w fr-mb-5w fr-m-xs-to-md-7v dont-print"><hr/></div>
             <span className="graphique-responsive-md-lg ">
-              <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolution} print={print}/>
+              <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolution} print={print} type={type}/>
             </span>
             <span className="graphique-responsive-sm">
-              <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolutionSM} print={print}/>
+              <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolutionSM} print={print} type={type}/>
             </span>
           </div>
 
@@ -232,21 +231,21 @@ function BottomPage({ donneesStats, print, type }) {
 
           <div className="fr-col-12 fr-col-md-5 fr-col-lg-3 age-print">
             <div className="fr-mt-6w fr-mb-5w fr-m-xs-to-md-7v"><hr className="dont-print"/></div>
-            <ElementHighcharts donneesStats={statsAges} variablesGraphique={graphiqueAge} print={print}/>
+            <ElementHighcharts donneesStats={statsAges} variablesGraphique={graphiqueAge} print={print} type={type}/>
           </div>
 
           <div className="fr-col-12 fr-col-md-5 graphique-responsive-md dont-print">
             {statsReorientations?.length > 0 &&
               <>
                 <div className="fr-mt-6w fr-mb-5w fr-m-xs-to-md-7v"><hr/></div>
-                <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientationsSM} print={print}/>
+                <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientationsSM} print={print} type={type}/>
               </>
             }
           </div>
 
           <div className="fr-col-offset-md-1 fr-col-12 fr-col-md-5 fr-col-lg-3 statut-print">
             <div className="fr-mt-6w fr-mb-5w fr-m-xs-to-md-7v dont-print"><hr/></div>
-            <ElementHighcharts donneesStats={statsUsagers} variablesGraphique={graphiqueStatut} print={print}/>
+            <ElementHighcharts donneesStats={statsUsagers} variablesGraphique={graphiqueStatut} print={print} type={type}/>
           </div>
           <div className={type === 'conseiller' ? 'fr-col-12 fr-col-offset-md-4 fr-col-md-8 graphique-responsive-lg reorientation-print-conseiller' :
             'fr-col-12 fr-col-offset-md-4 fr-col-md-8 graphique-responsive-lg reorientation-print'}
@@ -254,27 +253,27 @@ function BottomPage({ donneesStats, print, type }) {
             <div className="fr-mt-6w"></div>
             {statsReorientations?.length > 0 &&
               <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientations}
-                listeAutres={listeAutresReorientations} print={print}/>
+                listeAutres={listeAutresReorientations} print={print} type={type}/>
             }
             <div className="fr-m-no-reorientation"></div>
           </div>
         </div>
       </div>
       <div className="fr-col-12 fr-mb-6w only-print" >
-        <ElementHighcharts donneesStats={statsAges} variablesGraphique={graphiqueAge} print={true}/>
+        <ElementHighcharts donneesStats={statsAges} variablesGraphique={graphiqueAge} print={true} type={type}/>
       </div>
       <div className="fr-col-12 fr-mb-6w only-print" >
-        <ElementHighcharts donneesStats={statsUsagers} variablesGraphique={graphiqueStatut} print={true}/>
+        <ElementHighcharts donneesStats={statsUsagers} variablesGraphique={graphiqueStatut} print={true} type={type}/>
       </div>
       <div className="fr-col-12 fr-mb-6w only-print evolution-print">
-        <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolution} print={true}/>
+        <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolution} print={true} type={type}/>
       </div>
-      <div className="fr-col-12 only-print">
-        {statsReorientations?.length > 0 &&
+      {statsReorientations?.length > 0 &&
+        <div className="fr-col-12 only-print">
           <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientations}
-            listeAutres={listeAutresReorientations} print={true}/>
-        }
-      </div>
+            listeAutres={listeAutresReorientations} print={true} type={type}/>
+        </div>
+      }
     </>
   );
 }

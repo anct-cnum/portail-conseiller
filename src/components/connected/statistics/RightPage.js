@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ElementHighcharts from './Components/ElementHighcharts';
 
-function RightPage({ donneesStats, print }) {
+function RightPage({ donneesStats, print, type = null }) {
 
   const tabColorTheme = ['#cac5b0', '#abb8df', '#fdcf41', '#169b62', '#80d5c6', '#ff8d7e', '#714753', '#956052', '#ddb094', '#5770be', '#ffed33', '#be9b31'];
   const tabColorLieux = ['#ffcc9f', '#ff8d7e', '#466964', '#5770be'];
@@ -19,7 +19,7 @@ function RightPage({ donneesStats, print }) {
       margeDroiteGraphique: 0,
       optionResponsive: false,
       couleursGraphique: tabColorTheme,
-      largeurGraphiquePrint: 1100,
+      largeurGraphiquePrint: type !== null ? 700 : 1100,
       hauteurGraphiquePrint: 500,
       margeGaucheGraphiquePrint: 300,
       margeDroiteGraphiquePrint: 0,
@@ -28,6 +28,7 @@ function RightPage({ donneesStats, print }) {
       optionTitre: 'Th&egrave;mes des accompagnements',
       margeTitre: 38,
       placementTitre: 0
+
     }
   };
 
@@ -57,7 +58,7 @@ function RightPage({ donneesStats, print }) {
       margeDroiteGraphique: 10,
       optionResponsive: false,
       couleursGraphique: tabColorLieux,
-      largeurGraphiquePrint: 1100,
+      largeurGraphiquePrint: type !== null ? 700 : 1100,
       hauteurGraphiquePrint: 400,
       margeGaucheGraphiquePrint: 0,
       margeDroiteGraphiquePrint: 10,
@@ -95,7 +96,7 @@ function RightPage({ donneesStats, print }) {
       margeDroiteGraphique: 55,
       optionResponsive: false,
       couleursGraphique: tabColorDuree,
-      largeurGraphiquePrint: 1100,
+      largeurGraphiquePrint: type !== null ? 700 : 1100,
       hauteurGraphiquePrint: 450,
       margeGaucheGraphiquePrint: 55,
       margeDroiteGraphiquePrint: 55,
@@ -130,7 +131,7 @@ function RightPage({ donneesStats, print }) {
         <div className="fr-container-fluid">
           <div className="fr-grid-row ">
             <div className="fr-col-12">
-              <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphique} print={print}/>
+              <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphique} print={print} type={type}/>
             </div>
 
             <div className="fr-col-12">
@@ -138,12 +139,12 @@ function RightPage({ donneesStats, print }) {
             </div>
 
             <div className="fr-col-12 fr-col-lg-6">
-              <ElementHighcharts donneesStats={statsLieux} variablesGraphique={pieGraphiqueSm} print={print}/>
+              <ElementHighcharts donneesStats={statsLieux} variablesGraphique={pieGraphiqueSm} print={print} type={type}/>
             </div>
 
             <div className="fr-col-12 fr-col-lg-6 dont-print">
               <div className="fr-ml-md-6w">
-                <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphiqueSm} print={print}/>
+                <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphiqueSm} print={print} type={type}/>
               </div>
             </div>
           </div>
@@ -155,7 +156,7 @@ function RightPage({ donneesStats, print }) {
         <div className="fr-container-fluid">
           <div className="fr-grid-row ">
             <div className="fr-col-12">
-              <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphiqueSm} print={print}/>
+              <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphiqueSm} print={print} type={type}/>
             </div>
           </div>
         </div>
@@ -176,7 +177,7 @@ function RightPage({ donneesStats, print }) {
             </div>
 
             <div className="fr-col-12 fr-col-md-6 dont-print">
-              <ElementHighcharts donneesStats={statsLieux} variablesGraphique={pieGraphiqueSm} print={print}/>
+              <ElementHighcharts donneesStats={statsLieux} variablesGraphique={pieGraphiqueSm} print={print} type={type}/>
             </div>
 
             <div className="fr-col-12 hr-md-hide dont-print">
@@ -184,20 +185,20 @@ function RightPage({ donneesStats, print }) {
             </div>
 
             <div className="fr-col-12 fr-col-md-6">
-              <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphiqueSm} print={print}/>
+              <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphiqueSm} print={print} type={type}/>
             </div>
           </div>
         </div>
       </div>
       <div className="fr-col-12 fr-mb-6w only-print theme-print">
         <div className="mozilla-espace-block"></div>
-        <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphique} print={true}/>
+        <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphique} print={true} type={type}/>
       </div>
       <div className="fr-col-12 only-print lieux-print">
-        <ElementHighcharts donneesStats={statsLieux} variablesGraphique={pieGraphique} print={true}/>
+        <ElementHighcharts donneesStats={statsLieux} variablesGraphique={pieGraphique} print={true} type={type}/>
       </div>
       <div className="fr-col-12 fr-mb-6w only-print duree-print">
-        <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphique} print={true}/>
+        <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphique} print={true} type={type}/>
       </div>
     </>
   );
@@ -205,7 +206,8 @@ function RightPage({ donneesStats, print }) {
 
 RightPage.propTypes = {
   donneesStats: PropTypes.object,
-  print: PropTypes.bool
+  print: PropTypes.bool,
+  type: PropTypes.string,
 };
 
 export default RightPage;
