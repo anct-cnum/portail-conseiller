@@ -34,7 +34,7 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
   const onClickAdresse = adresse => {
     dispatch(permanenceActions.setAdresse(adresse, prefixId));
     const adresseEl = document.getElementById(prefixId + 'adresse');
-    adresseEl.value = adresse.properties.label;
+    adresseEl.value = adresse?.properties?.label;
   };
 
   useEffect(() => {
