@@ -198,7 +198,7 @@ function PermanenceUpdate({ match }) {
         maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_adresseIntrouvable' : 'secondaire_0_adresseIntrouvable', adresseIntrouvable
       ));
       // eslint-disable-next-line max-len
-      dispatch(permanenceActions.disabledField(maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_', adresse?.rue === '' ? false : maPermanence?.estStructure));
+      dispatch(permanenceActions.disabledField(maPermanence?.lieuPrincipalPour?.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_', adresse?.rue === '' ? false : maPermanence?.estStructure));
 
       const show = [!maPermanence?.lieuPrincipalPour.includes(conseiller?._id)];
       dispatch(permanenceActions.montrerLieuSecondaire(show));
