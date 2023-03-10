@@ -7,7 +7,7 @@ import { userRoles } from '../../../../helpers';
 
 import labelsCorrespondance from '../../../../data/labelsCorrespondance.json';
 
-function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutres, type = null }) {
+function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutres }) {
 
   const isReoriente = variablesGraphique.titre.optionTitre === 'Usager.ères réorienté.es';
   const { typeGraphique, largeurGraphique, largeurGraphiquePrint, hauteurGraphique, hauteurGraphiquePrint,
@@ -72,7 +72,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
   }
 
   function setStatistiquesTitre(optionTitre, margeTitre, placementTitre) {
-    const fontSizePrint = type !== null ? '2rem' : '2.5rem';
+
     let titre = {
       text: optionTitre,
       margin: margeTitre,
@@ -82,7 +82,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
       align: 'left',
       style: {
         color: print ? '#1e1e1e' : '#fff',
-        fontSize: print ? fontSizePrint : '16px',
+        fontSize: print ? '2.5rem' : '16px',
         fontWeight: 'bold',
         lineHeight: '24px'
       }
@@ -738,7 +738,6 @@ ElementHighcharts.propTypes = {
   variablesGraphique: PropTypes.object,
   print: PropTypes.bool,
   listeAutres: PropTypes.array,
-  type: PropTypes.string,
 };
 
 export default ElementHighcharts;
