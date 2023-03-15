@@ -52,6 +52,7 @@ function EnregistrerStatistiquesPdf({ match }) {
     <div className="statistics print">
       <Header printClass="print"/>
       <div className="fr-container">
+
         <div className="fr-grid-row">
           <div className="fr-col-12">
             <div className="fr-mt-2w fr-mt-md-9w fr-mt-lg-13w"></div>
