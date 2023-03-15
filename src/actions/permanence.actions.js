@@ -434,8 +434,8 @@ function setAdresse(adresse, prefixId) {
   return { type: 'SET_ADRESSE', adresse, prefixId };
 }
 
-function rebootListeAdresses() {
-  return { type: 'LISTE_ADRESSES_REBOOT' };
+function rebootListeAdresses(prefixId) {
+  return { type: 'LISTE_ADRESSES_REBOOT', prefixId };
 }
 
 function rebootGeocodeAdresse(prefixId) {

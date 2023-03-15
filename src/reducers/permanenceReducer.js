@@ -282,13 +282,17 @@ export default function permanence(state = initialState, action) {
         listeAdresses: [],
       };
     case 'LISTE_ADRESSES_REBOOT': {
-      if (state?.geocodeAdresses?.length > 0) {
-        delete state?.geocodeAdresses?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.geocodeAdresse;
+      let geocodeAdressesReboot = state?.geocodeAdresses ?? [];
+      if (geocodeAdressesReboot?.length > 0) {
+        console.log(action);
+        delete geocodeAdressesReboot?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.geocodeAdresse;
+        delete geocodeAdressesReboot?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.prefixId;
+        geocodeAdressesReboot = nettoyageState(geocodeAdressesReboot);
       }
       return {
         ...state,
         listeAdresses: [],
-        geocodeAdresses: nettoyageState(state?.geocodeAdresses),
+        geocodeAdresses: geocodeAdressesReboot,
       };
     }
     case 'GEOCODE_ADRESSE_REBOOT':

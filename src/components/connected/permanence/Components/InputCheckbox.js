@@ -30,7 +30,7 @@ function InputCheckbox({ textLabel, errorInput, prefixId, nameInput, baselineInp
       dispatch(permanenceActions.updateField(prefixId + 'rueVoie', ''));
       dispatch(permanenceActions.updateField(prefixId + 'codePostal', ''));
       dispatch(permanenceActions.updateField(prefixId + 'ville', ''));
-      dispatch(permanenceActions.rebootListeAdresses());
+      dispatch(permanenceActions.rebootListeAdresses(prefixId));
     }
     if (types.includes(nameInput)) {
       const typeAcces = [
