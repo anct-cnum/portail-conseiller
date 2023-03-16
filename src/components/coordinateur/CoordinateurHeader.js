@@ -24,7 +24,7 @@ function CoordinateurHeader() {
   }, []);
   return (
     <>
-      <div className="welcome fr-mb-5w">
+      <div className="welcome coordinateur-header fr-mb-5w">
         <div className="fr-container fr-container--fluid fond-sombre">
           <div className="fr-grid-row">
             <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
@@ -96,7 +96,7 @@ function CoordinateurHeader() {
                       Statistiques Nationales
                     </Link>
                   </div>
-                  
+
                   <div className="fr-col-6 fr-col-sm-3 fr-col-md-2 menu-btn fr-mb-3w">
                     <Link to="/territoires" title="Acc&eacute;der &agrave; aux statistiques par territoire">
                       <img src="/logos/home-connected/icone-statistiques.svg" className="icone-btn icone-cra"/>
