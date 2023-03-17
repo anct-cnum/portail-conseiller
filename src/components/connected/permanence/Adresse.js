@@ -113,7 +113,7 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
 
         <InputText
           textLabel="Entrez l&rsquo;adresse de votre lieu d&rsquo;activit&eacute;"
-          baselineInput="Remplissez le champ avec l&rsquo;adresse compl&egrave;te de votre lieu d&rsquo;activit&eactue;"
+          baselineInput="Remplissez le champ avec l&rsquo;adresse compl&egrave;te de votre lieu d&rsquo;activit&eacute;"
           errorInput={erreurAdresse}
           nameInput= {prefixId + 'adresse'}
           requiredInput={true}
