@@ -1,0 +1,30 @@
+.statistics.print{
+  background-color: #fff;
+  font-size: 23px;
+  .print {
+    background-color: #fff;
+  }
+  .title-print-territoire {
+    display: block;
+    color: #000;
+  }
+  .code-postal-select {
+    background-color: #fff;
+    color: #000;
+  }
+  .text{
+    font-size: 20px;
+  }
+  .number, .numbers {
+    font-size: 30px;
+  }
+  .fr-mb-6w {
+    margin-bottom: 1rem !important;
+  }
+  .fr-mb-9w {
+    margin-bottom: 2rem !important;
+  }
+  .fr-mb-12w {
+    margin-bottom: 3rem !important;
+  }
+}
