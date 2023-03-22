@@ -243,6 +243,24 @@ export default function permanence(state = initialState, action) {
         loadingAdresses: false,
         errorAdresses: true,
       };
+    case 'GET_ADRESSE_INTROUVABLE_REQUEST':
+      return {
+        ...state,
+        loadingAdresseIntrouvable: true,
+        errorAdresseIntrouvable: false,
+      };
+    case 'GET_ADRESSE_INTROUVABLE_SUCCESS':
+      return {
+        ...state,
+        adresseIntrouvable: action.adresse,
+        loadingAdresseIntrouvable: false,
+      };
+    case 'GET_ADRESSE_INTROUVABLE_FAILURE':
+      return {
+        ...state,
+        loadingAdresseIntrouvable: false,
+        errorAdresseIntrouvable: true,
+      };
     case 'SET_ADRESSE':
       let fieldsAdresse = state?.fields ?? [];
       let geocodeAdresse = state?.geocodeAdresses ?? [];
@@ -260,12 +278,15 @@ export default function permanence(state = initialState, action) {
         delete fieldsAdresse?.filter(field => field.name === action.prefixId + 'codePostal')[0]?.name;
         delete fieldsAdresse?.filter(field => field.name === action.prefixId + 'ville')[0]?.value;
         delete fieldsAdresse?.filter(field => field.name === action.prefixId + 'ville')[0]?.name;
+        delete fieldsAdresse?.filter(field => field.name === action.prefixId + 'codeCommune')[0]?.value;
+        delete fieldsAdresse?.filter(field => field.name === action.prefixId + 'codeCommune')[0]?.name;
 
         fieldsAdresse.push({ name: action.prefixId + 'adresse', value: action.adresse.properties?.label?.toUpperCase() });
         fieldsAdresse?.push({ name: action.prefixId + 'numeroVoie', value: action?.adresse?.properties?.housenumber?.toUpperCase() });
         fieldsAdresse?.push({ name: action.prefixId + 'rueVoie', value: action?.adresse?.properties?.street?.toUpperCase() });
         fieldsAdresse?.push({ name: action.prefixId + 'codePostal', value: action?.adresse?.properties?.postcode });
         fieldsAdresse?.push({ name: action.prefixId + 'ville', value: action?.adresse?.properties?.city?.toUpperCase() });
+        fieldsAdresse?.push({ name: action.prefixId + 'codeCommune', value: action?.adresse?.properties?.citycode?.toUpperCase() });
 
         fieldsAdresse = nettoyageState(fieldsAdresse);
         if (geocodeAdresse?.length > 0) {
@@ -284,7 +305,6 @@ export default function permanence(state = initialState, action) {
     case 'LISTE_ADRESSES_REBOOT': {
       let geocodeAdressesReboot = state?.geocodeAdresses ?? [];
       if (geocodeAdressesReboot?.length > 0) {
-        console.log(action);
         delete geocodeAdressesReboot?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.geocodeAdresse;
         delete geocodeAdressesReboot?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.prefixId;
         geocodeAdressesReboot = nettoyageState(geocodeAdressesReboot);

@@ -48,6 +48,7 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
     dispatch(permanenceActions.updateField('principal_rueVoie', ruevoie));
     dispatch(permanenceActions.updateField('principal_codePostal',
       permanencePrincipale?.adresse?.codePostal ?? adresseStructure?.code_postal));
+    dispatch(permanenceActions.updateField('principal_codeCommune', structure?.codeCommune));
     dispatch(permanenceActions.updateField('principal_ville',
       permanencePrincipale?.adresse?.ville?.toUpperCase() ?? adresseStructure?.localite?.toUpperCase()));
     dispatch(permanenceActions.updateField('principal_adresse', adresse?.toUpperCase()));
@@ -83,6 +84,7 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
     dispatch(permanenceActions.updateField('principal_numeroVoie', null));
     dispatch(permanenceActions.updateField('principal_rueVoie', null));
     dispatch(permanenceActions.updateField('principal_codePostal', null));
+    dispatch(permanenceActions.updateField('principal_codeCommune', null));
     dispatch(permanenceActions.updateField('principal_ville', null));
     dispatch(permanenceActions.updateField('principal_location', null));
     dispatch(permanenceActions.reserverPermanence({ prefixId: 'principal_', idPermanence: null }));

@@ -36,9 +36,6 @@ function MesPermanences() {
           mesPermanences[i + 1] = listPermanences[i];
         }
       }
-      if (listPermanences?.length < mesPermanences?.length) {
-        mesPermanences.pop();
-      }
       setMesPermanences(mesPermanences);
     }
   }, [listPermanences]);
@@ -64,8 +61,8 @@ function MesPermanences() {
   useEffect(() => {
     if (reloadList && conseiller) {
       setMesPermanences([]);
-      dispatch(permanenceActions.reloadList(false));
       dispatch(permanenceActions.getMesPermanences(conseiller?._id));
+      dispatch(permanenceActions.reloadList(false));
     }
   }, [reloadList]);
 

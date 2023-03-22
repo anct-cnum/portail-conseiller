@@ -43,7 +43,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
       dispatch(permanenceActions.updateField('submit_and_next_0', false));
     }
   }
-  
+
   function handleSecondaire(hasSecondaire) {
     if (hasSecondaire) {
 
@@ -96,12 +96,6 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
         email: fields.filter(field => field.name === prefixId + 'email')[0]?.value ?? null,
         siteWeb: fields.filter(field => field.name === prefixId + 'siteWeb')[0]?.value ?? null,
         siret: fields.filter(field => field.name === prefixId + 'siret')[0]?.value ?? null,
-        adresse: {
-          numeroRue: fields.filter(field => field.name === prefixId + 'numeroVoie')[0]?.value ?? null,
-          rue: fields.filter(field => field.name === prefixId + 'rueVoie')[0]?.value ?? null,
-          codePostal: fields.filter(field => field.name === prefixId + 'codePostal')[0]?.value ?? null,
-          ville: fields.filter(field => field.name === prefixId + 'ville')[0]?.value ?? null,
-        },
         location: fields.filter(field => field.name === prefixId + 'location')[0]?.value ?? null,
         horaires: fields.filter(field => field.name === prefixId + 'horaires')[0]?.value[prefixId + 'horaires'] ?? horairesInitiales,
         typeAcces: fields.filter(field => field.name === prefixId + 'typeAcces')[0]?.value ?? null,
@@ -110,6 +104,19 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
         hasPermanence: true,
         lieuPrincipalPour: lieuPrincipalPour,
       };
+
+      if (fields.filter(field => field.name === prefixId + 'adresseIntrouvable')[0]?.value === false) {
+        nouveauLieu.adresse = {
+          numeroRue: fields.filter(field => field.name === prefixId + 'numeroVoie')[0]?.value ?? null,
+          rue: fields.filter(field => field.name === prefixId + 'rueVoie')[0]?.value ?? null,
+          codePostal: fields.filter(field => field.name === prefixId + 'codePostal')[0]?.value ?? null,
+          codeCommune: fields.filter(field => field.name === prefixId + 'codeCommune')[0]?.value ?? null,
+          ville: fields.filter(field => field.name === prefixId + 'ville')[0]?.value ?? null,
+        };
+      } else {
+        nouveauLieu.adresseIntrouvable = fields.filter(field => field.name === prefixId + 'adresse')[0]?.value;
+      }
+
       nouveauLieu.telephonePro = formatTelephone(nouveauLieu.telephonePro, codeDepartement);
       nouveauLieu.numeroTelephone = formatTelephone(nouveauLieu.numeroTelephone, codeDepartement);
       nouveauLieu = JSON.parse(JSON.stringify(nouveauLieu).replace(/"\s+|\s+"/g, '"'));

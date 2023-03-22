@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import { history } from './helpers';
 import { useDispatch, useSelector } from 'react-redux';
@@ -29,9 +29,16 @@ function App() {
   const loadingHistorique = useSelector(state => state.historiqueCras?.loading);
   const loadingPermanence = useSelector(state => state.permanence?.loading);
   const user = useSelector(state => state?.authentication?.user?.user);
+  const reloadList = useSelector(state => state.permanence?.reloadList);
+  const conseiller = useSelector(state => state.conseiller?.conseiller);
 
   const dispatch = useDispatch();
-  dispatch(permanenceActions.reloadList(true));
+  useEffect(() => {
+    if (reloadList && conseiller?._id) {
+      dispatch(permanenceActions.reloadList(false));
+      dispatch(permanenceActions.getMesPermanences(conseiller?._id));
+    }
+  }, [reloadList]);
 
   return (
     <div className="App">

@@ -16,6 +16,7 @@ export const permanenceActions = {
   verifySiret,
   getGeocodeAdresse,
   getAdresseByApi,
+  getAdresseIntrouvable,
   setAdresse,
   rebootListeAdresses,
   rebootGeocodeAdresse,
@@ -116,7 +117,6 @@ function closePermanence() {
 }
 
 function verifyFormulaire(form, statut) {
-
   let errors = [];
   const errorsMessageTab = ['Merci de remplir le formulaire.', 'Vous devez impérativement corriger les erreurs avant de passer à la suite.'];
   const showLieuSecondaire = form?.showLieuSecondaire;
@@ -173,7 +173,7 @@ function verifyFormulaire(form, statut) {
       message: 'Une adresse doit obligatoirement être saisie'
     },
     {
-      nom: 'location', validation: Joi.object().required(),
+      nom: 'location', validation: Joi.object().allow(null).required(),
       message: 'La localisation du lieu d\'activité doit obligatoirement être saisie'
     },
     {
@@ -430,6 +430,30 @@ function getAdresseByApi(adresse, prefixId) {
   }
 }
 
+function getAdresseIntrouvable(permanenceId) {
+  return dispatch => {
+    dispatch(request());
+    permanenceService.getAdresseIntrouvable(permanenceId)
+    .then(
+      result => {
+        dispatch(success(result.adresseIntrouvable));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+  function request() {
+    return { type: 'GET_ADRESSE_INTROUVABLE_REQUEST' };
+  }
+  function success(adresse) {
+    return { type: 'GET_ADRESSE_INTROUVABLE_SUCCESS', adresse };
+  }
+  function failure(error) {
+    return { type: 'GET_ADRESSE_INTROUVABLE_FAILURE', error };
+  }
+}
+
 function setAdresse(adresse, prefixId) {
   return { type: 'SET_ADRESSE', adresse, prefixId };
 }
@@ -550,7 +574,7 @@ function reporterPermanence() {
   }
 }
 
-function setChampsMaPermanence(permanence, prefixId, conseiller) {
+function setChampsMaPermanence(permanence, prefixId, conseiller, adresseIntrouvable) {
 
   const fields = [
     { name: prefixId + 'idPermanence', value: permanence?._id },
@@ -563,12 +587,13 @@ function setChampsMaPermanence(permanence, prefixId, conseiller) {
     { name: prefixId + 'email', value: permanence?.email },
     { name: prefixId + 'siteWeb', value: permanence?.siteWeb },
     { name: prefixId + 'siret', value: permanence?.siret },
-    { name: prefixId + 'numeroVoie', value: permanence?.adresse.numeroRue },
+    { name: prefixId + 'numeroVoie', value: permanence?.adresse?.numeroRue },
     { name: prefixId + 'rueVoie', value: permanence?.adresse?.rue },
-    { name: prefixId + 'codePostal', value: permanence?.adresse.codePostal },
-    { name: prefixId + 'ville', value: permanence?.adresse.ville?.toUpperCase() },
-    { name: prefixId + 'adresse', value: formatAdresse(permanence?.adresse, null, null, permanence?.adresseIntrouvable) },
+    { name: prefixId + 'codePostal', value: permanence?.adresse?.codePostal },
+    { name: prefixId + 'ville', value: permanence?.adresse?.ville?.toUpperCase() },
+    { name: prefixId + 'adresse', value: formatAdresse(permanence?.adresse, null, null, adresseIntrouvable) },
     { name: prefixId + 'location', value: permanence?.location },
+    { name: prefixId + 'codeCommune', value: permanence?.codeCommune },
     { name: prefixId + 'conseillers', value: permanence?.conseillers },
     { name: prefixId + 'itinerant', value: permanence?.conseillersItinerants.includes(conseiller?._id) },
     { name: prefixId + 'horaires', value: { [prefixId + 'horaires']: permanence?.horaires } },

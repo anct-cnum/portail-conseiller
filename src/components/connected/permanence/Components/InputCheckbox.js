@@ -22,6 +22,7 @@ function InputCheckbox({ textLabel, errorInput, prefixId, nameInput, baselineInp
       dispatch(permanenceActions.updateField(prefixId + 'numeroVoie', ''));
       dispatch(permanenceActions.updateField(prefixId + 'rueVoie', ''));
       dispatch(permanenceActions.updateField(prefixId + 'codePostal', ''));
+      dispatch(permanenceActions.updateField(prefixId + 'codeCommune', ''));
       dispatch(permanenceActions.updateField(prefixId + 'ville', ''));
       dispatch(permanenceActions.disabledField(prefixId, false));
     }
@@ -29,6 +30,7 @@ function InputCheckbox({ textLabel, errorInput, prefixId, nameInput, baselineInp
       dispatch(permanenceActions.updateField(prefixId + 'numeroVoie', ''));
       dispatch(permanenceActions.updateField(prefixId + 'rueVoie', ''));
       dispatch(permanenceActions.updateField(prefixId + 'codePostal', ''));
+      dispatch(permanenceActions.updateField(prefixId + 'codeCommune', ''));
       dispatch(permanenceActions.updateField(prefixId + 'ville', ''));
       dispatch(permanenceActions.rebootListeAdresses(prefixId));
     }

@@ -30,7 +30,7 @@ function CarteAdresse({ prefixId }) {
   }, [location]);
 
   return (
-    <div className={`map-container ${checkboxSiret ? 'siret-hidden' : ''} ${estStructure ? 'est-principal' : ''}`}>
+    <div className={`map-container ${checkboxSiret ? 'siret-hidden' : ''} ${(estStructure && prefixId === 'principal_') ? 'est-principal' : ''}`}>
       <MapContainer id={prefixId} className="map" zoomControl={false} tap={false}
         key={JSON.stringify({ lat: position[1], lng: position[0] })}
         center={{ lat: position[1], lng: position[0] }} zoom={zoom}>

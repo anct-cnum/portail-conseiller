@@ -33,6 +33,7 @@ function PermanenceUpdate({ match }) {
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const structure = useSelector(state => state.structure?.structure);
   const loadingHoraires = useSelector(state => state.permanence?.loadingHoraires);
+  const adresseIntrouvable = useSelector(state => state.permanence?.adresseIntrouvable);
 
   const showError = useSelector(state => state.permanence?.showError);
   const showErrorMessage = useSelector(state => state.permanence?.showErrorMessage);
@@ -67,7 +68,7 @@ function PermanenceUpdate({ match }) {
 
   const fillPermanencePrincipale = (permanencePrincipale, estStructure) => {
     const rue = formatRue(null, adresseStructure?.type_voie, adresseStructure?.nom_voie);
-    const adresse = formatAdresse(permanencePrincipale?.adresse, adresseStructure, rue, permanencePrincipale?.adresseIntrouvable);
+    const adresse = formatAdresse(permanencePrincipale?.adresse, adresseStructure, rue, adresseIntrouvable?.adresse);
 
     dispatch(permanenceActions.updateField('principal_idPermanence', permanencePrincipale?._id ?? null));
     dispatch(permanenceActions.updateField('lieuPrincipalPour', permanencePrincipale?.lieuPrincipalPour));
@@ -90,6 +91,8 @@ function PermanenceUpdate({ match }) {
       permanencePrincipale?.adresse?.rue ?? rue));
     dispatch(permanenceActions.updateField('principal_codePostal',
       permanencePrincipale?.adresse?.codePostal ?? adresseStructure?.code_postal));
+    dispatch(permanenceActions.updateField('principal_codeCommune',
+      permanencePrincipale?.adresse?.codeCommune ?? adresseStructure?.codeCommune));
     dispatch(permanenceActions.updateField('principal_ville',
       permanencePrincipale?.adresse?.ville?.toUpperCase() ?? adresseStructure?.localite?.toUpperCase()));
     dispatch(permanenceActions.updateField('principal_adresse', adresse?.toUpperCase()));
@@ -118,6 +121,7 @@ function PermanenceUpdate({ match }) {
     dispatch(permanenceActions.updateField('principal_numeroVoie', null));
     dispatch(permanenceActions.updateField('principal_rueVoie', null));
     dispatch(permanenceActions.updateField('principal_codePostal', null));
+    dispatch(permanenceActions.updateField('principal_codeCommune', null));
     dispatch(permanenceActions.updateField('principal_ville', null));
     dispatch(permanenceActions.updateField('principal_adresse', null));
     dispatch(permanenceActions.updateField('principal_location', null));
@@ -152,6 +156,7 @@ function PermanenceUpdate({ match }) {
   }
 
   useEffect(async () => {
+    dispatch(permanenceActions.getAdresseIntrouvable(idPermanence));
     if (structure) {
       dispatch(permanenceActions.getListePermanences(structure?._id));
     }
@@ -173,7 +178,8 @@ function PermanenceUpdate({ match }) {
       dispatch(permanenceActions.setChampsMaPermanence(
         maPermanence,
         maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_',
-        conseiller)
+        conseiller,
+        adresseIntrouvable?.adresse)
       );
 
       const adresse = {
@@ -193,9 +199,10 @@ function PermanenceUpdate({ match }) {
       dispatch(permanenceActions.updateField(
         maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_checkboxSiret' : 'secondaire_0_checkboxSiret', false
       ));
-      const adresseIntrouvable = maPermanence?.adresseIntrouvable?.length > 0;
+
+      const boolAdresseIntrouvable = !maPermanence?.adresse;
       dispatch(permanenceActions.updateField(
-        maPermanence?.lieuPrincipalPour?.includes(conseiller?._id) ? 'principal_adresseIntrouvable' : 'secondaire_0_adresseIntrouvable', adresseIntrouvable
+        maPermanence?.lieuPrincipalPour?.includes(conseiller?._id) ? 'principal_adresseIntrouvable' : 'secondaire_0_adresseIntrouvable', boolAdresseIntrouvable
       ));
       // eslint-disable-next-line max-len
       dispatch(permanenceActions.disabledField(maPermanence?.lieuPrincipalPour?.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_', adresse?.rue === '' ? false : maPermanence?.estStructure));
