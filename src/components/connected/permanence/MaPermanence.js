@@ -18,7 +18,7 @@ function MaPermanence({ permanence, conseillerId, trClass }) {
   const countCra = useSelector(state => state.cra.countCra);
   const [count, setCount] = useState([]);
 
-  const adresseIntrouvable = useSelector(state => state.permanence.adresseIntrouvable);
+  const adresseIntrouvable = useSelector(state => state.permanence?.adresseIntrouvable);
   const [adresse, setAdresse] = useState(null);
   useEffect(() => {
     if (permanence?._id && !countCra) {
