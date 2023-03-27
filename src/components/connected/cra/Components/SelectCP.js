@@ -48,7 +48,7 @@ function SelectCP({ voirInformation }) {
       let options = [];
       codesPostauxFiltered.forEach(codePostal => options.push(
         <div key={`${codePostal.Code_postal} ${codePostal.Nom_commune}`}
-          value={`${codePostal.Code_postal} ${codePostal.Nom_commune}`}
+          value={`${codePostal.Code_postal} ${codePostal.Code_Commune} ${codePostal.Nom_commune}`}
           onClick={onClickOption}>
           {codePostal.Code_postal} {codePostal.Nom_commune}
         </div>
