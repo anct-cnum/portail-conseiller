@@ -143,7 +143,7 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
               </div>
             }
             <div className="adressesTrouvees">
-              { !loadingAdresses && listeAdresses.map((adresse, idx) => {
+              { !loadingAdresses && listeAdresses?.map((adresse, idx) => {
                 return (
                   <div key={idx} className="adresse" onClick={() => {
                     onClickAdresse(adresse);
