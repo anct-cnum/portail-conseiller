@@ -200,7 +200,7 @@ function PermanenceUpdate({ match }) {
         maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_checkboxSiret' : 'secondaire_0_checkboxSiret', false
       ));
 
-      const boolAdresseIntrouvable = !maPermanence?.adresse;
+      const estAdresseIntrouvable = !maPermanence?.adresse;
       dispatch(permanenceActions.updateField(
         maPermanence?.lieuPrincipalPour?.includes(conseiller?._id) ? 'principal_adresseIntrouvable' : 'secondaire_0_adresseIntrouvable', boolAdresseIntrouvable
       ));
