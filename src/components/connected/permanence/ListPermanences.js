@@ -166,7 +166,7 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
                                       <span className="fr-grid-row">
                                         <span className="fr-col-5" >
                                           <span className="ri-error-warning-fill warning-adresse"
-                                            data-tip="Vous avez remonté un probl&egrave;me d&rsquo;adresse, celui-ci est en cours de traitement.">
+                                            data-tip="Vous avez remonT&eacute; un probl&egrave;me d&rsquo;adresse, celui-ci est en cours de traitement.">
                                           </span>
                                           <span className="warning-text">Correction en cours</span>
                                           <ReactTooltip html={true} className="infobulle" arrowColor="white"/></span>
