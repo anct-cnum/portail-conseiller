@@ -45,7 +45,7 @@ function MaPermanence({ permanence, conseillerId, trClass }) {
         {!permanence?.adresse &&
           <>
             <span className="ri-error-warning-fill warning-adresse"
-              data-tip="Vous avez remonté un probl&egrave;me d&rsquo;adresse, celui-ci est en cours de traitement."></span>
+              data-tip="Vous avez remont&eacute; un probl&egrave;me d&rsquo;adresse, celui-ci est en cours de traitement."></span>
             <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
           </>
         }
