@@ -127,7 +127,7 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
         }
         {erreurAdresseApi &&
           <span className="text-error fr-mb-n3w">
-            Une erreur est survenue lors de la recherche de votre adresse veuillez r&eacute;essayer ult&eacute;rieurement
+            Une erreur est survenue lors de la recherche de votre adresse, veuillez r&eacute;essayer ult&eacute;rieurement...
           </span>
         }
         {erreurAddresseIntrouvable &&
