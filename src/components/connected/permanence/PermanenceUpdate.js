@@ -202,7 +202,7 @@ function PermanenceUpdate({ match }) {
 
       const estAdresseIntrouvable = !maPermanence?.adresse;
       dispatch(permanenceActions.updateField(
-        maPermanence?.lieuPrincipalPour?.includes(conseiller?._id) ? 'principal_adresseIntrouvable' : 'secondaire_0_adresseIntrouvable', boolAdresseIntrouvable
+        maPermanence?.lieuPrincipalPour?.includes(conseiller?._id) ? 'principal_adresseIntrouvable' : 'secondaire_0_adresseIntrouvable', estAdresseIntrouvable
       ));
       // eslint-disable-next-line max-len
       dispatch(permanenceActions.disabledField(maPermanence?.lieuPrincipalPour?.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_', adresse?.rue === '' ? false : maPermanence?.estStructure));

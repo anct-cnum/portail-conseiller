@@ -16,7 +16,7 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
   const fields = useSelector(state => state.permanence?.fields);
   const geocodeAdresses = useSelector(state => state.permanence?.geocodeAdresses);
   const adresseIntrouvable = useSelector(state => state.permanence?.adresseIntrouvable);
-
+  const erreurAddresseIntrouvable = useSelector(state => state.permanence?.errorAdresseIntrouvable);
   const [showList, setShowList] = useState(0);
 
   const handleClick = e => {
@@ -121,6 +121,11 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
                 par vos collaborateurs.
               </span>
             </div>
+            {erreurAddresseIntrouvable &&
+              <span className="text-error fr-mb-n3w">
+                Une erreur est survenue lors de la recherche de vos demandes d&rsquo;adresse.
+              </span>
+            }
             <div className="fr-col-offset-1 fr-col-8">
               <div className="fr-form-group">
                 <fieldset className="fr-fieldset fr-mt-4w">

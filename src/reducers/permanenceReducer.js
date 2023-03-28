@@ -241,7 +241,7 @@ export default function permanence(state = initialState, action) {
       return {
         ...state,
         loadingAdresses: false,
-        errorAdresses: true,
+        errorAdresses: action.error,
       };
     case 'GET_ADRESSE_INTROUVABLE_REQUEST':
       return {
@@ -259,7 +259,7 @@ export default function permanence(state = initialState, action) {
       return {
         ...state,
         loadingAdresseIntrouvable: false,
-        errorAdresseIntrouvable: true,
+        errorAdresseIntrouvable: action.error,
       };
     case 'SET_ADRESSE':
       let fieldsAdresse = state?.fields ?? [];

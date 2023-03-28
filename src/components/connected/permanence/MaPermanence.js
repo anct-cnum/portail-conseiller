@@ -16,10 +16,12 @@ function MaPermanence({ permanence, conseillerId, trClass }) {
   const islieuPrincipal = permanence?.lieuPrincipalPour?.includes(conseillerId);
 
   const countCra = useSelector(state => state.cra.countCra);
-  const [count, setCount] = useState([]);
-
   const adresseIntrouvable = useSelector(state => state.permanence?.adresseIntrouvable);
+  const erreurAddresseIntrouvable = useSelector(state => state.permanence?.errorAdresseIntrouvable);
+
+  const [count, setCount] = useState([]);
   const [adresse, setAdresse] = useState(null);
+
   useEffect(() => {
     if (permanence?._id && !countCra) {
       dispatch(craActions.countByPermanence(permanence._id));
@@ -54,6 +56,11 @@ function MaPermanence({ permanence, conseillerId, trClass }) {
         <span className={islieuPrincipal ? 'circle-true' : 'circle-false'}/>
       </td>
       <td>
+        {erreurAddresseIntrouvable &&
+          <span className="text-error fr-mb-n3w">
+            Une erreur est survenue lors de la recherche de vos demandes d&rsquo;adresse.
+          </span>
+        }
         {adresse &&
           <div className="adresse-introuvable">
             {adresse}

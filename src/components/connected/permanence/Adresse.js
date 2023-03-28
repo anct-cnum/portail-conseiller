@@ -24,6 +24,9 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
   const erreurLocalisation = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'location'])[0]?.[prefixId + 'location'];
   const listeAdresses = useSelector(state => state.permanence?.listeAdresses);
   const loadingAdresses = useSelector(state => state.permanence?.loadingAdresses);
+  const erreurAdresseApi = useSelector(state => state.permanence?.errorAdresses);
+  const erreurAddresseIntrouvable = useSelector(state => state.permanence?.errorAdresseIntrouvable);
+
   const geocodeAdresses = useSelector(state => state.permanence?.geocodeAdresses);
   const geocodeAdresse = geocodeAdresses?.filter(geocode => geocode.prefixId === prefixId)[0]?.geocodeAdresse;
   const estDisabled = disabledFields?.filter(field => field.id === prefixId)[0]?.value;
@@ -110,7 +113,6 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
           />
         </div>
         }
-
         <InputText
           textLabel="Entrez l&rsquo;adresse de votre lieu d&rsquo;activit&eacute;"
           baselineInput="Remplissez le champ avec l&rsquo;adresse compl&egrave;te de votre lieu d&rsquo;activit&eacute;"
@@ -120,14 +122,27 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
           valueInput={fields?.filter(field => field.name === prefixId + 'adresse')[0]?.value ?? ''}
           prefixId={prefixId}
         />
+        {(erreurAdresse && (erreurAdresseApi || erreurLocalisation)) &&
+          <div></div>
+        }
+        {erreurAdresseApi &&
+          <span className="text-error fr-mb-n3w">
+            Une erreur est survenue lors de la recherche de votre adresse veuillez r&eacute;essayer ult&eacute;rieurement
+          </span>
+        }
+        {erreurAddresseIntrouvable &&
+          <span className="text-error fr-mb-n3w">
+            Une erreur est survenue lors de la recherche de votre demande d&rsquo;adresse, veuillez la renseigner de nouveau.
+          </span>
+        }
         { erreurLocalisation &&
-          <p className="text-error fr-mb-n3w">
-            Vous souhaitez nous remonter un probl&egrave;me avec votre adresse, cliquez&nbsp;
+          <span className="text-error fr-mb-n3w ">
+            <br/>Vous souhaitez nous remonter un probl&egrave;me avec votre adresse, cliquez&nbsp;
             <a className="link" href="https://go.crisp.chat/chat/embed/?website_id=ea669e13-e40f-40c8-be23-e43565c0e62c"
               title="Lien vers l&rsquo;aide crisp" target="blank" rel="noopener noreferrer">
               ici
             </a>.
-          </p>
+          </span>
         }
         {listeAdresses?.length > 0 &&
           <div className="listeAdresses">
