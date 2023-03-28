@@ -57,7 +57,7 @@ export default function cra(state = initialState, action) {
         searchCP: false,
         idPermanence: action?.permanence?._id,
         nomEnseigne: action?.permanence?.nomEnseigne,
-        cp: action?.permanence?.adresse?.codePostal + ' ' + action?.permanence?.adresse?.ville,
+        cp: action?.permanence?.adresse?.codePostal + ' ' + action?.permanence?.adresse?.codeCommune + ' ' + action?.permanence?.adresse?.ville,
         errorsRequired: {
           ...state.errorsRequired,
           cp: false,
