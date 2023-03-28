@@ -155,7 +155,7 @@ function Statistics() {
           }
         </div>
         <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats}
-          idTerritoire={territoire?.[typeTerritoire]} codePostal={codePostalStats} ville={villeStats}
+          idTerritoire={territoire?.[typeTerritoire]} codePostal={codePostalStats} ville={villeStats} codeCommune={codeCommuneStats}
           idSubordonne={location?.idUser} nomSubordonneeCSV={location?.nomSubordonneeCSV}/>
         <div className="fr-m-5w fr-m-md-9w fr-m-lg-15w"></div>
         <Footer type="support" role={user?.role} />

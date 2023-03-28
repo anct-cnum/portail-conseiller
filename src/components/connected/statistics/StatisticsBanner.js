@@ -7,7 +7,7 @@ import { conseillerActions } from '../../../actions';
 import dayjs from 'dayjs';
 import { isNavigatorFirefoxForAndroid } from '../../../utils/functionGetNavigatorPlateform';
 
-function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePostal = null, ville = null, idSubordonne = null, nomSubordonneeCSV = null }) {
+function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePostal = null, ville = null, idSubordonne = null, nomSubordonneeCSV = null, codeCommune = null }) {
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -60,7 +60,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     const type = getTypeStatistique(typeStats);
     if ((user?.role === 'conseiller' || user?.role === 'coordinateur_coop') && !idTerritoire && type !== 'nationales') {
-      dispatch(conseillerActions.getStatistiquesCSV(dateDebut, dateFin, codePostal, ville, idSubordonne, getTitleExport()));
+      dispatch(conseillerActions.getStatistiquesCSV(dateDebut, dateFin, codePostal, ville, codeCommune, idSubordonne, getTitleExport()));
     } else {
       const conseillerIds = territoire?.conseillerIds ?? undefined;
       // eslint-disable-next-line max-len
@@ -147,6 +147,7 @@ StatisticsBanner.propTypes = {
   typeStats: PropTypes.string,
   codePostal: PropTypes.string,
   ville: PropTypes.string,
+  codeCommune: PropTypes.string,
   idSubordonne: PropTypes.string,
   nomSubordonneeCSV: PropTypes.string
 };

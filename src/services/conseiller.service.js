@@ -139,14 +139,15 @@ function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType, codePosta
     requestOptions).then(response => !response.ok ? handleResponse(response) : handleFileResponse(response));
 }
 
-function getStatistiquesCSV(dateDebut, dateFin, codePostal, ville, idSubordonne) {
+function getStatistiquesCSV(dateDebut, dateFin, codePostal, ville, codeCommune, idSubordonne) {
   const requestOptions = {
     method: 'GET',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
   };
 
   return fetch(
-    `${apiUrlRoot}/conseillers/statistiques.csv?dateDebut=${dateDebut}&dateFin=${dateFin}&codePostal=${codePostal}&ville=${ville}&idSubordonne=${idSubordonne}`,
+    // eslint-disable-next-line max-len
+    `${apiUrlRoot}/conseillers/statistiques.csv?dateDebut=${dateDebut}&dateFin=${dateFin}&codePostal=${codePostal}&ville=${ville}&codeCommune=${codeCommune}&idSubordonne=${idSubordonne}`,
     requestOptions).then(handleFileResponse);
 }
 
