@@ -30,6 +30,7 @@ function Statistics() {
   const dateFinStats = useSelector(state => state.statistique?.dateFinStats);
   const codePostalStats = useSelector(state => state.statistique?.codePostalStats);
   const villeStats = useSelector(state => state.statistique?.villeStats);
+  const codeCommuneStats = useSelector(state => state.statistique?.codeCommuneStats);
   const donneesStatistiques = useSelector(state => state.statistique?.statsData);
   const user = useSelector(state => state?.authentication?.user?.user);
   const nomStructure = useSelector(state => state?.structure?.structure?.nom);
@@ -48,7 +49,7 @@ function Statistics() {
     } else if (territoire) {
       dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, territoire.conseillerIds));
     } else {
-      dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, null, codePostalStats, villeStats));
+      dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, null, codePostalStats, villeStats, codeCommuneStats));
     }
     dispatch(paginationActions.resetPage(false));
   }, [dateDebutStats, dateFinStats, location, codePostalStats, villeStats]);
