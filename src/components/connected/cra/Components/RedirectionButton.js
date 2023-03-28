@@ -1,19 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { craActions } from '../../../../actions';
 
-function RedirectionButton({ organisme, firstElement }) {
+function RedirectionButton({ organisme, firstElement, deletable }) {
+  const dispatch = useDispatch();
   const label = Object.keys(organisme)[0];
   const value = organisme[label];
 
   const onClickDelete = () => {
-
+    dispatch(craActions.deleteOrganisme(organisme));
   };
 
   return (
     <div className={`redirection-btn ${firstElement ? 'first-el' : ''}`}>
-      <button className="" onClick={onClickDelete} value={value}>
-        <i className="ri-close-circle-fill"></i>
-      </button>
+      {deletable &&
+        <button className="" onClick={onClickDelete}>
+          <i className="ri-close-circle-fill"></i>
+        </button>
+      }
       {label + ' ' + value}
     </div>
   );
@@ -22,6 +27,7 @@ function RedirectionButton({ organisme, firstElement }) {
 RedirectionButton.propTypes = {
   organisme: PropTypes.object,
   firstElement: PropTypes.bool,
+  deletable: PropTypes.bool,
 };
 
 export default RedirectionButton;

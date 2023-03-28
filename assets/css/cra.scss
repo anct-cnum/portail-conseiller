@@ -311,7 +311,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
   }
 
   .radioButtonRedirection {
-    margin-top: -230px;
+    margin-top: -323px;
     .radioRattachement {
       border-radius: 0 0 20px 20px !important;
     }
@@ -321,16 +321,14 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     border: solid 1px #5398FF;
     background: #fff;
     border-bottom: none;
-    height: 230px;
   }
   .listRedirection {
-    overflow-y: scroll;
-    position: relative;
     list-style: none;
     margin: 20px 0 0;
-    display: block;
-    height: 200px;
+    overflow: auto;
     color: #000;
+    height: 200px;
+    width: 270px;
     padding: 0;
     &::-webkit-scrollbar {
       width: 16px;
@@ -343,18 +341,18 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       background: #909090;
     }
   }
-  .selecteurList:hover, .selecteurList:active {
-  color: #fff;
-  width: auto;
-  background: $blue-gradient;
-  }
   .selecteurList {
     text-align: left;
     padding: 1em 2em;
     height: 48px;
   }
+  .selecteurList:hover, .selecteurList:active {
+    color: #fff;
+    width: auto;
+    background: $blue-gradient;
+    }
   .styleInputAutre {
-    border: solid 1px #3558a2;
+    border-top: solid 1px #3558a2;
     background-color: #fff;
     padding: 1em 2em;
     font-size: 1rem;
@@ -368,6 +366,17 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       color: #fff;
     }
   }
+  .styleLiButtonsRedirection {
+    padding: 20px 0px;
+    overflow: auto;
+    width: 1000px;
+  }
+  .styleLiButtonEnregistrer {
+    text-align: center;
+    padding-top: 5px;
+    height: 36px;
+  }
+
   .styleButtonEnregistrer {
     text-align: center;
     line-height: 24px;
@@ -499,6 +508,10 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     color: black!important;
     span {
       color: #000 !important;
+      .selectionner-autre {
+        color: #666666 !important;
+        font-size: 14px;
+      }
     }
     .logoIndividuel {
       background: $individuelSelected !important;
@@ -507,6 +520,8 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       background: $logoDemandeSelected !important;
     }
   }
+
+
 
   .labelBigRadioCustom {
     padding-top: 2.5rem;
@@ -850,11 +865,14 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       background: $small-blue-gradient;
     }
   }
-  .gradient-box button:hover {
+  .gradient-box button:hover, .gradient-box-redirection {
     background: $white-gradient;
     .radioRattachement {
       color: #000;
     }
+  }
+  .gradient-box-redirection {
+    padding-top: 36px ;
   }
   .border-top-none {
     border-radius: 0 0 20px 20px !important;
@@ -1689,6 +1707,10 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
   }
   .first-el {
     margin-left: 15px;
+  }
+  .selectionner-autre {
+    color: #666666 !important;
+    font-size: 14px;
   }
   .redirection-btn {
     background: $blue-gradient;

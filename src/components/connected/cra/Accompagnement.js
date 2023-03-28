@@ -65,7 +65,9 @@ function Accompagnement() {
           }
           {nbRedirection > 0 &&
             <BigCountRadioButtonRedirection
-              label={organisme ?? 'Redirection vers ...'}/>
+              label={organisme ?? 'Vous pouvez selectionnez une autre structure'}
+              value={organisme ?? null}
+            />
           }
         </div>
         <div className="responsiveRadioActivity3Small">
@@ -80,7 +82,9 @@ function Accompagnement() {
           }
           {nbRedirection > 0 &&
             <BigCountRadioButtonRedirection
-              label={organisme ?? 'Redirection vers ...'}/>
+              label={organisme ?? 'Vous pouvez selectionnez une autre structure'}
+              value={organisme ?? null}
+            />
           }
         </div>
       </div>

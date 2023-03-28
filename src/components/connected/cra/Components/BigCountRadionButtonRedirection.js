@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import SelectAccompagnement from './SelectAccompagnement';
 import { getValeurMax } from '../utils/CraFunctions';
 
-function BigCountRadioButtonRedirection({ label }) {
+function BigCountRadioButtonRedirection({ label, value }) {
 
   const dispatch = useDispatch();
 
@@ -32,10 +32,10 @@ function BigCountRadioButtonRedirection({ label }) {
   const onClickLess = () => {
     if (cra?.nbParticipants && cra?.nbParticipants >= cra?.nbParticipantsAccompagnement) {
       const accompagnement = cra?.accompagnement;
-      setNbValeur(nbValeur - 1);
+      setNbValeur(nbValeur - 1 < 0 ? 0 : nbValeur - 1);
       dispatch(craActions.updateAccompagnementRedirection(accompagnement,
         cra?.nbParticipantsAccompagnement - 1 < 0 ? 0 : cra?.nbParticipantsAccompagnement - 1,
-        cra?.organismes, nbValeur - 1));
+        cra?.organismes, nbValeur - 1 < 0 ? 0 : nbValeur - 1));
     }
   };
 
@@ -55,7 +55,7 @@ function BigCountRadioButtonRedirection({ label }) {
           nbParticipantsAutre += accompagnement[key];
         }
       }
-      dispatch(craActions.updateAccompagnementRedirection(accompagnement, nbParticipantsAutre + valeur));
+      dispatch(craActions.updateAccompagnementRedirection(accompagnement, nbParticipantsAutre + valeur, cra?.organismes, valeur));
 
     }
     setNbValeur(valeur);
@@ -65,18 +65,26 @@ function BigCountRadioButtonRedirection({ label }) {
     <div className={showSelect ? 'radioButton radioButtonRedirection' : 'radioButton'}>
       <SelectAccompagnement />
       <div className="gradient-box border-top-none ">
-        <button className="radioRattachement radioRattachement-selected"
-          style={{ height: '144px', padding: 0 }}>
+        <button className="radioRattachement radioRattachement-selected" style={{ height: '144px', padding: 0 }}>
           <div className="countRadioLabel" onClick={toggleSelect}>
             <span className="fr-label" style={{ padding: '10px', color: 'black' }}>
-              <input style={{ fontSize: '1.5rem', textAlign: 'center', width: '100%' }} type="number" min={0} max={100}
-                value={nbValeur}
-                onChange={e => {
-                  onChangeValue(e);
-                }}/>
-              {label}
+              {value &&
+              <>
+                <input style={{ fontSize: '1.5rem', textAlign: 'center', width: '100%' }} type="number" min={0} max={100}
+                  value={nbValeur}
+                  onChange={e => {
+                    onChangeValue(e);
+                  }}/>
+                {label}
+              </>
+              }
+              {value === null &&
+                <span className="selectionner-autre">{label}</span>
+              }
             </span>
+
           </div>
+
           <div onClick={onClickLess} className="countRadioCalcul" style={{ borderRight: '1.5px solid black' }}>
             <span className="fr-label labelCalculCustom">-</span>
           </div>
@@ -90,7 +98,6 @@ function BigCountRadioButtonRedirection({ label }) {
 }
 
 BigCountRadioButtonRedirection.propTypes = {
-  type: PropTypes.string,
   label: PropTypes.string,
   value: PropTypes.string,
 };

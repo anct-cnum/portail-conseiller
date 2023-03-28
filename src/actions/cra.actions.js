@@ -94,6 +94,7 @@ function updateThemes(themes) {
 function updateMultipleThemes(sousThemesList) {
   return { type: 'UPDATE_MULTIPLE_THEMES', sousThemesList };
 }
+
 function updateDuree(duree) {
   return { type: 'UPDATE_DUREE', duree };
 }
@@ -101,27 +102,38 @@ function updateDuree(duree) {
 function updateAccompagnement(accompagnement, nbParticipantsAccompagnement) {
   return { type: 'UPDATE_ACCOMPAGNEMENT', accompagnement, nbParticipantsAccompagnement };
 }
+
 function updateAccompagnementRedirection(accompagnement, nbParticipantsAccompagnement, organismes, nbRedirection) {
   accompagnement.redirection = 0;
-  console.log(organismes);
-  if (organismes.length > 0) {
+  if (organismes?.length > 0) {
     organismes?.forEach(organisme => {
-      console.log(organisme);
+      const key = Object.keys(organisme);
+      accompagnement.redirection += organisme[key];
     });
+  } else {
+    accompagnement.redirection = 1;
   }
   return { type: 'UPDATE_ACCOMPAGNEMENT_REDIRECTION', accompagnement, nbParticipantsAccompagnement, organismes, nbRedirection };
 }
+
 function updateOrganisme(organisme) {
-  return { type: 'UPDATE_ORGAMNISME', organisme };
+  return { type: 'UPDATE_ORGANISME', organisme };
 }
+
 function updateOrganismes(organismes, nbRedirection, accompagnement, nbParticipantsAccompagnement) {
+  console.log(accompagnement);
+  console.log(nbParticipantsAccompagnement);
+  console.log(organismes);
+  console.log(nbRedirection);
+
   accompagnement.redirection += nbRedirection;
-  return { type: 'UPDATE_ORGAMNISMES', organismes, accompagnement, nbParticipantsAccompagnement };
+  return { type: 'UPDATE_ORGANISMES', organismes, accompagnement, nbParticipantsAccompagnement };
 }
-function deleteOrganisme(organismes, nbSuppression, accompagnement) {
-  accompagnement.redirection -= nbSuppression;
-  return { type: 'UPDATE_ORGAMNISMES', organismes, accompagnement };
+
+function deleteOrganisme(organisme) {
+  return { type: 'DELETE_ORGANISME', organisme };
 }
+
 function changeDate(date) {
   return { type: 'UPDATE_DATE', date };
 }

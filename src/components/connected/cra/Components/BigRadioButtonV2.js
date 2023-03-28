@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
 import { getCraValue } from '../utils/CraFunctions';
+import ListeAccompagnements from './ListeAccompagnements';
 
 function BigRadioButton({ type, label, value, image, classDiv }) {
 
   const dispatch = useDispatch();
+  const organismes = useSelector(state => state.cra?.organismes);
   const cra = useSelector(state => state.cra);
   let controlSelected = getCraValue(type);
 
@@ -106,12 +108,19 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
       }
       {(type === 'accompagnement' || type === 'activite') &&
         <div className="gradient-box" value={value}>
-          <button className={styleClass} value={value}>
-            <span className={image} value={value}></span>
-            <span className={`fr-label`} value={value}>
-              {label}
-            </span>
-          </button>
+          {(value === 'redirection' && organismes?.length > 0) &&
+            <div className="radioRattachement gradient-box-redirection">
+              <ListeAccompagnements organismes={organismes} borderTop="0px"/>
+            </div>
+          }
+          {(value !== 'redirection' || organismes?.length === 0) &&
+            <button className={styleClass} value={value}>
+              <span className={image} value={value}></span>
+              <span className={`fr-label`} value={value}>
+                {label}
+              </span>
+            </button>
+          }
         </div>
       }
 

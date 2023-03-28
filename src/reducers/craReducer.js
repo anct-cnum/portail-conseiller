@@ -247,19 +247,28 @@ export default function cra(state = initialState, action) {
         organismes: action.organismes,
         nbRedirection: action.nbRedirection,
       };
-    case 'UPDATE_ORGAMNISME':
+    case 'UPDATE_ORGANISME':
       return {
         ...state,
         organisme: action.organisme
       };
-    case 'UPDATE_ORGAMNISMES':
+    case 'UPDATE_ORGANISMES':
       return {
         ...state,
         accompagnement: action.accompagnement,
         organismes: action.organismes,
         organisme: null,
-        nbRedirection: 0,
+        nbRedirection: 1,
         nbParticipantsAccompagnement: action.nbParticipantsAccompagnement,
+      };
+    case 'DELETE_ORGANISME':
+      const organismes = state.organismes;
+      const organismesFiltres = organismes.filter(function(item) {
+        return item !== action.organisme;
+      });
+      return {
+        ...state,
+        organismes: organismesFiltres,
       };
     case 'UPDATE_DATE':
       return {
