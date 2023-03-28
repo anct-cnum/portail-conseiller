@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { permanenceActions } from '../../../actions';
 
 import horairesInitiales from '../../../data/horairesInitiales.json';
+import { formatAdresse } from '../../../utils/functionFormats';
+import ReactTooltip from 'react-tooltip';
 
 function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, firstTime }) {
   const dispatch = useDispatch();
@@ -13,28 +15,32 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
   const loadingHoraires = useSelector(state => state.permanence?.loadingHoraires);
   const fields = useSelector(state => state.permanence?.fields);
   const geocodeAdresses = useSelector(state => state.permanence?.geocodeAdresses);
-
+  const adresseIntrouvable = useSelector(state => state.permanence?.adresseIntrouvable);
+  const erreurAddresseIntrouvable = useSelector(state => state.permanence?.errorAdresseIntrouvable);
   const [showList, setShowList] = useState(0);
 
   const handleClick = e => {
     const permanence = listPermanences?.find(permanence => permanence?._id === e.target.value);
     if (permanence?._id) {
       dispatch(permanenceActions.reserverPermanence({ prefixId: prefixId, idPermanence: permanence?._id }));
+      dispatch(permanenceActions.getAdresseIntrouvable(permanence?._id));
     }
 
     if (permanence?._id !== permanenceActuelId) {
       dispatch(permanenceActions.updateField('idOldPermanence', permanenceActuelId));
     }
-
     dispatch(permanenceActions.updateField(prefixId + 'idPermanence', permanence?._id ?? 'nouveau'));
     dispatch(permanenceActions.updateField(prefixId + 'nomEnseigne', permanence?.nomEnseigne));
     dispatch(permanenceActions.updateField(prefixId + 'siret', permanence?.siret));
     dispatch(permanenceActions.updateField(prefixId + 'checkboxSiret', e.target.value === 'nouveau' ? false : !permanence?.siret));
-    dispatch(permanenceActions.updateField(prefixId + 'numeroVoie', permanence?.adresse?.numeroRue));
-    dispatch(permanenceActions.updateField(prefixId + 'rueVoie', permanence?.adresse?.rue));
+    dispatch(permanenceActions.updateField(prefixId + 'numeroVoie', permanence?.adresse?.numeroRue?.toUpperCase()));
+    dispatch(permanenceActions.updateField(prefixId + 'rueVoie', permanence?.adresse?.rue?.toUpperCase()));
     dispatch(permanenceActions.updateField(prefixId + 'codePostal', permanence?.adresse?.codePostal));
     dispatch(permanenceActions.updateField(prefixId + 'ville', permanence?.adresse?.ville?.toUpperCase()));
+    dispatch(permanenceActions.updateField(prefixId + 'adresse', formatAdresse(permanence?.adresse)));
+    dispatch(permanenceActions.updateField(prefixId + 'adresseIntrouvable', adresseIntrouvable?.adresse?.length));
     dispatch(permanenceActions.updateField(prefixId + 'location', permanence?.location));
+    dispatch(permanenceActions.updateField(prefixId + 'codeCommune', permanence?.codeCommune));
     dispatch(permanenceActions.updateField(prefixId + 'numeroTelephone', permanence?.numeroTelephone));
     dispatch(permanenceActions.updateField(prefixId + 'email', permanence?.email));
     dispatch(permanenceActions.updateField(prefixId + 'siteWeb', permanence?.siteWeb));
@@ -79,7 +85,11 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
       });
     }
     setShowList(nbPermanences);
-  }, [listPermanences]);
+    if (adresseIntrouvable) {
+      dispatch(permanenceActions.updateField(prefixId + 'adresse', formatAdresse(null, null, null, adresseIntrouvable?.adresse)));
+      dispatch(permanenceActions.updateField(prefixId + 'adresseIntrouvable', adresseIntrouvable?.adresse?.length > 0));
+    }
+  }, [listPermanences, adresseIntrouvable]);
 
   useEffect(() => {
     if (geocodeAdresses) {
@@ -111,6 +121,11 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
                 par vos collaborateurs.
               </span>
             </div>
+            {erreurAddresseIntrouvable &&
+              <span className="text-error fr-mb-n3w">
+                Une erreur est survenue lors de la recherche de vos demandes d&rsquo;adresse.
+              </span>
+            }
             <div className="fr-col-offset-1 fr-col-8">
               <div className="fr-form-group">
                 <fieldset className="fr-fieldset fr-mt-4w">
@@ -145,11 +160,24 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
                                     }}/>
                                   <label className="fr-label fr-my-2w permanence-existante" htmlFor={prefixId + permanence?._id}>
                                     <span className="fr-container fr-container--fluid">
+                                      {permanence?.adresse &&
                                       <span className="fr-grid-row">
                                         <span className="fr-col-3">{permanence?.adresse?.ville?.toUpperCase()}</span>
                                         <span className="fr-col-2">{permanence?.adresse?.codePostal}</span>
                                         <span className="fr-col-7">{permanence?.nomEnseigne}</span>
                                       </span>
+                                      }
+                                      {!permanence?.adresse &&
+                                      <span className="fr-grid-row">
+                                        <span className="fr-col-5" >
+                                          <span className="ri-error-warning-fill warning-adresse"
+                                            data-tip="Vous avez remonT&eacute; un probl&egrave;me d&rsquo;adresse, celui-ci est en cours de traitement.">
+                                          </span>
+                                          <span className="warning-text">Correction en cours</span>
+                                          <ReactTooltip html={true} className="infobulle" arrowColor="white"/></span>
+                                        <span className="fr-col-7">{permanence?.nomEnseigne}</span>
+                                      </span>
+                                      }
                                     </span>
                                   </label>
                                 </>

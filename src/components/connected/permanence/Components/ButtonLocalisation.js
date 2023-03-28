@@ -13,6 +13,7 @@ function ButtonLocalisation({ prefixId }) {
       numero: fields?.filter(field => field.name === prefixId + 'numeroVoie')[0]?.value,
       rue: fields?.filter(field => field.name === prefixId + 'rueVoie')[0]?.value,
       codePostal: fields?.filter(field => field.name === prefixId + 'codePostal')[0]?.value,
+      codeCommune: fields?.filter(field => field.name === prefixId + 'codeCommune')[0]?.value,
       ville: fields?.filter(field => field.name === prefixId + 'ville')[0]?.value
     };
     dispatch(permanenceActions.getGeocodeAdresse(adresse, prefixId));

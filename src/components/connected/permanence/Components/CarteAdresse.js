@@ -9,13 +9,13 @@ function CarteAdresse({ prefixId }) {
 
   const fields = useSelector(state => state.permanence?.fields);
   const location = fields?.filter(field => field.name === prefixId + 'location')[0]?.value;
-
+  const checkboxSiret = fields?.filter(field => field.name === prefixId + 'checkboxSiret')[0]?.value;
+  const estStructure = fields?.filter(field => field.name === 'estStructure')[0]?.value;
   const [position, setPosition] = useState([1.849121, 46.624100]);
   const [zoom, setZoom] = useState(5);
   const [positionInitial, setPositionInitial] = useState(true);
 
   const marker = new Icon({ iconUrl: '/logos/permanences/pin.svg', iconSize: [25, 41] });
-
   useEffect(() => {
     if (location?.coordinates) {
       setPosition(location?.coordinates);
@@ -30,7 +30,7 @@ function CarteAdresse({ prefixId }) {
   }, [location]);
 
   return (
-    <div className="map-container">
+    <div className={`map-container ${checkboxSiret ? 'siret-hidden' : ''} ${(estStructure && prefixId === 'principal_') ? 'est-principal' : ''}`}>
       <MapContainer id={prefixId} className="map" zoomControl={false} tap={false}
         key={JSON.stringify({ lat: position[1], lng: position[0] })}
         center={{ lat: position[1], lng: position[0] }} zoom={zoom}>
