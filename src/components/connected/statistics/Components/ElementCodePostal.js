@@ -10,8 +10,8 @@ function ElementCodePostal({ idStructure = '' }) {
   const [printCP, setPrintCP] = useState('Tous les codes Postaux');
   const setCodePostal = e => {
     const codePostal = e.target.value.split('-')[0];
-    const ville = e.target.value.includes('-') ? e.target.value.substr(e.target.value.indexOf('-') + 1).split('-')[0] : '';
-    const codeCommune = e.target.value.includes('-') ? e.target.value.substr(e.target.value.indexOf('-') + 1).split('-')[1] : '';
+    const codeCommune = e.target.value.split('-')[1] ?? '';
+    const ville = e.target.value.split('-')[2] ?? '';
     setPrintCP(e.target.value);
     dispatch(statistiqueActions.changeCodePostalStats(codePostal, ville, codeCommune));
   };
@@ -30,7 +30,7 @@ function ElementCodePostal({ idStructure = '' }) {
         if (codePostal.villes?.length === 1) {
           optionList.push({
             text: codePostal.id + ' - ' + codePostal.villes[0]?.toUpperCase(),
-            value: codePostal.id + '-' + codePostal.villes[0] + '-' + codePostal.codeCommune
+            value: codePostal.id + '-' + codePostal.codeCommune + '-' + codePostal.villes[0]
           });
         } else if (codePostal.villes?.length > 1) {
           optionList.push({
@@ -40,7 +40,7 @@ function ElementCodePostal({ idStructure = '' }) {
           codePostal.villes.forEach(ville => {
             optionList.push({
               text: ville,
-              value: codePostal.id + '-' + ville + '-' + codePostal.codeCommune,
+              value: codePostal.id + '-' + codePostal.codeCommune + '-' + ville,
               marge: '- - '
             });
           });
