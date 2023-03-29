@@ -30,7 +30,7 @@ function ElementCodePostal({ idStructure = '' }) {
         if (codePostal.villes?.length === 1) {
           optionList.push({
             text: codePostal.id + ' - ' + codePostal.villes[0]?.toUpperCase(),
-            value: codePostal.id + '-' + codePostal.codeCommune + '-' + codePostal.villes[0]
+            value: codePostal.id + '-' + codePostal.codeCommune[0].codeCommune + '-' + codePostal.villes[0]
           });
         } else if (codePostal.villes?.length > 1) {
           optionList.push({
@@ -38,9 +38,10 @@ function ElementCodePostal({ idStructure = '' }) {
             value: codePostal.id
           });
           codePostal.villes.forEach(ville => {
+            const codeCommune = codePostal.codeCommune.find(e => e.ville === ville)?.codeCommune;
             optionList.push({
               text: ville,
-              value: codePostal.id + '-' + codePostal.codeCommune + '-' + ville,
+              value: codePostal.id + '-' + codeCommune + '-' + ville,
               marge: '- - '
             });
           });
