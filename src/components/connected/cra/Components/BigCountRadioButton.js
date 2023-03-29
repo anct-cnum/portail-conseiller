@@ -27,14 +27,11 @@ function BigCountRadioButton({ type, value, label }) {
         }
         break;
       case 'accompagnement':
-        const accompagnement = cra?.accompagnement;
         if (cra?.nbParticipants && cra?.nbParticipants > cra?.nbParticipantsAccompagnement) {
-          for (let key in cra?.accompagnement) {
-            if (key === value) {
-              accompagnement[key] += 1;
-              setNbValeur(accompagnement[key]);
-            }
-          }
+          const accompagnement = cra?.accompagnement;
+          const valeurMax = getValeurMax(value, cra?.nbParticipants, accompagnement);
+          setNbValeur(nbValeur < valeurMax ? nbValeur + 1 : valeurMax);
+          accompagnement[value] = nbValeur < valeurMax ? nbValeur + 1 : valeurMax;
           dispatch(craActions.updateAccompagnement(accompagnement, cra?.nbParticipantsAccompagnement + 1));
         }
         break;
@@ -54,11 +51,14 @@ function BigCountRadioButton({ type, value, label }) {
       case 'accompagnement':
         if (cra?.nbParticipants && cra?.nbParticipants >= cra?.nbParticipantsAccompagnement) {
           const accompagnement = cra?.accompagnement;
-          for (let key in cra?.accompagnement) {
-            if (key === value) {
-              accompagnement[key] -= 1;
-              setNbValeur(accompagnement[key]);
-            }
+          const valeurMax = getValeurMax(value, cra?.nbParticipants, accompagnement);
+          console.log(accompagnement);
+          if (nbValeur - 1 < 0) {
+            setNbValeur(0);
+            accompagnement[value] = 0;
+          } else {
+            setNbValeur(nbValeur <= valeurMax ? nbValeur - 1 : valeurMax);
+            accompagnement[value] = nbValeur <= valeurMax ? nbValeur - 1 : valeurMax;
           }
           dispatch(craActions.updateAccompagnement(accompagnement, cra?.nbParticipantsAccompagnement - 1 < 0 ? 0 : cra?.nbParticipantsAccompagnement - 1));
         }
@@ -71,7 +71,6 @@ function BigCountRadioButton({ type, value, label }) {
   const onChangeValue = e => {
     const reg = new RegExp('^[0-9]');
     let valeur = Number(e.target.value);
-    setNbValeur(valeur);
     if (reg.test(valeur)) {
       if (type === 'participants') {
         valeur = valeur < 100 ? valeur : 100;
@@ -81,13 +80,8 @@ function BigCountRadioButton({ type, value, label }) {
         const accompagnement = cra?.accompagnement;
         const valeurMax = getValeurMax(value, cra?.nbParticipants, accompagnement);
         valeur = valeur < valeurMax ? valeur : valeurMax;
-        for (let key in cra?.accompagnement) {
-          if (key === value) {
-            accompagnement[key] = valeur;
-          } else {
-            nbParticipantsAutre += accompagnement[key];
-          }
-        }
+        accompagnement[value] = valeur;
+        setNbValeur(valeur);
         dispatch(craActions.updateAccompagnement(accompagnement, nbParticipantsAutre + valeur));
       }
     }

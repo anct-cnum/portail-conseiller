@@ -74,14 +74,15 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
           const accompagnement = cra?.accompagnement;
           for (let key in cra?.accompagnement) {
             if (key === value) {
-              accompagnement[key] += 1;
+              accompagnement[key] = 1;
             }
           }
-          dispatch(craActions.updateAccompagnement(accompagnement, cra?.nbParticipantsAccompagnement + 1));
           if (value === 'redirection') {
             dispatch(craActions.updateAccompagnementRedirection(accompagnement, cra?.nbParticipantsAccompagnement + 1, cra?.organismes, 1));
             dispatch(craActions.updateOrganisme(null));
             dispatch(craActions.showSelectRedirection(true));
+          } else {
+            dispatch(craActions.updateAccompagnement(accompagnement, cra?.nbParticipantsAccompagnement + 1));
           }
         }
         break;

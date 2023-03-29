@@ -40,11 +40,10 @@ export function decodeEntitiesSuggestion(theme) {
 export function getValeurMax(value, nbParticipants, accompagnements) {
   let nbParticipantsAccompagnement = 0;
   for (let key in accompagnements) {
-    if (key !== value) {
+    if (value !== key) {
       nbParticipantsAccompagnement += accompagnements[key];
     }
   }
   let valeurMax = nbParticipants - nbParticipantsAccompagnement;
   return valeurMax < 0 ? 0 : valeurMax;
 }
-

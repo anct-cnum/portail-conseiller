@@ -24,7 +24,8 @@ function BigCountRadioButtonRedirection({ label, value }) {
   const onClickMore = () => {
     if (cra?.nbParticipants && cra?.nbParticipants > cra?.nbParticipantsAccompagnement) {
       const accompagnement = cra?.accompagnement;
-      setNbValeur(nbValeur + 1);
+      const valeurMax = getValeurMax('redirection', cra?.nbParticipants, accompagnement);
+      setNbValeur(nbValeur < valeurMax ? nbValeur + 1 : valeurMax);
       dispatch(craActions.updateAccompagnementRedirection(accompagnement, cra?.nbParticipantsAccompagnement + 1, cra?.organismes, nbValeur + 1));
     }
   };
@@ -32,7 +33,12 @@ function BigCountRadioButtonRedirection({ label, value }) {
   const onClickLess = () => {
     if (cra?.nbParticipants && cra?.nbParticipants >= cra?.nbParticipantsAccompagnement) {
       const accompagnement = cra?.accompagnement;
-      setNbValeur(nbValeur - 1 < 0 ? 0 : nbValeur - 1);
+      const valeurMax = getValeurMax('redirection', cra?.nbParticipants, accompagnement);
+      if (nbValeur - 1 < 0) {
+        setNbValeur(0);
+      } else {
+        setNbValeur(nbValeur < valeurMax ? nbValeur - 1 : valeurMax);
+      }
       dispatch(craActions.updateAccompagnementRedirection(accompagnement,
         cra?.nbParticipantsAccompagnement - 1 < 0 ? 0 : cra?.nbParticipantsAccompagnement - 1,
         cra?.organismes, nbValeur - 1 < 0 ? 0 : nbValeur - 1));

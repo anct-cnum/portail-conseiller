@@ -121,11 +121,6 @@ function updateOrganisme(organisme) {
 }
 
 function updateOrganismes(organismes, nbRedirection, accompagnement, nbParticipantsAccompagnement) {
-  console.log(accompagnement);
-  console.log(nbParticipantsAccompagnement);
-  console.log(organismes);
-  console.log(nbRedirection);
-
   accompagnement.redirection += nbRedirection;
   return { type: 'UPDATE_ORGANISMES', organismes, accompagnement, nbParticipantsAccompagnement };
 }

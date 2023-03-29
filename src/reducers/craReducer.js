@@ -263,6 +263,7 @@ export default function cra(state = initialState, action) {
       };
     case 'DELETE_ORGANISME':
       const organismes = state.organismes;
+      console.log(action.organisme);
       const organismesFiltres = organismes.filter(function(item) {
         return item !== action.organisme;
       });
