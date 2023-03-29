@@ -326,6 +326,7 @@
   .listeAdresses {
     border-radius: 0 0 15px 15px;
     background-color: #1e1e1e;
+    border: 1px solid #518fff;
     position: absolute;
     max-height: 250px;
     width: 500px;
@@ -340,11 +341,12 @@
       overflow: auto;
     }
     .adresseIntrouvable {
-      border-top: 1px solid #fff;
+      border-top: 1px solid #518fff;
       padding: 16px;
       height: 50px;
       label {
         font-size: 0.8rem;
+        color: #fc5d00;
       }
     }
     .adresse {

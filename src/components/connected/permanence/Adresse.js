@@ -45,7 +45,8 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
       setIndicatif(telephoneHorsMetropole?.find(item => item.codeDepartement === codePostal.substr(0, 3))?.indicatif ?? '+33');
     }
     if (geocodeAdresse) {
-      dispatch(permanenceActions.updateField(prefixId + 'location', geocodeAdresse ?? { type: 'Point', coordinates: [1.849121, 46.624100] }));
+      dispatch(permanenceActions.updateField(prefixId + 'location', geocodeAdresse ??
+      { type: 'Point', coordinates: process.env.REACT_APP_INIT_COORDONNEES.split(',').split(',') }));
     }
   }, [codePostal, geocodeAdresse]);
 
@@ -116,31 +117,12 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
         <InputText
           textLabel="Entrez l&rsquo;adresse de votre lieu d&rsquo;activit&eacute;"
           baselineInput="Remplissez le champ avec l&rsquo;adresse compl&egrave;te de votre lieu d&rsquo;activit&eacute;"
-          errorInput={erreurAdresse}
+          errorInput={erreurAdresse || erreurLocalisation}
           nameInput= {prefixId + 'adresse'}
           requiredInput={true}
           valueInput={fields?.filter(field => field.name === prefixId + 'adresse')[0]?.value ?? ''}
           prefixId={prefixId}
         />
-        {erreurAdresseApi &&
-          <div className="text-error fr-mb-n3w">
-            Une erreur est survenue lors de la recherche de votre adresse, veuillez r&eacute;essayer ult&eacute;rieurement...
-          </div>
-        }
-        {erreurAddresseIntrouvable &&
-          <div className="text-error fr-mb-n3w">
-            Une erreur est survenue lors de la recherche de votre demande d&rsquo;adresse, veuillez la renseigner de nouveau.
-          </div>
-        }
-        { erreurLocalisation &&
-          <div className="text-error fr-mb-n3w ">
-            <br/>Vous souhaitez nous remonter un probl&egrave;me avec votre adresse, cliquez&nbsp;
-            <a className="link" href="https://go.crisp.chat/chat/embed/?website_id=ea669e13-e40f-40c8-be23-e43565c0e62c"
-              title="Lien vers l&rsquo;aide crisp" target="blank" rel="noopener noreferrer">
-              ici
-            </a>.
-          </div>
-        }
         {listeAdresses?.length > 0 &&
           <div className="listeAdresses">
             {loadingAdresses &&
@@ -167,12 +149,33 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
             </div>
             <div className="adresseIntrouvable">
               <InputCheckbox
-                textLabel="Si votre adresse est introuvable, merci de cocher la case ci-dessus"
+                textLabel="Si votre adresse est introuvable, merci de cocher la case"
                 errorInput={null}
                 prefixId={prefixId}
+                disabled={fields?.filter(field => field.name === prefixId + 'adresseIntrouvable')[0]?.value}
                 nameInput="adresseIntrouvable"
               />
             </div>
+          </div>
+        }
+        {erreurAdresseApi &&
+          <div className="text-error fr-mb-n3w fr-mt-3w">
+            Une erreur est survenue lors de la recherche de votre adresse, veuillez r&eacute;essayer ult&eacute;rieurement...
+          </div>
+        }
+        {erreurAddresseIntrouvable &&
+          <div className="text-error fr-mb-n3w fr-mt-3w">
+            Une erreur est survenue lors de la recherche de votre demande d&rsquo;adresse, veuillez la renseigner de nouveau.
+          </div>
+        }
+        { erreurLocalisation &&
+          <div className="text-error fr-mb-n3w fr-mt-3w">
+            Désolé, votre adresse est introuvable. Pour faire remonter le problème&nbsp;
+            <a className="link" href="https://go.crisp.chat/chat/embed/?website_id=ea669e13-e40f-40c8-be23-e43565c0e62c"
+              title="Lien vers l&rsquo;aide crisp" target="blank" rel="noopener noreferrer">
+              contactez nous
+            </a>. Notre équipe traitera votre demande.<br/>
+            Dans cette attente, vos informations ne seront pas visibles sur la cartographie CnFS.
           </div>
         }
         <div className="fr-mt-6w">

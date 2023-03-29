@@ -13,7 +13,8 @@ function SelectAdresse({ prefixId, errorInput, isUpdate }) {
   const onChange = e => {
     const id = e.target.value;
     const adresse = geocodeAdresse[id];
-    dispatch(permanenceActions.updateField(prefixId + 'location', adresse?.geometry ?? { type: 'Point', coordinates: [1.849121, 46.624100] }));
+    dispatch(permanenceActions.updateField(prefixId + 'location', adresse?.geometry ??
+    { type: 'Point', coordinates: process.env.REACT_APP_INIT_COORDONNEES.split(',') }));
   };
 
   return (

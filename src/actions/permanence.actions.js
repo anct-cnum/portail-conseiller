@@ -223,7 +223,9 @@ function verifyFormulaire(form, statut) {
           errors.push({
             principal_horaires: controleHoraires(form?.fields?.filter(field => field.name === champ + accepte.nom)[0]?.value?.principal_horaires)
           });
-        } else if (accepte.nom !== 'itinerant') {
+        } else if (accepte.nom !== 'itinerant' ||
+        (form?.fields?.filter(field => field.name === 'principal_adresseIntrouvable')[0]?.value && accepte.nom !== 'location') ||
+        !form?.fields?.filter(field => field.name === 'principal_adresseIntrouvable')[0]?.value) {
           errors.push({
             [champ + accepte.nom]: (Joi.object({
               [champ + accepte.nom]: accepte.validation }).validate(
@@ -234,6 +236,7 @@ function verifyFormulaire(form, statut) {
       });
     }
   });
+
   let nbErrors = 0;
   errors.forEach(error => {
     if (error[Object.keys(error)[0]]) {
