@@ -151,7 +151,7 @@ function getStatistiquesCSV(dateDebut, dateFin, codePostal, ville, codeCommune, 
     requestOptions).then(handleFileResponse);
 }
 
-function getStatistiquesExcel(dateDebut, dateFin, codePostal, ville, idSubordonne) {
+function getStatistiquesExcel(dateDebut, dateFin, codePostal, ville, codeCommune, idSubordonne) {
   const requestOptions = {
     method: 'GET',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
@@ -159,7 +159,7 @@ function getStatistiquesExcel(dateDebut, dateFin, codePostal, ville, idSubordonn
 
   return fetch(
     // eslint-disable-next-line max-len
-    `${apiUrlRoot}/conseillers/statistiques.xlsx?dateDebut=${dateDebut}&dateFin=${dateFin}&codePostal=${codePostal}&ville=${ville}&idSubordonne=${idSubordonne}`,
+    `${apiUrlRoot}/conseillers/statistiques.xlsx?dateDebut=${dateDebut}&dateFin=${dateFin}&codePostal=${codePostal}&ville=${ville}&codeCommune=${codeCommune}&idSubordonne=${idSubordonne}`,
     requestOptions).then(handleFileResponse);
 }
 

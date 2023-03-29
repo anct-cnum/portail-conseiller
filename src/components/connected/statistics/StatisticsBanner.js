@@ -72,7 +72,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     const type = getTypeStatistique(typeStats);
     if ((user?.role === 'conseiller' || user?.role === 'coordinateur_coop') && !idTerritoire && type !== 'nationales') {
-      dispatch(conseillerActions.getStatistiquesExcel(dateDebut, dateFin, codePostal, ville, idSubordonne, getTitleExport()));
+      dispatch(conseillerActions.getStatistiquesExcel(dateDebut, dateFin, codePostal, ville, codeCommune, idSubordonne, getTitleExport()));
     } else {
       const conseillerIds = territoire?.conseillerIds ?? undefined;
       // eslint-disable-next-line max-len
