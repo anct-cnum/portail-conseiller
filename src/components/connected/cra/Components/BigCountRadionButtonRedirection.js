@@ -68,7 +68,7 @@ function BigCountRadioButtonRedirection({ label, value }) {
   };
 
   return (
-    <div className={showSelect ? 'radioButton radioButtonRedirection' : 'radioButton'}>
+    <div className={`radioButton ${showSelect ? 'radioButtonRedirection' : ''}`}>
       <SelectAccompagnement />
       <div className="gradient-box border-top-none ">
         <button className="radioRattachement radioRattachement-selected" style={{ height: '144px', padding: 0 }}>

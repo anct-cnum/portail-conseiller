@@ -58,12 +58,8 @@ function SelectAccompagnement() {
   return (
     <>
       {showSelect &&
-        <div className="gradient-box" style={{ width: '270px',
-          height: nbParticipantsAccompagnement === nbParticipants && organismes.length > 0 ? '120px' : '350px',
-          marginBottom: '-27px' }}>
-          <div style={{ width: '270px', height: nbParticipantsAccompagnement === nbParticipants && organismes?.length > 0 ? '120px' : '350px',
-            borderRadius: '20px', backgroundColor: '#ffffff' }}>
-            {nbParticipantsAccompagnement < nbParticipants && organismes.length === 0 &&
+        <div className="gradient-box" style={{ width: '270px', height: '350px', marginBottom: '-27px' }}>
+          <div style={{ width: '270px', height: '350px', borderRadius: '20px', backgroundColor: '#ffffff' }}>
             <ul className="listRedirection" style={{ height: heightListeChoix, overflow: 'auto' }}>
               {listeFiltreLieux?.map((lieu, key) =>
                 <li key={key} className="selecteurList" onClick={() => {
@@ -78,7 +74,6 @@ function SelectAccompagnement() {
                   onChange={e => handleLieuRedirectionInput(e.target.value)}/>
               </li>
             </ul>
-            }
             <ListeAccompagnements organismes={organismes} borderTop="1px solid #3558a2" deletable={true}/>
             <div style={{ borderTop: '1px solid #3558a2', borderBottom: '1px solid #3558a2' }}>
               {organisme &&

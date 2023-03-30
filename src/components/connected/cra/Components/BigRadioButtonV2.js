@@ -111,7 +111,7 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
         <div className="gradient-box" value={value}>
           {(value === 'redirection' && organismes?.length > 0) &&
             <div className="radioRattachement gradient-box-redirection">
-              <ListeAccompagnements organismes={organismes} borderTop="0px"/>
+              <ListeAccompagnements organismes={organismes} deletable={true} borderTop="0px"/>
             </div>
           }
           {(value !== 'redirection' || organismes?.length === 0) &&
