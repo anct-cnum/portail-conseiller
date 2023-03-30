@@ -170,7 +170,7 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
         }
         { erreurLocalisation &&
           <div className="text-error fr-mb-n3w fr-mt-3w">
-            Désolé, votre adresse est introuvable. Pour faire remonter le problème&nbsp;
+            D&eacute;sol&eacute;, votre adresse est introuvable. Pour faire remonter le problème&nbsp;
             <a className="link" href="https://go.crisp.chat/chat/embed/?website_id=ea669e13-e40f-40c8-be23-e43565c0e62c"
               title="Lien vers l&rsquo;aide crisp" target="blank" rel="noopener noreferrer">
               contactez nous
