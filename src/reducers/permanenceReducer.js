@@ -225,17 +225,10 @@ export default function permanence(state = initialState, action) {
         listeAdresses: [],
       };
     case 'GET_ADRESSE_SUCCESS':
-      let fieldsCheckbox = state?.fields ?? [];
-      delete fieldsCheckbox?.filter(field => field.name === action.prefixId + 'adresseIntrouvable')[0]?.value;
-      delete fieldsCheckbox?.filter(field => field.name === action.prefixId + 'adresseIntrouvable')[0]?.name;
-      fieldsCheckbox?.push({ name: action.prefixId + 'adresseIntrouvable', value: false });
-      fieldsCheckbox = nettoyageState(fieldsCheckbox);
-
       return {
         ...state,
         loadingAdresses: false,
         listeAdresses: action.adresses,
-        fields: fieldsCheckbox,
       };
     case 'GET_ADRESSE_FAILURE':
       return {
@@ -280,6 +273,8 @@ export default function permanence(state = initialState, action) {
         delete fieldsAdresse?.filter(field => field.name === action.prefixId + 'ville')[0]?.name;
         delete fieldsAdresse?.filter(field => field.name === action.prefixId + 'codeCommune')[0]?.value;
         delete fieldsAdresse?.filter(field => field.name === action.prefixId + 'codeCommune')[0]?.name;
+        delete fieldsAdresse?.filter(field => field.name === action.prefixId + 'adresseIntrouvable')[0]?.value;
+        delete fieldsAdresse?.filter(field => field.name === action.prefixId + 'adresseIntrouvable')[0]?.name;
 
         fieldsAdresse.push({ name: action.prefixId + 'adresse', value: action.adresse.properties?.label?.toUpperCase() });
         fieldsAdresse?.push({ name: action.prefixId + 'numeroVoie', value: action?.adresse?.properties?.housenumber?.toUpperCase() });
@@ -287,6 +282,7 @@ export default function permanence(state = initialState, action) {
         fieldsAdresse?.push({ name: action.prefixId + 'codePostal', value: action?.adresse?.properties?.postcode });
         fieldsAdresse?.push({ name: action.prefixId + 'ville', value: action?.adresse?.properties?.city?.toUpperCase() });
         fieldsAdresse?.push({ name: action.prefixId + 'codeCommune', value: action?.adresse?.properties?.citycode?.toUpperCase() });
+        fieldsAdresse?.push({ name: action.prefixId + 'adresseIntrouvable', value: false });
 
         fieldsAdresse = nettoyageState(fieldsAdresse);
         if (geocodeAdresse?.length > 0) {
