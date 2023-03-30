@@ -174,7 +174,7 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
             <a className="link" href="https://go.crisp.chat/chat/embed/?website_id=ea669e13-e40f-40c8-be23-e43565c0e62c"
               title="Lien vers l&rsquo;aide crisp" target="blank" rel="noopener noreferrer">
               contactez nous
-            </a>. Notre équipe traitera votre demande.<br/>
+            </a>. Notre &eacute;quipe traitera votre demande.<br/>
             Dans cette attente, vos informations ne seront pas visibles sur la cartographie CnFS.
           </div>
         }
