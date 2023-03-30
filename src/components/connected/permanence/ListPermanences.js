@@ -33,7 +33,7 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
     dispatch(permanenceActions.updateField(prefixId + 'nomEnseigne', permanence?.nomEnseigne));
     dispatch(permanenceActions.updateField(prefixId + 'siret', permanence?.siret));
     dispatch(permanenceActions.updateField(prefixId + 'checkboxSiret', e.target.value === 'nouveau' ? false : !permanence?.siret));
-    dispatch(permanenceActions.updateField(prefixId + 'numeroVoie', permanence?.adresse?.numeroRue?.toUpperCase()));
+    dispatch(permanenceActions.updateField(prefixId + 'numeroVoie', permanence?.adresse?.numeroRue));
     dispatch(permanenceActions.updateField(prefixId + 'rueVoie', permanence?.adresse?.rue?.toUpperCase()));
     dispatch(permanenceActions.updateField(prefixId + 'codePostal', permanence?.adresse?.codePostal));
     dispatch(permanenceActions.updateField(prefixId + 'ville', permanence?.adresse?.ville?.toUpperCase()));
