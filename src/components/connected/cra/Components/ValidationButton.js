@@ -21,9 +21,15 @@ function ValidationButton() {
       //Affichage des erreurs
       dispatch(craActions.verifyCra(Object.values(cra?.errorsRequired)));
     } else {
+      let redirectionValide = 0;
+      cra?.organismes?.forEach(organisme => {
+        redirectionValide += organisme[Object.keys(organisme)[0]];
+      });
+      cra.accompagnement = { atelier: cra?.nbAtelier ?? 0, individuel: cra?.nbIndividuel ?? 0, redirection: redirectionValide };
       /* eslint-disable */
-      let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error, showSelectRedirection, nbParticipantsAge, nbParticipantsStatut,
-        nbParticipantsAccompagnement, printFlashbag, buttonCP, buttonPermanences, buttonPermanence, nomEnseigne, listeSousThemes, errorSousTheme, loadingSuggestion,
+      let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error, showSelectRedirection, nbParticipantsAge,
+        nbParticipantsStatut, nbParticipantsAccompagnement, nbAtelier, nbIndividuel, nbRedirection, nbOrganisme, organisme,
+        printFlashbag, buttonCP, buttonPermanences, buttonPermanence, nomEnseigne, listeSousThemes, errorSousTheme, loadingSuggestion,
         ...dataCraToSend } = cra;
       dataCraToSend.idStructure = conseiller?.structureId;
       /* eslint-enable */
@@ -31,9 +37,13 @@ function ValidationButton() {
       if (dataCraToSend?.sousThemes?.length === 0) {
         delete dataCraToSend.sousThemes;
       }
+      if (dataCraToSend?.organismes?.length === 0) {
+        dataCraToSend.organismes = null;
+      }
       if (cra.id) {
         dispatch(craActions.updateCra(dataCraToSend, conseiller?._id));
       } else {
+        console.log(dataCraToSend);
         dispatch(craActions.submitCra(dataCraToSend));
       }
     }

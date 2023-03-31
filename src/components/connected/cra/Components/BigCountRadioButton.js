@@ -10,7 +10,10 @@ function BigCountRadioButton({ type, value, label }) {
 
   const showSelect = useSelector(state => state.cra.showSelectRedirection);
   const cra = useSelector(state => state.cra);
-  const [nbValeur, setNbValeur] = useState(type === 'participants' ? cra?.nbParticipants : cra?.accompagnement[value]);
+  let { nbParticipants, nbParticipantsAccompagnement, nbIndividuel, nbAtelier, nbRedirection, nbOrganisme } = cra;
+  const [nbValeur, setNbValeur] = useState(
+    type === 'participants' ? cra?.nbParticipants : cra?.['nb' + [value.charAt(0).toUpperCase() + value.slice(1)]]
+  );
 
   const toggleSelect = () => {
     if (value === 'redirection' && nbValeur === 0) {
@@ -21,18 +24,23 @@ function BigCountRadioButton({ type, value, label }) {
   const onClickMore = () => {
     switch (type) {
       case 'participants':
-        if (cra?.nbParticipants < 100) {
-          dispatch(craActions.updateNbParticipants(Number(cra?.nbParticipants) + 1));
-          setNbValeur(Number(cra?.nbParticipants) + 1);
+        if (nbParticipants < 100) {
+          dispatch(craActions.updateNbParticipants(Number(nbParticipants) + 1));
+          setNbValeur(Number(nbParticipants) + 1);
         }
         break;
       case 'accompagnement':
-        if (cra?.nbParticipants && cra?.nbParticipants > cra?.nbParticipantsAccompagnement) {
-          const accompagnement = cra?.accompagnement;
-          const valeurMax = getValeurMax(value, cra?.nbParticipants, accompagnement);
-          setNbValeur(nbValeur < valeurMax ? nbValeur + 1 : valeurMax);
-          accompagnement[value] = nbValeur < valeurMax ? nbValeur + 1 : valeurMax;
-          dispatch(craActions.updateAccompagnement(accompagnement, cra?.nbParticipantsAccompagnement + 1));
+        if (nbParticipants && nbParticipants > nbParticipantsAccompagnement) {
+          if (nbParticipants - nbParticipantsAccompagnement > 0) {
+            setNbValeur(nbValeur + 1);
+            if (value === 'individuel') {
+              nbIndividuel++;
+            }
+            if (value === 'atelier') {
+              nbAtelier++;
+            }
+            dispatch(craActions.updateAccompagnement(nbIndividuel, nbAtelier, nbRedirection, nbOrganisme));
+          }
         }
         break;
       default:
@@ -49,18 +57,16 @@ function BigCountRadioButton({ type, value, label }) {
         }
         break;
       case 'accompagnement':
-        if (cra?.nbParticipants && cra?.nbParticipants >= cra?.nbParticipantsAccompagnement) {
-          const accompagnement = cra?.accompagnement;
-          const valeurMax = getValeurMax(value, cra?.nbParticipants, accompagnement);
-          console.log(accompagnement);
-          if (nbValeur - 1 < 0) {
-            setNbValeur(0);
-            accompagnement[value] = 0;
-          } else {
-            setNbValeur(nbValeur <= valeurMax ? nbValeur - 1 : valeurMax);
-            accompagnement[value] = nbValeur <= valeurMax ? nbValeur - 1 : valeurMax;
+        if (cra?.nbParticipants) {
+          const valeur = nbValeur - 1;
+          setNbValeur(valeur < 0 ? 0 : valeur);
+          if (value === 'individuel' && nbIndividuel > 0) {
+            nbIndividuel--;
           }
-          dispatch(craActions.updateAccompagnement(accompagnement, cra?.nbParticipantsAccompagnement - 1 < 0 ? 0 : cra?.nbParticipantsAccompagnement - 1));
+          if (value === 'atelier' && nbAtelier > 0) {
+            nbAtelier--;
+          }
+          dispatch(craActions.updateAccompagnement(nbIndividuel, nbAtelier, nbRedirection, nbOrganisme));
         }
         break;
       default:
@@ -74,18 +80,23 @@ function BigCountRadioButton({ type, value, label }) {
     if (reg.test(valeur)) {
       if (type === 'participants') {
         valeur = valeur < 100 ? valeur : 100;
+        setNbValeur(valeur);
         dispatch(craActions.updateNbParticipants(valeur));
       } else if (type === 'accompagnement') {
-        let nbParticipantsAutre = 0;
-        const accompagnement = cra?.accompagnement;
-        const valeurMax = getValeurMax(value, cra?.nbParticipants, accompagnement);
-        valeur = valeur < valeurMax ? valeur : valeurMax;
-        accompagnement[value] = valeur;
-        setNbValeur(valeur);
-        dispatch(craActions.updateAccompagnement(accompagnement, nbParticipantsAutre + valeur));
+        if (cra?.nbParticipants && valeur >= 0) {
+          const valeurMax = getValeurMax(value, nbIndividuel, nbAtelier, nbRedirection, nbParticipants);
+          if (value === 'individuel' && nbIndividuel > 0) {
+            nbIndividuel = valeur < valeurMax ? valeur : valeurMax;
+          }
+          if (value === 'atelier' && nbAtelier > 0) {
+            nbAtelier = valeur < valeurMax ? valeur : valeurMax;
+          }
+          setNbValeur(valeur < valeurMax ? valeur : valeurMax);
+          dispatch(craActions.updateAccompagnement(nbIndividuel, nbAtelier, nbRedirection, nbOrganisme));
+        }
       }
     }
-    setNbValeur(valeur);
+
   };
 
   return (

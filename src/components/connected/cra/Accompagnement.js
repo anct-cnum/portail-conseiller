@@ -9,9 +9,7 @@ import BigCountRadioButtonRedirection from './Components/BigCountRadionButtonRed
 function Accompagnement() {
 
   const cra = useSelector(state => state.cra);
-  const accompagnement = cra?.accompagnement;
-  const organisme = cra?.organisme;
-  const nbRedirection = cra?.nbRedirection;
+  const { nbIndividuel, nbAtelier, nbOrganisme, organisme } = cra;
 
   return (
     <>
@@ -20,7 +18,7 @@ function Accompagnement() {
           <span className="question">L&rsquo;accompagnement va-t-il &ecirc;tre poursuivi&nbsp;? (Optionnel)</span>
         </div>
         <div className="responsiveRadioActivity1">
-          {accompagnement?.individuel === 0 &&
+          {nbIndividuel === 0 &&
             <BigRadioButtonV2
               type="accompagnement"
               label="Accompagnement individuel"
@@ -29,7 +27,7 @@ function Accompagnement() {
               classDiv="accIndividuel"
             />
           }
-          {accompagnement?.individuel > 0 &&
+          {nbIndividuel > 0 &&
             <BigCountRadioButton
               type="accompagnement"
               value="individuel"
@@ -37,7 +35,7 @@ function Accompagnement() {
           }
         </div>
         <div className="responsiveRadioActivity2">
-          {accompagnement?.atelier === 0 &&
+          {nbAtelier === 0 &&
             <BigRadioButtonV2
               type="accompagnement"
               label="En atelier"
@@ -46,7 +44,7 @@ function Accompagnement() {
               classDiv="atelierCollectif"
             />
           }
-          {accompagnement?.atelier > 0 &&
+          {nbAtelier > 0 &&
             <BigCountRadioButton
               type="accompagnement"
               value="atelier"
@@ -54,7 +52,7 @@ function Accompagnement() {
           }
         </div>
         <div className="responsiveRadioActivity3Big">
-          {nbRedirection === 0 &&
+          { nbOrganisme === 0 &&
             <BigRadioButtonV2
               type="accompagnement"
               label="Redirection vers une structure"
@@ -63,15 +61,15 @@ function Accompagnement() {
               classDiv="demPonctuelle"
             />
           }
-          {nbRedirection > 0 &&
+          { nbOrganisme > 0 &&
             <BigCountRadioButtonRedirection
-              label={organisme ?? 'Vous pouvez selectionnez une autre structure'}
+              label={organisme ?? 'Selectionnez une autre structure'}
               value={organisme ?? null}
             />
           }
         </div>
         <div className="responsiveRadioActivity3Small">
-          {nbRedirection === 0 &&
+          {nbOrganisme === 0 &&
             <SmallRadioButton
               type="accompagnement"
               label="Redirection vers une structure"
@@ -80,9 +78,9 @@ function Accompagnement() {
               imageSelected="/logos/cra/logo-redirection-structure-n.svg"
               heightImage="32px" />
           }
-          {nbRedirection > 0 &&
+          {nbOrganisme > 0 &&
             <BigCountRadioButtonRedirection
-              label={organisme ?? 'Vous pouvez selectionnez une autre structure'}
+              label={organisme ?? 'Selectionnez une autre structure'}
               value={organisme ?? null}
             />
           }

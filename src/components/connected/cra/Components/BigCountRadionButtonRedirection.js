@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
@@ -12,8 +12,9 @@ function BigCountRadioButtonRedirection({ label, value }) {
 
   const showSelect = useSelector(state => state.cra.showSelectRedirection);
   const cra = useSelector(state => state.cra);
+  let { nbParticipants, nbParticipantsAccompagnement, nbIndividuel, nbAtelier, nbRedirection, nbOrganisme } = cra;
 
-  const [nbValeur, setNbValeur] = useState(cra?.nbRedirection);
+  const [nbValeur, setNbValeur] = useState(nbOrganisme);
 
   const toggleSelect = () => {
     if (nbValeur === 0) {
@@ -22,50 +23,35 @@ function BigCountRadioButtonRedirection({ label, value }) {
   };
 
   const onClickMore = () => {
-    if (cra?.nbParticipants && cra?.nbParticipants > cra?.nbParticipantsAccompagnement) {
-      const accompagnement = cra?.accompagnement;
-      const valeurMax = getValeurMax('redirection', cra?.nbParticipants, accompagnement);
-      setNbValeur(nbValeur < valeurMax ? nbValeur + 1 : valeurMax);
-      dispatch(craActions.updateAccompagnementRedirection(accompagnement, cra?.nbParticipantsAccompagnement + 1, cra?.organismes, nbValeur + 1));
+    if (nbParticipants && nbParticipants > nbParticipantsAccompagnement && nbParticipants - nbParticipantsAccompagnement >= 0) {
+      nbOrganisme++;
+      setNbValeur(nbOrganisme);
+      dispatch(craActions.updateAccompagnement(nbIndividuel, nbAtelier, nbRedirection, nbOrganisme));
     }
   };
 
   const onClickLess = () => {
-    if (cra?.nbParticipants && cra?.nbParticipants >= cra?.nbParticipantsAccompagnement) {
-      const accompagnement = cra?.accompagnement;
-      const valeurMax = getValeurMax('redirection', cra?.nbParticipants, accompagnement);
-      if (nbValeur - 1 < 0) {
-        setNbValeur(0);
-      } else {
-        setNbValeur(nbValeur < valeurMax ? nbValeur - 1 : valeurMax);
-      }
-      dispatch(craActions.updateAccompagnementRedirection(accompagnement,
-        cra?.nbParticipantsAccompagnement - 1 < 0 ? 0 : cra?.nbParticipantsAccompagnement - 1,
-        cra?.organismes, nbValeur - 1 < 0 ? 0 : nbValeur - 1));
+    if (cra?.nbParticipants && nbOrganisme > 0) {
+      nbOrganisme--;
+      setNbValeur(nbOrganisme < 0 ? 0 : nbOrganisme);
+      dispatch(craActions.updateAccompagnement(nbIndividuel, nbAtelier, nbRedirection, nbOrganisme));
     }
   };
 
   const onChangeValue = e => {
     const reg = new RegExp('^[0-9]');
     let valeur = Number(e.target.value);
-    setNbValeur(valeur);
     if (reg.test(valeur)) {
-      let nbParticipantsAutre = 0;
-      const accompagnement = cra?.accompagnement;
-      const valeurMax = getValeurMax('redirection', cra?.nbParticipants, accompagnement);
+      const valeurMax = getValeurMax('redirection', nbIndividuel, nbAtelier, nbRedirection, nbParticipants);
       valeur = valeur < valeurMax ? valeur : valeurMax;
-      for (let key in cra?.accompagnement) {
-        if (key === 'redirection') {
-          accompagnement[key] = valeur;
-        } else {
-          nbParticipantsAutre += accompagnement[key];
-        }
-      }
-      dispatch(craActions.updateAccompagnementRedirection(accompagnement, nbParticipantsAutre + valeur, cra?.organismes, valeur));
-
+      setNbValeur(valeur);
+      dispatch(craActions.updateAccompagnement(nbIndividuel, nbAtelier, nbRedirection, nbOrganisme));
     }
-    setNbValeur(valeur);
   };
+
+  useEffect(() => {
+    setNbValeur(nbOrganisme);
+  }, [nbOrganisme]);
 
   return (
     <div className={`radioButton ${showSelect ? 'radioButtonRedirection' : ''}`}>
@@ -85,7 +71,14 @@ function BigCountRadioButtonRedirection({ label, value }) {
               </>
               }
               {value === null &&
+              <>
+                <input style={{ fontSize: '1.5rem', textAlign: 'center', width: '100%' }} type="number" min={0} max={100}
+                  value={nbValeur}
+                  onChange={e => {
+                    onChangeValue(e);
+                  }}/>
                 <span className="selectionner-autre">{label}</span>
+              </>
               }
             </span>
 

@@ -20,7 +20,6 @@ export const craActions = {
   updateMultipleThemes,
   updateDuree,
   updateAccompagnement,
-  updateAccompagnementRedirection,
   updateOrganisme,
   updateOrganismes,
   deleteOrganisme,
@@ -99,30 +98,16 @@ function updateDuree(duree) {
   return { type: 'UPDATE_DUREE', duree };
 }
 
-function updateAccompagnement(accompagnement, nbParticipantsAccompagnement) {
-  return { type: 'UPDATE_ACCOMPAGNEMENT', accompagnement, nbParticipantsAccompagnement };
-}
-
-function updateAccompagnementRedirection(accompagnement, nbParticipantsAccompagnement, organismes, nbRedirection) {
-  accompagnement.redirection = 0;
-  if (organismes?.length > 0) {
-    organismes?.forEach(organisme => {
-      const key = Object.keys(organisme);
-      accompagnement.redirection += organisme[key];
-    });
-  } else {
-    accompagnement.redirection = 1;
-  }
-  return { type: 'UPDATE_ACCOMPAGNEMENT_REDIRECTION', accompagnement, nbParticipantsAccompagnement, organismes, nbRedirection };
+function updateAccompagnement(nbIndividuel, nbAtelier, nbRedirection, nbOrganisme) {
+  return { type: 'UPDATE_ACCOMPAGNEMENT', nbIndividuel, nbAtelier, nbRedirection, nbOrganisme };
 }
 
 function updateOrganisme(organisme) {
   return { type: 'UPDATE_ORGANISME', organisme };
 }
 
-function updateOrganismes(organismes, nbRedirection, accompagnement, nbParticipantsAccompagnement) {
-  accompagnement.redirection += nbRedirection;
-  return { type: 'UPDATE_ORGANISMES', organismes, accompagnement, nbParticipantsAccompagnement };
+function updateOrganismes(organismes) {
+  return { type: 'UPDATE_ORGANISMES', organismes };
 }
 
 function deleteOrganisme(organisme) {

@@ -37,13 +37,18 @@ export function decodeEntitiesSuggestion(theme) {
   return txt.value;
 }
 
-export function getValeurMax(value, nbParticipants, accompagnements) {
-  let nbParticipantsAccompagnement = 0;
-  for (let key in accompagnements) {
-    if (value !== key) {
-      nbParticipantsAccompagnement += accompagnements[key];
-    }
+export function getValeurMax(value, nbIndividuel, nbAtelier, nbRedirection, nbParticipants) {
+  let nbParticipantsReorientes = 0;
+  let valeurMax = nbParticipants;
+  if (value !== 'individuel') {
+    nbParticipantsReorientes += nbIndividuel;
   }
-  let valeurMax = nbParticipants - nbParticipantsAccompagnement;
+  if (value !== 'atelier') {
+    nbParticipantsReorientes += nbAtelier;
+  }
+  if (value !== 'redirection') {
+    nbParticipantsReorientes += nbRedirection;
+  }
+  valeurMax -= nbParticipantsReorientes;
   return valeurMax < 0 ? 0 : valeurMax;
 }

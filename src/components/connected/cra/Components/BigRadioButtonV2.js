@@ -8,8 +8,8 @@ import ListeAccompagnements from './ListeAccompagnements';
 function BigRadioButton({ type, label, value, image, classDiv }) {
 
   const dispatch = useDispatch();
-  const organismes = useSelector(state => state.cra?.organismes);
   const cra = useSelector(state => state.cra);
+  const { nbParticipants, organismes } = cra;
   let controlSelected = getCraValue(type);
 
   //Gestion du style du bouton
@@ -70,20 +70,18 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
         dispatch(craActions.updateActivite(value));
         break;
       case 'accompagnement':
-        if (cra?.nbParticipants > cra?.nbParticipantsAccompagnement) {
-          const accompagnement = cra?.accompagnement;
-          for (let key in cra?.accompagnement) {
-            if (key === value) {
-              accompagnement[key] = 1;
-            }
-          }
+        let { nbParticipantsAccompagnement, nbIndividuel, nbAtelier, nbRedirection, nbOrganisme } = cra;
+        if (nbParticipants && nbParticipants > nbParticipantsAccompagnement) {
           if (value === 'redirection') {
-            dispatch(craActions.updateAccompagnementRedirection(accompagnement, cra?.nbParticipantsAccompagnement + 1, cra?.organismes, 1));
             dispatch(craActions.updateOrganisme(null));
             dispatch(craActions.showSelectRedirection(true));
-          } else {
-            dispatch(craActions.updateAccompagnement(accompagnement, cra?.nbParticipantsAccompagnement + 1));
+            nbOrganisme++;
+          } else if (value === 'individuel') {
+            nbIndividuel++;
+          } else if (value === 'atelier') {
+            nbAtelier++;
           }
+          dispatch(craActions.updateAccompagnement(nbIndividuel, nbAtelier, nbRedirection, nbOrganisme));
         }
         break;
       default:
