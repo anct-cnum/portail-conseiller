@@ -44,6 +44,7 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
         }
         if (value === 'autre lieu') {
           dispatch(craActions.getButtonCP());
+          document.getElementById('lieuRattachement').style.zIndex = 1;
           setTimeout(() => {
             if (document.getElementById('dropdown')) {
               document.getElementById('dropdown').style.display = 'block';
@@ -55,6 +56,7 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
           }, 100);
         } else if (value === 'rattachement') {
           dispatch(craActions.getButtonPermanences());
+          document.getElementById('lieuRattachement').style.zIndex = -100;
           setTimeout(() => {
             if (document.getElementById('dropdown')) {
               document.getElementById('dropdown').style.display = 'none';
@@ -93,7 +95,7 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
     <div className="radioButton2" onClick={onClickRadio} value={value}>
       {type === 'canal' &&
         <div className="gradient-box">
-          <button className={styleClass} value={value} disabled={cra?.canal === 'domicile' && value === 'rattachement'}>
+          <button id={classDiv} className={styleClass} value={value} disabled={cra?.canal === 'domicile' && value === 'rattachement'}>
             <div value={value}>
               <div className={classDiv !== undefined ? classDiv : '' } value={value}>
                 <span className={image}></span>

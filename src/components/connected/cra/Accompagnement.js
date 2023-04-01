@@ -58,7 +58,7 @@ function Accompagnement() {
               label="Redirection vers une structure"
               value="redirection"
               image="logoRedirection"
-              classDiv="demPonctuelle"
+              classDiv="accompagnementRedirection"
             />
           }
           { nbOrganisme > 0 &&
@@ -74,9 +74,8 @@ function Accompagnement() {
               type="accompagnement"
               label="Redirection vers une structure"
               value="redirection"
-              image="/logos/cra/logo-redirection-structure.svg"
-              imageSelected="/logos/cra/logo-redirection-structure-n.svg"
-              heightImage="32px" />
+              image="logoRedirection"
+            />
           }
           {nbOrganisme > 0 &&
             <BigCountRadioButtonRedirection

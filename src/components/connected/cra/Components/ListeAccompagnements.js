@@ -9,8 +9,8 @@ function ListeAccompagnements({ organismes, borderTop, deletable = false }) {
   return (
     <>
       {organismes?.length > 0 &&
-        <div style={{ width: '268px', overflow: 'auto', borderTop: borderTop, textAlign: textAlign }}>
-          <div style={{ height: '72px', padding: '20px 0', width: spanWidth + 'px' }}>
+        <div className="listeOrganismesSelected" style={{ borderTop: borderTop, textAlign: textAlign }}>
+          <div className="fresqueOrganismes" style={{ width: spanWidth + 'px' }}>
             {organismes?.map((organisme, key) => {
               return <span key={key} >
                 <RedirectionButton organisme={organisme} firstElement={key === 0} deletable={deletable}/>

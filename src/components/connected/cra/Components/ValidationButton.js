@@ -43,7 +43,6 @@ function ValidationButton() {
       if (cra.id) {
         dispatch(craActions.updateCra(dataCraToSend, conseiller?._id));
       } else {
-        console.log(dataCraToSend);
         dispatch(craActions.submitCra(dataCraToSend));
       }
     }

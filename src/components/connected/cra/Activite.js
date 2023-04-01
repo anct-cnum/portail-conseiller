@@ -78,9 +78,9 @@ function Activite() {
           type="activite"
           label="Demande ponctuelle"
           value="ponctuel"
-          image="/logos/cra/logo-demande-ponctuelle.svg"
-          imageSelected="/logos/cra/logo-demande-ponctuelle-n.svg"
-          heightImage="32px" />
+          image="logoDemande"
+          classDiv="demPonctuelle"
+        />
         <div className={`${voirInformation ? 'information-message' : 'close-information'}`}>
           Conseils et services ponctuels, informels, que vous estimez comme &eacute;tant du temps de travail.
         </div>

@@ -62,7 +62,7 @@ function BigCountRadioButtonRedirection({ label, value }) {
             <span className="fr-label" style={{ padding: '10px', color: 'black' }}>
               {value &&
               <>
-                <input style={{ fontSize: '1.5rem', textAlign: 'center', width: '100%' }} type="number" min={0} max={100}
+                <input className="styleInputValueOrganisme" type="number" min={0} max={100}
                   value={nbValeur}
                   onChange={e => {
                     onChangeValue(e);
@@ -72,7 +72,7 @@ function BigCountRadioButtonRedirection({ label, value }) {
               }
               {value === null &&
               <>
-                <input style={{ fontSize: '1.5rem', textAlign: 'center', width: '100%' }} type="number" min={0} max={100}
+                <input className="styleInputValueOrganisme" type="number" min={0} max={100}
                   value={nbValeur}
                   onChange={e => {
                     onChangeValue(e);

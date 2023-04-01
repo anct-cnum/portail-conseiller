@@ -54,9 +54,9 @@ function SelectAccompagnement() {
   return (
     <>
       {showSelect &&
-        <div className="gradient-box" style={{ width: '270px', height: '350px', marginBottom: '-27px' }}>
-          <div style={{ width: '270px', height: '350px', borderRadius: '20px', backgroundColor: '#ffffff' }}>
-            <ul className="listRedirection" style={{ height: heightListeChoix, overflow: 'auto' }}>
+        <div className="gradient-box selectAccompagnementRedirection">
+          <div className="blockListe">
+            <ul className="listRedirection" style={{ height: heightListeChoix }}>
               {listeFiltreLieux?.map((lieu, key) =>
                 <li key={key} className="selecteurList" onClick={() => {
                   handleLieuRedirectionList(lieu);

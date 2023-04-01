@@ -317,10 +317,15 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     }
   }
   .selectAccompagnementRedirection {
-    border-radius: 20px 20px 0 0;
-    border: solid 1px #5398FF;
-    background: #fff;
-    border-bottom: none;
+    width: 270px;
+    height: 350px;
+    margin-bottom: -27px;
+  }
+  .blockListe {
+    background-color: #ffffff;
+    border-radius: 20px;
+    height: 350px;
+    width: 100%;
   }
   .listRedirection {
     list-style: none;
@@ -328,7 +333,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     overflow: auto;
     color: #000;
     height: 200px;
-    width: 270px;
+    width: 100%;
     padding: 0;
     &::-webkit-scrollbar {
       width: 16px;
@@ -340,6 +345,14 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       border-radius: 8px;
       background: #909090;
     }
+  }
+  .listeOrganismesSelected {
+    width: 100%;
+    overflow: auto;
+  }
+  .fresqueOrganismes {
+    height: 72px;
+    padding: 20px 0;
   }
   .selecteurList {
     text-align: left;
@@ -365,6 +378,11 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       border-color: #3558a2;
       color: #fff;
     }
+  }
+  .styleInputValueOrganisme {
+    font-size: 1.5rem;
+    text-align: center;
+    width: 100%;
   }
   .styleLiButtonsRedirection {
     padding: 20px 0px;
@@ -876,6 +894,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
   }
   .border-top-none {
     border-radius: 0 0 20px 20px !important;
+    margin-top: -27px;
   }
   .inactif-box:after {
       background: #666666 !important;
