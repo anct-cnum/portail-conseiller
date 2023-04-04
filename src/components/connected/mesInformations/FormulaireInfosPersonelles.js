@@ -130,7 +130,7 @@ function FormulaireInfosPersonnelles() {
           type="email"
           id="conseiller-email-pro"
           name="conseillerEmailPro"
-          value={inputs?.conseillerEmailPro}
+          value={inputs?.conseillerEmailPro ?? ''}
           onChange={handleChange}
         />
         {erreurEmailPro &&
@@ -171,7 +171,7 @@ function FormulaireInfosPersonnelles() {
           id="conseiller-telephone"
           placeholder="+33XXXXXXXXX ou +262XXXXXXXXX, ..."
           name="conseillerTelephone"
-          value={inputs?.conseillerTelephone}
+          value={inputs?.conseillerTelephone ?? ''}
           onChange={handleChange}
         />
         {erreurNumeroTelephone &&

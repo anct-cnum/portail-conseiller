@@ -82,7 +82,7 @@ function Activite() {
           classDiv="demPonctuelle"
         />
         <div className={`${voirInformation ? 'information-message' : 'close-information'}`}>
-          Conseils et services ponctuels, informels, que vous estimez comme &eacute;tant du temps de travail.
+        Une aide ponctuelle sur une situation pr&eacute;cise, dont la probl&eacute;matique est r&eacute;solue &agrave; la fin de l&rsquo;accompagnement.
         </div>
       </div>
     </div>

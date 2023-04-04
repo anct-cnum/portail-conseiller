@@ -42,12 +42,12 @@
   {
     "nom": "vocabulaire",
     "correspondance": "Culture num&eacute;rique",
-    "image": "/logos/cra/logo-vocabulaire-info.svg"
+    "image": "/logos/cra/logo-culture.svg"
   },
   {
     "nom": "internet",
     "correspondance": "Naviguer sur Internet",
-    "image": "/logos/cra/logo-naviguer-internet.svg"
+    "image": "/logos/cra/logo-naviguer.svg"
   },
   {
     "nom": "courriel",
@@ -72,7 +72,7 @@
   {
     "nom": "traitement texte",
     "correspondance": "Bureautique",
-    "image": "/logos/cra/logo-traitement-texte.svg"
+    "image": "/logos/cra/logo-bureautique.svg"
   },
   {
     "nom": "echanger",
@@ -82,7 +82,7 @@
   {
     "nom": "trouver emploi",
     "correspondance": "Emploi, formation",
-    "image": "/logos/cra/logo-trouver-emploi.svg"
+    "image": "/logos/cra/logo-emploi.svg"
   },
   {
     "nom": "accompagner enfant",
@@ -97,7 +97,7 @@
   {
     "nom": "demarche en ligne",
     "correspondance": "D&eacute;marche en ligne",
-    "image": "/logos/cra/logo-demarche-en-ligne.svg"
+    "image": "/logos/cra/logo-demarches.svg"
   },
   {
     "nom": "fraude et harcelement",
@@ -108,6 +108,10 @@
     "nom": "sante",
     "correspondance": "Sant&eacute;",
     "image": "/logos/cra/logo-sante.svg"
+  },
+  {
+    "nom": "espace-sante",
+    "correspondance": "Mon espace sant&eacute;"
   },
   {
     "nom": "budget",

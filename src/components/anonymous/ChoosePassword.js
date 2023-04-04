@@ -31,7 +31,9 @@ function ChoosePassword({ match }) {
   const emailCnfs = `${prenom}.${nom}@conseiller-numerique.fr`;
 
   useEffect(() => {
-    dispatch(userActions.verifyToken(token));
+    if (token) {
+      dispatch(userActions.verifyToken(token));
+    }
   }, []);
 
   function handleChange(e) {

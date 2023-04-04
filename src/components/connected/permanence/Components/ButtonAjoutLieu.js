@@ -52,7 +52,7 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpda
           conseillersItinerants.push(conseillerId);
         }
 
-        const nouveauLieu = {
+        let nouveauLieu = {
           //Données du CNFS
           estCoordinateur: fields.filter(field => field.name === 'estCoordinateur')[0]?.value ?? null,
           emailPro: fields.filter(field => field.name === 'emailPro')[0]?.value ?? null,
@@ -69,6 +69,7 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpda
             numeroRue: fields.filter(field => field.name === prefixId + 'numeroVoie')[0]?.value ?? null,
             rue: fields.filter(field => field.name === prefixId + 'rueVoie')[0]?.value ?? null,
             codePostal: fields.filter(field => field.name === prefixId + 'codePostal')[0]?.value ?? null,
+            codeCommune: fields.filter(field => field.name === prefixId + 'codeCommune')[0]?.value ?? null,
             ville: fields.filter(field => field.name === prefixId + 'ville')[0]?.value ?? null,
           },
           location: fields.filter(field => field.name === prefixId + 'location')[0]?.value ?? null,
@@ -79,8 +80,13 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpda
           structureId: structureId,
           hasPermanence: true,
         };
+        if (fields.filter(field => field.name === prefixId + 'adresseIntrouvable')[0]?.value === true) {
+          nouveauLieu.adresseIntrouvable = fields.filter(field => field.name === prefixId + 'adresse')[0]?.value ?? null;
+        }
         nouveauLieu.telephonePro = formatTelephone(nouveauLieu?.telephonePro, codeDepartement);
         nouveauLieu.numeroTelephone = formatTelephone(nouveauLieu?.numeroTelephone, codeDepartement);
+        nouveauLieu = JSON.parse(JSON.stringify(nouveauLieu).replace(/"\s+|\s+"/g, '"'));
+
         if (nouveauLieu?._id !== null && nouveauLieu?._id !== 'nouveau') {
           dispatch(permanenceActions.updatePermanence(nouveauLieu?._id, conseillerId, nouveauLieu, false, 'secondaire_' + (secondaireId + 1) + '_'));
         } else {

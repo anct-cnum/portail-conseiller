@@ -61,7 +61,9 @@ function ForgottenPassword({ match = null }) {
   const errorPassword = useSelector(state => state.createAccount.error);
 
   useEffect(() => {
-    dispatch(userActions.verifyToken(token));
+    if (token) {
+      dispatch(userActions.verifyToken(token));
+    }
   }, []);
 
   function handleChangePassword(e) {

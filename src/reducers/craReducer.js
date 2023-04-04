@@ -51,6 +51,9 @@ export default function cra(state = initialState, action) {
         idPermanence: null,
         nomEnseigne: null,
         cp: undefined,
+        errorsRequired: {
+          ...state.errorsRequired,
+          canal: true },
       };
     case 'GET_PERMANENCE':
       return {
@@ -104,16 +107,16 @@ export default function cra(state = initialState, action) {
         canal: action.canal,
         errorsRequired: {
           ...state.errorsRequired,
-          canal: true },
+          canal: !state?.cp },
       };
     case 'DELETE_CANAL_VALUE':
-      const canal = state?.idPermanence ? 'rattachement' : 'autre';
+      const canal = state?.idPermanence ? 'rattachement' : 'autre lieu';
       return {
         ...state,
         canal: canal,
         errorsRequired: {
           ...state.errorsRequired,
-          canal: false },
+          canal: !state?.cp },
       };
     case 'CLEAR_CANAL':
       return {
@@ -125,7 +128,7 @@ export default function cra(state = initialState, action) {
         searchCP: false,
         errorsRequired: {
           ...state.errorsRequired,
-          canal: false,
+          canal: !state?.cp,
           cp: !state.buttonCP
         },
       };
@@ -333,7 +336,7 @@ export default function cra(state = initialState, action) {
     case 'SUBMIT_CRA_FAILURE':
       return {
         ...state,
-        error: action.error,
+        error: action.error?.message ?? action.error,
         saveInProgress: false,
         printFlashbag: false
       };
@@ -380,7 +383,7 @@ export default function cra(state = initialState, action) {
       };
     case 'GET_CRA_FAILURE':
       return {
-        error: action.error,
+        error: action.error?.message ?? action.error,
         loading: false,
       };
     case 'SET_CRA_REQUEST':
@@ -458,7 +461,7 @@ export default function cra(state = initialState, action) {
       return {
         ...state,
         loadingSuggestion: false,
-        error: action.error
+        error: action.error?.message ?? action.error,
       };
     case 'CLEAR_SOUS_THEMES':
       return {
@@ -468,7 +471,7 @@ export default function cra(state = initialState, action) {
     case 'VERIFY_SOUS_THEMES':
       return {
         ...state,
-        errorSousTheme: action.error
+        errorSousTheme: action.error?.message ?? action.error
       };
     case 'UPDATE_SOUS_THEME':
       return {
