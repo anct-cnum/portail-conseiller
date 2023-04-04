@@ -75,7 +75,7 @@ function handleResponse(response) {
       logout();
       return Promise.reject({ error: 'Identifiants incorrects' });
     }
-    if (roles.includes('conseiller') && !data.user?.name?.includes('conseiller-numerique.fr') && data.user?.passwordCreated === false) {
+    if (data.user?.passwordCreated === false) {
       logout();
       return Promise.reject({ error: `Merci d'activer votre compte coop !` });
     }
