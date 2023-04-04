@@ -1,6 +1,7 @@
 import { permanenceService } from '../services/permanence.service';
 import { history } from '../helpers';
 import Joi from 'joi';
+import { formatAdresse } from '../utils/functionFormats';
 
 export const permanenceActions = {
   getMaPermanence,
@@ -14,6 +15,10 @@ export const permanenceActions = {
   validerPermanenceForm,
   verifySiret,
   getGeocodeAdresse,
+  getAdresseByApi,
+  getAdresseIntrouvable,
+  setAdresse,
+  rebootListeAdresses,
   rebootGeocodeAdresse,
   updateLieuPrincipal,
   updateField,
@@ -58,7 +63,6 @@ function getMaPermanence(idPermanence) {
 function getMesPermanences(idConseiller) {
   return dispatch => {
     dispatch(request());
-
     permanenceService.getMesPermanences(idConseiller)
     .then(
       result => dispatch(success(result.permanences)),
@@ -113,7 +117,6 @@ function closePermanence() {
 }
 
 function verifyFormulaire(form, statut) {
-
   let errors = [];
   const errorsMessageTab = ['Merci de remplir le formulaire.', 'Vous devez impérativement corriger les erreurs avant de passer à la suite.'];
   const showLieuSecondaire = form?.showLieuSecondaire;
@@ -166,22 +169,11 @@ function verifyFormulaire(form, statut) {
       message: 'Une adresse email valide doit être saisie'
     },
     {
-      nom: 'numeroVoie', validation: Joi.string().trim().required().allow('', null),
-      message: 'Un numéro de voie doit obligatoirement être saisi'
+      nom: 'adresse', validation: Joi.string().trim().required(),
+      message: 'Une adresse doit obligatoirement être saisie'
     },
     {
-      nom: 'rueVoie', validation: Joi.string().trim().required().min(5).max(120),
-      message: 'Une rue doit obligatoirement être saisie' },
-    {
-      nom: 'codePostal', validation: Joi.string().trim().required().min(5).max(5),
-      message: 'Un code postal doit obligatoirement être saisi'
-    },
-    {
-      nom: 'ville', validation: Joi.string().trim().required().min(3).max(60),
-      message: 'Une ville doit obligatoirement être saisie'
-    },
-    {
-      nom: 'location', validation: Joi.object().required(),
+      nom: 'location', validation: Joi.object().allow(null).required(),
       message: 'La localisation du lieu d\'activité doit obligatoirement être saisie'
     },
     {
@@ -210,13 +202,16 @@ function verifyFormulaire(form, statut) {
                 [champ + id + '_' + accepte.nom]:
                   controleHoraires(form?.fields?.filter(field => field.name === champ + id + '_' + accepte.nom)[0]?.value[champ + id + '_horaires'])
               });
-            } else {
+            } else if (
+              (form?.fields?.filter(field => field.name === champ + id + '_adresseIntrouvable')[0]?.value && accepte.nom !== 'location') ||
+              !form?.fields?.filter(field => field.name === champ + id + '_adresseIntrouvable')[0]?.value) {
               errors.push({
                 [champ + id + '_' + accepte.nom]: (Joi.object({
                   [champ + id + '_' + accepte.nom]: accepte.validation }).validate(
                   { [champ + id + '_' + accepte.nom]:
                     form?.fields?.filter(field => field.name === champ + id + '_' + accepte.nom)[0]?.value }).error) ? accepte.message : null
               });
+
             }
           });
         }
@@ -228,7 +223,9 @@ function verifyFormulaire(form, statut) {
           errors.push({
             principal_horaires: controleHoraires(form?.fields?.filter(field => field.name === champ + accepte.nom)[0]?.value?.principal_horaires)
           });
-        } else if (accepte.nom !== 'itinerant') {
+        } else if (accepte.nom !== 'itinerant' ||
+        (form?.fields?.filter(field => field.name === 'principal_adresseIntrouvable')[0]?.value && accepte.nom !== 'location') ||
+        !form?.fields?.filter(field => field.name === 'principal_adresseIntrouvable')[0]?.value) {
           errors.push({
             [champ + accepte.nom]: (Joi.object({
               [champ + accepte.nom]: accepte.validation }).validate(
@@ -239,6 +236,7 @@ function verifyFormulaire(form, statut) {
       });
     }
   });
+
   let nbErrors = 0;
   errors.forEach(error => {
     if (error[Object.keys(error)[0]]) {
@@ -410,6 +408,63 @@ function getGeocodeAdresse(adresse, prefixId) {
   }
 }
 
+function getAdresseByApi(adresse, prefixId) {
+  return dispatch => {
+    dispatch(request());
+    permanenceService.getAdresseByApi(adresse.trim())
+    .then(
+      result => {
+        dispatch(success(result.adresseApi, prefixId, adresse));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'GET_ADRESSE_REQUEST' };
+  }
+  function success(adresses, prefixId, adresse) {
+    return { type: 'GET_ADRESSE_SUCCESS', adresses, prefixId, adresse };
+  }
+  function failure(error) {
+    return { type: 'GET_ADRESSE_FAILURE', error };
+  }
+}
+
+function getAdresseIntrouvable(permanenceId) {
+  return dispatch => {
+    dispatch(request());
+    permanenceService.getAdresseIntrouvable(permanenceId)
+    .then(
+      result => {
+        dispatch(success(result.adresseIntrouvable));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+  function request() {
+    return { type: 'GET_ADRESSE_INTROUVABLE_REQUEST' };
+  }
+  function success(adresse) {
+    return { type: 'GET_ADRESSE_INTROUVABLE_SUCCESS', adresse };
+  }
+  function failure(error) {
+    return { type: 'GET_ADRESSE_INTROUVABLE_FAILURE', error };
+  }
+}
+
+function setAdresse(adresse, prefixId) {
+  return { type: 'SET_ADRESSE', adresse, prefixId };
+}
+
+function rebootListeAdresses(prefixId) {
+  return { type: 'LISTE_ADRESSES_REBOOT', prefixId };
+}
+
 function rebootGeocodeAdresse(prefixId) {
   return { type: 'GEOCODE_ADRESSE_REBOOT', prefixId };
 }
@@ -522,7 +577,8 @@ function reporterPermanence() {
   }
 }
 
-function setChampsMaPermanence(permanence, prefixId, conseiller) {
+function setChampsMaPermanence(permanence, prefixId, conseiller, adresseIntrouvable) {
+
   const fields = [
     { name: prefixId + 'idPermanence', value: permanence?._id },
     { name: 'estStructure', value: permanence?.estStructure },
@@ -534,11 +590,13 @@ function setChampsMaPermanence(permanence, prefixId, conseiller) {
     { name: prefixId + 'email', value: permanence?.email },
     { name: prefixId + 'siteWeb', value: permanence?.siteWeb },
     { name: prefixId + 'siret', value: permanence?.siret },
-    { name: prefixId + 'numeroVoie', value: permanence?.adresse.numeroRue },
+    { name: prefixId + 'numeroVoie', value: permanence?.adresse?.numeroRue },
     { name: prefixId + 'rueVoie', value: permanence?.adresse?.rue },
-    { name: prefixId + 'codePostal', value: permanence?.adresse.codePostal },
-    { name: prefixId + 'ville', value: permanence?.adresse.ville?.toUpperCase() },
+    { name: prefixId + 'codePostal', value: permanence?.adresse?.codePostal },
+    { name: prefixId + 'ville', value: permanence?.adresse?.ville?.toUpperCase() },
+    { name: prefixId + 'adresse', value: formatAdresse(permanence?.adresse, null, null, adresseIntrouvable) },
     { name: prefixId + 'location', value: permanence?.location },
+    { name: prefixId + 'codeCommune', value: permanence?.codeCommune },
     { name: prefixId + 'conseillers', value: permanence?.conseillers },
     { name: prefixId + 'itinerant', value: permanence?.conseillersItinerants.includes(conseiller?._id) },
     { name: prefixId + 'horaires', value: { [prefixId + 'horaires']: permanence?.horaires } },

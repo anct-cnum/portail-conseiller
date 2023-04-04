@@ -41,6 +41,7 @@ jobs:
         envkey_REACT_APP_BLOG_URL: "https://media.conseiller-numerique.gouv.fr/"
         envkey_REACT_APP_ESPACE_COOP_URL: "https://coop.conseiller-numerique.gouv.fr"
         envkey_REACT_APP_NOMBRE_LIEU_SECONDAIRE: 15
+        envkey_REACT_APP_INIT_COORDONNEES: 1.849121,46.624100
         envkey_REACT_APP_SENTRY_ENABLED: "true"
         envkey_REACT_APP_SENTRY_ENVIRONMENT: "production"
         envkey_REACT_APP_SENTRY_DSN: ${{ secrets.SENTRY_COOP_DSN }}

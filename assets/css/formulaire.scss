@@ -70,8 +70,9 @@
       color: #518FFF;
     }
   }
-  .toggle-siret {
+  .toggle-siret, .warning-text {
     color:#FC5D00;
+    width: 800px;
   }
   .loading {
     text-align: center;
@@ -155,6 +156,16 @@
   }
   .circle-false {
     background: #ff6f4c;
+  }
+  .warning-adresse {
+    position: relative;
+    color: #fc5d00;
+    left: -5px;
+    top: 1px;
+  }
+  .adresse-introuvable {
+    width: 230px;
+    display: inline-block;
   }
   .creer-btn, .modifier-btn {
     background-color: #8585F6;
@@ -282,14 +293,19 @@
     filter: brightness(0) invert(1);
   }
   .map-container {
-    margin-top: 141px;
+    margin-top: 296px;
   }
   .map {
     margin-left: 22px;
     width: 281px;
     height: 281px;
   }
-
+  .siret-hidden {
+    margin-top: 136px !important;
+  }
+  .est-principal {
+    margin-top: -48px !important;
+  }
   .leaflet-control-attribution {
     display: none;
   }
@@ -306,6 +322,48 @@
     color: #F5F5FE;
   }
 
+  /*API Adresse */
+  .listeAdresses {
+    border-radius: 0 0 15px 15px;
+    background-color: #1e1e1e;
+    border: 1px solid #518fff;
+    position: absolute;
+    max-height: 250px;
+    width: 500px;
+    z-index: 1;
+    .spinnerDiv {
+      text-align: center;
+      margin: 10px;
+      height: 25px;
+    }
+    .adressesTrouvees {
+      max-height: 180px;
+      overflow: auto;
+    }
+    .adresseIntrouvable {
+      border-top: 1px solid #518fff;
+      padding: 16px;
+      height: 50px;
+      label {
+        font-size: 0.8rem;
+        color: #fc5d00;
+      }
+    }
+    .adresse {
+      border-radius: 0px;
+      cursor: pointer;
+      padding: 15px;
+      &:hover {
+        background-color: #343434;
+        font-weight: 600;
+      }
+    }
+  }
+  @media (max-width: 1248px) {
+    .listeAdresses {
+      width: 40%;
+    }
+  }
   @media (min-width: 768px) and (max-width: 1102px){
     .banniere .col-logo .hexagone {
       margin-top: 39px;
@@ -320,6 +378,9 @@
       margin-bottom: 3rem;
       margin-left: 38px;
     }
+    .listeAdresses {
+      width: 55.5%;
+    }
   }
   @media (max-width: 607px) {
     .banniere .col-logo .hexagone {
@@ -329,6 +390,9 @@
   @media (max-width: 576px) {
     .titre {
       font-size: 42px;
+    }
+    .listeAdresses {
+      width: 86%;
     }
   }
   @media (max-width:520px) {

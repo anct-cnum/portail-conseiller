@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Spinner from 'react-loader-spinner';
 
 import { permanenceActions, conseillerActions } from '../../../actions';
 import { userEntityId, history } from '../../../helpers';
@@ -18,6 +19,7 @@ function PermanenceCreate() {
 
   const urlCartographie = process.env.REACT_APP_CARTOGRAPHIE_URL;
 
+  const loading = useSelector(state => state.permanence?.loading);
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const structure = useSelector(state => state.structure?.structure);
 
@@ -43,7 +45,7 @@ function PermanenceCreate() {
       dispatch(permanenceActions.updateField('estCoordinateur', conseiller.estCoordinateur));
     }
   }, [structure, conseiller]);
-
+  
   useEffect(() => {
     if (isCreated || isUpdated) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -61,6 +63,15 @@ function PermanenceCreate() {
 
   return (
     <>
+      <div className="spinnerCustom">
+        <Spinner
+          type="Oval"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          visible={loading === true }
+        />
+      </div>
       <div id="formulaire-horaires-adresse" >
         <Banner/>
         {(isCreated || isUpdated) &&
@@ -79,8 +90,8 @@ function PermanenceCreate() {
         {showError &&
           <p className="fr-label flashBag invalid">
             {showErrorMessage ?? errorCreate ?
-              'Une erreur est survenue lors de la création de votre lieu d’activité' :
-              'Une erreur est survenue lors du traitement de vos informations'}
+              'Une erreur est survenue lors de la création de votre lieu d’activité.' :
+              'Une erreur est survenue lors du traitement de vos informations.'}
               &nbsp;{errorCreate}
           </p>
         }
@@ -120,9 +131,7 @@ function PermanenceCreate() {
                 <Adresse
                   codeDepartement={structure?.codeDepartement}
                   prefixId="secondaire_0_"
-                  isUpdate={true}
                   permanence={null}
-                  conseillerId={conseiller?._id}
                 />
                 <TypeAcces
                   prefixId="secondaire_0_"

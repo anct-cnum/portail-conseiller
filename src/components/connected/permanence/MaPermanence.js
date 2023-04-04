@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import SupprimerPermanence from './SupprimerPermanence';
 import { useDispatch, useSelector } from 'react-redux';
-import { craActions } from '../../../actions';
+import { craActions, permanenceActions } from '../../../actions';
+import ReactTooltip from 'react-tooltip';
 
 function MaPermanence({ permanence, conseillerId, trClass }) {
   const dispatch = useDispatch();
@@ -12,14 +13,21 @@ function MaPermanence({ permanence, conseillerId, trClass }) {
     rdv: 'Sur Rendez-vous',
     prive: 'Accès fermé au public'
   };
-
   const islieuPrincipal = permanence?.lieuPrincipalPour?.includes(conseillerId);
 
   const countCra = useSelector(state => state.cra.countCra);
+  const adresseIntrouvable = useSelector(state => state.permanence?.adresseIntrouvable);
+  const erreurAddresseIntrouvable = useSelector(state => state.permanence?.errorAdresseIntrouvable);
+
   const [count, setCount] = useState([]);
+  const [adresse, setAdresse] = useState(null);
+
   useEffect(() => {
     if (permanence?._id && !countCra) {
       dispatch(craActions.countByPermanence(permanence._id));
+    }
+    if (!adresseIntrouvable || adresseIntrouvable?.permanenceId !== permanence._id) {
+      dispatch(permanenceActions.getAdresseIntrouvable(permanence?._id));
     }
   }, [permanence]);
 
@@ -28,17 +36,42 @@ function MaPermanence({ permanence, conseillerId, trClass }) {
       count.push(countCra);
       setCount(count);
     }
-  }, [countCra]);
+    if (adresseIntrouvable && adresseIntrouvable?.permanenceId === permanence._id) {
+      setAdresse(adresseIntrouvable?.adresse);
+    }
+  }, [countCra, adresseIntrouvable]);
 
   return (
     <tr className={trClass + ' permanence'}>
-      <td>{permanence?.nomEnseigne}</td>
+      <td>
+        {!permanence?.adresse &&
+          <>
+            <span className="ri-error-warning-fill warning-adresse"
+              data-tip="Vous avez remont&eacute; un probl&egrave;me d&rsquo;adresse, celui-ci est en cours de traitement."></span>
+            <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
+          </>
+        }
+        {permanence?.nomEnseigne}</td>
       <td>
         <span className={islieuPrincipal ? 'circle-true' : 'circle-false'}/>
       </td>
       <td>
-        {(permanence?.adresse?.numeroRue ?? '') + ' ' + permanence?.adresse?.rue }<br/>
-        {permanence?.adresse?.codePostal + ' ' + permanence?.adresse?.ville}
+        {erreurAddresseIntrouvable &&
+          <span className="text-error fr-mb-n3w">
+            Une erreur est survenue lors de la recherche de vos demandes d&rsquo;adresse.
+          </span>
+        }
+        {adresse &&
+          <div className="adresse-introuvable">
+            {adresse}
+          </div>
+        }
+        {permanence?.adresse?.rue?.length > 0 &&
+          <>
+            {(permanence?.adresse?.numeroRue ?? '') + ' ' + permanence?.adresse?.rue }<br/>
+            {permanence?.adresse?.codePostal + ' ' + permanence?.adresse?.ville}
+          </>
+        }
       </td>
       <td>
         <ul>

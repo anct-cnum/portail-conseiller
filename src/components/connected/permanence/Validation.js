@@ -56,6 +56,7 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
           numeroRue: fields.filter(field => field.name === prefixId + 'numeroVoie')[0]?.value ?? null,
           rue: fields.filter(field => field.name === prefixId + 'rueVoie')[0]?.value ?? null,
           codePostal: fields.filter(field => field.name === prefixId + 'codePostal')[0]?.value ?? null,
+          codeCommune: fields.filter(field => field.name === prefixId + 'codeCommune')[0]?.value ?? null,
           ville: fields.filter(field => field.name === prefixId + 'ville')[0]?.value ?? null,
         },
         location: fields.filter(field => field.name === prefixId + 'location')[0]?.value ?? null,
@@ -65,6 +66,10 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
         structureId: structureId,
         hasPermanence: true,
       };
+
+      if (fields.filter(field => field.name === prefixId + 'adresseIntrouvable')[0]?.value === true) {
+        nouveauLieu.adresseIntrouvable = fields.filter(field => field.name === prefixId + 'adresse')[0]?.value ?? null;
+      }
 
       if (prefixId === 'principal_') {
         const lieuPrincipalPour = fields?.filter(field => field.name === 'lieuPrincipalPour')[0]?.value ?? [];
@@ -106,7 +111,6 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
       } else if (prefixId === null) {
         dispatch(permanenceActions.validerPermanenceForm(conseillerId));
       }
-
     } else if (errorsForm?.lengthError > 0 && clickSubmit === true) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -120,7 +124,7 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
         <button className="fr-link fr-fi-external-link-line fr-link--icon-right validation-extern-btn" onClick={() => {
           handleSubmit('cartographie');
         }}>
-          Enregistrer et afficher sur la carte nationale
+          Enregistrer et voir la carte nationale
         </button>
         <div className="fr-mb-12w fr-mt-4w">
           ( <span className="obligatoire">*</span> ) champs obligatoires
