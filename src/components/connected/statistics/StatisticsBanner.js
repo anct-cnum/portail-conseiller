@@ -7,6 +7,7 @@ import { conseillerActions } from '../../../actions';
 import dayjs from 'dayjs';
 import { isNavigatorFirefoxForAndroid } from '../../../utils/functionGetNavigatorPlateform';
 
+// eslint-disable-next-line max-len
 function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePostal = null, ville = null, idSubordonne = null, nomSubordonneeCSV = null, codeCommune = null }) {
 
   const location = useLocation();
