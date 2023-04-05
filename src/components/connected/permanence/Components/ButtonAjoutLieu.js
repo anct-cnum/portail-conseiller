@@ -80,9 +80,7 @@ function ButtonAjoutLieu({ secondaireId, conseillerId, structureId, show, isUpda
           structureId: structureId,
           hasPermanence: true,
         };
-        if (fields.filter(field => field.name === prefixId + 'adresseIntrouvable')[0]?.value === true) {
-          nouveauLieu.adresseIntrouvable = fields.filter(field => field.name === prefixId + 'adresse')[0]?.value ?? null;
-        }
+
         nouveauLieu.telephonePro = formatTelephone(nouveauLieu?.telephonePro, codeDepartement);
         nouveauLieu.numeroTelephone = formatTelephone(nouveauLieu?.numeroTelephone, codeDepartement);
         nouveauLieu = JSON.parse(JSON.stringify(nouveauLieu).replace(/"\s+|\s+"/g, '"'));

@@ -27,7 +27,7 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
 
   const fillPermanencePrincipale = permanencePrincipale => {
     const ruevoie = formatRue(permanencePrincipale?.adresse?.rue, adresseStructure?.type_voie ?? '', adresseStructure?.nom_voie ?? '');
-    const adresse = formatAdresse(permanencePrincipale?.adresse, adresseStructure, ruevoie, permanencePrincipale?.adresseIntrouvable);
+    const adresse = formatAdresse(permanencePrincipale?.adresse, adresseStructure, ruevoie);
     dispatch(permanenceActions.updateField('principal_idPermanence', permanencePrincipale?._id ?? null));
     dispatch(permanenceActions.updateField('lieuPrincipalPour', permanencePrincipale?.lieuPrincipalPour));
     dispatch(permanenceActions.updateField('principal_numeroTelephone', permanencePrincipale?.numeroTelephone ?? null));
@@ -48,7 +48,7 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
     dispatch(permanenceActions.updateField('principal_rueVoie', ruevoie));
     dispatch(permanenceActions.updateField('principal_codePostal',
       permanencePrincipale?.adresse?.codePostal ?? adresseStructure?.code_postal));
-    dispatch(permanenceActions.updateField('principal_codeCommune', structure?.codeCommune));
+    dispatch(permanenceActions.updateField('principal_codeCommune', permanencePrincipale?.adresse?.codeCommune ?? structure?.codeCommune));
     dispatch(permanenceActions.updateField('principal_ville',
       permanencePrincipale?.adresse?.ville?.toUpperCase() ?? adresseStructure?.localite?.toUpperCase()));
     dispatch(permanenceActions.updateField('principal_adresse', adresse?.toUpperCase()));

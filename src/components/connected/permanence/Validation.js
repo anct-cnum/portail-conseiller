@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import horairesInitiales from '../../../data/horairesInitiales.json';
 import { permanenceActions } from '../../../actions/permanence.actions';
 import { formatTelephone } from '../../../utils/functionFormats';
+import ModalAdresseIntrouvable from './Components/ModalAdresseIntrouvable';
 
 function Validation({ conseillerId, structureId, statut = 'principal_', redirectionValidation = null, codeDepartement, idPermanenceUrl }) {
   const dispatch = useDispatch();
@@ -67,10 +68,6 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
         hasPermanence: true,
       };
 
-      if (fields.filter(field => field.name === prefixId + 'adresseIntrouvable')[0]?.value === true) {
-        nouveauLieu.adresseIntrouvable = fields.filter(field => field.name === prefixId + 'adresse')[0]?.value ?? null;
-      }
-
       if (prefixId === 'principal_') {
         const lieuPrincipalPour = fields?.filter(field => field.name === 'lieuPrincipalPour')[0]?.value ?? [];
         if (!lieuPrincipalPour.includes(conseillerId)) {
@@ -120,6 +117,7 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
 
   return (
     <>
+      <ModalAdresseIntrouvable prefixId={prefixId}/>
       <div className="fr-col-offset-1 fr-col-4">
         <button className="fr-link fr-fi-external-link-line fr-link--icon-right validation-extern-btn" onClick={() => {
           handleSubmit('cartographie');

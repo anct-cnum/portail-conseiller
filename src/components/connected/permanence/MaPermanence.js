@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import SupprimerPermanence from './SupprimerPermanence';
 import { useDispatch, useSelector } from 'react-redux';
-import { craActions, permanenceActions } from '../../../actions';
+import { craActions } from '../../../actions';
 import ReactTooltip from 'react-tooltip';
 
 function MaPermanence({ permanence, conseillerId, trClass }) {
@@ -16,18 +16,11 @@ function MaPermanence({ permanence, conseillerId, trClass }) {
   const islieuPrincipal = permanence?.lieuPrincipalPour?.includes(conseillerId);
 
   const countCra = useSelector(state => state.cra.countCra);
-  const adresseIntrouvable = useSelector(state => state.permanence?.adresseIntrouvable);
-  const erreurAddresseIntrouvable = useSelector(state => state.permanence?.errorAdresseIntrouvable);
-
   const [count, setCount] = useState([]);
-  const [adresse, setAdresse] = useState(null);
 
   useEffect(() => {
     if (permanence?._id && !countCra) {
       dispatch(craActions.countByPermanence(permanence._id));
-    }
-    if (!adresseIntrouvable || adresseIntrouvable?.permanenceId !== permanence._id) {
-      dispatch(permanenceActions.getAdresseIntrouvable(permanence?._id));
     }
   }, [permanence]);
 
@@ -36,10 +29,7 @@ function MaPermanence({ permanence, conseillerId, trClass }) {
       count.push(countCra);
       setCount(count);
     }
-    if (adresseIntrouvable && adresseIntrouvable?.permanenceId === permanence._id) {
-      setAdresse(adresseIntrouvable?.adresse);
-    }
-  }, [countCra, adresseIntrouvable]);
+  }, [countCra]);
 
   return (
     <tr className={trClass + ' permanence'}>
@@ -56,22 +46,8 @@ function MaPermanence({ permanence, conseillerId, trClass }) {
         <span className={islieuPrincipal ? 'circle-true' : 'circle-false'}/>
       </td>
       <td>
-        {erreurAddresseIntrouvable &&
-          <span className="text-error fr-mb-n3w">
-            Une erreur est survenue lors de la recherche de vos demandes d&rsquo;adresse.
-          </span>
-        }
-        {adresse &&
-          <div className="adresse-introuvable">
-            {adresse}
-          </div>
-        }
-        {permanence?.adresse?.rue?.length > 0 &&
-          <>
-            {(permanence?.adresse?.numeroRue ?? '') + ' ' + permanence?.adresse?.rue }<br/>
-            {permanence?.adresse?.codePostal + ' ' + permanence?.adresse?.ville}
-          </>
-        }
+        {(permanence?.adresse?.numeroRue ?? '') + ' ' + permanence?.adresse?.rue }<br/>
+        {permanence?.adresse?.codePostal + ' ' + permanence?.adresse?.ville}
       </td>
       <td>
         <ul>

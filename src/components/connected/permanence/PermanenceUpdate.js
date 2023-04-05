@@ -33,7 +33,6 @@ function PermanenceUpdate({ match }) {
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const structure = useSelector(state => state.structure?.structure);
   const loadingHoraires = useSelector(state => state.permanence?.loadingHoraires);
-  const adresseIntrouvable = useSelector(state => state.permanence?.adresseIntrouvable);
 
   const showError = useSelector(state => state.permanence?.showError);
   const showErrorMessage = useSelector(state => state.permanence?.showErrorMessage);
@@ -68,7 +67,7 @@ function PermanenceUpdate({ match }) {
 
   const fillPermanencePrincipale = (permanencePrincipale, estStructure) => {
     const rue = formatRue(null, adresseStructure?.type_voie, adresseStructure?.nom_voie);
-    const adresse = formatAdresse(permanencePrincipale?.adresse, adresseStructure, rue, adresseIntrouvable?.adresse);
+    const adresse = formatAdresse(permanencePrincipale?.adresse, adresseStructure, rue);
 
     dispatch(permanenceActions.updateField('principal_idPermanence', permanencePrincipale?._id ?? null));
     dispatch(permanenceActions.updateField('lieuPrincipalPour', permanencePrincipale?.lieuPrincipalPour));
@@ -156,7 +155,6 @@ function PermanenceUpdate({ match }) {
   }
 
   useEffect(async () => {
-    dispatch(permanenceActions.getAdresseIntrouvable(idPermanence));
     if (structure) {
       dispatch(permanenceActions.getListePermanences(structure?._id));
     }
@@ -178,8 +176,7 @@ function PermanenceUpdate({ match }) {
       dispatch(permanenceActions.setChampsMaPermanence(
         maPermanence,
         maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_',
-        conseiller,
-        adresseIntrouvable?.adresse)
+        conseiller)
       );
 
       const adresse = {
@@ -198,11 +195,6 @@ function PermanenceUpdate({ match }) {
       dispatch(permanenceActions.updateLieuEnregistrable(maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_'));
       dispatch(permanenceActions.updateField(
         maPermanence?.lieuPrincipalPour.includes(conseiller?._id) ? 'principal_checkboxSiret' : 'secondaire_0_checkboxSiret', false
-      ));
-
-      const estAdresseIntrouvable = !maPermanence?.adresse;
-      dispatch(permanenceActions.updateField(
-        maPermanence?.lieuPrincipalPour?.includes(conseiller?._id) ? 'principal_adresseIntrouvable' : 'secondaire_0_adresseIntrouvable', estAdresseIntrouvable
       ));
       // eslint-disable-next-line max-len
       dispatch(permanenceActions.disabledField(maPermanence?.lieuPrincipalPour?.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_', adresse?.rue === '' ? false : maPermanence?.estStructure));
@@ -261,8 +253,8 @@ function PermanenceUpdate({ match }) {
               <p className="fr-label flashBag invalid">
                 {showErrorMessage ?? errorUpdated ?
                   'Une erreur est survenue lors de la mise à jour de votre lieu d’activité.' :
-                  'Une erreur est survenue lors du traitement de vos informations.'}
-                  &nbsp;{errorUpdated}
+                  'Une erreur est survenue lors du traitement de vos informations.'}<br/>
+                {errorUpdated}
               </p>
             }
 

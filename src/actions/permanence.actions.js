@@ -16,8 +16,8 @@ export const permanenceActions = {
   verifySiret,
   getGeocodeAdresse,
   getAdresseByApi,
-  getAdresseIntrouvable,
   setAdresse,
+  setAdresseIntrouvable,
   rebootListeAdresses,
   rebootGeocodeAdresse,
   updateLieuPrincipal,
@@ -170,11 +170,15 @@ function verifyFormulaire(form, statut) {
     },
     {
       nom: 'adresse', validation: Joi.string().trim().required(),
-      message: 'Une adresse doit obligatoirement être saisie'
+      message: 'Une adresse valide doit être saisie'
     },
     {
-      nom: 'location', validation: Joi.object().allow(null).required(),
-      message: 'La localisation du lieu d\'activité doit obligatoirement être saisie'
+      nom: 'rueVoie', validation: Joi.string().trim().required(),
+      message: 'Une adresse valide doit être saisie'
+    },
+    {
+      nom: 'location', validation: Joi.object().required(),
+      message: 'Une adresse valide doit être saisie'
     },
     {
       nom: 'itinerant', validation: Joi.boolean(),
@@ -202,16 +206,13 @@ function verifyFormulaire(form, statut) {
                 [champ + id + '_' + accepte.nom]:
                   controleHoraires(form?.fields?.filter(field => field.name === champ + id + '_' + accepte.nom)[0]?.value[champ + id + '_horaires'])
               });
-            } else if (
-              (form?.fields?.filter(field => field.name === champ + id + '_adresseIntrouvable')[0]?.value && accepte.nom !== 'location') ||
-              !form?.fields?.filter(field => field.name === champ + id + '_adresseIntrouvable')[0]?.value) {
+            } else {
               errors.push({
                 [champ + id + '_' + accepte.nom]: (Joi.object({
                   [champ + id + '_' + accepte.nom]: accepte.validation }).validate(
                   { [champ + id + '_' + accepte.nom]:
                     form?.fields?.filter(field => field.name === champ + id + '_' + accepte.nom)[0]?.value }).error) ? accepte.message : null
               });
-
             }
           });
         }
@@ -223,9 +224,7 @@ function verifyFormulaire(form, statut) {
           errors.push({
             principal_horaires: controleHoraires(form?.fields?.filter(field => field.name === champ + accepte.nom)[0]?.value?.principal_horaires)
           });
-        } else if (accepte.nom !== 'itinerant' ||
-        (form?.fields?.filter(field => field.name === 'principal_adresseIntrouvable')[0]?.value && accepte.nom !== 'location') ||
-        !form?.fields?.filter(field => field.name === 'principal_adresseIntrouvable')[0]?.value) {
+        } else if (accepte.nom !== 'itinerant') {
           errors.push({
             [champ + accepte.nom]: (Joi.object({
               [champ + accepte.nom]: accepte.validation }).validate(
@@ -423,7 +422,7 @@ function getAdresseByApi(adresse, prefixId) {
   };
 
   function request() {
-    return { type: 'GET_ADRESSE_REQUEST' };
+    return { type: 'GET_ADRESSE_REQUEST', prefixId };
   }
   function success(adresses, prefixId, adresse) {
     return { type: 'GET_ADRESSE_SUCCESS', adresses, prefixId, adresse };
@@ -433,32 +432,12 @@ function getAdresseByApi(adresse, prefixId) {
   }
 }
 
-function getAdresseIntrouvable(permanenceId) {
-  return dispatch => {
-    dispatch(request());
-    permanenceService.getAdresseIntrouvable(permanenceId)
-    .then(
-      result => {
-        dispatch(success(result.adresseIntrouvable));
-      },
-      error => {
-        dispatch(failure(error));
-      }
-    );
-  };
-  function request() {
-    return { type: 'GET_ADRESSE_INTROUVABLE_REQUEST' };
-  }
-  function success(adresse) {
-    return { type: 'GET_ADRESSE_INTROUVABLE_SUCCESS', adresse };
-  }
-  function failure(error) {
-    return { type: 'GET_ADRESSE_INTROUVABLE_FAILURE', error };
-  }
-}
-
 function setAdresse(adresse, prefixId) {
   return { type: 'SET_ADRESSE', adresse, prefixId };
+}
+
+function setAdresseIntrouvable(prefixId) {
+  return { type: 'SET_ADRESSE_INTROUVABLE', prefixId };
 }
 
 function rebootListeAdresses(prefixId) {
@@ -577,7 +556,7 @@ function reporterPermanence() {
   }
 }
 
-function setChampsMaPermanence(permanence, prefixId, conseiller, adresseIntrouvable) {
+function setChampsMaPermanence(permanence, prefixId, conseiller) {
 
   const fields = [
     { name: prefixId + 'idPermanence', value: permanence?._id },
@@ -593,10 +572,10 @@ function setChampsMaPermanence(permanence, prefixId, conseiller, adresseIntrouva
     { name: prefixId + 'numeroVoie', value: permanence?.adresse?.numeroRue },
     { name: prefixId + 'rueVoie', value: permanence?.adresse?.rue },
     { name: prefixId + 'codePostal', value: permanence?.adresse?.codePostal },
+    { name: prefixId + 'codeCommune', value: permanence?.adresse?.codeCommune },
     { name: prefixId + 'ville', value: permanence?.adresse?.ville?.toUpperCase() },
-    { name: prefixId + 'adresse', value: formatAdresse(permanence?.adresse, null, null, adresseIntrouvable) },
+    { name: prefixId + 'adresse', value: formatAdresse(permanence?.adresse, null, null) },
     { name: prefixId + 'location', value: permanence?.location },
-    { name: prefixId + 'codeCommune', value: permanence?.codeCommune },
     { name: prefixId + 'conseillers', value: permanence?.conseillers },
     { name: prefixId + 'itinerant', value: permanence?.conseillersItinerants.includes(conseiller?._id) },
     { name: prefixId + 'horaires', value: { [prefixId + 'horaires']: permanence?.horaires } },
