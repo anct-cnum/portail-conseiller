@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../Footer';
@@ -99,7 +99,18 @@ function Login() {
               <br/>{loggingIn && <span style={{ color: 'black' }}>Connexion en cours...</span>}
             </div>
             <div>
-              {error && <span className="invalid">{error.error}</span>}
+              {error && <span className="invalid">{
+                error.errorActivation === true ?
+                  <Fragment>
+                    <a
+                      href={process.env.REACT_APP_AIDE_URL + `/article/quand-vais-je-recevoir-mon-acces-a-lespace-coop-1acxbw6/`}
+                      target="blank"
+                      rel="noopener noreferrer">
+                        Merci d&rsquo;activer votre compte coop <span className="fr-fi-external-link-line fr-link--icon"></span>
+                    </a>
+                  </Fragment> :
+                  error.error
+              }</span>}
             </div>
             { role !== 'admin' &&
               <div className="mot-de-passe-oublie">

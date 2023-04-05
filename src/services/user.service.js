@@ -77,7 +77,7 @@ function handleResponse(response) {
     }
     if (data.user?.passwordCreated === false) {
       logout();
-      return Promise.reject({ error: `Merci d'activer votre compte coop !` });
+      return Promise.reject({ errorActivation: true });
     }
     return data;
   });
