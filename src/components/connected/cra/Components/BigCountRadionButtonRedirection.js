@@ -10,7 +10,7 @@ function BigCountRadioButtonRedirection({ label, value }) {
 
   const dispatch = useDispatch();
 
-  const showSelect = useSelector(state => state.cra.showSelectRedirection);
+  const showSelect = useSelector(state => state.cra?.showSelectRedirection);
   const cra = useSelector(state => state.cra);
   let { nbParticipants, nbParticipantsAccompagnement, nbIndividuel, nbAtelier, nbRedirection, nbOrganisme } = cra;
 
