@@ -17,7 +17,10 @@ function BottomPage({ donneesStats, print, type }) {
 
   const tabColorAge = ['#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e'];
   const tabColorStatut = ['#a2b4b1', '#ffdbd2', '#a3a6bc', '#ddb094', '#fff480'];
-  const tabColorLieux = ['#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e', '#a2b4b1', '#ffdbd2', '#a3a6bc', '#ddb094', '#fff480'];
+  const tabColorLieux = [
+    '#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e', '#a2b4b1', '#ffdbd2', '#a3a6bc', '#ddb094', '#fff480',
+    '#be9b31', '#cac5b0', '#abb8df', '#fdcf41', '#169b62', '#80d5c6', '#ff8d7e', '#714753', '#956052',
+  ];
 
   const get4lastMonths = (month, year) => {
     let monthToPrint = [month];
@@ -82,7 +85,7 @@ function BottomPage({ donneesStats, print, type }) {
           }
           listDelete.push(i);
         } else {
-          donnees.valeur = Math.round(donnees.valeur);
+          donnees.valeur = Number(Number(donnees.valeur).toFixed(2));
         }
       } else {
         listDelete.push(i);
@@ -93,7 +96,7 @@ function BottomPage({ donneesStats, print, type }) {
       delete statsReorientations[i];
     });
     if (!statsReorientations.find(stats => stats?.nom === 'Autres&#0;')) {
-      donneesAutre.valeur = Math.round(donneesAutre.valeur);
+      donneesAutre.valeur = Number(Number(donneesAutre.valeur).toFixed(2));
       statsReorientations.push(donneesAutre);
       dispatch(statistiqueActions.updateListeAutresReorientations(listeAutresReorientations));
     }
