@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 function ModalAdresseIntrouvable({ prefixId }) {
 
-  const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
+  const erreursFormulaire = useSelector(state => state.permanence?.errorsFormulaire?.errors);
   const erreurAdresse = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'location'])[0]?.[prefixId + 'location'] ||
       erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'rueVoie'])[0]?.[prefixId + 'rueVoie'];
 
