@@ -32,9 +32,9 @@ const initialState = {
     redirection: 0,
   },
   nbParticipantsAccompagnement: 0,
-  nbIndividuel: 0,
-  nbAtelier: 0,
-  nbRedirection: 0,
+  nbAccompagnementIndividuel: 0,
+  nbAccompagnementAtelier: 0,
+  nbAccompagnementRedirection: 0,
   nbOrganisme: 0,
   organisme: null,
   organismes: [],
@@ -138,9 +138,9 @@ export default function cra(state = initialState, action) {
         activite: action.activite,
         nbParticipants: action.activite === 'collectif' ? 5 : 1,
         nbParticipantsAccompagnement: 0,
-        nbIndividuel: 0,
-        nbAtelier: 0,
-        nbRedirection: 0,
+        nbAccompagnementIndividuel: 0,
+        nbAccompagnementAtelier: 0,
+        nbAccompagnementRedirection: 0,
         nbOrganisme: 0,
         organisme: null,
         organismes: [],
@@ -178,9 +178,9 @@ export default function cra(state = initialState, action) {
         nbParticipantsAccompagnement: 0,
         nbParticipantsAge: 0,
         nbParticipantsStatut: 0,
-        nbIndividuel: 0,
-        nbAtelier: 0,
-        nbRedirection: 0,
+        nbAccompagnementIndividuel: 0,
+        nbAccompagnementAtelier: 0,
+        nbAccompagnementRedirection: 0,
         age: {
           moins12ans: 0,
           de12a18ans: 0,
@@ -249,22 +249,22 @@ export default function cra(state = initialState, action) {
           duree: false },
       };
     case 'UPDATE_ACCOMPAGNEMENT':
-      let nbRedirection = 0;
+      let nbAccompagnementRedirection = 0;
       const organismeRedirection = state.organismes;
       if (organismeRedirection?.length > 0) {
         organismeRedirection.forEach(orga => {
-          nbRedirection += orga[Object.keys(orga)[0]];
+          nbAccompagnementRedirection += orga[Object.keys(orga)[0]];
         });
       }
-      nbRedirection += action.nbOrganisme;
-      const nbParticipantsAccompagnement = action.nbIndividuel + action.nbAtelier + nbRedirection;
+      nbAccompagnementRedirection += action.nbOrganisme;
+      const nbParticipantsAccompagnement = action.nbAccompagnementIndividuel + action.nbAccompagnementAtelier + nbAccompagnementRedirection;
 
       return {
         ...state,
         nbParticipantsAccompagnement: nbParticipantsAccompagnement,
-        nbIndividuel: action.nbIndividuel,
-        nbAtelier: action.nbAtelier,
-        nbRedirection: nbRedirection,
+        nbAccompagnementIndividuel: action.nbAccompagnementIndividuel,
+        nbAccompagnementAtelier: action.nbAccompagnementAtelier,
+        nbAccompagnementRedirection: nbAccompagnementRedirection,
         nbOrganisme: action.nbOrganisme,
       };
     case 'UPDATE_ORGANISME':
@@ -278,12 +278,12 @@ export default function cra(state = initialState, action) {
       action.organismes.forEach(orga => {
         redirection += orga[Object.keys(orga)[0]];
       });
-      const nbParticipantsAccompOrga = updateOrganismeCra.nbAtelier + updateOrganismeCra.nbIndividuel + redirection;
+      const nbParticipantsAccompOrga = updateOrganismeCra.nbAccompagnementAtelier + updateOrganismeCra.nbAccompagnementIndividuel + redirection;
       return {
         ...state,
         organisme: null,
         nbOrganisme: 0,
-        nbRedirection: redirection,
+        nbAccompagnementRedirection: redirection,
         nbParticipantsAccompagnement: nbParticipantsAccompOrga,
         organismes: action.organismes,
       };
@@ -296,14 +296,14 @@ export default function cra(state = initialState, action) {
       organismesDeleteCra.organismes.forEach(orga => {
         nbSuppressionOrganisme = orga[Object.keys(orga)[0]];
       });
-      organismesDeleteCra.nbRedirection -= nbSuppressionOrganisme;
+      organismesDeleteCra.nbAccompagnementRedirection -= nbSuppressionOrganisme;
       organismesDeleteCra.nbParticipantsAccompagnement -= nbSuppressionOrganisme;
 
       return {
         ...state,
         nbOrganisme: 0,
         organismes: organismesFiltres,
-        nbRedirection: organismesDeleteCra.nbRedirection,
+        nbAccompagnementRedirection: organismesDeleteCra.nbAccompagnementRedirection,
         nbParticipantsAccompagnement: organismesDeleteCra.nbParticipantsAccompagnement,
       };
     case 'UPDATE_DATE':

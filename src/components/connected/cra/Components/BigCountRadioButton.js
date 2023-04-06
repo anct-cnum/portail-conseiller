@@ -10,9 +10,9 @@ function BigCountRadioButton({ type, value, label }) {
 
   const showSelect = useSelector(state => state.cra.showSelectRedirection);
   const cra = useSelector(state => state.cra);
-  let { nbParticipants, nbParticipantsAccompagnement, nbIndividuel, nbAtelier, nbRedirection, nbOrganisme } = cra;
+  let { nbParticipants, nbParticipantsAccompagnement, nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbOrganisme } = cra;
   const [nbValeur, setNbValeur] = useState(
-    type === 'participants' ? cra?.nbParticipants : cra?.['nb' + [value.charAt(0).toUpperCase() + value.slice(1)]]
+    type === 'participants' ? cra?.nbParticipants : cra?.['nbAccompagnement' + [value.charAt(0).toUpperCase() + value.slice(1)]]
   );
 
   const toggleSelect = () => {
@@ -34,12 +34,12 @@ function BigCountRadioButton({ type, value, label }) {
           if (nbParticipants - nbParticipantsAccompagnement > 0) {
             setNbValeur(nbValeur + 1);
             if (value === 'individuel') {
-              nbIndividuel++;
+              nbAccompagnementIndividuel++;
             }
             if (value === 'atelier') {
-              nbAtelier++;
+              nbAccompagnementAtelier++;
             }
-            dispatch(craActions.updateAccompagnement(nbIndividuel, nbAtelier, nbRedirection, nbOrganisme));
+            dispatch(craActions.updateAccompagnement(nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbOrganisme));
           }
         }
         break;
@@ -60,13 +60,13 @@ function BigCountRadioButton({ type, value, label }) {
         if (cra?.nbParticipants) {
           const valeur = nbValeur - 1;
           setNbValeur(valeur < 0 ? 0 : valeur);
-          if (value === 'individuel' && nbIndividuel > 0) {
-            nbIndividuel--;
+          if (value === 'individuel' && nbAccompagnementIndividuel > 0) {
+            nbAccompagnementIndividuel--;
           }
-          if (value === 'atelier' && nbAtelier > 0) {
-            nbAtelier--;
+          if (value === 'atelier' && nbAccompagnementAtelier > 0) {
+            nbAccompagnementAtelier--;
           }
-          dispatch(craActions.updateAccompagnement(nbIndividuel, nbAtelier, nbRedirection, nbOrganisme));
+          dispatch(craActions.updateAccompagnement(nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbOrganisme));
         }
         break;
       default:
@@ -84,15 +84,15 @@ function BigCountRadioButton({ type, value, label }) {
         dispatch(craActions.updateNbParticipants(valeur));
       } else if (type === 'accompagnement') {
         if (cra?.nbParticipants && valeur >= 0) {
-          const valeurMax = getValeurMax(value, nbIndividuel, nbAtelier, nbRedirection, nbParticipants);
-          if (value === 'individuel' && nbIndividuel > 0) {
-            nbIndividuel = valeur < valeurMax ? valeur : valeurMax;
+          const valeurMax = getValeurMax(value, nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbParticipants);
+          if (value === 'individuel' && nbAccompagnementIndividuel > 0) {
+            nbAccompagnementIndividuel = valeur < valeurMax ? valeur : valeurMax;
           }
-          if (value === 'atelier' && nbAtelier > 0) {
-            nbAtelier = valeur < valeurMax ? valeur : valeurMax;
+          if (value === 'atelier' && nbAccompagnementAtelier > 0) {
+            nbAccompagnementAtelier = valeur < valeurMax ? valeur : valeurMax;
           }
           setNbValeur(valeur < valeurMax ? valeur : valeurMax);
-          dispatch(craActions.updateAccompagnement(nbIndividuel, nbAtelier, nbRedirection, nbOrganisme));
+          dispatch(craActions.updateAccompagnement(nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbOrganisme));
         }
       }
     }

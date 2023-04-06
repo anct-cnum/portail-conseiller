@@ -22,12 +22,12 @@ function SmallRadioButton({ type, label, value, image, imageSelected, heightImag
         dispatch(craActions.updateActivite(e.target.getAttribute('value')));
         break;
       case 'accompagnement':
-        let { nbParticipants, nbParticipantsAccompagnement, nbIndividuel, nbAtelier, nbRedirection, nbOrganisme } = cra;
+        let { nbParticipants, nbParticipantsAccompagnement, nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbOrganisme } = cra;
         if (nbParticipants && nbParticipants > nbParticipantsAccompagnement) {
           dispatch(craActions.updateOrganisme(null));
           dispatch(craActions.showSelectRedirection(true));
           nbOrganisme++;
-          dispatch(craActions.updateAccompagnement(nbIndividuel, nbAtelier, nbRedirection, nbOrganisme));
+          dispatch(craActions.updateAccompagnement(nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbOrganisme));
         }
         break;
       default:

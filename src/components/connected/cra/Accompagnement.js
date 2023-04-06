@@ -9,7 +9,7 @@ import BigCountRadioButtonRedirection from './Components/BigCountRadionButtonRed
 function Accompagnement() {
 
   const cra = useSelector(state => state.cra);
-  const { nbIndividuel, nbAtelier, nbOrganisme, organisme } = cra;
+  const { nbAccompagnementIndividuel, nbAccompagnementAtelier, nbOrganisme, organisme } = cra;
 
   return (
     <>
@@ -18,7 +18,7 @@ function Accompagnement() {
           <span className="question">L&rsquo;accompagnement va-t-il &ecirc;tre poursuivi&nbsp;? (Optionnel)</span>
         </div>
         <div className="responsiveRadioActivity1">
-          {nbIndividuel === 0 &&
+          {nbAccompagnementIndividuel === 0 &&
             <BigRadioButtonV2
               type="accompagnement"
               label="Accompagnement individuel"
@@ -27,7 +27,7 @@ function Accompagnement() {
               classDiv="accIndividuel"
             />
           }
-          {nbIndividuel > 0 &&
+          {nbAccompagnementIndividuel > 0 &&
             <BigCountRadioButton
               type="accompagnement"
               value="individuel"
@@ -35,7 +35,7 @@ function Accompagnement() {
           }
         </div>
         <div className="responsiveRadioActivity2">
-          {nbAtelier === 0 &&
+          {nbAccompagnementAtelier === 0 &&
             <BigRadioButtonV2
               type="accompagnement"
               label="En atelier"
@@ -44,7 +44,7 @@ function Accompagnement() {
               classDiv="atelierCollectif"
             />
           }
-          {nbAtelier > 0 &&
+          {nbAccompagnementAtelier > 0 &&
             <BigCountRadioButton
               type="accompagnement"
               value="atelier"

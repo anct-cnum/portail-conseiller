@@ -25,10 +25,10 @@ function ValidationButton() {
       cra?.organismes?.forEach(organisme => {
         redirectionValide += organisme[Object.keys(organisme)[0]];
       });
-      cra.accompagnement = { atelier: cra?.nbAtelier ?? 0, individuel: cra?.nbIndividuel ?? 0, redirection: redirectionValide };
+      cra.accompagnement = { atelier: cra?.nbAccompagnementAtelier ?? 0, individuel: cra?.nbAccompagnementIndividuel ?? 0, redirection: redirectionValide };
       /* eslint-disable */
       let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error, showSelectRedirection, nbParticipantsAge,
-        nbParticipantsStatut, nbParticipantsAccompagnement, nbAtelier, nbIndividuel, nbRedirection, nbOrganisme, organisme,
+        nbParticipantsStatut, nbParticipantsAccompagnement, nbAccompagnementAtelier, nbAccompagnementIndividuel, nbAccompagnementRedirection, nbOrganisme, organisme,
         printFlashbag, buttonCP, buttonPermanences, buttonPermanence, nomEnseigne, listeSousThemes, errorSousTheme, loadingSuggestion,
         ...dataCraToSend } = cra;
       dataCraToSend.idStructure = conseiller?.structureId;

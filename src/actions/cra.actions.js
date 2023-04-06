@@ -98,8 +98,8 @@ function updateDuree(duree) {
   return { type: 'UPDATE_DUREE', duree };
 }
 
-function updateAccompagnement(nbIndividuel, nbAtelier, nbRedirection, nbOrganisme) {
-  return { type: 'UPDATE_ACCOMPAGNEMENT', nbIndividuel, nbAtelier, nbRedirection, nbOrganisme };
+function updateAccompagnement(nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbOrganisme) {
+  return { type: 'UPDATE_ACCOMPAGNEMENT', nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbOrganisme };
 }
 
 function updateOrganisme(organisme) {

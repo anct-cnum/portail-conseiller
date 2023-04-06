@@ -12,7 +12,7 @@ function BigCountRadioButtonRedirection({ label, value }) {
 
   const showSelect = useSelector(state => state.cra?.showSelectRedirection);
   const cra = useSelector(state => state.cra);
-  let { nbParticipants, nbParticipantsAccompagnement, nbIndividuel, nbAtelier, nbRedirection, nbOrganisme } = cra;
+  let { nbParticipants, nbParticipantsAccompagnement, nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbOrganisme } = cra;
 
   const [nbValeur, setNbValeur] = useState(nbOrganisme);
 
@@ -26,7 +26,7 @@ function BigCountRadioButtonRedirection({ label, value }) {
     if (nbParticipants && nbParticipants > nbParticipantsAccompagnement && nbParticipants - nbParticipantsAccompagnement >= 0) {
       nbOrganisme++;
       setNbValeur(nbOrganisme);
-      dispatch(craActions.updateAccompagnement(nbIndividuel, nbAtelier, nbRedirection, nbOrganisme));
+      dispatch(craActions.updateAccompagnement(nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbOrganisme));
     }
   };
 
@@ -34,7 +34,7 @@ function BigCountRadioButtonRedirection({ label, value }) {
     if (cra?.nbParticipants && nbOrganisme > 0) {
       nbOrganisme--;
       setNbValeur(nbOrganisme < 0 ? 0 : nbOrganisme);
-      dispatch(craActions.updateAccompagnement(nbIndividuel, nbAtelier, nbRedirection, nbOrganisme));
+      dispatch(craActions.updateAccompagnement(nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbOrganisme));
     }
   };
 
@@ -42,10 +42,10 @@ function BigCountRadioButtonRedirection({ label, value }) {
     const reg = new RegExp('^[0-9]');
     let valeur = Number(e.target.value);
     if (reg.test(valeur)) {
-      const valeurMax = getValeurMax('redirection', nbIndividuel, nbAtelier, nbRedirection, nbParticipants);
+      const valeurMax = getValeurMax('redirection', nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbParticipants);
       valeur = valeur < valeurMax ? valeur : valeurMax;
       setNbValeur(valeur);
-      dispatch(craActions.updateAccompagnement(nbIndividuel, nbAtelier, nbRedirection, nbOrganisme));
+      dispatch(craActions.updateAccompagnement(nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbOrganisme));
     }
   };
 

@@ -30,8 +30,6 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
     case 'activite':
       styleClass += controlSelected === value ? ' radioRattachement-selected' : '';
       break;
-    case 'rattachement':
-      break;
     default:
       break;
   }
@@ -72,18 +70,18 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
         dispatch(craActions.updateActivite(value));
         break;
       case 'accompagnement':
-        let { nbParticipantsAccompagnement, nbIndividuel, nbAtelier, nbRedirection, nbOrganisme } = cra;
+        let { nbParticipantsAccompagnement, nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbOrganisme } = cra;
         if (nbParticipants && nbParticipants > nbParticipantsAccompagnement) {
           if (value === 'redirection') {
             dispatch(craActions.updateOrganisme(null));
             dispatch(craActions.showSelectRedirection(true));
             nbOrganisme++;
           } else if (value === 'individuel') {
-            nbIndividuel++;
+            nbAccompagnementIndividuel++;
           } else if (value === 'atelier') {
-            nbAtelier++;
+            nbAccompagnementAtelier++;
           }
-          dispatch(craActions.updateAccompagnement(nbIndividuel, nbAtelier, nbRedirection, nbOrganisme));
+          dispatch(craActions.updateAccompagnement(nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbOrganisme));
         }
         break;
       default:
