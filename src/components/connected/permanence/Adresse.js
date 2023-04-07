@@ -21,11 +21,9 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
   const erreurEmail = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'email'])[0]?.[prefixId + 'email'];
   const erreurSiteWeb = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'siteWeb'])[0]?.[prefixId + 'siteWeb'];
   const erreurAdresse = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'adresse'])[0]?.[prefixId + 'adresse'];
-  const erreurLocalisation = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'location'])[0]?.[prefixId + 'location'];
   const listeAdresses = useSelector(state => state.permanence?.listeAdresses);
   const loadingAdresses = useSelector(state => state.permanence?.loadingAdresses);
   const erreurAdresseApi = useSelector(state => state.permanence?.errorAdresses);
-  const erreurAddresseIntrouvable = useSelector(state => state.permanence?.errorAdresseIntrouvable);
 
   const geocodeAdresses = useSelector(state => state.permanence?.geocodeAdresses);
   const geocodeAdresse = geocodeAdresses?.filter(geocode => geocode.prefixId === prefixId)[0]?.geocodeAdresse;
@@ -38,6 +36,9 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
     dispatch(permanenceActions.setAdresse(adresse, prefixId));
     const adresseEl = document.getElementById(prefixId + 'adresse');
     adresseEl.value = adresse?.properties?.label;
+  };
+  const onClickAdresseIntrouvable = () => {
+    dispatch(permanenceActions.setAdresseIntrouvable(prefixId));
   };
 
   useEffect(() => {
@@ -117,7 +118,7 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
         <InputText
           textLabel="Entrez l&rsquo;adresse de votre lieu d&rsquo;activit&eacute;"
           baselineInput="Remplissez le champ avec l&rsquo;adresse compl&egrave;te de votre lieu d&rsquo;activit&eacute;"
-          errorInput={erreurAdresse || erreurLocalisation}
+          errorInput={erreurAdresse}
           nameInput= {prefixId + 'adresse'}
           requiredInput={true}
           valueInput={fields?.filter(field => field.name === prefixId + 'adresse')[0]?.value ?? ''}
@@ -147,35 +148,20 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
                 );
               })}
             </div>
-            <div className="adresseIntrouvable">
-              <InputCheckbox
-                textLabel="Si votre adresse est introuvable, merci de cocher la case"
-                errorInput={null}
-                prefixId={prefixId}
-                disabled={fields?.filter(field => field.name === prefixId + 'adresseIntrouvable')[0]?.value}
-                nameInput="adresseIntrouvable"
-              />
+          </div>
+        }
+        {!loadingAdresses && listeAdresses?.length === 0 &&
+          <div className="listeAdresses">
+            <div className="adresse" onClick={() => {
+              onClickAdresseIntrouvable();
+            }}>
+              Adresse introuvable
             </div>
           </div>
         }
         {erreurAdresseApi &&
           <div className="text-error fr-mb-n3w fr-mt-3w">
             Une erreur est survenue lors de la recherche de votre adresse, veuillez r&eacute;essayer ult&eacute;rieurement...
-          </div>
-        }
-        {erreurAddresseIntrouvable &&
-          <div className="text-error fr-mb-n3w fr-mt-3w">
-            Une erreur est survenue lors de la recherche de votre demande d&rsquo;adresse, veuillez la renseigner de nouveau.
-          </div>
-        }
-        { erreurLocalisation &&
-          <div className="text-error fr-mb-n3w fr-mt-3w">
-            D&eacute;sol&eacute;, votre adresse est introuvable. Pour faire remonter le problème&nbsp;
-            <a className="link" href="https://go.crisp.chat/chat/embed/?website_id=ea669e13-e40f-40c8-be23-e43565c0e62c"
-              title="Lien vers l&rsquo;aide crisp" target="blank" rel="noopener noreferrer">
-              contactez nous
-            </a>. Notre &eacute;quipe traitera votre demande.<br/>
-            Dans cette attente, vos informations ne seront pas visibles sur la cartographie CnFS.
           </div>
         }
         <div className="fr-mt-6w">

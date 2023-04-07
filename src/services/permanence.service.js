@@ -13,7 +13,6 @@ export const permanenceService = {
   verifySiret,
   getGeocodeAdresse,
   getAdresseByApi,
-  getAdresseIntrouvable,
   deletePermanence,
   deleteConseillerPermanence,
   reporterPermanence,
@@ -104,14 +103,6 @@ function getAdresseByApi(adresse) {
   };
 
   return fetch(`${apiUrlRoot}/permanences/getAdresse/${JSON.stringify({ adresse })}`, requestOptions).then(handleResponse);
-}
-function getAdresseIntrouvable(permanenceId) {
-  const requestOptions = {
-    method: 'GET',
-    headers: authHeader()
-  };
-
-  return fetch(`${apiUrlRoot}/permanences/getAdresseIntrouvable/${permanenceId}`, requestOptions).then(handleResponse);
 }
 
 function deletePermanence(idPermanence) {
