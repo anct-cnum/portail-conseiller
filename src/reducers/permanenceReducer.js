@@ -39,9 +39,6 @@ const nettoyageFields = (fields, prefixId, arrayFields) => {
 };
 
 const updateGeocode = (geocodeAdresse, prefixId, adresse = null) => {
-  console.log(geocodeAdresse);
-  console.log(adresse);
-  console.log(prefixId);
   if (geocodeAdresse?.length > 0) {
     delete geocodeAdresse?.filter(geocode => geocode.prefixId === prefixId)[0]?.geocodeAdresse;
     delete geocodeAdresse?.filter(geocode => geocode.prefixId === prefixId)[0]?.prefixId;
@@ -283,7 +280,6 @@ export default function permanence(state = initialState, action) {
 
         geocodeAdresse = updateGeocode(geocodeAdresse, action.prefixId, action.adresse);
       }
-      console.log(action.adresse.geometry);
       return {
         ...state,
         fields: fieldsAdresse,
