@@ -33,6 +33,7 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
     telephoneHorsMetropole?.find(item => item.codeDepartement === codeDepartement).indicatif : '+33');
 
   const onClickAdresse = adresse => {
+    console.log(adresse);
     dispatch(permanenceActions.setAdresse(adresse, prefixId));
     const adresseEl = document.getElementById(prefixId + 'adresse');
     adresseEl.value = adresse?.properties?.label;
