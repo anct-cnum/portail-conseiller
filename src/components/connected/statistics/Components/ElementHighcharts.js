@@ -113,7 +113,9 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
         });
       } else if (typeGraphique === 'pie') {
         //Ne pas afficher la valeur 0 dans le camembert
-
+        if (element.nom === 'total') {
+          element.valeur = 0;
+        }
         if (element.valeur === 0) {
           valeurs.push({
             name: labelsCorrespondance.find(label => label.nom === element.nom)?.correspondance ?? element.nom,
