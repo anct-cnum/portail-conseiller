@@ -173,8 +173,12 @@ function verifyFormulaire(form, statut) {
       message: 'Une adresse valide doit être saisie'
     },
     {
-      nom: 'rueVoie', validation: Joi.string().trim().required(),
-      message: 'Une adresse valide doit être saisie'
+      nom: 'rueVoie', validation: Joi.string().trim().min(5).max(120).required(),
+      message: 'Une adresse valide doit être saisie et la rue doit comporter au moins 5 caractères'
+    },
+    {
+      nom: 'codeCommune', validation: Joi.string().trim().min(4).max(5).required(),
+      message: 'Merci de remplir à nouveau votre adresse'
     },
     {
       nom: 'location', validation: Joi.object().required(),
