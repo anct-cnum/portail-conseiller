@@ -34,8 +34,7 @@ function ModalAdresseIntrouvable({ prefixId }) {
                     Vous n&rsquo;avez s&eacute;lectionn&eacute; aucune adresse.
                   </h1>
                   <p>
-                  Vous n&rsquo;avez s&eacute;lectionn&eacute; aucune adresse. Si votre adresse est introuvable, nous vous invitons &agrave;
-                  contacter le support.
+                    Si votre adresse est introuvable, nous vous invitons &agrave; contacter le support.
                   </p>
                   <p>Vos donn&eacute;es saisies ne peuvent pas &ecirc;tre enregistr&eacute;es. </p>
                   <button className="adresse-introuvable-btn" title="Lien vers l&rsquo;aide crisp" onClick={handleSubmit}>Contactez-nous</button>
