@@ -214,7 +214,7 @@ export default function permanence(state = initialState, action) {
       };
     case 'GEOCODE_ADRESSE_SUCCESS':
       let geocodeAdresses = state?.geocodeAdresses ?? [];
-      geocodeAdresses = updateGeocode(geocodeAdresses, action.prefixId, action.geocodeAdresse?.geometry);
+      geocodeAdresses = updateGeocode(geocodeAdresses, action.prefixId, action.geocodeAdresse);
       return {
         ...state,
         geocodeAdresses: geocodeAdresses,
@@ -263,6 +263,7 @@ export default function permanence(state = initialState, action) {
       let geocodeAdresse = state?.geocodeAdresses ?? [];
       if (action?.adresse?.properties) {
         delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.[action.champ + 'adresse'])[0]?.[action.champ + 'adresse'];
+        delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.[action.champ + 'adresse'])[0]?.[action.champ + 'rueVoie'];
         delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.[action.champ + 'adresse'])[0]?.[action.champ + 'location'];
 
         fieldsAdresse = nettoyageFields(
@@ -277,7 +278,7 @@ export default function permanence(state = initialState, action) {
         fieldsAdresse?.push({ name: action.prefixId + 'codeCommune', value: action?.adresse?.properties?.citycode });
         fieldsAdresse = nettoyageState(fieldsAdresse);
 
-        geocodeAdresse = updateGeocode(geocodeAdresse, action.prefixId, action.adresse.geometry);
+        geocodeAdresse = updateGeocode(geocodeAdresse, action.prefixId, action.adresse);
       }
       return {
         ...state,
