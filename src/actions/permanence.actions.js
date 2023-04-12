@@ -199,7 +199,7 @@ function verifyFormulaire(form, statut) {
     {
       nom: 'horaires' }
   ];
-  console.log(form?.fields);
+
   ['principal_', 'secondaire_'].forEach(champ => {
     if (champ === 'secondaire_') {
       showLieuSecondaire?.forEach((show, id) => {
