@@ -63,13 +63,13 @@ function SelectCP({ voirInformation }) {
   const onClickButton = () => {
     dispatch(craActions.getSearchlist());
     setTimeout(() => {
-      document.getElementById('searchCP').focus();
+      document.getElementById('searchCP')?.focus();
     }, 100);
   };
 
   //Focus input
   const focusInput = () => {
-    document.getElementById('searchCP').focus();
+    document.getElementById('searchCP')?.focus();
   };
 
   return (

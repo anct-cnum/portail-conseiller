@@ -8,11 +8,11 @@ import checkMotDePasseOublieReducer from './checkMotDePasseOublieReducer';
 import motDePasseOublieReducer from './motDePasseOublieReducer';
 import statistiqueReducer from './statistiqueReducer';
 import filtersAndSortsReducer from './filtersAndSortsReducer';
-import pagination from './paginationReducer';
-import permanence from './permanenceReducer';
-import formulaireSupHierarchique from './supHierarchiqueReducer';
-import formulaireInfoPersonnel from './infoPersonnelReducer';
-import historiqueCras from './historiqueCrasReducer';
+import paginationReducer from './paginationReducer';
+import permanenceReducer from './permanenceReducer';
+import supHierarchiqueReducer from './supHierarchiqueReducer';
+import infoPersonnelReducer from './infoPersonnelReducer';
+import historiqueCrasReducer from './historiqueCrasReducer';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
@@ -26,11 +26,11 @@ const rootReducer = combineReducers({
   motDePasseOublie: motDePasseOublieReducer,
   statistique: statistiqueReducer,
   filtersAndSorts: filtersAndSortsReducer,
-  pagination: pagination,
-  permanence: permanence,
-  formulaireSupHierarchique: formulaireSupHierarchique,
-  formulaireInfoPersonnel: formulaireInfoPersonnel,
-  historiqueCras: historiqueCras,
+  pagination: paginationReducer,
+  permanence: permanenceReducer,
+  formulaireSupHierarchique: supHierarchiqueReducer,
+  formulaireInfoPersonnel: infoPersonnelReducer,
+  historiqueCras: historiqueCrasReducer,
 });
 
 export default rootReducer;

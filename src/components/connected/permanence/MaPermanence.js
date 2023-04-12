@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import SupprimerPermanence from './SupprimerPermanence';
 import { useDispatch, useSelector } from 'react-redux';
 import { craActions } from '../../../actions';
+import ReactTooltip from 'react-tooltip';
 
 function MaPermanence({ permanence, conseillerId, trClass }) {
   const dispatch = useDispatch();
@@ -12,11 +13,11 @@ function MaPermanence({ permanence, conseillerId, trClass }) {
     rdv: 'Sur Rendez-vous',
     prive: 'Accès fermé au public'
   };
-
   const islieuPrincipal = permanence?.lieuPrincipalPour?.includes(conseillerId);
 
   const countCra = useSelector(state => state.cra.countCra);
   const [count, setCount] = useState([]);
+
   useEffect(() => {
     if (permanence?._id && !countCra) {
       dispatch(craActions.countByPermanence(permanence._id));
@@ -32,7 +33,15 @@ function MaPermanence({ permanence, conseillerId, trClass }) {
 
   return (
     <tr className={trClass + ' permanence'}>
-      <td>{permanence?.nomEnseigne}</td>
+      <td>
+        {!permanence?.adresse &&
+          <>
+            <span className="ri-error-warning-fill warning-adresse"
+              data-tip="Vous avez remont&eacute; un probl&egrave;me d&rsquo;adresse, celui-ci est en cours de traitement."></span>
+            <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
+          </>
+        }
+        {permanence?.nomEnseigne}</td>
       <td>
         <span className={islieuPrincipal ? 'circle-true' : 'circle-false'}/>
       </td>

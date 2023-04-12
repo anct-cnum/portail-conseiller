@@ -1,5 +1,7 @@
+import { formatRue } from '../utils/functionFormats';
 
 const initialState = {
+  loading: false,
   fields: [{ name: 'estStructure', value: null }],
   geocodeAdresses: [],
   showLieuSecondaire: Array.from({ length: process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE }, () => (false)),
@@ -14,6 +16,8 @@ const initialState = {
   suspensionPermanence: false,
   permanencesReservees: [],
   reloadList: true,
+  listeAdresses: null,
+  erreurAdresse: false,
 };
 
 const nettoyageState = form => {
@@ -25,7 +29,28 @@ const nettoyageState = form => {
   });
 };
 
+const nettoyageFields = (fields, prefixId, arrayFields) => {
+  arrayFields.forEach(field => {
+    delete fields?.filter(f => f.name === prefixId + field)[0]?.value;
+    delete fields?.filter(f => f.name === prefixId + field)[0]?.name;
+  });
+
+  return nettoyageState(fields);
+};
+
+const updateGeocode = (geocodeAdresse, prefixId, adresse = null) => {
+  if (geocodeAdresse?.length > 0) {
+    delete geocodeAdresse?.filter(geocode => geocode.prefixId === prefixId)[0]?.geocodeAdresse;
+    delete geocodeAdresse?.filter(geocode => geocode.prefixId === prefixId)[0]?.prefixId;
+  }
+  if (adresse !== null) {
+    geocodeAdresse?.push({ geocodeAdresse: adresse.geometry, prefixId: prefixId });
+  }
+  return nettoyageState(geocodeAdresse);
+};
+
 export default function permanence(state = initialState, action) {
+
   switch (action.type) {
     case 'GET_MA_PERMANENCE_REQUEST':
       return {
@@ -43,7 +68,7 @@ export default function permanence(state = initialState, action) {
     case 'GET_MA_PERMANENCE_FAILURE':
       return {
         ...state,
-        maPermanenceError: action.error,
+        maPermanenceError: action.error?.message ?? action.error,
         maPermanenceLoading: false
       };
     case 'GET_MES_PERMANENCES_REQUEST':
@@ -61,7 +86,7 @@ export default function permanence(state = initialState, action) {
     case 'GET_MES_PERMANENCES_FAILURE':
       return {
         ...state,
-        error: action.error,
+        error: action.error?.message ?? action.error,
         loading: false
       };
     case 'GET_PERMANENCES_REQUEST':
@@ -94,14 +119,11 @@ export default function permanence(state = initialState, action) {
         isUpdated: false
       };
     case 'UPDATE_FIELD':
-      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.[action.field.name])[0]?.[action.field.name];
-
       let fields = state?.fields ?? [];
+      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.[action.field.name])[0]?.[action.field.name];
       delete fields?.filter(field => field.name === action.field.name)[0]?.value;
       delete fields?.filter(field => field.name === action.field.name)[0]?.name;
-
       fields?.push(action.field);
-
       fields = nettoyageState(fields);
       return {
         ...state,
@@ -111,9 +133,7 @@ export default function permanence(state = initialState, action) {
       let disabledFields = state?.disabledFields ?? [];
       delete disabledFields?.filter(field => field.id === action.field.id)[0]?.value;
       delete disabledFields?.filter(field => field.id === action.field.id)[0]?.id;
-
       disabledFields?.push(action.field);
-
       disabledFields = nettoyageState(disabledFields);
       return {
         ...state,
@@ -141,43 +161,42 @@ export default function permanence(state = initialState, action) {
       return {
         ...state,
         showError: false,
+        loading: true,
       };
     case 'VERIFY_SIRET_SUCCESS':
-
-      let fieldsAdresse = state?.fields ?? [];
-      let disabledAdresse = state?.disabledFields ?? [];
-      const rueVoie = [action.adresseParSiret?.type_voie ?? '', action.adresseParSiret?.nom_voie ?? ''].join(' ');
+      let fieldsSiret = state?.fields ?? [];
+      let disabledSiret = state?.disabledFields ?? [];
 
       if (action.adresseParSiret !== null) {
-        delete fieldsAdresse?.filter(field => field.name === action.champ + 'nomEnseigne')[0]?.value;
-        delete fieldsAdresse?.filter(field => field.name === action.champ + 'numeroVoie')[0]?.value;
-        delete fieldsAdresse?.filter(field => field.name === action.champ + 'rueVoie')[0]?.value;
-        delete fieldsAdresse?.filter(field => field.name === action.champ + 'codePostal')[0]?.value;
-        delete fieldsAdresse?.filter(field => field.name === action.champ + 'ville')[0]?.value;
-        delete fieldsAdresse?.filter(field => field.name === action.champ + 'nomEnseigne')[0]?.name;
-        delete fieldsAdresse?.filter(field => field.name === action.champ + 'numeroVoie')[0]?.name;
-        delete fieldsAdresse?.filter(field => field.name === action.champ + 'rueVoie')[0]?.name;
-        delete fieldsAdresse?.filter(field => field.name === action.champ + 'codePostal')[0]?.name;
-        delete fieldsAdresse?.filter(field => field.name === action.champ + 'ville')[0]?.name;
-        fieldsAdresse?.push({ name: action.champ + 'nomEnseigne', value: action.adresseParSiret?.l1 });
-        fieldsAdresse?.push({ name: action.champ + 'numeroVoie', value: action.adresseParSiret?.numero_voie });
-        fieldsAdresse?.push({ name: action.champ + 'rueVoie', value: rueVoie });
-        fieldsAdresse?.push({ name: action.champ + 'codePostal', value: action.adresseParSiret?.code_postal });
-        fieldsAdresse?.push({ name: action.champ + 'ville', value: action.adresseParSiret?.localite?.toUpperCase() });
 
-        fieldsAdresse = nettoyageState(fieldsAdresse);
+        delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.[action.champ + 'nomEnseigne'])[0]?.[action.champ + 'nomEnseigne'];
+        delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.[action.champ + 'adresse'])[0]?.[action.champ + 'adresse'];
+        delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.[action.champ + 'adresse'])[0]?.[action.champ + 'location'];
 
-        delete disabledAdresse?.filter(field => field.id === action.champ)[0]?.value;
-        delete disabledAdresse?.filter(field => field.id === action.champ)[0]?.id;
-        disabledAdresse?.push({ id: action.champ, value: !(rueVoie?.trim() === '') });
-        disabledAdresse = nettoyageState(disabledAdresse);
+        const rueVoie = formatRue(null, action.adresseParSiret?.type_voie, action.adresseParSiret?.nom_voie);
+        const adresse = action.adresseParSiret?.adresseComplete;
+
+        fieldsSiret = nettoyageFields(
+          fieldsSiret,
+          action.champ,
+          ['adresse', 'nomEnseigne']);
+        fieldsSiret?.push({ name: action.champ + 'adresse', value: adresse });
+        fieldsSiret?.push({ name: action.champ + 'nomEnseigne', value: action.adresseParSiret?.l1 });
+        fieldsSiret = nettoyageState(fieldsSiret);
+
+        delete disabledSiret?.filter(field => field.id === action.champ)[0]?.value;
+        delete disabledSiret?.filter(field => field.id === action.champ)[0]?.id;
+        disabledSiret?.push({ id: action.champ, value: !(rueVoie?.trim() === '') });
+        disabledSiret = nettoyageState(disabledSiret);
       }
-
       return {
         ...state,
-        fields: fieldsAdresse,
-        disabledFields: disabledAdresse,
+        listeAdresses: action.adresseParSiret?.listeAdresses ?? [],
+        disabledFields: disabledSiret,
+        loadingAdresses: false,
+        fields: fieldsSiret,
         showError: false,
+        loading: false,
         error: false,
       };
     case 'VERIFY_SIRET_FAILURE':
@@ -185,44 +204,116 @@ export default function permanence(state = initialState, action) {
         ...state,
         showError: true,
         error: action.error?.message ?? action.error,
+        loading: false,
       };
     case 'GEOCODE_ADRESSE_REQUEST':
       return {
         ...state,
         showError: false,
-        loadingGeocode: true,
+        loading: true,
       };
     case 'GEOCODE_ADRESSE_SUCCESS':
       let geocodeAdresses = state?.geocodeAdresses ?? [];
-      if (geocodeAdresses?.length > 0) {
-        delete geocodeAdresses?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.geocodeAdresse;
-        delete geocodeAdresses?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.prefixId;
-      }
-      geocodeAdresses?.push({ geocodeAdresse: action.geocodeAdresse, prefixId: action.prefixId });
-      geocodeAdresses = nettoyageState(geocodeAdresses);
-
+      geocodeAdresses = updateGeocode(geocodeAdresses, action.prefixId, action.geocodeAdresse);
       return {
         ...state,
         geocodeAdresses: geocodeAdresses,
-        loadingGeocode: false,
+        loading: false,
       };
     case 'GEOCODE_ADRESSE_FAILURE':
       return {
         ...state,
         showError: true,
         error: action.error?.message ?? action.error,
-        loadingGeocode: false,
+        loading: false,
       };
-    case 'GEOCODE_ADRESSE_REBOOT':
-      let geocodeToDelete = state?.geocodeAdresses ?? [];
-      if (geocodeToDelete?.length > 0) {
-        delete geocodeToDelete?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.geocodeAdresse;
-        delete geocodeToDelete?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.prefixId;
-        geocodeToDelete = nettoyageState(geocodeToDelete);
+    case 'GET_ADRESSE_REQUEST':
+      let initFieldsAdresse = state?.fields ?? [];
+      let initgeocodeAdresse = state?.geocodeAdresses ?? [];
+
+      initFieldsAdresse = nettoyageFields(
+        initFieldsAdresse,
+        action.prefixId,
+        ['numeroVoie', 'rueVoie', 'codePostal', 'codeCommune', 'ville', 'location']);
+
+      initgeocodeAdresse = updateGeocode(initgeocodeAdresse, action.prefixId);
+
+      return {
+        ...state,
+        fields: initFieldsAdresse,
+        geocodeAdresse: initgeocodeAdresse,
+        loadingAdresses: true,
+        errorAdresses: false,
+        listeAdresses: [],
+      };
+    case 'GET_ADRESSE_SUCCESS':
+      return {
+        ...state,
+        loadingAdresses: false,
+        listeAdresses: action.adresses,
+      };
+    case 'GET_ADRESSE_FAILURE':
+      return {
+        ...state,
+        loadingAdresses: false,
+        errorAdresses: action.error,
+      };
+    case 'SET_ADRESSE':
+      let fieldsAdresse = state?.fields ?? [];
+      let geocodeAdresse = state?.geocodeAdresses ?? [];
+      if (action?.adresse?.properties) {
+        delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.[action.champ + 'adresse'])[0]?.[action.champ + 'adresse'];
+        delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.[action.champ + 'adresse'])[0]?.[action.champ + 'rueVoie'];
+        delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.[action.champ + 'adresse'])[0]?.[action.champ + 'location'];
+
+        fieldsAdresse = nettoyageFields(
+          fieldsAdresse,
+          action.prefixId,
+          ['adresse', 'numeroVoie', 'rueVoie', 'codePostal', 'codeCommune', 'ville', 'location']);
+        fieldsAdresse.push({ name: action.prefixId + 'adresse', value: action.adresse.properties?.label?.toUpperCase() });
+        fieldsAdresse?.push({ name: action.prefixId + 'numeroVoie', value: action?.adresse?.properties?.housenumber });
+        fieldsAdresse?.push({ name: action.prefixId + 'rueVoie', value: action?.adresse?.properties?.street });
+        fieldsAdresse?.push({ name: action.prefixId + 'codePostal', value: action?.adresse?.properties?.postcode });
+        fieldsAdresse?.push({ name: action.prefixId + 'ville', value: action?.adresse?.properties?.city?.toUpperCase() });
+        fieldsAdresse?.push({ name: action.prefixId + 'codeCommune', value: action?.adresse?.properties?.citycode });
+        fieldsAdresse = nettoyageState(fieldsAdresse);
+
+        geocodeAdresse = updateGeocode(geocodeAdresse, action.prefixId, action.adresse);
       }
       return {
         ...state,
-        geocodeAdresses: geocodeToDelete,
+        fields: fieldsAdresse,
+        geocodeAdresses: geocodeAdresse,
+        listeAdresses: null,
+      };
+    case 'SET_ADRESSE_INTROUVABLE':
+      let fieldsAdresseIntrouvable = state?.fields ?? [];
+      fieldsAdresseIntrouvable = nettoyageFields(
+        fieldsAdresseIntrouvable,
+        action.prefixId,
+        ['numeroVoie', 'rueVoie', 'codePostal', 'codeCommune', 'ville', 'location']);
+      fieldsAdresseIntrouvable = nettoyageState(fieldsAdresseIntrouvable);
+      return {
+        ...state,
+        fields: fieldsAdresseIntrouvable,
+        geocodeAdresses: [],
+        listeAdresses: null,
+      };
+    case 'LISTE_ADRESSES_REBOOT': {
+      let geocodeAdressesReboot = state?.geocodeAdresses ?? null;
+      geocodeAdressesReboot = updateGeocode(geocodeAdressesReboot, action.prefixId);
+      return {
+        ...state,
+        listeAdresses: [],
+        geocodeAdresses: geocodeAdressesReboot,
+      };
+    }
+    case 'GEOCODE_ADRESSE_REBOOT':
+      let geocodeReboot = state?.geocodeAdresses ?? [];
+      geocodeReboot = updateGeocode(geocodeReboot, action.prefixId);
+      return {
+        ...state,
+        geocodeAdresses: geocodeReboot,
       };
     case 'POST_PERMANENCE_REQUEST':
       return {
@@ -245,7 +336,7 @@ export default function permanence(state = initialState, action) {
         ...state,
         isCreated: false,
         showError: true,
-        error: action.error,
+        error: action.error?.message ?? action.error,
       };
     case 'UPDATE_PERMANENCE_REQUEST':
       return {
@@ -294,13 +385,13 @@ export default function permanence(state = initialState, action) {
         ...state,
         loadingDeleted: false,
         showErrorDeleted: true,
-        errorDeleted: action.error,
+        errorDeleted: action.error?.message ?? action.error,
       };
     case 'DELETE_CONSEILLER_PERMANENCE_REQUEST' :
       return {
         ...state,
         isConseillerDeleted: false,
-        loadingConseillerDeleted: true,
+        loading: true,
         showErrorConseillerDeleted: false,
         errorConseillerDeleted: false,
       };
@@ -308,14 +399,14 @@ export default function permanence(state = initialState, action) {
       return {
         ...state,
         isConseillerDeleted: action.isConseillerDeleted,
-        loadingConseillerDeleted: false,
+        loading: false,
       };
     case 'DELETE_CONSEILLER_PERMANENCE_FAILURE' :
       return {
         ...state,
-        loadingConseillerDeleted: false,
+        loading: false,
         showErrorConseillerDeleted: true,
-        errorConseillerDeleted: action.error,
+        errorConseillerDeleted: action.error?.message ?? action.error,
       };
     case 'RESERVE_LIEU_ACTIVITE':
       const reservation = action.reservationPermanence ?? [];
@@ -353,7 +444,7 @@ export default function permanence(state = initialState, action) {
         ...state,
         isReporter: false,
         showErrorReporter: true,
-        errorReporter: action.error,
+        errorReporter: action.error?.message ?? action.error,
       };
     case 'UPDATE_STATUT_FORM_REQUEST':
       return {
@@ -371,7 +462,7 @@ export default function permanence(state = initialState, action) {
     case 'UPDATE_STATUT_FORM_FAILURE':
       return {
         ...state,
-        error: action.error,
+        error: action.error?.message ?? action.error,
         isUpdated: false,
         showError: true,
         isEnded: false

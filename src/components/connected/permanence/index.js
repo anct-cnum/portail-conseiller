@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Spinner from 'react-loader-spinner';
 import { conseillerActions, permanenceActions } from '../../../actions';
 import { userEntityId, history } from '../../../helpers';
 
@@ -15,6 +16,7 @@ import Banner from './Banner';
 function Permanence() {
   const dispatch = useDispatch();
   const urlCartographie = process.env.REACT_APP_CARTOGRAPHIE_URL;
+  const loading = useSelector(state => state.permanence?.loading);
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const structure = useSelector(state => state.structure?.structure);
   const listPermanences = useSelector(state => state.permanence?.permanences);
@@ -25,9 +27,9 @@ function Permanence() {
   const errorAllUpdated = useSelector(state => state.permanence?.errorAllUpdated);
   const isEnded = useSelector(state => state.permanence?.isEnded);
 
-  const isDeleted = useSelector(state => state.permanence.isDeleted);
-  const isConseillerDeleted = useSelector(state => state.permanence.isConseillerDeleted);
-  const isAllUpdated = useSelector(state => state.permanence.isAllUpdated);
+  const isDeleted = useSelector(state => state.permanence?.isDeleted);
+  const isConseillerDeleted = useSelector(state => state.permanence?.isConseillerDeleted);
+  const isAllUpdated = useSelector(state => state.permanence?.isAllUpdated);
   const redirection = useSelector(state => state.permanence?.redirection);
   // eslint-disable-next-line max-len
   const permanencePrincipale = listPermanences && listPermanences.find(permanence => permanence?.lieuPrincipalPour.includes(conseiller?._id));
@@ -62,6 +64,15 @@ function Permanence() {
 
   return (
     <>
+      <div className="spinnerCustom">
+        <Spinner
+          type="Oval"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          visible={loading === true }
+        />
+      </div>
       {conseiller &&
       <>
         { location.pathname !== '/lieux-activite' &&
