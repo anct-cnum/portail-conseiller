@@ -86,7 +86,7 @@ function SelectCP({ voirInformation }) {
           <button id="buttonCP"
             onClick={onClickButton}
             className={`${cra?.cp === undefined ? 'buttonCP' : 'buttonCP-filled'} ${cra?.buttonCP ? ' show' : ''}`}>
-            {cra?.cp === undefined ? 'Entrez le code postal ou la commune' : cra.cp}
+            {cra?.cp === undefined ? 'Entrez le code postal ou la commune' : cra.cp.split(' ')[0] + ' ' + cra.cp.split(' ').splice(2).join(' ') }
             <div className={`${cra.cp ? 'hide' : 'show'}`}>Saisissez au moins 3 caract&egrave;res</div>
           </button>
           }
