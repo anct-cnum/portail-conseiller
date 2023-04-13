@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
 import { getCraValue } from '../utils/CraFunctions';
@@ -7,9 +7,7 @@ import { getCraValue } from '../utils/CraFunctions';
 function BigRadioButton({ type, label, value, image, imageSelected, heightImage, classDiv }) {
 
   const dispatch = useDispatch();
-  const cra = useSelector(state => state.cra);
   let controlSelected = getCraValue(type);
-
   const onClickRadio = () => {
     switch (type) {
       case 'canal':
@@ -17,21 +15,6 @@ function BigRadioButton({ type, label, value, image, imageSelected, heightImage,
         break;
       case 'activite':
         dispatch(craActions.updateActivite(value));
-        break;
-      case 'accompagnement':
-        if (cra?.nbParticipants > cra?.nbParticipantsAccompagnement) {
-          const accompagnement = cra?.accompagnement;
-          for (let key in cra?.accompagnement) {
-            if (key === value) {
-              accompagnement[key] += 1;
-            }
-          }
-          dispatch(craActions.updateAccompagnement(accompagnement, cra?.nbParticipantsAccompagnement + 1));
-          if (value === 'redirection') {
-            dispatch(craActions.updateOrganisme(null));
-            dispatch(craActions.showSelectRedirection(true));
-          }
-        }
         break;
       default:
         break;
