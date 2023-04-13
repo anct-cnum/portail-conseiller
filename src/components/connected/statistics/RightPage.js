@@ -62,10 +62,10 @@ function RightPage({ donneesStats, print }) {
   const graphiqueEvolution = {
     graphique: {
       typeGraphique: 'xy',
-      largeurGraphique: 320,
+      largeurGraphique: 620,
       hauteurGraphique: 310,
       margeGaucheGraphique: 80,
-      margeDroiteGraphique: 80,
+      margeDroiteGraphique: 0,
       optionResponsive: false,
       couleursGraphique: tabColorAge,
       largeurGraphiquePrint: 1100,
@@ -150,6 +150,7 @@ function RightPage({ donneesStats, print }) {
             <div className="fr-col-12 evolution-print">
               <span className="graphique-responsive-md-lg ">
                 <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolution} print={print}/>
+                <hr className="fr-mt-6w"/>
               </span>
             </div>
 
@@ -180,11 +181,11 @@ function RightPage({ donneesStats, print }) {
           </div>
         </div>
       </div>
-
+      {/*
       <div className="fr-col-12 graphique-responsive-md dont-print">
         <div className="fr-container-fluid">
           <div className="fr-grid-row ">
-            {/*  <div className="fr-col-12 fr-col-md-5 hr-sm-hide">
+           <div className="fr-col-12 fr-col-md-5 hr-sm-hide">
               <div className="fr-m-6w fr-m-xs-to-md-7v"><hr/></div>
             </div>
 
@@ -201,13 +202,13 @@ function RightPage({ donneesStats, print }) {
 
             <div className="fr-col-12 fr-col-md-6">
               <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphiqueSm} print={print}/>
-            </div>*/}
+            </div>
 
           </div>
         </div>
       </div>
       <div className="fr-col-12 fr-mb-6w only-print theme-print">
-        {/*
+
           <div className="mozilla-espace-block"></div>
            <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphique} print={true}/>
           </div>
@@ -217,8 +218,8 @@ function RightPage({ donneesStats, print }) {
           <div className="fr-col-12 fr-mb-6w only-print duree-print">
             <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphique} print={true}/>
           </div>
-         */}
-      </div>
+
+      </div>     */}
     </>
   );
 }

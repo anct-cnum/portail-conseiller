@@ -56,7 +56,7 @@ function BottomPage({ donneesStats, print, type }) {
   const graphiqueAge = {
     graphique: {
       typeGraphique: 'stacked',
-      largeurGraphique: 280,
+      largeurGraphique: 540,
       hauteurGraphique: 300,
       margeGaucheGraphique: 0,
       margeDroiteGraphique: 0,
@@ -76,7 +76,7 @@ function BottomPage({ donneesStats, print, type }) {
   const graphiqueStatut = {
     graphique: {
       typeGraphique: 'stacked',
-      largeurGraphique: 280,
+      largeurGraphique: 540,
       hauteurGraphique: 300,
       margeGaucheGraphique: 0,
       margeDroiteGraphique: 0,
@@ -249,7 +249,6 @@ function BottomPage({ donneesStats, print, type }) {
       <div className="fr-col-12 dont-print">
         <div className="fr-grid-row">
           <div className="fr-col-12 fr-col-md-5 fr-col-lg-6 age-print">
-            <div className="fr-mt-6w fr-mb-5w fr-m-xs-to-md-7v"><hr className="dont-print"/></div>
             <ElementHighcharts donneesStats={statsAges} variablesGraphique={graphiqueAge} print={print}/>
           </div>
           {/**
@@ -261,10 +260,23 @@ function BottomPage({ donneesStats, print, type }) {
               </>
             }
           </div>
+
+
+            <div className="fr-mt-6w fr-mb-5w fr-m-xs-to-md-7v dont-print"><hr/></div>
+            <div className="fr-mt-6w fr-mb-5w fr-m-xs-to-md-7v"><hr className="dont-print"/></div>
           */}
           <div className="fr-col-12 fr-col-md-5 fr-col-lg-6 statut-print">
-            <div className="fr-mt-6w fr-mb-5w fr-m-xs-to-md-7v dont-print"><hr/></div>
             <ElementHighcharts donneesStats={statsUsagers} variablesGraphique={graphiqueStatut} print={print}/>
+          </div>
+
+          <div className="fr-col-12 fr-col-md-3 dont-print">
+            <hr/>
+          </div>
+          <div className="fr-col-12 fr-col-md-3 fr-col-offset-1 dont-print">
+            <hr/>
+          </div>
+          <div className="fr-col-12 fr-col-md-3 fr-col-offset-1 dont-print">
+            <hr/>
           </div>
 
           <div className="fr-col-12 fr-col-md-4 dont-print">

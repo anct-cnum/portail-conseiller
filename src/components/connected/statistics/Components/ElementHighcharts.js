@@ -78,7 +78,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
       margin: margeTitre,
       x: placementTitre,
       y: print ? 50 : 13,
-      width: print ? 800 : 300,
+      width: print ? 800 : 400,
       align: 'left',
       style: {
         color: print ? '#1e1e1e' : '#fff',
