@@ -42,9 +42,6 @@ function LeftPage({ donneesStats, type }) {
         nbReconduction={donneesStats?.nbReconduction}
         caracteresSpeciaux="%"
       />
-      <div className="fr-mb-11w fr-m-xs-to-md-7v"></div>
-      <hr className="dont-print" />
-      <div className="fr-m-xs-to-md-7v"></div>
     </div>
 
   );

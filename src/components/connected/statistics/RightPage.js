@@ -6,7 +6,9 @@ import ElementHighcharts from './Components/ElementHighcharts';
 
 function RightPage({ donneesStats, print }) {
 
-  const tabColorTheme = ['#cac5b0', '#abb8df', '#fdcf41', '#169b62', '#80d5c6', '#ff8d7e', '#714753', '#956052', '#ddb094', '#5770be', '#ffed33', '#be9b31'];
+  const tabColorTheme = [
+    '#cac5b0', '#abb8df', '#fdcf41', '#169b62', '#80d5c6', '#ff8d7e', '#714753', '#956052', '#ddb094',
+    '#5770be', '#ffed33', '#be9b31', '#95e257', '#0067e2', '#ffca00', '#ffca00', '#ececfe', '#f767ef'];
   const tabColorAge = ['#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e'];
 
   const get4lastMonths = (month, year) => {
@@ -68,7 +70,7 @@ function RightPage({ donneesStats, print }) {
       margeDroiteGraphique: 0,
       optionResponsive: false,
       couleursGraphique: tabColorAge,
-      largeurGraphiquePrint: 1100,
+      largeurGraphiquePrint: 800,
       hauteurGraphiquePrint: 500,
       margeGaucheGraphiquePrint: 100,
       margeDroiteGraphiquePrint: 200,
@@ -82,7 +84,7 @@ function RightPage({ donneesStats, print }) {
   const graphiqueEvolutionSM = {
     graphique: {
       typeGraphique: 'xy',
-      largeurGraphique: 320,
+      largeurGraphique: null,
       hauteurGraphique: 310,
       margeGaucheGraphique: 40,
       margeDroiteGraphique: 70,
@@ -92,7 +94,7 @@ function RightPage({ donneesStats, print }) {
     titre: {
       optionTitre: '&Eacute;volution des comptes rendus d&rsquo;activit&eacute',
       margeTitre: 48,
-      placementTitre: 10,
+      placementTitre: 0,
     }
   };
 
@@ -105,9 +107,9 @@ function RightPage({ donneesStats, print }) {
       margeDroiteGraphique: 0,
       optionResponsive: false,
       couleursGraphique: tabColorTheme,
-      largeurGraphiquePrint: 1100,
-      hauteurGraphiquePrint: 500,
-      margeGaucheGraphiquePrint: 300,
+      largeurGraphiquePrint: 800,
+      hauteurGraphiquePrint: 380,
+      margeGaucheGraphiquePrint: 220,
       margeDroiteGraphiquePrint: 0,
     },
     titre: {
@@ -150,77 +152,29 @@ function RightPage({ donneesStats, print }) {
             <div className="fr-col-12 evolution-print">
               <span className="graphique-responsive-md-lg ">
                 <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolution} print={print}/>
-                <hr className="fr-mt-6w"/>
+
               </span>
             </div>
-
-            {/*
-            <div className="fr-col-12 fr-col-lg-6">
-              <ElementHighcharts donneesStats={statsTempsAccompagnements} variablesGraphique={pieGraphiqueSmTemps} print={print}/>
-            </div>
-
-            <div className="fr-col-12 fr-col-lg-6 dont-print">
-              <div className="fr-ml-md-6w">
-                <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphiqueSm} print={print}/>
-              </div>
-            </div>
-           */}
           </div>
         </div>
       </div>
 
-      <div className="fr-col-12 fr-col-md-5 graphique-responsive-md dont-print">
-
-        <div className="fr-container-fluid">
-          <div className="fr-grid-row ">
-            {/*
-            <div className="fr-col-12">
-              <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphiqueSm} print={print}/>
-            </div>
-            */}
-          </div>
-        </div>
-      </div>
-      {/*
       <div className="fr-col-12 graphique-responsive-md dont-print">
-        <div className="fr-container-fluid">
-          <div className="fr-grid-row ">
-           <div className="fr-col-12 fr-col-md-5 hr-sm-hide">
-              <div className="fr-m-6w fr-m-xs-to-md-7v"><hr/></div>
-            </div>
-
-            <div className="fr-col-offset-md-1"></div>
-
-            <div className="fr-col-12 fr-col-md-5">
-              <div className="fr-m-xs-to-md-7v"><hr/></div>
-            </div>
-
-
-            <div className="fr-col-12 hr-md-hide dont-print">
-              <div className="fr-m-6w fr-m-xs-to-md-7v"><hr/></div>
-            </div>
-
-            <div className="fr-col-12 fr-col-md-6">
-              <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphiqueSm} print={print}/>
-            </div>
-
-          </div>
-        </div>
+        <hr className="fr-my-6w"/>
+        <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphiqueSm} print={print}/>
+        <hr className="fr-my-6w"/>
+        <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolutionSM} print={print}/>
       </div>
+
       <div className="fr-col-12 fr-mb-6w only-print theme-print">
-
-          <div className="mozilla-espace-block"></div>
-           <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphique} print={true}/>
-          </div>
-          <div className="fr-col-12 only-print lieux-print">
-            <ElementHighcharts donneesStats={statsTempsAccompagnements} variablesGraphique={pieGraphiqueTemps} print={true}/>
-          </div>
-          <div className="fr-col-12 fr-mb-6w only-print duree-print">
-            <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphique} print={true}/>
-          </div>
-
-      </div>     */}
+        <div className="mozilla-espace-block"></div>
+        <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphique} print={true}/>
+      </div>
+      <div className="fr-col-12 fr-mb-6w only-print evolution-print">
+        <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolution} print={print}/>
+      </div>
     </>
+
   );
 }
 

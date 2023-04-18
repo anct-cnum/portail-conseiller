@@ -82,7 +82,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
       align: 'left',
       style: {
         color: print ? '#1e1e1e' : '#fff',
-        fontSize: print ? '2.5rem' : '16px',
+        fontSize: print ? '2rem' : '16px',
         fontWeight: 'bold',
         lineHeight: '24px'
       }

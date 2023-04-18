@@ -297,6 +297,9 @@
     }
   }
   @media (max-width: 767px) {
+    .marge-left {
+      margin-left: 5rem;
+    }
     .numbers-renewal, .many-numbers {
       text-align: left;
     }
@@ -428,6 +431,10 @@
       height: 625px;
     }
     .evolution-print {
+      height: 825px;
+    }
+    .reorientation-print, .reorientation-print-conseiller {
+      display: block;
       height: 825px;
     }
     .nationale-print {

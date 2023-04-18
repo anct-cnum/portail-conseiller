@@ -15,12 +15,11 @@ function BottomPage({ donneesStats, print, type }) {
 
   const tabColorAge = ['#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e'];
   const tabColorStatut = ['#a2b4b1', '#ffdbd2', '#a3a6bc', '#ddb094', '#fff480'];
+  const tabColorCanaux = ['#ff8d7e', '#ffcc9f', '#5770be', '#466964'];
   const tabColorLieux = ['#ff007a', '#6945bd', '#c6c9ae', '#ff5e3b', '#00ba8e', '#a2b4b1', '#ffdbd2', '#a3a6bc', '#ddb094', '#fff480'];
-  const tabColorTemps = ['', '#76adf8', '#a96751', '#496b30'];
+  const tabColorTemps = ['#2e2e2e', '#76adf8', '#a96751', '#496b30'];
   const tabColorDuree = ['#abcdf5', '#abcdf5', '#abcdf5', '#abcdf5'];
   const { statsUsagers, statsAges, statsTempsAccompagnements, statsDurees, statsLieux, statsReorientations } = donneesStats;
-
-
 
   //Tri liste des réorientations autres
   if (statsReorientations?.length > 0) {
@@ -52,6 +51,26 @@ function BottomPage({ donneesStats, print, type }) {
       dispatch(statistiqueActions.updateListeAutresReorientations(listeAutresReorientations));
     }
   }
+  
+  const formatNameCraActiviter = activiter => {
+    switch (activiter) {
+      case 'collectif':
+        return 'Collectives';
+      case 'individuel':
+        return 'Individuelles';
+      case 'ponctuel':
+        return 'Ponctuelles';
+      default:
+        return activiter;
+    }
+  };
+  const legendTempAccompagnement = {
+    labelFormatter: function() {
+      const activiter = formatNameCraActiviter(this.name);
+      const tempsAccompagnement = statsTempsAccompagnements.find(stats => stats?.nom === this.name);
+      return `${activiter}: ${tempsAccompagnement?.temps}`;
+    }
+  };
 
   const graphiqueAge = {
     graphique: {
@@ -62,8 +81,8 @@ function BottomPage({ donneesStats, print, type }) {
       margeDroiteGraphique: 0,
       optionResponsive: false,
       couleursGraphique: tabColorAge,
-      largeurGraphiquePrint: 1100,
-      hauteurGraphiquePrint: 300,
+      largeurGraphiquePrint: 800,
+      hauteurGraphiquePrint: 350,
       margeGaucheGraphiquePrint: 0,
       margeDroiteGraphiquePrint: 0,
     },
@@ -82,8 +101,8 @@ function BottomPage({ donneesStats, print, type }) {
       margeDroiteGraphique: 0,
       optionResponsive: false,
       couleursGraphique: tabColorStatut,
-      largeurGraphiquePrint: 1100,
-      hauteurGraphiquePrint: 300,
+      largeurGraphiquePrint: 800,
+      hauteurGraphiquePrint: 350,
       margeGaucheGraphiquePrint: 0,
       margeDroiteGraphiquePrint: 0,
     },
@@ -101,32 +120,15 @@ function BottomPage({ donneesStats, print, type }) {
       margeGaucheGraphique: 0,
       margeDroiteGraphique: 10,
       optionResponsive: false,
-      couleursGraphique: tabColorLieux,
-      largeurGraphiquePrint: 1100,
-      hauteurGraphiquePrint: 400,
+      couleursGraphique: tabColorCanaux,
+      largeurGraphiquePrint: 850,
+      hauteurGraphiquePrint: 320,
       margeGaucheGraphiquePrint: 0,
       margeDroiteGraphiquePrint: 10,
     },
     titre: {
       optionTitre: 'Canaux d&rsquo;accompagnements',
       margeTitre: 48,
-      placementTitre: 0
-    }
-  };
-
-  const pieGraphiqueSm = {
-    graphique: {
-      typeGraphique: 'pie',
-      largeurGraphique: 300,
-      hauteurGraphique: 320,
-      margeGaucheGraphique: 0,
-      margeDroiteGraphique: 10,
-      optionResponsive: true,
-      couleursGraphique: tabColorLieux
-    },
-    titre: {
-      optionTitre: 'Canaux d&rsquo;accompagnements',
-      margeTitre: -17,
       placementTitre: 0
     }
   };
@@ -138,33 +140,17 @@ function BottomPage({ donneesStats, print, type }) {
       hauteurGraphique: 320,
       margeGaucheGraphique: 0,
       margeDroiteGraphique: 10,
+      optionLegend: legendTempAccompagnement,
       optionResponsive: false,
       couleursGraphique: tabColorTemps,
-      largeurGraphiquePrint: 1100,
-      hauteurGraphiquePrint: 400,
+      largeurGraphiquePrint: 850,
+      hauteurGraphiquePrint: 320,
       margeGaucheGraphiquePrint: 0,
       margeDroiteGraphiquePrint: 10,
     },
     titre: {
       optionTitre: 'Temps en accompagnement',
       margeTitre: 48,
-      placementTitre: 0
-    }
-  };
-
-  const pieGraphiqueSmTemps = {
-    graphique: {
-      typeGraphique: 'pie',
-      largeurGraphique: 300,
-      hauteurGraphique: 320,
-      margeGaucheGraphique: 0,
-      margeDroiteGraphique: 10,
-      optionResponsive: true,
-      couleursGraphique: tabColorTemps
-    },
-    titre: {
-      optionTitre: 'Temps en accompagnement',
-      margeTitre: -17,
       placementTitre: 0
     }
   };
@@ -178,8 +164,8 @@ function BottomPage({ donneesStats, print, type }) {
       margeDroiteGraphique: 55,
       optionResponsive: false,
       couleursGraphique: tabColorDuree,
-      largeurGraphiquePrint: 1100,
-      hauteurGraphiquePrint: 450,
+      largeurGraphiquePrint: 850,
+      hauteurGraphiquePrint: 500,
       margeGaucheGraphiquePrint: 55,
       margeDroiteGraphiquePrint: 55,
     },
@@ -231,8 +217,7 @@ function BottomPage({ donneesStats, print, type }) {
       margeGaucheGraphique: -730,
       optionResponsive: false,
       couleursGraphique: tabColorLieux,
-
-      largeurGraphiquePrint: 1100,
+      largeurGraphiquePrint: 850,
       hauteurGraphiquePrint: 500,
       margeGaucheGraphiquePrint: -315,
       margeDroiteGraphiquePrint: 0,
@@ -246,87 +231,92 @@ function BottomPage({ donneesStats, print, type }) {
 
   return (
     <>
-      <div className="fr-col-12 dont-print">
+      <div className="fr-col-11">
+        <hr className="dont-print fr-my-6w" />
+      </div>
+      <div className="fr-col-12">
         <div className="fr-grid-row">
-          <div className="fr-col-12 fr-col-md-5 fr-col-lg-6 age-print">
+          <div className="fr-col-12 fr-col-md-5 fr-col-lg-5 age-print">
             <ElementHighcharts donneesStats={statsAges} variablesGraphique={graphiqueAge} print={print}/>
           </div>
-          {/**
-           <div className="fr-col-12 fr-col-md-5 graphique-responsive-md dont-print">
-            {statsReorientations?.length > 0 &&
-              <>
-                <div className="fr-mt-6w fr-mb-5w fr-m-xs-to-md-7v"><hr/></div>
-                <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientationsSM} print={print}/>
-              </>
-            }
-          </div>
-
-
-            <div className="fr-mt-6w fr-mb-5w fr-m-xs-to-md-7v dont-print"><hr/></div>
-            <div className="fr-mt-6w fr-mb-5w fr-m-xs-to-md-7v"><hr className="dont-print"/></div>
-          */}
-          <div className="fr-col-12 fr-col-md-5 fr-col-lg-6 statut-print">
+          {!print &&
+            <div className="fr-col-12 dont-print hr-md-hide">
+              <hr className="fr-my-6w"/>
+            </div>
+          }
+          <div className="fr-col-12 fr-col-offset-md-1 fr-col-md-5 fr-col-lg-5 statut-print">
             <ElementHighcharts donneesStats={statsUsagers} variablesGraphique={graphiqueStatut} print={print}/>
           </div>
 
-          <div className="fr-col-12 fr-col-md-3 dont-print">
+          <div className="fr-col-12 fr-col-md-3 fr-mb-6w hr-sm-hide dont-print">
             <hr/>
           </div>
-          <div className="fr-col-12 fr-col-md-3 fr-col-offset-1 dont-print">
+          <div className="fr-col-12 fr-col-md-3 fr-col-offset-1 hr-sm-hide dont-print">
             <hr/>
           </div>
-          <div className="fr-col-12 fr-col-md-3 fr-col-offset-1 dont-print">
+          <div className="fr-col-12 fr-col-md-3 fr-col-offset-1 hr-sm-hide dont-print">
             <hr/>
+          </div>
+          <div className="fr-col-12 hr-md-hide dont-print">
+            <hr className="fr-my-6w"/>
           </div>
 
           <div className="fr-col-12 fr-col-md-4 dont-print">
             <ElementHighcharts donneesStats={statsLieux} variablesGraphique={pieGraphique} print={print}/>
           </div>
-
-          <div className="fr-col-12 fr-col-md-4 dont-print">
+          <div className="fr-col-12 hr-md-hide dont-print">
+            <hr className="fr-my-6w"/>
+          </div>
+          <div className="fr-col-12 fr-col-md-4 dont-print" >
             <ElementHighcharts donneesStats={statsTempsAccompagnements} variablesGraphique={pieGraphiqueTemps} print={print}/>
           </div>
-
-          <div className="fr-col-12 fr-col-lg-4 dont-print">
+          <div className="fr-col-12 hr-md-hide dont-print">
+            <hr className="fr-my-6w"/>
+          </div>
+          <div className="fr-col-12 fr-col-md-4 dont-print">
             <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphiqueSm} print={print}/>
           </div>
-
-
-
-          <div className={type === 'conseiller' ? 'fr-col-12 fr-col-offset-md-4 fr-col-md-8 graphique-responsive-lg reorientation-print-conseiller' :
-            'fr-col-12 fr-col-offset-md-4 fr-col-md-8 graphique-responsive-lg reorientation-print'}
-          >
-            <div className="fr-mt-6w"></div>
+          <div className="fr-col-12 graphique-responsive-md dont-print">
             {statsReorientations?.length > 0 &&
-              <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientations}
-                listeAutres={listeAutresReorientations} print={print}/>
+              <>
+                <hr className="fr-my-6w"/>
+                <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientationsSM} print={print}/>
+              </>
             }
-            <div className="fr-m-no-reorientation"></div>
           </div>
         </div>
       </div>
 
+      <div className={`fr-col-12 only-print ${print ? '' : 'duree-print'}`}>
+        {!print &&
+          <div className="mozilla-espace-block"></div>
+        }
+        <ElementHighcharts donneesStats={statsLieux} variablesGraphique={pieGraphique} print={true}/>
+      </div>
+      <div className={`fr-col-12 only-print ${print ? '' : 'duree-print'}`}>
+        {!print &&
+          <div className="mozilla-espace-block"></div>
+        }
+        <ElementHighcharts donneesStats={statsTempsAccompagnements} variablesGraphique={pieGraphiqueTemps} print={true}/>
+      </div>
+      <div className={`fr-col-12 only-print ${print ? '' : 'lieux-print'}`}>
+        {!print &&
+          <div className="mozilla-espace-block"></div>
+        }
+        <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphique} print={true}/>
+      </div>
 
-      {/*
-        </div>
-      </div>
-      <div className="fr-col-12 fr-mb-6w only-print" >
-        <ElementHighcharts donneesStats={statsAges} variablesGraphique={graphiqueAge} print={true}/>
-      </div>
-      <div className="fr-col-12 fr-mb-6w only-print" >
-        <ElementHighcharts donneesStats={statsUsagers} variablesGraphique={graphiqueStatut} print={true}/>
-      </div>
-      <div className="fr-col-12 fr-mb-6w only-print evolution-print">
-        <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolution} print={true}/>
-      </div>
-      <div className="fr-col-12 only-print">
+      <div className={type === 'conseiller' ?
+        'fr-col-12 fr-col-offset-md-4 fr-col-md-8 graphique-responsive-lg reorientation-print-conseiller' :
+        'fr-col-12 fr-col-offset-md-4 fr-col-md-8 graphique-responsive-lg reorientation-print'}
+      >
+        <hr className="fr-my-6w"/>
         {statsReorientations?.length > 0 &&
           <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientations}
-            listeAutres={listeAutresReorientations} print={true}/>
+            listeAutres={listeAutresReorientations} print={print}/>
         }
+        <div className="fr-m-no-reorientation"></div>
       </div>
-
-    */}
     </>
   );
 }
