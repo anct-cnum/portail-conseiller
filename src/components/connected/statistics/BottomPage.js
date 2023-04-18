@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ReactTooltip from 'react-tooltip';
 import { useDispatch, useSelector } from 'react-redux';
 import 'moment/locale/fr';
 import ElementHighcharts from './Components/ElementHighcharts';
@@ -51,26 +52,6 @@ function BottomPage({ donneesStats, print, type }) {
       dispatch(statistiqueActions.updateListeAutresReorientations(listeAutresReorientations));
     }
   }
-  
-  const formatNameCraActiviter = activiter => {
-    switch (activiter) {
-      case 'collectif':
-        return 'Collectives';
-      case 'individuel':
-        return 'Individuelles';
-      case 'ponctuel':
-        return 'Ponctuelles';
-      default:
-        return activiter;
-    }
-  };
-  const legendTempAccompagnement = {
-    labelFormatter: function() {
-      const activiter = formatNameCraActiviter(this.name);
-      const tempsAccompagnement = statsTempsAccompagnements.find(stats => stats?.nom === this.name);
-      return `${activiter}: ${tempsAccompagnement?.temps}`;
-    }
-  };
 
   const graphiqueAge = {
     graphique: {
@@ -140,7 +121,6 @@ function BottomPage({ donneesStats, print, type }) {
       hauteurGraphique: 320,
       margeGaucheGraphique: 0,
       margeDroiteGraphique: 10,
-      optionLegend: legendTempAccompagnement,
       optionResponsive: false,
       couleursGraphique: tabColorTemps,
       largeurGraphiquePrint: 850,
@@ -267,9 +247,17 @@ function BottomPage({ donneesStats, print, type }) {
           <div className="fr-col-12 hr-md-hide dont-print">
             <hr className="fr-my-6w"/>
           </div>
-          <div className="fr-col-12 fr-col-md-4 dont-print" >
+          <div className="fr-col-12 fr-col-md-4 dont-print" data-tip={`
+              <span>Comment calculons nous la donn&eacute;e&nbsp;?</span>
+              <ul>
+                <li>30min ou moins =&gt; 30min.</li>
+                <li>30min &agrave; 1h =&gt; 1h.</li>
+                <li>Au del&agrave; d&rsquo;1h nous prenons le temps exact renseign&eacute;.</li>
+              </ul>
+          `} >
             <ElementHighcharts donneesStats={statsTempsAccompagnements} variablesGraphique={pieGraphiqueTemps} print={print}/>
           </div>
+          <ReactTooltip html={true} className="infobulle tooltip-temps" arrowColor="white"/>
           <div className="fr-col-12 hr-md-hide dont-print">
             <hr className="fr-my-6w"/>
           </div>
