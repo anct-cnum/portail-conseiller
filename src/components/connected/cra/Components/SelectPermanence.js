@@ -61,11 +61,11 @@ function SelectPermanence({ voirInformation }) {
                     <div className="nomEnseigne">{permanence.nomEnseigne?.length > 40 ?
                       permanence.nomEnseigne?.toUpperCase().substr(0, 40) + ' [...]' : permanence.nomEnseigne?.toUpperCase()}</div>
                     <div className="adresse">
-                      {permanence.adresse?.numeroRue !== 'null' ? permanence.adresse?.numeroRue : ''}
+                      {permanence?.adresse?.numeroRue !== 'null' ? permanence?.adresse?.numeroRue : ''}
                       {
-                        ' ' + permanence.adresse?.rue?.toUpperCase() + ' ' +
-                        permanence.adresse?.codePostal + ' ' +
-                        permanence.adresse?.ville?.toUpperCase()
+                        ' ' + permanence?.adresse?.rue?.toUpperCase() + ' ' +
+                        permanence?.adresse?.codePostal + ' ' +
+                        permanence?.adresse?.ville?.toUpperCase()
                       }
                     </div>
                   </span>

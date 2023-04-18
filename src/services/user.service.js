@@ -75,6 +75,10 @@ function handleResponse(response) {
       logout();
       return Promise.reject({ error: 'Identifiants incorrects' });
     }
+    if (data.user?.passwordCreated === false) {
+      logout();
+      return Promise.reject({ errorActivation: true });
+    }
     return data;
   });
 }

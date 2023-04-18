@@ -21,6 +21,8 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
   const erreurEmail = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'email'])[0]?.[prefixId + 'email'];
   const erreurSiteWeb = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'siteWeb'])[0]?.[prefixId + 'siteWeb'];
   const erreurAdresse = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'adresse'])[0]?.[prefixId + 'adresse'];
+  const erreurCodeCommune = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'codeCommune'])[0]?.[prefixId + 'codeCommune'];
+
   const listeAdresses = useSelector(state => state.permanence?.listeAdresses);
   const loadingAdresses = useSelector(state => state.permanence?.loadingAdresses);
   const erreurAdresseApi = useSelector(state => state.permanence?.errorAdresses);
@@ -118,7 +120,7 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
         <InputText
           textLabel="Entrez l&rsquo;adresse de votre lieu d&rsquo;activit&eacute;"
           baselineInput="Remplissez le champ avec l&rsquo;adresse compl&egrave;te de votre lieu d&rsquo;activit&eacute;"
-          errorInput={erreurAdresse}
+          errorInput={erreurAdresse || erreurCodeCommune}
           nameInput= {prefixId + 'adresse'}
           requiredInput={true}
           valueInput={fields?.filter(field => field.name === prefixId + 'adresse')[0]?.value ?? ''}

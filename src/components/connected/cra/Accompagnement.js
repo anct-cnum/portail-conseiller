@@ -3,13 +3,13 @@ import { useSelector } from 'react-redux';
 
 import BigCountRadioButton from './Components/BigCountRadioButton';
 import SmallRadioButton from './Components/SmallRadioButton';
-import BigRadioButton from './Components/BigRadioButton';
+import BigRadioButtonV2 from './Components/BigRadioButtonV2';
+import BigCountRadioButtonRedirection from './Components/BigCountRadionButtonRedirection';
 
 function Accompagnement() {
 
   const cra = useSelector(state => state.cra);
-  const accompagnement = cra?.accompagnement;
-  const organisme = cra?.organisme;
+  const { nbAccompagnementIndividuel, nbAccompagnementAtelier, nbOrganisme, organisme } = cra;
 
   return (
     <>
@@ -18,17 +18,16 @@ function Accompagnement() {
           <span className="question">L&rsquo;accompagnement va-t-il &ecirc;tre poursuivi&nbsp;? (Optionnel)</span>
         </div>
         <div className="responsiveRadioActivity1">
-          {accompagnement?.individuel === 0 &&
-            <BigRadioButton
+          {nbAccompagnementIndividuel === 0 &&
+            <BigRadioButtonV2
               type="accompagnement"
               label="Accompagnement individuel"
               value="individuel"
-              image="/logos/cra/logo-acc-individuel.svg"
-              imageSelected="/logos/cra/logo-acc-individuel-n.svg"
-              heightImage="56px"
-              classDiv="accIndividuel"/>
+              image="logoIndividuel"
+              classDiv="accIndividuel"
+            />
           }
-          {accompagnement?.individuel > 0 &&
+          {nbAccompagnementIndividuel > 0 &&
             <BigCountRadioButton
               type="accompagnement"
               value="individuel"
@@ -36,17 +35,16 @@ function Accompagnement() {
           }
         </div>
         <div className="responsiveRadioActivity2">
-          {accompagnement?.atelier === 0 &&
-            <BigRadioButton
+          {nbAccompagnementAtelier === 0 &&
+            <BigRadioButtonV2
               type="accompagnement"
               label="En atelier"
               value="atelier"
-              image="/logos/cra/logo-atelier.svg"
-              imageSelected="/logos/cra/logo-atelier-n.svg"
-              heightImage="56px"
-              classDiv="atelierCollectif"/>
+              image="logoAtelier"
+              classDiv="atelierCollectif"
+            />
           }
-          {accompagnement?.atelier > 0 &&
+          {nbAccompagnementAtelier > 0 &&
             <BigCountRadioButton
               type="accompagnement"
               value="atelier"
@@ -54,38 +52,36 @@ function Accompagnement() {
           }
         </div>
         <div className="responsiveRadioActivity3Big">
-          {accompagnement?.redirection === 0 &&
-            <BigRadioButton
+          { nbOrganisme === 0 &&
+            <BigRadioButtonV2
               type="accompagnement"
               label="Redirection vers une structure"
               value="redirection"
-              image="/logos/cra/logo-redirection-structure.svg"
-              imageSelected="/logos/cra/logo-redirection-structure-n.svg"
-              heightImage="56px"
-              classDiv="demPonctuelle"/>
+              image="logoRedirection"
+              classDiv="accompagnementRedirection"
+            />
           }
-          {accompagnement?.redirection > 0 &&
-            <BigCountRadioButton
-              type="accompagnement"
-              value="redirection"
-              label={organisme ?? 'Redirection vers ...'}/>
+          { nbOrganisme > 0 &&
+            <BigCountRadioButtonRedirection
+              label={organisme ?? 'Selectionnez une autre structure'}
+              value={organisme ?? null}
+            />
           }
         </div>
         <div className="responsiveRadioActivity3Small">
-          {accompagnement?.redirection === 0 &&
+          {nbOrganisme === 0 &&
             <SmallRadioButton
               type="accompagnement"
               label="Redirection vers une structure"
               value="redirection"
-              image="/logos/cra/logo-redirection-structure.svg"
-              imageSelected="/logos/cra/logo-redirection-structure-n.svg"
-              heightImage="32px" />
+              image="logoRedirection"
+            />
           }
-          {accompagnement?.redirection > 0 &&
-            <BigCountRadioButton
-              type="accompagnement"
-              value="redirection"
-              label={organisme ?? 'Redirection vers ...'}/>
+          {nbOrganisme > 0 &&
+            <BigCountRadioButtonRedirection
+              label={organisme ?? 'Selectionnez une autre structure'}
+              value={organisme ?? null}
+            />
           }
         </div>
       </div>

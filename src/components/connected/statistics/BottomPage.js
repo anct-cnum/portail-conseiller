@@ -36,7 +36,7 @@ function BottomPage({ donneesStats, print, type }) {
           }
           listDelete.push(i);
         } else {
-          donnees.valeur = Math.round(donnees.valeur);
+          donnees.valeur = Number(Number(donnees.valeur).toFixed(2));
         }
       } else {
         listDelete.push(i);
@@ -47,7 +47,7 @@ function BottomPage({ donneesStats, print, type }) {
       delete statsReorientations[i];
     });
     if (!statsReorientations.find(stats => stats?.nom === 'Autres&#0;')) {
-      donneesAutre.valeur = Math.round(donneesAutre.valeur);
+      donneesAutre.valeur = Number(Number(donneesAutre.valeur).toFixed(2));
       statsReorientations.push(donneesAutre);
       dispatch(statistiqueActions.updateListeAutresReorientations(listeAutresReorientations));
     }
