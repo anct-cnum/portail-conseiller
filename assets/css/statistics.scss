@@ -13,6 +13,11 @@
     font-size: 14px;
     height: 150px;
     width: 280px;
+
+  }
+  .tooltip-temps {
+    width: 350px;
+    text-align: left;
   }
   .title {
     line-height: 64px;
@@ -297,6 +302,9 @@
     }
   }
   @media (max-width: 767px) {
+    .marge-left {
+      margin-left: 5rem;
+    }
     .numbers-renewal, .many-numbers {
       text-align: left;
     }
@@ -428,6 +436,10 @@
       height: 625px;
     }
     .evolution-print {
+      height: 825px;
+    }
+    .reorientation-print, .reorientation-print-conseiller {
+      display: block;
       height: 825px;
     }
     .nationale-print {
