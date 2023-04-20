@@ -76,7 +76,7 @@ function SelectAccompagnement() {
               <div className="styleLiButtonEnregistrer">
                 <button className="styleButtonEnregistrer" onClick={() => {
                   submitLieuRedirection();
-                }}>Enregistrer</button>
+                }}>Ajouter</button>
               </div>
               }
             </div>
