@@ -33,7 +33,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
 
       let libelle = labelsCorrespondance.find(label => label.nom === element.nom)?.correspondance ?? element.nom;
       if (typeGraphique === 'bar') {
-        categories.push(libelle + '&nbsp;&nbsp;&nbsp;&nbsp;<b>' + element.valeur + '</b>');
+        categories.push(libelle + '&nbsp;&nbsp;&nbsp;&nbsp;' + element.pourcent + '%&nbsp;&nbsp;&nbsp;&nbsp;<b>' + element.valeur + '</b>');
       } else {
         categories.push(libelle);
       }
