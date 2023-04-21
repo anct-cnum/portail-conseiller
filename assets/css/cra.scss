@@ -922,7 +922,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       background: $blue-gradient-redirection;
     }
   }
-  .gradient-box button:hover, .gradient-box-redirection button:hover{
+  .gradient-box button:hover, .gradient-box-redirection {
     background: $white-gradient;
     .radioRattachement {
       color: #000;
