@@ -4,14 +4,15 @@ import PropTypes from 'prop-types';
 
 import { craActions } from '../../../../actions';
 import { getCraValue } from '../utils/CraFunctions';
-import ListeAccompagnements from './ListeAccompagnements';
+import Pluralize from 'react-pluralize';
 
 function SmallRadioButton({ type, label, value, image, imageSelected, heightImage }) {
 
   const dispatch = useDispatch();
 
   const cra = useSelector(state => state.cra);
-  const organismes = cra?.organismes;
+  const { organismes, nbAccompagnementRedirection } = cra;
+
   let controlSelected = getCraValue(type);
   const onClickRadio = e => {
     switch (type) {
@@ -44,9 +45,17 @@ function SmallRadioButton({ type, label, value, image, imageSelected, heightImag
         {(type === 'accompagnement' || type === 'activite') &&
           <div className="gradient-box" value={value} >
             {(value === 'redirection' && organismes?.length > 0) &&
-              <div className="radioRattachement gradient-box-redirection">
-                <ListeAccompagnements organismes={organismes} deletable={true} borderTop="0px"/>
-              </div>
+              <button className="radioRattachement gradient-box-redirection">
+                <span className={image} value={value} style={{ display: 'inline-block' }}></span>
+                <span className={`fr-label`} style={{ display: 'inline-block', marginLeft: '15px', position: 'relative', top: '-20px' }} value={value}>
+                  <Pluralize
+                    zero={'personne redirigée'}
+                    singular={'personne redirigée'}
+                    plural={'personnes redirigées'}
+                    count={nbAccompagnementRedirection}
+                    showCount={true} />
+                </span>
+              </button>
             }
             {(value !== 'redirection' || organismes?.length === 0) &&
               <button className="radioRattachement" value={value} style={{ height: '73px' }}>

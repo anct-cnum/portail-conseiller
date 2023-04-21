@@ -279,10 +279,11 @@ export default function cra(state = initialState, action) {
         redirection += orga[Object.keys(orga)[0]];
       });
       const nbParticipantsAccompOrga = updateOrganismeCra.nbAccompagnementAtelier + updateOrganismeCra.nbAccompagnementIndividuel + redirection;
+
       return {
         ...state,
         organisme: null,
-        nbOrganisme: 0,
+        nbOrganisme: nbParticipantsAccompOrga === updateOrganismeCra.nbParticipants ? 0 : 1,
         nbAccompagnementRedirection: redirection,
         nbParticipantsAccompagnement: nbParticipantsAccompOrga,
         organismes: action.organismes,
@@ -298,10 +299,9 @@ export default function cra(state = initialState, action) {
       });
       organismesDeleteCra.nbAccompagnementRedirection -= nbSuppressionOrganisme;
       organismesDeleteCra.nbParticipantsAccompagnement -= nbSuppressionOrganisme;
-
       return {
         ...state,
-        nbOrganisme: 0,
+        nbOrganisme: 1,
         organismes: organismesFiltres,
         nbAccompagnementRedirection: organismesDeleteCra.nbAccompagnementRedirection,
         nbParticipantsAccompagnement: organismesDeleteCra.nbParticipantsAccompagnement,

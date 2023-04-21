@@ -11,6 +11,8 @@ function SelectAccompagnement() {
   const { lieuxReorientation } = LieuxRedirection;
   const [listeFiltreLieux, setListeFiltreLieux] = useState(lieuxReorientation);
 
+  const nbParticipantsAccompagnement = useSelector(state => state.cra?.nbParticipantsAccompagnement);
+  const nbParticipants = useSelector(state => state.cra?.nbParticipants);
   const showSelect = useSelector(state => state.cra?.showSelectRedirection);
   const nbOrganisme = useSelector(state => state.cra?.nbOrganisme);
   const organismes = useSelector(state => state.cra?.organismes);
@@ -54,7 +56,7 @@ function SelectAccompagnement() {
   return (
     <>
       {showSelect &&
-        <div className="gradient-box selectAccompagnementRedirection">
+        <div className="gradient-box-blue selectAccompagnementRedirection">
           <div className="blockListe">
             <ul className="listRedirection" style={{ height: heightListeChoix }}>
               {listeFiltreLieux?.map((lieu, key) =>
@@ -70,14 +72,25 @@ function SelectAccompagnement() {
                   onChange={e => handleLieuRedirectionInput(e.target.value)}/>
               </li>
             </ul>
-            <ListeAccompagnements organismes={organismes} borderTop="1px solid #3558a2" deletable={true}/>
-            <div style={{ borderTop: '1px solid #3558a2', borderBottom: '1px solid #3558a2' }}>
-              {organisme &&
-              <div className="styleLiButtonEnregistrer">
-                <button className="styleButtonEnregistrer" onClick={() => {
-                  submitLieuRedirection();
-                }}>Enregistrer</button>
-              </div>
+
+            <ListeAccompagnements organismes={organismes} deletable={true}/>
+
+            <div style={{ borderBottom: '1px solid #3558a2' }}>
+              {(organisme && nbParticipants >= nbParticipantsAccompagnement) &&
+                <div className="styleLiButtonEnregistrer">
+                  <button className="styleButtonEnregistrer" onClick={() => {
+                    submitLieuRedirection();
+                  }}>
+                    Ajouter
+                  </button>
+                </div>
+              }
+              {(organisme && nbParticipants < nbParticipantsAccompagnement) &&
+                <div className="styleLiButtonEnregistrerDisabled">
+                  <button className="styleButtonEnregistrerDisabled">
+                    Ajouter
+                  </button>
+                </div>
               }
             </div>
           </div>

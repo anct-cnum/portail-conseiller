@@ -2,14 +2,14 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
+import Pluralize from 'react-pluralize';
 import { getCraValue } from '../utils/CraFunctions';
-import ListeAccompagnements from './ListeAccompagnements';
 
 function BigRadioButton({ type, label, value, image, classDiv }) {
 
   const dispatch = useDispatch();
   const cra = useSelector(state => state.cra);
-  const { nbParticipants, organismes } = cra;
+  const { nbParticipants, organismes, nbAccompagnementRedirection } = cra;
   let controlSelected = getCraValue(type);
 
   //Gestion du style du bouton
@@ -71,12 +71,13 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
         break;
       case 'accompagnement':
         let { nbParticipantsAccompagnement, nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbOrganisme } = cra;
-        if (nbParticipants && nbParticipants > nbParticipantsAccompagnement) {
-          if (value === 'redirection') {
-            dispatch(craActions.updateOrganisme(null));
-            dispatch(craActions.showSelectRedirection(true));
-            nbOrganisme++;
-          } else if (value === 'individuel') {
+        if (nbParticipants && value === 'redirection') {
+          dispatch(craActions.updateOrganisme(null));
+          dispatch(craActions.showSelectRedirection(true));
+          nbOrganisme++;
+          dispatch(craActions.updateAccompagnement(nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbOrganisme));
+        } else if (nbParticipants && nbParticipants > nbParticipantsAccompagnement) {
+          if (value === 'individuel') {
             nbAccompagnementIndividuel++;
           } else if (value === 'atelier') {
             nbAccompagnementAtelier++;
@@ -108,9 +109,17 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
       {(type === 'accompagnement' || type === 'activite') &&
         <div className="gradient-box" value={value}>
           {(value === 'redirection' && organismes?.length > 0) &&
-            <div className="radioRattachement gradient-box-redirection">
-              <ListeAccompagnements organismes={organismes} deletable={true} borderTop="0px"/>
-            </div>
+            <button className="radioRattachement gradient-box-redirection">
+              <span className={image} value={value}></span>
+              <span className={`fr-label`} value={value}>
+                <Pluralize
+                  zero={'personne redirigée'}
+                  singular={'personne redirigée'}
+                  plural={'personnes redirigées'}
+                  count={nbAccompagnementRedirection}
+                  showCount={true} />
+              </span>
+            </button>
           }
           {(value !== 'redirection' || organismes?.length === 0) &&
             <button className={styleClass} value={value}>
