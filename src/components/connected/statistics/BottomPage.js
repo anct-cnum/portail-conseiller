@@ -298,10 +298,12 @@ function BottomPage({ donneesStats, print, type }) {
         'fr-col-12 fr-col-offset-md-4 fr-col-md-8 graphique-responsive-lg reorientation-print-conseiller' :
         'fr-col-12 fr-col-offset-md-4 fr-col-md-8 graphique-responsive-lg reorientation-print'}
       >
-        <hr className="fr-my-6w"/>
         {statsReorientations?.length > 0 &&
-          <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientations}
-            listeAutres={listeAutresReorientations} print={print}/>
+          <>
+            <hr className="fr-my-6w"/>
+            <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientations}
+              listeAutres={listeAutresReorientations} print={print}/>
+          </>
         }
         <div className="fr-m-no-reorientation"></div>
       </div>

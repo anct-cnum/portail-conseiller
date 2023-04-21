@@ -133,7 +133,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
             }
             valeurs.push({
               name: labelValeur,
-              y: element.valeur > 0 ? element.valeur : '',
+              y: element.valeur > 0 ? element.valeur : null,
               color: couleursGraphique[i],
               visible: true
             });
