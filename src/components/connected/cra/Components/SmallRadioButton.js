@@ -45,7 +45,7 @@ function SmallRadioButton({ type, label, value, image, imageSelected, heightImag
           <div className="gradient-box" value={value} >
             {(value === 'redirection' && organismes?.length > 0) &&
               <div className="radioRattachement gradient-box-redirection">
-                <ListeAccompagnements organismes={organismes} deletable={true} borderTop="0px"/>
+                <ListeAccompagnements organismes={organismes} deletable={true} />
               </div>
             }
             {(value !== 'redirection' || organismes?.length === 0) &&

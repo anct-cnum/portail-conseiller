@@ -1,7 +1,9 @@
 $black-gradient: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%);
 $white-gradient: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
 $blue-gradient: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
+$blue-gradient-redirection: linear-gradient(0deg, #9A9AFF 0%, #518FFF 96.15%);
 $small-blue-gradient: linear-gradient(0deg,#3558A2,#9A9AFF) border-box;
+$segment-gradient: linear-gradient(360deg, #3558A2 65.63%, #9A9AFF 100%);
 $mask-gradient: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
 $red-gradient: linear-gradient(0deg,red,orange) border-box;
 $errorDarkMode: #ff3333;
@@ -86,6 +88,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     appearance: none;
     margin: 0;
   }
+
 /* Firefox */
   input[type=number] {
     -moz-appearance:textfield;
@@ -349,6 +352,9 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       border-radius: 8px;
       background: #909090;
     }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
   }
   .listeOrganismesSelected {
     width: 100%;
@@ -384,8 +390,9 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     }
   }
   .styleInputValueOrganisme {
-    font-size: 1.5rem;
     text-align: center;
+    font-weight: 600;
+    font-size: 32px;
     width: 100%;
   }
   .styleLiButtonsRedirection {
@@ -393,19 +400,35 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     overflow: auto;
     width: 1000px;
   }
-  .styleLiButtonEnregistrer {
+  .styleLiButtonEnregistrer, .styleLiButtonEnregistrerDisabled {
+    background-color: #43009e;
     text-align: center;
     padding-top: 5px;
     height: 36px;
   }
-
-  .styleButtonEnregistrer {
+  .styleLiButtonEnregistrerDisabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+  }
+  .styleButtonEnregistrer, .styleButtonEnregistrerDisabled {
+    background-color: #43009e;
     text-align: center;
     line-height: 24px;
-    color: #000091;
+    font-weight: 600;
     font-size: 14px;
+    color: #fff;
     &:hover {
       background: none !important;
+      background-color: #43009e !important;
+    }
+  }
+  .styleButtonEnregistrerDisabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+    color: #666;
+    &:hover {
+      background: none !important;
+      background-color: #aaa !important;
     }
   }
   .styleButtonRedirection {
@@ -532,7 +555,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       color: #000 !important;
       .selectionner-autre {
         color: #666666 !important;
-        font-size: 14px;
+        font-size: 14px !important;;
       }
     }
     .logoIndividuel {
@@ -867,7 +890,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
   }
   /** END SQUARE BUTTON TIME **/
   /** START CHECKBOX BUTTON THEMES **/
-  .gradient-box, .inactif-box {
+  .gradient-box, .gradient-box-blue, .inactif-box {
     background: $black-gradient;
     border: solid 1px transparent;
     background-clip: padding-box;
@@ -887,14 +910,31 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       background: $small-blue-gradient;
     }
   }
-  .gradient-box button:hover, .gradient-box-redirection {
+  .gradient-box-blue {
+    background: $blue-gradient-redirection;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      z-index: -1;
+      margin: -1px;
+      border-radius: inherit;
+      background: $blue-gradient-redirection;
+    }
+  }
+  .gradient-box button:hover, .gradient-box-redirection button:hover{
     background: $white-gradient;
     .radioRattachement {
       color: #000;
     }
   }
   .gradient-box-redirection {
-    padding-top: 36px ;
+    .fr-label {
+      color:#000 !important;
+    }
+    .logoRedirection {
+      background: $redirectionSelected !important;
+    }
   }
   .border-top-none {
     border-radius: 0 0 20px 20px !important;
@@ -1727,7 +1767,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
   }
   .selectionner-autre {
     color: #666666 !important;
-    font-size: 14px;
+    font-size: 14px !important;;
   }
   .redirection-btn {
     background: $blue-gradient;

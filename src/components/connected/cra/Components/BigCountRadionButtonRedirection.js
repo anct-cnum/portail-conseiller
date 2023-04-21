@@ -59,7 +59,7 @@ function BigCountRadioButtonRedirection({ label, value }) {
       <div className="gradient-box border-top-none ">
         <button className="radioRattachement radioRattachement-selected" style={{ height: '144px', padding: 0 }}>
           <div className="countRadioLabel" onClick={toggleSelect}>
-            <span className="fr-label" style={{ padding: '10px', color: 'black' }}>
+            <span className="fr-label">
               {value &&
               <>
                 <input className="styleInputValueOrganisme" type="number" min={0} max={100}
@@ -67,7 +67,7 @@ function BigCountRadioButtonRedirection({ label, value }) {
                   onChange={e => {
                     onChangeValue(e);
                   }}/>
-                {label}
+                <span style={{ fontSize: '14px' }}>{label}</span>
               </>
               }
               {value === null &&
