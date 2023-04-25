@@ -272,7 +272,7 @@ export default function permanence(state = initialState, action) {
           ['adresse', 'numeroVoie', 'rueVoie', 'codePostal', 'codeCommune', 'ville', 'location']);
         fieldsAdresse.push({ name: action.prefixId + 'adresse', value: action.adresse.properties?.label?.toUpperCase() });
         fieldsAdresse?.push({ name: action.prefixId + 'numeroVoie', value: action?.adresse?.properties?.housenumber });
-        fieldsAdresse?.push({ name: action.prefixId + 'rueVoie', value: action?.adresse?.properties?.street });
+        fieldsAdresse?.push({ name: action.prefixId + 'rueVoie', value: action?.adresse?.properties?.street ?? action?.adresse?.properties?.locality });
         fieldsAdresse?.push({ name: action.prefixId + 'codePostal', value: action?.adresse?.properties?.postcode });
         fieldsAdresse?.push({ name: action.prefixId + 'ville', value: action?.adresse?.properties?.city?.toUpperCase() });
         fieldsAdresse?.push({ name: action.prefixId + 'codeCommune', value: action?.adresse?.properties?.citycode });
