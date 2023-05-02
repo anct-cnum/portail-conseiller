@@ -107,7 +107,7 @@ function RightPage({ donneesStats, print }) {
       margeDroiteGraphique: 0,
       optionResponsive: false,
       couleursGraphique: tabColorTheme,
-      largeurGraphiquePrint: 800,
+      largeurGraphiquePrint: 880,
       hauteurGraphiquePrint: 380,
       margeGaucheGraphiquePrint: 220,
       margeDroiteGraphiquePrint: 0,
