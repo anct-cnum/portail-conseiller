@@ -3,9 +3,6 @@
   background-color: #1e1e1e !important;
   padding-bottom: 6rem;
 
-  a {
-    background-image: none;
-  }
   .titre {
     line-height: 72px;
     font-weight: 200;
@@ -16,7 +13,7 @@
     line-height: 40px;
     line-height: 32px;
     font-weight: 800;
-    font-size: 32px;
+    font-size: 20px;
 
   }
   .react-datepicker-wrapper {
@@ -31,17 +28,26 @@
   .modif-password:hover {
     color: #929292;
   }
+  .coordinateur-text {
+    position: relative;
+    color: #fff;
+    bottom: 15px;
+    left: 8px;
+  }
   .contact-mail {
     display: flex;
     align-content: center;
     .infos-user {
-      display: flex;
-      line-height: 24px;
-      font-weight: 300;
-      font-size: 16px;
       flex-direction: column;
-      span:first-child {
-        font-weight: 600;
+      line-height: 24px;
+      font-weight: 400;
+      font-size: 16px;
+      display: flex;
+      span {
+        color:#fff;
+      }
+      a, span.fr-link--icon {
+        color: #8585f6;
       }
     }
     img {

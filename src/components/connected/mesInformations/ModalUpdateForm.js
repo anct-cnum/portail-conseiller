@@ -35,6 +35,8 @@ function ModalUpdateForm({ form, showModal, setShowModal, isSupHierarchique = fa
       }, conseiller?._id, user.name, password));
     } else {
       dispatch(formInfoPersonnelActions.updateInfoPersonnel({
+        prenom: form.prenom?.trim(),
+        nom: form.nom?.trim(),
         telephone: formatTelephone(form.telephone, conseiller?.codeDepartement),
         telephonePro: formatTelephone(form.telephonePro, conseiller?.codeDepartement),
         emailPro: form.emailPro?.trim(),

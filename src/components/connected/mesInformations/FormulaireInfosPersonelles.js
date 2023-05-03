@@ -1,28 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { formInfoPersonnelActions } from '../../../actions/infoPersonnel.actions';
-import ModalUpdateForm from './ModalUpdateForm';
-import telephoneHorsMetropole from '../../../data/indicatifs.json';
 import DatePicker, { registerLocale } from 'react-datepicker';
+
+import { formInfoPersonnelActions } from '../../../actions/infoPersonnel.actions';
+import telephoneHorsMetropole from '../../../data/indicatifs.json';
+import ModalUpdateForm from './ModalUpdateForm';
 import fr from 'date-fns/locale/fr';
 
 registerLocale('fr', fr);
+
 function FormulaireInfosPersonnelles() {
-  const conseiller = useSelector(state => state.conseiller?.conseiller);
-  const erreursFormulaire = useSelector(state => state.formulaireInfoPersonnel?.errorsFormulaire);
-  const erreurNumeroTelephone = erreursFormulaire?.errors?.filter(erreur => erreur?.telephone)[0]?.telephone;
-  const erreurNumeroTelephonePro = erreursFormulaire?.errors?.filter(erreur => erreur?.telephonePro)[0]?.telephonePro;
-  const erreurEmailPerso = erreursFormulaire?.errors?.filter(erreur => erreur?.email)[0]?.email;
-  const erreurEmailPro = erreursFormulaire?.errors?.filter(erreur => erreur?.emailPro)[0]?.emailPro;
-  const form = useSelector(state => state.formulaireInfoPersonnel);
-  const structure = useSelector(state => state.structure?.structure);
+
   const dispatch = useDispatch();
 
+  const conseiller = useSelector(state => state.conseiller?.conseiller);
+  const structure = useSelector(state => state.structure?.structure);
+  const form = useSelector(state => state.formulaireInfoPersonnel);
+
+  const erreursFormulaire = useSelector(state => state.formulaireInfoPersonnel?.errorsFormulaire);
+  const erreurPrenom = erreursFormulaire?.errors?.filter(erreur => erreur?.prenom)[0]?.prenom;
+  const erreurNom = erreursFormulaire?.errors?.filter(erreur => erreur?.nom)[0]?.nom;
+  const erreurNumeroTelephone = erreursFormulaire?.errors?.filter(erreur => erreur?.telephone)[0]?.telephone;
+  const erreurEmailPerso = erreursFormulaire?.errors?.filter(erreur => erreur?.email)[0]?.email;
+
   const [inputs, setInputs] = useState({
-    conseillerTelephone: '',
-    conseillerTelephonePro: '',
-    conseillerEmailPro: '',
+    conseillerPrenom: '',
+    conseillerNom: '',
     conseillerEmail: '',
+    conseillerTelephone: '',
     conseillerDateDeNaissance: new Date(),
     conseillerSexe: ''
   });
@@ -32,6 +37,7 @@ function FormulaireInfosPersonnelles() {
   const todayDate = new Date();
   const maxDate = todayDate.getFullYear() - 18;
   const minDate = todayDate.getFullYear() - 99;
+
   const formatTelephone = value => {
     if (value?.substr(0, 1) !== '+') {
       const findIndicatif = telephoneHorsMetropole.find(r => r.codeDepartement === structure?.codeDepartement);
@@ -40,40 +46,11 @@ function FormulaireInfosPersonnelles() {
     }
     return value;
   };
-  useEffect(() => {
-    if (erreursFormulaire?.lengthError === 0 && submitted) {
-      setShowModal(true);
-      window.scrollTo(0, 0);
-    }
-    setSubmitted(false);
-  }, [erreursFormulaire]);
-  useEffect(() => {
-    if (conseiller !== null && conseiller !== undefined) {
-      const telephone = formatTelephone(conseiller.telephone);
-      const telephonePro = formatTelephone(conseiller.telephonePro);
-      dispatch(formInfoPersonnelActions.initFormInfoPersonnel(
-        conseiller.email,
-        telephone,
-        telephonePro,
-        conseiller.emailPro,
-        conseiller.dateDeNaissance,
-        conseiller.sexe
-      ));
-      setInputs({
-        conseillerTelephone: telephone,
-        conseillerTelephonePro: telephonePro,
-        conseillerEmailPro: conseiller.emailPro,
-        conseillerEmail: conseiller.email,
-        conseillerDateDeNaissance: conseiller.dateDeNaissance,
-        conseillerSexe: conseiller.sexe
-      });
-    }
-  }, [conseiller]);
 
   function handleChange(e) {
     if (e?.target) {
       let { name, value } = e.target;
-      if ((name === 'conseillerTelephone' || name === 'conseillerTelephonePro') && (value.length >= 10)) {
+      if (name === 'conseillerTelephone' && (value.length >= 10)) {
         value = formatTelephone(value);
       }
       setInputs(inputs => ({ ...inputs, [name]: value }));
@@ -88,87 +65,122 @@ function FormulaireInfosPersonnelles() {
     setSubmitted(true);
     dispatch(formInfoPersonnelActions.verifyFormulaire(form, conseiller.telephone));
   }
+
+  useEffect(() => {
+    if (erreursFormulaire?.lengthError === 0 && submitted) {
+      setShowModal(true);
+      window.scrollTo(0, 0);
+    }
+    setSubmitted(false);
+  }, [erreursFormulaire]);
+
+  useEffect(() => {
+    if (conseiller !== null && conseiller !== undefined) {
+      const telephone = formatTelephone(conseiller.telephone);
+      const telephonePro = formatTelephone(conseiller.telephonePro);
+      dispatch(formInfoPersonnelActions.initFormInfoPersonnel(
+        conseiller.prenom,
+        conseiller.nom,
+        conseiller.email,
+        telephone,
+        telephonePro,
+        conseiller.emailPro,
+        conseiller.dateDeNaissance,
+        conseiller.sexe
+      ));
+      setInputs({
+        conseillerPrenom: conseiller.prenom,
+        conseillerNom: conseiller.nom,
+        conseillerTelephone: telephone,
+        conseillerTelephonePro: telephonePro,
+        conseillerEmailPro: conseiller.emailPro,
+        conseillerEmail: conseiller.email,
+        conseillerDateDeNaissance: conseiller.dateDeNaissance,
+        conseillerSexe: conseiller.sexe
+      });
+    }
+  }, [conseiller]);
+
   return (
     <>
       <ModalUpdateForm form={form} showModal={showModal} setShowModal={setShowModal} />
 
-      <h2 className="fr-mb-md-4w sous-titre">Mes informations personnelles</h2>
-      <div className="fr-input-group fr-mb-5w">
+      <h2 className="fr-mb-6w sous-titre">Informations personnelles</h2>
+
+      <div className={`fr-input-group ${erreurPrenom ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
         <label className="fr-label" htmlFor="conseiller-prenom">
           Pr&eacute;nom
         </label>
         <input
           className="fr-input"
-          aria-describedby="text-input-error-desc-error"
+          aria-describedby="text-input-error-prenom-error"
           type="text"
           id="conseiller-prenom"
           name="conseillerPrenom"
-          disabled
-          value={conseiller?.prenom}
+          value={inputs?.conseillerPrenom}
+          onChange={handleChange}
         />
+        {erreurPrenom &&
+          <p id="text-input-error-prenom-error" className="fr-error-text">
+            {erreurPrenom}
+          </p>
+        }
       </div>
-      <div className="fr-input-group fr-mb-5w">
+
+      <div className={`fr-input-group ${erreurNom ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
         <label className="fr-label" htmlFor="conseiller-nom">
           Nom
         </label>
         <input
           className="fr-input"
-          aria-describedby="text-input-error-desc-error"
+          aria-describedby="text-input-error-nom-error"
           type="text"
           id="conseiller-nom"
           name="conseillerNom"
-          disabled
-          value={conseiller?.nom}
+          value={inputs?.conseillerNom}
+          onChange={handleChange}
         />
+        {erreurNom &&
+          <p id="text-input-error-nom-error" className="fr-error-text">
+            {erreurNom}
+          </p>
+        }
       </div>
-      <div className={`fr-input-group ${erreurEmailPro ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
-        <label className="fr-label" htmlFor="conseiller-email-pro">
-          Adresse mail professionnelle
-          <span className="fr-hint-text desc-input">Si votre structure vous en a fourni une.</span>
+
+      <div className={`fr-input-group ${erreurEmailPerso ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
+        <label className="fr-label" htmlFor="conseiller-email">
+          Adresse mail personnelle
+          <span className="fr-hint-text desc-input">
+            Utilis&eacute;e pour votre candidature au dispositif.<br/>
+            Sert &eacute;galement &agrave; r&eacute;cup&eacute;rer le mot de passe du mail CnFS.
+          </span>
         </label>
         <input
-          className={`fr-input ${erreurEmailPro ? 'fr-input--error' : ''}`}
-          aria-describedby="text-input-error-desc-error"
+          className={`fr-input ${erreurEmailPerso ? 'fr-input--error' : ''}`}
+          aria-describedby="text-input-error-mail-perso-error"
           type="email"
-          id="conseiller-email-pro"
-          name="conseillerEmailPro"
-          value={inputs?.conseillerEmailPro ?? ''}
+          id="conseiller-email"
+          name="conseillerEmail"
+          value={inputs?.conseillerEmail}
           onChange={handleChange}
         />
-        {erreurEmailPro &&
-          <p id="text-input-error-desc-error" className="fr-error-text">
-            {erreurEmailPro}
+        {erreurEmailPerso &&
+          <p id="text-input-error-mail-perso-error" className="fr-error-text">
+            {erreurEmailPerso}
           </p>
         }
       </div>
-      <div className={`fr-input-group ${erreurNumeroTelephonePro ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
-        <label className="fr-label" htmlFor="conseiller-telephone-pro">
-          T&eacute;l&eacute;phone professionnel
-          <span className="fr-hint-text desc-input">Si votre structure vous en a fourni un.</span>
-        </label>
-        <input
-          className={`fr-input ${erreurNumeroTelephonePro ? 'fr-input--error' : ''}`}
-          aria-describedby="text-input-error-desc-error"
-          type="tel"
-          id="conseiller-telephone-pro"
-          placeholder="+33XXXXXXXXX ou +262XXXXXXXXX, ..."
-          name="conseillerTelephonePro"
-          value={inputs?.conseillerTelephonePro ?? ''}
-          onChange={handleChange}
-        />
-        {erreurNumeroTelephonePro &&
-          <p id="text-input-error-desc-error" className="fr-error-text">
-            {erreurNumeroTelephonePro}
-          </p>
-        }
-      </div>
+
       <div className={`fr-input-group ${erreurNumeroTelephone ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
         <label className="fr-label" htmlFor="conseiller-telephone">
           T&eacute;l&eacute;phone personnel
+          <span className="fr-hint-text desc-input">
+            Utilis&eacute; lors du recrutement, ou en cas de probl&egrave;me.
+          </span>
         </label>
         <input
           className={`fr-input ${erreurNumeroTelephone ? 'fr-input--error' : ''}`}
-          aria-describedby="text-input-error-desc-error"
+          aria-describedby="text-input-error-num-perso-error"
           type="tel"
           id="conseiller-telephone"
           placeholder="+33XXXXXXXXX ou +262XXXXXXXXX, ..."
@@ -177,31 +189,12 @@ function FormulaireInfosPersonnelles() {
           onChange={handleChange}
         />
         {erreurNumeroTelephone &&
-          <p id="text-input-error-desc-error" className="fr-error-text">
+          <p id="text-input-error-num-perso-error" className="fr-error-text">
             {erreurNumeroTelephone}
           </p>
         }
       </div>
-      <div className={`fr-input-group ${erreurEmailPerso ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
-        <label className="fr-label" htmlFor="conseiller-email">
-          Adresse mail secondaire
-          <span className="fr-hint-text desc-input">Celle-ci vous a servi pour candidater au dispositif Conseiller numérique France services.</span>
-        </label>
-        <input
-          className={`fr-input ${erreurEmailPerso ? 'fr-input--error' : ''}`}
-          aria-describedby="text-input-error-desc-error"
-          type="email"
-          id="conseiller-email"
-          name="conseillerEmail"
-          value={inputs?.conseillerEmail}
-          onChange={handleChange}
-        />
-        {erreurEmailPerso &&
-          <p id="text-input-error-desc-error" className="fr-error-text">
-            {erreurEmailPerso}
-          </p>
-        }
-      </div>
+
       <div className="fr-input-group fr-mb-5w">
         <label className="fr-label" htmlFor="conseiller-date-de-naissance">
           Date de naissance
@@ -226,6 +219,7 @@ function FormulaireInfosPersonnelles() {
           required="required"
         />
       </div>
+
       <div className="fr-form-group">
         <fieldset className="fr-fieldset fr-fieldset--inline">
           <legend className="fr-fieldset__legend fr-text--regular" id="radio-inline-legend">
@@ -252,6 +246,7 @@ function FormulaireInfosPersonnelles() {
           </div>
         </fieldset>
       </div>
+
       <button className="form-button fr-btn fr-mb-4w" onClick={handleSubmit}>
         Enregistrer
       </button>

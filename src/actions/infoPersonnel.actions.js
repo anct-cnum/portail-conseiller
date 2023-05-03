@@ -53,7 +53,18 @@ function verifyFormulaire(form, telephone) {
         'Un numéro de téléphone valide doit obligatoirement être saisi. Exemples: +33XXXXXXXXX ou +262XXXXXXXXX, ...' : null
     });
   }
-
+  errors.push({
+    prenom: (Joi.object({
+      prenom: Joi.string().required()
+    }).validate({ prenom: form?.prenom }).error) ?
+      'Un prénom doit obligatoirement être saisi.' : null
+  });
+  errors.push({
+    nom: (Joi.object({
+      nom: Joi.string().required()
+    }).validate({ nom: form?.nom }).error) ?
+      'Un nom doit obligatoirement être saisi.' : null
+  });
   errors.push({
     telephonePro: (Joi.object({
       telephonePro: Joi.string().optional().allow('', null).pattern(regExpNumero)
@@ -89,8 +100,8 @@ function updateField(name, value) {
   return { type: 'UPDATE_' + name?.toUpperCase(), value };
 }
 
-function initFormInfoPersonnel(email, telephone, telephonePro, emailPro, dateDeNaissance, sexe) {
-  return { type: 'INIT_FORM_INFO_PERSONNEL', email, telephone, telephonePro, emailPro, dateDeNaissance, sexe };
+function initFormInfoPersonnel(prenom, nom, email, telephone, telephonePro, emailPro, dateDeNaissance, sexe) {
+  return { type: 'INIT_FORM_INFO_PERSONNEL', prenom, nom, email, telephone, telephonePro, emailPro, dateDeNaissance, sexe };
 }
 
 function initFormInfoPersonnelMessage(state) {

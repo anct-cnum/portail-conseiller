@@ -13,6 +13,8 @@ export default function formulaireInfoPersonnel(state = initialState, action) {
     case 'INIT_FORM_INFO_PERSONNEL':
       return {
         ...state,
+        prenom: action.prenom,
+        nom: action.nom,
         telephone: action.telephone,
         telephonePro: action.telephonePro,
         emailPro: action.emailPro,
@@ -27,6 +29,20 @@ export default function formulaireInfoPersonnel(state = initialState, action) {
         showError: false,
         showConfirmationMail: null,
         showConfirmationMailPro: null
+      };
+    case 'UPDATE_CONSEILLERPRENOM':
+      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.prenom)[0]?.prenom;
+      return {
+        ...state,
+        prenom: action.value,
+        showError: false,
+      };
+    case 'UPDATE_CONSEILLERNOM':
+      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.nom)[0]?.nom;
+      return {
+        ...state,
+        nom: action.value,
+        showError: false,
       };
     case 'UPDATE_CONSEILLERTELEPHONE':
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.telephone)[0]?.telephone;
@@ -81,6 +97,8 @@ export default function formulaireInfoPersonnel(state = initialState, action) {
         ...state,
         'isCreated': true,
         'showError': false,
+        'conseiller.prenom': action.conseiller.prenom,
+        'conseiller.nom': action.conseiller.nom,
         'conseiller.telephone': action.conseiller.telephone,
         'conseiller.telephonePro': action.conseiller.telephonePro,
         'conseiller.dateDeNaissance': action.conseiller.dateDeNaissance,
