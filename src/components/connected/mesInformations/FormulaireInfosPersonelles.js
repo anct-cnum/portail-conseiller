@@ -91,6 +91,8 @@ function FormulaireInfosPersonnelles() {
   return (
     <>
       <ModalUpdateForm form={form} showModal={showModal} setShowModal={setShowModal} />
+
+      <h2 className="fr-mb-md-4w sous-titre">Mes informations personnelles</h2>
       <div className="fr-input-group fr-mb-5w">
         <label className="fr-label" htmlFor="conseiller-prenom">
           Pr&eacute;nom

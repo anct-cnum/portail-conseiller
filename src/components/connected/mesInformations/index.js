@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import FormulaireInfosPersonnelles from './FormulaireInfosPersonelles';
-import FormulaireSuperieurHierarchique from './FormulaireSupHierarchique';
 import { useDispatch, useSelector } from 'react-redux';
-import { formSupHierarchiqueActions } from '../../../actions/supHierarchique.actions';
 import { formInfoPersonnelActions } from '../../../actions/infoPersonnel.actions';
 import { conseillerActions } from '../../../actions/conseiller.actions';
 import Footer from '../../Footer';
@@ -12,26 +10,16 @@ import { userEntityId } from '../../../helpers';
 
 function MesInformations() {
   const user = useSelector(state => state.authentication.user.user);
-  const formSupHierarchique = useSelector(state => state.formulaireSupHierarchique);
   const formInfoPersonnel = useSelector(state => state.formulaireInfoPersonnel);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(formSupHierarchiqueActions.initFormSupHierarchiqueMessage({ isCreated: false, showError: false }));
     dispatch(formInfoPersonnelActions.initFormInfoPersonnelMessage({ isCreated: false, showError: false }));
     dispatch(conseillerActions.get(userEntityId()));
   }, []);
 
   return (
     <>
-      {formSupHierarchique.isCreated &&
-        <FlashMessage duration={10000}>
-          <p className="fr-label flashBag">
-            Vos informations ont bien &eacute;t&eacute; enregistr&eacute;es&nbsp;
-            <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
-          </p>
-        </FlashMessage>
-      }
       {formInfoPersonnel.isCreated &&
         <FlashMessage duration={10000}>
           <p className="fr-label flashBag">
@@ -56,14 +44,7 @@ function MesInformations() {
           </p>
         </FlashMessage>
       }
-      {formSupHierarchique.error &&
-        <FlashMessage duration={10000}>
-          <p className="fr-label flashBag invalid">
-            {formSupHierarchique.error}
-            <i className="ri-close-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
-          </p>
-        </FlashMessage>
-      }
+
       {formInfoPersonnel.error &&
         <FlashMessage duration={10000}>
           <p className="fr-label flashBag invalid">
@@ -76,7 +57,7 @@ function MesInformations() {
         <div className="fr-container">
           <div className="fr-grid-row">
             <div className="fr-col-12">
-              <h1 className="titre fr-mt-15w fr-mb-4w fr-mb-md-4w">Mes informations personnelles et contact de mon responsable</h1>
+              <h1 className="titre fr-mt-15w fr-mb-4w fr-mb-md-4w">Mes informations</h1>
             </div>
             <div className="fr-col-12 fr-col-md-5 fr-mr-md-6w">
               <div>
@@ -98,16 +79,7 @@ function MesInformations() {
                 <FormulaireInfosPersonnelles />
               </div>
             </div>
-            <div className="fr-col-12 fr-col-md-6">
-              <div className="fr-ml-md-10w">
-                <h2 className="fr-mb-md-4w sous-titre">Contact de mon responsable</h2>
-                <p className="paragraphe fr-mb-md-3w">Ces coordonn&eacute;es pourront &ecirc;tre utilis&eacute;es pour communiquer des informations concernant
-                  le dispositif et l&rsquo;animation du r&eacute;seau à votre employeur (ex: invitation à des webinaires,
-                  envoi de documents explicatifs, newsletter, etc.)
-                </p>
-                <FormulaireSuperieurHierarchique />
-              </div>
-            </div>
+
           </div>
         </div>
       </div>
