@@ -82,7 +82,7 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
           } else if (value === 'atelier') {
             nbAccompagnementAtelier++;
           }
-          dispatch(craActions.updateAccompagnement(nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbOrganisme));
+          dispatch(craActions.updateAccompagnement(nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, 0));
         }
         break;
       default:

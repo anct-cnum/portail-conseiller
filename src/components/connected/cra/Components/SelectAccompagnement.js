@@ -9,7 +9,7 @@ function SelectAccompagnement() {
   const dispatch = useDispatch();
 
   const { lieuxReorientation } = LieuxRedirection;
-  const [listeFiltreLieux, setListeFiltreLieux] = useState(lieuxReorientation);
+  const [listeFiltreLieux, setListeFiltreLieux] = useState();
 
   const nbParticipantsAccompagnement = useSelector(state => state.cra?.nbParticipantsAccompagnement);
   const nbParticipants = useSelector(state => state.cra?.nbParticipants);
@@ -30,27 +30,24 @@ function SelectAccompagnement() {
     dispatch(craActions.updateOrganisme(lieu));
   };
 
-  const submitLieuRedirection = () => {
-    if (organisme) {
-      organismes.push({ [organisme]: nbOrganisme });
-      dispatch(craActions.updateOrganismes(organismes));
-    }
-  };
-
   const filtrage = (array, value) => array.filter(function(item) {
     return item !== value;
   });
 
-  useEffect(() => {
-    if (organismes?.length > 0) {
+  const submitLieuRedirection = () => {
+    if (organisme) {
+      organismes.push({ [organisme]: nbOrganisme });
+      dispatch(craActions.updateOrganismes(organismes));
       let lieuxFiltrer = lieuxReorientation;
-      organismes.forEach(organisme => {
+      organismes?.forEach(organisme => {
         lieuxFiltrer = filtrage(lieuxFiltrer, Object.keys(organisme)[0]);
       });
       setListeFiltreLieux(lieuxFiltrer);
-    } else {
-      setListeFiltreLieux(lieuxReorientation);
     }
+  };
+
+  useEffect(() => {
+    setListeFiltreLieux(lieuxReorientation);
   }, [organismes]);
 
   return (

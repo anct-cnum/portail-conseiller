@@ -10,7 +10,7 @@ function BigCountRadioButton({ type, value, label }) {
 
   const showSelect = useSelector(state => state.cra.showSelectRedirection);
   const cra = useSelector(state => state.cra);
-  let { nbParticipants, nbParticipantsAccompagnement, nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbOrganisme } = cra;
+  let { nbParticipants, nbParticipantsAccompagnement, nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection } = cra;
   const [nbValeur, setNbValeur] = useState(
     type === 'participants' ? cra?.nbParticipants : cra?.['nbAccompagnement' + [value.charAt(0).toUpperCase() + value.slice(1)]]
   );
@@ -39,7 +39,7 @@ function BigCountRadioButton({ type, value, label }) {
             if (value === 'atelier') {
               nbAccompagnementAtelier++;
             }
-            dispatch(craActions.updateAccompagnement(nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbOrganisme));
+            dispatch(craActions.updateAccompagnement(nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, 0));
           }
         }
         break;
@@ -66,7 +66,8 @@ function BigCountRadioButton({ type, value, label }) {
           if (value === 'atelier' && nbAccompagnementAtelier > 0) {
             nbAccompagnementAtelier--;
           }
-          dispatch(craActions.updateAccompagnement(nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbOrganisme));
+          console.log('coucou');
+          dispatch(craActions.updateAccompagnement(nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, 0));
         }
         break;
       default:
@@ -92,7 +93,7 @@ function BigCountRadioButton({ type, value, label }) {
             nbAccompagnementAtelier = valeur < valeurMax ? valeur : valeurMax;
           }
           setNbValeur(valeur < valeurMax ? valeur : valeurMax);
-          dispatch(craActions.updateAccompagnement(nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbOrganisme));
+          dispatch(craActions.updateAccompagnement(nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, 0));
         }
       }
     }

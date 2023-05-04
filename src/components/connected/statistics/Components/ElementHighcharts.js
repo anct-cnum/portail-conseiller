@@ -30,10 +30,9 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
   function setCategoriesStatistiques(donneesStats, typeGraphique) {
     let categories = [];
     donneesStats.forEach(element => {
-
       let libelle = labelsCorrespondance.find(label => label.nom === element.nom)?.correspondance ?? element.nom;
       if (typeGraphique === 'bar') {
-        categories.push(libelle + '&nbsp;&nbsp;&nbsp;&nbsp;' + element.pourcent + '%&nbsp;&nbsp;&nbsp;&nbsp;<b>' + element.valeur + '</b>');
+        categories.push(libelle + '&nbsp;&nbsp;&nbsp;&nbsp;<i>' + element.pourcent + '</i>%&nbsp;&nbsp;&nbsp;&nbsp;<b>' + element.valeur + '</b>');
       } else {
         categories.push(libelle);
       }
@@ -120,13 +119,13 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
           if (element.nom !== 'total') {
             switch (element.nom) {
               case 'individuel':
-                labelValeur = 'individuelles&nbsp;&nbsp;&nbsp;' + pourcentage + '%&nbsp;&nbsp;&nbsp;<b>' + valeur + 'h</b>';
+                labelValeur = 'individuels&nbsp;&nbsp;&nbsp;' + pourcentage + '%&nbsp;&nbsp;&nbsp;<b>' + valeur + 'h</b>';
                 break;
               case 'collectif':
-                labelValeur = 'collectives&nbsp;&nbsp;&nbsp;' + pourcentage + '%&nbsp;&nbsp;&nbsp;<b>' + valeur + 'h</b>';
+                labelValeur = 'collectifs&nbsp;&nbsp;&nbsp;' + pourcentage + '%&nbsp;&nbsp;&nbsp;<b>' + valeur + 'h</b>';
                 break;
               case 'ponctuel':
-                labelValeur = 'ponctuelles&nbsp;&nbsp;&nbsp;' + pourcentage + '%&nbsp;&nbsp;&nbsp;<b>' + valeur + 'h</b>';
+                labelValeur = 'ponctuels&nbsp;&nbsp;&nbsp;' + pourcentage + '%&nbsp;&nbsp;&nbsp;<b>' + valeur + 'h</b>';
                 break;
               default:
                 break;
