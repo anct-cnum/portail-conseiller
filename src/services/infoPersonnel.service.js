@@ -13,8 +13,6 @@ function updateInfoPersonnel(infoPersonnel, idConseiller) {
     method: 'PATCH',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
     body: JSON.stringify({
-      'prenom': infoPersonnel.prenom,
-      'nom': infoPersonnel.nom,
       'telephone': infoPersonnel.telephone,
       'telephonePro': infoPersonnel.telephonePro,
       'emailPro': infoPersonnel.emailPro,

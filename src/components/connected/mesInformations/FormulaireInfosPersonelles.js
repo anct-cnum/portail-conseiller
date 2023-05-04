@@ -18,14 +18,10 @@ function FormulaireInfosPersonnelles() {
   const form = useSelector(state => state.formulaireInfoPersonnel);
 
   const erreursFormulaire = useSelector(state => state.formulaireInfoPersonnel?.errorsFormulaire);
-  const erreurPrenom = erreursFormulaire?.errors?.filter(erreur => erreur?.prenom)[0]?.prenom;
-  const erreurNom = erreursFormulaire?.errors?.filter(erreur => erreur?.nom)[0]?.nom;
   const erreurNumeroTelephone = erreursFormulaire?.errors?.filter(erreur => erreur?.telephone)[0]?.telephone;
   const erreurEmailPerso = erreursFormulaire?.errors?.filter(erreur => erreur?.email)[0]?.email;
 
   const [inputs, setInputs] = useState({
-    conseillerPrenom: '',
-    conseillerNom: '',
     conseillerEmail: '',
     conseillerTelephone: '',
     conseillerDateDeNaissance: new Date(),
@@ -79,8 +75,6 @@ function FormulaireInfosPersonnelles() {
       const telephone = formatTelephone(conseiller.telephone);
       const telephonePro = formatTelephone(conseiller.telephonePro);
       dispatch(formInfoPersonnelActions.initFormInfoPersonnel(
-        conseiller.prenom,
-        conseiller.nom,
         conseiller.email,
         telephone,
         telephonePro,
@@ -89,8 +83,6 @@ function FormulaireInfosPersonnelles() {
         conseiller.sexe
       ));
       setInputs({
-        conseillerPrenom: conseiller.prenom,
-        conseillerNom: conseiller.nom,
         conseillerTelephone: telephone,
         conseillerTelephonePro: telephonePro,
         conseillerEmailPro: conseiller.emailPro,
@@ -107,44 +99,32 @@ function FormulaireInfosPersonnelles() {
 
       <h2 className="fr-mb-6w sous-titre">Informations personnelles</h2>
 
-      <div className={`fr-input-group ${erreurPrenom ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
+      <div className="fr-input-group fr-mb-5w">
         <label className="fr-label" htmlFor="conseiller-prenom">
           Pr&eacute;nom
         </label>
         <input
           className="fr-input"
-          aria-describedby="text-input-error-prenom-error"
           type="text"
           id="conseiller-prenom"
           name="conseillerPrenom"
-          value={inputs?.conseillerPrenom}
-          onChange={handleChange}
+          value={conseiller?.prenom}
+          disabled
         />
-        {erreurPrenom &&
-          <p id="text-input-error-prenom-error" className="fr-error-text">
-            {erreurPrenom}
-          </p>
-        }
       </div>
 
-      <div className={`fr-input-group ${erreurNom ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
+      <div className="fr-input-group fr-mb-5w">
         <label className="fr-label" htmlFor="conseiller-nom">
           Nom
         </label>
         <input
           className="fr-input"
-          aria-describedby="text-input-error-nom-error"
           type="text"
           id="conseiller-nom"
           name="conseillerNom"
-          value={inputs?.conseillerNom}
-          onChange={handleChange}
+          value={conseiller?.nom}
+          disabled
         />
-        {erreurNom &&
-          <p id="text-input-error-nom-error" className="fr-error-text">
-            {erreurNom}
-          </p>
-        }
       </div>
 
       <div className={`fr-input-group ${erreurEmailPerso ? 'fr-input-group--error' : 'fr-mb-5w'}`}>

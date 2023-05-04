@@ -20,8 +20,6 @@ function FormulaireInfosPersonnelles() {
   const erreurEmailPro = erreursFormulaire?.errors?.filter(erreur => erreur?.emailPro)[0]?.emailPro;
 
   const [inputs, setInputs] = useState({
-    conseillerPrenom: '',
-    conseillerNom: '',
     conseillerTelephone: '',
     conseillerTelephonePro: '',
     conseillerEmailPro: '',
@@ -74,8 +72,6 @@ function FormulaireInfosPersonnelles() {
       const telephone = formatTelephone(conseiller.telephone);
       const telephonePro = formatTelephone(conseiller.telephonePro);
       dispatch(formInfoPersonnelActions.initFormInfoPersonnel(
-        conseiller.prenom,
-        conseiller.nom,
         conseiller.email,
         telephone,
         telephonePro,
@@ -84,8 +80,6 @@ function FormulaireInfosPersonnelles() {
         conseiller.sexe
       ));
       setInputs({
-        conseillerPrenom: conseiller.prenom,
-        conseillerNom: conseiller.nom,
         conseillerTelephone: conseiller.telephone,
         conseillerTelephonePro: telephonePro,
         conseillerEmailPro: conseiller.emailPro,
