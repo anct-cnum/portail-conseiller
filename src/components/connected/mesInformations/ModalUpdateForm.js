@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { formSupHierarchiqueActions } from '../../../actions/supHierarchique.actions';
-import { formInfoPersonnelActions } from '../../../actions/infoPersonnel.actions';
+import { formInformationsActions } from '../../../actions/informations.actions';
 import { formatTelephone } from '../../../utils/functionFormats';
 
 function ModalUpdateForm({ form, showModal, setShowModal, isSupHierarchique = false }) {
@@ -34,9 +34,7 @@ function ModalUpdateForm({ form, showModal, setShowModal, isSupHierarchique = fa
         fonction: form.fonction.trim()
       }, conseiller?._id, user.name, password));
     } else {
-      dispatch(formInfoPersonnelActions.updateInfoPersonnel({
-        prenom: form.prenom?.trim(),
-        nom: form.nom?.trim(),
+      dispatch(formInformationsActions.updateInformations({
         telephone: formatTelephone(form.telephone, conseiller?.codeDepartement),
         telephonePro: formatTelephone(form.telephonePro, conseiller?.codeDepartement),
         emailPro: form.emailPro?.trim(),

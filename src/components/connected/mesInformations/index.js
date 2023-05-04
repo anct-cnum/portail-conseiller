@@ -2,24 +2,24 @@ import React, { useEffect } from 'react';
 import FormulaireInfosPersonnelles from './FormulaireInfosPersonelles';
 import FormulaireInfosProfessionnelles from './FormulaireInfosProfessionnelles';
 import { useDispatch, useSelector } from 'react-redux';
-import { formInfoPersonnelActions } from '../../../actions/infoPersonnel.actions';
+import { formInformationsActions } from '../../../actions/informations.actions';
 import { conseillerActions } from '../../../actions/conseiller.actions';
 import Footer from '../../Footer';
 import FlashMessage from 'react-flash-message';
 import { userEntityId } from '../../../helpers';
 
 function MesInformations() {
-  const formInfoPersonnel = useSelector(state => state.formulaireInfoPersonnel);
+  const formInformations = useSelector(state => state.formulaireInformations);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(formInfoPersonnelActions.initFormInfoPersonnelMessage({ isCreated: false, showError: false }));
+    dispatch(formInformationsActions.initFormInformationsMessage({ isCreated: false, showError: false }));
     dispatch(conseillerActions.get(userEntityId()));
   }, []);
 
   return (
     <>
-      {formInfoPersonnel.isCreated &&
+      {formInformations.isCreated &&
         <FlashMessage duration={10000}>
           <p className="fr-label flashBag">
             Vos informations ont bien &eacute;t&eacute; enregistr&eacute;es&nbsp;
@@ -27,7 +27,7 @@ function MesInformations() {
           </p>
         </FlashMessage>
       }
-      {formInfoPersonnel.showConfirmationMail &&
+      {formInformations.showConfirmationMail &&
         <FlashMessage duration={10000}>
           <p className="fr-label flashBag">
             Un mail de confirmation de votre nouvelle adresse mail vous a &eacute;t&eacute; envoy&eacute; pour valider votre changement
@@ -35,7 +35,7 @@ function MesInformations() {
           </p>
         </FlashMessage>
       }
-      {formInfoPersonnel.showConfirmationMailPro &&
+      {formInformations.showConfirmationMailPro &&
         <FlashMessage duration={10000}>
           <p className="fr-label flashBag">
             Un mail de confirmation de votre nouvelle adresse mail professionnelle vous a &eacute;t&eacute; envoy&eacute; pour valider votre changement
@@ -44,10 +44,10 @@ function MesInformations() {
         </FlashMessage>
       }
 
-      {formInfoPersonnel.error &&
+      {formInformations.error &&
         <FlashMessage duration={10000}>
           <p className="fr-label flashBag invalid">
-            {formInfoPersonnel.error}
+            {formInformations.error}
             <i className="ri-close-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
           </p>
         </FlashMessage>

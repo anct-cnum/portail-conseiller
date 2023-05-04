@@ -2,30 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { formInfoPersonnelActions } from '../../../actions/infoPersonnel.actions';
+import { formInformationsActions } from '../../../actions/informations.actions';
 import ModalUpdateForm from './ModalUpdateForm';
 import telephoneHorsMetropole from '../../../data/indicatifs.json';
 
-function FormulaireInfosPersonnelles() {
+function FormulaireInfosProfessionnelles() {
 
   const dispatch = useDispatch();
 
   const structure = useSelector(state => state.structure?.structure);
   const user = useSelector(state => state.authentication.user.user);
-  const form = useSelector(state => state.formulaireInfoPersonnel);
+  const form = useSelector(state => state.formulaireInformations);
   const conseiller = useSelector(state => state.conseiller?.conseiller);
 
-  const erreursFormulaire = useSelector(state => state.formulaireInfoPersonnel?.errorsFormulaire);
+  const erreursFormulaire = useSelector(state => state.formulaireInformations?.errorsFormulaire);
   const erreurNumeroTelephonePro = erreursFormulaire?.errors?.filter(erreur => erreur?.telephonePro)[0]?.telephonePro;
   const erreurEmailPro = erreursFormulaire?.errors?.filter(erreur => erreur?.emailPro)[0]?.emailPro;
 
   const [inputs, setInputs] = useState({
-    conseillerTelephone: '',
     conseillerTelephonePro: '',
     conseillerEmailPro: '',
-    conseillerEmail: '',
-    conseillerDateDeNaissance: new Date(),
-    conseillerSexe: ''
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -47,16 +43,16 @@ function FormulaireInfosPersonnelles() {
         value = formatTelephone(value);
       }
       setInputs(inputs => ({ ...inputs, [name]: value }));
-      dispatch(formInfoPersonnelActions.updateField(name, value));
+      dispatch(formInformationsActions.updateField(name, value));
     } else {
       setInputs(inputs => ({ ...inputs, conseillerDateDeNaissance: e }));
-      dispatch(formInfoPersonnelActions.updateField('conseillerDateDeNaissance', e));
+      dispatch(formInformationsActions.updateField('conseillerDateDeNaissance', e));
     }
   }
 
   function handleSubmit() {
     setSubmitted(true);
-    dispatch(formInfoPersonnelActions.verifyFormulaire(form, conseiller.telephone));
+    dispatch(formInformationsActions.verifyFormulaire(form, conseiller.telephone));
   }
 
   useEffect(() => {
@@ -71,7 +67,7 @@ function FormulaireInfosPersonnelles() {
     if (conseiller !== null && conseiller !== undefined) {
       const telephone = formatTelephone(conseiller.telephone);
       const telephonePro = formatTelephone(conseiller.telephonePro);
-      dispatch(formInfoPersonnelActions.initFormInfoPersonnel(
+      dispatch(formInformationsActions.initFormInformations(
         conseiller.email,
         telephone,
         telephonePro,
@@ -80,7 +76,7 @@ function FormulaireInfosPersonnelles() {
         conseiller.sexe
       ));
       setInputs({
-        conseillerTelephone: conseiller.telephone,
+        conseillerTelephone: telephone,
         conseillerTelephonePro: telephonePro,
         conseillerEmailPro: conseiller.emailPro,
         conseillerEmail: conseiller.email,
@@ -169,4 +165,4 @@ function FormulaireInfosPersonnelles() {
   );
 }
 
-export default FormulaireInfosPersonnelles;
+export default FormulaireInfosProfessionnelles;
