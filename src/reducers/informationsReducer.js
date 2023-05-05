@@ -3,14 +3,14 @@ const initialState = {
   showError: false,
 };
 
-export default function formulaireInfoPersonnel(state = initialState, action) {
+export default function formulaireInformations(state = initialState, action) {
   switch (action.type) {
     case 'VERIFY_FORMULAIRE':
       return {
         ...state,
         errorsFormulaire: action.errorsForm
       };
-    case 'INIT_FORM_INFO_PERSONNEL':
+    case 'INIT_FORM_INFORMATIONS':
       return {
         ...state,
         telephone: action.telephone,
@@ -20,11 +20,10 @@ export default function formulaireInfoPersonnel(state = initialState, action) {
         dateDeNaissance: action.dateDeNaissance,
         sexe: action.sexe
       };
-    case 'INIT_FORM_INFO_PERSONNEL_MESSAGE':
+    case 'INIT_FORM_INFORMATIONS_MESSAGE':
       return {
         ...state,
         isCreated: false,
-        showError: false,
         showConfirmationMail: null,
         showConfirmationMailPro: null
       };
@@ -33,54 +32,50 @@ export default function formulaireInfoPersonnel(state = initialState, action) {
       return {
         ...state,
         telephone: action.value,
-        showError: false,
       };
     case 'UPDATE_CONSEILLERSEXE':
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.sexe)[0]?.sexe;
       return {
         ...state,
         sexe: action.value,
-        showError: false,
       };
     case 'UPDATE_CONSEILLERDATEDENAISSANCE':
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.dateDeNaissance)[0]?.dateDeNaissance;
       return {
         ...state,
         dateDeNaissance: action.value,
-        showError: false,
       };
     case 'UPDATE_CONSEILLERTELEPHONEPRO':
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.telephonePro)[0]?.telephonePro;
       return {
         ...state,
         telephonePro: action.value,
-        showError: false,
       };
     case 'UPDATE_CONSEILLEREMAILPRO':
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.emailPro)[0]?.emailPro;
       return {
         ...state,
         emailPro: action.value,
-        showError: false,
       };
     case 'UPDATE_CONSEILLEREMAIL':
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.email)[0]?.email;
       return {
         ...state,
         email: action.value,
-        showError: false,
       };
-    case 'POST_INFO_PERSONNEL_REQUEST':
+    case 'POST_INFORMATIONS_REQUEST':
       return {
         ...state,
         isCreated: false,
         showError: false,
       };
-    case 'POST_INFO_PERSONNEL_SUCCESS':
+    case 'POST_INFORMATIONS_SUCCESS':
       return {
         ...state,
         'isCreated': true,
         'showError': false,
+        'conseiller.prenom': action.conseiller.prenom,
+        'conseiller.nom': action.conseiller.nom,
         'conseiller.telephone': action.conseiller.telephone,
         'conseiller.telephonePro': action.conseiller.telephonePro,
         'conseiller.dateDeNaissance': action.conseiller.dateDeNaissance,
@@ -89,7 +84,7 @@ export default function formulaireInfoPersonnel(state = initialState, action) {
         'showConfirmationMailPro': action.initModifMailProConseiller,
         'error': false,
       };
-    case 'POST_INFO_PERSONNEL_FAILURE':
+    case 'POST_INFORMATIONS_FAILURE':
       return {
         ...state,
         isCreated: false,

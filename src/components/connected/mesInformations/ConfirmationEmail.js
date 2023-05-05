@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { formInfoPersonnelActions } from '../../../actions/infoPersonnel.actions';
+import { formInformationsActions } from '../../../actions/informations.actions';
 import PropTypes from 'prop-types';
 import Header from '../../Header';
 
 function EmailConfirmer({ match }) {
   const token = match.params.token;
   const dispatch = useDispatch();
-  const tokenVerified = useSelector(state => state.formulaireInfoPersonnel?.tokenError);
+  const tokenVerified = useSelector(state => state.formulaireInformations?.tokenError);
 
   useEffect(() => {
-    dispatch(formInfoPersonnelActions.confirmConseillerEmail(token));
+    dispatch(formInformationsActions.confirmConseillerEmail(token));
   }, []);
   return (
     <div>

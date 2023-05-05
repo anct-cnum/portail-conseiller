@@ -16,6 +16,7 @@ import PermanenceCreate from './permanence/PermanenceCreate';
 import HistoriqueCras from './historiqueCras';
 import UpdateCra from './cra/UpdateCra';
 import MonEspaceCandidat from './mesInformations/MonEspaceCandidat';
+import FormulaireSuperieurHierarchique from './mesInformations/FormulaireSupHierarchique';
 
 function Connected() {
 
@@ -59,6 +60,7 @@ function Connected() {
               <Route path={`/statistiques`} component={Statistics} />
               <Route path={'/mes-informations'} component={MesInformations} />
               <Route path={'/mon-espace-candidat'} component={MonEspaceCandidat} />
+              <Route path={'/contact-mon-responsable'} component={FormulaireSuperieurHierarchique} />
               <Route path={`/lieux-activite`} component={Permanence} />
               <Route path={'/mes-lieux-activite'} component={MesPermanences} />
               <Route path={'/mon-lieu-activite/:idPermanence'} component={PermanenceUpdate} />
