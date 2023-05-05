@@ -23,6 +23,7 @@ export const craActions = {
   updateOrganisme,
   updateOrganismes,
   deleteOrganisme,
+  initNbOrganisme,
   verifyCra,
   submitCra,
   changeDate,
@@ -114,6 +115,9 @@ function deleteOrganisme(organisme) {
   return { type: 'DELETE_ORGANISME', organisme };
 }
 
+function initNbOrganisme() {
+  return { type: 'INIT_NB_ORGANISME' };
+}
 function changeDate(date) {
   return { type: 'UPDATE_DATE', date };
 }
