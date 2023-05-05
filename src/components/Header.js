@@ -154,17 +154,35 @@ function Header({ linkAccount, printClass }) {
                                   id="menu-liens-user">
                                   <ul className="fr-menu__list">
                                     {['conseiller', 'coordinateur_coop'].includes(role) &&
-                                      <li className="user-infos">
-                                        <Link className="fr-nav__link lien-user" to="/mes-informations"
-                                          onClick={() => {
-                                            setMenuUserShow(false);
-                                          }}>
-                                          { !conseiller?.supHierarchique &&
+                                      <>
+                                        <li className="user-infos">
+                                          <Link className="fr-nav__link lien-user" to="/mes-informations"
+                                            onClick={() => {
+                                              setMenuUserShow(false);
+                                            }}>
+                                            <i className="ri-user-fill"></i> Mes informations<br />
+                                          </Link>
+                                        </li>
+                                        <li className="user-infos">
+                                          <Link className="fr-nav__link lien-user" to="/contact-mon-responsable"
+                                            onClick={() => {
+                                              setMenuUserShow(false);
+                                            }}>
+                                            { !conseiller?.supHierarchique &&
                                             <i className="ri-information-line information icone-info-header"></i>
-                                          }
-                                              Mes informations, Contact hi&eacute;rarchique<br />
-                                        </Link>
-                                      </li>
+                                            }
+                                            <i className="ri-user-6-line"></i> Contact de mon responsable<br />
+                                          </Link>
+                                        </li>
+                                        <li className="user-infos">
+                                          <Link className="fr-nav__link lien-user" to="/mon-espace-candidat"
+                                            onClick={() => {
+                                              setMenuUserShow(false);
+                                            }}>
+                                            <i className="ri-profile-line"></i> Mon espace candidat<br />
+                                          </Link>
+                                        </li>
+                                      </>
                                     }
                                     {linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
                                       <li className="user-disconnect">
@@ -173,7 +191,7 @@ function Header({ linkAccount, printClass }) {
                                             onClick={() => {
                                               setMenuUserShow(false);
                                             }}>
-                                            D&eacute;connexion<br />
+                                            <i className="ri-logout-box-r-line"></i> D&eacute;connexion<br />
                                           </Link>
                                         }
                                         {role !== 'conseiller' &&
@@ -182,7 +200,7 @@ function Header({ linkAccount, printClass }) {
                                               resetFiltreListeConseillers();
                                               setMenuUserShow(false);
                                             }}>
-                                            D&eacute;connexion<br />
+                                            <i className="ri-logout-box-r-line"></i> D&eacute;connexion<br />
                                           </Link>
                                         }
                                       </li>
