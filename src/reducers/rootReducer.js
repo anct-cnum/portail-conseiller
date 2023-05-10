@@ -13,6 +13,7 @@ import permanenceReducer from './permanenceReducer';
 import supHierarchiqueReducer from './supHierarchiqueReducer';
 import informationsReducer from './informationsReducer';
 import historiqueCrasReducer from './historiqueCrasReducer';
+import candidatReducer from './candidatReducer';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   formulaireSupHierarchique: supHierarchiqueReducer,
   formulaireInformations: informationsReducer,
   historiqueCras: historiqueCrasReducer,
+  candidat: candidatReducer,
 });
 
 export default rootReducer;

@@ -250,8 +250,8 @@ function BottomPage({ donneesStats, print, type }) {
           <div className="fr-col-12 fr-col-md-4 dont-print" data-tip={`
               <span>Comment calculons nous la donn&eacute;e&nbsp;?</span>
               <ul>
-                <li>30min ou moins =&gt; 30min.</li>
-                <li>30min &agrave; 1h =&gt; 1h.</li>
+                <li>30min ou moins = 30min.</li>
+                <li>30min &agrave; 1h = 1h.</li>
                 <li>Au del&agrave; d&rsquo;1h nous prenons le temps exact renseign&eacute;.</li>
               </ul>
           `} >

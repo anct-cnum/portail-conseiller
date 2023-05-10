@@ -9,5 +9,6 @@ export * from './formulaireSexeAge.actions';
 export * from './filtersAndSorts.actions';
 export * from './pagination.actions';
 export * from './informations.actions';
+export * from './candidat.actions';
 export * from './supHierarchique.actions';
 export * from './historiqueCras.actions';
