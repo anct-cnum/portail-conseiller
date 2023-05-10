@@ -11,7 +11,7 @@ function FormulaireInfosProfessionnelles() {
   const dispatch = useDispatch();
 
   const structure = useSelector(state => state.structure?.structure);
-  const user = useSelector(state => state.authentication.user.user);
+  const user = useSelector(state => state.authentication?.user?.user);
   const form = useSelector(state => state.formulaireInformations);
   const conseiller = useSelector(state => state.conseiller?.conseiller);
 
