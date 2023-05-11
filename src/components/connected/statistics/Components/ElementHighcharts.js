@@ -21,19 +21,18 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
     margeGaucheGraphique, margeGaucheGraphiquePrint, margeDroiteGraphique, margeDroiteGraphiquePrint
   );
   const titreStatistiques = setStatistiquesTitre(optionTitre, margeTitre, placementTitre);
-  const seriesStatistiques = setStatistiquesDonnees(donneesStats, typeGraphique, couleursGraphique);
-  const legendStatistiques = setStatistiquesLegende(typeGraphique, isReoriente);
+  const seriesStatistiques = setStatistiquesDonnees(donneesStats, typeGraphique, couleursGraphique, optionTitre);
+  const legendStatistiques = setStatistiquesLegende(typeGraphique, isReoriente, optionTitre === 'Temps en accompagnement', donneesStats);
   const yAxisStatistiques = setStatistiquesAxeY(typeGraphique);
   const xAxisStatistiques = setStatistiquesAxeX(typeGraphique, optionResponsive, categoriesStatistiques);
   const plotOptionsStatistiques = setStatistiquesOptionsTrace(typeGraphique, optionResponsive, isReoriente);
 
   function setCategoriesStatistiques(donneesStats, typeGraphique) {
-
     let categories = [];
     donneesStats.forEach(element => {
       let libelle = labelsCorrespondance.find(label => label.nom === element.nom)?.correspondance ?? element.nom;
       if (typeGraphique === 'bar') {
-        categories.push(libelle + '&nbsp;&nbsp;&nbsp;&nbsp;<b>' + element.valeur + '</b>');
+        categories.push(libelle + '&nbsp;&nbsp;&nbsp;&nbsp;<i>' + element.pourcent + '</i>%&nbsp;&nbsp;&nbsp;&nbsp;<b>' + element.valeur + '</b>');
       } else {
         categories.push(libelle);
       }
@@ -78,11 +77,11 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
       margin: margeTitre,
       x: placementTitre,
       y: print ? 50 : 13,
-      width: print ? 800 : 300,
+      width: print ? 800 : 400,
       align: 'left',
       style: {
         color: print ? '#1e1e1e' : '#fff',
-        fontSize: print ? '2.5rem' : '16px',
+        fontSize: print ? '2rem' : '16px',
         fontWeight: 'bold',
         lineHeight: '24px'
       }
@@ -91,7 +90,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
     return titre;
   }
 
-  function setStatistiquesDonnees(donneesStats, typeGraphique, couleursGraphique) {
+  function setStatistiquesDonnees(donneesStats, typeGraphique, couleursGraphique, titreGraphique) {
     let donnees = {};
 
     let cumul = 0;
@@ -113,17 +112,35 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
         });
       } else if (typeGraphique === 'pie') {
         //Ne pas afficher la valeur 0 dans le camembert
-
-        if (element.valeur === 0) {
+        if (titreGraphique === 'Temps en accompagnement') {
+          let labelValeur = '';
+          const valeur = element.valeur ?? 0;
+          const pourcentage = element.pourcent ?? 0;
+          if (element.nom !== 'total') {
+            switch (element.nom) {
+              case 'individuel':
+                labelValeur = 'individuels&nbsp;&nbsp;&nbsp;' + pourcentage + '%&nbsp;&nbsp;&nbsp;<b>' + valeur + 'h</b>';
+                break;
+              case 'collectif':
+                labelValeur = 'collectifs&nbsp;&nbsp;&nbsp;' + pourcentage + '%&nbsp;&nbsp;&nbsp;<b>' + valeur + 'h</b>';
+                break;
+              case 'ponctuel':
+                labelValeur = 'ponctuels&nbsp;&nbsp;&nbsp;' + pourcentage + '%&nbsp;&nbsp;&nbsp;<b>' + valeur + 'h</b>';
+                break;
+              default:
+                break;
+            }
+            valeurs.push({
+              name: labelValeur,
+              y: element.valeur > 0 ? element.valeur : null,
+              color: couleursGraphique[i],
+              visible: true
+            });
+          }
+        } else if (titreGraphique !== 'Temps en accompagnement') {
           valeurs.push({
-            name: labelsCorrespondance.find(label => label.nom === element.nom)?.correspondance ?? element.nom,
-            y: element.valeur,
-            visible: false
-          });
-        } else {
-          valeurs.push({
-            name: labelsCorrespondance.find(label => label.nom === element.nom)?.correspondance ?? element.nom,
-            y: element.valeur,
+            name: labelsCorrespondance.find(label => label.nom === element.nom)?.correspondance ?? element?.nom,
+            y: element?.valeur > 0 ? element?.valeur : null,
             color: couleursGraphique[i],
             visible: true
           });
@@ -172,7 +189,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
     return donnees;
   }
 
-  function setStatistiquesLegende(typeGraphique, isReoriente) {
+  function setStatistiquesLegende(typeGraphique, isReoriente, optionLegend = false, donneesStats = false) {
     let legende = { };
 
     switch (typeGraphique) {
@@ -232,6 +249,19 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
               color: print ? '#1e1e1e' : '#fff'
             },
           };
+
+          if (optionLegend) {
+            const totalHeure = donneesStats.find(stats => stats.nom === 'total').valeur;
+            legende.title = {
+              text: '<span>&nbsp;au total <b>' + totalHeure + 'h </b><br/> dont : <br/></span>',
+              style: {
+                fontFamily: 'Marianne',
+                fontSize: '12px',
+                fontWeight: 400,
+                color: print ? '#1e1e1e' : '#fff',
+              }
+            };
+          }
         }
         break;
 

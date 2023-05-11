@@ -32,7 +32,12 @@ const initialState = {
     redirection: 0,
   },
   nbParticipantsAccompagnement: 0,
-  organisme: null
+  nbAccompagnementIndividuel: 0,
+  nbAccompagnementAtelier: 0,
+  nbAccompagnementRedirection: 0,
+  nbOrganisme: 0,
+  organisme: null,
+  organismes: [],
 };
 
 export default function cra(state = initialState, action) {
@@ -133,6 +138,12 @@ export default function cra(state = initialState, action) {
         activite: action.activite,
         nbParticipants: action.activite === 'collectif' ? 5 : 1,
         nbParticipantsAccompagnement: 0,
+        nbAccompagnementIndividuel: 0,
+        nbAccompagnementAtelier: 0,
+        nbAccompagnementRedirection: 0,
+        nbOrganisme: 0,
+        organisme: null,
+        organismes: [],
         nbParticipantsAge: 0,
         nbParticipantsStatut: 0,
         age: {
@@ -167,6 +178,9 @@ export default function cra(state = initialState, action) {
         nbParticipantsAccompagnement: 0,
         nbParticipantsAge: 0,
         nbParticipantsStatut: 0,
+        nbAccompagnementIndividuel: 0,
+        nbAccompagnementAtelier: 0,
+        nbAccompagnementRedirection: 0,
         age: {
           moins12ans: 0,
           de12a18ans: 0,
@@ -186,17 +200,22 @@ export default function cra(state = initialState, action) {
           atelier: 0,
           redirection: 0,
         },
+        nbOrganisme: 0,
+        organisme: null,
+        organismes: [],
       };
     case 'UPDATE_NB_RECURRENCE':
       return {
         ...state,
-        nbParticipantsRecurrents: action.nbParticipantsRecurrents
+        nbParticipantsRecurrents: action.nbParticipantsRecurrents,
+        nbOrganisme: 0
       };
     case 'UPDATE_AGE':
       return {
         ...state,
         age: action.data.age,
         nbParticipantsAge: action.data.nbParticipantsAge,
+        nbOrganisme: 0,
         errorsRequired: {
           ...state.errorsRequired,
           age: action.data.nbParticipantsAge !== state.nbParticipants },
@@ -206,6 +225,7 @@ export default function cra(state = initialState, action) {
         ...state,
         statut: action.data.statut,
         nbParticipantsStatut: action.data.nbParticipantsStatut,
+        nbOrganisme: 0,
         errorsRequired: {
           ...state.errorsRequired,
           statut: action.data.nbParticipantsStatut !== state.nbParticipants },
@@ -214,6 +234,7 @@ export default function cra(state = initialState, action) {
       return {
         ...state,
         themes: action.themes,
+        nbOrganisme: 0,
         errorsRequired: {
           ...state.errorsRequired,
           themes: (action.themes.length === 0) },
@@ -221,31 +242,86 @@ export default function cra(state = initialState, action) {
     case 'UPDATE_MULTIPLE_THEMES':
       return {
         ...state,
+        nbOrganisme: 0,
         sousThemes: action.sousThemesList
       };
     case 'UPDATE_DUREE':
       return {
         ...state,
         duree: action.duree,
+        nbOrganisme: 0,
         errorsRequired: {
           ...state.errorsRequired,
           duree: false },
       };
     case 'UPDATE_ACCOMPAGNEMENT':
+      let nbAccompagnementRedirection = 0;
+      const organismeRedirection = state.organismes;
+      if (organismeRedirection?.length > 0) {
+        organismeRedirection.forEach(orga => {
+          nbAccompagnementRedirection += orga[Object.keys(orga)[0]];
+        });
+      }
+      nbAccompagnementRedirection += action.nbOrganisme;
+      const nbParticipantsAccompagnement = action.nbAccompagnementIndividuel + action.nbAccompagnementAtelier + nbAccompagnementRedirection;
+
       return {
         ...state,
-        accompagnement: action.accompagnement,
-        nbParticipantsAccompagnement: action.nbParticipantsAccompagnement
+        nbParticipantsAccompagnement: nbParticipantsAccompagnement,
+        nbAccompagnementIndividuel: action.nbAccompagnementIndividuel,
+        nbAccompagnementAtelier: action.nbAccompagnementAtelier,
+        nbAccompagnementRedirection: nbAccompagnementRedirection,
+        nbOrganisme: action.nbOrganisme,
       };
-    case 'UPDATE_ORGAMNISME':
+    case 'UPDATE_ORGANISME':
       return {
         ...state,
-        organisme: action.organisme
+        organisme: action.organisme,
+      };
+    case 'UPDATE_ORGANISMES':
+      const updateOrganismeCra = state;
+      let redirection = 0;
+      action.organismes.forEach(orga => {
+        redirection += orga[Object.keys(orga)[0]];
+      });
+      const nbParticipantsAccompOrga = updateOrganismeCra.nbAccompagnementAtelier + updateOrganismeCra.nbAccompagnementIndividuel + redirection;
+
+      return {
+        ...state,
+        organisme: null,
+        nbOrganisme: nbParticipantsAccompOrga === updateOrganismeCra.nbParticipants ? 0 : 1,
+        nbAccompagnementRedirection: redirection,
+        nbParticipantsAccompagnement: nbParticipantsAccompOrga,
+        organismes: action.organismes,
+      };
+    case 'DELETE_ORGANISME':
+      const organismesDeleteCra = state;
+      const organismesFiltres = organismesDeleteCra.organismes.filter(function(item) {
+        return item !== action.organisme;
+      });
+      let nbSuppressionOrganisme = 0;
+      organismesDeleteCra.organismes.forEach(orga => {
+        nbSuppressionOrganisme = orga[Object.keys(orga)[0]];
+      });
+      organismesDeleteCra.nbAccompagnementRedirection -= nbSuppressionOrganisme;
+      organismesDeleteCra.nbParticipantsAccompagnement -= nbSuppressionOrganisme;
+      return {
+        ...state,
+        nbOrganisme: 1,
+        organismes: organismesFiltres,
+        nbAccompagnementRedirection: organismesDeleteCra.nbAccompagnementRedirection,
+        nbParticipantsAccompagnement: organismesDeleteCra.nbParticipantsAccompagnement,
+      };
+    case 'INIT_NB_ORGANISME':
+      return {
+        ...state,
+        nbOrganisme: 0,
       };
     case 'UPDATE_DATE':
       return {
         ...state,
         dateAccompagnement: action.date,
+        nbOrganisme: 0,
       };
     case 'UPDATE_DATEPICKER_STATUS':
       return {
@@ -255,6 +331,7 @@ export default function cra(state = initialState, action) {
     case 'VERIFY_CRA':
       return {
         ...state,
+        nbOrganisme: 0,
         printError: action.hasErrors,
       };
     case 'SUBMIT_CRA_REQUEST':
