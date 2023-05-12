@@ -160,7 +160,8 @@ function Header({ linkAccount, printClass }) {
                                             onClick={() => {
                                               setMenuUserShow(false);
                                             }}>
-                                            <i className="ri-user-fill"></i> Mes informations<br />
+                                            <i className="ri-user-fill icone-menu fr-mr-1w"></i>
+                                            Mes informations<br />
                                           </Link>
                                         </li>
                                         <li className="user-infos">
@@ -168,10 +169,11 @@ function Header({ linkAccount, printClass }) {
                                             onClick={() => {
                                               setMenuUserShow(false);
                                             }}>
+                                            <i className="ri-user-6-line icone-menu fr-mr-1w"></i>
+                                            Contact de mon responsable<br />
                                             { !conseiller?.supHierarchique &&
                                             <i className="ri-information-line information icone-info-header"></i>
                                             }
-                                            <i className="ri-user-6-line"></i> Contact de mon responsable<br />
                                           </Link>
                                         </li>
                                         <li className="user-infos">
@@ -179,7 +181,8 @@ function Header({ linkAccount, printClass }) {
                                             onClick={() => {
                                               setMenuUserShow(false);
                                             }}>
-                                            <i className="ri-profile-line"></i> Mon espace candidat<br />
+                                            <i className="ri-profile-line icone-menu fr-mr-1w"></i>
+                                             Mon espace candidat<br />
                                           </Link>
                                         </li>
                                       </>
@@ -191,7 +194,8 @@ function Header({ linkAccount, printClass }) {
                                             onClick={() => {
                                               setMenuUserShow(false);
                                             }}>
-                                            <i className="ri-logout-box-r-line"></i> D&eacute;connexion<br />
+                                            <i className="ri-logout-box-r-line icone-menu fr-mr-1w"></i>
+                                            D&eacute;connexion<br />
                                           </Link>
                                         }
                                         {role !== 'conseiller' &&
@@ -200,7 +204,8 @@ function Header({ linkAccount, printClass }) {
                                               resetFiltreListeConseillers();
                                               setMenuUserShow(false);
                                             }}>
-                                            <i className="ri-logout-box-r-line"></i> D&eacute;connexion<br />
+                                            <i className="ri-logout-box-r-line icone-menu fr-mr-1w"></i>
+                                            D&eacute;connexion<br />
                                           </Link>
                                         }
                                       </li>
