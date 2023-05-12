@@ -19,7 +19,7 @@ function MesInformations() {
 
   return (
     <>
-      {formInformations.isCreated &&
+      {formInformations.isUpdated &&
         <FlashMessage duration={10000}>
           <p className="fr-label flashBag">
             Vos informations ont bien &eacute;t&eacute; enregistr&eacute;es&nbsp;

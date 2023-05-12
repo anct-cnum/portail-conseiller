@@ -64,29 +64,9 @@ function Menu() {
                         className="fr-nav__link linkCustom"
                         {...(location.pathname.startsWith(`/mes-informations`) ? { 'aria-current': 'page' } : {})}
                         to="/mes-informations"
-                        title="Mes informations"
+                        title="Mes informations, Contact hi&eacute;rarchique"
                         onClick={toggleBurgerMenu}>
-                        Mes informations
-                      </Link>
-                    </li>
-                    <li className="fr-nav__item">
-                      <Link
-                        className="fr-nav__link linkCustom"
-                        {...(location.pathname.startsWith(`/contact-mon-responsable`) ? { 'aria-current': 'page' } : {})}
-                        to="/contact-mon-responsable"
-                        title="Contact de mon responsable"
-                        onClick={toggleBurgerMenu}>
-                        Contact de mon responsable
-                      </Link>
-                    </li>
-                    <li className="fr-nav__item">
-                      <Link
-                        className="fr-nav__link linkCustom"
-                        {...(location.pathname.startsWith(`/mon-espace-candidat`) ? { 'aria-current': 'page' } : {})}
-                        to="/mon-espace-candidat"
-                        title="Mon espace candidat"
-                        onClick={toggleBurgerMenu}>
-                        Mon espace candidat
+                        Mes informations, Contact hi&eacute;rarchique
                       </Link>
                     </li>
                     <li className="fr-nav__item">

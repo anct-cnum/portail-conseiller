@@ -86,7 +86,7 @@ function FormulaireSuperieurHierarchique() {
   return (
     <>
       <ModalUpdateForm form={formSupHierarchique} showModal={showModal} setShowModal={setShowModal} formOrigin="superieurHierarchique"/>
-
+    
       <div className="mes-informations">
         {formSupHierarchique.isCreated &&
           <FlashMessage duration={10000}>
