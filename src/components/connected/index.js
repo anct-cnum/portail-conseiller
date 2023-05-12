@@ -15,6 +15,7 @@ import PermanenceUpdate from './permanence/PermanenceUpdate';
 import PermanenceCreate from './permanence/PermanenceCreate';
 import HistoriqueCras from './historiqueCras';
 import UpdateCra from './cra/UpdateCra';
+import FormulaireSuperieurHierarchique from './mesInformations/FormulaireSupHierarchique';
 
 function Connected() {
 
@@ -57,6 +58,7 @@ function Connected() {
               <Route path={`/compte-rendu-activite/:idCra`} component={UpdateCra} />
               <Route path={`/statistiques`} component={Statistics} />
               <Route path={'/mes-informations'} component={MesInformations} />
+              <Route path={'/contact-mon-responsable'} component={FormulaireSuperieurHierarchique} />
               <Route path={`/lieux-activite`} component={Permanence} />
               <Route path={'/mes-lieux-activite'} component={MesPermanences} />
               <Route path={'/mon-lieu-activite/:idPermanence'} component={PermanenceUpdate} />

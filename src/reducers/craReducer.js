@@ -207,13 +207,15 @@ export default function cra(state = initialState, action) {
     case 'UPDATE_NB_RECURRENCE':
       return {
         ...state,
-        nbParticipantsRecurrents: action.nbParticipantsRecurrents
+        nbParticipantsRecurrents: action.nbParticipantsRecurrents,
+        nbOrganisme: 0
       };
     case 'UPDATE_AGE':
       return {
         ...state,
         age: action.data.age,
         nbParticipantsAge: action.data.nbParticipantsAge,
+        nbOrganisme: 0,
         errorsRequired: {
           ...state.errorsRequired,
           age: action.data.nbParticipantsAge !== state.nbParticipants },
@@ -223,6 +225,7 @@ export default function cra(state = initialState, action) {
         ...state,
         statut: action.data.statut,
         nbParticipantsStatut: action.data.nbParticipantsStatut,
+        nbOrganisme: 0,
         errorsRequired: {
           ...state.errorsRequired,
           statut: action.data.nbParticipantsStatut !== state.nbParticipants },
@@ -231,6 +234,7 @@ export default function cra(state = initialState, action) {
       return {
         ...state,
         themes: action.themes,
+        nbOrganisme: 0,
         errorsRequired: {
           ...state.errorsRequired,
           themes: (action.themes.length === 0) },
@@ -238,12 +242,14 @@ export default function cra(state = initialState, action) {
     case 'UPDATE_MULTIPLE_THEMES':
       return {
         ...state,
+        nbOrganisme: 0,
         sousThemes: action.sousThemesList
       };
     case 'UPDATE_DUREE':
       return {
         ...state,
         duree: action.duree,
+        nbOrganisme: 0,
         errorsRequired: {
           ...state.errorsRequired,
           duree: false },
@@ -306,10 +312,16 @@ export default function cra(state = initialState, action) {
         nbAccompagnementRedirection: organismesDeleteCra.nbAccompagnementRedirection,
         nbParticipantsAccompagnement: organismesDeleteCra.nbParticipantsAccompagnement,
       };
+    case 'INIT_NB_ORGANISME':
+      return {
+        ...state,
+        nbOrganisme: 0,
+      };
     case 'UPDATE_DATE':
       return {
         ...state,
         dateAccompagnement: action.date,
+        nbOrganisme: 0,
       };
     case 'UPDATE_DATEPICKER_STATUS':
       return {
@@ -319,6 +331,7 @@ export default function cra(state = initialState, action) {
     case 'VERIFY_CRA':
       return {
         ...state,
+        nbOrganisme: 0,
         printError: action.hasErrors,
       };
     case 'SUBMIT_CRA_REQUEST':
