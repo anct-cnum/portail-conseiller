@@ -1,20 +1,28 @@
 import Joi from 'joi';
+import download from 'downloadjs';
 import { userService } from '../services/user.service';
 import { candidatService } from '../services/candidat.service';
 
 export const candidatActions = {
   initForm,
+  initBoolean,
   updateCPVille,
   updateDistance,
   verifyForm,
   updateCandidat,
   searchVilleCP,
+  uploadCurriculumVitae,
+  getCurriculumVitae,
+  deleteCurriculumVitae,
+  resetCVFile,
 };
 
 function initForm(conseiller) {
   return { type: 'INIT_FORM', conseiller };
 }
-
+function initBoolean() {
+  return { type: 'INIT_BOOLEAN' };
+}
 function updateCPVille(cpVille, ville, codeCommune, codePostal, location) {
   return { type: 'UPDATE_CP_VILLE', cpVille, ville, codeCommune, codePostal, location };
 }
@@ -75,7 +83,6 @@ function verifyForm(form) {
 }
 
 function updateCandidat(form, conseillerId, username, password) {
-
   return dispatch => {
     dispatch(request());
     userService.login(username, password).then(
@@ -135,4 +142,73 @@ function searchVilleCP(adresse) {
   function failure(error) {
     return { type: 'GET_ADRESSE_FAILURE', error };
   }
+}
+
+function uploadCurriculumVitae(fileCV) {
+  return dispatch => {
+    dispatch(request());
+    candidatService.uploadCurriculumVitae(fileCV)
+    .then(
+      data => dispatch(success(data.isUploaded)),
+      error => dispatch(failure(error))
+    );
+  };
+
+  function request() {
+    return { type: 'POST_CURRICULUM_VITAE_REQUEST' };
+  }
+  function success(isUploaded) {
+    return { type: 'POST_CURRICULUM_VITAE_SUCCESS', isUploaded };
+  }
+  function failure(error) {
+    return { type: 'POST_CURRICULUM_VITAE_FAILURE', error };
+  }
+}
+
+function getCurriculumVitae(id, candidat) {
+  return dispatch => {
+    dispatch(request());
+
+    candidatService.getCurriculumVitae(id)
+    .then(
+      data => dispatch(success(data, download(data, candidat?.nom + '_' + candidat?.prenom + '.' + candidat?.cv?.extension))),
+      error => dispatch(failure(error))
+    );
+  };
+
+  function request() {
+    return { type: 'GET_CURRICULUM_VITAE_REQUEST' };
+  }
+  function success(data, download) {
+    return { type: 'GET_CURRICULUM_VITAE_SUCCESS', data, download };
+  }
+  function failure(error) {
+    return { type: 'GET_CURRICULUM_VITAE_FAILURE', error };
+  }
+}
+
+function deleteCurriculumVitae(id) {
+  return dispatch => {
+    dispatch(request());
+
+    candidatService.deleteCurriculumVitae(id)
+    .then(
+      data => dispatch(success(data?.deleteSuccess)),
+      error => dispatch(failure(error))
+    );
+  };
+
+  function request() {
+    return { type: 'DELETE_CURRICULUM_VITAE_REQUEST' };
+  }
+  function success(data) {
+    return { type: 'DELETE_CURRICULUM_VITAE_SUCCESS', data };
+  }
+  function failure(error) {
+    return { type: 'DELETE_CURRICULUM_VITAE_FAILURE', error };
+  }
+}
+
+function resetCVFile() {
+  return { type: 'RESET_FILE' };
 }

@@ -1,20 +1,21 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useDropzone } from 'react-dropzone';
 import FlashMessage from 'react-flash-message';
+import { useDropzone } from 'react-dropzone';
+import PropTypes from 'prop-types';
 
-import { candidatActions } from '../../../actions';
+import { candidatActions, conseillerActions } from '../../../actions';
 
-function MonCurriculumVitae() {
+function MonCurriculumVitae({ isUploaded, isDeleted, uploading }) {
   const dispatch = useDispatch();
 
+  const user = useSelector(state => state?.authentication?.user?.user);
   const conseiller = useSelector(state => state.conseiller?.conseiller);
-  const downloadError = useSelector(state => state.conseiller?.downloadError);
-  const isDownloaded = useSelector(state => state.conseiller?.isDownloaded);
-  const isUploaded = useSelector(state => state.conseiller?.isUploaded);
-  const isDeleted = useSelector(state => state.conseiller?.isDeleted);
-  const blob = useSelector(state => state.conseiller?.blob);
-  const user = useSelector(state => state.user);
+  const isDownloaded = useSelector(state => state.candidat?.isDownloaded);
+  const downloadError = useSelector(state => state.candidat?.downloadError);
+  const uploadError = useSelector(state => state.candidat?.uploadError);
+  const blob = useSelector(state => state.candidat?.blob);
+
   const errorTab = [{
     key: 'too-many-files',
     label: 'La plateforme n\'accepte qu\'un seul fichier !'
@@ -48,25 +49,39 @@ function MonCurriculumVitae() {
   };
 
   useEffect(() => {
-    if (blob !== null && blob !== undefined && (downloadError === undefined || downloadError === false)) {
+    if (blob !== null && blob !== undefined && (uploadError === undefined || uploadError === false)) {
       dispatch(candidatActions.resetCVFile());
     }
-  }, [blob, downloadError]);
+  }, [blob, uploadError]);
 
   useEffect(() => {
     if (isDownloaded || isUploaded || isDeleted) {
-     /// dispatch(conseillerActions.get(user?.entity?.$id));
+      dispatch(conseillerActions.get(user?.entity?.$id));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setTimeout(() => {
+        dispatch(candidatActions.initBoolean());
+      }, 10000);
     }
   }, [isDownloaded, isUploaded, isDeleted]);
 
   return (
     <>
       <h2 className="sous-titre fr-mb-6w">Mon curriculum vit&aelig;</h2>
+      { (!isUploaded &&
+        (typeof uploadError === 'string' && uploadError?.length > 0) ||
+        (typeof downloadError === 'string' && downloadError?.length > 0)) &&
+        <FlashMessage duration={10000}>
+          <p className="fr-label flashBag invalid">
+            {uploadError ?? downloadError}
+            <i className="ri-close-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
+          </p>
+        </FlashMessage>
+      }
 
       <div className={`bouton-cv ${conseiller?.cv ? 'fr-mb-3w' : 'fr-mb-6w'} ${fileRejections.length > 0 ? 'dropZone drop-error' : ''}`}
         {...getRootProps()}>
         <input {...getInputProps()} />
-        {acceptedFiles.length === 0 &&
+        {(conseiller?.cv && !uploading || acceptedFiles.length === 0) &&
           <>
             {isDragActive ?
               <span>Déposez votre CV ici ...</span> :
@@ -77,7 +92,7 @@ function MonCurriculumVitae() {
             }
           </>
         }
-        {acceptedFiles.length > 0 &&
+        {uploading && acceptedFiles.length > 0 &&
           <span>{acceptedFiles[0].name}</span>
         }
         {fileRejections?.length > 0 &&
@@ -111,4 +126,9 @@ function MonCurriculumVitae() {
   );
 }
 
+MonCurriculumVitae.propTypes = {
+  isUploaded: PropTypes.bool,
+  isDeleted: PropTypes.bool,
+  uploading: PropTypes.bool,
+};
 export default MonCurriculumVitae;

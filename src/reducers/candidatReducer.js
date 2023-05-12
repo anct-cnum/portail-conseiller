@@ -1,5 +1,8 @@
 const initState = {
   loadingAdresses: false,
+  downloadError: false,
+  uploadError: false,
+  uploading: false,
   adresses: [],
   cpVille: '',
   distance: '',
@@ -7,6 +10,13 @@ const initState = {
 
 export default function candidat(state = initState, action) {
   switch (action.type) {
+    case 'INIT_BOOLEAN':
+      return {
+        ...state,
+        isDownloaded: false,
+        isUploaded: false,
+        isDeleted: false,
+      };
     case 'INIT_FORM':
       return {
         ...state,
@@ -74,7 +84,73 @@ export default function candidat(state = initState, action) {
         loadingAdresses: false,
         error: true
       };
-
+    case 'POST_CURRICULUM_VITAE_REQUEST':
+      return {
+        ...state,
+        uploading: true,
+        isUploaded: false,
+        uploadError: false,
+      };
+    case 'POST_CURRICULUM_VITAE_SUCCESS':
+      return {
+        ...state,
+        isUploaded: action.isUploaded,
+        uploading: false
+      };
+    case 'POST_CURRICULUM_VITAE_FAILURE':
+      return {
+        ...state,
+        uploadError: action.error,
+        isUploaded: false,
+        uploading: false
+      };
+    case 'GET_CURRICULUM_VITAE_REQUEST':
+      return {
+        ...state,
+        downloading: true,
+        isDownloaded: false
+      };
+    case 'GET_CURRICULUM_VITAE_SUCCESS':
+      return {
+        ...state,
+        blob: action.data,
+        isDownloaded: action.download,
+        downloading: false,
+      };
+    case 'GET_CURRICULUM_VITAE_FAILURE':
+      return {
+        ...state,
+        downloadError: action.error,
+        downloading: false,
+        isDownloaded: false
+      };
+    case 'DELETE_CURRICULUM_VITAE_REQUEST':
+      return {
+        ...state,
+        isUploaded: false,
+        isDeleted: false,
+        deleteError: false,
+        loadingDeleteCv: true
+      };
+    case 'DELETE_CURRICULUM_VITAE_SUCCESS':
+      return {
+        ...state,
+        isDeleted: action.data,
+        deleteError: false,
+        loadingDeleteCv: false
+      };
+    case 'DELETE_CURRICULUM_VITAE_FAILURE':
+      return {
+        ...state,
+        deleteError: action.error,
+        loadingDeleteCv: false
+      };
+    case 'RESET_FILE':
+      return {
+        ...state,
+        blob: null,
+        uploadError: false,
+      };
     default:
       return state;
   }
