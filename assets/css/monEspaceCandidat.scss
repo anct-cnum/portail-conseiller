@@ -69,4 +69,15 @@
     position: relative;
     top: 5px;
   }
+  .text-pix {
+    font-size: 16px;
+    color: #929292;
+    ul {
+      list-style-type: none;
+      padding: 0px;
+   }
+   li:before {
+      content: '- ';
+   }
+  }
 }

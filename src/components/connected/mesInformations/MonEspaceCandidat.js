@@ -7,6 +7,7 @@ import ModalUpdateForm from './ModalUpdateForm';
 import Footer from '../../Footer';
 import MaZoneGeographique from './MaZoneGeographique';
 import MonCurriculumVitae from './MonCurriculumVitae';
+import MonPix from './MonPix';
 
 function MonEspaceCandidat() {
 
@@ -90,7 +91,7 @@ function MonEspaceCandidat() {
 
             <div className="fr-col-12">
               <hr/>
-              {/** Emplacement PIX */}
+              <MonPix/>
             </div>
           </div>
         </div>
