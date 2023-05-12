@@ -1,5 +1,5 @@
 const initialState = {
-  isCreated: false,
+  isUpdated: false,
   showError: false,
 };
 
@@ -23,7 +23,7 @@ export default function formulaireInformations(state = initialState, action) {
     case 'INIT_FORM_INFORMATIONS_MESSAGE':
       return {
         ...state,
-        isCreated: false,
+        isUpdated: false,
         showConfirmationMail: null,
         showConfirmationMailPro: null
       };
@@ -66,13 +66,13 @@ export default function formulaireInformations(state = initialState, action) {
     case 'POST_INFORMATIONS_REQUEST':
       return {
         ...state,
-        isCreated: false,
+        isUpdated: false,
         showError: false,
       };
     case 'POST_INFORMATIONS_SUCCESS':
       return {
         ...state,
-        'isCreated': true,
+        'isUpdated': true,
         'showError': false,
         'conseiller.prenom': action.conseiller.prenom,
         'conseiller.nom': action.conseiller.nom,
@@ -87,7 +87,7 @@ export default function formulaireInformations(state = initialState, action) {
     case 'POST_INFORMATIONS_FAILURE':
       return {
         ...state,
-        isCreated: false,
+        isUpdated: false,
         showError: true,
         error: action.error,
       };
