@@ -1,21 +1,21 @@
 import Joi from 'joi';
 import { userService } from '../services/user.service';
 import { history } from '../helpers';
-import { infoPersonnelService } from '../services/infoPersonnel.service';
+import { informationsService } from '../services/informations.service';
 
-export const formInfoPersonnelActions = {
+export const formInformationsActions = {
+  confirmConseillerEmail,
   verifyFormulaire,
   updateField,
-  initFormInfoPersonnel,
-  updateInfoPersonnel,
-  confirmConseillerEmail,
-  initFormInfoPersonnelMessage
+  initFormInformations,
+  initFormInformationsMessage,
+  updateInformations,
 };
 
 function confirmConseillerEmail(token) {
   return dispatch => {
     dispatch(request());
-    infoPersonnelService.confirmConseillerEmail(token)
+    informationsService.confirmConseillerEmail(token)
     .then(
       result => result.isEmailPro === false ? dispatch(successMail(result.email)) : dispatch(successMailPro(result.emailPro)),
       error => {
@@ -53,7 +53,6 @@ function verifyFormulaire(form, telephone) {
         'Un numéro de téléphone valide doit obligatoirement être saisi. Exemples: +33XXXXXXXXX ou +262XXXXXXXXX, ...' : null
     });
   }
-
   errors.push({
     telephonePro: (Joi.object({
       telephonePro: Joi.string().optional().allow('', null).pattern(regExpNumero)
@@ -89,20 +88,20 @@ function updateField(name, value) {
   return { type: 'UPDATE_' + name?.toUpperCase(), value };
 }
 
-function initFormInfoPersonnel(email, telephone, telephonePro, emailPro, dateDeNaissance, sexe) {
-  return { type: 'INIT_FORM_INFO_PERSONNEL', email, telephone, telephonePro, emailPro, dateDeNaissance, sexe };
+function initFormInformations(email, telephone, telephonePro, emailPro, dateDeNaissance, sexe) {
+  return { type: 'INIT_FORM_INFORMATIONS', email, telephone, telephonePro, emailPro, dateDeNaissance, sexe };
 }
 
-function initFormInfoPersonnelMessage(state) {
-  return { type: 'INIT_FORM_INFO_PERSONNEL_MESSAGE', state };
+function initFormInformationsMessage(state) {
+  return { type: 'INIT_FORM_INFORMATIONS_MESSAGE', state };
 }
 
-function updateInfoPersonnel(infoPersonnel, conseillerId, username, password) {
+function updateInformations(informations, conseillerId, username, password) {
   return dispatch => {
     dispatch(request());
     userService.login(username, password).then(
       () => {
-        infoPersonnelService.updateInfoPersonnel(infoPersonnel, conseillerId)
+        informationsService.updateInformations(informations, conseillerId)
         .then(
           result => {
             dispatch(success(result.conseiller, result.initModifMailPersoConseiller, result.initModifMailProConseiller));
@@ -121,11 +120,11 @@ function updateInfoPersonnel(infoPersonnel, conseillerId, username, password) {
 }
 
 function request() {
-  return { type: 'POST_INFO_PERSONNEL_REQUEST' };
+  return { type: 'POST_INFORMATIONS_REQUEST' };
 }
 function success(conseiller, initModifMailPersoConseiller, initModifMailProConseiller) {
-  return { type: 'POST_INFO_PERSONNEL_SUCCESS', conseiller, initModifMailPersoConseiller, initModifMailProConseiller };
+  return { type: 'POST_INFORMATIONS_SUCCESS', conseiller, initModifMailPersoConseiller, initModifMailProConseiller };
 }
 function failure(error) {
-  return { type: 'POST_INFO_PERSONNEL_FAILURE', error };
+  return { type: 'POST_INFORMATIONS_FAILURE', error };
 }

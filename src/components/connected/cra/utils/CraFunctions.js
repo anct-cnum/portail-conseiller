@@ -36,3 +36,19 @@ export function decodeEntitiesSuggestion(theme) {
   txt.innerHTML = theme;
   return txt.value;
 }
+
+export function getValeurMax(value, nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbParticipants) {
+  let nbParticipantsReorientes = 0;
+  let valeurMax = nbParticipants;
+  if (value !== 'individuel') {
+    nbParticipantsReorientes += nbAccompagnementIndividuel;
+  }
+  if (value !== 'atelier') {
+    nbParticipantsReorientes += nbAccompagnementAtelier;
+  }
+  if (value !== 'redirection') {
+    nbParticipantsReorientes += nbAccompagnementRedirection;
+  }
+  valeurMax -= nbParticipantsReorientes;
+  return valeurMax < 0 ? 0 : valeurMax;
+}

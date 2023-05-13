@@ -1,6 +1,15 @@
+$black-gradient: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%);
+$white-gradient: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
+$blue-gradient: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
+$blue-gradient-redirection: linear-gradient(0deg, #9A9AFF 0%, #518FFF 96.15%);
+$small-blue-gradient: linear-gradient(0deg,#3558A2,#9A9AFF) border-box;
+$segment-gradient: linear-gradient(360deg, #3558A2 65.63%, #9A9AFF 100%);
+$mask-gradient: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+$red-gradient: linear-gradient(0deg,red,orange) border-box;
 $errorDarkMode: #ff3333;
 $background: #1e1e1e;
 $blue: #2b8bf7;
+
 
 $lieuRattachementSelected: url(../../public/logos/cra/logo-lieu-rattachement-selected.svg) no-repeat;
 $lieuRattachementActif: url(../../public/logos/cra/logo-lieu-rattachement-actif.svg) no-repeat;
@@ -59,7 +68,32 @@ $autreSelected: url(../../public/logos/cra/logo-autre-n.svg) no-repeat;
 $chevronGauche: url(../../public/logos/cra/logo-chevron-gauche.svg) no-repeat;
 $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
 
+$individuel: url(../../public/logos/cra/logo-acc-individuel.svg) no-repeat;
+$atelier: url(../../public/logos/cra/logo-atelier.svg) no-repeat;
+$logoDemande: url(../../public/logos/cra/logo-demande-ponctuelle.svg) no-repeat;
+$redirection: url(../../public/logos/cra/logo-redirection-structure.svg) no-repeat;
+
+$individuelSelected: url(../../public/logos/cra/logo-acc-individuel-n.svg) no-repeat;
+$atelierSelected: url(../../public/logos/cra/logo-atelier-n.svg) no-repeat;
+$logoDemandeSelected: url(../../public/logos/cra/logo-demande-ponctuelle-n.svg) no-repeat;
+$redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.svg) no-repeat;
+
 .cra {
+
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+  }
+
+/* Firefox */
+  input[type=number] {
+    -moz-appearance:textfield;
+    appearance: textfield;
+  }
   .espacement {
     margin-bottom: 3.75rem !important;
   }
@@ -284,29 +318,32 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
   }
 
   .radioButtonRedirection {
-    position: relative;
-    margin-top: -230px;
+    margin-top: -323px;
     .radioRattachement {
       border-radius: 0 0 20px 20px !important;
     }
   }
   .selectAccompagnementRedirection {
-    border-radius: 20px 20px 0 0;
-    border: solid 1px #5398FF;
-    background: #1e1e1e;
-    border-bottom: none;
-    height: 230px;
+    width: 270px;
+    height: 350px;
+    margin-bottom: -27px;
+  }
+  .blockListe {
+    background-color: #ffffff;
+    border-radius: 20px;
+    height: 350px;
+    width: 100%;
   }
   .listRedirection {
-    display: block;
-    position: relative;
     list-style: none;
-    overflow-y: scroll;
+    margin: 20px 0 0;
+    overflow: auto;
+    color: #000;
     height: 200px;
-    color: #fff;
+    width: 100%;
     padding: 0;
     &::-webkit-scrollbar {
-      width: 12px;
+      width: 16px;
       height: 48px;
       border-radius: 8px;
       // background-color: #cccccc
@@ -315,29 +352,83 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
       border-radius: 8px;
       background: #909090;
     }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
   }
-  .selecteurList:hover, .selecteurList:active {
-  color: #1e1e10;
-  height: 48px;
-  width: auto;
-  background-color: #FFFFFF;
+  .listeOrganismesSelected {
+    width: 100%;
+    overflow: auto;
+  }
+  .fresqueOrganismes {
+    height: 72px;
+    padding: 20px 0;
   }
   .selecteurList {
+    text-align: left;
     padding: 1em 2em;
-     text-align: left
+    height: 48px;
   }
+  .selecteurList:hover, .selecteurList:active {
+    color: #fff;
+    width: auto;
+    background: $blue-gradient;
+    }
   .styleInputAutre {
-    background-color: #1e1e1e;
-    border: solid 1px #929292;
+    border-top: solid 1px #3558a2;
+    background-color: #fff;
     padding: 1em 2em;
     font-size: 1rem;
     text-align: left;
+    color: #000;
+    height: 48px;
     width: 100%;
-    color: #fff;
     &:hover, &:focus, &:active   {
-      background-color: #fff;
-      border-color: #1e1e1e;
-      color: #1e1e1e;
+      background: $blue-gradient;
+      border-color: #3558a2;
+      color: #fff;
+    }
+  }
+  .styleInputValueOrganisme {
+    text-align: center;
+    font-weight: 600;
+    font-size: 32px;
+    width: 100%;
+  }
+  .styleLiButtonsRedirection {
+    padding: 20px 0px;
+    overflow: auto;
+    width: 1000px;
+  }
+  .styleLiButtonEnregistrer, .styleLiButtonEnregistrerDisabled {
+    background-color: #43009e;
+    text-align: center;
+    padding-top: 5px;
+    height: 36px;
+  }
+  .styleLiButtonEnregistrerDisabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+  }
+  .styleButtonEnregistrer, .styleButtonEnregistrerDisabled {
+    background-color: #43009e;
+    text-align: center;
+    line-height: 24px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #fff;
+    &:hover {
+      background: none !important;
+      background-color: #43009e !important;
+    }
+  }
+  .styleButtonEnregistrerDisabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+    color: #666;
+    &:hover {
+      background: none !important;
+      background-color: #aaa !important;
     }
   }
   .styleButtonRedirection {
@@ -450,8 +541,7 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
    .radioRattachement, .radioRattachementAlt {
     width: 100%;
     border-radius: 20px;
-    border: 1px solid white;
-    background-color: $background;
+    background: $black-gradient;
     cursor: pointer;
     height: 144px;
     padding: 0px;
@@ -459,9 +549,24 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
   }
 
   .radioRattachement-selected {
-    background-color: white!important;
+    background: $white-gradient!important;
     color: black!important;
+    span {
+      color: #000 !important;
+      .selectionner-autre {
+        color: #666666 !important;
+        font-size: 14px !important;;
+      }
+    }
+    .logoIndividuel {
+      background: $individuelSelected !important;
+    }
+    .logoDemande {
+      background: $logoDemandeSelected !important;
+    }
   }
+
+
 
   .labelBigRadioCustom {
     padding-top: 2.5rem;
@@ -480,11 +585,11 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
   }
 
   .countRadioCalcul:hover {
-    background-color: $background;
+    background: $blue-gradient;
     border-radius: 0 0 0 20px;
 
     .labelCalculCustom {
-      color: white;
+      color: white !important;
     }
   }
 
@@ -785,8 +890,9 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
   }
   /** END SQUARE BUTTON TIME **/
   /** START CHECKBOX BUTTON THEMES **/
-  .gradient-box, .inactif-box {
-    background: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%);    border: solid 1px transparent;
+  .gradient-box, .gradient-box-blue, .inactif-box {
+    background: $black-gradient;
+    border: solid 1px transparent;
     background-clip: padding-box;
     box-sizing: border-box;
     border-radius: 20px;
@@ -801,15 +907,45 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
       z-index: -1;
       margin: -1px;
       border-radius: inherit;
-      background: linear-gradient(0deg,#3558A2,#9A9AFF) border-box;
+      background: $small-blue-gradient;
     }
+  }
+  .gradient-box-blue {
+    background: $blue-gradient-redirection;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; bottom: 0; left: 0;
+      z-index: -1;
+      margin: -1px;
+      border-radius: inherit;
+      background: $blue-gradient-redirection;
+    }
+  }
+  .gradient-box button:hover, .gradient-box-redirection {
+    background: $white-gradient;
+    .radioRattachement {
+      color: #000;
+    }
+  }
+  .gradient-box-redirection {
+    .fr-label {
+      color:#000 !important;
+    }
+    .logoRedirection {
+      background: $redirectionSelected !important;
+    }
+  }
+  .border-top-none {
+    border-radius: 0 0 20px 20px !important;
+    margin-top: -27px;
   }
   .inactif-box:after {
       background: #666666 !important;
   }
   .checkboxButton {
     .checkboxRattachement2 {
-      background: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%);
+      background: $black-gradient;
       border-radius: 20px;
       cursor: pointer;
       width: 100%;
@@ -821,11 +957,11 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
         overflow: auto;
       }
       &.inactif-btn:hover {
-        background: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%);
+        background: $black-gradient;
         cursor: not-allowed;
       }
       &:hover {
-        background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
+        background: $white-gradient;
         color: black!important;
         span {
           color: black;
@@ -1016,8 +1152,8 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
       }
     }
     .checkboxRattachement2-selected {
-      background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
-      color: #161616!important;
+      background: $white-gradient;
+      color: black!important;
       .baseline {
         color: #666666;
       }
@@ -1189,7 +1325,7 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
     border-radius: 20px;
     /** START SELECT CP **/
     .dropdown {
-      background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
+      background: $white-gradient;
       border-radius: 20px;
       position: absolute;
       cursor: pointer;
@@ -1202,7 +1338,7 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
       width: 528px;
     }
     .buttonCP, .inputCP {
-      background: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
+      background: $blue-gradient;
       border-radius: 20px 20px 0px 0px;
       line-height: 24px;
       font-weight: 700;
@@ -1212,7 +1348,7 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
       width: 528px;
       height: 72px;
       &:hover {
-        background: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
+        background: $blue-gradient;
         color: #fff;
       }
       div {
@@ -1233,7 +1369,7 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
 
     }
     div.scrollOptions2 {
-      background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
+      background: $white-gradient;
       border-radius: 0 0 20px 20px;
       overflow-x: hidden;
       max-height: 200px;
@@ -1246,13 +1382,14 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
         padding: 12px 0 0 25px;
         height: 47px;
         &:hover {
-          background: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
+          background: $blue-gradient;
           color: #fff;
         }
       }
     }
     .buttonCP-filled, .buttonPermanence-filled {
-      background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);color: #2a2a2a;
+      background: $white-gradient;
+      color: #2a2a2a;
       text-align: center;
       line-height: 24px;
       font-weight: 700;
@@ -1272,7 +1409,7 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
 
     /** END SELECT CP **/
     button {
-      background: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%);
+      background: $black-gradient;
       border-radius: 20px;
       color: #fff;
       height: 144px;
@@ -1318,7 +1455,7 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
         bottom: 5px;
       }
       &:hover, &.selected {
-        background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 58.33%, #518FFF 100%);
+        background: $white-gradient;
         color: #2a2a2a;
         .labelBigRadioCustom, .labelSmallRadioCustom {
           color: #2a2a2a;
@@ -1338,6 +1475,7 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
         .logoDomicile {
           background: $lieuDomicileHover;
         }
+
       }
     }
     .logoRattachementSelected {
@@ -1348,7 +1486,7 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
       width: 33px;
     }
     #buttonPermanences {
-      background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
+      background: $white-gradient;
       border-radius: 20px;
       position: absolute;
       max-height: 344px;
@@ -1378,7 +1516,7 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
             font-size: 12px;
           }
           &:hover {
-            background: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
+            background: $blue-gradient;
             .nomEnseigne, .adresse {
               color: #fff;
             }
@@ -1426,15 +1564,49 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
     }
   }
   .radioButton2 {
+    .radioRattachement {
+      .logoIndividuel, .logoAtelier, .logoDemande, .logoRedirection {
+        background: $individuel;
+        display: inline-block;
+        height: 56px;
+        width: 56px;
+      }
+      .logoAtelier{
+        background: $atelier;
+      }
+      .logoDemande {
+        background: $logoDemande;
+      }
+      .logoRedirection {
+        background: $redirection;
+      }
+      &:hover, &:active {
+        span {
+          color: #000 !important;
+        }
+        .logoIndividuel {
+          background: $individuelSelected;
+        }
+        .logoAtelier{
+          background: $atelierSelected;
+        }
+        .logoDemande {
+          background: $logoDemandeSelected;
+        }
+        .logoRedirection {
+          background: $redirectionSelected;
+        }
+      }
+    }
     .radioRattachement2::after, .smallRadioRattachement2::after {
       content: "";
       position: absolute;
       inset: 0;
       border-radius: 20px;
       border: 1px solid transparent;
-      background: linear-gradient(0deg,#3558A2,#9A9AFF) border-box;
-      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-        mask:linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      background: $small-blue-gradient;
+      -webkit-mask: $mask-gradient;
+        mask:$mask-gradient;
       -webkit-mask-composite: xor;
       mask-composite: exclude;
     }
@@ -1466,9 +1638,9 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
     inset: 0;
     border-radius: 20px;
     border: 1px solid transparent;
-    background: linear-gradient(0deg,red,orange) border-box !important;
-    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-      mask:linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    background: $red-gradient !important;
+    -webkit-mask: $mask-gradient;
+      mask:$mask-gradient;
     -webkit-mask-composite: xor;
     mask-composite: exclude;
   }
@@ -1556,7 +1728,7 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
       margin: 6px;
     }
     .react-datepicker__month-container {
-      background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
+      background: $white-gradient;
       border-radius: 0 0 20px 20px;
     }
     .react-datepicker__week {
@@ -1577,7 +1749,7 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
     }
     .react-datepicker__day--selected, .react-datepicker__day--keyboard-selected {
       color: #fff;
-      background: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
+      background: $blue-gradient;
       border-radius: 8px;
     }
     .react-date-picker__calendar--open {
@@ -1589,6 +1761,38 @@ $chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
     position: absolute;
     top: 0px;
     left: -93px;
+  }
+  .first-el {
+    margin-left: 15px;
+  }
+  .selectionner-autre {
+    color: #666666 !important;
+    font-size: 14px !important;;
+  }
+  .redirection-btn {
+    background: $blue-gradient;
+    padding: 4px 12px 4px 8px;
+    display: inline-block;
+    border-radius: 53px;
+    margin-right: 12px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 14px;
+    color : #fff;
+    height: 32px;
+    button {
+      font-size: 14px;
+      color: #fff;
+      i {
+        position: relative;
+        top: 2px;
+      }
+      &:hover{
+        background: none !important;
+        color: #fff;
+        text-decoration: none;
+      }
+    }
   }
   @media (max-width: 1111px) {
     .responsiveElement2, .responsiveElementEnd2{

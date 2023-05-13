@@ -12,7 +12,7 @@ import Recurrence from './Recurrence';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddToHomeScreen } from 'react-pwa-add-to-homescreen';
 import { history } from '../../../helpers';
-import { permanenceActions } from '../../../actions';
+import { craActions, permanenceActions } from '../../../actions';
 
 function Cra() {
   const dispatch = useDispatch();
@@ -20,6 +20,12 @@ function Cra() {
   process.env.REACT_APP_AIDE_URL + '/article/comment-le-conseiller-numerique-rend-il-compte-de-ses-activites-et-a-quoi-cela-sert-il-16n3yhq/';
   const printFlashbag = useSelector(state => state.cra.printFlashbag);
   const conseiller = useSelector(state => state.conseiller?.conseiller);
+
+  const checkNbOrganisme = e => {
+    if (e.target.className === 'fr-container cra' || e.target.parentNode.className === 'fr-container cra') {
+      dispatch(craActions.initNbOrganisme());
+    }
+  };
 
   useEffect(() => {
     if (printFlashbag) {
@@ -31,9 +37,12 @@ function Cra() {
       dispatch(permanenceActions.getMesPermanences(conseiller?._id));
     }
   }, [conseiller]);
+
   return (
     <>
-      <div className="fr-container cra">
+      <div className="fr-container cra" onClick={ e => {
+        checkNbOrganisme(e);
+      }}>
         <div className="fr-grid-row fr-grid-row--center fr-my-md-12w fr-pt-1w fr-pb-3w">
           <div className="fr-col-12 fr-col-lg-1 centrer">
             <img src="/logos/home-connected/icone-cra.svg" className="icon-cra" />

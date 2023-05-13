@@ -163,10 +163,6 @@
     left: -5px;
     top: 1px;
   }
-  .adresse-introuvable {
-    width: 230px;
-    display: inline-block;
-  }
   .creer-btn, .modifier-btn {
     background-color: #8585F6;
     border: 1px solid #000091;
@@ -340,17 +336,9 @@
       max-height: 180px;
       overflow: auto;
     }
-    .adresseIntrouvable {
-      border-top: 1px solid #518fff;
-      padding: 16px;
-      height: 50px;
-      label {
-        font-size: 0.8rem;
-        color: #fc5d00;
-      }
-    }
     .adresse {
-      border-radius: 0px;
+      border-radius: 0 0 15px 15px;
+      text-align: center;
       cursor: pointer;
       padding: 15px;
       &:hover {

@@ -16,7 +16,8 @@ const initialState = {
   suspensionPermanence: false,
   permanencesReservees: [],
   reloadList: true,
-  listeAdresses: [],
+  listeAdresses: null,
+  erreurAdresse: false,
 };
 
 const nettoyageState = form => {
@@ -26,6 +27,26 @@ const nettoyageState = form => {
     }
     return false;
   });
+};
+
+const nettoyageFields = (fields, prefixId, arrayFields) => {
+  arrayFields.forEach(field => {
+    delete fields?.filter(f => f.name === prefixId + field)[0]?.value;
+    delete fields?.filter(f => f.name === prefixId + field)[0]?.name;
+  });
+
+  return nettoyageState(fields);
+};
+
+const updateGeocode = (geocodeAdresse, prefixId, adresse = null) => {
+  if (geocodeAdresse?.length > 0) {
+    delete geocodeAdresse?.filter(geocode => geocode.prefixId === prefixId)[0]?.geocodeAdresse;
+    delete geocodeAdresse?.filter(geocode => geocode.prefixId === prefixId)[0]?.prefixId;
+  }
+  if (adresse !== null) {
+    geocodeAdresse?.push({ geocodeAdresse: adresse.geometry, prefixId: prefixId });
+  }
+  return nettoyageState(geocodeAdresse);
 };
 
 export default function permanence(state = initialState, action) {
@@ -102,9 +123,7 @@ export default function permanence(state = initialState, action) {
       delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.[action.field.name])[0]?.[action.field.name];
       delete fields?.filter(field => field.name === action.field.name)[0]?.value;
       delete fields?.filter(field => field.name === action.field.name)[0]?.name;
-
       fields?.push(action.field);
-
       fields = nettoyageState(fields);
       return {
         ...state,
@@ -157,14 +176,12 @@ export default function permanence(state = initialState, action) {
         const rueVoie = formatRue(null, action.adresseParSiret?.type_voie, action.adresseParSiret?.nom_voie);
         const adresse = action.adresseParSiret?.adresseComplete;
 
-        delete fieldsSiret?.filter(field => field.name === action.champ + 'adresse')[0]?.value;
-        delete fieldsSiret?.filter(field => field.name === action.champ + 'adresse')[0]?.name;
+        fieldsSiret = nettoyageFields(
+          fieldsSiret,
+          action.champ,
+          ['adresse', 'nomEnseigne']);
         fieldsSiret?.push({ name: action.champ + 'adresse', value: adresse });
-
-        delete fieldsSiret?.filter(field => field.name === action.champ + 'nomEnseigne')[0]?.value;
-        delete fieldsSiret?.filter(field => field.name === action.champ + 'nomEnseigne')[0]?.name;
         fieldsSiret?.push({ name: action.champ + 'nomEnseigne', value: action.adresseParSiret?.l1 });
-
         fieldsSiret = nettoyageState(fieldsSiret);
 
         delete disabledSiret?.filter(field => field.id === action.champ)[0]?.value;
@@ -197,14 +214,7 @@ export default function permanence(state = initialState, action) {
       };
     case 'GEOCODE_ADRESSE_SUCCESS':
       let geocodeAdresses = state?.geocodeAdresses ?? [];
-      if (geocodeAdresses?.length > 0) {
-        delete geocodeAdresses?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.geocodeAdresse;
-        delete geocodeAdresses?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.prefixId;
-      }
-
-      geocodeAdresses?.push({ geocodeAdresse: action.geocodeAdresse?.geometry, prefixId: action.prefixId });
-      geocodeAdresses = nettoyageState(geocodeAdresses);
-
+      geocodeAdresses = updateGeocode(geocodeAdresses, action.prefixId, action.geocodeAdresse);
       return {
         ...state,
         geocodeAdresses: geocodeAdresses,
@@ -218,8 +228,20 @@ export default function permanence(state = initialState, action) {
         loading: false,
       };
     case 'GET_ADRESSE_REQUEST':
+      let initFieldsAdresse = state?.fields ?? [];
+      let initgeocodeAdresse = state?.geocodeAdresses ?? [];
+
+      initFieldsAdresse = nettoyageFields(
+        initFieldsAdresse,
+        action.prefixId,
+        ['numeroVoie', 'rueVoie', 'codePostal', 'codeCommune', 'ville', 'location']);
+
+      initgeocodeAdresse = updateGeocode(initgeocodeAdresse, action.prefixId);
+
       return {
         ...state,
+        fields: initFieldsAdresse,
+        geocodeAdresse: initgeocodeAdresse,
         loadingAdresses: true,
         errorAdresses: false,
         listeAdresses: [],
@@ -236,75 +258,50 @@ export default function permanence(state = initialState, action) {
         loadingAdresses: false,
         errorAdresses: action.error,
       };
-    case 'GET_ADRESSE_INTROUVABLE_REQUEST':
-      return {
-        ...state,
-        loadingAdresseIntrouvable: true,
-        errorAdresseIntrouvable: false,
-      };
-    case 'GET_ADRESSE_INTROUVABLE_SUCCESS':
-      return {
-        ...state,
-        adresseIntrouvable: action.adresse,
-        loadingAdresseIntrouvable: false,
-      };
-    case 'GET_ADRESSE_INTROUVABLE_FAILURE':
-      return {
-        ...state,
-        loadingAdresseIntrouvable: false,
-        errorAdresseIntrouvable: action.error,
-      };
     case 'SET_ADRESSE':
       let fieldsAdresse = state?.fields ?? [];
       let geocodeAdresse = state?.geocodeAdresses ?? [];
       if (action?.adresse?.properties) {
         delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.[action.champ + 'adresse'])[0]?.[action.champ + 'adresse'];
+        delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.[action.champ + 'adresse'])[0]?.[action.champ + 'rueVoie'];
         delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.[action.champ + 'adresse'])[0]?.[action.champ + 'location'];
 
-        delete fieldsAdresse?.filter(field => field.name === action.prefixId + 'adresse')[0]?.value;
-        delete fieldsAdresse?.filter(field => field.name === action.prefixId + 'adresse')[0]?.name;
-        delete fieldsAdresse?.filter(field => field.name === action.prefixId + 'numeroVoie')[0]?.value;
-        delete fieldsAdresse?.filter(field => field.name === action.prefixId + 'numeroVoie')[0]?.name;
-        delete fieldsAdresse?.filter(field => field.name === action.prefixId + 'rueVoie')[0]?.value;
-        delete fieldsAdresse?.filter(field => field.name === action.prefixId + 'rueVoie')[0]?.name;
-        delete fieldsAdresse?.filter(field => field.name === action.prefixId + 'codePostal')[0]?.value;
-        delete fieldsAdresse?.filter(field => field.name === action.prefixId + 'codePostal')[0]?.name;
-        delete fieldsAdresse?.filter(field => field.name === action.prefixId + 'ville')[0]?.value;
-        delete fieldsAdresse?.filter(field => field.name === action.prefixId + 'ville')[0]?.name;
-        delete fieldsAdresse?.filter(field => field.name === action.prefixId + 'codeCommune')[0]?.value;
-        delete fieldsAdresse?.filter(field => field.name === action.prefixId + 'codeCommune')[0]?.name;
-        delete fieldsAdresse?.filter(field => field.name === action.prefixId + 'adresseIntrouvable')[0]?.value;
-        delete fieldsAdresse?.filter(field => field.name === action.prefixId + 'adresseIntrouvable')[0]?.name;
-
+        fieldsAdresse = nettoyageFields(
+          fieldsAdresse,
+          action.prefixId,
+          ['adresse', 'numeroVoie', 'rueVoie', 'codePostal', 'codeCommune', 'ville', 'location']);
         fieldsAdresse.push({ name: action.prefixId + 'adresse', value: action.adresse.properties?.label?.toUpperCase() });
-        fieldsAdresse?.push({ name: action.prefixId + 'numeroVoie', value: action?.adresse?.properties?.housenumber?.toUpperCase() });
-        fieldsAdresse?.push({ name: action.prefixId + 'rueVoie', value: action?.adresse?.properties?.street?.toUpperCase() });
+        fieldsAdresse?.push({ name: action.prefixId + 'numeroVoie', value: action?.adresse?.properties?.housenumber });
+        fieldsAdresse?.push({ name: action.prefixId + 'rueVoie', value: action?.adresse?.properties?.street ?? action?.adresse?.properties?.locality });
         fieldsAdresse?.push({ name: action.prefixId + 'codePostal', value: action?.adresse?.properties?.postcode });
         fieldsAdresse?.push({ name: action.prefixId + 'ville', value: action?.adresse?.properties?.city?.toUpperCase() });
-        fieldsAdresse?.push({ name: action.prefixId + 'codeCommune', value: action?.adresse?.properties?.citycode?.toUpperCase() });
-        fieldsAdresse?.push({ name: action.prefixId + 'adresseIntrouvable', value: false });
-
+        fieldsAdresse?.push({ name: action.prefixId + 'codeCommune', value: action?.adresse?.properties?.citycode });
         fieldsAdresse = nettoyageState(fieldsAdresse);
-        if (geocodeAdresse?.length > 0) {
-          delete geocodeAdresse?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.geocodeAdresse;
-          delete geocodeAdresse?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.prefixId;
-        }
-        geocodeAdresse?.push({ geocodeAdresse: action.adresse.geometry, prefixId: action.prefixId });
-        geocodeAdresse = nettoyageState(geocodeAdresse);
+
+        geocodeAdresse = updateGeocode(geocodeAdresse, action.prefixId, action.adresse);
       }
       return {
         ...state,
         fields: fieldsAdresse,
         geocodeAdresses: geocodeAdresse,
-        listeAdresses: [],
+        listeAdresses: null,
+      };
+    case 'SET_ADRESSE_INTROUVABLE':
+      let fieldsAdresseIntrouvable = state?.fields ?? [];
+      fieldsAdresseIntrouvable = nettoyageFields(
+        fieldsAdresseIntrouvable,
+        action.prefixId,
+        ['numeroVoie', 'rueVoie', 'codePostal', 'codeCommune', 'ville', 'location']);
+      fieldsAdresseIntrouvable = nettoyageState(fieldsAdresseIntrouvable);
+      return {
+        ...state,
+        fields: fieldsAdresseIntrouvable,
+        geocodeAdresses: [],
+        listeAdresses: null,
       };
     case 'LISTE_ADRESSES_REBOOT': {
-      let geocodeAdressesReboot = state?.geocodeAdresses ?? [];
-      if (geocodeAdressesReboot?.length > 0) {
-        delete geocodeAdressesReboot?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.geocodeAdresse;
-        delete geocodeAdressesReboot?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.prefixId;
-        geocodeAdressesReboot = nettoyageState(geocodeAdressesReboot);
-      }
+      let geocodeAdressesReboot = state?.geocodeAdresses ?? null;
+      geocodeAdressesReboot = updateGeocode(geocodeAdressesReboot, action.prefixId);
       return {
         ...state,
         listeAdresses: [],
@@ -313,11 +310,7 @@ export default function permanence(state = initialState, action) {
     }
     case 'GEOCODE_ADRESSE_REBOOT':
       let geocodeReboot = state?.geocodeAdresses ?? [];
-      if (geocodeReboot?.length > 0) {
-        delete geocodeReboot?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.geocodeAdresse;
-        delete geocodeReboot?.filter(geocode => geocode.prefixId === action.prefixId)[0]?.prefixId;
-        geocodeReboot = nettoyageState(geocodeReboot);
-      }
+      geocodeReboot = updateGeocode(geocodeReboot, action.prefixId);
       return {
         ...state,
         geocodeAdresses: geocodeReboot,

@@ -21,6 +21,9 @@ export const craActions = {
   updateDuree,
   updateAccompagnement,
   updateOrganisme,
+  updateOrganismes,
+  deleteOrganisme,
+  initNbOrganisme,
   verifyCra,
   submitCra,
   changeDate,
@@ -91,15 +94,29 @@ function updateThemes(themes) {
 function updateMultipleThemes(sousThemesList) {
   return { type: 'UPDATE_MULTIPLE_THEMES', sousThemesList };
 }
+
 function updateDuree(duree) {
   return { type: 'UPDATE_DUREE', duree };
 }
 
-function updateAccompagnement(accompagnement, nbParticipantsAccompagnement) {
-  return { type: 'UPDATE_ACCOMPAGNEMENT', accompagnement, nbParticipantsAccompagnement };
+function updateAccompagnement(nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbOrganisme) {
+  return { type: 'UPDATE_ACCOMPAGNEMENT', nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, nbOrganisme };
 }
+
 function updateOrganisme(organisme) {
-  return { type: 'UPDATE_ORGAMNISME', organisme };
+  return { type: 'UPDATE_ORGANISME', organisme };
+}
+
+function updateOrganismes(organismes) {
+  return { type: 'UPDATE_ORGANISMES', organismes };
+}
+
+function deleteOrganisme(organisme) {
+  return { type: 'DELETE_ORGANISME', organisme };
+}
+
+function initNbOrganisme() {
+  return { type: 'INIT_NB_ORGANISME' };
 }
 function changeDate(date) {
   return { type: 'UPDATE_DATE', date };

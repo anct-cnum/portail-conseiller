@@ -16,14 +16,6 @@ function InputCheckbox({ textLabel, errorInput, prefixId, nameInput, baselineInp
 
     dispatch(permanenceActions.updateField(prefixId + nameInput, checked));
 
-    if (nameInput === 'adresseIntrouvable' || nameInput.slice(-5) === 'Siret') {
-      dispatch(permanenceActions.updateField(prefixId + 'numeroVoie', ''));
-      dispatch(permanenceActions.updateField(prefixId + 'rueVoie', ''));
-      dispatch(permanenceActions.updateField(prefixId + 'codePostal', ''));
-      dispatch(permanenceActions.updateField(prefixId + 'codeCommune', ''));
-      dispatch(permanenceActions.updateField(prefixId + 'ville', ''));
-      dispatch(permanenceActions.rebootListeAdresses(prefixId));
-    }
     if (nameInput.slice(-5) === 'Siret') {
       dispatch(permanenceActions.updateField(prefixId + 'adresse', ''));
       dispatch(permanenceActions.updateField(prefixId + 'siret', ''));

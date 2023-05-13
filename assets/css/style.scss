@@ -141,7 +141,7 @@
             }
           }
           #menu-liens-user {
-            width: 27.3rem;
+            width: 19rem;
             .fr-menu__list {
               font-size: 14px;
               line-height: 24px;
@@ -155,21 +155,15 @@
               line-height: 24px;
             }
           }
-          .aide-coop {
-            padding-bottom: 12px;
-          }
           .aide-metier {
-            border-top: 1px solid #bfbfe3;
-            padding-top: 12px;
+            border-top: 1px solid #353535;
           }
           .user-disconnect {
-            width: 24.05rem;
-            border-top: 1px solid #bfbfe3;
-            padding-top: 12px;
+            width: 17rem;
           }
           .user-infos {
-            width: 24.05rem;
-            padding-bottom: 12px;
+            width: 17rem;
+            border-bottom: 1px solid #353535;
           }
           .fr-custom-link {
             position: relative;
@@ -189,6 +183,11 @@
             &:focus {
               outline-color: transparent;
             }
+          }
+          .icone-menu {
+            position: relative;
+            font-size: 1.5em;
+            top: 5px;
           }
         }
         .header-propos {
@@ -380,7 +379,7 @@
   opacity: 1;
   visibility: visible;
 }
-.modal-sexe-age, .modal-remerciement, .modal-ouverture, .modal-suppression, .modal-suggestion {
+.modal-sexe-age, .modal-remerciement, .modal-ouverture, .modal-suppression, .modal-suggestion, .modal-adresse-introuvable {
   background-color: #fff;
   padding: 4em 2.5em;
   color: #1e1e1e;
@@ -479,7 +478,7 @@
       color: #1e1e1e;
     }
   }
- .sexe-age-btn {
+ .sexe-age-btn, .adresse-introuvable-btn {
     background-color: #fff;
     border: 1px solid #1e1e1e;
     display: inline-block;
@@ -504,6 +503,11 @@
     background-color: #fff;
     border: 1px solid #000091;
     color: #000091;
+  }
+  .adresse-btn {
+    top: -48px;
+    position: relative;
+    left: 90%;
   }
   .disabled-btn {
     background-color: #666666;
