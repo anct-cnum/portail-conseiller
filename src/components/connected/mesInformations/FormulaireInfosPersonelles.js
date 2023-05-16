@@ -61,7 +61,7 @@ function FormulaireInfosPersonnelles() {
 
   function handleSubmit() {
     setSubmitted(true);
-    dispatch(formInformationsActions.verifyFormulaire(form, conseiller.telephone));
+    dispatch(formInformationsActions.verifyFormulaire(form, conseiller?.telephone));
   }
 
   useEffect(() => {
@@ -74,8 +74,8 @@ function FormulaireInfosPersonnelles() {
 
   useEffect(() => {
     if (conseiller !== null && conseiller !== undefined) {
-      const telephone = formatTelephone(conseiller.telephone);
-      const telephonePro = formatTelephone(conseiller.telephonePro);
+      const telephone = formatTelephone(conseiller?.telephone);
+      const telephonePro = formatTelephone(conseiller?.telephonePro);
       dispatch(formInformationsActions.initFormInformations(
         conseiller.email,
         telephone,
