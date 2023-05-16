@@ -170,10 +170,11 @@ function Header({ linkAccount, printClass }) {
                                               setMenuUserShow(false);
                                             }}>
                                             <i className="ri-user-6-line icone-menu fr-mr-1w"></i>
-                                            Contact de mon responsable<br />
+                                            Contact de mon responsable&nbsp;
                                             { !conseiller?.supHierarchique &&
-                                            <i className="ri-information-line information icone-info-header"></i>
+                                              <i className="ri-information-line information icone-info-header"></i>
                                             }
+                                            <br />
                                           </Link>
                                         </li>
                                         <li className="user-infos">
