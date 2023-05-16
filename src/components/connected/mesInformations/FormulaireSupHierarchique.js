@@ -85,7 +85,7 @@ function FormulaireSuperieurHierarchique() {
 
   return (
     <>
-      <ModalUpdateForm form={formSupHierarchique} showModal={showModal} setShowModal={setShowModal} formOrigin="superieurHierarchique"/>
+      <ModalUpdateForm form={formSupHierarchique} isSupHierarchique={true} showModal={showModal} setShowModal={setShowModal} />
 
       <div className="mes-informations">
         {formSupHierarchique.isCreated &&
@@ -117,7 +117,7 @@ function FormulaireSuperieurHierarchique() {
             <div className="fr-col-12 fr-col-md-4">
               <div className={`fr-input-group ${erreurPrenom ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
                 <label className="fr-label" htmlFor="prenom">
-                  Pr&eacute;nom
+                  Pr&eacute;nom<span className="obligatoire">&nbsp;*</span>
                 </label>
                 <input
                   className={`fr-input ${erreurPrenom ? 'fr-input--error' : ''}`}
@@ -136,7 +136,7 @@ function FormulaireSuperieurHierarchique() {
               </div>
               <div className={`fr-input-group ${erreurNom ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
                 <label className="fr-label" htmlFor="nom">
-                  Nom
+                  Nom<span className="obligatoire">&nbsp;*</span>
                 </label>
                 <input
                   className={`fr-input ${erreurNom ? 'fr-input--error' : ''}`}
@@ -155,7 +155,7 @@ function FormulaireSuperieurHierarchique() {
               </div>
               <div className={`fr-input-group ${erreurFonction ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
                 <label className="fr-label" htmlFor="nom">
-                  Fonction
+                  Fonction<span className="obligatoire">&nbsp;*</span>
                 </label>
                 <input
                   className={`fr-input ${erreurFonction ? 'fr-input--error' : ''}`}
@@ -174,7 +174,7 @@ function FormulaireSuperieurHierarchique() {
               </div>
               <div className={`fr-input-group ${erreurEmail ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
                 <label className="fr-label" htmlFor="email">
-                  Adresse mail
+                  Adresse mail<span className="obligatoire">&nbsp;*</span>
                 </label>
                 <input
                   className={`fr-input ${erreurEmail ? 'fr-input--error' : ''}`}

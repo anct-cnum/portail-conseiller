@@ -136,7 +136,7 @@ export default function candidat(state = initState, action) {
       return {
         ...state,
         isDeleted: action.data,
-        deleteError: false,
+        isUploaded: true,
         loadingDeleteCv: false
       };
     case 'DELETE_CURRICULUM_VITAE_FAILURE':
