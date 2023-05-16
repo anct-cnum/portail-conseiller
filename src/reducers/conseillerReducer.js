@@ -308,7 +308,42 @@ export default function conseiller(state = initState, action) {
         ...state,
         isUserActif: action.isUserActif,
       };
-
+    case 'POST_DISPONIBILITE_REQUEST':
+      return {
+        ...state,
+        errorDisponibilite: false
+      };
+    case 'POST_DISPONIBILITE_SUCCESS':
+      return {
+        ...state,
+        conseiller: {
+          ...state.conseiller,
+          disponible: action.conseiller.disponible
+        }
+      };
+    case 'POST_DISPONIBILITE_FAILURE':
+      return {
+        ...state,
+        errorDisponibilite: action.error
+      };
+    case 'POST_DATE_DISPONIBILITE_REQUEST':
+      return {
+        ...state,
+        errorDateDisponibilite: false
+      };
+    case 'POST_DATE_DISPONIBILITE_SUCCESS':
+      return {
+        ...state,
+        conseiller: {
+          ...state.conseiller,
+          dateDisponibilite: action.conseiller.dateDisponibilite
+        }
+      };
+    case 'POST_DATE_DISPONIBILITE_FAILURE':
+      return {
+        ...state,
+        errorDateDisponibilite: action.error
+      };
     default:
       return state;
   }

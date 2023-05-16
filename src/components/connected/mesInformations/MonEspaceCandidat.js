@@ -8,6 +8,7 @@ import Footer from '../../Footer';
 import MaZoneGeographique from './MaZoneGeographique';
 import MonCurriculumVitae from './MonCurriculumVitae';
 import MonPix from './MonPix';
+import MaDisponibilite from './MaDisponibilite';
 
 function MonEspaceCandidat() {
 
@@ -77,7 +78,7 @@ function MonEspaceCandidat() {
               }
             </div>
             <div className="fr-col-12">
-              {/** Emplacement Disponibilité */}
+              <MaDisponibilite/>
               <hr className="fr-my-6w"/>
             </div>
 
