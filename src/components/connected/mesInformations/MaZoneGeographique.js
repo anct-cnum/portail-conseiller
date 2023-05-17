@@ -28,8 +28,8 @@ function MaZoneGeographique({ setSubmitted, setShowModal, submitted }) {
     const codeCommune = adresse.properties.citycode;
     const codePostal = adresse.properties.postcode;
     const location = adresse.geometry;
-    dispatch(candidatActions.updateCPVille(value, ville, codeCommune, codePostal, location));
-    setInputs(inputs => ({ ...inputs, cpVille: value }));
+    dispatch(candidatActions.updateCPVille(value.trim(), ville, codeCommune, codePostal, location));
+    setInputs(inputs => ({ ...inputs, cpVille: value.trim() }));
   };
 
   const handleChangeCpVille = () => {

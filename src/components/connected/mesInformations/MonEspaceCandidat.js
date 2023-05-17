@@ -18,6 +18,8 @@ function MonEspaceCandidat() {
   const isDeleted = useSelector(state => state.candidat?.isDeleted);
   const succes = useSelector(state => state.candidat?.success);
   const uploading = useSelector(state => state.candidat?.uploading);
+  const loadingCandidat = useSelector(state => state.candidat?.loading);
+  const loadingConseiller = useSelector(state => state.conseiller?.loading);
 
   const [showModal, setShowModal] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -33,7 +35,7 @@ function MonEspaceCandidat() {
               color="#00BFFF"
               height={100}
               width={100}
-              visible={ uploading === true}
+              visible={ uploading === true || loadingCandidat === true || loadingConseiller === true }
             />
           </div>
           <div className="fr-grid-row">

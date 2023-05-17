@@ -311,11 +311,13 @@ export default function conseiller(state = initState, action) {
     case 'POST_DISPONIBILITE_REQUEST':
       return {
         ...state,
-        errorDisponibilite: false
+        errorDisponibilite: false,
+        loading: true,
       };
     case 'POST_DISPONIBILITE_SUCCESS':
       return {
         ...state,
+        loading: false,
         conseiller: {
           ...state.conseiller,
           disponible: action.disponible
@@ -324,16 +326,19 @@ export default function conseiller(state = initState, action) {
     case 'POST_DISPONIBILITE_FAILURE':
       return {
         ...state,
-        errorDisponibilite: action.error
+        errorDisponibilite: action.error,
+        loading: false,
       };
     case 'POST_DATE_DISPONIBILITE_REQUEST':
       return {
         ...state,
-        errorDateDisponibilite: false
+        errorDateDisponibilite: false,
+        loading: true,
       };
     case 'POST_DATE_DISPONIBILITE_SUCCESS':
       return {
         ...state,
+        loading: false,
         conseiller: {
           ...state.conseiller,
           dateDisponibilite: action.dateDisponibilite
@@ -342,7 +347,8 @@ export default function conseiller(state = initState, action) {
     case 'POST_DATE_DISPONIBILITE_FAILURE':
       return {
         ...state,
-        errorDateDisponibilite: action.error
+        errorDateDisponibilite: action.error,
+        loading: false,
       };
     default:
       return state;
