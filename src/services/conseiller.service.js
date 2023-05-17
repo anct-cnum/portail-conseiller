@@ -286,7 +286,7 @@ function updateDisponibilite(idConseiller, disponible) {
     method: 'PATCH',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
     body: JSON.stringify({
-      disponible: disponible,
+      disponible,
     })
   };
 
