@@ -64,13 +64,12 @@ export default function candidat(state = initState, action) {
       return {
         ...state,
         loading: false,
-        error: true,
+        error: action.error,
       };
     case 'GET_ADRESSE_REQUEST':
       return {
         ...state,
         loadingAdresses: true,
-        error: false
       };
     case 'GET_ADRESSE_SUCCESS':
       return {
@@ -82,7 +81,7 @@ export default function candidat(state = initState, action) {
       return {
         ...state,
         loadingAdresses: false,
-        error: true
+        error: action.error,
       };
     case 'POST_CURRICULUM_VITAE_REQUEST':
       return {
@@ -122,7 +121,6 @@ export default function candidat(state = initState, action) {
         ...state,
         downloadError: action.error,
         downloading: false,
-        isDownloaded: false
       };
     case 'DELETE_CURRICULUM_VITAE_REQUEST':
       return {
@@ -136,7 +134,7 @@ export default function candidat(state = initState, action) {
       return {
         ...state,
         isDeleted: action.data,
-        deleteError: false,
+        isUploaded: true,
         loadingDeleteCv: false
       };
     case 'DELETE_CURRICULUM_VITAE_FAILURE':

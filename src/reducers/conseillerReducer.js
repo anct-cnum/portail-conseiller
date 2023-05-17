@@ -318,7 +318,7 @@ export default function conseiller(state = initState, action) {
         ...state,
         conseiller: {
           ...state.conseiller,
-          disponible: action.conseiller.disponible
+          disponible: action.disponible
         }
       };
     case 'POST_DISPONIBILITE_FAILURE':
@@ -336,7 +336,7 @@ export default function conseiller(state = initState, action) {
         ...state,
         conseiller: {
           ...state.conseiller,
-          dateDisponibilite: action.conseiller.dateDisponibilite
+          dateDisponibilite: action.dateDisponibilite
         }
       };
     case 'POST_DATE_DISPONIBILITE_FAILURE':

@@ -27,7 +27,7 @@ function updateDisponibilite(idConseiller, disponible) {
     conseillerService.updateDisponibilite(idConseiller, disponible)
     .then(
       result => {
-        dispatch(success(result));
+        dispatch(success(result.disponible));
       },
       error => {
         dispatch(failure(error));
@@ -37,8 +37,8 @@ function updateDisponibilite(idConseiller, disponible) {
   function request() {
     return { type: 'POST_DISPONIBILITE_REQUEST' };
   }
-  function success(conseiller) {
-    return { type: 'POST_DISPONIBILITE_SUCCESS', conseiller };
+  function success(disponible) {
+    return { type: 'POST_DISPONIBILITE_SUCCESS', disponible };
   }
   function failure(error) {
     return { type: 'POST_DISPONIBILITE_FAILURE', error };
@@ -52,7 +52,7 @@ function updateDateDisponibilite(idConseiller, dateDisponibilite) {
     conseillerService.updateDateDisponibilite(idConseiller, dateDisponibilite)
     .then(
       result => {
-        dispatch(success(result));
+        dispatch(success(result.dateDisponibilite));
       },
       error => {
         dispatch(failure(error));
@@ -62,8 +62,8 @@ function updateDateDisponibilite(idConseiller, dateDisponibilite) {
   function request() {
     return { type: 'POST_DATE_DISPONIBILITE_REQUEST' };
   }
-  function success(conseiller) {
-    return { type: 'POST_DATE_DISPONIBILITE_SUCCESS', conseiller };
+  function success(dateDisponibilite) {
+    return { type: 'POST_DATE_DISPONIBILITE_SUCCESS', dateDisponibilite };
   }
   function failure(error) {
     return { type: 'POST_DATE_DISPONIBILITE_FAILURE', error };
@@ -175,7 +175,7 @@ function updateCandidat(form, conseillerId, username, password) {
 function searchVilleCP(adresse) {
   return dispatch => {
     dispatch(request());
-    candidatService.searchVilleCP(adresse.trim())
+    candidatService.searchVilleCP(adresse)
     .then(
       result => {
         dispatch(success(result.adresseApi));

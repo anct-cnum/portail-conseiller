@@ -17,7 +17,7 @@ function MaDisponibiliteModal({ conseiller, setIsModalOpen }) {
   const minDate = new Date();
 
   const handleChange = e => {
-    setDate(e.target ?? e);
+    setDate(e.target);
     setError(false);
   };
 
@@ -58,7 +58,6 @@ function MaDisponibiliteModal({ conseiller, setIsModalOpen }) {
                 showMonthDropdown
                 showYearDropdown
                 minDate={minDate}
-                dropdownMode="select"
                 required="required"
               />
               {error &&

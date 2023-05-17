@@ -17,7 +17,7 @@ function MaDisponibilite() {
     if (conseiller) {
       setIsDisponible(!conseiller.disponible);
       dispatch(candidatActions.updateDisponibilite(conseiller._id, !conseiller.disponible));
-      if (!conseiller.disponible === true) {
+      if (conseiller.disponible === false) {
         setIsModalOpen(true);
       }
     }
