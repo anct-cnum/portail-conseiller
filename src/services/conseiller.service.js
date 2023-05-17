@@ -298,7 +298,7 @@ function updateDateDisponibilite(idConseiller, dateDisponibilite) {
     method: 'PATCH',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
     body: JSON.stringify({
-      dateDisponibilite: dateDisponibilite,
+      dateDisponibilite,
     })
   };
   return fetch(`${apiUrlRoot}/conseillers/update_date_disponibilite/${idConseiller}`, requestOptions).then(handleResponse);
