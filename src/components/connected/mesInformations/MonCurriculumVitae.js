@@ -84,7 +84,7 @@ function MonCurriculumVitae({ isUploaded, isDeleted, uploading }) {
         {(conseiller?.cv && !uploading || acceptedFiles.length === 0) &&
           <>
             {isDragActive ?
-              <span>Déposez votre CV ici ...</span> :
+              <span>D&eacute;posez votre CV ici ...</span> :
               <>
                 <i className="ri-upload-2-line icone-upload"></i>
                 <span>Faites glisser votre CV ou cliquez <br/>pour le s&eacute;lectionner (format PDF)</span>
