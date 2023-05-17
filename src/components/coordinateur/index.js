@@ -29,6 +29,7 @@ function Coordinateur() {
   const voirFormulaire = useSelector(state => state?.conseiller?.showFormular);
   const voirPermanence = useSelector(state => state?.permanence?.showFormular);
   const suspendrePermanence = localStorage.getItem('suspension_permanence');
+  const mesPermanences = useSelector(state => state?.permanence?.mesPermanences);
 
   useEffect(() => {
     if (conseiller) {
@@ -36,7 +37,9 @@ function Coordinateur() {
         dispatch(structureActions.get(conseiller?.structureId));
       }
       dispatch(permanenceActions.isPermanenceChecked(conseiller?.hasPermanence));
-
+      if (mesPermanences === undefined) {
+        dispatch(permanenceActions.getMesPermanences(conseiller?._id));
+      }
     } else {
       dispatch(conseillerActions.get(userEntityId()));
     }
