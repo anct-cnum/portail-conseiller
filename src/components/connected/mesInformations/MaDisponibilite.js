@@ -43,7 +43,7 @@ function MaDisponibilite() {
                 onClickDisponibilite();
               }} />
             <label className="fr-toggle__label" htmlFor="toggle-disponibilite">
-              Déclarer ma disponibilité :
+              D&eacute;clarer ma disponibilit&eacute;&nbsp;:
             </label>
           </div>
         </div>
