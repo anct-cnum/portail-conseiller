@@ -75,7 +75,7 @@ function ModalUpdateForm({ form, showModal, setShowModal, formOrigin }) {
                       Pour confirmer vos modifications, merci de saisir votre mot de passe associ&eacute; &agrave; votre espace COOP
                     </h1>
                     <div className="fr-col-6">
-                      <label htmlFor="password">Votre mot de passe :</label>
+                      <label htmlFor="password">Votre mot de passe<span className="obligatoire">&nbsp;*</span></label>
                       <input type="password" className="fr-input fr-mt-1w" name="password" id="password" onChange={handleChange} />
                     </div>
                   </div>

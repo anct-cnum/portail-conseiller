@@ -129,8 +129,8 @@ function PermanenceUpdate({ match }) {
     const adresseGeoloc = estStructure ? {
       numero: maPermanence?.adresse?.numeroRue ?? adresseStructure?.numero_voie,
       rue: formatRue(maPermanence?.adresse?.rue, adresseStructure?.type_voie, adresseStructure?.nom_voie),
-      codePostal: maPermanence?.adresse?.codePostal ?? adresseStructure.code_postal,
-      ville: maPermanence?.adresse?.ville?.toUpperCase() ?? adresseStructure.localite?.toUpperCase()
+      codePostal: maPermanence?.adresse?.codePostal ?? adresseStructure?.code_postal,
+      ville: maPermanence?.adresse?.ville?.toUpperCase() ?? adresseStructure?.localite?.toUpperCase()
     } : {};
 
     if (estStructure) {

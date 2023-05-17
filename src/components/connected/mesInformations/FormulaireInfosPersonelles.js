@@ -61,7 +61,7 @@ function FormulaireInfosPersonnelles() {
 
   function handleSubmit() {
     setSubmitted(true);
-    dispatch(formInformationsActions.verifyFormulaire(form, conseiller.telephone));
+    dispatch(formInformationsActions.verifyFormulaire(form, conseiller?.telephone));
   }
 
   useEffect(() => {
@@ -74,8 +74,8 @@ function FormulaireInfosPersonnelles() {
 
   useEffect(() => {
     if (conseiller !== null && conseiller !== undefined) {
-      const telephone = formatTelephone(conseiller.telephone);
-      const telephonePro = formatTelephone(conseiller.telephonePro);
+      const telephone = formatTelephone(conseiller?.telephone);
+      const telephonePro = formatTelephone(conseiller?.telephonePro);
       dispatch(formInformationsActions.initFormInformations(
         conseiller.email,
         telephone,
@@ -117,7 +117,7 @@ function FormulaireInfosPersonnelles() {
 
       <div className="fr-input-group fr-mb-5w">
         <label className="fr-label" htmlFor="conseiller-nom">
-          Nom <span className="obligatoire">&nbsp;*</span>
+          Nom<span className="obligatoire">&nbsp;*</span>
         </label>
         <input
           className="fr-input"
