@@ -29,7 +29,7 @@ function ValidationButton() {
       /* eslint-disable */
       let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error, showSelectRedirection, nbParticipantsAge,
         nbParticipantsStatut, nbParticipantsAccompagnement, nbAccompagnementAtelier, nbAccompagnementIndividuel, nbAccompagnementRedirection, nbOrganisme, organisme,
-        printFlashbag, buttonCP, buttonPermanences, buttonPermanence, nomEnseigne, listeSousThemes, errorSousTheme, loadingSuggestion,
+        printFlashbag, buttonCP, buttonPermanences, buttonPermanence, nomEnseigne, listeSousThemes, errorSousTheme, loadingSuggestion, loading, countCra,
         ...dataCraToSend } = cra;
       dataCraToSend.idStructure = conseiller?.structureId;
       /* eslint-enable */
