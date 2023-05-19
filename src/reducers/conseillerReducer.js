@@ -20,7 +20,8 @@ export default function conseiller(state = initState, action) {
     case 'GET_CONSEILLER_SUCCESS':
       return {
         ...state,
-        conseiller: action.conseiller
+        conseiller: action.conseiller,
+        loading: false,
       };
     case 'GET_ALL_CONSEILLER_SEARCH_BAR':
       return {

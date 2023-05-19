@@ -55,7 +55,7 @@ function MaDisponibilite() {
         {isDisponible &&
           <div className="fr-col-3 label-disponible" onClick={() => {
             onClickDisponibilite();
-          }}>disponible {conseiller?.dateDisponibilite ? '&agrave; partir du ' + dayjs(conseiller?.dateDisponibilite).format('DD/MM/YYYY') : ''}.</div>
+          }}>disponible {conseiller?.dateDisponibilite ? 'à partir du ' + dayjs(conseiller?.dateDisponibilite).format('DD/MM/YYYY') : ''}.</div>
         }
       </div>
       {errorDisponibilite &&

@@ -82,7 +82,7 @@ function MaZoneGeographique({ setSubmitted, setShowModal, submitted }) {
             }
             {erreur &&
               <>
-                {erreur}
+                {erreur.toString()}
               </>
             }
             <i className="ri-close-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
