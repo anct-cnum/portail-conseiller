@@ -22,7 +22,9 @@ if (window.location.href.split(':').includes('file')) {
       // Blackbox
       `/^Cannot read properties of null (reading 'CodeMirror')$/ `,
       //Firefox interdit aux addOns de conserver des références fortes aux objets DOM après la destruction de leur document parent.
-      `/^can't access dead object$/ `
+      `/^can't access dead object$/ `,
+      //googletag
+      `/^Cannot redefine property: googletag$/ `,
     ],
     dsn: process.env.REACT_APP_SENTRY_DSN,
     environment: process.env.REACT_APP_SENTRY_ENVIRONMENT,
