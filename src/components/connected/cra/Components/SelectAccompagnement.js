@@ -36,7 +36,7 @@ function SelectAccompagnement() {
 
   const submitLieuRedirection = () => {
     if (organisme) {
-      organismes.push({ [organisme]: nbOrganisme });
+      organismes?.push({ [organisme]: nbOrganisme });
       dispatch(craActions.updateOrganismes(organismes));
       let lieuxFiltrer = lieuxReorientation;
       organismes?.forEach(organisme => {
