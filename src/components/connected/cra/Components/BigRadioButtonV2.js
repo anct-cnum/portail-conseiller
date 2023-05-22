@@ -89,7 +89,7 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
         break;
     }
   };
-
+  console.log(organismes);
   return (
     <div className="radioButton2" onClick={onClickRadio} value={value}>
       {type === 'canal' &&
@@ -121,7 +121,7 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
               </span>
             </button>
           }
-          {(value !== 'redirection' || organismes?.length === 0) &&
+          {(value !== 'redirection' || organismes === null || organismes?.length === 0) &&
             <button className={styleClass} value={value}>
               <span className={image} value={value}></span>
               <span className={`fr-label`} value={value}>
