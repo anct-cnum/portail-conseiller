@@ -68,12 +68,12 @@ export default function formulaireInformations(state = initialState, action) {
         ...state,
         isUpdated: false,
         showError: false,
+        error: false,
       };
     case 'POST_INFORMATIONS_SUCCESS':
       return {
         ...state,
         'isUpdated': true,
-        'showError': false,
         'conseiller.prenom': action.conseiller.prenom,
         'conseiller.nom': action.conseiller.nom,
         'conseiller.telephone': action.conseiller.telephone,
@@ -82,7 +82,6 @@ export default function formulaireInformations(state = initialState, action) {
         'conseiller.sexe': action.conseiller.sexe,
         'showConfirmationMail': action.initModifMailPersoConseiller,
         'showConfirmationMailPro': action.initModifMailProConseiller,
-        'error': false,
       };
     case 'POST_INFORMATIONS_FAILURE':
       return {

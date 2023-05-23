@@ -42,5 +42,42 @@
       }
     }
   }
-
+  .bouton-cv {
+    border: 1px solid #8585f6;
+    text-align: center;
+    max-width: 408px;
+    color: #8585f6;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 8px;
+    .icone-upload {
+      position: absolute;
+      margin: 12px -28px;
+      font-size: 1.2em;
+    }
+  }
+  .text-cv {
+    font-size: 14px;
+    color: #929292;
+  }
+  .bouton-download, .bouton-delete {
+    color: #8585f6;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .icone {
+    position: relative;
+    top: 5px;
+  }
+  .text-pix {
+    font-size: 16px;
+    color: #929292;
+    ul {
+      list-style-type: none;
+      padding: 0px;
+   }
+   li:before {
+      content: '- ';
+   }
+  }
 }
