@@ -90,7 +90,7 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
     dispatch(permanenceActions.reserverPermanence({ prefixId: 'principal_', idPermanence: null }));
 
     if (estStructure) {
-      const permanencePrincipale = listPermanences.find(permanence => permanence.structure.$id === structure?._id && permanence.estStructure === true);
+      const permanencePrincipale = listPermanences?.find(permanence => permanence.structure.$id === structure?._id && permanence.estStructure === true);
       fillPermanencePrincipale(permanencePrincipale);
     } else {
       dispatch(permanenceActions.rebootGeocodeAdresse('principal_'));

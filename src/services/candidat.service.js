@@ -36,7 +36,6 @@ function searchVilleCP(adresse) {
   return fetch(`${apiUrlRoot}/conseiller/candidat/searchZoneGeographique/${JSON.stringify({ adresse })}`, requestOptions).then(handleResponse);
 }
 
-
 function uploadCurriculumVitae(fileCV) {
   return axios({
     method: 'post',
