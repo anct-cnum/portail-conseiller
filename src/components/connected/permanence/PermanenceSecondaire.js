@@ -22,7 +22,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
   const validForms = useSelector(state => state.permanence.formulairesValides);
   const prefixId = useSelector(state => state.permanence?.prefixIdLieuEnregistrable);
   const listPermanences = useSelector(state => state.permanence?.permanences);
-  const permanencePrincipale = listPermanences && listPermanences.find(permanence => permanence?.lieuPrincipalPour.includes(conseillerId));
+  const permanencePrincipale = listPermanences && listPermanences?.find(permanence => permanence?.lieuPrincipalPour?.includes(conseillerId));
 
   const [show, setShow] = useState(
     Array.from({ length: process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE }, () => (false))
