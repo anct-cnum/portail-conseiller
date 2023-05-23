@@ -23,8 +23,7 @@ function MonEspaceCandidat() {
 
   const [showModal, setShowModal] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  console.log(loadingCandidat);
-  console.log(loadingConseiller);
+
   return (
     <>
       <ModalUpdateForm form={candidat} showModal={showModal} setShowModal={setShowModal} formOrigin="espaceCandidat"/>
