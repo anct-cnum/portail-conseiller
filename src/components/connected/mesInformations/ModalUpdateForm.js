@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { formSupHierarchiqueActions } from '../../../actions/supHierarchique.actions';
 import { formInformationsActions } from '../../../actions/informations.actions';
 import { formatTelephone } from '../../../utils/functionFormats';
+import { candidatActions } from '../../../actions';
 
-function ModalUpdateForm({ form, showModal, setShowModal, isSupHierarchique = false }) {
+function ModalUpdateForm({ form, showModal, setShowModal, formOrigin }) {
   const [active, setActive] = useState(false);
   const dispatch = useDispatch();
   const conseiller = useSelector(state => state.conseiller?.conseiller);
@@ -25,7 +26,7 @@ function ModalUpdateForm({ form, showModal, setShowModal, isSupHierarchique = fa
   }, [password]);
 
   function handleSubmit() {
-    if (isSupHierarchique) {
+    if (formOrigin === 'superieurHierarchique') {
       dispatch(formSupHierarchiqueActions.createSupHierarchique({
         numeroTelephone: formatTelephone(form.numeroTelephone, conseiller?.codeDepartement),
         email: form.email.trim(),
@@ -33,7 +34,7 @@ function ModalUpdateForm({ form, showModal, setShowModal, isSupHierarchique = fa
         prenom: form.prenom.trim(),
         fonction: form.fonction.trim()
       }, conseiller?._id, user.name, password));
-    } else {
+    } else if (formOrigin === 'informations') {
       dispatch(formInformationsActions.updateInformations({
         telephone: formatTelephone(form.telephone, conseiller?.codeDepartement),
         telephonePro: formatTelephone(form.telephonePro, conseiller?.codeDepartement),
@@ -42,6 +43,15 @@ function ModalUpdateForm({ form, showModal, setShowModal, isSupHierarchique = fa
         dateDeNaissance: form.dateDeNaissance,
         sexe: form.sexe
       }, conseiller?._id, user.name, password));
+    } else if (formOrigin === 'espaceCandidat') {
+      dispatch(candidatActions.updateCandidat({
+        codeCommune: form.codeCommune.trim(),
+        codePostal: form.codePostal.trim(),
+        ville: form.ville.trim(),
+        location: form.location,
+        distanceMax: form.distance,
+      },
+      conseiller?._id, user.name, password));
     }
 
     closeModal();
@@ -99,7 +109,7 @@ ModalUpdateForm.propTypes = {
   form: PropTypes.object,
   showModal: PropTypes.bool,
   setShowModal: PropTypes.func,
-  isSupHierarchique: PropTypes.bool
+  formOrigin: PropTypes.string
 };
 
 export default ModalUpdateForm;

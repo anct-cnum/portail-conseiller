@@ -97,8 +97,7 @@ function FormulaireInfosPersonnelles() {
 
   return (
     <>
-      <ModalUpdateForm form={form} showModal={showModal} setShowModal={setShowModal} />
-
+      <ModalUpdateForm form={form} showModal={showModal} setShowModal={setShowModal} formOrigin="informations"/>
       <h2 className="fr-mb-6w sous-titre">Informations personnelles</h2>
 
       <div className="fr-input-group fr-mb-5w">

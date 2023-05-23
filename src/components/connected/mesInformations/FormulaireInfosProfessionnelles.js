@@ -11,7 +11,7 @@ function FormulaireInfosProfessionnelles() {
   const dispatch = useDispatch();
 
   const structure = useSelector(state => state.structure?.structure);
-  const user = useSelector(state => state.authentication.user.user);
+  const user = useSelector(state => state.authentication?.user?.user);
   const form = useSelector(state => state.formulaireInformations);
   const conseiller = useSelector(state => state.conseiller?.conseiller);
 
@@ -88,8 +88,7 @@ function FormulaireInfosProfessionnelles() {
 
   return (
     <>
-      <ModalUpdateForm form={form} showModal={showModal} setShowModal={setShowModal} />
-
+      <ModalUpdateForm form={form} showModal={showModal} setShowModal={setShowModal} formOrigin="informations"/>
       <h2 className="fr-mb-6w sous-titre">Informations professionnelles</h2>
 
       {user?.estCoordinateur &&
