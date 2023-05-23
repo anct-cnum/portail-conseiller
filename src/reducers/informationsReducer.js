@@ -86,6 +86,7 @@ export default function formulaireInformations(state = initialState, action) {
     case 'POST_INFORMATIONS_FAILURE':
       return {
         ...state,
+        isUpdated: false,
         showError: true,
         error: action.error,
       };

@@ -20,9 +20,11 @@ export const candidatActions = {
 function initForm(conseiller) {
   return { type: 'INIT_FORM', conseiller };
 }
+
 function initBoolean() {
   return { type: 'INIT_BOOLEAN' };
 }
+
 function updateCPVille(cpVille, ville, codeCommune, codePostal, location) {
   return { type: 'UPDATE_CP_VILLE', cpVille, ville, codeCommune, codePostal, location };
 }

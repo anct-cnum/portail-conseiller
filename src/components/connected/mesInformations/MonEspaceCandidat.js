@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import FlashMessage from 'react-flash-message';
@@ -35,6 +36,7 @@ function MonEspaceCandidat() {
               visible={ uploading === true}
             />
           </div>
+
           <div className="fr-grid-row">
             <div className="fr-col-12">
               <h1 className="titre fr-mt-10w fr-mb-6w">Mon espace candidat</h1>
@@ -53,7 +55,7 @@ function MonEspaceCandidat() {
                   </p>
                 </FlashMessage>
               }
-
+              
               {isUploaded &&
                 <FlashMessage duration={10000} >
                   <p className="fr-label flashBag">
