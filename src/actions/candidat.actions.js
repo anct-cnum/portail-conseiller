@@ -2,8 +2,11 @@ import Joi from 'joi';
 import download from 'downloadjs';
 import { userService } from '../services/user.service';
 import { candidatService } from '../services/candidat.service';
+import { conseillerService } from '../services/conseiller.service';
 
 export const candidatActions = {
+  updateDisponibilite,
+  updateDateDisponibilite,
   initForm,
   initBoolean,
   updateCPVille,
@@ -16,6 +19,56 @@ export const candidatActions = {
   deleteCurriculumVitae,
   resetCVFile,
 };
+
+function updateDisponibilite(idConseiller, disponible) {
+
+  return dispatch => {
+    dispatch(request());
+    conseillerService.updateDisponibilite(idConseiller, disponible)
+    .then(
+      result => {
+        dispatch(success(result.disponible));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+  function request() {
+    return { type: 'POST_DISPONIBILITE_REQUEST' };
+  }
+  function success(disponible) {
+    return { type: 'POST_DISPONIBILITE_SUCCESS', disponible };
+  }
+  function failure(error) {
+    return { type: 'POST_DISPONIBILITE_FAILURE', error };
+  }
+}
+
+function updateDateDisponibilite(idConseiller, dateDisponibilite) {
+
+  return dispatch => {
+    dispatch(request());
+    conseillerService.updateDateDisponibilite(idConseiller, dateDisponibilite)
+    .then(
+      result => {
+        dispatch(success(result.dateDisponibilite));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+  function request() {
+    return { type: 'POST_DATE_DISPONIBILITE_REQUEST' };
+  }
+  function success(dateDisponibilite) {
+    return { type: 'POST_DATE_DISPONIBILITE_SUCCESS', dateDisponibilite };
+  }
+  function failure(error) {
+    return { type: 'POST_DATE_DISPONIBILITE_FAILURE', error };
+  }
+}
 
 function initForm(conseiller) {
   return { type: 'INIT_FORM', conseiller };
@@ -124,7 +177,7 @@ function updateCandidat(form, conseillerId, username, password) {
 function searchVilleCP(adresse) {
   return dispatch => {
     dispatch(request());
-    candidatService.searchVilleCP(adresse.trim())
+    candidatService.searchVilleCP(adresse)
     .then(
       result => {
         dispatch(success(result.adresseApi));

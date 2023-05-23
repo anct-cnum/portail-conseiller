@@ -28,16 +28,16 @@ function MaZoneGeographique({ setSubmitted, setShowModal, submitted }) {
     const codeCommune = adresse.properties.citycode;
     const codePostal = adresse.properties.postcode;
     const location = adresse.geometry;
-    dispatch(candidatActions.updateCPVille(value, ville, codeCommune, codePostal, location));
-    setInputs(inputs => ({ ...inputs, cpVille: value }));
+    dispatch(candidatActions.updateCPVille(value.trim(), ville, codeCommune, codePostal, location));
+    setInputs(inputs => ({ ...inputs, cpVille: value.trim() }));
   };
 
   const handleChangeCpVille = () => {
     let input = document.getElementById('searchCP');
-    setInputs(inputs => ({ ...inputs, cpVille: input.value }));
+    setInputs(inputs => ({ ...inputs, cpVille: input.value.trim() }));
 
     if (input.value?.length > 2) {
-      dispatch(candidatActions.searchVilleCP(input.value));
+      dispatch(candidatActions.searchVilleCP(input.value.trim()));
     }
   };
 
@@ -53,7 +53,7 @@ function MaZoneGeographique({ setSubmitted, setShowModal, submitted }) {
   };
 
   useEffect(() => {
-    if (conseiller !== null && conseiller !== undefined) {
+    if (conseiller) {
       dispatch(candidatActions.initForm(conseiller));
       setInputs({
         cpVille: conseiller.codePostal + ' ' + conseiller.nomCommune,
@@ -80,9 +80,9 @@ function MaZoneGeographique({ setSubmitted, setShowModal, submitted }) {
                 Veuillez corriger les erreurs du formulaire.
               </>
             }
-            {erreursForm?.lengthError <= 0 &&
+            {erreur &&
               <>
-                Une erreur est survenue lors de la mise &agrave; jour de vos informations, veuillez r&eacute;essayer ult&eactue;rieurement !
+                {erreur.toString()}
               </>
             }
             <i className="ri-close-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
@@ -139,7 +139,7 @@ function MaZoneGeographique({ setSubmitted, setShowModal, submitted }) {
               <input type="radio" id="distance5km" name="distance" value="5" required="required" onChange={() => { }}
                 checked={inputs.distance === 5} onClick={handleChangeDistance}/>
               <label className={erreurDistanceMax ? 'fr-label invalid' : 'fr-label' } htmlFor="distance5km">
-              5 km
+                5 km
               </label>
             </div>
             <div className="fr-radio-group" style={{ width: '138px' }}>

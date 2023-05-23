@@ -9,6 +9,7 @@ import Footer from '../../Footer';
 import MaZoneGeographique from './MaZoneGeographique';
 import MonCurriculumVitae from './MonCurriculumVitae';
 import MonPix from './MonPix';
+import MaDisponibilite from './MaDisponibilite';
 
 function MonEspaceCandidat() {
 
@@ -18,6 +19,8 @@ function MonEspaceCandidat() {
   const isDeleted = useSelector(state => state.candidat?.isDeleted);
   const succes = useSelector(state => state.candidat?.success);
   const uploading = useSelector(state => state.candidat?.uploading);
+  const loadingCandidat = useSelector(state => state.candidat?.loading);
+  const loadingConseiller = useSelector(state => state.conseiller?.loading);
 
   const [showModal, setShowModal] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -33,7 +36,7 @@ function MonEspaceCandidat() {
               color="#00BFFF"
               height={100}
               width={100}
-              visible={ uploading === true}
+              visible={ uploading === true || loadingCandidat === true || loadingConseiller === true }
             />
           </div>
 
@@ -79,7 +82,7 @@ function MonEspaceCandidat() {
               }
             </div>
             <div className="fr-col-12">
-              {/** Emplacement Disponibilité */}
+              <MaDisponibilite/>
               <hr className="fr-my-6w"/>
             </div>
 

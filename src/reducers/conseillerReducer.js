@@ -20,7 +20,8 @@ export default function conseiller(state = initState, action) {
     case 'GET_CONSEILLER_SUCCESS':
       return {
         ...state,
-        conseiller: action.conseiller
+        conseiller: action.conseiller,
+        loading: false,
       };
     case 'GET_ALL_CONSEILLER_SEARCH_BAR':
       return {
@@ -308,7 +309,48 @@ export default function conseiller(state = initState, action) {
         ...state,
         isUserActif: action.isUserActif,
       };
-
+    case 'POST_DISPONIBILITE_REQUEST':
+      return {
+        ...state,
+        errorDisponibilite: false,
+        loading: true,
+      };
+    case 'POST_DISPONIBILITE_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        conseiller: {
+          ...state.conseiller,
+          disponible: action.disponible
+        }
+      };
+    case 'POST_DISPONIBILITE_FAILURE':
+      return {
+        ...state,
+        errorDisponibilite: action.error,
+        loading: false,
+      };
+    case 'POST_DATE_DISPONIBILITE_REQUEST':
+      return {
+        ...state,
+        errorDateDisponibilite: false,
+        loading: true,
+      };
+    case 'POST_DATE_DISPONIBILITE_SUCCESS':
+      return {
+        ...state,
+        loading: false,
+        conseiller: {
+          ...state.conseiller,
+          dateDisponibilite: action.dateDisponibilite
+        }
+      };
+    case 'POST_DATE_DISPONIBILITE_FAILURE':
+      return {
+        ...state,
+        errorDateDisponibilite: action.error,
+        loading: false,
+      };
     default:
       return state;
   }
