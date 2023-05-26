@@ -7,7 +7,7 @@ function MonPix() {
   const lienCampagnePix = `${process.env.REACT_APP_PIX_CAMPAGNE_URL}?participantExternalId=${conseiller?.idPG}`;
   return (
     <>
-      <h2 className="sous-titre fr-mb-5w">PIX</h2>
+      <h2 className="sous-titre fr-mb-5w"><img src="/logos/home-connected/logo-pix.svg" alt="logo Pix" style={{ height: '80px' }}/></h2>
       <div className="fr-mb-6w">
         <a className="fr-link fr-fi-external-link-line fr-link--icon-right fr-mr-7w"
           href={lienPix}
