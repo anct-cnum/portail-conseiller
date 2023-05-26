@@ -22,7 +22,7 @@ function MaDisponibiliteModal({ conseiller, setIsModalOpen }) {
   };
 
   const handleSubmit = () => {
-    if (date !== '' && date !== null && new Date(date).getTime() >= minDate.getTime()) {
+    if (date !== '' && date !== null && new Date(dayjs(date).format('YYYY-MM-DD')).getTime() >= new Date(dayjs(minDate).format('YYYY-MM-DD')).getTime()) {
       dispatch(candidatActions.updateDateDisponibilite(conseiller._id, date));
       setError(false);
       setIsModalOpen(false);
