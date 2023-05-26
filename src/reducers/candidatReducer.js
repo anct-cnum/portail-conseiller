@@ -16,6 +16,10 @@ export default function candidat(state = initState, action) {
         isDownloaded: false,
         isUploaded: false,
         isDeleted: false,
+        loadingAdresses: false,
+        loadingDeleteCv: false,
+        loading: false,
+        success: false,
       };
     case 'INIT_FORM':
       return {

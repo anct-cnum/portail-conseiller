@@ -21,6 +21,7 @@ function MonEspaceCandidat() {
   const uploading = useSelector(state => state.candidat?.uploading);
   const loadingCandidat = useSelector(state => state.candidat?.loading);
   const loadingConseiller = useSelector(state => state.conseiller?.loading);
+  const loadingAdresses = useSelector(state => state.candidat?.loadingAdresses);
 
   const [showModal, setShowModal] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -36,7 +37,7 @@ function MonEspaceCandidat() {
               color="#00BFFF"
               height={100}
               width={100}
-              visible={ uploading === true || loadingCandidat === true || loadingConseiller === true }
+              visible={ uploading === true || loadingCandidat === true || loadingConseiller === true || loadingAdresses === true }
             />
           </div>
 
@@ -58,7 +59,7 @@ function MonEspaceCandidat() {
                   </p>
                 </FlashMessage>
               }
-              
+
               {isUploaded &&
                 <FlashMessage duration={10000} >
                   <p className="fr-label flashBag">

@@ -17,12 +17,13 @@ function MaDisponibiliteModal({ conseiller, setIsModalOpen }) {
   const minDate = new Date();
 
   const handleChange = e => {
-    setDate(e.target);
+    setDate(e);
     setError(false);
   };
 
   const handleSubmit = () => {
-    if (date !== '' && date !== null && dayjs(date).format('DD/MM/YYYY') >= dayjs(minDate).format('DD/MM/YYYY')) {
+    if (date !== '' && date !== null && new Date(dayjs(date).format('YYYY-MM-DD')).getTime() >= new Date(dayjs(minDate).format('YYYY-MM-DD')).getTime()) {
+      dispatch(candidatActions.initBoolean());
       dispatch(candidatActions.updateDateDisponibilite(conseiller._id, date));
       setError(false);
       setIsModalOpen(false);
@@ -32,13 +33,18 @@ function MaDisponibiliteModal({ conseiller, setIsModalOpen }) {
     }
   };
 
+  const handleCancel = () => {
+    setIsModalOpen(false);
+    dispatch(candidatActions.updateDisponibilite(conseiller._id, false));
+  };
+
   return (
     <dialog aria-labelledby="fr-modal-disponibilite" role="dialog" id="fr-modal-disponibilite" className="fr-modal modalOpened">
       <div className="fr-container">
         <div className="fr-grid-row fr-grid-row--center">
           <div className="fr-col-12 fr-col-sm-10 fr-col-md-7 fr-modal__body modal-disponibilite">
             <button className="fr-btn--close fr-btn fr-mt-n3w" title="Fermer la fen&ecirc;tre modale" aria-controls="fr-modal-suggestion" onClick={() => {
-              setIsModalOpen(false);
+              handleCancel();
             }}>Fermer</button>
             <h2 className="titre-modal">Quand serez-vous &agrave; nouveau disponible ?</h2>
             <div className="centre fr-mb-7w">
@@ -66,7 +72,7 @@ function MaDisponibiliteModal({ conseiller, setIsModalOpen }) {
             </div>
             <div className="centre">
               <button className="fr-btn annuler-btn " onClick={() => {
-                setIsModalOpen(false);
+                handleCancel();
               }} >Annuler</button>
               <button className="fr-btn disponibilite-btn fr-ml-3w" onClick={handleSubmit}>Mettre mon statut &agrave; jour</button>
             </div>

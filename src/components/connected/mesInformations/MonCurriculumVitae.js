@@ -31,6 +31,7 @@ function MonCurriculumVitae({ isUploaded, isDeleted, uploading }) {
     if (acceptedFiles.length > 0) {
       const formData = new FormData();
       formData.append('file', acceptedFiles[0], acceptedFiles[0].name);
+      dispatch(candidatActions.initBoolean());
       dispatch(candidatActions.uploadCurriculumVitae(formData));
     }
   }, []);
@@ -39,11 +40,13 @@ function MonCurriculumVitae({ isUploaded, isDeleted, uploading }) {
     { onDrop, accept: '.pdf', maxFiles: 1, maxSize: process.env.REACT_APP_CV_FILE_MAX_SIZE });
 
   const downloadCV = () => {
+    dispatch(candidatActions.initBoolean());
     dispatch(candidatActions.getCurriculumVitae(user?.entity?.$id, conseiller));
   };
 
   const deleteCV = () => {
     if (conseiller?.cv?.file) {
+      dispatch(candidatActions.initBoolean());
       dispatch(candidatActions.deleteCurriculumVitae(user?.entity?.$id, conseiller));
     }
   };
