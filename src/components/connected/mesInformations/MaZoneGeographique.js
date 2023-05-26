@@ -49,6 +49,7 @@ function MaZoneGeographique({ setSubmitted, setShowModal, submitted }) {
 
   const handleSubmit = () => {
     setSubmitted(true);
+    dispatch(candidatActions.initBoolean());
     dispatch(candidatActions.verifyForm(candidat));
   };
 
