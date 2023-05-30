@@ -34,10 +34,10 @@ function MaZoneGeographique({ setSubmitted, setShowModal, submitted }) {
 
   const handleChangeCpVille = () => {
     let input = document.getElementById('searchCP');
-    setInputs(inputs => ({ ...inputs, cpVille: input.value.trim() }));
+    setInputs(inputs => ({ ...inputs, cpVille: input.value }));
 
     if (input.value?.length > 2) {
-      dispatch(candidatActions.searchVilleCP(input.value.trim()));
+      dispatch(candidatActions.searchVilleCP(input.value));
     }
   };
 
