@@ -84,7 +84,7 @@ function MonCurriculumVitae({ isUploaded, isDeleted, uploading }) {
       <div className={`bouton-cv ${conseiller?.cv ? 'fr-mb-3w' : 'fr-mb-6w'} ${fileRejections.length > 0 ? 'dropZone drop-error' : ''}`}
         {...getRootProps()}>
         <input {...getInputProps()} />
-        {(conseiller?.cv && !uploading || acceptedFiles.length === 0) &&
+        {(!uploading || acceptedFiles.length === 0) &&
           <>
             {isDragActive ?
               <span>D&eacute;posez votre CV ici ...</span> :
