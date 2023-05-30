@@ -89,7 +89,7 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
         break;
     }
   };
-  console.log(organismes);
+
   return (
     <div className="radioButton2" onClick={onClickRadio} value={value}>
       {type === 'canal' &&
