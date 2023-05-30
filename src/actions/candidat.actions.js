@@ -177,7 +177,7 @@ function updateCandidat(form, conseillerId, username, password) {
 function searchVilleCP(adresse) {
   return dispatch => {
     dispatch(request());
-    candidatService.searchVilleCP(adresse)
+    candidatService.searchVilleCP(adresse.trim())
     .then(
       result => {
         dispatch(success(result.adresseApi));
