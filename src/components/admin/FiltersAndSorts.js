@@ -104,7 +104,7 @@ function FiltersAndSorts({ resetPage, user }) {
 
   const selectFiltreRegion = e => dispatch(filtersAndSortsActions.changeFiltreRegion(e.target.value));
 
-  const formatNomStructure = nomStructure => !nomStructure ? nomStructure : nomStructure
+  const formatNomStructure = nomStructure => nomStructure
   .replaceAll('.', '')
   .replaceAll('-', ' ')
   .replaceAll('à', 'a')
