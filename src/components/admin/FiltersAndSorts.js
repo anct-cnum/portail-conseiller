@@ -105,13 +105,13 @@ function FiltersAndSorts({ resetPage, user }) {
   const selectFiltreRegion = e => dispatch(filtersAndSortsActions.changeFiltreRegion(e.target.value));
 
   const formatNomStructure = nomStructure => nomStructure
-  .replaceAll('.', '')
-  .replaceAll('-', ' ')
-  .replaceAll('à', 'a')
-  .replaceAll('ù', 'u')
-  .replaceAll('ç', 'c')
-  .replaceAll('è', 'e')
-  .replaceAll('é', 'e');
+  ?.replaceAll('.', '')
+  ?.replaceAll('-', ' ')
+  ?.replaceAll('à', 'a')
+  ?.replaceAll('ù', 'u')
+  ?.replaceAll('ç', 'c')
+  ?.replaceAll('è', 'e')
+  ?.replaceAll('é', 'e');
 
   const rechercheParNomOuNomStructure = e => {
     const value = (e.key === 'Enter' ? e.target?.value : e.target.previousSibling?.value) ?? '';
