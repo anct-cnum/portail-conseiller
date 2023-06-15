@@ -121,7 +121,7 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
               </span>
             </button>
           }
-          {(value !== 'redirection' || organismes?.length === 0) &&
+          {(value !== 'redirection' || organismes === null || organismes?.length === 0) &&
             <button className={styleClass} value={value}>
               <span className={image} value={value}></span>
               <span className={`fr-label`} value={value}>

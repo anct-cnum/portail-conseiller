@@ -91,21 +91,21 @@ function CoordinateurHeader() {
 
                 <div className="fr-grid-row espacement-centre-groupe-icon fr-mt-8w">
                   <div className="fr-col-6 fr-col-sm-3 fr-col-md-2 menu-btn fr-mb-3w">
-                    <Link to="/statistiques-nationales" title="Acc&eacute;der &agrave; aux statistiques nationales">
+                    <Link to="/statistiques-nationales" title="Acc&eacute;der aux statistiques nationales">
                       <img src="/logos/home-connected/icone-statistiques.svg" className="icone-btn icone-statistiques"/>
                       Statistiques Nationales
                     </Link>
                   </div>
 
                   <div className="fr-col-6 fr-col-sm-3 fr-col-md-2 menu-btn fr-mb-3w">
-                    <Link to="/territoires" title="Acc&eacute;der &agrave; aux statistiques par territoire">
+                    <Link to="/territoires" title="Acc&eacute;der aux statistiques par territoire">
                       <img src="/logos/home-connected/icone-statistiques.svg" className="icone-btn icone-cra"/>
                       Statistiques par <br/>territoire
                     </Link>
                   </div>
 
                   <div className="fr-col-6 fr-col-sm-3 fr-col-md-2 menu-btn fr-mb-3w">
-                    <Link to="/statistiques" title="Acc&eacute;der &agrave; aux statistiques">
+                    <Link to="/statistiques" title="Acc&eacute;der aux statistiques">
                       <img src="/logos/home-connected/icone-statistiques.svg" className="icone-btn icone-statistiques"/>
                       Gestion, statistiques
                     </Link>

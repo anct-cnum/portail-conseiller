@@ -60,7 +60,7 @@ function Welcome() {
                         <span>Historique</span>
                       </Link>
                       <Link to="/statistiques" className="statistiques-cra"
-                        title="Acc&eacute;der &agrave; aux statistiques" >
+                        title="Acc&eacute;der aux statistiques" >
                         <img src="/logos/home-connected/icone-statistiques.svg"/><br/>
                         <span>Statistiques</span>
                       </Link>

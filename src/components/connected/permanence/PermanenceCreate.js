@@ -40,12 +40,12 @@ function PermanenceCreate() {
       dispatch(permanenceActions.getListePermanences(structure?._id));
     }
     if (conseiller) {
-      dispatch(permanenceActions.updateField('telephonePro', conseiller.telephonePro));
-      dispatch(permanenceActions.updateField('emailPro', conseiller.emailPro));
-      dispatch(permanenceActions.updateField('estCoordinateur', conseiller.estCoordinateur));
+      dispatch(permanenceActions.updateField('telephonePro', conseiller?.telephonePro));
+      dispatch(permanenceActions.updateField('emailPro', conseiller?.emailPro));
+      dispatch(permanenceActions.updateField('estCoordinateur', conseiller?.estCoordinateur));
     }
   }, [structure, conseiller]);
-  
+
   useEffect(() => {
     if (isCreated || isUpdated) {
       window.scrollTo({ top: 0, behavior: 'smooth' });

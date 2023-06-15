@@ -66,7 +66,6 @@ function BigCountRadioButton({ type, value, label }) {
           if (value === 'atelier' && nbAccompagnementAtelier > 0) {
             nbAccompagnementAtelier--;
           }
-          console.log('coucou');
           dispatch(craActions.updateAccompagnement(nbAccompagnementIndividuel, nbAccompagnementAtelier, nbAccompagnementRedirection, 0));
         }
         break;
