@@ -19,10 +19,10 @@ function Conseiller({ conseiller, currentPage, role }) {
         }
         <td>{conseiller?.codePostal}</td>
         <td data-tip="Date Prise de Poste">
-          {conseiller?.datePrisePoste ? dayjs(conseiller?.datePrisePoste).format('DD/MM/YYYY') : 'Non renseign&eacute;e'}
+          {conseiller?.datePrisePoste ? dayjs(conseiller?.datePrisePoste).format('DD/MM/YYYY') : <>Non renseign&eacute;e</>}
         </td>
         <td data-tip="Date Fin Formation">
-          {conseiller?.dateFinFormation ? dayjs(conseiller?.dateFinFormation).format('DD/MM/YYYY') : 'Non renseign&eacute;e'}
+          {conseiller?.dateFinFormation ? dayjs(conseiller?.dateFinFormation).format('DD/MM/YYYY') : <>Non renseign&eacute;e</>}
         </td>
         <td><div data-tip="Activ&eacute;" className={isUserActif ? 'circle-true' : 'circle-false'}></div></td>
         <td data-tip="CRA saisis">{conseiller?.craCount}</td>
