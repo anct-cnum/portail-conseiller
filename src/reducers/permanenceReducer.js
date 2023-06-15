@@ -173,7 +173,7 @@ export default function permanence(state = initialState, action) {
         delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.[action.champ + 'adresse'])[0]?.[action.champ + 'adresse'];
         delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.[action.champ + 'adresse'])[0]?.[action.champ + 'location'];
 
-        const rueVoie = formatRue(null, action.adresseParSiret?.type_voie, action.adresseParSiret?.nom_voie);
+        const rueVoie = formatRue(null, action.adresseParSiret?.type_voie, action.adresseParSiret?.libelle_voie);
         const adresse = action.adresseParSiret?.adresseComplete;
 
         fieldsSiret = nettoyageFields(
