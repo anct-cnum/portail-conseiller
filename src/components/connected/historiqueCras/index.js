@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ReactTooltip from 'react-tooltip';
+import { Tooltip } from 'react-tooltip';
 import FlashMessage from 'react-flash-message';
 import Pluralize from 'react-pluralize';
 import labelsCorrespondance from '../../../data/labelsCorrespondance.json';
@@ -249,7 +249,8 @@ function HistoriqueCras() {
                           <td className="canal">
                             <img src={htmlDecode(labelsCorrespondance.find(label => label.nom === accompagnement.cra.canal)?.image)}
                               alt={htmlDecode(labelsCorrespondance.find(label => label.nom === accompagnement.cra.canal)?.correspondance)}
-                              data-tip={htmlDecode(labelsCorrespondance.find(label => label.nom === accompagnement.cra.canal)?.correspondance)}
+                              data-tooltip-id="infobulle-menu"
+                              data-tooltip-html={htmlDecode(labelsCorrespondance.find(label => label.nom === accompagnement.cra.canal)?.correspondance)}
                               className="logo"
                             />
                           </td>
@@ -257,7 +258,8 @@ function HistoriqueCras() {
                           <td>
                             <img src={htmlDecode(labelsCorrespondance.find(label => label.nom === accompagnement.cra.activite)?.image)}
                               alt={labelsCorrespondance.find(label => label.nom === accompagnement.cra.activite)?.correspondance}
-                              data-tip={labelsCorrespondance.find(label => label.nom === accompagnement.cra.activite)?.correspondance}
+                              data-tooltip-id="infobulle-menu"
+                              data-tooltip-html={labelsCorrespondance.find(label => label.nom === accompagnement.cra.activite)?.correspondance}
                               className="logo"
                             />
                           </td>
@@ -299,7 +301,7 @@ function HistoriqueCras() {
                       }
                     </tbody>
                   </table>
-                  <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
+                  <Tooltip className="infobulle" id="infobulle-menu" arrowColor="white"/>
                 </div>
               </div>
               <div className="fr-col-12 fr-mb-12w">
