@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Footer from '../Footer';
 import { conseillerActions } from '../../actions';
 import { userEntityId } from '../../helpers';
-import ReactTooltip from 'react-tooltip';
+import { Tooltip } from 'react-tooltip';
 
 function Welcome() {
   const dispatch = useDispatch();
@@ -73,7 +73,9 @@ function Welcome() {
                           <a href={lienMattermost} target="blank" title="Acc&egrave;s espace discussion">
                             <img src="/logos/home-connected/icone-discussion.svg" className="icone-btn icone-mattermost"/>
                             Discussion
-                            <span data-tip={`
+                            <span
+                              data-tooltip-id="infobulle-menu"
+                              data-tooltip-html={`
                               <div><b>Astuce :</b> l’espace de discussion fonctionne via le logiciel libre Mattermost.
                               Si vous le souhaitez, il est possible de l’installer sur votre ordinateur ou votre t&eacute;l&eacute;phone
                               afin de pouvoir y acc&eacute;der directement.</div>
@@ -92,7 +94,9 @@ function Welcome() {
                           <a href={lienWebmail} target="blank" title="Acc&eacute;der &agrave; ma boîte mail">
                             <img src="/logos/home-connected/icone-courriel.svg" className="icone-btn icone-mail"/>
                             Web mail
-                            <span data-tip="
+                            <span
+                              data-tooltip-id="infobulle-menu"
+                              data-tooltip-html="
                               <div><b>Astuce:</b> pour configurer votre adresse prenom.nom@conseiller-numerique.com sur votre client
                               mail (Outlook, Thinderbird, etc.), voici les param&egrave;tres IMAP/POP:</div>
                             <ul>
@@ -170,7 +174,7 @@ function Welcome() {
                 </div>
               </div>
             </div>
-            <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
+            <Tooltip id="infobulle-menu" className="infobulle" arrowColor="white"/>
           </div>
         </div>
       </div>

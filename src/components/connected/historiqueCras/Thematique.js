@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactTooltip from 'react-tooltip';
+import { Tooltip } from 'react-tooltip';
 import labelsCorrespondance from '../../../data/labelsCorrespondance.json';
 
 function Thematique({ texte }) {
@@ -10,8 +10,8 @@ function Thematique({ texte }) {
 
   return (
     <>
-      <img src={image} alt={alt} data-tip={alt} className="logo"/>
-      <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
+      <img src={image} alt={alt} data-tooltip-id="infobulle-menu" data-tooltip-html={alt} className="logo"/>
+      <Tooltip className="infobulle" id="infobulle-menu" arrowColor="white"/>
     </>
   );
 }
