@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { permanenceActions } from '../../../actions';
 import PropTypes from 'prop-types';
-import ReactTooltip from 'react-tooltip';
+import { Tooltip } from 'react-tooltip';
 import Pluralize from 'react-pluralize';
 
 function SupprimerPermanence({ permanence, isDisabled, count }) {
@@ -24,7 +24,8 @@ function SupprimerPermanence({ permanence, isDisabled, count }) {
     <>
       { isDisabled &&
         <button className="fr-btn supprimer-btn disabled-btn"
-          disabled={true} data-tip="Ne peut pas être supprimer si c'est votre lieu principal d'activité"
+          disabled={true} data-tooltip-id="infobulle-menu"
+          data-tooltip-html="Ne peut pas &ecirc;tre supprimer si c&rsquo;est votre lieu principal d&rsquo;activit&eacute;"
           onClick={() => {
             setModalOpenClose(false);
           }}>
@@ -39,7 +40,7 @@ function SupprimerPermanence({ permanence, isDisabled, count }) {
             Supprimer
         </button>
       }
-      <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
+      <Tooltip className="infobulle" id="infobulle-menu" arrowColor="white"/>
 
       {modalOpenClose &&
         <dialog aria-labelledby="fr-modal-suppression" role="dialog" id="fr-modal-suppression" className="fr-modal modalOpened">

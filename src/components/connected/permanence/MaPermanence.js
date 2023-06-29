@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import SupprimerPermanence from './SupprimerPermanence';
 import { useDispatch, useSelector } from 'react-redux';
 import { craActions } from '../../../actions';
-import ReactTooltip from 'react-tooltip';
+import { Tooltip } from 'react-tooltip';
 
 function MaPermanence({ permanence, conseillerId, trClass }) {
   const dispatch = useDispatch();
@@ -37,8 +37,9 @@ function MaPermanence({ permanence, conseillerId, trClass }) {
         {!permanence?.adresse &&
           <>
             <span className="ri-error-warning-fill warning-adresse"
-              data-tip="Vous avez remont&eacute; un probl&egrave;me d&rsquo;adresse, celui-ci est en cours de traitement."></span>
-            <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
+              data-tooltip-id="infobulle-menu"
+              data-tooltip-html="Vous avez remont&eacute; un probl&egrave;me d&rsquo;adresse, celui-ci est en cours de traitement."></span>
+            <Tooltip className="infobulle" id="infobulle-menu" arrowColor="white"/>
           </>
         }
         {permanence?.nomEnseigne}</td>

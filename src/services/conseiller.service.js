@@ -19,7 +19,9 @@ export const conseillerService = {
   exportDonneesSubordonnes,
   getStatistiquesHubCSV,
   isSubordonne,
-  getExportDonneesCnfsWithoutCRA
+  getExportDonneesCnfsWithoutCRA,
+  updateDisponibilite,
+  updateDateDisponibilite,
 };
 
 function get(id) {
@@ -277,6 +279,29 @@ function getExportDonneesCnfsWithoutCRA() {
   const exportCnfsRoute = '/exports-without-cra/cnfs.csv';
 
   return fetch(`${apiUrlRoot}${exportCnfsRoute}`, requestOptions).then(handleFileResponse);
+}
+
+function updateDisponibilite(idConseiller, disponible) {
+  const requestOptions = {
+    method: 'PATCH',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+    body: JSON.stringify({
+      disponible,
+    })
+  };
+
+  return fetch(`${apiUrlRoot}/conseillers/update_disponibilite/${idConseiller}`, requestOptions).then(handleResponse);
+}
+
+function updateDateDisponibilite(idConseiller, dateDisponibilite) {
+  const requestOptions = {
+    method: 'PATCH',
+    headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
+    body: JSON.stringify({
+      dateDisponibilite,
+    })
+  };
+  return fetch(`${apiUrlRoot}/conseillers/update_date_disponibilite/${idConseiller}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

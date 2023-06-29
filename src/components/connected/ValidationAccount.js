@@ -85,24 +85,24 @@ function ValidationAccount() {
             <p>
               <strong>{ structure?.nom }</strong>
             </p>
-            { structure?.insee?.etablissement?.adresse?.l4 &&
+            { structure?.insee?.adresse?.acheminement_postal?.l4 &&
             <p>
-              <strong>{ structure?.insee?.etablissement?.adresse?.l4 }</strong>
+              <strong>{ structure?.insee?.adresse?.acheminement_postal?.l4 }</strong>
             </p>
             }
-            { structure?.insee?.etablissement?.adresse?.l5 &&
+            { structure?.insee?.adresse?.acheminement_postal?.l5 &&
             <p>
-              <strong>{ structure?.insee?.etablissement?.adresse?.l5 }</strong>
+              <strong>{ structure?.insee?.adresse?.acheminement_postal?.l5 }</strong>
             </p>
             }
-            { structure?.insee?.etablissement?.adresse?.code_postal &&
+            { structure?.insee?.adresse?.code_postal &&
             <p>
-              <strong>{ structure?.insee?.etablissement?.adresse?.code_postal }</strong>
+              <strong>{ structure?.insee?.adresse?.code_postal }</strong>
             </p>
             }
-            { structure?.insee?.etablissement?.adresse?.localite &&
+            { structure?.insee?.adresse?.libelle_commune &&
             <p style={{ textTransform: 'uppercase' }}>
-              <strong>{ structure?.insee?.etablissement?.adresse?.localite }</strong>
+              <strong>{ structure?.insee?.adresse?.libelle_commune }</strong>
             </p>
             }
           </div>

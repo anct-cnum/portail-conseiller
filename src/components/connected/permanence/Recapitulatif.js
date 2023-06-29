@@ -5,7 +5,7 @@ function Recapitulatif({ nomStructure, siret, adresseStructure }) {
   const numeroRue = adresseStructure?.numeroRue ?? '';
   const numeroVoie = adresseStructure?.numero_voie ?? '';
   const typeVoie = adresseStructure?.type_voie ?? '';
-  const nomVoie = adresseStructure?.nom_voie ?? '';
+  const nomVoie = adresseStructure?.libelle_voie ?? '';
 
   return (
 
@@ -31,7 +31,7 @@ function Recapitulatif({ nomStructure, siret, adresseStructure }) {
         <br/>
         <span className="libelle-adresse fr-mr-5w">Ville</span>
         <span className="info-adresse">
-          {adresseStructure?.ville ?? adresseStructure?.localite}
+          {adresseStructure?.ville ?? adresseStructure?.libelle_commune}
         </span>
         <br/>
         <span className="libelle-adresse fr-mr-5w">N° de siret</span>

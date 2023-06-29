@@ -3,7 +3,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import ReactTooltip from 'react-tooltip';
+import { Tooltip } from 'react-tooltip';
 
 function Conseiller({ conseiller, currentPage, role }) {
 
@@ -18,14 +18,18 @@ function Conseiller({ conseiller, currentPage, role }) {
           <td className="structure">{conseiller?.nomStructure?.toUpperCase()}</td>
         }
         <td>{conseiller?.codePostal}</td>
-        <td data-tip="Date Prise de Poste">
+        <td data-tooltip-id="infobulle-menu"
+          data-tooltip-html="Date Prise de Poste">
           {conseiller?.datePrisePoste ? dayjs(conseiller?.datePrisePoste).format('DD/MM/YYYY') : <>Non renseign&eacute;e</>}
         </td>
-        <td data-tip="Date Fin Formation">
+        <td data-tooltip-id="infobulle-menu"
+          data-tooltip-html="Date Fin Formation">
           {conseiller?.dateFinFormation ? dayjs(conseiller?.dateFinFormation).format('DD/MM/YYYY') : <>Non renseign&eacute;e</>}
         </td>
-        <td><div data-tip="Activ&eacute;" className={isUserActif ? 'circle-true' : 'circle-false'}></div></td>
-        <td data-tip="CRA saisis">{conseiller?.craCount}</td>
+        <td><div data-tooltip-id="infobulle-menu"
+          data-tooltip-html="Activ&eacute;" className={isUserActif ? 'circle-true' : 'circle-false'}></div></td>
+        <td data-tooltip-id="infobulle-menu"
+          data-tooltip-html="CRA saisis">{conseiller?.craCount}</td>
         <td>
           <Link className="fr-btn details-btn" style={{ boxShadow: 'none' }} to={{
             pathname: `/conseiller/${conseiller?._id}`,
@@ -33,7 +37,7 @@ function Conseiller({ conseiller, currentPage, role }) {
             origin: '/accueil' }}>
               Afficher
           </Link>
-          <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
+          <Tooltip className="infobulle" id="infobulle-menu" arrowColor="white"/>
         </td>
       </tr>
     </>

@@ -141,7 +141,7 @@
             }
           }
           #menu-liens-user {
-            width: 27.3rem;
+            width: 20rem;
             .fr-menu__list {
               font-size: 14px;
               line-height: 24px;
@@ -155,21 +155,15 @@
               line-height: 24px;
             }
           }
-          .aide-coop {
-            padding-bottom: 12px;
-          }
           .aide-metier {
-            border-top: 1px solid #bfbfe3;
-            padding-top: 12px;
+            border-top: 1px solid #353535;
           }
           .user-disconnect {
-            width: 24.05rem;
-            border-top: 1px solid #bfbfe3;
-            padding-top: 12px;
+            width: 18rem;
           }
           .user-infos {
-            width: 24.05rem;
-            padding-bottom: 12px;
+            width: 18rem;
+            border-bottom: 1px solid #353535;
           }
           .fr-custom-link {
             position: relative;
@@ -189,6 +183,11 @@
             &:focus {
               outline-color: transparent;
             }
+          }
+          .icone-menu {
+            position: relative;
+            font-size: 1.5em;
+            top: 5px;
           }
         }
         .header-propos {
@@ -277,7 +276,10 @@
 .important {
   color: #e10600;
 }
-
+.obligatoire {
+  font-weight: 600;
+  color: #fc5D00;
+}
 .valid {
   color: #008941;
 }
@@ -380,7 +382,7 @@
   opacity: 1;
   visibility: visible;
 }
-.modal-sexe-age, .modal-remerciement, .modal-ouverture, .modal-suppression, .modal-suggestion, .modal-adresse-introuvable {
+.modal-sexe-age, .modal-remerciement, .modal-ouverture, .modal-suppression, .modal-suggestion, .modal-adresse-introuvable, .modal-disponibilite {
   background-color: #fff;
   padding: 4em 2.5em;
   color: #1e1e1e;
@@ -395,7 +397,7 @@
       background-color: #efefef;
     }
   }
-  h1, legend, label {
+  h1, h2, legend, label {
     color: #1e1e1e;
   }
   .centre {
@@ -423,6 +425,19 @@
   }
   .label {
     font-weight: 600;
+  }
+  .label-disponibilite {
+    line-height: 20px;
+    font-weight: 400;
+    color: #666666;
+    font-size: 12px;
+    display: block;
+    margin: 0 auto;
+    width: 288px;
+  }
+  .input-disponibilite {
+    color: #1e1e1e;
+    width: 288px;
   }
   .label-suggestion {
     font-size: 1rem !important;
@@ -496,8 +511,9 @@
       background-color: #fff;
     }
   }
-  .ouverture-btn, .remerciement-btn, .suppression-btn, .suggestion-create-btn {
+  .ouverture-btn, .remerciement-btn, .suppression-btn, .suggestion-create-btn, .disponibilite-btn  {
     background-color: #000091;
+    border: 1px solid #000091;
     color: #fff;
   }
   .plus-tard-btn, .annuler-btn, .suggestion-delete-btn {

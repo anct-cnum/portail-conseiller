@@ -11,8 +11,9 @@ import filtersAndSortsReducer from './filtersAndSortsReducer';
 import paginationReducer from './paginationReducer';
 import permanenceReducer from './permanenceReducer';
 import supHierarchiqueReducer from './supHierarchiqueReducer';
-import infoPersonnelReducer from './infoPersonnelReducer';
+import informationsReducer from './informationsReducer';
 import historiqueCrasReducer from './historiqueCrasReducer';
+import candidatReducer from './candidatReducer';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
@@ -29,8 +30,9 @@ const rootReducer = combineReducers({
   pagination: paginationReducer,
   permanence: permanenceReducer,
   formulaireSupHierarchique: supHierarchiqueReducer,
-  formulaireInfoPersonnel: infoPersonnelReducer,
+  formulaireInformations: informationsReducer,
   historiqueCras: historiqueCrasReducer,
+  candidat: candidatReducer,
 });
 
 export default rootReducer;
