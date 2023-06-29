@@ -36,8 +36,8 @@ function ModalUpdateForm({ form, showModal, setShowModal, formOrigin }) {
       }, conseiller?._id, user.name, password));
     } else if (formOrigin === 'informations') {
       dispatch(formInformationsActions.updateInformations({
-        telephone: formatTelephone(form.telephone, conseiller?.codeDepartement),
-        telephonePro: formatTelephone(form.telephonePro, conseiller?.codeDepartement),
+        telephone: formatTelephone(form?.telephone, conseiller?.codeDepartement),
+        telephonePro: formatTelephone(form?.telephonePro, conseiller?.codeDepartement),
         emailPro: form.emailPro?.trim(),
         email: form.email.trim(),
         dateDeNaissance: form.dateDeNaissance,
