@@ -365,6 +365,10 @@ export default function cra(state = initialState, action) {
         loading: true,
       };
     case 'GET_CRA_SUCCESS':
+      let nbOrganismesCra = 0;
+      action.cra?.cra?.organismes?.forEach((organisme, i) => {
+        nbOrganismesCra += organisme[Object.keys(organisme)[i]];
+      });
       return {
         ...initialState,
         ...action.cra.cra,
@@ -393,6 +397,7 @@ export default function cra(state = initialState, action) {
           action.cra.cra.accompagnement.individuel +
           action.cra.cra.accompagnement.atelier +
           action.cra.cra.accompagnement.redirection,
+        nbAccompagnementRedirection: nbOrganismesCra,
       };
     case 'GET_CRA_FAILURE':
       return {

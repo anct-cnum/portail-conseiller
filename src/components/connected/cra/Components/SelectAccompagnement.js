@@ -15,7 +15,7 @@ function SelectAccompagnement() {
   const nbParticipants = useSelector(state => state.cra?.nbParticipants);
   const showSelect = useSelector(state => state.cra?.showSelectRedirection);
   const nbOrganisme = useSelector(state => state.cra?.nbOrganisme);
-  const organismes = useSelector(state => state.cra?.organismes);
+  let organismes = useSelector(state => state.cra?.organismes);
   const organisme = useSelector(state => state.cra?.organisme);
 
   const heightListeOrganisme = organismes?.length > 0 ? 72 : 0;
@@ -36,6 +36,9 @@ function SelectAccompagnement() {
 
   const submitLieuRedirection = () => {
     if (organisme) {
+      if (organismes === null) {
+        organismes = [];
+      }
       organismes?.push({ [organisme]: nbOrganisme });
       dispatch(craActions.updateOrganismes(organismes));
       let lieuxFiltrer = lieuxReorientation;
