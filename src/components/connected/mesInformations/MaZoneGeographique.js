@@ -9,7 +9,7 @@ function MaZoneGeographique({ setSubmitted, setShowModal, submitted }) {
   const dispatch = useDispatch();
 
   const loadingAdresses = useSelector(state => state.candidat?.loadingAdresses);
-  const erreursForm = useSelector(state => state.candidat?.erreursFormulaire);
+  const erreursForm = useSelector(state => state.candidat?.errorsFormulaire);
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const erreurCpVille = erreursForm?.errors?.filter(erreur => erreur?.cpVille)[0]?.cpVille;
   const erreurDistanceMax = erreursForm?.errors?.filter(erreur => erreur?.distance)[0]?.distance;
@@ -95,7 +95,7 @@ function MaZoneGeographique({ setSubmitted, setShowModal, submitted }) {
 
       <div className={`fr-input-group ${erreurCpVille ? 'fr-input-group--error fr-mb-6w' : 'fr-mb-12w'}`}>
         <label className="fr-label" htmlFor="nom">
-          Nom ou code postal <span className="important">*</span>
+          Code postal et nom de commune <span className="important">*</span>
         </label>
         <div id="myDropdown">
           <input
@@ -124,13 +124,13 @@ function MaZoneGeographique({ setSubmitted, setShowModal, submitted }) {
             </div>
           }
         </div>
-        {erreurCpVille &&
-          <p id="text-input-error-desc-error" className="fr-error-text">
-            {erreurCpVille}
-          </p>
-        }
-      </div>
 
+      </div>
+      {erreurCpVille &&
+      <p id="text-input-error-desc-error" className="fr-error-text fr-mb-n2w">
+        {erreurCpVille}
+      </p>
+      }
       <div className={`fr-input-group fr-mt-6w ${erreurDistanceMax ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
         Depuis ce lieu, pour une mission de conseiller num&eacute;rique,
         je suis pr&ecirc;t(e) &agrave; me d&eacute;placer &agrave; : <span className="important">*</span>

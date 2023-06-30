@@ -93,7 +93,7 @@ function verifyForm(form) {
     cpVille: (Joi.object({
       cpVille: Joi.string().trim().required().min(8).max(65)
     }).validate({ cpVille: form?.cpVille }).error) ?
-      'Une ville et un code postal valide doivent obligatoirement être saisis' : null
+      'Un code postal et une commune valides doivent obligatoirement être selectionnés dans la liste' : null
   });
   errors.push({
     ville: (Joi.object({
