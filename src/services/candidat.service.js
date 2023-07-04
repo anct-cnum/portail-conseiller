@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { authHeader } from '../helpers';
+import { authHeader, history } from '../helpers';
 import { userService } from './user.service';
 
 const apiUrlRoot = process.env.REACT_APP_API;
