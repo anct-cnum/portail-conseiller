@@ -46,7 +46,7 @@ function Login() {
           <div className="fr-container">
             <div className="fr-notice__body">
               <p className="fr-notice__title">
-                L&rsquo;accès à votre espace structure est désormais sur le&nbsp;
+                L&rsquo;acc&egrave;s à votre espace structure est d&eacute;sormais sur le&nbsp;
                 <a href="https://pilotage.conseiller-numerique.gouv.fr/login" rel="noopener">tableau de pilotage</a>
               </p>
             </div>
