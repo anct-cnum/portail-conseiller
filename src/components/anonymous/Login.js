@@ -41,6 +41,18 @@ function Login() {
 
   return (
     <div className="Login">
+      {role === 'structure' &&
+        <div className="fr-notice fr-notice--info">
+          <div className="fr-container">
+            <div className="fr-notice__body">
+              <p className="fr-notice__title">
+                L&rsquo;accès à votre espace structure est désormais sur le&nbsp;
+                <a href="https://pilotage.conseiller-numerique.gouv.fr/login" rel="noopener">tableau de pilotage</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      }
       {/* Start content */}
       <div className="fr-container" style={{ backgroundColor: '#2a2a2a', margin: '0px', maxWidth: 'unset' }}>
         <div className="fr-grid-row fr-grid-row--gutters fr-py-xs-1w fr-py-md-8w" style={{ marginBottom: 0 }}>
