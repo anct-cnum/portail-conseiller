@@ -5,7 +5,6 @@ function Footer({ type, role }) {
 
   const aideCoop = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide_espace_coop';
   const aideMetier = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide-metier';
-  const aideStructure = process.env.REACT_APP_AIDE_URL;
 
   return (
     <footer className="fr-footer" role="contentinfo" id="footer">
@@ -52,12 +51,6 @@ function Footer({ type, role }) {
           { type === 'support' &&
           <>
             <div className="fr-footer__brand">
-              {role === 'structure_coop' &&
-                <a className="fr-footer__brand-link lien-footer" href={aideStructure} target="blank" rel="noreferrer">
-                  <img src="/logos/bulle-ressourcerie.svg" className="bulle-ressourcerie" alt="liens aide vers Mattermost"/>
-                  <span>Aide espace Coop</span>
-                </a>
-              }
               {role !== 'structure_coop' &&
                 <>
                   <a className="fr-footer__brand-link lien-footer" href={aideCoop} target="blank" rel="noreferrer">
