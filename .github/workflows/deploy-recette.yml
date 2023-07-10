@@ -42,7 +42,7 @@ jobs:
         envkey_REACT_APP_RDV_AIDE_NUMERIQUE_URL: "https://www.rdv-aide-numerique.fr/agents/sign_in"
         envkey_REACT_APP_BLOG_URL: "https://media.conseiller-numerique.gouv.fr"
         envkey_REACT_APP_ESPACE_COOP_URL: "https://beta.coop.conseiller-numerique.gouv.fr"
-        envkey_REACT_APP_TABLEAU_DE_PILOTAGE_URL: "https://pilotage.conseiller-numerique.gouv.fr"
+        envkey_REACT_APP_TABLEAU_DE_PILOTAGE_URL: "https://beta.pilotage.conseiller-numerique.gouv.fr"
         envkey_REACT_APP_CRISP_URL: "https://go.crisp.chat/chat/embed/?website_id"
         envkey_REACT_APP_CRISP_ID: "ea669e13-e40f-40c8-be23-e43565c0e62c"
         envkey_REACT_APP_NOMBRE_LIEU_SECONDAIRE: 15
