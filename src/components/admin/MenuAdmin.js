@@ -13,7 +13,6 @@ function MenuAdmin() {
   const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
   const aideCoop = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide_espace_coop';
   const aideMetier = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide-metier';
-  const aideStructure = process.env.REACT_APP_AIDE_URL;
 
   let menu = useSelector(state => state.menu);
   const toggleBurgerMenu = () => {
@@ -76,13 +75,6 @@ function MenuAdmin() {
                       </a>
                     </li>
                   </>
-                }
-                {role === 'structure_coop' &&
-                  <li className="fr-nav__item">
-                    <a className="fr-nav__link linkCustom" href={aideStructure} target="blank" rel="noreferrer">
-                      Aide espace Coop
-                    </a>
-                  </li>
                 }
                 <li className="fr-nav__item">
                   <Link className="fr-btn fr-btn--sm" to="/login?role=admin" title="Se d&eacute;connecter" onClick={toggleBurgerMenu}>

@@ -68,7 +68,7 @@ function FiltersAndSorts({ resetPage, user }) {
     if (location.pathname === '/accueil') {
       if (user?.role !== 'coordinateur_coop') {
         dispatch(conseillerActions.getAll(0, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom,
-          ordreNom, ordre ? 1 : -1, user?.role === 'structure_coop' ? user?.entity.$id : null, filtreRegion));
+          ordreNom, ordre ? 1 : -1, null, filtreRegion));
       } else {
         dispatch(conseillerActions.getConseillersSubordonnes(0, dateDebut, dateFin, filtreProfil, ordreNom, ordre ? 1 : -1, user.entity.$id));
       }
@@ -98,7 +98,7 @@ function FiltersAndSorts({ resetPage, user }) {
         ordreNom, ordre ? 1 : -1, user?.entity.$id));
     } else {
       dispatch(conseillerActions.exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom,
-        ordreNom, ordre ? 1 : -1, user?.role === 'structure_coop' ? user?.entity.$id : filtreParStructureId, filtreRegion));
+        ordreNom, ordre ? 1 : -1, filtreParStructureId, filtreRegion));
     }
   };
 
