@@ -18,6 +18,10 @@ function login(username, password, to) {
     .then(
       data => {
         data.user = getRole(data.user);
+        if (data.user.role === 'structure_coop') {
+          dispatch(failure('Vous n\'avez pas accès à cette application'));
+          return history.push('/login?role=structure');
+        }
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(data));
         dispatch(success(data));

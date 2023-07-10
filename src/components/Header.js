@@ -27,7 +27,6 @@ function Header({ linkAccount, printClass }) {
   };
   const aideCoop = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide_espace_coop';
   const aideMetier = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide-metier';
-  const aideStructure = process.env.REACT_APP_AIDE_URL;
 
   return (
     <header className={printClass + ' fr-header'} role="banner">
@@ -112,17 +111,6 @@ function Header({ linkAccount, printClass }) {
                                         </a>
                                       </li>
                                     </>
-                                  }
-                                  {role === 'structure_coop' &&
-                                    <li className="aide-coop">
-                                      <a className="fr-nav__link lien-aide" href={aideStructure} target="blank" rel="noreferrer"
-                                        onClick={() => {
-                                          setMenuAideShow(false);
-                                        }}>
-                                        Aide espace Coop<br />
-                                        <span className="sous-titre-lien">Consulter la Foire aux Questions.</span>
-                                      </a>
-                                    </li>
                                   }
                                 </ul>
                               </div>

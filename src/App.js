@@ -65,7 +65,7 @@ function App() {
           {user?.role === 'conseiller' &&
             <PrivateRoute exact path="*" component={Home}/>
           }
-          {(user?.role === 'admin_coop' || user?.role === 'structure_coop') &&
+          {(user?.role === 'admin_coop') &&
             <PrivateRoute exact path="*" component={Admin}/>
           }
           {(user?.role === 'hub_coop') &&
