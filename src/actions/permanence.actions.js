@@ -292,7 +292,7 @@ function createPermanence(idConseiller, permanence, isEnded, prefixId, redirecti
     permanenceService.createPermanence(idConseiller, permanence)
     .then(
       result => {
-        dispatch(success(result.isCreated, isEnded, prefixId, redirection));
+        dispatch(success(result.isCreated, result.idPermanence, isEnded, prefixId, redirection));
       },
       error => {
         dispatch(failure(error));
@@ -303,8 +303,8 @@ function createPermanence(idConseiller, permanence, isEnded, prefixId, redirecti
   function request() {
     return { type: 'POST_PERMANENCE_REQUEST' };
   }
-  function success(isCreated, isEnded, prefixId, redirection) {
-    return { type: 'POST_PERMANENCE_SUCCESS', isCreated, isEnded, prefixId, redirection };
+  function success(isCreated, idPermanence, isEnded, prefixId, redirection) {
+    return { type: 'POST_PERMANENCE_SUCCESS', isCreated, idPermanence, isEnded, prefixId, redirection };
   }
   function failure(error) {
     return { type: 'POST_PERMANENCE_FAILURE', error };
