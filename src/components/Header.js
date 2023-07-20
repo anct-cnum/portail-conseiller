@@ -27,7 +27,6 @@ function Header({ linkAccount, printClass }) {
   };
   const aideCoop = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide_espace_coop';
   const aideMetier = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide-metier';
-  const aideStructure = process.env.REACT_APP_AIDE_URL;
 
   return (
     <header className={printClass + ' fr-header'} role="banner">
@@ -113,17 +112,6 @@ function Header({ linkAccount, printClass }) {
                                       </li>
                                     </>
                                   }
-                                  {role === 'structure_coop' &&
-                                    <li className="aide-coop">
-                                      <a className="fr-nav__link lien-aide" href={aideStructure} target="blank" rel="noreferrer"
-                                        onClick={() => {
-                                          setMenuAideShow(false);
-                                        }}>
-                                        Aide espace Coop<br />
-                                        <span className="sous-titre-lien">Consulter la Foire aux Questions.</span>
-                                      </a>
-                                    </li>
-                                  }
                                 </ul>
                               </div>
                             </li>
@@ -170,10 +158,11 @@ function Header({ linkAccount, printClass }) {
                                               setMenuUserShow(false);
                                             }}>
                                             <i className="ri-user-6-line icone-menu fr-mr-1w"></i>
-                                            Contact de mon responsable<br />
+                                            Contact de mon responsable&nbsp;
                                             { !conseiller?.supHierarchique &&
-                                            <i className="ri-information-line information icone-info-header"></i>
+                                              <i className="ri-information-line information icone-info-header"></i>
                                             }
+                                            <br />
                                           </Link>
                                         </li>
                                         <li className="user-infos">

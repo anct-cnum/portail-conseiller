@@ -3,6 +3,7 @@ const moisEnCours = new Date().getMonth() + 1;
 const initialState = {
   dateDebutStats: new Date(anneeEnCours + '/' + moisEnCours + '/01'),
   dateFinStats: new Date(),
+  labelSelectPrint: 'Tous les codes Postaux',
   codePostalStats: '',
   villeStats: '',
   codeCommune: '',
@@ -44,6 +45,11 @@ export default function statistique(state = initialState, action) {
         codePostalStats: action.codePostal,
         villeStats: action.ville,
         codeCommune: action?.codeCommune
+      };
+    case 'CHANGE_LABEL_SELECT_STATS':
+      return {
+        ...state,
+        labelSelectPrint: action.labelSelectPrint
       };
     case 'GET_CODES_POSTAUX_CRA_REQUEST':
       return {

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { conseillerActions } from '../../actions';
 import { userEntityId } from '../../helpers';
-import ReactTooltip from 'react-tooltip';
+import { Tooltip } from 'react-tooltip';
 
 function CoordinateurHeader() {
 
@@ -27,7 +27,7 @@ function CoordinateurHeader() {
       <div className="welcome coordinateur-header fr-mb-5w">
         <div className="fr-container fr-container--fluid fond-sombre">
           <div className="fr-grid-row">
-            <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
+            <Tooltip className="infobulle" id="infobulle-menu" arrowColor="white"/>
             <div className="fr-col-12 fr-mt-5w">
               <div className="fr-container">
                 <div className="fr-grid-row espacement-centre-groupe-icon">
@@ -58,7 +58,8 @@ function CoordinateurHeader() {
                     <a href={lienMattermost} target="blank" title="Acc&egrave;s espace discussion">
                       <img src="/logos/home-connected/icone-discussion.svg" className="icone-btn icone-mattermost"/>
                       Espace de <br/>discussion
-                      <span data-tip="
+                      <span data-tooltip-id="infobulle-menu"
+                        data-tooltip-html="
                         <div><b>Astuce :</b> l’espace de discussion fonctionne via le logiciel libre Mattermost.
                         Si vous le souhaitez, il est possible de l’installer sur votre ordinateur ou votre t&eacute;l&eacute;phone
                         afin de pouvoir y acc&eacute;der directement.</div>
@@ -91,21 +92,21 @@ function CoordinateurHeader() {
 
                 <div className="fr-grid-row espacement-centre-groupe-icon fr-mt-8w">
                   <div className="fr-col-6 fr-col-sm-3 fr-col-md-2 menu-btn fr-mb-3w">
-                    <Link to="/statistiques-nationales" title="Acc&eacute;der &agrave; aux statistiques nationales">
+                    <Link to="/statistiques-nationales" title="Acc&eacute;der aux statistiques nationales">
                       <img src="/logos/home-connected/icone-statistiques.svg" className="icone-btn icone-statistiques"/>
                       Statistiques Nationales
                     </Link>
                   </div>
 
                   <div className="fr-col-6 fr-col-sm-3 fr-col-md-2 menu-btn fr-mb-3w">
-                    <Link to="/territoires" title="Acc&eacute;der &agrave; aux statistiques par territoire">
+                    <Link to="/territoires" title="Acc&eacute;der aux statistiques par territoire">
                       <img src="/logos/home-connected/icone-statistiques.svg" className="icone-btn icone-cra"/>
                       Statistiques par <br/>territoire
                     </Link>
                   </div>
 
                   <div className="fr-col-6 fr-col-sm-3 fr-col-md-2 menu-btn fr-mb-3w">
-                    <Link to="/statistiques" title="Acc&eacute;der &agrave; aux statistiques">
+                    <Link to="/statistiques" title="Acc&eacute;der aux statistiques">
                       <img src="/logos/home-connected/icone-statistiques.svg" className="icone-btn icone-statistiques"/>
                       Gestion, statistiques
                     </Link>
@@ -129,7 +130,8 @@ function CoordinateurHeader() {
                     <a href={lienWebmail} target="blank" title="Acc&eacute;der &agrave; ma boîte mail">
                       <img src="/logos/home-connected/icone-courriel.svg" className="icone-btn icone-mail"/>
                       Acc&eacute;der au web mail
-                      <span data-tip="
+                      <span data-tooltip-id="infobulle-menu"
+                        data-tooltip-html="
                         <div><b>Astuce:</b> pour configurer votre adresse prenom.nom@conseiller-numerique.com sur votre client
                         mail (Outlook, Thinderbird, etc.), voici les param&egrave;tres IMAP/POP:</div>
                       <ul>

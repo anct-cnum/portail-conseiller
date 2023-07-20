@@ -6,16 +6,15 @@ import PropTypes from 'prop-types';
 function ElementCodePostal({ idStructure = '' }) {
 
   const dispatch = useDispatch();
+  const labelSelectPrint = useSelector(state => state.statistique?.labelSelectPrint);
   const listeCodesPostaux = useSelector(state => state.statistique?.listeCodesPostaux);
-  const [printCP, setPrintCP] = useState('Tous les codes Postaux');
   const setCodePostal = e => {
-    const codePostal = e.target.value.split('-')[0];
     const codeCommune = e.target.value.split('-')[1] ?? '';
     const ville = e.target.value.split('-')[2] ?? '';
-    setPrintCP(e.target.value);
+    const label = e.nativeEvent?.target[e.target.selectedIndex]?.text?.replace('- -', `${codePostal} -`);
     dispatch(statistiqueActions.changeCodePostalStats(codePostal, ville, codeCommune));
+    dispatch(statistiqueActions.changeLabelSelectPrint(label === 'codes postaux, villes' ? 'Tous les codes Postaux' : label));
   };
-
   const [optionList, setOptionList] = useState([]);
 
   useEffect(() => {
@@ -55,7 +54,7 @@ function ElementCodePostal({ idStructure = '' }) {
   return (
     <>
       <div className="only-print code-postal-select fr-my-3w">
-        {printCP}
+        {labelSelectPrint}
       </div>
       <select className="fr-select code-postal-select fr-my-2w dont-print" onChange={setCodePostal}>
         <option value="">codes postaux, villes</option>

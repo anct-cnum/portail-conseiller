@@ -28,6 +28,7 @@ function App() {
   let downloadingExportCnfs = useSelector(state => state.conseiller?.downloadingExportCnfs);
   const loadingHistorique = useSelector(state => state.historiqueCras?.loading);
   const loadingPermanence = useSelector(state => state.permanence?.loading);
+  const uploadingCV = useSelector(state => state.candidat?.uploading);
   const user = useSelector(state => state?.authentication?.user?.user);
   const reloadList = useSelector(state => state.permanence?.reloadList);
   const conseiller = useSelector(state => state.conseiller?.conseiller);
@@ -43,7 +44,7 @@ function App() {
   return (
     <div className="App">
       { (statsDataLoading === true || pdfLoading === true || loadingCSV === true || loadingExcel === true ||
-        downloadingExportCnfs === true || loadingHistorique === true || loadingPermanence === true) &&
+        downloadingExportCnfs === true || loadingHistorique === true || loadingPermanence === true || uploadingCV === true) &&
         <div className="wrapperModal"></div>
       }
       <Router history={history}>
@@ -64,7 +65,7 @@ function App() {
           {user?.role === 'conseiller' &&
             <PrivateRoute exact path="*" component={Home}/>
           }
-          {(user?.role === 'admin_coop' || user?.role === 'structure_coop') &&
+          {(user?.role === 'admin_coop') &&
             <PrivateRoute exact path="*" component={Admin}/>
           }
           {(user?.role === 'hub_coop') &&

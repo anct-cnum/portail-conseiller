@@ -19,14 +19,14 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
   const loadingHoraires = useSelector(state => state.permanence?.loadingHoraires);
   const erreursFormulaire = useSelector(state => state.permanence?.errorsFormulaire?.errors);
   const erreurAdresseExact = erreursFormulaire?.filter(erreur => erreur?.estStructure)[0]?.estStructure;
-  const adresseStructure = structure?.insee?.etablissement?.adresse;
+  const adresseStructure = structure?.insee?.adresse;
 
   const [defaultCheckedOui, setDefaultCheckedOui] = useState(null);
   const [defaultCheckedNon, setDefaultCheckedNon] = useState(null);
   const [estClique, setEstClique] = useState(false);
 
   const fillPermanencePrincipale = permanencePrincipale => {
-    const ruevoie = formatRue(permanencePrincipale?.adresse?.rue, adresseStructure?.type_voie ?? '', adresseStructure?.nom_voie ?? '');
+    const ruevoie = formatRue(permanencePrincipale?.adresse?.rue, adresseStructure?.type_voie ?? '', adresseStructure?.libelle_voie ?? '');
     const adresse = formatAdresse(permanencePrincipale?.adresse, adresseStructure, ruevoie);
     dispatch(permanenceActions.updateField('principal_idPermanence', permanencePrincipale?._id ?? null));
     dispatch(permanenceActions.updateField('lieuPrincipalPour', permanencePrincipale?.lieuPrincipalPour));
@@ -50,7 +50,7 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
       permanencePrincipale?.adresse?.codePostal ?? adresseStructure?.code_postal));
     dispatch(permanenceActions.updateField('principal_codeCommune', permanencePrincipale?.adresse?.codeCommune ?? structure?.codeCommune));
     dispatch(permanenceActions.updateField('principal_ville',
-      permanencePrincipale?.adresse?.ville?.toUpperCase() ?? adresseStructure?.localite?.toUpperCase()));
+      permanencePrincipale?.adresse?.ville?.toUpperCase() ?? adresseStructure?.libelle_commune?.toUpperCase()));
     dispatch(permanenceActions.updateField('principal_adresse', adresse?.toUpperCase()));
     dispatch(permanenceActions.updateField('principal_location', structure?.location));
     if (loadingHoraires) {
@@ -59,9 +59,9 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
     }
     const adresseGeoloc = {
       numero: permanencePrincipale?.adresse?.numeroRue ?? adresseStructure?.numero_voie,
-      rue: permanencePrincipale?.adresse?.rue ?? adresseStructure?.type_voie + ' ' + adresseStructure?.nom_voie,
+      rue: permanencePrincipale?.adresse?.rue ?? adresseStructure?.type_voie + ' ' + adresseStructure?.libelle_voie,
       codePostal: permanencePrincipale?.adresse?.codePostal ?? adresseStructure?.code_postal,
-      ville: permanencePrincipale?.adresse?.ville?.toUpperCase() ?? adresseStructure?.localite?.toUpperCase()
+      ville: permanencePrincipale?.adresse?.ville?.toUpperCase() ?? adresseStructure?.libelle_commune?.toUpperCase()
     };
     dispatch(permanenceActions.getGeocodeAdresse(adresseGeoloc, 'principal_'));
     dispatch(permanenceActions.disabledField('principal_', ruevoie?.trim() === '' ? false : !isUpdate));
@@ -90,7 +90,7 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
     dispatch(permanenceActions.reserverPermanence({ prefixId: 'principal_', idPermanence: null }));
 
     if (estStructure) {
-      const permanencePrincipale = listPermanences.find(permanence => permanence.structure.$id === structure?._id && permanence.estStructure === true);
+      const permanencePrincipale = listPermanences?.find(permanence => permanence.structure.$id === structure?._id && permanence.estStructure === true);
       fillPermanencePrincipale(permanencePrincipale);
     } else {
       dispatch(permanenceActions.rebootGeocodeAdresse('principal_'));

@@ -35,9 +35,6 @@ function AdminHeader({ role, linkAccount }) {
         <div className="fr-grid-row fr-grid-row--right">
           <div className={`fr-col-lg-4 fr-col-12 ${role !== 'admin_coop' ? 'fr-mt-5w fr-mb-6w' : 'fr-mt-3w'}`}>
             <a className="statistiques_nationales-btn" href="statistiques-nationales">Statistiques Nationales</a>
-            { role === 'structure_coop' &&
-              <a className="mes_statistiques-btn fr-ml-4w" href="mes-statistiques">Mes statistiques</a>
-            }
             { role === 'admin_coop' &&
               <button className="export_cnfs_without_cra-btn fr-ml-2w" onClick={exportDonneesCnfsWithoutCRA}>Export CnFS 0 CRA M+2</button>
             }

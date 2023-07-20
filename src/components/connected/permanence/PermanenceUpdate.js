@@ -41,7 +41,7 @@ function PermanenceUpdate({ match }) {
   const isCreated = useSelector(state => state.permanence?.isCreated);
   const redirection = useSelector(state => state.permanence?.redirection);
 
-  const adresseStructure = structure?.insee?.etablissement?.adresse;
+  const adresseStructure = structure?.insee?.adresse;
   const urlCartographie = process.env.REACT_APP_CARTOGRAPHIE_URL;
 
 
@@ -66,7 +66,7 @@ function PermanenceUpdate({ match }) {
   };
 
   const fillPermanencePrincipale = (permanencePrincipale, estStructure) => {
-    const rue = formatRue(null, adresseStructure?.type_voie, adresseStructure?.nom_voie);
+    const rue = formatRue(null, adresseStructure?.type_voie, adresseStructure?.libelle_voie);
     const adresse = formatAdresse(permanencePrincipale?.adresse, adresseStructure, rue);
 
     dispatch(permanenceActions.updateField('principal_idPermanence', permanencePrincipale?._id ?? null));
@@ -93,7 +93,7 @@ function PermanenceUpdate({ match }) {
     dispatch(permanenceActions.updateField('principal_codeCommune',
       permanencePrincipale?.adresse?.codeCommune ?? adresseStructure?.codeCommune));
     dispatch(permanenceActions.updateField('principal_ville',
-      permanencePrincipale?.adresse?.ville?.toUpperCase() ?? adresseStructure?.localite?.toUpperCase()));
+      permanencePrincipale?.adresse?.ville?.toUpperCase() ?? adresseStructure?.libelle_commune?.toUpperCase()));
     dispatch(permanenceActions.updateField('principal_adresse', adresse?.toUpperCase()));
     dispatch(permanenceActions.updateField('principal_location', estStructure ? structure?.location : null));
     if (loadingHoraires) {
@@ -128,9 +128,9 @@ function PermanenceUpdate({ match }) {
 
     const adresseGeoloc = estStructure ? {
       numero: maPermanence?.adresse?.numeroRue ?? adresseStructure?.numero_voie,
-      rue: formatRue(maPermanence?.adresse?.rue, adresseStructure?.type_voie, adresseStructure?.nom_voie),
-      codePostal: maPermanence?.adresse?.codePostal ?? adresseStructure.code_postal,
-      ville: maPermanence?.adresse?.ville?.toUpperCase() ?? adresseStructure.localite?.toUpperCase()
+      rue: formatRue(maPermanence?.adresse?.rue, adresseStructure?.type_voie, adresseStructure?.libelle_voie),
+      codePostal: maPermanence?.adresse?.codePostal ?? adresseStructure?.code_postal,
+      ville: maPermanence?.adresse?.ville?.toUpperCase() ?? adresseStructure?.libelle_commune?.toUpperCase()
     } : {};
 
     if (estStructure) {

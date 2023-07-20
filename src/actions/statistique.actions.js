@@ -7,6 +7,7 @@ export const statistiqueActions = {
   changeDateStatsDebut,
   changeDateStatsFin,
   changeCodePostalStats,
+  changeLabelSelectPrint,
   getTerritoire,
   getStatsTerritoires,
   getStatsCraTerritoire,
@@ -59,6 +60,10 @@ function changeDateStatsFin(dateFin) {
 
 function changeCodePostalStats(codePostal, ville, codeCommune) {
   return { type: 'CHANGE_CODE_POSTAL_STATS', codePostal, ville, codeCommune };
+}
+
+function changeLabelSelectPrint(labelSelectPrint) {
+  return { type: 'CHANGE_LABEL_SELECT_STATS', labelSelectPrint };
 }
 
 function getStatsAdmin() {

@@ -3,7 +3,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import ReactTooltip from 'react-tooltip';
+import { Tooltip } from 'react-tooltip';
 
 function Conseiller({ conseiller, currentPage, trClass, role }) {
 
@@ -18,20 +18,32 @@ function Conseiller({ conseiller, currentPage, trClass, role }) {
           <td className="structure">{conseiller?.nomStructure?.toUpperCase()}</td>
         }
         <td>{conseiller?.codePostal}</td>
-        <td data-tip="Date Prise de Poste">
-          {conseiller?.datePrisePoste ? dayjs(conseiller?.datePrisePoste).format('DD/MM/YYYY') : 'Non renseign&eacute;e'}
+        <td
+          data-tooltip-id="infobulle-menu"
+          data-tooltip-content="Date Prise de Poste">
+          {conseiller?.datePrisePoste ? dayjs(conseiller?.datePrisePoste).format('DD/MM/YYYY') : <>Non renseign&eacute;e</>}
         </td>
-        <td data-tip="Date Fin Formation">
-          {conseiller?.dateFinFormation ? dayjs(conseiller?.dateFinFormation).format('DD/MM/YYYY') : 'Non renseign&eacute;e'}
+        <td
+          data-tooltip-id="infobulle-menu"
+          data-tooltip-content="Date Fin Formation">
+          {conseiller?.dateFinFormation ? dayjs(conseiller?.dateFinFormation).format('DD/MM/YYYY') : <>Non renseign&eacute;e</>}
         </td>
-        <td className="center-text" data-tip="Groupe CRA">
+        <td className="center-text"
+          data-tooltip-id="infobulle-menu"
+          data-tooltip-content="Groupe CRA">
           {conseiller?.groupeCRA}
         </td>
-        <td className="center-text" data-tip="Certification">
+        <td className="center-text"
+          data-tooltip-id="infobulle-menu"
+          data-tooltip-content="Certification">
           {conseiller?.certifie ? <img src="logos/icone-check.svg"/> : <img src="logos/icone-croix.svg" /> }
         </td>
-        <td><div data-tip="Activ&eacute;" className={isUserActif ? 'circle-true' : 'circle-false'}></div></td>
-        <td data-tip="CRA saisis sur la p&eacute;riode">{conseiller?.craCount}</td>
+        <td><div
+          data-tooltip-id="infobulle-menu"
+          data-tooltip-html="Activ&eacute;" className={isUserActif ? 'circle-true' : 'circle-false'}></div></td>
+        <td
+          data-tooltip-id="infobulle-menu"
+          data-tooltip-html="CRA saisis sur la p&eacute;riode">{conseiller?.craCount}</td>
         <td>
           <Link className="fr-btn details-btn" style={{ boxShadow: 'none' }} to={{
             pathname: `/conseiller/${conseiller?._id}`,
@@ -39,7 +51,7 @@ function Conseiller({ conseiller, currentPage, trClass, role }) {
             origin: '/accueil' }}>
               Afficher
           </Link>
-          <ReactTooltip html={true} className="infobulle" arrowColor="white"/>
+          <Tooltip className="infobulle" id="infobulle-menu" arrowColor="white"/>
         </td>
       </tr>
     </>

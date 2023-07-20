@@ -61,7 +61,7 @@ function FormulaireInfosPersonnelles() {
 
   function handleSubmit() {
     setSubmitted(true);
-    dispatch(formInformationsActions.verifyFormulaire(form, conseiller.telephone));
+    dispatch(formInformationsActions.verifyFormulaire(form, conseiller?.telephone));
   }
 
   useEffect(() => {
@@ -74,8 +74,8 @@ function FormulaireInfosPersonnelles() {
 
   useEffect(() => {
     if (conseiller !== null && conseiller !== undefined) {
-      const telephone = formatTelephone(conseiller.telephone);
-      const telephonePro = formatTelephone(conseiller.telephonePro);
+      const telephone = formatTelephone(conseiller?.telephone);
+      const telephonePro = formatTelephone(conseiller?.telephonePro);
       dispatch(formInformationsActions.initFormInformations(
         conseiller.email,
         telephone,
@@ -97,13 +97,12 @@ function FormulaireInfosPersonnelles() {
 
   return (
     <>
-      <ModalUpdateForm form={form} showModal={showModal} setShowModal={setShowModal} />
-
+      <ModalUpdateForm form={form} showModal={showModal} setShowModal={setShowModal} formOrigin="informations"/>
       <h2 className="fr-mb-6w sous-titre">Informations personnelles</h2>
 
       <div className="fr-input-group fr-mb-5w">
         <label className="fr-label" htmlFor="conseiller-prenom">
-          Pr&eacute;nom
+          Pr&eacute;nom<span className="obligatoire">&nbsp;*</span>
         </label>
         <input
           className="fr-input"
@@ -117,7 +116,7 @@ function FormulaireInfosPersonnelles() {
 
       <div className="fr-input-group fr-mb-5w">
         <label className="fr-label" htmlFor="conseiller-nom">
-          Nom
+          Nom<span className="obligatoire">&nbsp;*</span>
         </label>
         <input
           className="fr-input"
@@ -131,7 +130,7 @@ function FormulaireInfosPersonnelles() {
 
       <div className={`fr-input-group ${erreurEmailPerso ? 'fr-input-group--error' : 'fr-mb-5w'}`}>
         <label className="fr-label" htmlFor="conseiller-email">
-          Adresse mail personnelle
+          Adresse mail personnelle<span className="obligatoire">&nbsp;*</span>
           <span className="fr-hint-text desc-input">
             Utilis&eacute;e pour votre candidature au dispositif.<br/>
             Sert &eacute;galement &agrave; r&eacute;cup&eacute;rer le mot de passe du mail CnFS.
@@ -179,7 +178,7 @@ function FormulaireInfosPersonnelles() {
 
       <div className="fr-input-group fr-mb-5w">
         <label className="fr-label" htmlFor="conseiller-date-de-naissance">
-          Date de naissance
+          Date de naissance<span className="obligatoire">&nbsp;*</span>
         </label>
         <DatePicker
           id="conseiller-date-de-naissance"
@@ -205,7 +204,7 @@ function FormulaireInfosPersonnelles() {
       <div className="fr-form-group">
         <fieldset className="fr-fieldset fr-fieldset--inline">
           <legend className="fr-fieldset__legend fr-text--regular" id="radio-inline-legend">
-            Genre
+            Genre<span className="obligatoire">&nbsp;*</span>
           </legend>
           <div className="fr-fieldset__content">
             <div className="fr-radio-group radio-genre">

@@ -27,6 +27,6 @@ export const formatAdresse = (adressePermanence, adresseStructure = null, rue = 
     adressePermanence?.numeroRue ?? adresseStructure?.numero_voie ?? '',
     adressePermanence?.rue ?? rue ?? '',
     adressePermanence?.codePostal ?? adresseStructure?.code_postal ?? '',
-    adressePermanence?.ville ?? adresseStructure?.localite ?? ''
+    adressePermanence?.ville ?? adresseStructure?.libelle_commune ?? ''
   ].join(' ').toUpperCase();
 };

@@ -1,0 +1,111 @@
+.mon-espace-candidat {
+  .titre {
+    line-height: 64px;
+    font-weight: 200;
+    font-size: 56px;
+    margin: 0;
+  }
+  .titre-modal {
+    text-align: center;
+    line-height: 32px;
+    font-weight: 700;
+    font-size: 24px;
+    margin: 0;
+  }
+  .paragraphe {
+    line-height: 20px;
+    font-weight: 300;
+    color: #929292;
+    font-size: 12px;
+  }
+  .label-indisponible, .label-disponible{
+    color: #8585f6;
+    padding: 1rem 0;
+    cursor: pointer;
+  }
+  .disponibilite-valide, .label-disponible {
+    color: #27A658 !important;
+  }
+  .fr-toggle input[type="checkbox"]:checked {
+    box-shadow: inset 0 0 0 1px #27A658 !important;
+    background-color: #27A658 !important;
+    border-color: #27A658 !important;
+    --active: #27A658 !important;
+    --hover: #27A658 !important;
+    color: #27A658 !important;
+  }
+  .fr-toggle input[type="checkbox"]:checked ~ .fr-toggle__label::after {
+    --data-uri-svg: url('/public/logos/icone-check-vert.svg') !important;
+    box-shadow: inset 0 0 0 1px #27A658 !important;
+    border-color: #27A658 !important;
+  }
+  .sous-titre {
+    line-height: 32px;
+    font-weight: 700;
+    font-size: 20px;
+  }
+  #myDropdown {
+    position: absolute;
+    margin-top: 8px;
+    width: 384px;
+    z-index: 1;
+    .scrollOptions2 {
+      background-color: #242424;
+      border-radius: 0 0 20px 20px;
+      overflow-x: hidden;
+      max-height: 200px;
+      line-height: 24px;
+      overflow: scroll;
+      color: #fff;
+      font-weight: 700;
+      font-size: 16px;
+      div {
+        padding: 12px 0 0 25px;
+        cursor: pointer;
+        height: 47px;
+        &:hover {
+          background: #fff;
+          color: #242424;
+        }
+      }
+    }
+  }
+  .bouton-cv {
+    border: 1px solid #8585f6;
+    text-align: center;
+    max-width: 408px;
+    color: #8585f6;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 8px;
+    .icone-upload {
+      position: absolute;
+      margin: 12px -28px;
+      font-size: 1.2em;
+    }
+  }
+  .text-cv {
+    font-size: 14px;
+    color: #929292;
+  }
+  .bouton-download, .bouton-delete {
+    color: #8585f6;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .icone {
+    position: relative;
+    top: 5px;
+  }
+  .text-pix {
+    font-size: 16px;
+    color: #929292;
+    ul {
+      list-style-type: none;
+      padding: 0px;
+   }
+   li:before {
+      content: '- ';
+   }
+  }
+}

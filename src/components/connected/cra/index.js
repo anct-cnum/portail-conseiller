@@ -29,7 +29,7 @@ function Cra() {
 
   useEffect(() => {
     if (printFlashbag) {
-      history.push('historique');
+      history.push('/historique');
     }
   }, [printFlashbag]);
   useEffect(() => {

@@ -68,7 +68,7 @@ function FiltersAndSorts({ resetPage, user }) {
     if (location.pathname === '/accueil') {
       if (user?.role !== 'coordinateur_coop') {
         dispatch(conseillerActions.getAll(0, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom,
-          ordreNom, ordre ? 1 : -1, user?.role === 'structure_coop' ? user?.entity.$id : null, filtreRegion));
+          ordreNom, ordre ? 1 : -1, null, filtreRegion));
       } else {
         dispatch(conseillerActions.getConseillersSubordonnes(0, dateDebut, dateFin, filtreProfil, ordreNom, ordre ? 1 : -1, user.entity.$id));
       }
@@ -98,25 +98,25 @@ function FiltersAndSorts({ resetPage, user }) {
         ordreNom, ordre ? 1 : -1, user?.entity.$id));
     } else {
       dispatch(conseillerActions.exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom,
-        ordreNom, ordre ? 1 : -1, user?.role === 'structure_coop' ? user?.entity.$id : filtreParStructureId, filtreRegion));
+        ordreNom, ordre ? 1 : -1, filtreParStructureId, filtreRegion));
     }
   };
 
   const selectFiltreRegion = e => dispatch(filtersAndSortsActions.changeFiltreRegion(e.target.value));
 
   const formatNomStructure = nomStructure => nomStructure
-  .replaceAll('.', '')
-  .replaceAll('-', ' ')
-  .replaceAll('à', 'a')
-  .replaceAll('ù', 'u')
-  .replaceAll('ç', 'c')
-  .replaceAll('è', 'e')
-  .replaceAll('é', 'e');
+  ?.replaceAll('.', '')
+  ?.replaceAll('-', ' ')
+  ?.replaceAll('à', 'a')
+  ?.replaceAll('ù', 'u')
+  ?.replaceAll('ç', 'c')
+  ?.replaceAll('è', 'e')
+  ?.replaceAll('é', 'e');
 
   const rechercheParNomOuNomStructure = e => {
     const value = (e.key === 'Enter' ? e.target?.value : e.target.previousSibling?.value) ?? '';
     const conseillerByStructure = conseillerBeforeFilter?.find(conseiller =>
-      formatNomStructure(conseiller.nomStructure.toLowerCase()) === formatNomStructure(value.toLowerCase()));
+      formatNomStructure(conseiller?.nomStructure?.toLowerCase()) === formatNomStructure(value?.toLowerCase()));
     if (conseillerByStructure) {
       dispatch(filtersAndSortsActions.changeStructureId(conseillerByStructure?.structureId));
     } else {
