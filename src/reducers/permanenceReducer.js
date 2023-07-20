@@ -329,7 +329,7 @@ export default function permanence(state = initialState, action) {
         isCreated: action.isCreated,
         prefixIdLieuEnregistrable: action.prefixId,
         isEnded: action.isEnded,
-        redirection: action.redirection.length > 0 ? action.redirection : String(action.idPermanence),
+        redirection: String(action.idPermanence),
       };
     case 'POST_PERMANENCE_FAILURE':
       return {

@@ -92,7 +92,7 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
       nouveauLieu = JSON.parse(JSON.stringify(nouveauLieu).replace(/"\s+|\s+"/g, '"'));
 
       if (redirection === 'cartographie') {
-        redirection = nouveauLieu?._id ?? '';
+        redirection = nouveauLieu?._id;
       }
       if (nouveauLieu?._id !== null && nouveauLieu?._id !== 'nouveau') {
         if (prefixId === 'principal_' && (idPermanenceUrl !== nouveauLieu._id)) {
@@ -104,7 +104,7 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
           nouveauLieu.idOldPermanence = idPermanenceUrl;
         }
         nouveauLieu._id = null;
-        dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, true, null, redirection));
+        dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, true, null));
       } else if (prefixId === null) {
         dispatch(permanenceActions.validerPermanenceForm(conseillerId));
       }

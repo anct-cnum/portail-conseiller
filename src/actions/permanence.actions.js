@@ -286,13 +286,13 @@ function controleHoraires(horaires) {
   return erreursHoraires;
 }
 
-function createPermanence(idConseiller, permanence, isEnded, prefixId, redirection) {
+function createPermanence(idConseiller, permanence, isEnded, prefixId) {
   return dispatch => {
     dispatch(request());
     permanenceService.createPermanence(idConseiller, permanence)
     .then(
       result => {
-        dispatch(success(result.isCreated, result.idPermanence, isEnded, prefixId, redirection));
+        dispatch(success(result.isCreated, result.idPermanence, isEnded, prefixId));
       },
       error => {
         dispatch(failure(error));
@@ -303,8 +303,8 @@ function createPermanence(idConseiller, permanence, isEnded, prefixId, redirecti
   function request() {
     return { type: 'POST_PERMANENCE_REQUEST' };
   }
-  function success(isCreated, idPermanence, isEnded, prefixId, redirection) {
-    return { type: 'POST_PERMANENCE_SUCCESS', isCreated, idPermanence, isEnded, prefixId, redirection };
+  function success(isCreated, idPermanence, isEnded, prefixId) {
+    return { type: 'POST_PERMANENCE_SUCCESS', isCreated, idPermanence, isEnded, prefixId };
   }
   function failure(error) {
     return { type: 'POST_PERMANENCE_FAILURE', error };
