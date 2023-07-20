@@ -8,6 +8,7 @@ export const craActions = {
   getSearchlist,
   searchInput,
   updateCP,
+  updateCodeCommune,
   updateCanal,
   deleteCanalValue,
   clearCanal,
@@ -57,6 +58,9 @@ function searchInput(search) {
 
 function updateCP(cp) {
   return { type: 'UPDATE_CP', cp };
+}
+function updateCodeCommune(codeCommune) {
+  return { type: 'UPDATE_CODE_COMMUNE', codeCommune };
 }
 
 function updateCanal(canal) {

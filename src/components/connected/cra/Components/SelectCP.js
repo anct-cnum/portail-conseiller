@@ -37,6 +37,11 @@ function SelectCP({ voirInformation }) {
   //Select Option and set value
   const onClickOption = e => {
     dispatch(craActions.updateCP(e.target.getAttribute('value')));
+    const value = e.target.getAttribute('value').split(' ');
+    const cp = value[0];
+    const ville = value.slice(1).join(' ');
+    const result = codesPostaux.find(c => c.Nom_commune === ville && c.Code_postal === cp);
+    dispatch(craActions.updateCodeCommune(result?.Code_Commune));
   };
 
   //Keyup to reload list with search filter
@@ -48,7 +53,7 @@ function SelectCP({ voirInformation }) {
       let options = [];
       codesPostauxFiltered.forEach(codePostal => options.push(
         <div key={`${codePostal.Code_postal} ${codePostal.Nom_commune}`}
-          value={`${codePostal.Code_postal} ${codePostal.Code_Commune} ${codePostal.Nom_commune}`}
+          value={`${codePostal.Code_postal} ${codePostal.Nom_commune}`}
           onClick={onClickOption}>
           {codePostal.Code_postal} {codePostal.Nom_commune}
         </div>
@@ -86,7 +91,7 @@ function SelectCP({ voirInformation }) {
           <button id="buttonCP"
             onClick={onClickButton}
             className={`${cra?.cp === undefined ? 'buttonCP' : 'buttonCP-filled'} ${cra?.buttonCP ? ' show' : ''}`}>
-            {cra?.cp === undefined ? 'Entrez le code postal ou la commune' : cra.cp.split(' ')[0] + ' ' + cra.cp.split(' ').splice(2).join(' ') }
+            {cra?.cp === undefined ? 'Entrez le code postal ou la commune' : cra.cp}
             <div className={`${cra.cp ? 'hide' : 'show'}`}>Saisissez au moins 3 caract&egrave;res</div>
           </button>
           }

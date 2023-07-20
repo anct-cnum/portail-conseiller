@@ -4,19 +4,19 @@ import { statistiqueActions } from '../../../../actions';
 import PropTypes from 'prop-types';
 
 function ElementCodePostal({ idStructure = '' }) {
-
   const dispatch = useDispatch();
   const labelSelectPrint = useSelector(state => state.statistique?.labelSelectPrint);
   const listeCodesPostaux = useSelector(state => state.statistique?.listeCodesPostaux);
   const setCodePostal = e => {
-    const codeCommune = e.target.value.split('-')[1] ?? '';
-    const ville = e.target.value.split('-')[2] ?? '';
+    const codePostal = e.target.value.split('-')[0];
+    const ville = e.target.value.includes('-') ? e.target.value.substr(e.target.value.indexOf('-') + 1) : null;
+    const listCp = listeCodesPostaux?.find(i => i.id === codePostal)?.codeCommune;
+    const codeCommune = listCp.find(e => e.ville === ville)?.codeCommune;
     const label = e.nativeEvent?.target[e.target.selectedIndex]?.text?.replace('- -', `${codePostal} -`);
     dispatch(statistiqueActions.changeCodePostalStats(codePostal, ville, codeCommune));
     dispatch(statistiqueActions.changeLabelSelectPrint(label === 'codes postaux, villes' ? 'Tous les codes Postaux' : label));
   };
   const [optionList, setOptionList] = useState([]);
-
   useEffect(() => {
     if (!listeCodesPostaux) {
       if (idStructure) {
@@ -27,10 +27,9 @@ function ElementCodePostal({ idStructure = '' }) {
     } else if (listeCodesPostaux && optionList?.length === 0) {
       listeCodesPostaux.forEach(codePostal => {
         if (codePostal.villes?.length === 1) {
-          const codeCommune = codePostal?.codeCommune.find(e => e.ville === codePostal.villes[0])?.codeCommune;
           optionList.push({
             text: codePostal.id + ' - ' + codePostal.villes[0]?.toUpperCase(),
-            value: codePostal.id + '-' + codeCommune + '-' + codePostal.villes[0]
+            value: codePostal.id + '-' + codePostal.villes[0]
           });
         } else if (codePostal.villes?.length > 1) {
           optionList.push({
@@ -38,10 +37,9 @@ function ElementCodePostal({ idStructure = '' }) {
             value: codePostal.id
           });
           codePostal.villes.forEach(ville => {
-            const codeCommune = codePostal?.codeCommune.find(e => e.ville === ville)?.codeCommune;
             optionList.push({
               text: ville,
-              value: codePostal.id + '-' + codeCommune + '-' + ville,
+              value: codePostal.id + '-' + ville,
               marge: '- - '
             });
           });
