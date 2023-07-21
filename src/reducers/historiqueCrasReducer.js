@@ -7,7 +7,7 @@ const initialState = {
   dateCraDebut: new Date('2021/01/01'),
   dateCraFin: new Date(),
   codePostalCra: null,
-  villeCra: null,
+  codeCommuneCra: null,
 };
 
 export default function historiqueCras(state = initialState, action) {
@@ -65,7 +65,7 @@ export default function historiqueCras(state = initialState, action) {
       return {
         ...state,
         codePostalCra: action.codePostal,
-        villeCra: action.ville,
+        codeCommuneCra: action.codeCommune,
         selectedCra: action.selected,
       };
     default:

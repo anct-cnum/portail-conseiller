@@ -11,7 +11,7 @@ function ElementCodePostal({ idStructure = '' }) {
     const codePostal = e.target.value.split('-')[0];
     const ville = e.target.value.includes('-') ? e.target.value.substr(e.target.value.indexOf('-') + 1) : null;
     const listCp = listeCodesPostaux?.find(i => i.id === codePostal)?.codeCommune;
-    const codeCommune = listCp.find(e => e.ville === ville)?.codeCommune;
+    const codeCommune = listCp?.find(e => e.ville === ville)?.codeCommune;
     const label = e.nativeEvent?.target[e.target.selectedIndex]?.text?.replace('- -', `${codePostal} -`);
     dispatch(statistiqueActions.changeCodePostalStats(codePostal, ville, codeCommune));
     dispatch(statistiqueActions.changeLabelSelectPrint(label === 'codes postaux, villes' ? 'Tous les codes Postaux' : label));

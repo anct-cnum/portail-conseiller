@@ -33,7 +33,7 @@ function HistoriqueCras() {
   const dateDebutCra = useSelector(state => state.historiqueCras?.dateCraDebut);
   const dateFinCra = useSelector(state => state.historiqueCras?.dateCraFin);
   const codePostal = useSelector(state => state.historiqueCras?.codePostalCra);
-  const ville = useSelector(state => state.historiqueCras?.villeCra);
+  const codeCommune = useSelector(state => state.historiqueCras?.codeCommuneCra);
   const canaux = ['rattachement', 'autre lieu', 'domicile', 'distance'];
   const types = ['individuel', 'collectif', 'ponctuel'];
   const [thematique, setThematique] = useState(null);
@@ -48,23 +48,23 @@ function HistoriqueCras() {
   const navigate = page => {
     setPage(page);
     dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, canal, type, sort,
-      dateDebutCra, dateFinCra, codePostal, ville, page));
+      dateDebutCra, dateFinCra, codePostal, codeCommune, page));
   };
 
   const sortByDate = () => {
     setSort(sort === 'desc' ? 'asc' : 'desc');
     dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, canal, type, sort,
-      dateDebutCra, dateFinCra, codePostal, ville, page));
+      dateDebutCra, dateFinCra, codePostal, codeCommune, page));
   };
 
   useEffect(() => {
     dispatch(historiqueCrasActions.getHistoriqueCrasListe(thematique, canal, type, sort,
-      dateDebutCra, dateFinCra, codePostal, ville, page));
+      dateDebutCra, dateFinCra, codePostal, codeCommune, page));
     if (themes === undefined) {
       dispatch(historiqueCrasActions.getHistoriqueCrasThematiques());
     }
     dispatch(statistiqueActions.getCodesPostauxCrasConseiller());
-  }, [thematique, canal, type, dateDebutCra, dateFinCra, codePostal, ville, isDeleted]);
+  }, [thematique, canal, type, dateDebutCra, dateFinCra, codePostal, codeCommune, isDeleted]);
 
   //Forcer affichage en haut de la page pour voir le flashbag
   useEffect(() => {
