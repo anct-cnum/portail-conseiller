@@ -49,10 +49,10 @@ function Statistics() {
     } else if (territoire) {
       dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, territoire.conseillerIds));
     } else {
-      dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, null, codePostalStats, villeStats, codeCommune));
+      dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, null, codePostalStats, codeCommune));
     }
     dispatch(paginationActions.resetPage(false));
-  }, [dateDebutStats, dateFinStats, location, codePostalStats, villeStats]);
+  }, [dateDebutStats, dateFinStats, location, codePostalStats]);
 
   return (
     <>
