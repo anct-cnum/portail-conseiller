@@ -30,6 +30,7 @@ function Statistics() {
   const dateFinStats = useSelector(state => state.statistique?.dateFinStats);
   const codePostalStats = useSelector(state => state.statistique?.codePostalStats);
   const villeStats = useSelector(state => state.statistique?.villeStats);
+  const codeCommune = useSelector(state => state.statistique?.codeCommune);
   const donneesStatistiques = useSelector(state => state.statistique?.statsData);
   const user = useSelector(state => state?.authentication?.user?.user);
   const nomStructure = useSelector(state => state?.structure?.structure?.nom);
@@ -48,10 +49,10 @@ function Statistics() {
     } else if (territoire) {
       dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, territoire.conseillerIds));
     } else {
-      dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, null, codePostalStats, villeStats));
+      dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, null, codePostalStats, codeCommune));
     }
     dispatch(paginationActions.resetPage(false));
-  }, [dateDebutStats, dateFinStats, location, codePostalStats, villeStats]);
+  }, [dateDebutStats, dateFinStats, location, codePostalStats]);
 
   return (
     <>
@@ -154,7 +155,7 @@ function Statistics() {
           }
         </div>
         <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats}
-          idTerritoire={territoire?.[typeTerritoire]} codePostal={codePostalStats} ville={villeStats}
+          idTerritoire={territoire?.[typeTerritoire]} codePostal={codePostalStats} ville={villeStats} codeCommune={codeCommune}
           idSubordonne={location?.idUser} nomSubordonneeCSV={location?.nomSubordonneeCSV}/>
         <div className="fr-m-5w fr-m-md-9w fr-m-lg-15w"></div>
         <Footer type="support" role={user?.role} />
