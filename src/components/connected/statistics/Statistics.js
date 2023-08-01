@@ -52,7 +52,7 @@ function Statistics() {
       dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, null, codePostalStats, codeCommune));
     }
     dispatch(paginationActions.resetPage(false));
-  }, [dateDebutStats, dateFinStats, location, codePostalStats]);
+  }, [dateDebutStats, dateFinStats, location, codePostalStats, codeCommune]);
 
   return (
     <>
