@@ -6,12 +6,15 @@ import PropTypes from 'prop-types';
 function FiltreLieu({ optionList }) {
   const dispatch = useDispatch();
   const selected = useSelector(state => state.historiqueCras?.selectedCra);
+  const listeCodesPostaux = useSelector(state => state.statistique?.listeCodesPostaux);
 
   const setCodePostal = e => {
     const codePostal = e.target.value.split('-')[0];
     const ville = e.target.value.substr(e.target.value.indexOf('-') + 1);
+    const listCp = listeCodesPostaux?.find(i => i.id === codePostal)?.codeCommune;
+    const codeCommune = listCp?.find(e => e.ville === ville)?.codeCommune;
     const selected = e.target.value;
-    dispatch(historiqueCrasActions.changeCraCodePostal(codePostal, ville, selected));
+    dispatch(historiqueCrasActions.changeCraCodePostal(codePostal, codeCommune, selected));
   };
 
   return (

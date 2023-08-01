@@ -24,11 +24,11 @@ const formatDate = date => {
   return dayjs(date).format('YYYY-MM-DD');
 };
 
-function getStatsCra(dateDebut, dateFin, idUser = null, codePostal = null, ville = null) {
+function getStatsCra(dateDebut, dateFin, idUser = null, codePostal = null, codeCommune = null) {
   return dispatch => {
     dispatch(request(dateDebut, dateFin, idUser, codePostal));
 
-    statistiqueService.getStatsCra(formatDate(dateDebut), formatDate(dateFin), idUser, codePostal, ville)
+    statistiqueService.getStatsCra(formatDate(dateDebut), formatDate(dateFin), idUser, codePostal, codeCommune)
     .then(
       statsCra => {
         dispatch(success(statsCra));
@@ -58,8 +58,8 @@ function changeDateStatsFin(dateFin) {
   return { type: 'CHANGE_DATE_FIN_STATS', dateFin };
 }
 
-function changeCodePostalStats(codePostal, ville) {
-  return { type: 'CHANGE_CODE_POSTAL_STATS', codePostal, ville };
+function changeCodePostalStats(codePostal, ville, codeCommune) {
+  return { type: 'CHANGE_CODE_POSTAL_STATS', codePostal, ville, codeCommune };
 }
 
 function changeLabelSelectPrint(labelSelectPrint) {

@@ -6,6 +6,7 @@ const initialState = {
   labelSelectPrint: 'Tous les codes Postaux',
   codePostalStats: '',
   villeStats: '',
+  codeCommune: '',
   listeAutresReorientations: [],
 };
 export default function statistique(state = initialState, action) {
@@ -43,6 +44,7 @@ export default function statistique(state = initialState, action) {
         ...state,
         codePostalStats: action.codePostal,
         villeStats: action.ville,
+        codeCommune: action?.codeCommune
       };
     case 'CHANGE_LABEL_SELECT_STATS':
       return {

@@ -37,6 +37,11 @@ function SelectCP({ voirInformation }) {
   //Select Option and set value
   const onClickOption = e => {
     dispatch(craActions.updateCP(e.target.getAttribute('value')));
+    const value = e.target.getAttribute('value').split(' ');
+    const cp = value[0];
+    const ville = value.slice(1).join(' ');
+    const result = codesPostaux.find(c => c.Nom_commune === ville && c.Code_postal === cp);
+    dispatch(craActions.updateCodeCommune(result?.Code_Commune));
   };
 
   //Keyup to reload list with search filter

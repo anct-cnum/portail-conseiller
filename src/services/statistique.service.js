@@ -27,7 +27,7 @@ function territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin, 
   return `?territoire=${territoire}&dateDebut=${dateDebut}&dateFin=${dateFin}${pageIfDefined}${ordreColonne}`;
 }
 
-function getStatsCra(dateDebut, dateFin, idUser, codePostal, ville) {
+function getStatsCra(dateDebut, dateFin, idUser, codePostal, codeCommune) {
   const apiUrlRoot = process.env.REACT_APP_API;
   const requestOptions = {
     method: 'GET',
@@ -36,7 +36,8 @@ function getStatsCra(dateDebut, dateFin, idUser, codePostal, ville) {
 
   const idConseiller = idUser ?? userEntityId();
 
-  return fetch(`${apiUrlRoot}/stats/cra?dateDebut=${dateDebut}&dateFin=${dateFin}&idConseiller=${idConseiller}&codePostal=${codePostal}&ville=${ville}`,
+  // eslint-disable-next-line max-len
+  return fetch(`${apiUrlRoot}/stats/cra?dateDebut=${dateDebut}&dateFin=${dateFin}&idConseiller=${idConseiller}&codePostal=${codePostal}&codeCommune=${codeCommune}`,
     requestOptions).then(handleResponse);
 }
 

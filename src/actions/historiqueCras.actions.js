@@ -9,10 +9,10 @@ export const historiqueCrasActions = {
 };
 
 function getHistoriqueCrasListe(theme = null, canal = null, type = null, sort = null,
-  dateDebutCra = null, dateFinCra = null, codePostal = null, ville = null, page) {
+  dateDebutCra = null, dateFinCra = null, codePostal = null, codeCommune = null, page) {
   return dispatch => {
     dispatch(request());
-    historiqueCras.getHistoriqueCrasListe(theme, canal, type, sort, dateDebutCra, dateFinCra, codePostal, ville, page)
+    historiqueCras.getHistoriqueCrasListe(theme, canal, type, sort, dateDebutCra, dateFinCra, codePostal, codeCommune, page)
     .then(
       result => {
         dispatch(success(result.items));
@@ -67,7 +67,7 @@ function changeDateCraFin(dateFin) {
   return { type: 'CHANGE_DATE_CRA_FIN', dateFin };
 }
 
-function changeCraCodePostal(codePostal, ville, selected) {
-  return { type: 'CHANGE_CODE_POSTAL_CRA', codePostal, ville, selected };
+function changeCraCodePostal(codePostal, codeCommune, selected) {
+  return { type: 'CHANGE_CODE_POSTAL_CRA', codePostal, codeCommune, selected };
 
 }

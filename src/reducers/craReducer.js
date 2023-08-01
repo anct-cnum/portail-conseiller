@@ -63,6 +63,7 @@ export default function cra(state = initialState, action) {
         idPermanence: action?.permanence?._id,
         nomEnseigne: action?.permanence?.nomEnseigne,
         cp: action?.permanence?.adresse?.codePostal + ' ' + action?.permanence?.adresse?.ville,
+        codeCommune: action?.permanence?.adresse?.codeCommune,
         errorsRequired: {
           ...state.errorsRequired,
           cp: false,
@@ -100,6 +101,11 @@ export default function cra(state = initialState, action) {
           ...state.errorsRequired,
           cp: false,
           canal: false },
+      };
+    case 'UPDATE_CODE_COMMUNE':
+      return {
+        ...state,
+        codeCommune: action.codeCommune,
       };
     case 'UPDATE_CANAL':
       return {
@@ -388,6 +394,7 @@ export default function cra(state = initialState, action) {
         searchInput: false,
         idPermanence: action.cra?.permanence?.$id,
         cp: action.cra.cra?.codePostal + ' ' + action.cra.cra.nomCommune,
+        codeCommune: action.cra.cra?.codeCommune,
         dateAccompagnement: new Date(action.cra.cra.dateAccompagnement),
         oldDateAccompagnement: new Date(action.cra.cra.dateAccompagnement),
         nbParticipants: action.cra.cra.nbParticipants,
