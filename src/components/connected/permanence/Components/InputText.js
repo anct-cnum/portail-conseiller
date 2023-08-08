@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { permanenceActions } from '../../../../actions';
 import { useDispatch } from 'react-redux';
 
-function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineInput,
+function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineInput, baselineWarning,
   valueInput, placeholderInput, classInput, disabled, indicatif, prefixId }) {
 
   const dispatch = useDispatch();
@@ -48,6 +48,8 @@ function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineIn
         {baselineInput &&
           <span className="baseline">{baselineInput}</span>
         }
+
+
         <input className={errorInput ? 'fr-input fr-mt-2v input-error' : 'fr-input fr-mt-2v'}
           name={ nameInput }
           id={ nameInput }
@@ -61,6 +63,9 @@ function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineIn
             onFocus(e);
           }}
         />
+        {baselineWarning &&
+          <span className="baseline warning-text">{baselineWarning}</span>
+        }
       </label>
       { errorInput &&
         <p className="text-error fr-mb-n3w">{errorInput}</p>
@@ -80,6 +85,7 @@ InputText.propTypes = {
     PropTypes.string,
     PropTypes.object
   ]),
+  baselineWarning: PropTypes.string,
   requiredInput: PropTypes.bool,
   valueInput: PropTypes.oneOfType([
     PropTypes.string,

@@ -382,7 +382,8 @@
   opacity: 1;
   visibility: visible;
 }
-.modal-sexe-age, .modal-remerciement, .modal-ouverture, .modal-suppression, .modal-suggestion, .modal-adresse-introuvable, .modal-disponibilite {
+.modal-sexe-age, .modal-remerciement, .modal-ouverture, .modal-suppression, .modal-suggestion,
+.modal-adresse-introuvable, .modal-adresse-existante, .modal-disponibilite {
   background-color: #fff;
   padding: 4em 2.5em;
   color: #1e1e1e;
@@ -494,7 +495,7 @@
       color: #1e1e1e;
     }
   }
- .sexe-age-btn, .adresse-introuvable-btn {
+ .sexe-age-btn, .adresse-introuvable-btn, .adresse-existante-btn {
     background-color: #fff;
     border: 1px solid #1e1e1e;
     display: inline-block;
