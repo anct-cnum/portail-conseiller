@@ -403,7 +403,7 @@ function getGeocodeAdresse(adresse, prefixId) {
   function request() {
     return { type: 'GEOCODE_ADRESSE_REQUEST' };
   }
-  function success(geocodeAdresse, existsPermanence, prefixId) {
+  function success(geocodeAdresse, prefixId) {
     return { type: 'GEOCODE_ADRESSE_SUCCESS', geocodeAdresse, prefixId };
   }
   function failure(error) {
@@ -411,10 +411,10 @@ function getGeocodeAdresse(adresse, prefixId) {
   }
 }
 
-function getAdresseByApi(adresse, prefixId) {
+function getAdresseByApi(adresse, structureId, prefixId) {
   return dispatch => {
     dispatch(request());
-    permanenceService.getAdresseByApi(adresse.trim())
+    permanenceService.getAdresseByApi(adresse.trim(), structureId)
     .then(
       result => {
         dispatch(success(result.adresseApi, result.foundExistedPermanence, prefixId, adresse));
