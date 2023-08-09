@@ -93,7 +93,6 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
             </div>
           </>
         }
-
         {(prefixId !== 'principal_' ||
          (prefixId === 'principal_' && fields?.filter(field => field.name === 'estStructure')[0]?.value === false)) &&
         <div className="fr-mb-6w">
@@ -108,7 +107,6 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
           />
         </div>
         }
-
         {prefixId !== 'principal_' &&
         <div className="fr-mb-6w">
           <InputCheckbox
@@ -211,7 +209,6 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
         />
       </div>
       <div className="fr-col-4"></div>
-
     </>
   );
 }

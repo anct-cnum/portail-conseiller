@@ -49,8 +49,6 @@ function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineIn
         {baselineInput &&
           <span className="baseline">{baselineInput}</span>
         }
-
-
         <input className={errorInput ? 'fr-input fr-mt-2v input-error' : 'fr-input fr-mt-2v'}
           name={ nameInput }
           id={ nameInput }

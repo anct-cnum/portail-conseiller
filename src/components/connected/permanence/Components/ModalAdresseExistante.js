@@ -5,9 +5,6 @@ function ModalAdresseExistante() {
 
   const existsPermanence = useSelector(state => state.permanence?.existsPermanence);
   const [modalOpen, setModalOpen] = useState(existsPermanence);
-  const handleSubmit = () => {
-    setModalOpen(null);
-  };
 
   useEffect(() => {
     setModalOpen(existsPermanence);
@@ -33,7 +30,9 @@ function ModalAdresseExistante() {
                     Dans un soucis de cohérence de données de la cartographie, il ne peut y avoir plusieurs permanences avec la même adresse.
                   </p>
                   <p>Merci de renseigner une nouvelle adresse ou de vous ajouter sur le lieu existant. </p>
-                  <button className="adresse-existante-btn" title="Fermer" onClick={handleSubmit}>Fermer</button>
+                  <button className="adresse-existante-btn" title="Fermer" onClick={() => {
+                    setModalOpen(null);
+                  }}>Fermer</button>
                 </div>
               </div>
             </div>
