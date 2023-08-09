@@ -169,7 +169,6 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
             Une erreur est survenue lors de la recherche de votre adresse, veuillez r&eacute;essayer ult&eacute;rieurement...
           </div>
         }
-
         <div className="fr-mt-6w">
           <InputText
             textLabel="T&eacute;l&eacute;phone de la structure"
@@ -182,12 +181,10 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
           />
         </div>
       </div>
-
       <div className="fr-col-sm-12 fr-col-md-4">
         {chargeCarteFistSecondaire === 'loading' ? <CarteAdresse prefixId={prefixId}/> : '' }
         {!chargeCarteFistSecondaire && <CarteAdresse prefixId={prefixId}/> }
       </div>
-
       <div className="fr-col-offset-1 fr-col-11 fr-col-sm-7 fr-col-md-5 fr-mb-6w">
         <InputText
           textLabel="Mail de la structure"
@@ -198,7 +195,6 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
         />
       </div>
       <div className="fr-col-4"></div>
-
       <div className="fr-col-offset-1 fr-col-11 fr-col-sm-7 fr-col-md-5 fr-mb-6w">
         <InputText
           textLabel="Site web de la structure"
