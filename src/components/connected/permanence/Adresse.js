@@ -14,6 +14,9 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
   const disabledFields = useSelector(state => state.permanence?.disabledFields);
   const codePostal = fields?.filter(field => field.name === prefixId + 'codePostal')[0]?.value;
 
+  const foundExistedPermanence = useSelector(state => state.permanence?.foundExistedPermanence);
+  const existsPermanence = useSelector(state => state.permanence?.existsPermanence);
+  const erreurExistsPermanence = existsPermanence ? 'Merci de renseigner une nouvelle adresse ou de vous ajouter sur le lieu existant !' : null;
   const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
   const erreurLieuActivite = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'nomEnseigne'])[0]?.[prefixId + 'nomEnseigne'];
   const erreurSiret = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'siret'])[0]?.[prefixId + 'siret'];
@@ -90,7 +93,6 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
             </div>
           </>
         }
-
         {(prefixId !== 'principal_' ||
          (prefixId === 'principal_' && fields?.filter(field => field.name === 'estStructure')[0]?.value === false)) &&
         <div className="fr-mb-6w">
@@ -105,7 +107,6 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
           />
         </div>
         }
-
         {prefixId !== 'principal_' &&
         <div className="fr-mb-6w">
           <InputCheckbox
@@ -120,7 +121,9 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
         <InputText
           textLabel="Entrez l&rsquo;adresse de votre lieu d&rsquo;activit&eacute;"
           baselineInput="Remplissez le champ avec l&rsquo;adresse compl&egrave;te de votre lieu d&rsquo;activit&eacute;"
-          errorInput={erreurAdresse || erreurCodeCommune}
+          baselineWarning={foundExistedPermanence ?
+            'Si vous ne trouvez pas l\'adresse de votre permanence, merci de consulter la liste de vos permanences.' : ''}
+          errorInput={erreurAdresse || erreurCodeCommune || erreurExistsPermanence}
           nameInput= {prefixId + 'adresse'}
           requiredInput={true}
           valueInput={fields?.filter(field => field.name === prefixId + 'adresse')[0]?.value ?? ''}
@@ -178,12 +181,10 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
           />
         </div>
       </div>
-
       <div className="fr-col-sm-12 fr-col-md-4">
         {chargeCarteFistSecondaire === 'loading' ? <CarteAdresse prefixId={prefixId}/> : '' }
         {!chargeCarteFistSecondaire && <CarteAdresse prefixId={prefixId}/> }
       </div>
-
       <div className="fr-col-offset-1 fr-col-11 fr-col-sm-7 fr-col-md-5 fr-mb-6w">
         <InputText
           textLabel="Mail de la structure"
@@ -194,7 +195,6 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
         />
       </div>
       <div className="fr-col-4"></div>
-
       <div className="fr-col-offset-1 fr-col-11 fr-col-sm-7 fr-col-md-5 fr-mb-6w">
         <InputText
           textLabel="Site web de la structure"
@@ -205,7 +205,6 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
         />
       </div>
       <div className="fr-col-4"></div>
-
     </>
   );
 }

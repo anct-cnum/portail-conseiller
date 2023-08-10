@@ -12,6 +12,7 @@ import Validation from './Validation';
 import Ouverture from './Ouverture';
 import Footer from '../../Footer';
 import Banner from './Banner';
+import ValidationImpossible from './ValidationImpossible';
 
 function Permanence() {
   const dispatch = useDispatch();
@@ -31,6 +32,8 @@ function Permanence() {
   const isConseillerDeleted = useSelector(state => state.permanence?.isConseillerDeleted);
   const isAllUpdated = useSelector(state => state.permanence?.isAllUpdated);
   const redirection = useSelector(state => state.permanence?.redirection);
+  const existsPermanence = useSelector(state => state.permanence?.existsPermanence);
+
   // eslint-disable-next-line max-len
   const permanencePrincipale = listPermanences && listPermanences?.find(permanence => permanence?.lieuPrincipalPour?.includes(conseiller?._id));
 
@@ -121,6 +124,13 @@ function Permanence() {
 
             <ContactProfessionel conseiller={conseiller} />
 
+            {existsPermanence &&
+              <div className="fr-col-offset-1 fr-col-11 fr-mb-4w invalid permanenceExiste">
+                  Une permanence a déjà été créée avec les coordonnées que vous proposez.<br/>
+                  Merci de renseigner une nouvelle adresse ou de vous ajouter sur le lieu existant !
+              </div>
+            }
+
             <div className="fr-container">
               <div className="fr-grid-row">
                 {!permanencePrincipale &&
@@ -148,8 +158,13 @@ function Permanence() {
 
             <div className="fr-container">
               <div className="fr-grid-row">
-                <Validation conseillerId={conseiller?._id} structureId={structure?._id}
-                  isUpdate={conseiller?.hasPermanence} permanences={listPermanences}/>
+                {!existsPermanence &&
+                  <Validation conseillerId={conseiller?._id} structureId={structure?._id}
+                    isUpdate={conseiller?.hasPermanence} permanences={listPermanences} statut={null}/>
+                }
+                {existsPermanence &&
+                  <ValidationImpossible statut={null}/>
+                }
               </div>
             </div>
           </div>

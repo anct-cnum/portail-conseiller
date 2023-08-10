@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { permanenceActions } from '../../../../actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineInput,
+function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineInput, baselineWarning,
   valueInput, placeholderInput, classInput, disabled, indicatif, prefixId }) {
 
+  const structureId = useSelector(state => state.conseiller?.conseiller?.structureId);
   const dispatch = useDispatch();
   const reg = new RegExp('^[0-9]{14}$');
 
@@ -19,7 +20,7 @@ function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineIn
       dispatch(permanenceActions.verifySiret(name.slice(0, -5), filtreValue(value)));
       dispatch(permanenceActions.updateField(name, filtreValue(value)));
     } else if (name.slice(-7) === 'adresse') {
-      dispatch(permanenceActions.getAdresseByApi(value, prefixId));
+      dispatch(permanenceActions.getAdresseByApi(value, structureId, prefixId));
       dispatch(permanenceActions.updateField(name, value));
     } else {
       dispatch(permanenceActions.updateField(name, value));
@@ -61,6 +62,9 @@ function InputText({ textLabel, errorInput, nameInput, requiredInput, baselineIn
             onFocus(e);
           }}
         />
+        {baselineWarning &&
+          <span className="baseline warning-text">{baselineWarning}</span>
+        }
       </label>
       { errorInput &&
         <p className="text-error fr-mb-n3w">{errorInput}</p>
@@ -80,6 +84,7 @@ InputText.propTypes = {
     PropTypes.string,
     PropTypes.object
   ]),
+  baselineWarning: PropTypes.string,
   requiredInput: PropTypes.bool,
   valueInput: PropTypes.oneOfType([
     PropTypes.string,

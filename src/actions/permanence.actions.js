@@ -367,7 +367,7 @@ function verifySiret(champ, siret) {
     permanenceService.verifySiret(siret)
     .then(
       result => {
-        dispatch(success(result.adresseParSiret, champ));
+        dispatch(success(result.adresseParSiret, result.existsPermanence, champ));
       },
       error => {
         dispatch(failure(error));
@@ -378,8 +378,8 @@ function verifySiret(champ, siret) {
   function request() {
     return { type: 'VERIFY_SIRET_REQUEST' };
   }
-  function success(adresseParSiret, champ) {
-    return { type: 'VERIFY_SIRET_SUCCESS', adresseParSiret, champ };
+  function success(adresseParSiret, existsPermanence, champ) {
+    return { type: 'VERIFY_SIRET_SUCCESS', adresseParSiret, existsPermanence, champ };
   }
   function failure(error) {
     return { type: 'VERIFY_SIRET_FAILURE', error };
@@ -411,13 +411,13 @@ function getGeocodeAdresse(adresse, prefixId) {
   }
 }
 
-function getAdresseByApi(adresse, prefixId) {
+function getAdresseByApi(adresse, structureId, prefixId) {
   return dispatch => {
     dispatch(request());
-    permanenceService.getAdresseByApi(adresse.trim())
+    permanenceService.getAdresseByApi(adresse.trim(), structureId)
     .then(
       result => {
-        dispatch(success(result.adresseApi, prefixId, adresse));
+        dispatch(success(result.adresseApi, result.foundExistedPermanence, prefixId, adresse));
       },
       error => {
         dispatch(failure(error));
@@ -428,8 +428,8 @@ function getAdresseByApi(adresse, prefixId) {
   function request() {
     return { type: 'GET_ADRESSE_REQUEST', prefixId };
   }
-  function success(adresses, prefixId, adresse) {
-    return { type: 'GET_ADRESSE_SUCCESS', adresses, prefixId, adresse };
+  function success(adresses, foundExistedPermanence, prefixId, adresse) {
+    return { type: 'GET_ADRESSE_SUCCESS', adresses, prefixId, foundExistedPermanence, adresse };
   }
   function failure(error) {
     return { type: 'GET_ADRESSE_FAILURE', error };

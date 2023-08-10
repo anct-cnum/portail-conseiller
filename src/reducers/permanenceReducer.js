@@ -18,6 +18,8 @@ const initialState = {
   reloadList: true,
   listeAdresses: null,
   erreurAdresse: false,
+  existsPermanence: false,
+  foundExistedPermanence: false
 };
 
 const nettoyageState = form => {
@@ -189,8 +191,10 @@ export default function permanence(state = initialState, action) {
         disabledSiret?.push({ id: action.champ, value: !(rueVoie?.trim() === '') });
         disabledSiret = nettoyageState(disabledSiret);
       }
+
       return {
         ...state,
+        existsPermanence: action.existsPermanence,
         listeAdresses: action.adresseParSiret?.listeAdresses ?? [],
         disabledFields: disabledSiret,
         loadingAdresses: false,
@@ -250,6 +254,7 @@ export default function permanence(state = initialState, action) {
       return {
         ...state,
         loadingAdresses: false,
+        foundExistedPermanence: action.foundExistedPermanence,
         listeAdresses: action.adresses,
       };
     case 'GET_ADRESSE_FAILURE':
