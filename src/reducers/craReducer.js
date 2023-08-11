@@ -426,7 +426,7 @@ export default function cra(state = initialState, action) {
     case 'SET_CRA_FAILURE':
       return {
         ...state,
-        error: action.error,
+        error: action.error?.message ?? action.error,
         saveInProgress: false,
         printFlashbag: false
       };
@@ -447,7 +447,7 @@ export default function cra(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        error: action.error,
+        error: action.error?.message ?? action.error,
       };
     case 'COUNT_CRA_PERMANENCE_REQUEST':
       return {
