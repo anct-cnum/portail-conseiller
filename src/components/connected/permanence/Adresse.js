@@ -122,7 +122,7 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
           textLabel="Entrez l&rsquo;adresse de votre lieu d&rsquo;activit&eacute;"
           baselineInput="Remplissez le champ avec l&rsquo;adresse compl&egrave;te de votre lieu d&rsquo;activit&eacute;"
           baselineWarning={foundExistedPermanence ?
-            'Si vous ne trouvez pas l\'adresse de votre permanence, merci de consulter la liste de vos permanences.' : ''}
+            'Votre adresse est introuvable ? Il est possible que vous ayez déjà une permanence à cette adresse. Consultez la liste de vos permanences.' : ''}
           errorInput={erreurAdresse || erreurCodeCommune || erreurExistsPermanence}
           nameInput= {prefixId + 'adresse'}
           requiredInput={true}
