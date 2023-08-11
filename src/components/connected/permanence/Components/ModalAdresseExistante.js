@@ -24,10 +24,10 @@ function ModalAdresseExistante() {
 
                 <div className="centre">
                   <h1 id="fr-modal-title-modal-adresse-existante" className="fr-modal__title">
-                    L&rsquo;adresse que vous avez renseigner existe déjà !
+                    L&rsquo;adresse que vous avez renseigner existe d&eacute;j&agrave; !
                   </h1>
                   <p>
-                    Dans un soucis de cohérence de données de la cartographie, il ne peut y avoir plusieurs permanences avec la même adresse.
+                    Dans un souci de coh&eacute;rence de donn&eacute;es de la cartographie, il ne peut y avoir plusieurs permanences avec la m&ecirc;me adresse.
                   </p>
                   <p>Merci de renseigner une nouvelle adresse ou de vous ajouter sur le lieu existant. </p>
                   <button className="adresse-existante-btn" title="Fermer" onClick={() => {
