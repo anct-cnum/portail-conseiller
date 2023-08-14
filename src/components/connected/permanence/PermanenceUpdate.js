@@ -17,6 +17,7 @@ import Horaires from './Horaires';
 import Validation from './Validation';
 import Footer from '../../Footer';
 import { formatAdresse, formatRue } from '../../../utils/functionFormats';
+import ValidationImpossible from './ValidationImpossible';
 
 
 function PermanenceUpdate({ match }) {
@@ -40,6 +41,7 @@ function PermanenceUpdate({ match }) {
   const isUpdated = useSelector(state => state.permanence?.isUpdated);
   const isCreated = useSelector(state => state.permanence?.isCreated);
   const redirection = useSelector(state => state.permanence?.redirection);
+  const existsPermanence = useSelector(state => state.permanence?.existsPermanence);
 
   const adresseStructure = structure?.insee?.adresse;
   const urlCartographie = process.env.REACT_APP_CARTOGRAPHIE_URL;
@@ -285,6 +287,12 @@ function PermanenceUpdate({ match }) {
                         </> }
                         {estlieuPrincipal && <> Lieu d&rsquo;activit&eacute; principal </> }
                       </h2>
+                      {existsPermanence &&
+                        <div className="fr-col-offset-1 fr-col-11 fr-mb-4w invalid permanenceExiste">
+                            Une permanence a déjà été créée avec les coordonnées que vous proposez.<br/>
+                            Merci de renseigner une nouvelle adresse ou de vous ajouter sur le lieu existant !
+                        </div>
+                      }
                     </div>
                     {estlieuPrincipal &&
                       <div className="fr-col-offset-1 fr-col-11">
@@ -343,13 +351,19 @@ function PermanenceUpdate({ match }) {
                       horairesId={0}
                     />
                     <div className="fr-col-12 fr-mt-8w"></div>
-                    <Validation
-                      conseillerId={conseiller?._id}
-                      structureId={structure?._id}
-                      redirectionValidation="/mes-lieux-activite"
-                      statut={estlieuPrincipal ? 'principal_' : 'secondaire_0_' }
-                      idPermanenceUrl={idPermanence}
-                    />
+
+                    {!existsPermanence &&
+                      <Validation
+                        conseillerId={conseiller?._id}
+                        structureId={structure?._id}
+                        redirectionValidation="/mes-lieux-activite"
+                        statut={estlieuPrincipal ? 'principal_' : 'secondaire_0_' }
+                        idPermanenceUrl={idPermanence}
+                      />
+                    }
+                    {existsPermanence &&
+                      <ValidationImpossible statut={estlieuPrincipal ? 'principal_' : 'secondaire_0_' }/>
+                    }
                   </div>
                 </div>
               </>

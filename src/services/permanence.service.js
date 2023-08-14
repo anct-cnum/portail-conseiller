@@ -96,13 +96,13 @@ function getGeocodeAdresse(adresse) {
     numero: adresse.numero, rue: adresse.rue, ville: adresse.ville, codePostal: adresse.codePostal })}`, requestOptions).then(handleResponse);
 }
 
-function getAdresseByApi(adresse) {
+function getAdresseByApi(adresse, structureId) {
   const requestOptions = {
     method: 'GET',
     headers: authHeader(),
   };
 
-  return fetch(`${apiUrlRoot}/permanences/getAdresse/${JSON.stringify({ adresse })}`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/permanences/getAdresse/${JSON.stringify({ adresse })}/${structureId}`, requestOptions).then(handleResponse);
 }
 
 function deletePermanence(idPermanence) {

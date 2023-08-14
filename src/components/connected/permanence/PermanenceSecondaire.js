@@ -24,6 +24,8 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
   const listPermanences = useSelector(state => state.permanence?.permanences);
   const permanencePrincipale = listPermanences && listPermanences?.find(permanence => permanence?.lieuPrincipalPour?.includes(conseillerId));
 
+  const existsPermanence = useSelector(state => state.permanence?.existsPermanence);
+
   const [show, setShow] = useState(
     Array.from({ length: process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE }, () => (false))
   );
@@ -244,12 +246,16 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
                   </h5>
               }
               {idx < 14 &&
-                <AjouterAutrePermanence
-                  secondaireId={ idx }
-                  conseillerId={conseillerId}
-                  structureId={structureId}
-                  show={show}
-                  codeDepartement={structure?.codeDepartement}/>
+                <>
+                  {!existsPermanence &&
+                    <AjouterAutrePermanence
+                      secondaireId={ idx }
+                      conseillerId={conseillerId}
+                      structureId={structureId}
+                      show={show}
+                      codeDepartement={structure?.codeDepartement}/>
+                  }
+                </>
               }
             </div>
           </div>

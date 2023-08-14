@@ -124,7 +124,7 @@
     width: 407px;
 
   }
-  .nouveau-btn, .localisation-btn, .supprimer-btn, .validation-btn {
+  .nouveau-btn, .localisation-btn, .supprimer-btn, .validation-btn, .invalid-btn {
     background: #1e1e1e;
     border: 1px solid #8585f6;
     line-height: 24px;
@@ -189,6 +189,14 @@
     width: 127px;
     border-color: #929292;
     color: #929292;
+  }
+  .invalid-btn {
+    margin: 0 15px 15px 15px;
+    border-color: #e0000f;
+    cursor: not-allowed;
+    color: #e0000f;
+    padding: 8px 24px;
+    height: 40px;
   }
   .infobulle {
     padding: 10px !important;
