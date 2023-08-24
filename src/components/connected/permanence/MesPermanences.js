@@ -46,6 +46,10 @@ function MesPermanences() {
     } else {
       dispatch(permanenceActions.getMesPermanences(conseiller?._id));
     }
+    if ((location.pathname === '/mes-lieux-activite' && !conseiller?.hasPermanence) ||
+          (location.pathname !== '/mes-lieux-activite' && conseiller?.hasPermanence)) {
+      localStorage.removeItem('suspension_permanence');
+    }
   }, [conseiller, isCreated, isUpdated]);
 
   useEffect(() => {
@@ -125,12 +129,6 @@ function MesPermanences() {
               </div>
             </div>
 
-          </div>
-        }
-        { ((location.pathname === '/mes-lieux-activite' && !conseiller?.hasPermanence) ||
-          (location.pathname !== '/mes-lieux-activite' && conseiller?.hasPermanence)) &&
-          <div id="formulaire-horaires-adresse" >
-            <Permanence/>
           </div>
         }
         { (location.pathname !== '/mes-lieux-activite' && conseiller?.hasPermanence) &&
