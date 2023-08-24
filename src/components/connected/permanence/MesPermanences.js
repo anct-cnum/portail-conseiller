@@ -7,7 +7,6 @@ import { userEntityId } from '../../../helpers';
 
 import Banner from './Banner';
 import MaPermanence from './MaPermanence';
-import Permanence from './index';
 import Footer from '../../Footer';
 
 function MesPermanences() {
