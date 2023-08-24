@@ -240,7 +240,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
                   <Horaires prefixId={ 'secondaire_' + idx + '_'} horairesId={idx + 1} />
                 </>
               }
-              {idx + 1 < listPermanences?.filter(permanence => permanence?.conseillers.includes(conseillerId)).length &&
+              {idx + 2 <= listPermanences?.filter(permanence => permanence?.conseillers.includes(conseillerId)).length &&
                   <h5 className="fr-col-offset-1 fr-col-11 fr-mb-7w">
                     Lieu d&rsquo;activit&eacute; secondaire
                     {` ${listPermanences?.filter(permanence => permanence?.conseillers.includes(conseillerId))[idx + 1]?.nomEnseigne} `}
@@ -265,7 +265,6 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
       })
       }
     </>
-
   );
 }
 
