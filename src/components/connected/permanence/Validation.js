@@ -6,8 +6,10 @@ import horairesInitiales from '../../../data/horairesInitiales.json';
 import { permanenceActions } from '../../../actions/permanence.actions';
 import { formatTelephone } from '../../../utils/functionFormats';
 import ModalAdresseIntrouvable from './Components/ModalAdresseIntrouvable';
+import { useLocation } from 'react-router';
 
 function Validation({ conseillerId, structureId, statut = 'principal_', redirectionValidation = null, codeDepartement, idPermanenceUrl }) {
+  const location = useLocation();
   const dispatch = useDispatch();
   const form = useSelector(state => state.permanence);
   const fields = useSelector(state => state.permanence?.fields);
@@ -138,14 +140,11 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
             statut === 'update' && <>les modifications</>
           }
           et revenir &agrave;&nbsp;
-          {statut === null && <>l&rsquo;accueil</>}
-          {statut !== null && <>la liste</>}
+          {(statut === null || location.pathname === '/accueil') && <>l&rsquo;accueil</>}
+          {(statut !== null && location.pathname !== '/accueil') && <>la liste</>}
         </button>
       </div>
-
-
     </>
-
   );
 }
 

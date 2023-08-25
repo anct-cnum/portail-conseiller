@@ -101,11 +101,13 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
         location: fields.filter(field => field.name === prefixId + 'location')[0]?.value ?? null,
         horaires: fields.filter(field => field.name === prefixId + 'horaires')[0]?.value[prefixId + 'horaires'] ?? horairesInitiales,
         typeAcces: fields.filter(field => field.name === prefixId + 'typeAcces')[0]?.value ?? null,
-        numeroRue: fields.filter(field => field.name === prefixId + 'numeroVoie')[0]?.value ?? null,
-        rue: fields.filter(field => field.name === prefixId + 'rueVoie')[0]?.value ?? null,
-        codePostal: fields.filter(field => field.name === prefixId + 'codePostal')[0]?.value ?? null,
-        codeCommune: fields.filter(field => field.name === prefixId + 'codeCommune')[0]?.value ?? null,
-        ville: fields.filter(field => field.name === prefixId + 'ville')[0]?.value ?? null,
+        adresse: {
+          numeroRue: fields.filter(field => field.name === prefixId + 'numeroVoie')[0]?.value ?? null,
+          rue: fields.filter(field => field.name === prefixId + 'rueVoie')[0]?.value ?? null,
+          codePostal: fields.filter(field => field.name === prefixId + 'codePostal')[0]?.value ?? null,
+          codeCommune: fields.filter(field => field.name === prefixId + 'codeCommune')[0]?.value ?? null,
+          ville: fields.filter(field => field.name === prefixId + 'ville')[0]?.value ?? null,
+        },
         conseillers: conseillers,
         structureId: structureId,
         hasPermanence: true,
@@ -238,7 +240,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
                   <Horaires prefixId={ 'secondaire_' + idx + '_'} horairesId={idx + 1} />
                 </>
               }
-              {idx + 1 < listPermanences?.filter(permanence => permanence?.conseillers.includes(conseillerId)).length &&
+              {idx + 2 <= listPermanences?.filter(permanence => permanence?.conseillers.includes(conseillerId)).length &&
                   <h5 className="fr-col-offset-1 fr-col-11 fr-mb-7w">
                     Lieu d&rsquo;activit&eacute; secondaire
                     {` ${listPermanences?.filter(permanence => permanence?.conseillers.includes(conseillerId))[idx + 1]?.nomEnseigne} `}
@@ -263,7 +265,6 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
       })
       }
     </>
-
   );
 }
 

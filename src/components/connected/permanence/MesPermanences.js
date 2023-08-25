@@ -7,7 +7,6 @@ import { userEntityId } from '../../../helpers';
 
 import Banner from './Banner';
 import MaPermanence from './MaPermanence';
-import Permanence from './index';
 import Footer from '../../Footer';
 
 function MesPermanences() {
@@ -45,6 +44,10 @@ function MesPermanences() {
       dispatch(conseillerActions.get(userEntityId()));
     } else {
       dispatch(permanenceActions.getMesPermanences(conseiller?._id));
+    }
+    if ((location.pathname === '/mes-lieux-activite' && !conseiller?.hasPermanence) ||
+          (location.pathname !== '/mes-lieux-activite' && conseiller?.hasPermanence)) {
+      localStorage.removeItem('suspension_permanence');
     }
   }, [conseiller, isCreated, isUpdated]);
 
@@ -125,12 +128,6 @@ function MesPermanences() {
               </div>
             </div>
 
-          </div>
-        }
-        { ((location.pathname === '/mes-lieux-activite' && !conseiller?.hasPermanence) ||
-          (location.pathname !== '/mes-lieux-activite' && conseiller?.hasPermanence)) &&
-          <div id="formulaire-horaires-adresse" >
-            <Permanence/>
           </div>
         }
         { (location.pathname !== '/mes-lieux-activite' && conseiller?.hasPermanence) &&

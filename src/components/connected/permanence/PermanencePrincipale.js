@@ -87,6 +87,7 @@ function PermanencePrincipale({ structure, conseillerId, isUpdate }) {
     dispatch(permanenceActions.updateField('principal_codeCommune', null));
     dispatch(permanenceActions.updateField('principal_ville', null));
     dispatch(permanenceActions.updateField('principal_location', null));
+    dispatch(permanenceActions.updateField('principal_adresse', null));
     dispatch(permanenceActions.reserverPermanence({ prefixId: 'principal_', idPermanence: null }));
 
     if (estStructure) {
