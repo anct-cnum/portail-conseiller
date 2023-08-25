@@ -160,7 +160,7 @@ function Permanence() {
               <div className="fr-grid-row">
                 {!existsPermanence &&
                   <Validation conseillerId={conseiller?._id} structureId={structure?._id}
-                    isUpdate={conseiller?.hasPermanence} permanences={listPermanences} statut={null}/>
+                    isUpdate={conseiller?.hasPermanence} permanences={listPermanences}/>
                 }
                 {existsPermanence &&
                   <ValidationImpossible statut={null}/>
