@@ -24,7 +24,7 @@ function ModalAdresseExistante() {
 
                 <div className="centre">
                   <h1 id="fr-modal-title-modal-adresse-existante" className="fr-modal__title">
-                    L&rsquo;adresse que vous avez renseigner existe d&eacute;j&agrave; !
+                    L&rsquo;adresse que vous avez renseigné existe d&eacute;j&agrave; !
                   </h1>
                   <p>
                     Dans un souci de coh&eacute;rence de donn&eacute;es de la cartographie, il ne peut y avoir plusieurs permanences avec la m&ecirc;me adresse.

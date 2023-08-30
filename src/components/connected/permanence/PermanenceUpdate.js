@@ -289,7 +289,7 @@ function PermanenceUpdate({ match }) {
                       </h2>
                       {existsPermanence &&
                         <div className="fr-col-offset-1 fr-col-11 fr-mb-4w invalid permanenceExiste">
-                            Une permanence a déjà été créée avec les coordonnées que vous proposez.<br/>
+                            Une permanence a d&eacute;j&agrave; &eacute;t&eacute; cr&eacute;&eacute;e avec les coordonn&eacute;es que vous proposez.<br/>
                             Merci de renseigner une nouvelle adresse ou de vous ajouter sur le lieu existant !
                         </div>
                       }
