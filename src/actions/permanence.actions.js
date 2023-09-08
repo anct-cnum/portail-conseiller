@@ -262,10 +262,23 @@ function verifyFormulaire(form, statut) {
 function controleHoraires(horaires) {
   let erreursHoraires = [];
   horaires?.forEach((jour, id) => {
-    if ((jour.matin[0] === 'Fermé' && jour.matin[1] !== 'Fermé') ||
-        (jour.matin[1] === 'Fermé' && jour.matin[0] !== 'Fermé') ||
-        (jour.apresMidi[0] === 'Fermé' && jour.apresMidi[1] !== 'Fermé') ||
-        (jour.apresMidi[1] === 'Fermé' && jour.apresMidi[0] !== 'Fermé')) {
+    const countFerme = [
+      jour.matin[0],
+      jour.matin[1],
+      jour.apresMidi[0],
+      jour.apresMidi[1]
+    ].filter(horaire => horaire === 'Fermé').length;
+    if (countFerme === 4 || countFerme === 0) {
+      return;
+    } else if (countFerme === 2) {
+      const matinFerme = jour.matin[0] === 'Fermé' && jour.matin[1] === 'Fermé';
+      const apresMidiFerme = jour.apresMidi[0] === 'Fermé' && jour.apresMidi[1] === 'Fermé';
+      const matinVersApresMidi = jour.matin[1] === 'Fermé' && jour.apresMidi[0] === 'Fermé';
+      if (!matinFerme && !apresMidiFerme && !matinVersApresMidi) {
+        erreursHoraires.push(id);
+        return;
+      }
+    } else if (countFerme === 1 || countFerme === 3) {
       erreursHoraires.push(id);
       return;
     }
@@ -280,13 +293,6 @@ function controleHoraires(horaires) {
     if ((jour.matin[0] > jour.matin[1] && jour.matin[1] !== 'Fermé') ||
         (jour.apresMidi[0] > jour.apresMidi[1] && jour.apresMidi[0] !== 'Fermé') ||
         (jour.matin[1] === 'Fermé' && jour.apresMidi[0] === 'Fermé' && jour.matin[0] > jour.apresMidi[1])) {
-      erreursHoraires.push(id);
-    }
-    if ((jour.apresMidi[0] !== 'Fermé') && (jour.apresMidi[1] === 'Fermé')) {
-      erreursHoraires.push(id);
-    }
-    if ((jour.matin[0] !== 'Fermé') && (jour.matin[1] === 'Fermé') &&
-    ((jour.apresMidi[0] === 'Fermé') && (jour.apresMidi[1] === 'Fermé'))) {
       erreursHoraires.push(id);
     }
   });
