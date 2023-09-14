@@ -268,9 +268,7 @@ function controleHoraires(horaires) {
       jour.apresMidi[0],
       jour.apresMidi[1]
     ].filter(horaire => horaire === 'Fermé').length;
-    if (countFerme === 4 || countFerme === 0) {
-      return;
-    } else if (countFerme === 2) {
+    if (countFerme === 2) {
       const matinFerme = jour.matin[0] === 'Fermé' && jour.matin[1] === 'Fermé';
       const apresMidiFerme = jour.apresMidi[0] === 'Fermé' && jour.apresMidi[1] === 'Fermé';
       const matinVersApresMidi = jour.matin[1] === 'Fermé' && jour.apresMidi[0] === 'Fermé';
