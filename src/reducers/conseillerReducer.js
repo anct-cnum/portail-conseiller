@@ -15,6 +15,7 @@ export default function conseiller(state = initState, action) {
     case 'GET_CONSEILLER_REQUEST':
       return {
         ...state,
+        errorLoadingConseiller: false,
         loading: true
       };
     case 'GET_CONSEILLER_SUCCESS':
@@ -31,7 +32,8 @@ export default function conseiller(state = initState, action) {
       };
     case 'GET_CONSEILLER_FAILURE':
       return {
-        error: action.error
+        error: action.error,
+        errorLoadingConseiller: true
       };
     case 'GET_STATS_PDF_REQUEST':
       return {
