@@ -7,7 +7,8 @@ const initState = {
   errorExcel: false,
   downloadingExportCnfs: false,
   initConseiller: false,
-  conseillersBeforeFilter: []
+  conseillersBeforeFilter: [],
+  countErrorConseiller: 0
 };
 
 export default function conseiller(state = initState, action) {
@@ -15,6 +16,7 @@ export default function conseiller(state = initState, action) {
     case 'GET_CONSEILLER_REQUEST':
       return {
         ...state,
+        errorLoadingConseiller: false,
         loading: true
       };
     case 'GET_CONSEILLER_SUCCESS':
@@ -22,6 +24,7 @@ export default function conseiller(state = initState, action) {
         ...state,
         conseiller: action.conseiller,
         loading: false,
+        countErrorConseiller: 0
       };
     case 'GET_ALL_CONSEILLER_SEARCH_BAR':
       return {
@@ -31,7 +34,9 @@ export default function conseiller(state = initState, action) {
       };
     case 'GET_CONSEILLER_FAILURE':
       return {
-        error: action.error
+        error: action.error,
+        errorLoadingConseiller: true,
+        countErrorConseiller: ++state.countErrorConseiller
       };
     case 'GET_STATS_PDF_REQUEST':
       return {

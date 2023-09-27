@@ -23,6 +23,8 @@ function Connected() {
   const dispatch = useDispatch();
   const user = useSelector(state => state.authentication?.user?.user);
   const conseiller = useSelector(state => state?.conseiller?.conseiller);
+  const errorLoadingConseiller = useSelector(state => state?.conseiller?.errorLoadingConseiller);
+  const countErrorConseiller = useSelector(state => state?.conseiller?.countErrorConseiller);
   const voirFormulaire = useSelector(state => state?.conseiller?.showFormular);
   const voirPermanence = useSelector(state => state?.permanence?.showFormular);
   const formulaireIsUpdated = useSelector(state => state?.conseiller?.isUpdated);
@@ -42,10 +44,10 @@ function Connected() {
       if (mesPermanences === undefined) {
         dispatch(permanenceActions.getMesPermanences(conseiller?._id));
       }
-    } else {
+    } else if (countErrorConseiller <= 3) {
       dispatch(conseillerActions.get(userEntityId()));
     }
-  }, [conseiller]);
+  }, [conseiller, errorLoadingConseiller]);
 
   return (
     <>
