@@ -7,7 +7,7 @@ export default function checkMotDePasseOublie(state = [], action) {
       };
     case 'CHECK_EMAIL_FAILURE':
       return {
-        error: action.error
+        error: action.error.message ?? action.error
       };
     default:
       return state;

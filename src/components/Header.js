@@ -131,7 +131,7 @@ function Header({ linkAccount, printClass }) {
                                     setMenuAideShow(menuAideShow ? !menuAideShow : menuAideShow);
                                   }}>
                                   <span className="texte-user">{prenom ? prenom + ' ' + nom : email}&nbsp;
-                                    { role === 'conseiller' && !conseiller?.supHierarchique &&
+                                    { role === 'conseiller' && conseiller && !conseiller?.supHierarchique &&
                                       <i className="ri-information-line information icone-info-header" ></i>
                                     }
                                   </span>
@@ -159,7 +159,7 @@ function Header({ linkAccount, printClass }) {
                                             }}>
                                             <i className="ri-user-6-line icone-menu fr-mr-1w"></i>
                                             Contact de mon responsable&nbsp;
-                                            { !conseiller?.supHierarchique &&
+                                            { conseiller && !conseiller?.supHierarchique &&
                                               <i className="ri-information-line information icone-info-header"></i>
                                             }
                                             <br />
