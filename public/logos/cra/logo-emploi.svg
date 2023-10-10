@@ -1,12 +1,85 @@
-<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_4523_40075)">
-<path d="M44.5714 10.0629H44.6895L44.7023 10.0565C46.2601 10.1161 47.5086 11.3952 47.5086 12.9743V16.4105L29.6429 22.7905V22.6686C29.6429 21.681 28.8447 20.8829 27.8571 20.8829H20.1343C19.1467 20.8829 18.3486 21.681 18.3486 22.6686V22.7906L0.5 16.419V12.9829C0.5 11.3741 1.80961 10.0629 3.42857 10.0629H14.5629H15.0629V9.56286V5.28571C15.0629 3.20406 16.7596 1.5 18.8486 1.5H29.1257C31.2153 1.5 32.9114 3.19614 32.9114 5.28571V9.56286V10.0629H33.4114H44.5714ZM31.6971 10.0629H32.1971V9.56286V5.28571C32.1971 3.59637 30.8258 2.21429 29.1257 2.21429H18.8486C17.1592 2.21429 15.7771 3.58563 15.7771 5.28571V9.56286V10.0629H16.2771H31.6971Z" fill="white" stroke="white"/>
-<path d="M25.9616 23.1055H22.0273V27.0398H25.9616V23.1055Z" fill="white"/>
-<path d="M29.6343 27.4695V26.9695H29.6257V26.5876L47.4914 20.2075V37.0009C47.4914 38.6113 46.1888 39.9209 44.5714 39.9209H3.42C1.80961 39.9209 0.5 38.6182 0.5 37.0009V20.2161L18.34 26.5875V27.4695C18.34 28.457 19.1381 29.2552 20.1257 29.2552H27.8486C28.8361 29.2552 29.6343 28.457 29.6343 27.4695Z" fill="white" stroke="white"/>
-</g>
-<defs>
-<clipPath id="clip0_4523_40075">
-<rect width="48" height="48" fill="white"/>
-</clipPath>
-</defs>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 56 56">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-width: 0px;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9, .cls-10 {
+        fill: none;
+      }
+
+      .cls-2 {
+        stroke: url(#Dégradé_sans_nom_172);
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9, .cls-10 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2px;
+      }
+
+      .cls-3 {
+        stroke: url(#Dégradé_sans_nom_75-3);
+      }
+
+      .cls-4 {
+        stroke: url(#Dégradé_sans_nom_75-2);
+      }
+
+      .cls-5 {
+        stroke: #8585f6;
+      }
+
+      .cls-6 {
+        stroke: url(#Dégradé_sans_nom_75);
+      }
+
+      .cls-7 {
+        stroke: url(#Dégradé_sans_nom_172-3);
+      }
+
+      .cls-8 {
+        stroke: url(#Dégradé_sans_nom_172-4);
+      }
+
+      .cls-9 {
+        stroke: url(#Dégradé_sans_nom_172-5);
+      }
+
+      .cls-10 {
+        stroke: url(#Dégradé_sans_nom_172-2);
+      }
+    </style>
+    <linearGradient id="Dégradé_sans_nom_75" data-name="Dégradé sans nom 75" x1="22.68" y1="18.28" x2="31.98" y2="2.17" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e1000f"/>
+      <stop offset=".99" stop-color="#ff1717"/>
+    </linearGradient>
+    <linearGradient id="Dégradé_sans_nom_172" data-name="Dégradé sans nom 172" x1="9.34" y1="30.7" x2="12.66" y2="24.94" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6a6af4"/>
+      <stop offset=".18" stop-color="#8585f6"/>
+      <stop offset="1" stop-color="#9797f7"/>
+    </linearGradient>
+    <linearGradient id="Dégradé_sans_nom_172-2" data-name="Dégradé sans nom 172" x1="40.68" y1="35.34" x2="49.36" y2="20.3" xlink:href="#Dégradé_sans_nom_172"/>
+    <linearGradient id="Dégradé_sans_nom_75-2" data-name="Dégradé sans nom 75" x1="24.58" y1="36.94" x2="31.42" y2="25.08" xlink:href="#Dégradé_sans_nom_75"/>
+    <linearGradient id="Dégradé_sans_nom_75-3" data-name="Dégradé sans nom 75" x1="27" y1="32.75" x2="29" y2="29.28" xlink:href="#Dégradé_sans_nom_75"/>
+    <linearGradient id="Dégradé_sans_nom_172-3" data-name="Dégradé sans nom 172" x1="23.46" y1="38.85" x2="41.62" y2="7.39" xlink:href="#Dégradé_sans_nom_172"/>
+    <linearGradient id="Dégradé_sans_nom_172-4" data-name="Dégradé sans nom 172" x1="7.96" y1="35.17" x2="11.03" y2="29.84" xlink:href="#Dégradé_sans_nom_172"/>
+    <linearGradient id="Dégradé_sans_nom_172-5" data-name="Dégradé sans nom 172" x1="42.2" y1="37.7" x2="47.8" y2="28" xlink:href="#Dégradé_sans_nom_172"/>
+  </defs>
+  <g id="ICONES">
+    <path class="cls-6" d="m19,15v-7.08c0-1.62,1.31-2.93,2.93-2.93h12.15c1.62,0,2.93,1.31,2.93,2.93v3.07"/>
+    <line class="cls-2" x1=".99" y1="24.72" x2="21" y2="30.91"/>
+    <line class="cls-10" x1="55.03" y1="24.72" x2="35.02" y2="30.91"/>
+    <rect class="cls-4" x="21" y="27.03" width="14" height="7.96" rx="3.01" ry="3.01"/>
+    <line class="cls-3" x1="26" y1="31.01" x2="30" y2="31.01"/>
+    <path class="cls-7" d="m.99,24.72v-6.71c0-1.67,1.35-3.02,3.02-3.02h47.97c1.67,0,3.02,1.35,3.02,3.02v25.97c0,1.67-1.35,3.02-3.02,3.02h-3.98"/>
+    <path class="cls-5" d="m40.99,47H4.01c-1.67,0-3.02-1.35-3.02-3.02v-13.98"/>
+    <line class="cls-8" x1=".99" y1="30" x2="18" y2="35.01"/>
+    <line class="cls-9" x1="50.99" y1="31" x2="39.01" y2="34.7"/>
+  </g>
+  <g id="Cadres">
+    <rect class="cls-1" x="0" y="0" width="56" height="56"/>
+  </g>
 </svg>

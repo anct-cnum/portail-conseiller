@@ -1,29 +1,62 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 25.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 56 56" style="enable-background:new 0 0 56 56;" xml:space="preserve">
-<style type="text/css">
-	.st0{display:none;}
-	.st1{display:inline;fill:#2A2A2A;}
-	.st2{fill:#2A2A2A;}
-	.st3{fill:#FFFFFF;}
-	.st4{fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st5{fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}
-	.st6{fill:none;}
-	.st7{fill:#FF002B;}
-	.st8{fill:url(#SVGID_1_);}
-	.st9{fill:url(#SVGID_2_);}
-	.st10{clip-path:url(#SVGID_4_);}
-	.st11{fill:#FF0606;}
-</style>
-<g id="FOND" class="st0">
-	<rect x="33.9" y="-172.4" class="st1" width="1002.8" height="1242.2"/>
-</g>
-<g id="Calque_1">
-	<g>
-		<path class="st3" d="M40,22.4v-7.6l-16,7.6v-7.6L8,22.4V8.6H0v38.7h56V14.8L40,22.4z M18.9,37.8h-5.6v-5.6h5.6V37.8z M34.8,37.8
-			h-5.6v-5.6h5.6V37.8z M50.8,37.8h-5.6v-5.6h5.6V37.8z"/>
-	</g>
-	<rect x="0" y="-0.1" class="st6" width="56" height="56"/>
-</g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 56 56">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-width: 0px;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        fill: none;
+      }
+
+      .cls-2 {
+        stroke: url(#Dégradé_sans_nom_172);
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2px;
+      }
+
+      .cls-3 {
+        stroke: url(#Dégradé_sans_nom_75-3);
+      }
+
+      .cls-4 {
+        stroke: url(#Dégradé_sans_nom_75-2);
+      }
+
+      .cls-5 {
+        stroke: url(#Dégradé_sans_nom_75);
+      }
+
+      .cls-6 {
+        stroke: url(#Dégradé_sans_nom_172-2);
+      }
+    </style>
+    <linearGradient id="Dégradé_sans_nom_172" data-name="Dégradé sans nom 172" x1="12.81" y1="53.99" x2="39.84" y2="7.17" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6a6af4"/>
+      <stop offset=".18" stop-color="#8585f6"/>
+      <stop offset="1" stop-color="#9797f7"/>
+    </linearGradient>
+    <linearGradient id="Dégradé_sans_nom_75" data-name="Dégradé sans nom 75" x1="11.41" y1="40.44" x2="16.53" y2="31.57" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e1000f"/>
+      <stop offset=".99" stop-color="#ff1717"/>
+    </linearGradient>
+    <linearGradient id="Dégradé_sans_nom_75-2" data-name="Dégradé sans nom 75" x1="27.46" y1="40.41" x2="32.55" y2="31.59" xlink:href="#Dégradé_sans_nom_75"/>
+    <linearGradient id="Dégradé_sans_nom_75-3" data-name="Dégradé sans nom 75" x1="43.46" y1="40.41" x2="48.55" y2="31.59" xlink:href="#Dégradé_sans_nom_75"/>
+    <linearGradient id="Dégradé_sans_nom_172-2" data-name="Dégradé sans nom 172" x1="34.75" y1="54.89" x2="39.25" y2="47.1" xlink:href="#Dégradé_sans_nom_172"/>
+  </defs>
+  <g id="ICONES">
+    <path class="cls-2" d="m48.09,46.01h6.9v-28.93l-15.43,7.71v-7.71l-15.43,7.71.03-7.71-15.45,7.71v-15.43H.99v7.53m0,11.11v18.01h37.92"/>
+    <polygon class="cls-5" points="16.99 32.99 16.99 39.01 10.95 39.01 10.95 33.01 16.99 32.99"/>
+    <rect class="cls-4" x="27.01" y="33.01" width="6" height="5.99"/>
+    <rect class="cls-3" x="43" y="33.01" width="6" height="5.99"/>
+    <line class="cls-6" x1="30.01" y1="51" x2="44" y2="51"/>
+  </g>
+  <g id="Cadres">
+    <rect class="cls-1" width="56" height="56"/>
+  </g>
 </svg>
