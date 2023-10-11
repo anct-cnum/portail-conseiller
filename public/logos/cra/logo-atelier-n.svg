@@ -1,43 +1,97 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 25.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 56 56" style="enable-background:new 0 0 56 56;" xml:space="preserve">
-<style type="text/css">
-	.st0{display:none;}
-	.st1{display:inline;fill:#2A2A2A;}
-	.st2{fill:#2A2A2A;}
-	.st3{fill:#FFFFFF;}
-	.st4{fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st5{fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}
-	.st6{fill:none;}
-	.st7{fill:#FF002B;}
-	.st8{fill:url(#SVGID_1_);}
-	.st9{fill:url(#SVGID_2_);}
-	.st10{clip-path:url(#SVGID_4_);}
-	.st11{fill:#FF0606;}
-</style>
-<g id="FOND" class="st0">
-</g>
-<g id="Calque_1">
-	<path class="st2" d="M52.9,22.5H27.4c-1.7,0-3.1-1.4-3.1-3.1V3.1c0-1.7,1.4-3.1,3.1-3.1h25.5C54.6,0,56,1.4,56,3.1v16.3
-		C56,21.1,54.6,22.5,52.9,22.5z M27.4,2.3c-0.4,0-0.8,0.3-0.8,0.8v16.3c0,0.4,0.3,0.8,0.8,0.8h25.5c0.4,0,0.8-0.3,0.8-0.8V3.1
-		c0-0.4-0.3-0.8-0.8-0.8H27.4z"/>
-	<g>
-		<circle class="st2" cx="49" cy="46.8" r="3.8"/>
-		<path class="st2" d="M56,56c-3,0-12.6,0-14.1,0C41.9,50.4,56,50.4,56,56z"/>
-	</g>
-	<g>
-		<circle class="st2" cx="28" cy="46.8" r="3.8"/>
-		<path class="st2" d="M35,56c-3,0-12.6,0-14.1,0C21,50.4,35,50.4,35,56z"/>
-	</g>
-	<g>
-		<circle class="st2" cx="7" cy="46.8" r="3.8"/>
-		<path class="st2" d="M14.1,56c-3,0-12.6,0-14.1,0C0,50.4,14.1,50.4,14.1,56z"/>
-	</g>
-	<path class="st2" d="M21.9,16.6c0.4,1.6,1.3,9.8,1.2,9.8c-1,0.5-2.1,1-2,2.4c0.1,1,1.1,9,1.4,11.9c0.1,1.3-0.2,2.3-1.6,2.5
-		c-1.4,0.2-2-0.8-2.1-2.1c-0.4-3.8-1.2-12-1.4-12.2c-0.4,4-0.8,8-1.2,12c-0.1,1.3-0.5,2.4-2,2.3c-1.5-0.1-1.7-1.2-1.5-2.5
-		c0.3-3.5,1.1-11.4,1.2-11.9c0.1-0.7-0.7-2.1-2.1-2.4l1.8-8.5c0,0-2.4,4.4-3.2,5.3c-0.8,0.9-1.7,1.5-2.6,0.8c-1-0.7-0.6-1.8,0.2-2.9
-		c2-2.7,5.2-8.6,6.6-8.6h6.3c0,0,7.8-8.5,9.9-6.1C33.4,9.4,26.2,12.4,21.9,16.6z"/>
-	<circle class="st2" cx="17.4" cy="7.5" r="3.8"/>
-</g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 56 56">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-width: 0px;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9, .cls-10, .cls-11 {
+        fill: none;
+      }
+
+      .cls-2 {
+        stroke: url(#Dégradé_sans_nom_108);
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9, .cls-10, .cls-11 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2px;
+      }
+
+      .cls-3 {
+        stroke: url(#Dégradé_sans_nom_140);
+      }
+
+      .cls-4 {
+        stroke: url(#Dégradé_sans_nom_108-5);
+      }
+
+      .cls-5 {
+        stroke: url(#Dégradé_sans_nom_108-3);
+      }
+
+      .cls-6 {
+        stroke: url(#Dégradé_sans_nom_108-2);
+      }
+
+      .cls-7 {
+        stroke: url(#Dégradé_sans_nom_108-4);
+      }
+
+      .cls-8 {
+        stroke: url(#Dégradé_sans_nom_108-6);
+      }
+
+      .cls-9 {
+        stroke: url(#Dégradé_sans_nom_140-3);
+      }
+
+      .cls-10 {
+        stroke: url(#Dégradé_sans_nom_140-4);
+      }
+
+      .cls-11 {
+        stroke: url(#Dégradé_sans_nom_140-2);
+      }
+    </style>
+    <linearGradient id="Dégradé_sans_nom_108" data-name="Dégradé sans nom 108" x1="10.66" y1="37.62" x2="29.68" y2="4.68" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#000091"/>
+      <stop offset=".15" stop-color="#020494"/>
+      <stop offset=".32" stop-color="#0a129f"/>
+      <stop offset=".5" stop-color="#1729b1"/>
+      <stop offset=".69" stop-color="#294aca"/>
+      <stop offset=".89" stop-color="#4173e9"/>
+      <stop offset="1" stop-color="#518fff"/>
+    </linearGradient>
+    <linearGradient id="Dégradé_sans_nom_140" data-name="Dégradé sans nom 140" x1="15.53" y1="11.3" x2="20.78" y2="2.2" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ce0500"/>
+      <stop offset=".39" stop-color="#e1000f"/>
+      <stop offset="1" stop-color="#ea353c"/>
+    </linearGradient>
+    <linearGradient id="Dégradé_sans_nom_108-2" data-name="Dégradé sans nom 108" x1="44.31" y1="59.18" x2="50.32" y2="48.76" xlink:href="#Dégradé_sans_nom_108"/>
+    <linearGradient id="Dégradé_sans_nom_108-3" data-name="Dégradé sans nom 108" x1="25.34" y1="59.18" x2="31.35" y2="48.76" xlink:href="#Dégradé_sans_nom_108"/>
+    <linearGradient id="Dégradé_sans_nom_108-4" data-name="Dégradé sans nom 108" x1="6.28" y1="59.18" x2="12.29" y2="48.76" xlink:href="#Dégradé_sans_nom_108"/>
+    <linearGradient id="Dégradé_sans_nom_108-5" data-name="Dégradé sans nom 108" x1="32.44" y1="25.29" x2="37.69" y2="16.2" xlink:href="#Dégradé_sans_nom_108"/>
+    <linearGradient id="Dégradé_sans_nom_108-6" data-name="Dégradé sans nom 108" x1="38.92" y1="14.61" x2="49.33" y2="-3.42" xlink:href="#Dégradé_sans_nom_108"/>
+    <linearGradient id="Dégradé_sans_nom_140-2" data-name="Dégradé sans nom 140" x1="6.59" y1="50.44" x2="11.84" y2="41.35" xlink:href="#Dégradé_sans_nom_140"/>
+    <linearGradient id="Dégradé_sans_nom_140-3" data-name="Dégradé sans nom 140" x1="25.4" y1="50.3" x2="30.65" y2="41.2" xlink:href="#Dégradé_sans_nom_140"/>
+    <linearGradient id="Dégradé_sans_nom_140-4" data-name="Dégradé sans nom 140" x1="44.38" y1="50.3" x2="49.34" y2="41.7" xlink:href="#Dégradé_sans_nom_140"/>
+  </defs>
+  <g id="ICONES">
+    <path class="cls-2" d="m21.44,12s10.38-6.72,11.83-3.87-5.27,5.65-10.75,7.91c.41,1.64,1.59,10.44,1.5,10.44-.62,0-2.58.2-2.47,1.61.06.8.73,6.01,1.2,9.91m-14.91-14.06c-1.01-.72-.65-1.88.16-2.98,2.04-2.77,5.48-8.95,6.87-8.95m-1.57,26c.44-4.16,1.07-9.55,1.12-9.96.08-.7-1.04-1.59-2.4-1.59l1.91-8.83"/>
+    <circle class="cls-3" cx="18.15" cy="6.75" r="4.25"/>
+    <path class="cls-6" d="m40.45,51.96c-1.45,1.39-1.45,3-1.45,3h16s0-5-8-5"/>
+    <path class="cls-5" d="m21.48,51.96c-1.45,1.39-1.45,3-1.45,3h16s0-5-8-5"/>
+    <path class="cls-7" d="m2.42,51.96c-1.45,1.39-1.45,3-1.45,3h16s0-5-8-5"/>
+    <polyline class="cls-4" points="44 21 27.01 21 27.01 18.97"/>
+    <polyline class="cls-8" points="27.01 4 27.01 1.01 55 1.01 55 21 52 21"/>
+    <path class="cls-11" d="m8.97,41.5c2.35,0,4.25,1.9,4.25,4.25s-1.9,4.25-4.25,4.25-4.25-1.9-4.25-4.25"/>
+    <circle class="cls-9" cx="28.03" cy="45.75" r="4.25"/>
+    <path class="cls-10" d="m51.25,45.75c0,2.35-1.9,4.25-4.25,4.25s-4.25-1.9-4.25-4.25,1.9-4.25,4.25-4.25"/>
+  </g>
+  <g id="Cadres">
+    <rect class="cls-1" width="56" height="56"/>
+  </g>
 </svg>

@@ -1,7 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="56px" height="56px" viewBox="0 0 56 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Artboard Copy</title>
-    <g id="Artboard-Copy" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <polygon id="Fill-1-Copy" fill="#FFFFFF" points="22.6666667 12 22.6666667 22.6666667 12 22.6666667 12 33.3333333 22.6666667 33.3333333 22.6666667 44 33.3333333 44 33.3333333 33.3333333 44 33.3333333 44 22.6666667 33.3333333 22.6666667 33.3333333 12"></polygon>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 56 56">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-width: 0px;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        fill: none;
+      }
+
+      .cls-2 {
+        stroke: url(#Dégradé_sans_nom_172);
+      }
+
+      .cls-2, .cls-3 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2px;
+      }
+
+      .cls-3 {
+        stroke: url(#Dégradé_sans_nom_75);
+      }
+    </style>
+    <linearGradient id="Dégradé_sans_nom_75" data-name="Dégradé sans nom 75" x1="30.22" y1="27.1" x2="44.43" y2="2.49" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e1000f"/>
+      <stop offset=".99" stop-color="#ff1717"/>
+    </linearGradient>
+    <linearGradient id="Dégradé_sans_nom_172" data-name="Dégradé sans nom 172" x1="11.89" y1="50.35" x2="30.78" y2="17.63" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6a6af4"/>
+      <stop offset=".18" stop-color="#8585f6"/>
+      <stop offset="1" stop-color="#9797f7"/>
+    </linearGradient>
+  </defs>
+  <g id="ICONES">
+    <path class="cls-3" d="m43.54,33.64c3.13-2.08,5.57-4.05,7.34-5.92,4.85-5.12,5.64-14.37,1.17-19.09-4.36-4.61-11.42-4.94-16.15-.88-4.74-4.06-11.79-3.73-16.15.88-1.11,1.17-1.91,2.62-2.39,4.25"/>
+    <polyline class="cls-2" points="4.32 33.02 4.32 40.41 15.01 40.41 15.01 50.99 27.71 50.99 27.71 40.41 38.3 40.41 38.3 27.65 27.71 27.65 27.71 17.01 15.01 17.01 15.01 27.65 4.32 27.65"/>
+    <rect class="cls-1" y="-.09" width="56" height="56"/>
+  </g>
+  <g id="Cadres">
+    <rect class="cls-1" y="0" width="56" height="56"/>
+  </g>
 </svg>

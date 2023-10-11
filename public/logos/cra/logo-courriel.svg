@@ -1,13 +1,56 @@
-<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_4523_40017)">
-<path d="M41.4906 42.6462H6.49929C2.97627 42.6462 0.101562 39.78 0.101562 36.2484V12.3977C0.110093 8.86618 2.97627 6 6.49929 6H41.4906C45.0136 6 47.8883 8.86618 47.8883 12.3977V36.2484C47.8883 39.7715 45.0221 42.6462 41.4906 42.6462V42.6462ZM6.49929 8.55909C4.38377 8.55909 2.66065 10.2822 2.66065 12.3977V36.2484C2.66065 38.364 4.38377 40.0871 6.49929 40.0871H41.4906C43.6061 40.0871 45.3292 38.364 45.3292 36.2484V12.3977C45.3292 10.2822 43.6061 8.55909 41.4906 8.55909H6.49929Z" fill="white"/>
-<path d="M1.27948 34.7631C0.980915 34.7631 0.699415 34.6096 0.537339 34.3366C0.307021 33.9272 0.443506 33.4068 0.85296 33.1765L16.5402 24.2112C16.9496 23.9808 17.47 24.1173 17.7003 24.5268C17.9306 24.9362 17.7941 25.4566 17.3847 25.6869L1.70599 34.6523C1.56951 34.729 1.42449 34.7631 1.27948 34.7631Z" fill="white"/>
-<path d="M46.7205 34.763C46.5755 34.763 46.4305 34.7289 46.294 34.6521L30.6068 25.6868C30.1973 25.4565 30.0523 24.9361 30.2911 24.5267C30.5214 24.1172 31.0418 23.9722 31.4513 24.2111L47.1385 33.1764C47.5479 33.4067 47.6929 33.9271 47.4541 34.3365C47.3005 34.6095 47.0105 34.763 46.712 34.763H46.7205Z" fill="white"/>
-<path d="M24.0043 30.208C23.2451 30.208 22.4859 30.0118 21.8802 29.6194L2.02168 16.8495C1.01511 16.2012 0 14.8876 0 13.6251V12.3967C0 11.6887 0.57153 11.1172 1.27955 11.1172C1.98756 11.1172 2.55909 11.6887 2.55909 12.3967V13.6251C2.57615 13.8128 2.92589 14.3928 3.40359 14.6999L23.2621 27.4783C23.6289 27.7172 24.3796 27.7172 24.7464 27.4783L44.5964 14.6999C45.0826 14.3928 45.4238 13.8128 45.4409 13.6166V12.3967C45.4409 11.6887 46.0124 11.1172 46.7205 11.1172C47.4285 11.1172 48 11.6887 48 12.3967V13.6251C48 14.8876 46.9849 16.2012 45.9783 16.8495L26.1283 29.6279C25.5227 30.0203 24.7635 30.2165 24.0043 30.2165V30.208Z" fill="white"/>
-</g>
-<defs>
-<clipPath id="clip0_4523_40017">
-<rect width="48" height="48" fill="white"/>
-</clipPath>
-</defs>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 56 56">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-width: 0px;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
+        fill: none;
+      }
+
+      .cls-2 {
+        stroke: url(#Dégradé_sans_nom_172);
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2px;
+      }
+
+      .cls-3 {
+        stroke: url(#Dégradé_sans_nom_75);
+      }
+
+      .cls-4 {
+        stroke: url(#Dégradé_sans_nom_172-3);
+      }
+
+      .cls-5 {
+        stroke: url(#Dégradé_sans_nom_172-2);
+      }
+    </style>
+    <linearGradient id="Dégradé_sans_nom_172" data-name="Dégradé sans nom 172" x1="3.85" y1="44.31" x2="13.15" y2="28.2" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6a6af4"/>
+      <stop offset=".18" stop-color="#8585f6"/>
+      <stop offset="1" stop-color="#9797f7"/>
+    </linearGradient>
+    <linearGradient id="Dégradé_sans_nom_172-2" data-name="Dégradé sans nom 172" x1="44.67" y1="36.44" x2="46.35" y2="33.52" xlink:href="#Dégradé_sans_nom_172"/>
+    <linearGradient id="Dégradé_sans_nom_75" data-name="Dégradé sans nom 75" x1="20.14" y1="31.61" x2="34.5" y2="6.74" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e1000f"/>
+      <stop offset=".99" stop-color="#ff1717"/>
+    </linearGradient>
+    <linearGradient id="Dégradé_sans_nom_172-3" data-name="Dégradé sans nom 172" x1="12.75" y1="54.41" x2="43.24" y2="1.59" xlink:href="#Dégradé_sans_nom_172"/>
+  </defs>
+  <g id="ICONES">
+    <line class="cls-2" x1="16" y1="31" x2=".99" y2="41.5"/>
+    <line class="cls-5" x1="40" y1="31" x2="51.02" y2="38.95"/>
+    <polyline class="cls-3" points="4 18 28 34.99 52 18"/>
+    <path class="cls-4" d="m48.99,49H6.99c-3.31,0-6-2.69-6-6V12.99c0-3.31,2.69-6,6-6h42c3.31,0,6,2.69,6,6v30.01c0,3.31-2.69,6-6,6Z"/>
+  </g>
+  <g id="Cadres">
+    <rect class="cls-1" y="0" width="56" height="56"/>
+  </g>
 </svg>

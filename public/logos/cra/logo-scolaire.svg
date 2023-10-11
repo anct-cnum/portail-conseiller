@@ -1,11 +1,62 @@
-<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_4523_40009)">
-<path d="M0 5V42.6114H29.2029L0 5ZM16.6886 37.4771H7.42286C6.85714 37.4771 6.40286 37.0229 6.40286 36.4571V24.32C6.40286 23.3257 7.68 22.9143 8.26286 23.72L17.52 35.8571C18.0086 36.5343 17.52 37.4771 16.6886 37.4771Z" fill="white"/>
-<path d="M34.2846 5C26.7075 5 20.5703 11.1371 20.5703 18.7143H47.9989C47.9989 11.1371 41.8617 5 34.2846 5ZM28.7132 15.86C28.7132 12.7829 31.2075 10.2886 34.2846 10.2886C37.3617 10.2886 39.856 12.7829 39.856 15.86H28.7132Z" fill="white"/>
-</g>
-<defs>
-<clipPath id="clip0_4523_40009">
-<rect width="48" height="48" fill="white"/>
-</clipPath>
-</defs>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 56 56">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-width: 0px;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        fill: none;
+      }
+
+      .cls-2 {
+        stroke: url(#Dégradé_sans_nom_172);
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5, .cls-6 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2px;
+      }
+
+      .cls-3 {
+        stroke: url(#Dégradé_sans_nom_75);
+      }
+
+      .cls-4 {
+        stroke: url(#Dégradé_sans_nom_172-3);
+      }
+
+      .cls-5 {
+        stroke: url(#Dégradé_sans_nom_172-4);
+      }
+
+      .cls-6 {
+        stroke: url(#Dégradé_sans_nom_172-2);
+      }
+    </style>
+    <linearGradient id="Dégradé_sans_nom_172" data-name="Dégradé sans nom 172" x1="3.31" y1="49.48" x2="19.9" y2="20.74" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6a6af4"/>
+      <stop offset=".18" stop-color="#8585f6"/>
+      <stop offset="1" stop-color="#9797f7"/>
+    </linearGradient>
+    <linearGradient id="Dégradé_sans_nom_172-2" data-name="Dégradé sans nom 172" x1="7.45" y1="42.41" x2="14.08" y2="30.92" xlink:href="#Dégradé_sans_nom_172"/>
+    <linearGradient id="Dégradé_sans_nom_172-3" data-name="Dégradé sans nom 172" x1="29.58" y1="26.27" x2="42.6" y2="3.73" xlink:href="#Dégradé_sans_nom_172"/>
+    <linearGradient id="Dégradé_sans_nom_172-4" data-name="Dégradé sans nom 172" x1="32.56" y1="18.22" x2="38.22" y2="8.42" xlink:href="#Dégradé_sans_nom_172"/>
+    <linearGradient id="Dégradé_sans_nom_75" data-name="Dégradé sans nom 75" x1="35.05" y1="42.5" x2="47.35" y2="21.18" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e1000f"/>
+      <stop offset=".99" stop-color="#ff1717"/>
+    </linearGradient>
+  </defs>
+  <g id="ICONES">
+    <polyline class="cls-2" points="25.02 47 1 47 1 10.99 29.28 47"/>
+    <polyline class="cls-6" points="14.17 37.3 7.02 28 7.02 41 17.01 41"/>
+    <path class="cls-4" d="m50.24,13.99c-2.1-6.39-8.12-11-15.22-11-8.85,0-16.02,7.17-16.02,16.02h32.04"/>
+    <path class="cls-5" d="m42.81,13.99h-15.58c1.38-2.91,4.35-4.92,7.79-4.92,1.93,0,3.72.64,5.16,1.71"/>
+    <path class="cls-3" d="m51,24.44c-2.72,8.45-10.65,14.57-20,14.57"/>
+  </g>
+  <g id="Cadres">
+    <rect class="cls-1" x="0" y="0" width="56" height="56"/>
+  </g>
 </svg>
