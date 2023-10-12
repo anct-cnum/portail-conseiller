@@ -1,3 +1,128 @@
-<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M46.45 22.5H43.12V21.64C43.12 13.3 36.35 6.53998 28.01 6.53998C19.67 6.53998 12.9 13.3 12.9 21.64V22.5H9.57001C8.64001 22.5 7.89001 23.25 7.89001 24.18C7.89001 25.11 8.64001 25.86 9.57001 25.86H12.64V36.2H12.7C13.28 44.15 19.92 50.45 28.02 50.45C36.12 50.45 42.76 44.15 43.34 36.2H43.39V35.12C43.39 35.12 43.39 35.09 43.39 35.08V25.86H46.47C47.4 25.86 48.15 25.11 48.15 24.18C48.15 23.25 47.4 22.5 46.47 22.5H46.45ZM28 48.45C22.39 48.45 17.58 44.97 15.6 40.06H40.4C38.42 44.97 33.61 48.45 28 48.45ZM19.18 35.17C19.18 33.58 20.47 32.29 22.06 32.29C23.65 32.29 24.94 33.58 24.94 35.17C24.94 36.76 23.65 38.05 22.06 38.05C20.47 38.05 19.18 36.76 19.18 35.17ZM31.1 35.17C31.1 33.59 32.38 32.31 33.96 32.31C35.54 32.31 36.82 33.59 36.82 35.17C36.82 36.75 35.54 38.03 33.96 38.03C32.38 38.03 31.1 36.75 31.1 35.17ZM41.37 30.27H14.63V25.86H41.37V30.27Z" fill="white"/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 56 56">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9, .cls-10, .cls-11, .cls-12, .cls-13 {
+        fill: none;
+      }
+
+      .cls-1, .cls-14, .cls-15, .cls-16, .cls-17 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        stroke: url(#Dégradé_sans_nom_172);
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9, .cls-10, .cls-11, .cls-12, .cls-13 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2px;
+      }
+
+      .cls-3 {
+        stroke: url(#Dégradé_sans_nom_75-3);
+      }
+
+      .cls-4 {
+        stroke: url(#Dégradé_sans_nom_75-4);
+      }
+
+      .cls-5 {
+        stroke: url(#Dégradé_sans_nom_75-6);
+      }
+
+      .cls-6 {
+        stroke: url(#Dégradé_sans_nom_75-5);
+      }
+
+      .cls-7 {
+        stroke: url(#Dégradé_sans_nom_75-2);
+      }
+
+      .cls-14 {
+        fill: url(#Dégradé_sans_nom_75-10);
+      }
+
+      .cls-15 {
+        fill: url(#Dégradé_sans_nom_75-9);
+      }
+
+      .cls-16 {
+        fill: url(#Dégradé_sans_nom_75-8);
+      }
+
+      .cls-17 {
+        fill: url(#Dégradé_sans_nom_75-7);
+      }
+
+      .cls-8 {
+        stroke: url(#Dégradé_sans_nom_75);
+      }
+
+      .cls-9 {
+        stroke: url(#Dégradé_sans_nom_172-3);
+      }
+
+      .cls-10 {
+        stroke: url(#Dégradé_sans_nom_172-6);
+      }
+
+      .cls-11 {
+        stroke: url(#Dégradé_sans_nom_172-4);
+      }
+
+      .cls-12 {
+        stroke: url(#Dégradé_sans_nom_172-5);
+      }
+
+      .cls-13 {
+        stroke: url(#Dégradé_sans_nom_172-2);
+      }
+    </style>
+    <linearGradient id="Dégradé_sans_nom_172" data-name="Dégradé sans nom 172" x1="21.74" y1="33.84" x2="34.25" y2="12.18" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6a6af4"/>
+      <stop offset=".18" stop-color="#8585f6"/>
+      <stop offset="1" stop-color="#9797f7"/>
+    </linearGradient>
+    <linearGradient id="Dégradé_sans_nom_172-2" data-name="Dégradé sans nom 172" x1="25" y1="30.2" x2="31" y2="19.8" xlink:href="#Dégradé_sans_nom_172"/>
+    <linearGradient id="Dégradé_sans_nom_172-3" data-name="Dégradé sans nom 172" x1="22.66" y1="27.74" x2="35.35" y2="5.77" xlink:href="#Dégradé_sans_nom_172"/>
+    <linearGradient id="Dégradé_sans_nom_75" data-name="Dégradé sans nom 75" x1="38.75" y1="31.17" x2="41.25" y2="26.84" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e1000f"/>
+      <stop offset=".99" stop-color="#ff1717"/>
+    </linearGradient>
+    <linearGradient id="Dégradé_sans_nom_75-2" data-name="Dégradé sans nom 75" x1="26.75" y1="31.17" x2="29.25" y2="26.84" xlink:href="#Dégradé_sans_nom_75"/>
+    <linearGradient id="Dégradé_sans_nom_75-3" data-name="Dégradé sans nom 75" x1="14.75" y1="31.17" x2="17.25" y2="26.84" xlink:href="#Dégradé_sans_nom_75"/>
+    <linearGradient id="Dégradé_sans_nom_75-4" data-name="Dégradé sans nom 75" x1="38.43" y1="40.98" x2="40.72" y2="37.02" xlink:href="#Dégradé_sans_nom_75"/>
+    <linearGradient id="Dégradé_sans_nom_75-5" data-name="Dégradé sans nom 75" x1="26.75" y1="41.16" x2="29.25" y2="36.83" xlink:href="#Dégradé_sans_nom_75"/>
+    <linearGradient id="Dégradé_sans_nom_75-6" data-name="Dégradé sans nom 75" x1="15.29" y1="40.98" x2="17.57" y2="37.02" xlink:href="#Dégradé_sans_nom_75"/>
+    <linearGradient id="Dégradé_sans_nom_172-4" data-name="Dégradé sans nom 172" x1="20" y1="37.46" x2="24" y2="30.53" xlink:href="#Dégradé_sans_nom_172"/>
+    <linearGradient id="Dégradé_sans_nom_172-5" data-name="Dégradé sans nom 172" x1="32" y1="37.46" x2="36" y2="30.53" xlink:href="#Dégradé_sans_nom_172"/>
+    <linearGradient id="Dégradé_sans_nom_172-6" data-name="Dégradé sans nom 172" x1="18.51" y1="49" x2="35.48" y2="19.6" xlink:href="#Dégradé_sans_nom_172"/>
+    <linearGradient id="Dégradé_sans_nom_75-7" data-name="Dégradé sans nom 75" x1="21.5" y1="39.86" x2="22.5" y2="38.14" xlink:href="#Dégradé_sans_nom_75"/>
+    <linearGradient id="Dégradé_sans_nom_75-8" data-name="Dégradé sans nom 75" x1="33.5" y1="39.86" x2="34.5" y2="38.14" xlink:href="#Dégradé_sans_nom_75"/>
+    <linearGradient id="Dégradé_sans_nom_75-9" data-name="Dégradé sans nom 75" x1="21.5" y1="29.87" x2="22.5" y2="28.14" xlink:href="#Dégradé_sans_nom_75"/>
+    <linearGradient id="Dégradé_sans_nom_75-10" data-name="Dégradé sans nom 75" x1="33.5" y1="29.87" x2="34.5" y2="28.14" xlink:href="#Dégradé_sans_nom_75"/>
+  </defs>
+  <g id="ICONES">
+    <path class="cls-2" d="m8.97,25c-1.1,0-1.99-.89-1.99-1.99h0c0-1.1.89-1.99,1.99-1.99h38.04c1.1,0,1.99.89,1.99,1.99h0c0,1.1-.89,1.99-1.99,1.99"/>
+    <line class="cls-13" x1="38" y1="25" x2="18" y2="25"/>
+    <path class="cls-9" d="m43,21.01v-1.01c0-8.28-6.72-15-15-15s-15,6.72-15,15v1.01"/>
+    <line class="cls-8" x1="37" y1="29.01" x2="43" y2="29.01"/>
+    <line class="cls-7" x1="25" y1="29.01" x2="31" y2="29.01"/>
+    <line class="cls-3" x1="13" y1="29.01" x2="19" y2="29.01"/>
+    <line class="cls-4" x1="37" y1="39" x2="42.15" y2="39"/>
+    <line class="cls-6" x1="25" y1="39" x2="31" y2="39"/>
+    <line class="cls-5" x1="13.86" y1="39" x2="19" y2="39"/>
+    <circle class="cls-11" cx="22" cy="34" r="3"/>
+    <circle class="cls-12" cx="34" cy="34" r="3"/>
+    <path class="cls-10" d="m13,25.1v10.9c0,8.28,6.72,15,15,15s15-6.72,15-15v-10.9"/>
+    <circle class="cls-17" cx="22" cy="39" r="1"/>
+    <circle class="cls-16" cx="34" cy="39" r="1"/>
+    <circle class="cls-15" cx="22" cy="29.01" r="1"/>
+    <circle class="cls-14" cx="34" cy="29.01" r="1"/>
+  </g>
+  <g id="Cadres">
+    <rect class="cls-1" y="0" width="56" height="56"/>
+  </g>
 </svg>

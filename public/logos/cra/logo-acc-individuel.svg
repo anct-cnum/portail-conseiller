@@ -1,42 +1,70 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 25.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 56 56" style="enable-background:new 0 0 56 56;" xml:space="preserve">
-<style type="text/css">
-	.st0{display:none;}
-	.st1{display:inline;fill:#2A2A2A;}
-	.st2{fill:#2A2A2A;}
-	.st3{fill:#FFFFFF;}
-	.st4{fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
-	.st5{fill:none;stroke:#FFFFFF;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;}
-	.st6{fill:none;}
-	.st7{fill:#FF002B;}
-	.st8{fill:url(#SVGID_1_);}
-	.st9{fill:url(#SVGID_2_);}
-	.st10{clip-path:url(#SVGID_4_);}
-	.st11{fill:#FF0606;}
-</style>
-<g id="FOND" class="st0">
-</g>
-<g id="Calque_1">
-	<g>
-		<path class="st3" d="M0.6,33c0-2.2,0-4.3,0-6.5c0-3.5,2.4-6.1,5.6-6.1c3.4,0,5.9,2.5,6,6.1c0.1,2.3,0.1,4.6,0,6.9
-			c-0.1,1.4,0.5,1.8,1.8,1.7c0.8-0.1,1.6,0,2.4,0c2.2,0.1,3.8,1.4,3.8,3.6c0.1,4.2,0.1,8.4,0,12.7c0,1.7-1.1,2.6-2.7,2.6
-			c-0.9,0-1.9,0-2.8,0c-1.9,0-2.9-1-2.9-2.9c0-2.1,0-4.2,0-6.3c0-1-0.3-1.4-1.4-1.4c-2.1,0.1-4.2,0-6.3,0c-2.2,0-3.5-1.3-3.5-3.5
-			C0.6,37.6,0.6,35.3,0.6,33"/>
-		<path class="st3" d="M55.4,33.1c0,2.2,0,4.3,0,6.5c0,2.7-1.1,3.8-3.9,3.8c-2,0-3.9,0-5.9,0c-1.1,0-1.5,0.4-1.5,1.5
-			c0.1,2.2,0,4.3,0,6.5c0,1.7-1,2.6-2.6,2.7c-1,0-2.1,0-3.1,0c-1.6,0-2.5-0.9-2.6-2.4c0-4.4-0.1-8.8,0-13.3c0-1.8,1.4-3.1,3.2-3.2
-			c1-0.1,2-0.1,2.9,0c1.2,0.1,1.7-0.3,1.6-1.6c-0.1-2.4-0.1-4.8,0-7.2c0.1-3.2,2.3-5.6,5.1-5.9c3.1-0.3,5.9,1.6,6.4,4.6
-			c0.3,2,0.1,4.1,0.1,6.2C55.4,31.8,55.4,32.5,55.4,33.1"/>
-		<path class="st3" d="M25.5,31.6c-1.8,0-3.5,0-5.1,0c-1.7,0-2.9-1-2.9-2.5c0-1.5,1.1-2.5,2.9-2.5c5.1,0,10.1,0,15.2,0
-			c1.8,0,2.8,1,2.8,2.5c0,1.5-1.1,2.4-2.9,2.4c-1.7,0-3.3,0-5.1,0v1.7c0,5.9,0,11.9,0,17.8c0,2-0.8,3-2.4,3c-1.6,0-2.4-1-2.5-3
-			c0-5.8,0-11.7,0-17.5C25.5,33,25.5,32.4,25.5,31.6"/>
-		<path class="st3" d="M49.6,18.7c-3.6,0-6.5-2.9-6.5-6.4c0-3.5,3-6.5,6.5-6.5c3.5,0,6.4,2.9,6.4,6.5C56,15.9,53.2,18.7,49.6,18.7"
-			/>
-		<path class="st3" d="M6.4,18.7c-3.6,0-6.4-2.8-6.4-6.5c0-3.6,3-6.5,6.5-6.4c3.5,0.1,6.5,3,6.4,6.5C12.9,15.9,10,18.7,6.4,18.7"/>
-	</g>
-	<path class="st3" d="M28,1.7c-5.8,0-10.5,4.7-10.5,10.5c0,5.8,4.7,10.5,10.5,10.5s10.5-4.7,10.5-10.5C38.5,6.4,33.8,1.7,28,1.7z
-		 M31.3,13.3H27l-0.1-6.8l1-1.3l1,1.2l0,4.8h2.3l1.2,1L31.3,13.3z"/>
-	<rect class="st6" width="56" height="56"/>
-</g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 56 56">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-width: 0px;
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7 {
+        fill: none;
+      }
+
+      .cls-2 {
+        stroke: url(#Dégradé_sans_nom_172);
+      }
+
+      .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2px;
+      }
+
+      .cls-3 {
+        stroke: url(#Dégradé_sans_nom_75-2);
+      }
+
+      .cls-4 {
+        stroke: url(#Dégradé_sans_nom_75);
+      }
+
+      .cls-5 {
+        stroke: url(#Dégradé_sans_nom_172-3);
+      }
+
+      .cls-6 {
+        stroke: url(#Dégradé_sans_nom_172-4);
+      }
+
+      .cls-7 {
+        stroke: url(#Dégradé_sans_nom_172-2);
+      }
+    </style>
+    <linearGradient id="Dégradé_sans_nom_75" data-name="Dégradé sans nom 75" x1="5.47" y1="17.05" x2="12.48" y2="4.91" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e1000f"/>
+      <stop offset=".99" stop-color="#ff1717"/>
+    </linearGradient>
+    <linearGradient id="Dégradé_sans_nom_75-2" data-name="Dégradé sans nom 75" x1="43.49" y1="17.06" x2="50.5" y2="4.93" xlink:href="#Dégradé_sans_nom_75"/>
+    <linearGradient id="Dégradé_sans_nom_172" data-name="Dégradé sans nom 172" x1="25" y1="32.21" x2="31" y2="21.82" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6a6af4"/>
+      <stop offset=".18" stop-color="#8585f6"/>
+      <stop offset="1" stop-color="#9797f7"/>
+    </linearGradient>
+    <linearGradient id="Dégradé_sans_nom_172-2" data-name="Dégradé sans nom 172" x1="22.72" y1="51.15" x2="33.28" y2="32.87" xlink:href="#Dégradé_sans_nom_172"/>
+    <linearGradient id="Dégradé_sans_nom_172-3" data-name="Dégradé sans nom 172" x1="4.97" y1="47.85" x2="17.68" y2="25.83" xlink:href="#Dégradé_sans_nom_172"/>
+    <linearGradient id="Dégradé_sans_nom_172-4" data-name="Dégradé sans nom 172" x1="35.81" y1="52.95" x2="54.02" y2="21.4" xlink:href="#Dégradé_sans_nom_172"/>
+  </defs>
+  <g id="ICONES">
+    <g>
+      <path class="cls-4" d="m13.71,14.72c-1.1,1.39-2.8,2.29-4.72,2.29-3.32,0-6.01-2.69-6.01-6.01s2.69-6.01,6.01-6.01,6.01,2.69,6.01,6.01"/>
+      <path class="cls-3" d="m40.99,11c0-3.32,2.69-6.01,6.01-6.01s6.01,2.69,6.01,6.01-2.69,6.01-6.01,6.01c-1.93,0-3.65-.91-4.75-2.33"/>
+      <line class="cls-2" x1="18" y1="27.02" x2="38" y2="27.02"/>
+      <line class="cls-7" x1="28" y1="30.98" x2="28" y2="53.04"/>
+      <path class="cls-5" d="m20.99,37.08v-.16c0-2.17-1.76-3.93-3.93-3.93h-6.07v-6.98c0-2.76-2.23-4.99-4.99-4.99h0c-2.76,0-4.99,2.23-4.99,4.99v11.07c0,2.17,1.76,3.93,3.93,3.93h8.07v8.06c0,2.17,1.76,3.93,3.93,3.93h.14c2.17,0,3.93-1.76,3.93-3.93v-10.17c0-.32-.01-1.51-.01-1.82Z"/>
+      <path class="cls-6" d="m35.02,37.08v-.16c0-2.17,1.76-3.93,3.93-3.93h6.07s0-.26,0-.26v-1.73s0-5,0-5c0-2.76,2.23-4.99,4.99-4.99h0c2.76,0,4.99,2.23,4.99,4.99v5s0,1.73,0,1.73v3s0,.77,0,1.18v.16c0,2.17-1.76,3.93-3.93,3.93h-8.07s0,8.06,0,8.06c0,2.17-1.76,3.93-3.93,3.93h-.14c-2.17,0-3.93-1.76-3.93-3.93v-10.17c0-.32.01-1.51.01-1.82Z"/>
+    </g>
+  </g>
+  <g id="Cadres">
+    <rect class="cls-1" width="56" height="56"/>
+  </g>
 </svg>
