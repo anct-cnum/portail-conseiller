@@ -17,6 +17,7 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
   const prefixId = useSelector(state => state.permanence?.prefixIdLieuEnregistrable);
 
   const [clickSubmit, setClickSubmit] = useState(false);
+  const [clickDisabled, setClickDisabled] = useState(false);
   let [redirection, setRedirection] = useState(redirectionValidation !== null ? redirectionValidation : '/accueil');
 
   function handleSubmit(redirection = '/accueil') {
@@ -113,7 +114,7 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
     } else if (errorsForm?.lengthError > 0 && clickSubmit === true) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
+    setClickDisabled(false);
     setClickSubmit(false);
   }, [errorsForm]);
 
@@ -121,8 +122,11 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
     <>
       <ModalAdresseIntrouvable prefixId={prefixId}/>
       <div className="fr-col-offset-1 fr-col-4">
-        <button className="fr-link fr-fi-external-link-line fr-link--icon-right validation-extern-btn" onClick={() => {
-          handleSubmit('cartographie');
+        <button className="fr-link fr-fi-external-link-line fr-link--icon-right validation-extern-btn" disabled={clickDisabled} onClick={e => {
+          if (e.detail === 1) {
+            setClickDisabled(true);
+            handleSubmit('cartographie');
+          }
         }}>
           Enregistrer et voir la carte nationale
         </button>
@@ -132,9 +136,13 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
       </div>
 
       <div className="fr-col-5">
-        <button className="fr-btn validation-btn fr-mb-4w" onClick={() => {
-          handleSubmit(redirection);
-        }}>
+        <button className="fr-btn validation-btn fr-mb-4w" style={clickDisabled ? { cursor: 'not-allowed' } : {}}
+          disabled={clickDisabled} onClick={e => {
+            if (e.detail === 1) {
+              setClickDisabled(true);
+              handleSubmit(redirection);
+            }
+          }}>
           Enregistrer&nbsp;
           {
             statut === 'update' && <>les modifications</>
