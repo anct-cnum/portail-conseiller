@@ -25,6 +25,7 @@ function BigCheckboxButton({ type, label, value, image, imageSelected, baseline 
         break;
     }
   };
+  console.log('controlSelected:', controlSelected);
 
   return (
     <div className="checkboxButton" onClick={onClickCheckbox} value={value}>
