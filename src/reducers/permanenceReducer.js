@@ -323,6 +323,7 @@ export default function permanence(state = initialState, action) {
     case 'POST_PERMANENCE_REQUEST':
       return {
         ...state,
+        loading: true,
         showErrorMessage: false,
         showError: false,
         error: false,
@@ -331,6 +332,7 @@ export default function permanence(state = initialState, action) {
     case 'POST_PERMANENCE_SUCCESS':
       return {
         ...state,
+        loading: false,
         isCreated: action.isCreated,
         prefixIdLieuEnregistrable: action.prefixId,
         isEnded: action.isEnded,
@@ -339,6 +341,7 @@ export default function permanence(state = initialState, action) {
     case 'POST_PERMANENCE_FAILURE':
       return {
         ...state,
+        loading: false,
         isCreated: false,
         showError: true,
         error: action.error?.message ?? action.error,
@@ -346,6 +349,7 @@ export default function permanence(state = initialState, action) {
     case 'UPDATE_PERMANENCE_REQUEST':
       return {
         ...state,
+        loading: true,
         showError: false,
         isUpdated: false,
         error: false,
@@ -354,6 +358,7 @@ export default function permanence(state = initialState, action) {
     case 'UPDATE_PERMANENCE_SUCCESS':
       return {
         ...state,
+        loading: false,
         isUpdated: action.isUpdated,
         prefixIdLieuEnregistrable: action.prefixId,
         isEnded: action.isEnded,
@@ -362,6 +367,7 @@ export default function permanence(state = initialState, action) {
     case 'UPDATE_PERMANENCE_FAILURE':
       return {
         ...state,
+        loading: false,
         isUpdated: false,
         showError: true,
         error: action.error?.message ?? action.error,
