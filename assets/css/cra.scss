@@ -922,12 +922,14 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       background: $blue-gradient-redirection;
     }
   }
+  @media (hover: hover) and (pointer: fine) {
   .gradient-box button:hover, .gradient-box-redirection {
     background: $white-gradient;
     .radioRattachement {
       color: #000;
     }
   }
+}
   .gradient-box-redirection {
     .fr-label {
       color:#000 !important;
@@ -956,6 +958,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
         color: #8585f6;
         overflow: auto;
       }
+      @media (hover: hover) and (pointer: fine) {
       &.inactif-btn:hover {
         background: $black-gradient;
         cursor: not-allowed;
@@ -1027,6 +1030,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
           color: #8585f6;
         }
       }
+    }
       .imageTheme {
         margin: 24px;
         width: 56px;
@@ -1157,6 +1161,9 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       .baseline {
         color: #666666;
       }
+    }
+    .checkbox-selected-option {
+      max-width: max-content;
     }
   }
   .checkboxRattachement {
