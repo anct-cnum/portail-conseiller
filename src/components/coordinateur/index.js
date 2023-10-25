@@ -18,6 +18,8 @@ import Cra from '../connected/cra';
 import FormulaireSexeAge from '../connected/FormulaireSexeAge';
 import UpdateCra from '../connected/cra/UpdateCra';
 import HistoriqueCras from '../connected/historiqueCras';
+import MonEspaceCandidat from '../connected/mesInformations/MonEspaceCandidat';
+import FormulaireSuperieurHierarchique from '../connected/mesInformations/FormulaireSupHierarchique';
 
 function Coordinateur() {
   const dispatch = useDispatch();
@@ -64,6 +66,8 @@ function Coordinateur() {
             <Route path={`/conseiller/:id`} component={conseillerDetails} />
             <Route path={`/lieux-activite`} component={Permanence} />
             <Route path={'/historique'} component={HistoriqueCras} />
+            <Route path={'/mon-espace-candidat'} component={MonEspaceCandidat} />
+            <Route path={'/contact-mon-responsable'} component={FormulaireSuperieurHierarchique} />
             <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
           </>
         }
