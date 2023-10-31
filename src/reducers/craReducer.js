@@ -405,6 +405,8 @@ export default function cra(state = initialState, action) {
           action.cra.cra.accompagnement.atelier +
           action.cra.cra.accompagnement.redirection,
         nbAccompagnementRedirection: nbOrganismesCra,
+        nbAccompagnementIndividuel: action.cra.cra.accompagnement.individuel,
+        nbAccompagnementAtelier: action.cra.cra.accompagnement.atelier,
       };
     case 'GET_CRA_FAILURE':
       return {
