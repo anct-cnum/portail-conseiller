@@ -310,7 +310,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
           },
           useHTML: true,
           labelFormatter: function() {
-            if (this.data !== []) {
+            if (!Array.isArray(this.data)) {
               //titre-legende-bis
               if (this.chart.title.textStr === 'Statut usagers') {
                 return '<span class="titre-legende-bis">' + this.name + ' </span><span class="valeur-legende">' + this.options.data[0] + '%</span>';

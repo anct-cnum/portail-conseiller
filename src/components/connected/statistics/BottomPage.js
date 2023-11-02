@@ -247,18 +247,17 @@ function BottomPage({ donneesStats, print, type }) {
           <div className="fr-col-12 hr-md-hide dont-print">
             <hr className="fr-my-6w"/>
           </div>
-          <div className="fr-col-12 fr-col-md-4 dont-print" data-tooltip-id="infobulle-menu"
-            data-tooltip-html={`
-              <span>Comment calculons nous la donn&eacute;e&nbsp;?</span>
-              <ul>
-                <li>30min ou moins = 30min.</li>
-                <li>30min &agrave; 1h = 1h.</li>
-                <li>Au del&agrave; d&rsquo;1h nous prenons le temps exact renseign&eacute;.</li>
-              </ul>
-          `} >
+          <div data-tooltip-id="infobulle-stats" className="dont-print" >
             <ElementHighcharts donneesStats={statsTempsAccompagnements} variablesGraphique={pieGraphiqueTemps} print={print}/>
           </div>
-          <Tooltip className="infobulle tooltip-temps" id="infobulle-menu" arrowColor="white"/>
+          <Tooltip className="infobulle tooltip-temps" id="infobulle-stats" arrowColor="white">
+            <span>Comment calculons nous la donn&eacute;e&nbsp;?</span>
+            <ul>
+              <li>30min ou moins = 30min.</li>
+              <li>30min &agrave; 1h = 1h.</li>
+              <li>Au del&agrave; d&rsquo;1h nous prenons le temps exact renseign&eacute;.</li>
+            </ul>
+          </Tooltip>
           <div className="fr-col-12 hr-md-hide dont-print">
             <hr className="fr-my-6w"/>
           </div>
