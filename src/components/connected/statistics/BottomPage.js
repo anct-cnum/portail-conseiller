@@ -63,7 +63,7 @@ function BottomPage({ donneesStats, print, type }) {
       optionResponsive: false,
       couleursGraphique: tabColorAge,
       largeurGraphiquePrint: 800,
-      hauteurGraphiquePrint: 350,
+      hauteurGraphiquePrint: 320,
       margeGaucheGraphiquePrint: 0,
       margeDroiteGraphiquePrint: 0,
     },
@@ -83,7 +83,7 @@ function BottomPage({ donneesStats, print, type }) {
       optionResponsive: false,
       couleursGraphique: tabColorStatut,
       largeurGraphiquePrint: 800,
-      hauteurGraphiquePrint: 350,
+      hauteurGraphiquePrint: 320,
       margeGaucheGraphiquePrint: 0,
       margeDroiteGraphiquePrint: 0,
     },
@@ -220,7 +220,7 @@ function BottomPage({ donneesStats, print, type }) {
             <ElementHighcharts donneesStats={statsAges} variablesGraphique={graphiqueAge} print={print}/>
           </div>
           {!print &&
-            <div className="fr-col-12 dont-print hr-md-hide">
+            <div className="fr-col-12 dont-print hr-md-hide fr-m-6w">
               <hr className="fr-my-6w"/>
             </div>
           }
