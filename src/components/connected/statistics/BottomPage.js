@@ -247,7 +247,7 @@ function BottomPage({ donneesStats, print, type }) {
           <div className="fr-col-12 hr-md-hide dont-print">
             <hr className="fr-my-6w"/>
           </div>
-          <div data-tooltip-id="infobulle-stats" >
+          <div data-tooltip-id="infobulle-stats" className="dont-print" >
             <ElementHighcharts donneesStats={statsTempsAccompagnements} variablesGraphique={pieGraphiqueTemps} print={print}/>
           </div>
           <Tooltip className="infobulle tooltip-temps" id="infobulle-stats" arrowColor="white">
