@@ -220,7 +220,7 @@ function BottomPage({ donneesStats, print, type }) {
             <ElementHighcharts donneesStats={statsAges} variablesGraphique={graphiqueAge} print={print}/>
           </div>
           {!print &&
-            <div className="fr-col-12 dont-print hr-md-hide fr-m-6w">
+            <div className="fr-col-12 dont-print hr-md-hide">
               <hr className="fr-my-6w"/>
             </div>
           }
