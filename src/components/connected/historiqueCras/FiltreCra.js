@@ -4,7 +4,6 @@ import labelsCorrespondance from '../../../data/labelsCorrespondance.json';
 import { htmlDecode } from '../../../utils/functionEncodeDecode';
 
 function FiltreCra({ texte, css, datas, setDatas }) {
-  console.log(datas);
   return (
     <nav id={`filtre-cra-${css}`} className="fr-nav" role="navigation" aria-label={`Filtre ${css}`}>
       <ul className="fr-nav__list">
