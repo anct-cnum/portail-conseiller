@@ -21,7 +21,7 @@ function FiltreCra({ texte, css, datas, setDatas }) {
                   Afficher Tout
                 </button>
               </li>
-              {datas !== undefined && datas?.length > 0 &&
+              {datas?.length > 0 &&
                 <li className="fr-nav__item">
                   {datas?.map((data, idx) =>
                     <button key={idx} className="fr-nav__link" onClick={() => {
