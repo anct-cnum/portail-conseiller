@@ -18,9 +18,9 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install modules
@@ -68,7 +68,7 @@ jobs:
         FOLDER: build
         SSH_PRIVATE_KEY: ${{ secrets.CLEVER_CLOUD_DEPLOY_PRIVATE_KEY }}
         KNOWN_HOSTS_FILE: resources/known_hosts
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Create Sentry release
       uses: getsentry/action-release@v1
       env:
