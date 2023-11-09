@@ -7,7 +7,7 @@ function TypeAcces({ islieuPrincipal, prefixId }) {
 
   const fields = useSelector(state => state.permanence?.fields);
   const estCoordinateur = fields?.filter(field => field.name === 'estCoordinateur')[0]?.value;
-  const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
+  const erreursFormulaire = useSelector(state => state.permanence?.errorsFormulaire?.errors);
   const erreurTypeAcces = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'typeAcces'])[0]?.[prefixId + 'typeAcces'];
 
   return (

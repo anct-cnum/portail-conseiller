@@ -19,7 +19,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
   const lieuxSecondaires = Array.from({ length: process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE }, () => ({}));
   const fields = useSelector(state => state.permanence?.fields);
   const errorsForm = useSelector(state => state.permanence?.errorsFormulaire);
-  const validForms = useSelector(state => state.permanence.formulairesValides);
+  const validForms = useSelector(state => state.permanence?.formulairesValides);
   const prefixId = useSelector(state => state.permanence?.prefixIdLieuEnregistrable);
   const listPermanences = useSelector(state => state.permanence?.permanences);
   const permanencePrincipale = listPermanences && listPermanences?.find(permanence => permanence?.lieuPrincipalPour?.includes(conseillerId));
@@ -218,7 +218,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
                   <div className="fr-col-8 ">
                     <h2 className="sous-titre fr-mt-7w fr-mb-4w">
                       Lieu d&rsquo;activit&eacute; secondaire
-                      {!(idx < listPermanences?.filter(permanence => permanence?.conseillers.includes(conseillerId)).length) &&
+                      {!(idx < listPermanences?.filter(permanence => permanence?.conseillers?.includes(conseillerId))?.length) &&
                         <span className="baseline fr-mt-1w">
                           Un lieu d&rsquo;activit&eacute; secondaire correspond &agrave; une permanence o&ugrave; vous avez &eacute;t&eacute;
                           d&eacute;l&eacute;gu&eacute;(e) et o&ugrave; vous exercez votre activit&eacute; de mani&egrave;re hebdomadaire.
@@ -228,7 +228,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
                   </div>
                 </>
               }
-              {idx + 2 > listPermanences?.filter(permanence => permanence?.conseillers.includes(conseillerId)).length &&
+              {idx + 2 > listPermanences?.filter(permanence => permanence?.conseillers?.includes(conseillerId))?.length &&
                 <>
                   <ListPermanences prefixId={ 'secondaire_' + idx + '_'} conseillerId={conseillerId} firstTime={true}/>
                   <Adresse
@@ -240,10 +240,10 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
                   <Horaires prefixId={ 'secondaire_' + idx + '_'} horairesId={idx + 1} />
                 </>
               }
-              {idx + 2 <= listPermanences?.filter(permanence => permanence?.conseillers.includes(conseillerId)).length &&
+              {idx + 2 <= listPermanences?.filter(permanence => permanence?.conseillers?.includes(conseillerId))?.length &&
                   <h5 className="fr-col-offset-1 fr-col-11 fr-mb-7w">
                     Lieu d&rsquo;activit&eacute; secondaire
-                    {` ${listPermanences?.filter(permanence => permanence?.conseillers.includes(conseillerId))[idx + 1]?.nomEnseigne} `}
+                    {` ${listPermanences?.filter(permanence => permanence?.conseillers?.includes(conseillerId))[idx + 1]?.nomEnseigne} `}
                     a bien &eacute;t&eacute; enregistr&eacute;
                   </h5>
               }
