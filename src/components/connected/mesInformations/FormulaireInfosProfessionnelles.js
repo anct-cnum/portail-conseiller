@@ -85,14 +85,13 @@ function FormulaireInfosProfessionnelles() {
       });
     }
   }, [conseiller]);
-
   return (
     <>
       <ModalUpdateForm form={form} showModal={showModal} setShowModal={setShowModal} formOrigin="informations"/>
-    
-      <h2 className="fr-mb-6w sous-titre">Informations professionnelles</h2>
 
-      {user?.estCoordinateur &&
+      <h2 className="fr-mb-6w sous-titre">Informations professionnelles</h2>
+      {conseiller?.estCoordinateur === true &&
+       conseiller?.listeSubordonnes.type !== undefined &&
         <div className="infos-user fr-mb-md-6w">
           <img src="/logos/icone-conseiller-coordinateur.svg" />
           <span className="coordinateur-text">Coordinateur</span>
