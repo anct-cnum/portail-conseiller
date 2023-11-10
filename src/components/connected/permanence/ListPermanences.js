@@ -86,9 +86,9 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
     if (geocodeAdresses) {
       const geocodeAdresse = geocodeAdresses?.filter(geocode => geocode.prefixId === prefixId)[0]?.geocodeAdresse;
       if (geocodeAdresse) {
-        let resultGeocode = geocodeAdresse[0]?.geometry ?? { type: 'Point', coordinates: process.env.REACT_APP_INIT_COORDONNEES.split(',') };
-        if (prefixId === 'principal_' && geocodeAdresse.length === 0) {
-          resultGeocode = null;
+        let resultGeocode = null;
+        if (prefixId !== 'principal_' && geocodeAdresse.length !== 0) {
+          resultGeocode = geocodeAdresse[0]?.geometry ?? { type: 'Point', coordinates: process.env.REACT_APP_INIT_COORDONNEES.split(',') };
         }
         dispatch(permanenceActions.updateField(prefixId + 'location', resultGeocode));
       }
