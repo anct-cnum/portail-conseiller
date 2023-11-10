@@ -27,7 +27,6 @@ function MesPermanences() {
   //Tri pour obtenir le lieu principal en premier
   useEffect(() => {
     if (listPermanences) {
-      console.log(listPermanences);
       setMesPermanences(Array.from({ length: listPermanences?.length }, () => ({})));
       for (let i = 0; i < listPermanences?.length; i++) {
         if (listPermanences[i]?.lieuPrincipalPour?.includes(conseiller?._id) === true) {
