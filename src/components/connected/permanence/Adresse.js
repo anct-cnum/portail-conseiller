@@ -17,7 +17,7 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
   const foundExistedPermanence = useSelector(state => state.permanence?.foundExistedPermanence);
   const existsPermanence = useSelector(state => state.permanence?.existsPermanence);
   const erreurExistsPermanence = existsPermanence ? 'Merci de renseigner une nouvelle adresse ou de vous ajouter sur le lieu existant !' : null;
-  const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
+  const erreursFormulaire = useSelector(state => state.permanence?.errorsFormulaire?.errors);
   const erreurLieuActivite = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'nomEnseigne'])[0]?.[prefixId + 'nomEnseigne'];
   const erreurSiret = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'siret'])[0]?.[prefixId + 'siret'];
   const erreurNumeroTelephone = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'numeroTelephone'])[0]?.[prefixId + 'numeroTelephone'];

@@ -29,7 +29,7 @@ function MesPermanences() {
     if (listPermanences) {
       setMesPermanences(Array.from({ length: listPermanences?.length }, () => ({})));
       for (let i = 0; i < listPermanences?.length; i++) {
-        if (listPermanences[i]?.lieuPrincipalPour.includes(conseiller?._id) === true) {
+        if (listPermanences[i]?.lieuPrincipalPour?.includes(conseiller?._id) === true) {
           mesPermanences[0] = listPermanences[i];
         } else {
           mesPermanences[i + 1] = listPermanences[i];
