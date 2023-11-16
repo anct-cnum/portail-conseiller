@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import InputCheckbox from './Components/InputCheckbox';
 
 function TypeAcces({ islieuPrincipal, prefixId }) {
-  const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
+  const erreursFormulaire = useSelector(state => state.permanence?.errorsFormulaire?.errors);
   const erreurTypeAcces = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'typeAcces'])[0]?.[prefixId + 'typeAcces'];
 
   return (
