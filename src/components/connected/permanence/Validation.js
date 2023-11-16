@@ -45,8 +45,8 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
 
       let nouveauLieu = {
         //Données du CNFS
-        emailPro: fields.filter(field => field.name === 'emailPro')[0]?.value ?? null,
-        telephonePro: fields.filter(field => field.name === 'telephonePro')[0]?.value ?? null,
+        emailPro: fields?.filter(field => field.name === 'emailPro')[0]?.value ?? null,
+        telephonePro: fields?.filter(field => field.name === 'telephonePro')[0]?.value ?? null,
         //Données du lieu d'activité
         estStructure: prefixId === 'principal_' ? fields?.filter(field => field.name === 'estStructure')[0]?.value : false,
         _id: fields?.filter(field => field.name === prefixId + 'idPermanence')[0]?.value ?? null,
