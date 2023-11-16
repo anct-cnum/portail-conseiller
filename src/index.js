@@ -18,13 +18,13 @@ if (window.location.href.split(':').includes('file')) {
     ignoreErrors: [
       // plugins/extensions
       // SingleFile
-      `/^undefined is not an object (evaluating 'e.optionsAutoSave')$/`,
+      /e.optionsAutoSave/i,
       // Blackbox
-      `/^Cannot read properties of null (reading 'CodeMirror')$/`,
+      /CodeMirror/i,
       //Firefox interdit aux addOns de conserver des références fortes aux objets DOM après la destruction de leur document parent.
-      `/^access dead object$/`,
+      /access dead object/i,
       //googletag
-      `/^Cannot redefine property: googletag$/`,
+      /googletag/i,
     ],
     dsn: process.env.REACT_APP_SENTRY_DSN,
     environment: process.env.REACT_APP_SENTRY_ENVIRONMENT,
