@@ -87,7 +87,6 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
       }
       let nouveauLieu = {
         //Données du CNFS
-        estCoordinateur: fields.filter(field => field.name === 'estCoordinateur')[0]?.value ?? null,
         emailPro: fields.filter(field => field.name === 'emailPro')[0]?.value ?? null,
         telephonePro: fields.filter(field => field.name === 'telephonePro')[0]?.value ?? null,
         //Données du lieu d'activité

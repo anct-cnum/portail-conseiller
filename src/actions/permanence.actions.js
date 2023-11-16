@@ -127,11 +127,6 @@ function verifyFormulaire(form, statut) {
   const regExpSiteWeb = new RegExp(/(https?):\/\/[a-z0-9\\/:%_+.,#?!@&=-]+/);
   const regExpSiret = new RegExp(/^$|^[0-9]{14}$/);
 
-  errors.push({ estCoordinateur: (Joi.object({
-    estCoordinateur: Joi.boolean().required().allow(true, false) }).validate({
-    estCoordinateur: form?.fields?.filter(field => field.name === 'estCoordinateur')[0]?.value }).error) ?
-    'Votre rôle doit obligatoirement être saisie' : null });
-
   let telephonePro = form?.fields?.filter(field => field.name === 'telephonePro')[0]?.value;
   if (form?.fields?.filter(field => field.name === 'telephonePro')[0]?.value?.length < 12) {
     telephonePro = null;
@@ -576,7 +571,6 @@ function setChampsMaPermanence(permanence, prefixId, conseiller) {
   const fields = [
     { name: prefixId + 'idPermanence', value: permanence?._id },
     { name: 'estStructure', value: permanence?.estStructure },
-    { name: 'estCoordinateur', value: conseiller?.estCoordinateur },
     { name: 'emailPro', value: conseiller?.emailPro },
     { name: 'telephonePro', value: conseiller?.telephonePro },
     { name: prefixId + 'nomEnseigne', value: permanence?.nomEnseigne },

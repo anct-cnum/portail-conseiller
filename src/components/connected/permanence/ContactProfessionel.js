@@ -8,7 +8,6 @@ function ContactProfessionel({ conseiller }) {
   const dispatch = useDispatch();
 
   const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
-  const erreurTypeCnFS = erreursFormulaire?.filter(erreur => erreur?.estCoordinateur)[0]?.estCoordinateur;
   const erreurTelephonePro = erreursFormulaire?.filter(erreur => erreur?.telephonePro)[0]?.telephonePro;
   const erreurEmailPro = erreursFormulaire?.filter(erreur => erreur?.emailPro)[0]?.emailPro;
 
@@ -16,7 +15,6 @@ function ContactProfessionel({ conseiller }) {
     telephoneHorsMetropole?.find(item => item.codeDepartement === conseiller.codeDepartement).indicatif : '+33';
 
   const [inputs, setInputs] = useState({
-    estCoordinateur: String(conseiller?.estCoordinateur) ?? null,
     emailPro: conseiller?.emailPro ?? '',
     telephonePro: conseiller?.telephonePro ?? '',
   });
@@ -26,7 +24,7 @@ function ContactProfessionel({ conseiller }) {
   function handleChange(e) {
     const { name, value } = e.target;
     setInputs(inputs => ({ ...inputs, [name]: value }));
-    dispatch(permanenceActions.updateField(name, name === 'estCoordinateur' ? value === 'true' : value));
+    dispatch(permanenceActions.updateField(name, value));
   }
 
   const onFocus = e => {
@@ -40,8 +38,6 @@ function ContactProfessionel({ conseiller }) {
     if (conseiller?.telephonePro) {
       dispatch(permanenceActions.updateField('telephonePro', conseiller.telephonePro));
     }
-    dispatch(permanenceActions.updateField('estCoordinateur', conseiller?.estCoordinateur === 'true'));
-
   }, [conseiller]);
 
   return (
