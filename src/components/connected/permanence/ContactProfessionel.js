@@ -47,31 +47,6 @@ function ContactProfessionel({ conseiller }) {
   return (
     <div className="fr-container">
       <div className="fr-grid-row">
-        <div className="fr-col-offset-1 fr-col-11 fr-mt-9w">
-          Vous &ecirc;tes&nbsp;<span className="obligatoire">*</span>&nbsp;
-          <fieldset className="fr-fieldset fr-mt-2w">
-            <div className="fr-fieldset__content">
-              <div className="fr-radio-group">
-                <input type="radio" id="CnFS" name="estCoordinateur" value="false" required="required"
-                  defaultChecked={!conseiller?.estCoordinateur ?? false} onClick={handleChange}/>
-                <label className={erreurTypeCnFS ? 'fr-label invalid' : 'fr-label' } htmlFor="CnFS">
-                Conseiller·&egrave;re num&eacute;rique France Services
-                </label>
-              </div>
-              <div className="fr-radio-group">
-                <input type="radio" id="CnFSCoord" name="estCoordinateur" value="true" required="required"
-                  defaultChecked={conseiller?.estCoordinateur ?? false} onClick={handleChange}/>
-                <label className={erreurTypeCnFS ? 'fr-label invalid' : 'fr-label' } htmlFor="CnFSCoord">
-                  Conseiller·&egrave;re num&eacute;rique France Services Coordinateur.ice
-                </label>
-              </div>
-            </div>
-          </fieldset>
-          { erreurTypeCnFS &&
-            <p className="text-error fr-mb-n3w">{erreurTypeCnFS}</p>
-          }
-        </div>
-
         <div className="fr-col-1 fr-mt-10w col-logo">
           <img className="hexagone" src="/logos/permanences/hexagone.svg"/>
         </div>

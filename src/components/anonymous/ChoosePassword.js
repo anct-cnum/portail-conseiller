@@ -74,7 +74,7 @@ function ChoosePassword({ match }) {
                   {tokenVerified &&
                   <p className="sous-titre fr-mb-2w fr-mb-md-4w">
                     Bonjour <b>{user?.prenom} {user?.nom}</b>, vous &ecirc;tes sur le point de finaliser l&#39;acc&egrave;s &agrave; vos services en ligne
-                    <br />Conseiller num&eacute;rique France Services
+                    <br />Conseiller num&eacute;rique
                   </p>}
                 </div>
               </div>
