@@ -27,7 +27,7 @@ function HeaderHub({ linkAccount }) {
               <div className="fr-header__brand-top">
                 <div className="fr-header__logo">
                   <img src="/logos/logo-conseiller-numerique-nb.svg" className="logo-conseiller-numerique"
-                    alt="logo Conseiller Num&eacute;rique France Services" />
+                    alt="logo Conseiller Num&eacute;rique" />
                 </div>
               </div>
 

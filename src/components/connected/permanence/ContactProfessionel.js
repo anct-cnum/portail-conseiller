@@ -8,7 +8,6 @@ function ContactProfessionel({ conseiller }) {
   const dispatch = useDispatch();
 
   const erreursFormulaire = useSelector(state => state.permanence.errorsFormulaire?.errors);
-  const erreurTypeCnFS = erreursFormulaire?.filter(erreur => erreur?.estCoordinateur)[0]?.estCoordinateur;
   const erreurTelephonePro = erreursFormulaire?.filter(erreur => erreur?.telephonePro)[0]?.telephonePro;
   const erreurEmailPro = erreursFormulaire?.filter(erreur => erreur?.emailPro)[0]?.emailPro;
 
@@ -16,7 +15,6 @@ function ContactProfessionel({ conseiller }) {
     telephoneHorsMetropole?.find(item => item.codeDepartement === conseiller.codeDepartement).indicatif : '+33';
 
   const [inputs, setInputs] = useState({
-    estCoordinateur: String(conseiller?.estCoordinateur) ?? null,
     emailPro: conseiller?.emailPro ?? '',
     telephonePro: conseiller?.telephonePro ?? '',
   });
@@ -26,7 +24,7 @@ function ContactProfessionel({ conseiller }) {
   function handleChange(e) {
     const { name, value } = e.target;
     setInputs(inputs => ({ ...inputs, [name]: value }));
-    dispatch(permanenceActions.updateField(name, name === 'estCoordinateur' ? value === 'true' : value));
+    dispatch(permanenceActions.updateField(name, value));
   }
 
   const onFocus = e => {
@@ -40,38 +38,11 @@ function ContactProfessionel({ conseiller }) {
     if (conseiller?.telephonePro) {
       dispatch(permanenceActions.updateField('telephonePro', conseiller.telephonePro));
     }
-    dispatch(permanenceActions.updateField('estCoordinateur', conseiller?.estCoordinateur === 'true'));
-
   }, [conseiller]);
 
   return (
     <div className="fr-container">
       <div className="fr-grid-row">
-        <div className="fr-col-offset-1 fr-col-11 fr-mt-9w">
-          Vous &ecirc;tes&nbsp;<span className="obligatoire">*</span>&nbsp;
-          <fieldset className="fr-fieldset fr-mt-2w">
-            <div className="fr-fieldset__content">
-              <div className="fr-radio-group">
-                <input type="radio" id="CnFS" name="estCoordinateur" value="false" required="required"
-                  defaultChecked={!conseiller?.estCoordinateur ?? false} onClick={handleChange}/>
-                <label className={erreurTypeCnFS ? 'fr-label invalid' : 'fr-label' } htmlFor="CnFS">
-                Conseiller·&egrave;re num&eacute;rique France Services
-                </label>
-              </div>
-              <div className="fr-radio-group">
-                <input type="radio" id="CnFSCoord" name="estCoordinateur" value="true" required="required"
-                  defaultChecked={conseiller?.estCoordinateur ?? false} onClick={handleChange}/>
-                <label className={erreurTypeCnFS ? 'fr-label invalid' : 'fr-label' } htmlFor="CnFSCoord">
-                  Conseiller·&egrave;re num&eacute;rique France Services Coordinateur.ice
-                </label>
-              </div>
-            </div>
-          </fieldset>
-          { erreurTypeCnFS &&
-            <p className="text-error fr-mb-n3w">{erreurTypeCnFS}</p>
-          }
-        </div>
-
         <div className="fr-col-1 fr-mt-10w col-logo">
           <img className="hexagone" src="/logos/permanences/hexagone.svg"/>
         </div>

@@ -4,9 +4,6 @@ import PropTypes from 'prop-types';
 import InputCheckbox from './Components/InputCheckbox';
 
 function TypeAcces({ islieuPrincipal, prefixId }) {
-
-  const fields = useSelector(state => state.permanence?.fields);
-  const estCoordinateur = fields?.filter(field => field.name === 'estCoordinateur')[0]?.value;
   const erreursFormulaire = useSelector(state => state.permanence?.errorsFormulaire?.errors);
   const erreurTypeAcces = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'typeAcces'])[0]?.[prefixId + 'typeAcces'];
 
@@ -25,7 +22,7 @@ function TypeAcces({ islieuPrincipal, prefixId }) {
                 <InputCheckbox textLabel="Sur rendez-vous" errorInput={erreurTypeAcces}
                   idInput={prefixId + 'rdv'} prefixId={prefixId} nameInput="rdv"/>
 
-                {(!islieuPrincipal || estCoordinateur) &&
+                {(!islieuPrincipal) &&
                 <InputCheckbox textLabel="La structure n&rsquo;accueille pas de public" errorInput={erreurTypeAcces}
                   idInput={prefixId + 'prive'} prefixId={prefixId} nameInput="prive" />
                 }

@@ -44,7 +44,6 @@ function PermanenceCreate() {
     if (conseiller) {
       dispatch(permanenceActions.updateField('telephonePro', conseiller?.telephonePro));
       dispatch(permanenceActions.updateField('emailPro', conseiller?.emailPro));
-      dispatch(permanenceActions.updateField('estCoordinateur', conseiller?.estCoordinateur));
     }
   }, [structure, conseiller]);
 
