@@ -258,7 +258,7 @@ function ForgottenPassword({ match = null }) {
               <h1 className="titre fr-my-2w fr-mb-md-5w ">Renouveler votre mot de passe</h1>
               <p className="sous-titre fr-mb-2w fr-mb-md-4w">
                 Bonjour <b>{user?.name}</b>, vous &ecirc;tes sur le point de finaliser votre renouvellement de mot de passe
-                <br />Conseiller num&eacute;rique France Services
+                <br />Conseiller num&eacute;rique
               </p>
             </div>
 

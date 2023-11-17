@@ -324,7 +324,7 @@ function Propos() {
                     <div>
                       <b>2020</b><br/>
                       <p>
-                        Octobre : lancement du dispositif Conseiller num&eacute;rique France Services et de sa plateforme de <br className="hide-md-br"/>
+                        Octobre : lancement du dispositif Conseiller num&eacute;rique et de sa plateforme de <br className="hide-md-br"/>
                         recrutement en un mois (&eacute;quipe de conception de 3 personnes).
                       </p>
                       <b>2021</b><br/>

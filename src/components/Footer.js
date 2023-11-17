@@ -31,7 +31,7 @@ function Footer({ type, role }) {
 
             <div className="fr-footer__content">
               <p className="fr-footer__content-desc">
-                Conseiller num&eacute;rique France Services est un dispositif financ&eacute; par l&rsquo;&Eacute;tat dans le cadre de France Relance.
+                Conseiller num&eacute;rique est un dispositif financ&eacute; par l&rsquo;&Eacute;tat dans le cadre de France Relance.
                 Il est pilot&eacute; par l&rsquo;Agence nationale de la coh&eacute;sion des territoires avec l&rsquo;appui de la Banque des Territoires.</p>
               <ul className="fr-footer__content-list">
                 <li className="fr-footer__content-item">
@@ -67,7 +67,7 @@ function Footer({ type, role }) {
 
             <div className="fr-footer__content">
               <p className="fr-footer__content-desc">
-                L&rsquo;&eacute;quipe Conseiller num&eacute;rique France Services travaille en am&eacute;lioration continue.
+                L&rsquo;&eacute;quipe Conseiller num&eacute;rique travaille en am&eacute;lioration continue.
                 Vous rencontrez un probl&egrave;me, vous souhaitez exprimer un avis ? Rendez-vous sur les canaux d&rsquo;aide de votre espace de
                 discussion en cliquant sur les boutons ci-dessus.</p>
               <ul className="fr-footer__content-list">

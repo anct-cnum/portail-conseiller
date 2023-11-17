@@ -86,7 +86,7 @@ function Login() {
             <div className="headPart">
               <img
                 src="/logos/logo-conseiller-numerique-nb.svg"
-                alt="logo Conseiller Num&eacute;rique France Services"
+                alt="logo Conseiller Num&eacute;rique"
                 className="logoCnfs"/>
               <h1 className="titrage fr-mt-xs-3w fr-mt-md-9w fr-mb-6w">
                 { role === 'admin' &&
@@ -97,7 +97,7 @@ function Login() {
             </div>
             { role !== 'admin' &&
               <>
-                <p className="fr-service__tagline labNetworkCnfs">Le r&eacute;seau des conseillers num&eacute;riques France Services.</p>
+                <p className="fr-service__tagline labNetworkCnfs">Le r&eacute;seau des conseillers num&eacute;riques.</p>
                 <div className="fr-my-9w personas1">
                   <img src="/logos/personas-hexagones.svg" width="100%" alt="Avatars conseillers"/>
                 </div>
@@ -106,7 +106,7 @@ function Login() {
           </div>
           <div className="fr-my-4w connexion">
             <div className="fr-px-2w fr-mb-2w">
-              <label className="fr-label email" htmlFor="email">E-mail Conseiller num&eacute;rique France Services</label>
+              <label className="fr-label email" htmlFor="email">E-mail Conseiller num&eacute;rique</label>
               <input
                 id="email"
                 name="username"

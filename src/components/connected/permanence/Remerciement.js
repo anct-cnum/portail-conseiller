@@ -23,7 +23,7 @@ function Remerciement() {
                 </div>
                 <div className="fr-mt-4w">
                   Une interface de gestion sera prochainement attribu&eacute;e &agrave; votre responsable via son espace Structure,
-                  elle permettra d&rsquo;administrer les lieux d&rsquo;activit&eacute; Conseiller num&eacute;rique France Services cl&eacute;s en main.
+                  elle permettra d&rsquo;administrer les lieux d&rsquo;activit&eacute; Conseiller num&eacute;rique cl&eacute;s en main.
                 </div>
               </div>
               <div className="centre">

@@ -47,7 +47,7 @@ function ValidationAccount() {
           <div className="fr-col-3"></div>
           <div className="fr-col-sm-10 fr-col-md-6 processText">
             <p>
-              Rendez-vous sur la boîte de r&eacute;ception de votre mail Conseiller num&eacute;rique France Services,
+              Rendez-vous sur la boîte de r&eacute;ception de votre mail Conseiller num&eacute;rique,
               et cliquez sur le lien de connexion &agrave; l&rsquo;espace Coop qui vous a &eacute;t&eacute; envoy&eacute;.
             </p>
           </div>
