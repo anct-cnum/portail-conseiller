@@ -46,7 +46,7 @@ jobs:
           key: node_modules-${{ hashFiles('yarn.lock') }}
           path: node_modules
       - name: Override .env
-        uses: SpicyPizza/create-envfile@v1
+        uses: SpicyPizza/create-envfile@v2.0
         with:
           envkey_REACT_APP_STRATEGYAUTH: "local"
           envkey_REACT_APP_VERSION: "1.2"
