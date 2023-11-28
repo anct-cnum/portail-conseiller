@@ -26,7 +26,7 @@ jobs:
     - name: Install modules
       run: yarn
     - name: Override .env
-      uses: SpicyPizza/create-envfile@v1
+      uses: SpicyPizza/create-envfile@v2.0
       with:
         envkey_REACT_APP_STRATEGYAUTH: "local"
         envkey_REACT_APP_VERSION: "1.2"
