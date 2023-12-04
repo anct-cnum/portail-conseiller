@@ -22,7 +22,6 @@ function Login() {
   const [submitted, setSubmitted] = useState(false);
   const [showModalResetPassword, setShowModalResetPassword] = useState(false);
   const { username, password } = inputs;
-  const loggingIn = useSelector(state => state.authentication.loggingIn);
   const loading = useSelector(state => state.authentication.loading);
   const loadingCheckEmail = useSelector(state => state.checkMotDePasseOublie?.loading);
   const loadingSendEmail = useSelector(state => state.motDePasseOublie?.loading);
@@ -190,7 +189,7 @@ function Login() {
                 style={{ background: 'white' }}>
                 Connexion
               </button>
-              <br />{loggingIn && <span style={{ color: 'black' }}>Connexion en cours...</span>}
+              <br />{loading && <span style={{ color: 'black' }}>Connexion en cours...</span>}
             </div>
             <div>
               {error && <span className="invalid">{
