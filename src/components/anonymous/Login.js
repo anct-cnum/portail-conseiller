@@ -50,7 +50,7 @@ function Login() {
   }
 
   useEffect(() => {
-    if (error === 'Forbidden: Reset password') {
+    if (error?.resetPasswordCnil) {
       if (hiddenEmail) {
         setShowModalResetPassword(true);
       } else {

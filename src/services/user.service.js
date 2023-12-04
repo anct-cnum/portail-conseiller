@@ -45,6 +45,9 @@ function handleResponse(response) {
         logout();
         return Promise.reject({ error: 'Identifiants incorrects' });
       }
+      if (data?.data?.resetPasswordCnil && data.message === 'Reset password') {
+        return Promise.reject({ resetPasswordCnil: true });
+      }
       const error = (data && data.message) || response.statusText;
       return Promise.reject(error);
     }
