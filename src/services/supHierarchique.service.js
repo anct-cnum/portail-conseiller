@@ -16,7 +16,7 @@ function createSupHierarchique(supHierarchique, idConseiller) {
     })
   };
 
-  return fetch(`${apiUrlRoot}/conseillers/${idConseiller}`, requestOptions).then(handleResponse);
+  return fetch(`${apiUrlRoot}/conseillers/superieur_hierarchique/${idConseiller}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
