@@ -29,16 +29,22 @@ const ModalResetPassword = ({ setShowModalResetPassword, hiddenEmail, username }
               <div className="fr-modal__content">
                 <h1 id="fr-modal-title-modal-1" className="fr-modal__title">
                   <span className="fr-icon-arrow-right-line fr-icon--lg"></span>
-                  Vos mots de passe ont été réinitialisés
+                  R&eacute;initialiser votre mot de passe
                 </h1>
                 <p>
-                  Afin de respecter les nouvelles règles en matière de sécurité,
-                  les mots de passe de votre bôite mail, votre compte mattermost ainsi que votre compte COOP ont étaient réinitialisés.
-                  Vous allez recevoir un message sur votre adresse e-mail personnelle (celle qui
-                  vous a servi à candidater au dispositif Conseiller numérique) qui vous permettra
-                  de réinitialiser votre mot de passe.
+                  Conform&eacute;ment aux nouvelles r&egrave;gles de s&eacute;curit&eacute;
+                  des mots de passe impos&eacute;es par la CNIL, votre mot de passe &agrave;
+                  l&rsquo;espace Coop &agrave; &eacute;t&eacute; r&eacute;initialis&eacute;.
+                  Vous allez recevoir par mail, un lien qui vous permettra de d&eacute;finir
+                  un nouveau mot de passe.
                 </p>
-                <div className="fr-grid-row">
+                <strong>
+                  Important&nbsp;:&nbsp;Nous vous rappelons, que votre identifiant et votre mot
+                  de passe Coop, vous permettent de vous connecter &agrave; votre bo&icirc;te mail
+                  professionnelle, &agrave; l&rsquo;outil de discutions Mattermost. Ils ont
+                  &eacute;t&eacute; de ce fait r&eacute;initialis&eacute;.
+                </strong>
+                <div className="fr-grid-row fr-mt-3w">
                   <span>Votre adresse e-mail personnelle&nbsp;:&nbsp;</span>
                   <strong style={{ textAlign: 'center', fontSize: '1.2rem' }}>{hiddenEmail}</strong>
                 </div>

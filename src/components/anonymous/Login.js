@@ -30,6 +30,7 @@ function Login() {
   const errorEmail = useSelector(state => state.motDePasseOublie?.error);
   const successEmail = useSelector(state => state.motDePasseOublie?.success);
   const hiddenEmail = useSelector(state => state.checkMotDePasseOublie?.hiddenEmail);
+  const errorCheckEmail = useSelector(state => state.checkMotDePasseOublie?.error);
 
   useEffect(() => {
     dispatch(userActions.logout());
@@ -49,7 +50,7 @@ function Login() {
   }
 
   useEffect(() => {
-    if (error === 'Reset password') {
+    if (error === 'Forbidden: Reset password') {
       if (hiddenEmail) {
         setShowModalResetPassword(true);
       } else {
@@ -80,6 +81,13 @@ function Login() {
         <FlashMessage duration={5000}>
           <p className="fr-label flashBag invalid">
             {errorEmail === 'User not found' ? <>Cette adresse e-mail n&rsquo;existe pas</> : errorEmail}
+          </p>
+        </FlashMessage>
+      }
+      {errorCheckEmail &&
+        <FlashMessage duration={5000}>
+          <p className="fr-label flashBag invalid">
+            {errorCheckEmail === 'User not found' ? <>Cette adresse e-mail n&rsquo;existe pas</> : errorCheckEmail}
           </p>
         </FlashMessage>
       }
