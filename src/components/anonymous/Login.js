@@ -76,17 +76,10 @@ function Login() {
           </p>
         </FlashMessage>
       }
-      {errorEmail &&
+      {(errorEmail || errorCheckEmail) &&
         <FlashMessage duration={5000}>
           <p className="fr-label flashBag invalid">
-            {errorEmail === 'User not found' ? <>Cette adresse e-mail n&rsquo;existe pas</> : errorEmail}
-          </p>
-        </FlashMessage>
-      }
-      {errorCheckEmail &&
-        <FlashMessage duration={5000}>
-          <p className="fr-label flashBag invalid">
-            {errorCheckEmail === 'User not found' ? <>Cette adresse e-mail n&rsquo;existe pas</> : errorCheckEmail}
+            {errorEmail || errorCheckEmail}
           </p>
         </FlashMessage>
       }
