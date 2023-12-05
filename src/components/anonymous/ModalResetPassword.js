@@ -20,7 +20,7 @@ const ModalResetPassword = ({ setShowModalResetPassword, hiddenEmail, username }
               <div className="fr-modal__header">
                 <button
                   className="fr-btn--close fr-btn"
-                  title="Fermer la fenêtre modale"
+                  title="Fermer la fen&ecirc;tre modale"
                   aria-controls="fr-modal-1"
                   onClick={() => setShowModalResetPassword(false)}>
                   Fermer
