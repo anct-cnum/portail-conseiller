@@ -45,7 +45,7 @@ const ModalResetPassword = ({ setShowModalResetPassword, hiddenEmail, username }
                   &eacute;t&eacute; de ce fait r&eacute;initialis&eacute;.
                 </strong>
                 <div className="fr-grid-row fr-mt-3w">
-                  <span>Adresse mail destinataire du lien de r&eacute;initialisation&nbsp;:&nbsp;</span>
+                  <span>Adresse mail destinatrice du lien de r&eacute;initialisation&nbsp;:&nbsp;</span>
                   <strong>{hiddenEmail}</strong>
                 </div>
               </div>
