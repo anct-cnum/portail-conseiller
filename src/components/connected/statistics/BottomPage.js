@@ -247,7 +247,7 @@ function BottomPage({ donneesStats, print, type }) {
           <div className="fr-col-12 hr-md-hide dont-print">
             <hr className="fr-my-6w"/>
           </div>
-          <div data-tooltip-id="infobulle-stats" className="dont-print" >
+          <div data-tooltip-id="infobulle-stats" className="fr-col-md-4 dont-print" >
             <ElementHighcharts donneesStats={statsTempsAccompagnements} variablesGraphique={pieGraphiqueTemps} print={print}/>
           </div>
           <Tooltip className="infobulle tooltip-temps" id="infobulle-stats" arrowColor="white">
@@ -293,17 +293,16 @@ function BottomPage({ donneesStats, print, type }) {
         }
         <ElementHighcharts donneesStats={statsDurees} variablesGraphique={columnGraphique} print={true}/>
       </div>
-
+      {statsReorientations?.length > 0 &&
+        <div className="fr-col-11"><hr className="fr-my-6w"/></div>
+      }
       <div className={type === 'conseiller' ?
-        'fr-col-12 fr-col-offset-md-4 fr-col-md-8 graphique-responsive-lg reorientation-print-conseiller' :
-        'fr-col-12 fr-col-offset-md-4 fr-col-md-8 graphique-responsive-lg reorientation-print'}
+        'fr-col-12 fr-col-offset-md-3 fr-col-md-8 graphique-responsive-lg reorientation-print-conseiller' :
+        'fr-col-12 fr-col-offset-md-3 fr-col-md-8 graphique-responsive-lg reorientation-print'}
       >
         {statsReorientations?.length > 0 &&
-          <>
-            <hr className="fr-my-6w"/>
-            <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientations}
-              listeAutres={listeAutresReorientations} print={print}/>
-          </>
+          <ElementHighcharts donneesStats={statsReorientations} variablesGraphique={graphiqueReorientations}
+            listeAutres={listeAutresReorientations} print={print}/>
         }
         <div className="fr-m-no-reorientation"></div>
       </div>
