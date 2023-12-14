@@ -71,9 +71,9 @@ function ForgottenPassword({ match = null }) {
     setInputsPassword(inputsPassword => ({ ...inputsPassword, [name]: value }));
   }
 
-  //Contrainte Mattermost : Must be at least 8 characters long and less than 200, have at least one lower char, one upper char, one digit and one special char
+  //Contrainte Mattermost : Must be at least 12 characters long and less than 200, have at least one lower char, one upper char, one digit and one special char
   //Source Regex : https://stackoverflow.com/questions/23699919/regular-expression-for-password-complexity
-  const checkComplexity = new RegExp(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,199})/);
+  const checkComplexity = new RegExp(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{12,199})/);
 
   function handleSubmitPassword() {
     setSubmittedPassword(true);
@@ -326,7 +326,7 @@ function ForgottenPassword({ match = null }) {
 
                         <label className="fr-label">
                           Veuillez choisir votre mot de passe.
-                          <br />Celui-ci doit contenir au moins 8 caract&egrave;res dont une minuscule, une majuscule, un chiffre et un
+                          <br />Celui-ci doit contenir au moins 12 caract&egrave;res dont une minuscule, une majuscule, un chiffre et un
                           caract&egrave;re sp&eacute;cial(!@#$%^&amp;*)
 
                           <input name="password" type="password" value={password}

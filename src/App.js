@@ -25,6 +25,7 @@ function App() {
   let pdfLoading = useSelector(state => state.conseiller?.loadingPDF);
   let loadingCSV = useSelector(state => state.conseiller?.loadingCSV);
   let loadingExcel = useSelector(state => state.conseiller?.loadingExcel);
+  const loadingSendEmail = useSelector(state => state.motDePasseOublie?.loading);
   let downloadingExportCnfs = useSelector(state => state.conseiller?.downloadingExportCnfs);
   const loadingHistorique = useSelector(state => state.historiqueCras?.loading);
   const loadingPermanence = useSelector(state => state.permanence?.loading);
@@ -44,7 +45,7 @@ function App() {
   return (
     <div className="App">
       { (statsDataLoading === true || pdfLoading === true || loadingCSV === true || loadingExcel === true ||
-        downloadingExportCnfs === true || loadingHistorique === true || loadingPermanence === true || uploadingCV === true) &&
+        downloadingExportCnfs === true || loadingHistorique === true || loadingPermanence === true || uploadingCV === true || loadingSendEmail === true) &&
         <div className="wrapperModal"></div>
       }
       <Router history={history}>

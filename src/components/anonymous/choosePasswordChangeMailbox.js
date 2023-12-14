@@ -37,9 +37,9 @@ function ChoosePasswordMailBox({ match }) {
     setInputs(inputs => ({ ...inputs, [name]: value }));
   }
 
-  //Contrainte Mattermost : Must be at least 8 characters long and less than 200, have at least one lower char, one upper char, one digit and one special char
+  //Contrainte Mattermost : Must be at least 12 characters long and less than 200, have at least one lower char, one upper char, one digit and one special char
   //Source Regex : https://stackoverflow.com/questions/23699919/regular-expression-for-password-complexity
-  const checkComplexity = new RegExp(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,199})/);
+  const checkComplexity = new RegExp(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{12,199})/);
 
   function handleSubmit() {
     setSubmitted(true);
@@ -150,7 +150,7 @@ function ChoosePasswordMailBox({ match }) {
                         <p className="fr-label fr-mb-5v fr-mb-12v">Veuillez &eacute;crire votre mot de passe.</p>
 
                         <label className="fr-label">
-                          Celui-ci doit contenir au moins 8 caract&egrave;res dont une minuscule, une majuscule, un chiffre et un caract&egrave;re
+                          Celui-ci doit contenir au moins 12 caract&egrave;res dont une minuscule, une majuscule, un chiffre et un caract&egrave;re
                           sp&eacute;cial(!@#$%^&amp;*)
                         </label>
                         <input name="password" type="password" value={password}

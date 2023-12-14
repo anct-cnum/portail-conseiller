@@ -34,7 +34,7 @@ function ChoosePasswordHub({ match }) {
     setInputs(inputs => ({ ...inputs, [name]: value }));
   }
 
-  const checkComplexity = new RegExp(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,199})/);
+  const checkComplexity = new RegExp(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{12,199})/);
 
   function handleSubmit() {
     setSubmitted(true);
@@ -102,7 +102,7 @@ function ChoosePasswordHub({ match }) {
                           <label className="fr-label">
                             Veuillez choisir votre mot de passe.
                             <br />
-                            Celui-ci doit contenir au moins 8 caract&egrave;res dont une minuscule, une majuscule, un chiffre et un caract&egrave;re
+                            Celui-ci doit contenir au moins 12 caract&egrave;res dont une minuscule, une majuscule, un chiffre et un caract&egrave;re
                             sp&eacute;cial(!@#$%^&amp;*)
 
                             <input name="password" type="password" value={password}
