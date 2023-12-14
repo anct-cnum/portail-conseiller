@@ -35,7 +35,7 @@ function Header({ linkAccount, printClass }) {
           <div className="fr-header__body-row">
             <div className="fr-header__brand fr-enlarge-link">
               <div className="fr-header__brand-top">
-                <div className="fr-header__logo">
+                <div className="fr-header__logo" style={{ paddingTop: '0rem', paddingBottom: '0.5rem' }}>
                   <img src="/logos/logo-conseiller-numerique-nb.svg" className="logo-conseiller-numerique"
                     alt="logo Conseiller Num&eacute;rique" />
                 </div>
