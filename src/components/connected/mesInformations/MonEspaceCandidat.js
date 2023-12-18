@@ -22,13 +22,15 @@ function MonEspaceCandidat() {
   const loadingCandidat = useSelector(state => state.candidat?.loading);
   const loadingConseiller = useSelector(state => state.conseiller?.loading);
   const loadingAdresses = useSelector(state => state.candidat?.loadingAdresses);
+  const loadingDeleteCv = useSelector(state => state.candidat?.loadingDeleteCv);
+  const loadingDownloadCv = useSelector(state => state.candidat?.downloading);
 
   const [showModal, setShowModal] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   return (
     <>
-      <ModalUpdateForm form={candidat} showModal={showModal} setShowModal={setShowModal} formOrigin="espaceCandidat"/>
+      <ModalUpdateForm form={candidat} showModal={showModal} setShowModal={setShowModal} formOrigin="espaceCandidat" />
       <div className="mon-espace-candidat">
         <div className="fr-container">
           <div className="spinnerCustom">
@@ -37,7 +39,8 @@ function MonEspaceCandidat() {
               color="#00BFFF"
               height={100}
               width={100}
-              visible={ uploading === true || loadingCandidat === true || loadingConseiller === true || loadingAdresses === true }
+              visible={uploading === true || loadingCandidat === true || loadingConseiller === true || loadingAdresses === true ||
+                loadingDeleteCv === true || loadingDownloadCv === true}
             />
           </div>
 
@@ -83,26 +86,32 @@ function MonEspaceCandidat() {
               }
             </div>
             <div className="fr-col-12">
-              <MaDisponibilite/>
-              <hr className="fr-my-6w"/>
+              <MaDisponibilite />
+              <hr className="fr-my-6w" />
             </div>
 
             <div className="fr-col-12 fr-col-md-6">
-              <MaZoneGeographique setSubmitted={setSubmitted} submitted={submitted} setShowModal={setShowModal}/>
+              <MaZoneGeographique setSubmitted={setSubmitted} submitted={submitted} setShowModal={setShowModal} />
             </div>
 
             <div className="fr-col-12 fr-col-offset-md-1 fr-col-md-5">
-              <MonCurriculumVitae isUploaded={isUploaded} isDeleted={isDeleted} uploading={uploading}/>
+              <MonCurriculumVitae
+                isUploaded={isUploaded}
+                isDeleted={isDeleted}
+                uploading={uploading}
+                loadingDeleteCv={loadingDeleteCv}
+                loadingDownloadCv={loadingDownloadCv}
+              />
             </div>
 
             <div className="fr-col-12">
-              <hr/>
-              <MonPix/>
+              <hr />
+              <MonPix />
             </div>
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }

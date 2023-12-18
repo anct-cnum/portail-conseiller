@@ -3,18 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import FlashMessage from 'react-flash-message';
 import { useDropzone } from 'react-dropzone';
 import PropTypes from 'prop-types';
-import Spinner from 'react-loader-spinner';
-
 import { candidatActions, conseillerActions } from '../../../actions';
 
-function MonCurriculumVitae({ isUploaded, isDeleted, uploading }) {
+function MonCurriculumVitae({ isUploaded, isDeleted, uploading, loadingDeleteCv, loadingDownloadCv }) {
   const dispatch = useDispatch();
 
   const user = useSelector(state => state?.authentication?.user?.user);
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const isDownloaded = useSelector(state => state.candidat?.isDownloaded);
-  const loadingDeleteCv = useSelector(state => state.candidat?.loadingDeleteCv);
-  const loadingDownloadCv = useSelector(state => state.candidat?.downloading);
   const downloadError = useSelector(state => state.candidat?.downloadError);
   const uploadError = useSelector(state => state.candidat?.uploadError);
   const blob = useSelector(state => state.candidat?.blob);
@@ -70,15 +66,6 @@ function MonCurriculumVitae({ isUploaded, isDeleted, uploading }) {
 
   return (
     <>
-      <div className="spinnerCustom">
-        <Spinner
-          type="Oval"
-          color="#00BFFF"
-          height={100}
-          width={100}
-          visible={loadingDeleteCv === true || loadingDownloadCv === true}
-        />
-      </div>
       <h2 className="sous-titre fr-mb-6w">Mon curriculum vit&aelig;</h2>
       {(!isUploaded &&
         (typeof uploadError === 'string' && uploadError?.length > 0) ||
@@ -143,5 +130,7 @@ MonCurriculumVitae.propTypes = {
   isUploaded: PropTypes.bool,
   isDeleted: PropTypes.bool,
   uploading: PropTypes.bool,
+  loadingDeleteCv: PropTypes.bool,
+  loadingDownloadCv: PropTypes.bool,
 };
 export default MonCurriculumVitae;
