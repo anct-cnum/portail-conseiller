@@ -30,7 +30,6 @@ function MonCurriculumVitae({ isUploaded, isDeleted, uploading, loadingDeleteCv,
     if (acceptedFiles.length > 0) {
       const formData = new FormData();
       formData.append('file', acceptedFiles[0], acceptedFiles[0].name);
-      dispatch(candidatActions.initBoolean());
       dispatch(candidatActions.uploadCurriculumVitae(formData));
     }
   }, []);
