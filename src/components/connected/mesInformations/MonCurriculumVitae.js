@@ -3,10 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import FlashMessage from 'react-flash-message';
 import { useDropzone } from 'react-dropzone';
 import PropTypes from 'prop-types';
-
 import { candidatActions, conseillerActions } from '../../../actions';
 
-function MonCurriculumVitae({ isUploaded, isDeleted, uploading }) {
+function MonCurriculumVitae({ isUploaded, isDeleted, uploading, loadingDeleteCv, loadingDownloadCv }) {
   const dispatch = useDispatch();
 
   const user = useSelector(state => state?.authentication?.user?.user);
@@ -31,7 +30,6 @@ function MonCurriculumVitae({ isUploaded, isDeleted, uploading }) {
     if (acceptedFiles.length > 0) {
       const formData = new FormData();
       formData.append('file', acceptedFiles[0], acceptedFiles[0].name);
-      dispatch(candidatActions.initBoolean());
       dispatch(candidatActions.uploadCurriculumVitae(formData));
     }
   }, []);
@@ -40,13 +38,11 @@ function MonCurriculumVitae({ isUploaded, isDeleted, uploading }) {
     { onDrop, accept: '.pdf', maxFiles: 1, maxSize: process.env.REACT_APP_CV_FILE_MAX_SIZE });
 
   const downloadCV = () => {
-    dispatch(candidatActions.initBoolean());
     dispatch(candidatActions.getCurriculumVitae(user?.entity?.$id, conseiller));
   };
 
   const deleteCV = () => {
     if (conseiller?.cv?.file) {
-      dispatch(candidatActions.initBoolean());
       dispatch(candidatActions.deleteCurriculumVitae(user?.entity?.$id, conseiller));
     }
   };
@@ -70,7 +66,7 @@ function MonCurriculumVitae({ isUploaded, isDeleted, uploading }) {
   return (
     <>
       <h2 className="sous-titre fr-mb-6w">Mon curriculum vit&aelig;</h2>
-      { (!isUploaded &&
+      {(!isUploaded &&
         (typeof uploadError === 'string' && uploadError?.length > 0) ||
         (typeof downloadError === 'string' && downloadError?.length > 0)) &&
         <FlashMessage duration={10000}>
@@ -90,7 +86,7 @@ function MonCurriculumVitae({ isUploaded, isDeleted, uploading }) {
               <span>D&eacute;posez votre CV ici ...</span> :
               <>
                 <i className="ri-upload-2-line icone-upload"></i>
-                <span>Faites glisser votre CV ou cliquez <br/>pour le s&eacute;lectionner (format PDF)</span>
+                <span>Faites glisser votre CV ou cliquez <br />pour le s&eacute;lectionner (format PDF)</span>
               </>
             }
           </>
@@ -109,14 +105,14 @@ function MonCurriculumVitae({ isUploaded, isDeleted, uploading }) {
       {conseiller?.cv &&
         <>
           <div className="text-cv fr-mb-3w">
-            Voir ou t&eacute;l&eacute;charger mon CV :<br/>
-            <p className="bouton-download" onClick={downloadCV}>
+            Voir ou t&eacute;l&eacute;charger mon CV :<br />
+            <p className="bouton-download" onClick={downloadCV} disabled={loadingDownloadCv}>
               <i className="ri-file-download-line icone" aria-hidden="true" style={{ fontSize: '1.8em' }}></i> {conseiller?.cv?.file}
             </p>
           </div>
           <div className="text-cv fr-mb-3w">
             Supprimer mon CV :
-            <p className="bouton-delete" onClick={deleteCV}>
+            <p className="bouton-delete" disabled={loadingDeleteCv} onClick={deleteCV}>
               <i className="ri-delete-bin-6-line icone" aria-hidden="true" style={{ fontSize: '1.5em' }}></i> Supprimer
             </p>
           </div>
@@ -133,5 +129,7 @@ MonCurriculumVitae.propTypes = {
   isUploaded: PropTypes.bool,
   isDeleted: PropTypes.bool,
   uploading: PropTypes.bool,
+  loadingDeleteCv: PropTypes.bool,
+  loadingDownloadCv: PropTypes.bool,
 };
 export default MonCurriculumVitae;
