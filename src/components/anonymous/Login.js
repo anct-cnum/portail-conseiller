@@ -2,8 +2,10 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../Footer';
-
+import FlashMessage from 'react-flash-message';
 import { userActions } from '../../actions';
+import ModalResetPassword from './ModalResetPassword';
+import Spinner from 'react-loader-spinner';
 
 function Login() {
 
@@ -18,10 +20,16 @@ function Login() {
   const role = new URLSearchParams(location.search).get('role');
   const urlTableauDePilotage = process.env.REACT_APP_TABLEAU_DE_PILOTAGE_URL;
   const [submitted, setSubmitted] = useState(false);
+  const [showModalResetPassword, setShowModalResetPassword] = useState(false);
   const { username, password } = inputs;
-  const loggingIn = useSelector(state => state.authentication.loggingIn);
+  const loading = useSelector(state => state.authentication.loading);
+  const loadingCheckEmail = useSelector(state => state.checkMotDePasseOublie?.loading);
+  const loadingSendEmail = useSelector(state => state.motDePasseOublie?.loading);
   const error = useSelector(state => state.authentication.error);
-
+  const errorEmail = useSelector(state => state.motDePasseOublie?.error);
+  const successEmail = useSelector(state => state.motDePasseOublie?.success);
+  const hiddenEmail = useSelector(state => state.checkMotDePasseOublie?.hiddenEmail);
+  const errorCheckEmail = useSelector(state => state.checkMotDePasseOublie?.error);
 
   useEffect(() => {
     dispatch(userActions.logout());
@@ -40,8 +48,44 @@ function Login() {
     }
   }
 
+  useEffect(() => {
+    if (error?.resetPasswordCnil) {
+      if (hiddenEmail) {
+        setShowModalResetPassword(true);
+      } else {
+        dispatch(userActions.checkForgottenPasswordEmail(username));
+      }
+    }
+  }, [error, hiddenEmail]);
+
   return (
     <div className="Login">
+      <div className="spinnerCustom">
+        <Spinner
+          type="Oval"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          visible={loadingSendEmail}
+        />
+      </div>
+      {successEmail &&
+        <FlashMessage duration={5000}>
+          <p className="fr-label flashBag">
+            Un e-mail vous a &eacute;t&eacute; envoy&eacute;
+          </p>
+        </FlashMessage>
+      }
+      {(errorEmail || errorCheckEmail) &&
+        <FlashMessage duration={5000}>
+          <p className="fr-label flashBag invalid">
+            {errorEmail || errorCheckEmail}
+          </p>
+        </FlashMessage>
+      }
+      {showModalResetPassword &&
+        <ModalResetPassword username={username} hiddenEmail={hiddenEmail} setShowModalResetPassword={setShowModalResetPassword} />
+      }
       {role === 'structure' &&
         <dialog aria-labelledby="fr-modal-confirm-siret" role="dialog" id="fr-modal-confirm-siret" className="fr-modal modalOpened">
           <div className="fr-container fr-container--fluid fr-container-md">
@@ -87,19 +131,19 @@ function Login() {
               <img
                 src="/logos/logo-conseiller-numerique-nb.svg"
                 alt="logo Conseiller Num&eacute;rique"
-                className="logoCnfs"/>
+                className="logoCnfs" />
               <h1 className="titrage fr-mt-xs-3w fr-mt-md-9w fr-mb-6w">
-                { role === 'admin' &&
-                  <>Administration<br className="fr-mb-2w"/></>
+                {role === 'admin' &&
+                  <>Administration<br className="fr-mb-2w" /></>
                 }
                 Espace Coop
               </h1>
             </div>
-            { role !== 'admin' &&
+            {role !== 'admin' &&
               <>
                 <p className="fr-service__tagline labNetworkCnfs">Le r&eacute;seau des conseillers num&eacute;riques.</p>
                 <div className="fr-my-9w personas1">
-                  <img src="/logos/personas-hexagones.svg" width="100%" alt="Avatars conseillers"/>
+                  <img src="/logos/personas-hexagones.svg" width="100%" alt="Avatars conseillers" />
                 </div>
               </>
             }
@@ -114,7 +158,7 @@ function Login() {
                 onChange={handleChange}
                 className={`fr-input fr-input-custom ${submitted && !password ? ' is-invalid' : ''}`} />
               {submitted && !username &&
-                  <div className="invalid">Identifiant requis</div>
+                <div className="invalid">Identifiant requis</div>
               }
             </div>
             <div className="fr-px-2w fr-mb-4w">
@@ -127,12 +171,18 @@ function Login() {
                 onChange={handleChange}
                 className={`fr-input fr-input-custom ${submitted && !password ? ' is-invalid' : ''}`} />
               {submitted && !password &&
-                  <div className="invalid">Mot de passe requis</div>
+                <div className="invalid">Mot de passe requis</div>
               }
             </div>
             <div>
-              <button className="fr-btn fr-text--bold big-btn" onClick={handleSubmit} style={{ background: 'white' }}>Connexion</button>
-              <br/>{loggingIn && <span style={{ color: 'black' }}>Connexion en cours...</span>}
+              <button
+                className="fr-btn fr-text--bold big-btn"
+                onClick={handleSubmit}
+                disabled={loading || loadingCheckEmail}
+                style={{ background: 'white' }}>
+                Connexion
+              </button>
+              <br />{loading && <span style={{ color: 'black' }}>Connexion en cours...</span>}
             </div>
             <div>
               {error && <span className="invalid">{
@@ -142,13 +192,13 @@ function Login() {
                       href={process.env.REACT_APP_AIDE_URL + `/article/quand-vais-je-recevoir-mon-acces-a-lespace-coop-1acxbw6/`}
                       target="blank"
                       rel="noopener noreferrer">
-                        Merci d&rsquo;activer votre compte coop <span className="fr-fi-external-link-line fr-link--icon"></span>
+                      Merci d&rsquo;activer votre compte coop <span className="fr-fi-external-link-line fr-link--icon"></span>
                     </a>
                   </Fragment> :
                   error.error
               }</span>}
             </div>
-            { role !== 'admin' &&
+            {role !== 'admin' &&
               <div className="mot-de-passe-oublie">
                 <Link to="/mot-de-passe-oublie" title="Mot de passe oubli&eacute; ?" >Mot de passe oubli&eacute; ?</Link>
               </div>
@@ -156,18 +206,18 @@ function Login() {
           </div>
 
         </div>
-        { role !== 'admin' &&
+        {role !== 'admin' &&
           <div className="fr-grid-row fr-pb-12w personas2" style={{ textAlign: 'center' }}>
             <div className="fr-col-12">
               <div className="mot-de-passe-oublie-sm">
                 <Link to="/mot-de-passe-oublie" title="Mot de passe oubli&eacute; ?">Mot de passe oubli&eacute; ?</Link>
               </div>
-              <img src="/logos/personas-hexagones.svg" width="90%" alt="Avatars conseillers"/>
+              <img src="/logos/personas-hexagones.svg" width="90%" alt="Avatars conseillers" />
             </div>
           </div>
         }
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 }

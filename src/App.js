@@ -25,6 +25,7 @@ function App() {
   let pdfLoading = useSelector(state => state.conseiller?.loadingPDF);
   let loadingCSV = useSelector(state => state.conseiller?.loadingCSV);
   let loadingExcel = useSelector(state => state.conseiller?.loadingExcel);
+  const loadingSendEmail = useSelector(state => state.motDePasseOublie?.loading);
   let downloadingExportCnfs = useSelector(state => state.conseiller?.downloadingExportCnfs);
   const loadingHistorique = useSelector(state => state.historiqueCras?.loading);
   const loadingPermanence = useSelector(state => state.permanence?.loading);
@@ -32,6 +33,8 @@ function App() {
   const user = useSelector(state => state?.authentication?.user?.user);
   const reloadList = useSelector(state => state.permanence?.reloadList);
   const conseiller = useSelector(state => state.conseiller?.conseiller);
+  const loadingDeleteCv = useSelector(state => state.candidat?.loadingDeleteCv);
+  const loadingDownloadCv = useSelector(state => state.candidat?.downloading);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -44,7 +47,8 @@ function App() {
   return (
     <div className="App">
       { (statsDataLoading === true || pdfLoading === true || loadingCSV === true || loadingExcel === true ||
-        downloadingExportCnfs === true || loadingHistorique === true || loadingPermanence === true || uploadingCV === true) &&
+        downloadingExportCnfs === true || loadingHistorique === true || loadingPermanence === true || uploadingCV === true || loadingSendEmail === true ||
+        loadingDeleteCv === true || loadingDownloadCv === true) &&
         <div className="wrapperModal"></div>
       }
       <Router history={history}>
