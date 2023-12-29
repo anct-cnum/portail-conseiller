@@ -6,6 +6,7 @@ import FlashMessage from 'react-flash-message';
 import { userActions } from '../../actions';
 import ModalResetPassword from './ModalResetPassword';
 import Spinner from 'react-loader-spinner';
+import ModalVerifyCode from './ModalVerifyCode';
 
 function Login() {
 
@@ -21,6 +22,7 @@ function Login() {
   const urlTableauDePilotage = process.env.REACT_APP_TABLEAU_DE_PILOTAGE_URL;
   const [submitted, setSubmitted] = useState(false);
   const [showModalResetPassword, setShowModalResetPassword] = useState(false);
+  const [showModalVerifyCode, setShowModalVerifyCode] = useState(false);
   const { username, password } = inputs;
   const loading = useSelector(state => state.authentication.loading);
   const loadingCheckEmail = useSelector(state => state.checkMotDePasseOublie?.loading);
@@ -55,6 +57,10 @@ function Login() {
       } else {
         dispatch(userActions.checkForgottenPasswordEmail(username));
       }
+    } else if (error?.attemptFail) {
+
+    } else if (error?.openPopinVerifyCode) {
+      setShowModalVerifyCode(true);
     }
   }, [error, hiddenEmail]);
 
@@ -85,6 +91,9 @@ function Login() {
       }
       {showModalResetPassword &&
         <ModalResetPassword username={username} hiddenEmail={hiddenEmail} setShowModalResetPassword={setShowModalResetPassword} />
+      }
+      {showModalVerifyCode &&
+        <ModalVerifyCode setShowModalVerifyCode={setShowModalVerifyCode} email={username}/>
       }
       {role === 'structure' &&
         <dialog aria-labelledby="fr-modal-confirm-siret" role="dialog" id="fr-modal-confirm-siret" className="fr-modal modalOpened">

@@ -8,7 +8,8 @@ export const userActions = {
   verifyToken,
   checkForgottenPasswordEmail,
   forgottenPassword,
-  choosePasswordMailBox
+  choosePasswordMailBox,
+  verifyCode
 };
 
 function login(username, password, to) {
@@ -190,5 +191,30 @@ function choosePasswordMailBox(token, password) {
   }
   function failure(error) {
     return { type: 'CHOOSE_PASSWORD_MAILBOX_FAILURE', error };
+  }
+}
+
+function verifyCode(code, email) {
+  return dispatch => {
+    dispatch(request());
+    userService.verifyCode(code, email)
+    .then(
+      result => {
+        dispatch(success(result));
+      },
+      error => {
+        dispatch(failure(error));
+      }
+    );
+  };
+
+  function request() {
+    return { type: 'VERIFY_CODE_CONNEXION_REQUEST' };
+  }
+  function success(result) {
+    return { type: 'VERIFY_CODE_CONNEXION_SUCCESS', result };
+  }
+  function failure(error) {
+    return { type: 'VERIFY_CODE_CONNEXION_FAILURE', error };
   }
 }

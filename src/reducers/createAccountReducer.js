@@ -48,6 +48,23 @@ export default function authentication(state = {}, action) {
         changeMailboxMessageError: action.error,
         loadingChangeMailbox: false
       };
+    case 'VERIFY_CODE_CONNEXION_REQUEST':
+      return {
+        ...state,
+        verifyingCode: true,
+        codeVerified: false,
+      };
+    case 'VERIFY_CODE_CONNEXION_SUCCESS':
+      return {
+        ...state,
+        verifyingCode: false,
+        codeVerified: true,
+      };
+    case 'VERIFY_CODE_CONNEXION_FAILURE':
+      return {
+        ...state,
+        verifyingCode: false,
+      };
     default:
       return state;
   }

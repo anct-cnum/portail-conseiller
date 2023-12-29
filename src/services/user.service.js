@@ -5,7 +5,8 @@ export const userService = {
   verifyToken,
   checkForgottenPasswordEmail,
   sendForgottenPasswordEmail,
-  choosePasswordMailBox
+  choosePasswordMailBox,
+  verifyCode
 };
 
 function login(username, password) {
@@ -47,6 +48,12 @@ function handleResponse(response) {
       }
       if (data?.data?.resetPasswordCnil && data.message === 'RESET_PASSWORD_CNIL') {
         return Promise.reject({ resetPasswordCnil: true });
+      }
+      if (data?.data?.attemptFail && data.message === 'ERROR_ATTEMPT_PASSWORD') {
+        return Promise.reject({ attemptFail: data?.data?.attemptFail });
+      }
+      if (data?.data?.openPopinVerifyCode && data.message === 'PROCESS_LOGIN_UNBLOCKED') {
+        return Promise.reject({ openPopinVerifyCode: true });
       }
       const error = (data && data.message) || response.statusText;
       return Promise.reject(error);
@@ -160,5 +167,20 @@ function choosePasswordMailBox(token, password) {
   };
 
   let uri = `${apiUrlRoot}/users/changement-email-pro/${token}`;
+  return fetch(uri, requestOptions).then(handleResponse);
+}
+
+function verifyCode(code, email) {
+  const apiUrlRoot = process.env.REACT_APP_API;
+
+  const requestOptions = {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ 'code': code, 'email': email })
+  };
+
+  let uri = `${apiUrlRoot}/users/verify-code/`;
   return fetch(uri, requestOptions).then(handleResponse);
 }
