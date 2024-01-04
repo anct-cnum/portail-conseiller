@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { formInformationsActions } from '../../../actions/informations.actions';
+import { formInformationsActions } from '../../actions/informations.actions';
 import PropTypes from 'prop-types';
-import Header from '../../Header';
+import Header from '../Header';
 
 function EmailConfirmer({ match }) {
   const token = match.params.token;
