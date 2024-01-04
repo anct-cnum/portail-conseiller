@@ -6,7 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 const ModalVerifyCode = ({ setShowModalVerifyCode, email }) => {
   const dispatch = useDispatch();
   const [code, setCode] = useState('');
-  const authentication = useSelector(state => state.authentication);
+  const codeVerified = useSelector(state => state.createAccount?.codeVerified);
+  const errorVerifyingCode = useSelector(state => state.createAccount?.errorVerifyingCode);
+
   function handleSendCode() {
     dispatch(userActions.verifyCode(code, email));
   }
@@ -17,12 +19,11 @@ const ModalVerifyCode = ({ setShowModalVerifyCode, email }) => {
   }
 
   useEffect(() => {
-    if (authentication.codeVerified) {
+    if (codeVerified) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       setShowModalVerifyCode(false);
     }
-  }, [authentication]);
-
+  }, [codeVerified]);
 
   return (
     <dialog aria-labelledby="fr-modal-reset-password" role="dialog" id="fr-modal-reset-password" className="fr-modal modalOpened">
@@ -38,21 +39,26 @@ const ModalVerifyCode = ({ setShowModalVerifyCode, email }) => {
                   V&eacute;rification du compte conseiller
                 </h1>
                 <p>
-                  Conform&eacute;ment aux nouvelles r&egrave;gles de s&eacute;curit&eacute;
-                  des mots de passe impos&eacute;es par la CNIL, un code de v&eacute;rification
-                  vous a &eacute;t&eacute; envoy&eacute; sur votre adresse email de connexion.
+                  Conform&eacute;ment aux r&egrave;gles de s&eacute;curit&eacute; des mots de passe,
+                  un code de v&eacute;rification vous a &eacute;t&eacute; envoy&eacute; sur votre
+                  adresse email de connexion.
                   Merci de le renseigner ici.
                 </p>
 
                 <div className="fr-grid-row fr-mt-3w">
-                  <label className="fr-label code" htmlFor="code">Code de v&eacute;rification</label>
+                  <label className={`fr-label code ${errorVerifyingCode ? 'invalid' : ''}`} htmlFor="code">
+                    Code de v&eacute;rification
+                  </label>
                   <input
                     id="code"
                     name="code"
                     type="number"
                     value={code}
                     onChange={handleChange}
-                    className={`fr-input fr-input-custom`} />
+                    className={`fr-input fr-input-custom ${errorVerifyingCode ? ' fr-input--error' : ''}`} />
+                  {errorVerifyingCode &&
+                    <div className="invalid">{errorVerifyingCode}</div>
+                  }
                 </div>
               </div>
               <div className="fr-modal__footer">

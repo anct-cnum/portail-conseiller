@@ -49,7 +49,7 @@ function handleResponse(response) {
       if (data?.data?.resetPasswordCnil && data.message === 'RESET_PASSWORD_CNIL') {
         return Promise.reject({ resetPasswordCnil: true });
       }
-      if (data?.data?.attemptFail && data.message === 'ERROR_ATTEMPT_PASSWORD') {
+      if (data?.data?.attemptFail && (data.message === 'ERROR_ATTEMPT_LOGIN' || data.message === 'ERROR_ATTEMPT_LOGIN_BLOCKED')) {
         return Promise.reject({ attemptFail: data?.data?.attemptFail });
       }
       if (data?.data?.openPopinVerifyCode && data.message === 'PROCESS_LOGIN_UNBLOCKED') {
@@ -70,6 +70,10 @@ function handleResponse(response) {
     }
     // dans le cas où le conseiller recréer son email @conseiller-numerque.fr
     if (data?.messageCreationMail) {
+      return data;
+    }
+    // dans le cas où le conseiller recréer son email @conseiller-numerque.fr
+    if (data?.messageVerificationCode) {
       return data;
     }
     //login and verify token data !== conseiller
@@ -178,9 +182,11 @@ function verifyCode(code, email) {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ 'code': code, 'email': email })
+    body: JSON.stringify({
+      'code': code, 'email': email
+    })
   };
 
-  let uri = `${apiUrlRoot}/users/verify-code/`;
+  let uri = `${apiUrlRoot}/users/verify-code`;
   return fetch(uri, requestOptions).then(handleResponse);
 }
