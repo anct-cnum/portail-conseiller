@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 const ModalVerifyCode = ({ setShowModalVerifyCode, email }) => {
   const dispatch = useDispatch();
   const [code, setCode] = useState('');
-  const codeVerified = useSelector(state => state.createAccount?.codeVerified);
-  const errorVerifyingCode = useSelector(state => state.createAccount?.errorVerifyingCode);
+  const messageCodeVerified = useSelector(state => state.authentication?.messageCodeVerified);
+  const errorVerifyingCode = useSelector(state => state.authentication?.errorVerifyingCode);
 
   function handleSendCode() {
     dispatch(userActions.verifyCode(code, email));
@@ -19,11 +19,11 @@ const ModalVerifyCode = ({ setShowModalVerifyCode, email }) => {
   }
 
   useEffect(() => {
-    if (codeVerified) {
+    if (messageCodeVerified) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       setShowModalVerifyCode(false);
     }
-  }, [codeVerified]);
+  }, [messageCodeVerified]);
 
   return (
     <dialog aria-labelledby="fr-modal-reset-password" role="dialog" id="fr-modal-reset-password" className="fr-modal modalOpened">

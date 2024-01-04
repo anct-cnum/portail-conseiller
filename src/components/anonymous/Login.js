@@ -34,7 +34,7 @@ function Login() {
   const successEmail = useSelector(state => state.motDePasseOublie?.success);
   const hiddenEmail = useSelector(state => state.checkMotDePasseOublie?.hiddenEmail);
   const errorCheckEmail = useSelector(state => state.checkMotDePasseOublie?.error);
-  const messageCodeVerified = useSelector(state => state.createAccount?.messageCodeVerified);
+  const messageCodeVerified = useSelector(state => state.authentication?.messageCodeVerified);
 
   useEffect(() => {
     dispatch(userActions.logout());
