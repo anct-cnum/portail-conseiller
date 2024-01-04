@@ -52,7 +52,7 @@ export default function authentication(state = {}, action) {
       return {
         ...state,
         verifyingCode: true,
-        codeVerified: false,
+        messageCodeVerified: '',
         errorVerifyingCode: '',
       };
     case 'VERIFY_CODE_CONNEXION_SUCCESS':
