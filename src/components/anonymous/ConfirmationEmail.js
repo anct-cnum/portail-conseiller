@@ -30,7 +30,7 @@ function EmailConfirmer({ match }) {
               </div>
             }
             {tokenVerified === true &&
-              <p className="fr-label flashBag labelError" style={{ fontSize: '16px' }}>
+              <p className="fr-label flashBagError labelError" style={{ fontSize: '16px' }}>
                 La confirmation de votre e-mail a échoué, <br />
                 veuillez réessayer plus tard
               </p>
