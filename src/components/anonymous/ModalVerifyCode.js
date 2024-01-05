@@ -14,8 +14,7 @@ const ModalVerifyCode = ({ setShowModalVerifyCode, email }) => {
   }
 
   function handleChange(e) {
-    const { value } = e.target;
-    setCode(value);
+    setCode(e.target.value);
   }
 
   useEffect(() => {
@@ -41,7 +40,7 @@ const ModalVerifyCode = ({ setShowModalVerifyCode, email }) => {
                 <p>
                   Conform&eacute;ment aux r&egrave;gles de s&eacute;curit&eacute; des mots de passe,
                   un code de v&eacute;rification vous a &eacute;t&eacute; envoy&eacute; sur votre
-                  adresse email de connexion.
+                  adresse email personnelle.
                   Merci de le renseigner ici.
                 </p>
 

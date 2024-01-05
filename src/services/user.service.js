@@ -49,11 +49,11 @@ function handleResponse(response) {
       if (data?.data?.resetPasswordCnil && data.message === 'RESET_PASSWORD_CNIL') {
         return Promise.reject({ resetPasswordCnil: true });
       }
-      if (data?.data?.attemptFail && (data.message === 'ERROR_ATTEMPT_LOGIN' || data.message === 'ERROR_ATTEMPT_LOGIN_BLOCKED')) {
+      if (data?.data?.attemptFail && data.message === 'ERROR_ATTEMPT_LOGIN') {
         return Promise.reject({ attemptFail: data?.data?.attemptFail });
       }
       if (data?.data?.openPopinVerifyCode && data.message === 'PROCESS_LOGIN_UNBLOCKED') {
-        return Promise.reject({ openPopinVerifyCode: true });
+        return Promise.reject({ openPopinVerifyCode: data?.data?.openPopinVerifyCode });
       }
       const error = (data && data.message) || response.statusText;
       return Promise.reject(error);
@@ -72,7 +72,7 @@ function handleResponse(response) {
     if (data?.messageCreationMail) {
       return data;
     }
-    // dans le cas où le conseiller recréer son email @conseiller-numerque.fr
+    // dans le cas où le conseiller a bien rempli le formulaire de vérification
     if (data?.messageVerificationCode) {
       return data;
     }
@@ -183,7 +183,7 @@ function verifyCode(code, email) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-     code, email
+      code, email
     })
   };
 
