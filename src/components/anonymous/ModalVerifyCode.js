@@ -14,7 +14,7 @@ const ModalVerifyCode = ({ setShowModalVerifyCode, email }) => {
   }
 
   function handleChange(e) {
-    setCode(e.target.value);
+    setCode(e.target?.value);
   }
 
   useEffect(() => {
