@@ -6,6 +6,8 @@ import FlashMessage from 'react-flash-message';
 import { userActions } from '../../actions';
 import ModalResetPassword from './ModalResetPassword';
 import Spinner from 'react-loader-spinner';
+import ModalVerifyCode from './ModalVerifyCode';
+import Pluralize from 'react-pluralize';
 
 function Login() {
 
@@ -21,6 +23,8 @@ function Login() {
   const urlTableauDePilotage = process.env.REACT_APP_TABLEAU_DE_PILOTAGE_URL;
   const [submitted, setSubmitted] = useState(false);
   const [showModalResetPassword, setShowModalResetPassword] = useState(false);
+  const [showModalVerifyCode, setShowModalVerifyCode] = useState(false);
+  const [countAttempt, setCountAttempt] = useState(3);
   const { username, password } = inputs;
   const loading = useSelector(state => state.authentication.loading);
   const loadingCheckEmail = useSelector(state => state.checkMotDePasseOublie?.loading);
@@ -30,6 +34,7 @@ function Login() {
   const successEmail = useSelector(state => state.motDePasseOublie?.success);
   const hiddenEmail = useSelector(state => state.checkMotDePasseOublie?.hiddenEmail);
   const errorCheckEmail = useSelector(state => state.checkMotDePasseOublie?.error);
+  const messageCodeVerified = useSelector(state => state.authentication?.messageCodeVerified);
 
   useEffect(() => {
     dispatch(userActions.logout());
@@ -55,6 +60,10 @@ function Login() {
       } else {
         dispatch(userActions.checkForgottenPasswordEmail(username));
       }
+    } else if (error?.attemptFail) {
+      setCountAttempt(3 - error?.attemptFail);
+    } else if (error?.openPopinVerifyCode) {
+      setShowModalVerifyCode(true);
     }
   }, [error, hiddenEmail]);
 
@@ -76,6 +85,13 @@ function Login() {
           </p>
         </FlashMessage>
       }
+      {messageCodeVerified &&
+        <FlashMessage duration={5000}>
+          <p className="fr-label flashBag">
+            {messageCodeVerified}
+          </p>
+        </FlashMessage>
+      }
       {(errorEmail || errorCheckEmail) &&
         <FlashMessage duration={5000}>
           <p className="fr-label flashBag invalid">
@@ -85,6 +101,9 @@ function Login() {
       }
       {showModalResetPassword &&
         <ModalResetPassword username={username} hiddenEmail={hiddenEmail} setShowModalResetPassword={setShowModalResetPassword} />
+      }
+      {showModalVerifyCode &&
+        <ModalVerifyCode setShowModalVerifyCode={setShowModalVerifyCode} email={username}/>
       }
       {role === 'structure' &&
         <dialog aria-labelledby="fr-modal-confirm-siret" role="dialog" id="fr-modal-confirm-siret" className="fr-modal modalOpened">
@@ -185,8 +204,8 @@ function Login() {
               <br />{loading && <span style={{ color: 'black' }}>Connexion en cours...</span>}
             </div>
             <div>
-              {error && <span className="invalid">{
-                error.errorActivation === true ?
+              {error && <span className="invalid">
+                {error.errorActivation === true ?
                   <Fragment>
                     <a
                       href={process.env.REACT_APP_AIDE_URL + `/article/quand-vais-je-recevoir-mon-acces-a-lespace-coop-1acxbw6/`}
@@ -196,7 +215,21 @@ function Login() {
                     </a>
                   </Fragment> :
                   error.error
-              }</span>}
+                }
+                {error?.attemptFail < 3 &&
+                  <div style={{ width: '280px', margin: 'auto auto' }}>Erreur de mot de passe, il ne <br/>vous reste plus que <br/>
+                    <b><Pluralize
+                      zero={'essai'}
+                      singular={'essai'}
+                      plural={'essais'}
+                      count={countAttempt}
+                      showCount={true}/></b>.</div>
+                }
+                {error?.attemptFail === 3 &&
+                  <div style={{ width: '280px', margin: 'auto auto' }}>Votre compte est bloqu&eacute; pour <br/>les <b>10 prochaines minutes</b>.</div>
+                }
+              </span>
+              }
             </div>
             {role !== 'admin' &&
               <div className="mot-de-passe-oublie">
