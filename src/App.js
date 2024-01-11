@@ -17,7 +17,7 @@ import StatistiquesNationales from './components/anonymous/StatistiquesNationale
 import PrivateRoute from './components/connected/PrivateRoute';
 import choosePasswordChangeMailbox from './components/anonymous/choosePasswordChangeMailbox';
 import Propos from './components/anonymous/Propos';
-import EmailConfirmer from './components/connected/mesInformations/ConfirmationEmail';
+import EmailConfirmer from './components/anonymous/ConfirmationEmail';
 import { permanenceActions } from './actions';
 
 function App() {
