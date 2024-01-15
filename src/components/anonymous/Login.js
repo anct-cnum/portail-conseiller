@@ -92,6 +92,15 @@ function Login() {
           </p>
         </FlashMessage>
       }
+      {error?.attemptFail === 3 &&
+        <FlashMessage duration={5000}>
+          <p className="fr-label flashBag invalid">
+            Vous avez saisi un mot de passe incorrect &agrave; 3 reprises. Nous avons temporairement verrouill&eacute; votre compte.<br/>
+            R&eacute;essayez dans 10 min. Si vous l&rsquo;avez oubli&eacute;, cliquez sur&nbsp;
+            &quot;<Link to="/mot-de-passe-oublie" title="Mot de passe oubli&eacute; ?" >Mot de passe oubli&eacute; ?</Link>&quot;
+          </p>
+        </FlashMessage>
+      }
       {(errorEmail || errorCheckEmail) &&
         <FlashMessage duration={5000}>
           <p className="fr-label flashBag invalid">
@@ -217,16 +226,17 @@ function Login() {
                   error.error
                 }
                 {error?.attemptFail < 3 &&
-                  <div style={{ width: '280px', margin: 'auto auto' }}>Erreur de mot de passe, il ne <br/>vous reste plus que <br/>
+                  <div style={{ width: '280px', margin: 'auto auto' }}>
+                    <b>Mot de passe incorrect</b>, il vous<br/>
+                    reste&nbsp;
                     <b><Pluralize
-                      zero={'essai'}
-                      singular={'essai'}
-                      plural={'essais'}
+                      zero={'tentative'}
+                      singular={'tentative'}
+                      plural={'tentatives'}
                       count={countAttempt}
-                      showCount={true}/></b>.</div>
-                }
-                {error?.attemptFail === 3 &&
-                  <div style={{ width: '280px', margin: 'auto auto' }}>Votre compte est bloqu&eacute; pour <br/>les <b>10 prochaines minutes</b>.</div>
+                      showCount={true}/></b>&nbsp;avant<br/>
+                      le verrouillage de votre<br/>
+                      compte.</div>
                 }
               </span>
               }
