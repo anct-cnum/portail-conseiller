@@ -93,7 +93,7 @@ function Login() {
         </FlashMessage>
       }
       {error?.attemptFail === 3 &&
-        <FlashMessage duration={5000}>
+        <FlashMessage duration={20000}>
           <p className="fr-label flashBag invalid">
             Vous avez saisi un mot de passe incorrect &agrave; 3 reprises. Nous avons temporairement verrouill&eacute; votre compte.<br/>
             R&eacute;essayez dans 10 min. Si vous l&rsquo;avez oubli&eacute;, cliquez sur&nbsp;
