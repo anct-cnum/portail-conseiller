@@ -41,7 +41,7 @@ const ModalVerifyCode = ({ setShowModalVerifyCode, email }) => {
                   Votre compte &agrave; &eacute;t&eacute; verrouill&eacute; par mesure de s&eacute;curit&eacute;.<br/>
                   <b>Pour d&eacute;verrouiller votre compte</b>&nbsp;:<br/>
                   Nous vous avons envoyé un code de s&eacute;curit&eacute; &agrave; l&rsquo;adresse mail personnelle que vous avez
-                  renseign&eacute; lors de votre inscription.<br/>
+                  renseign&eacute;e lors de votre inscription.<br/>
                   Une fois que vous aurez entr&eacute; le code, vous pourrez de nouveau acc&eacute;der &agrave; votre compte.
                 </p>
 
