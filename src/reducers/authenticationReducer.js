@@ -22,7 +22,27 @@ export default function authentication(state = initialState, action) {
       };
     case 'LOGOUT':
       return {};
+    case 'VERIFY_CODE_CONNEXION_REQUEST':
+      return {
+        ...state,
+        verifyingCode: true,
+        messageCodeVerified: '',
+        errorVerifyingCode: '',
+      };
+    case 'VERIFY_CODE_CONNEXION_SUCCESS':
+      return {
+        ...state,
+        verifyingCode: false,
+        messageCodeVerified: action.result.messageVerificationCode,
+      };
+    case 'VERIFY_CODE_CONNEXION_FAILURE':
+      return {
+        ...state,
+        verifyingCode: false,
+        errorVerifyingCode: action.error,
+      };
     default:
       return state;
   }
+
 }

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { formInformationsActions } from '../../../actions/informations.actions';
+import { formInformationsActions } from '../../actions/informations.actions';
 import PropTypes from 'prop-types';
-import Header from '../../Header';
+import Header from '../Header';
 
 function EmailConfirmer({ match }) {
   const token = match.params.token;
@@ -30,7 +30,7 @@ function EmailConfirmer({ match }) {
               </div>
             }
             {tokenVerified === true &&
-              <p className="fr-label flashBag labelError" style={{ fontSize: '16px' }}>
+              <p className="fr-label flashBagError labelError" style={{ fontSize: '16px' }}>
                 La confirmation de votre e-mail a échoué, <br />
                 veuillez réessayer plus tard
               </p>
