@@ -8,8 +8,7 @@ import FlashMessage from 'react-flash-message';
 function BannerHub() {
   const location = useLocation();
   const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
-  const linkAccount = useSelector(state => state.authentication?.user?.user?.name);
-  const lienLaBase = `${process.env.REACT_APP_LABASE_URL}?email=${linkAccount}`;
+  const lienLaBase = process.env.REACT_APP_LABASE_URL;
   const hub = useSelector(state => state.authentication?.user?.user?.hub);
   const dispatch = useDispatch();
   const loadingCSV = useSelector(state => state.conseiller?.loadingCSV);
