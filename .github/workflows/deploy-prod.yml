@@ -36,7 +36,7 @@ jobs:
         envkey_REACT_APP_PIX_URL: "https://pix.fr/abc-pix-cnfs/"
         envkey_REACT_APP_PIX_CONNEXION_URL: "https://app.pix.fr/connexion"
         envkey_REACT_APP_PIX_CAMPAGNE_URL: ${{ secrets.REACT_APP_PIX_CAMPAGNE_URL }}
-        envkey_REACT_APP_LABASE_URL: "https://labase.anct.gouv.fr/base/3"
+        envkey_REACT_APP_LABASE_URL: "https://lesbases.anct.gouv.fr/bases/conseiller-numerique"
         envkey_REACT_APP_AIDE_URL: "https://aide.conseiller-numerique.gouv.fr/fr"
         envkey_REACT_APP_CARTOGRAPHIE_URL: "https://www.conseiller-numerique.gouv.fr/carte"
         envkey_REACT_APP_RDV_AIDE_NUMERIQUE_URL: "https://www.rdv-aide-numerique.fr/agents/sign_in"

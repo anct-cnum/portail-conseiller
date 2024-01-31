@@ -17,7 +17,7 @@ function Welcome() {
 
   const user = useSelector(state => state.authentication.user.user);
   const lienPix = `${process.env.REACT_APP_PIX_URL}?control1714940=${conseiller?.prenom}&control1714939=${conseiller?.nom}&control1714941=${user?.name}`;
-  const lienLaBase = `${process.env.REACT_APP_LABASE_URL}?email=${conseiller?.emailCN?.address}`;
+  const lienLaBase = process.env.REACT_APP_LABASE_URL;
   const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
   const lienWebmail = process.env.REACT_APP_WEBMAIL_URL;
   const lienRdvAideNumerique = process.env.REACT_APP_RDV_AIDE_NUMERIQUE_URL;
