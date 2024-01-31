@@ -17,7 +17,7 @@ function CoordinateurHeader() {
   const lienWebmail = process.env.REACT_APP_WEBMAIL_URL;
   const lienRdvAideNumerique = process.env.REACT_APP_RDV_AIDE_NUMERIQUE_URL;
   const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
-  const lienLaBase = `${process.env.REACT_APP_LABASE_URL}?email=${conseiller?.emailCN?.address}`;
+  const lienLaBase = process.env.REACT_APP_LABASE_URL;
 
   useEffect(() => {
     dispatch(conseillerActions.get(userEntityId()));

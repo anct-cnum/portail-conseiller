@@ -5,11 +5,11 @@ import { conseillerActions, statistiqueActions } from '../../actions';
 import PropTypes from 'prop-types';
 import FlashMessage from 'react-flash-message';
 
-function AdminHeader({ role, linkAccount }) {
+function AdminHeader({ role }) {
   const location = useLocation();
   const dispatch = useDispatch();
   const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
-  const lienLaBase = `${process.env.REACT_APP_LABASE_URL}?email=${linkAccount}`;
+  const lienLaBase = process.env.REACT_APP_LABASE_URL;
   let statsTerritoiresError = useSelector(state => state.statistique.statsTerritoiresError);
   const statistiques = useSelector(state => state.statistique.statsAdmin);
   const errorCSV = useSelector(state => state.conseiller?.errorCSV);
@@ -123,6 +123,5 @@ function AdminHeader({ role, linkAccount }) {
 
 AdminHeader.propTypes = {
   role: PropTypes.string,
-  linkAccount: PropTypes.string
 };
 export default AdminHeader;

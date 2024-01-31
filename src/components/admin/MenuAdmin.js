@@ -8,8 +8,7 @@ function MenuAdmin() {
   const dispatch = useDispatch();
   const location = useLocation();
   const role = useSelector(state => state.authentication?.user?.user?.role);
-  const linkAccount = useSelector(state => state.authentication?.user?.user?.name);
-  const lienLaBase = `${process.env.REACT_APP_LABASE_URL}?email=${linkAccount}`;
+  const lienLaBase = process.env.REACT_APP_LABASE_URL;
   const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
   const aideCoop = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide_espace_coop';
   const aideMetier = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide-metier';
