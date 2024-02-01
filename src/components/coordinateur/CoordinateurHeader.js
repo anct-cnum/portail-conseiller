@@ -114,7 +114,7 @@ function CoordinateurHeader() {
 
                   <div className="fr-col-6 fr-col-sm-3 fr-col-md-2 menu-btn fr-mb-3w">
                     <Link to="/mes-lieux-activite" title="Acc&eacute;der aux lieux d&rsquo;activit&eacute;">
-                      <img src="/logos/home-connected/icone-lieux.svg" className="icone-btn icone-la-base"/>
+                      <img src="/logos/home-connected/icone-lieux.svg" className="icone-btn icone-lieux"/>
                       Lieux d&rsquo;activit&eacute;
                     </Link>
                   </div>
