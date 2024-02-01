@@ -118,9 +118,9 @@ function Welcome() {
                           </Link>
                         </div>
                         <div className="fr-col-12 fr-col-sm-4 menu-btn fr-mb-5w">
-                          <a href={lienLaBase} rel="noreferrer" target="blank" title="Acc&eacute;der &agrave; La Base">
-                            <img src="/logos/home-connected/icone-la-base.svg" className="icone-btn icone-la-base"/>
-                            La Base
+                          <a href={lienLaBase} rel="noreferrer" target="blank" title="Acc&eacute;der &agrave; Les Bases">
+                            <img src="/logos/home-connected/icone-la-base.svg" className="icone-btn icone-les-bases"/>
+                            Les Bases
                           </a>
                         </div>
                         <div className="fr-col-12 fr-col-sm-4 menu-btn fr-mb-5w">
