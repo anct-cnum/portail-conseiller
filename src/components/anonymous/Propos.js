@@ -114,7 +114,7 @@ function Propos() {
                     </p>
                     <p>
                       <b>Trouver des supports et des outils</b> pour mener ses activit&eacute;s de m&eacute;diation&nbsp;:<br/>
-                      – La Base, biblioth&egrave;que du num&eacute;rique d&rsquo;int&eacute;r&ecirc;t g&eacute;n&eacute;ral&nbsp;;<br/>
+                      – Les Bases, biblioth&egrave;que du num&eacute;rique d&rsquo;int&eacute;r&ecirc;t g&eacute;n&eacute;ral&nbsp;;<br/>
                       – les applications pour am&eacute;liorer et structurer votre activit&eacute; : Pix, Rendez-vous Aide Num&eacute;rique&nbsp;;<br/>
                       – le kit communication, pour communiquer en tant que CnFS.<br/>
                     </p>
@@ -184,7 +184,7 @@ function Propos() {
                         <div className="fr-col-12 fr-col-md-6 fr-mb-4w">
                           <img src="/logos/home-connected/icone-la-base.svg" className="icone-base"/>
                           <div className="text-icone">
-                            <b>La Base</b><br/>
+                            <b>Les Bases</b><br/>
                             <span className="sous-titre-2">
                               La bibiloth&egrave;que des ressources des<br/>
                               professionnels du num&eacute;rique d&rsquo;int&eacute;r&ecirc;t g&eacute;n&eacute;ral.
