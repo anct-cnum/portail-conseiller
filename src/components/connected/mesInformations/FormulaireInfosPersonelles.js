@@ -6,7 +6,6 @@ import { formInformationsActions } from '../../../actions/informations.actions';
 import telephoneHorsMetropole from '../../../data/indicatifs.json';
 import ModalUpdateForm from './ModalUpdateForm';
 import fr from 'date-fns/locale/fr';
-import dayjs from 'dayjs';
 
 registerLocale('fr', fr);
 
@@ -77,12 +76,13 @@ function FormulaireInfosPersonnelles() {
     if (conseiller !== null && conseiller !== undefined) {
       const telephone = formatTelephone(conseiller?.telephone);
       const telephonePro = formatTelephone(conseiller?.telephonePro);
+
       dispatch(formInformationsActions.initFormInformations(
         conseiller.email,
         telephone,
         telephonePro,
         conseiller.emailPro,
-        dayjs(conseiller.dateDeNaissance).isValid() ? conseiller.dateDeNaissance : new Date(),
+        conseiller?.dateDeNaissance !== undefined ? conseiller.dateDeNaissance : new Date(),
         conseiller.sexe
       ));
       setInputs({
@@ -90,7 +90,7 @@ function FormulaireInfosPersonnelles() {
         conseillerNom: conseiller.nom,
         conseillerTelephone: telephone,
         conseillerEmail: conseiller.email,
-        conseillerDateDeNaissance: dayjs(conseiller.dateDeNaissance).isValid() ? conseiller.dateDeNaissance : new Date(),
+        conseillerDateDeNaissance: conseiller?.dateDeNaissance !== undefined ? conseiller.dateDeNaissance : new Date(),
         conseillerSexe: conseiller.sexe
       });
     }
