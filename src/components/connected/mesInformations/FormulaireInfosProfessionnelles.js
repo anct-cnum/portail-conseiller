@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { formInformationsActions } from '../../../actions/informations.actions';
 import ModalUpdateForm from './ModalUpdateForm';
 import telephoneHorsMetropole from '../../../data/indicatifs.json';
+import dayjs from 'dayjs';
 
 function FormulaireInfosProfessionnelles() {
 
@@ -72,7 +73,7 @@ function FormulaireInfosProfessionnelles() {
         telephone,
         telephonePro,
         conseiller.emailPro,
-        conseiller.dateDeNaissance,
+        dayjs(conseiller.dateDeNaissance).isValid() ? conseiller.dateDeNaissance : new Date(),
         conseiller.sexe
       ));
       setInputs({
@@ -80,7 +81,7 @@ function FormulaireInfosProfessionnelles() {
         conseillerTelephonePro: telephonePro,
         conseillerEmailPro: conseiller.emailPro,
         conseillerEmail: conseiller.email,
-        conseillerDateDeNaissance: conseiller.dateDeNaissance,
+        conseillerDateDeNaissance: dayjs(conseiller.dateDeNaissance).isValid() ? conseiller.dateDeNaissance : new Date(),
         conseillerSexe: conseiller.sexe
       });
     }
