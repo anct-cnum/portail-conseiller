@@ -223,7 +223,7 @@ function Login() {
                       Merci d&rsquo;activer votre compte coop <span className="fr-fi-external-link-line fr-link--icon"></span>
                     </a>
                   </Fragment> :
-                  error.error
+                  error.error?.toString()
                 }
                 {error?.attemptFail < 3 &&
                   <div style={{ width: '280px', margin: 'auto auto' }}>
