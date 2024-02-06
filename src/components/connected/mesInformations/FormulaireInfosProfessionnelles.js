@@ -68,19 +68,19 @@ function FormulaireInfosProfessionnelles() {
       const telephone = formatTelephone(conseiller?.telephone);
       const telephonePro = formatTelephone(conseiller?.telephonePro);
       dispatch(formInformationsActions.initFormInformations(
-        conseiller.email,
+        conseiller?.email,
         telephone,
         telephonePro,
-        conseiller.emailPro,
-        conseiller.dateDeNaissance,
+        conseiller?.emailPro,
+        conseiller?.dateDeNaissance !== undefined ? conseiller.dateDeNaissance : new Date(),
         conseiller.sexe
       ));
       setInputs({
         conseillerTelephone: telephone,
         conseillerTelephonePro: telephonePro,
-        conseillerEmailPro: conseiller.emailPro,
-        conseillerEmail: conseiller.email,
-        conseillerDateDeNaissance: conseiller.dateDeNaissance,
+        conseillerEmailPro: conseiller?.emailPro,
+        conseillerEmail: conseiller?.email,
+        conseillerDateDeNaissance: conseiller?.dateDeNaissance !== undefined ? conseiller.dateDeNaissance : new Date(),
         conseillerSexe: conseiller.sexe
       });
     }

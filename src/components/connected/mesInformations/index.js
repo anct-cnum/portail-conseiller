@@ -61,7 +61,6 @@ function MesInformations() {
             <div className="fr-col-12 fr-col-md-5 fr-mr-md-6w">
               <div>
                 <FormulaireInfosProfessionnelles />
-
               </div>
             </div>
             <div className="fr-col-12 fr-col-offset-md-1 fr-col-md-5 fr-mr-md-6w">
