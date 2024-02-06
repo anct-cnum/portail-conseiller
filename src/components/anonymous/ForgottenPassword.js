@@ -57,7 +57,7 @@ function ForgottenPassword({ match = null }) {
   const tokenVerified = useSelector(state => state.createAccount.tokenVerified);
 
   const choosingPassword = useSelector(state => state.createAccount.choosingPassword);
-  let passwordChoosen = useSelector(state => state.createAccount.passwordChoosen);
+  const passwordChoosen = useSelector(state => state.createAccount.passwordChoosen);
   const errorPassword = useSelector(state => state.createAccount.error);
 
   useEffect(() => {
@@ -364,7 +364,7 @@ function ForgottenPassword({ match = null }) {
                     }
                     {errorPassword && !tokenVerified && !passwordChoosen && errorPassword !== 'User not found' &&
                       <div className="fr-mb-12w fr-mt-md-12w sous-titre">
-                        <div className="invalid">{errorPassword}</div>
+                        <div className="invalid">{errorPassword?.toString()}</div>
                       </div>
                     }
                   </div>

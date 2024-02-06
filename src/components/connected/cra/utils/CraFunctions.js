@@ -32,7 +32,7 @@ export function changeToMinusculeWithTrim(value) {
 }
 
 export function decodeEntitiesSuggestion(theme) {
-  let txt = document.createElement('textarea');
+  let txt = document?.createElement('textarea');
   txt.innerHTML = theme;
   return txt.value;
 }

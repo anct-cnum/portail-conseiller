@@ -79,21 +79,21 @@ function Statistics() {
           {errorPDF &&
             <FlashMessage duration={5000}>
               <p className="flashBag invalid">
-                {errorPDF}
+                {errorPDF?.toString()}
               </p>
             </FlashMessage>
           }
           {errorCSV &&
             <FlashMessage duration={5000}>
               <p className="flashBag invalid">
-                {errorCSV}
+                {errorCSV?.toString()}
               </p>
             </FlashMessage>
           }
           {errorExcel &&
             <FlashMessage duration={5000}>
               <p className="flashBag invalid">
-                {errorExcel}
+                {errorExcel?.toString()}
               </p>
             </FlashMessage>
           }

@@ -71,7 +71,7 @@ function MonCurriculumVitae({ isUploaded, isDeleted, uploading, loadingDeleteCv,
         (typeof downloadError === 'string' && downloadError?.length > 0)) &&
         <FlashMessage duration={10000}>
           <p className="fr-label flashBag invalid">
-            {uploadError ?? downloadError}
+            {uploadError?.toString() ?? downloadError?.toString()}
             <i className="ri-close-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
           </p>
         </FlashMessage>

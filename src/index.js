@@ -25,6 +25,10 @@ if (window.location.href.split(':').includes('file')) {
       /access dead object/i,
       //googletag
       /googletag/i,
+      //BetterJsPop erreur semblant venir d'un add block
+      /BetterJsPop/i,
+      //Extension Safari
+      /webkit-masked-url/i
     ],
     dsn: process.env.REACT_APP_SENTRY_DSN,
     environment: process.env.REACT_APP_SENTRY_ENVIRONMENT,
