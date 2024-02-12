@@ -82,7 +82,7 @@ function FormulaireInfosPersonnelles() {
         telephone,
         telephonePro,
         conseiller?.emailPro,
-        conseiller?.dateDeNaissance !== undefined ? conseiller.dateDeNaissance : new Date(),
+        [undefined, null].includes(conseiller?.dateDeNaissance) ? new Date() : conseiller.dateDeNaissance,
         conseiller.sexe
       ));
       setInputs({
