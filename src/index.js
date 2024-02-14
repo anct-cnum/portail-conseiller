@@ -28,7 +28,9 @@ if (window.location.href.split(':').includes('file')) {
       //BetterJsPop erreur semblant venir d'un add block
       /BetterJsPop/i,
       //Extension Safari
-      /webkit-masked-url/i
+      /webkit-masked-url/i,
+      //can't redefine non-configurable property "metadata"
+      /metadata/i
     ],
     dsn: process.env.REACT_APP_SENTRY_DSN,
     environment: process.env.REACT_APP_SENTRY_ENVIRONMENT,

@@ -72,7 +72,7 @@ function FormulaireInfosProfessionnelles() {
         telephone,
         telephonePro,
         conseiller?.emailPro,
-        conseiller?.dateDeNaissance !== undefined ? conseiller.dateDeNaissance : new Date(),
+        [undefined, null].includes(conseiller?.dateDeNaissance) ? new Date() : conseiller.dateDeNaissance,
         conseiller.sexe
       ));
       setInputs({
@@ -80,7 +80,7 @@ function FormulaireInfosProfessionnelles() {
         conseillerTelephonePro: telephonePro,
         conseillerEmailPro: conseiller?.emailPro,
         conseillerEmail: conseiller?.email,
-        conseillerDateDeNaissance: conseiller?.dateDeNaissance !== undefined ? conseiller.dateDeNaissance : new Date(),
+        conseillerDateDeNaissance: [undefined, null].includes(conseiller?.dateDeNaissance) ? new Date() : conseiller.dateDeNaissance,
         conseillerSexe: conseiller.sexe
       });
     }
