@@ -31,10 +31,8 @@ if (window.location.href.split(':').includes('file')) {
       /webkit-masked-url/i,
       //can't redefine non-configurable property "metadata"
       /metadata/i,
-      // Problème avec l'extension bitwarden sur firefox qui bloque l'accès à certaines propriétés
-      /Permission denied to access property "matches"/i,
-      // Problème avec l'extension bitwarden sur firefox qui bloque l'accès à certaines propriétés
-      /Permission denied to access property "contains"/i,
+      // Problème avec l'extension bitwarden sur firefox
+      /Permission denied to access property/i,
     ],
     dsn: process.env.REACT_APP_SENTRY_DSN,
     environment: process.env.REACT_APP_SENTRY_ENVIRONMENT,
