@@ -76,20 +76,21 @@ function FormulaireInfosPersonnelles() {
     if (conseiller !== null && conseiller !== undefined) {
       const telephone = formatTelephone(conseiller?.telephone);
       const telephonePro = formatTelephone(conseiller?.telephonePro);
+
       dispatch(formInformationsActions.initFormInformations(
-        conseiller.email,
+        conseiller?.email,
         telephone,
         telephonePro,
-        conseiller.emailPro,
-        conseiller.dateDeNaissance,
+        conseiller?.emailPro,
+        [undefined, null].includes(conseiller?.dateDeNaissance) ? new Date() : conseiller.dateDeNaissance,
         conseiller.sexe
       ));
       setInputs({
         conseillerPrenom: conseiller.prenom,
         conseillerNom: conseiller.nom,
         conseillerTelephone: telephone,
-        conseillerEmail: conseiller.email,
-        conseillerDateDeNaissance: conseiller.dateDeNaissance,
+        conseillerEmail: conseiller?.email,
+        conseillerDateDeNaissance: [undefined, null].includes(conseiller?.dateDeNaissance) ? new Date() : conseiller.dateDeNaissance,
         conseillerSexe: conseiller.sexe
       });
     }

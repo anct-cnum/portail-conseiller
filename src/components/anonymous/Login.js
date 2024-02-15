@@ -26,10 +26,10 @@ function Login() {
   const [showModalVerifyCode, setShowModalVerifyCode] = useState(false);
   const [countAttempt, setCountAttempt] = useState(3);
   const { username, password } = inputs;
-  const loading = useSelector(state => state.authentication.loading);
+  const loading = useSelector(state => state.authentication?.loading);
   const loadingCheckEmail = useSelector(state => state.checkMotDePasseOublie?.loading);
   const loadingSendEmail = useSelector(state => state.motDePasseOublie?.loading);
-  const error = useSelector(state => state.authentication.error);
+  const error = useSelector(state => state.authentication?.error);
   const errorEmail = useSelector(state => state.motDePasseOublie?.error);
   const successEmail = useSelector(state => state.motDePasseOublie?.success);
   const hiddenEmail = useSelector(state => state.checkMotDePasseOublie?.hiddenEmail);
@@ -223,7 +223,7 @@ function Login() {
                       Merci d&rsquo;activer votre compte coop <span className="fr-fi-external-link-line fr-link--icon"></span>
                     </a>
                   </Fragment> :
-                  error.error
+                  error.error?.toString()
                 }
                 {error?.attemptFail < 3 &&
                   <div style={{ width: '280px', margin: 'auto auto' }}>

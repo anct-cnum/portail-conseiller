@@ -25,6 +25,14 @@ if (window.location.href.split(':').includes('file')) {
       /access dead object/i,
       //googletag
       /googletag/i,
+      //BetterJsPop erreur semblant venir d'un add block
+      /BetterJsPop/i,
+      //Extension Safari
+      /webkit-masked-url/i,
+      //can't redefine non-configurable property "metadata"
+      /metadata/i,
+      // Problème avec l'extension bitwarden sur firefox
+      /Permission denied to access property/i,
     ],
     dsn: process.env.REACT_APP_SENTRY_DSN,
     environment: process.env.REACT_APP_SENTRY_ENVIRONMENT,
