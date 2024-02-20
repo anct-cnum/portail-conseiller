@@ -1,6 +1,6 @@
 {
-  "short_name": "CnFS",
-  "name": "Conseiller numérique France Services",
+  "short_name": "Conum",
+  "name": "Conseiller numérique",
   "icons": [
     {
       "src": "./pwaIcons/favicon-64.png",

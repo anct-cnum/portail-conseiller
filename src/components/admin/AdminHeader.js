@@ -36,7 +36,7 @@ function AdminHeader({ role }) {
           <div className={`fr-col-lg-4 fr-col-12 ${role !== 'admin_coop' ? 'fr-mt-5w fr-mb-6w' : 'fr-mt-3w'}`}>
             <a className="statistiques_nationales-btn" href="statistiques-nationales">Statistiques Nationales</a>
             { role === 'admin_coop' &&
-              <button className="export_cnfs_without_cra-btn fr-ml-2w" onClick={exportDonneesCnfsWithoutCRA}>Export CnFS 0 CRA M+2</button>
+              <button className="export_cnfs_without_cra-btn fr-ml-2w" onClick={exportDonneesCnfsWithoutCRA}>Export Conum 0 CRA M+2</button>
             }
           </div>
           <div

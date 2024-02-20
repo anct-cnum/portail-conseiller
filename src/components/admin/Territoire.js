@@ -19,9 +19,9 @@ function Territoire({ territoire, currentPage, trClass }) {
         <td data-tooltip-id="infobulle-menu"
           data-tooltip-content="Dotation de conseillers">{territoire?.nombreConseillersCoselec ?? 0}</td>
         <td data-tooltip-id="infobulle-menu"
-          data-tooltip-html="CnFS activ&eacute;s">{territoire?.cnfsActives ?? 0}</td>
+          data-tooltip-html="Conum activ&eacute;s">{territoire?.cnfsActives ?? 0}</td>
         <td data-tooltip-id="infobulle-menu"
-          data-tooltip-html="CnFS en attente d&rsquo;activation">{territoire?.cnfsInactives ?? 0}</td>
+          data-tooltip-html="Conum en attente d&rsquo;activation">{territoire?.cnfsInactives ?? 0}</td>
         <td data-tooltip-id="infobulle-menu"
           data-tooltip-html="Taux d&rsquo;activation">{territoire?.tauxActivation ?? 0} %</td>
         <td>

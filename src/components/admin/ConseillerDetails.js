@@ -90,7 +90,7 @@ function ConseillerDetails({ location }) {
             <span style={{ textTransform: 'uppercase' }}>{conseiller?.nomCommune}</span>
           </div>
           <div className="fr-mb-3w">
-            <strong>Adresse mail CnFS</strong><br/>
+            <strong>Adresse mail Conum</strong><br/>
             {conseiller?.emailCN?.address &&
               <a className="email"href={'mailto:' + conseiller?.emailCN?.address}>
                 {conseiller?.emailCN?.address}

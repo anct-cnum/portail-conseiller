@@ -80,7 +80,7 @@ function Propos() {
                       </li>
                       <li className="fr-mb-1w">
                         <a href="#historiqueConception" target="_self">
-                          Historique de conception des services num&eacute;riques CnFS
+                          Historique de conception des services num&eacute;riques Conum
                         </a>
                       </li>
                     </ul>
@@ -94,7 +94,7 @@ function Propos() {
               </h1>
               <div className="fr-mt-9w">
                 <p>
-                  <span className="sous-titre">La Coop est la plateforme d&eacute;di&eacute;e aux conseillers num&eacute;riques France Services</span><br/>
+                  <span className="sous-titre">La Coop est la plateforme d&eacute;di&eacute;e aux conseillers num&eacute;riques</span><br/>
                   <span className="sous-titre-2">Lanc&eacute;e au second semestre 2021, celle-ci est en am&eacute;lioration continue.</span>
                 </p>
               </div>
@@ -103,20 +103,20 @@ function Propos() {
                   <div className="fr-col-12 fr-col-md-10 fr-my-3w fr-my-md-9w">
                     <h2 id="utiliteCoop" >&Agrave; quoi sert l&rsquo;espace Coop&nbsp;?</h2>
                     <p>
-                      <b>Renseigner son compte-rendu d&rsquo;activit&eacute;s</b> (obligatoire pour tous les CnFS)&nbsp;:<br/>
+                      <b>Renseigner son compte-rendu d&rsquo;activit&eacute;s</b> (obligatoire pour tous les Conum)&nbsp;:<br/>
                       – permet de suivre son activit&eacute; de m&eacute;diation, de la valoriser aupr&egrave;s de ses r&eacute;f&eacute;rents&nbsp;;<br/>
-                      – permet &eacute;galement &agrave; l&rsquo;&eacute;tat d&rsquo;administrer et piloter le dispostif CnFS.<br/>
+                      – permet &eacute;galement &agrave; l&rsquo;&eacute;tat d&rsquo;administrer et piloter le dispostif Conum.<br/>
                     </p>
                     <p>
                       <b>&Eacute;changer entre conseillers num&eacute;riques</b> via l&rsquo;espace de discussion pour&nbsp;:<br/>
                       – des &eacute;changes de pratiques, des conseils, de l&rsquo;aide dans son activit&eacute;&nbsp;;<br/>
-                      – faire des retours, participer &agrave; l&rsquo;am&eacute;lioration des outils CnFS.<br/>
+                      – faire des retours, participer &agrave; l&rsquo;am&eacute;lioration des outils Conum.<br/>
                     </p>
                     <p>
                       <b>Trouver des supports et des outils</b> pour mener ses activit&eacute;s de m&eacute;diation&nbsp;:<br/>
                       – Les Bases, biblioth&egrave;que du num&eacute;rique d&rsquo;int&eacute;r&ecirc;t g&eacute;n&eacute;ral&nbsp;;<br/>
                       – les applications pour am&eacute;liorer et structurer votre activit&eacute; : Pix, Rendez-vous Aide Num&eacute;rique&nbsp;;<br/>
-                      – le kit communication, pour communiquer en tant que CnFS.<br/>
+                      – le kit communication, pour communiquer en tant que Conum.<br/>
                     </p>
                   </div>
                   <div className="fr-col-12 fr-col-md-2 fr-mb-9w fr-my-md-9w">
@@ -153,7 +153,7 @@ function Propos() {
                         <div className="fr-col-12 fr-col-md-6 fr-mb-4w">
                           <img src="/logos/home-connected/icone-lieux.svg" className="icone-lieux"/>
                           <div className="text-icone">
-                            <b>Lieux d&rsquo;activit&eacute; CnFS</b><br/>
+                            <b>Lieux d&rsquo;activit&eacute; Conum</b><br/>
                             <span className="sous-titre-2">Vous rend visible sur la carte nationale<br/> carte.conseiller-numerique.gouv.fr</span>
                           </div>
                         </div>
@@ -228,11 +228,11 @@ function Propos() {
                     <img src="/logos/engrenages-cnfs.svg" className="engrenages"/>
                   </div>
                   <div className="fr-col-12 fr-col-md-10 fr-mt-9w">
-                    <h2 id="philosophieOutils">La philosophie des outils CnFS&nbsp;: co-construire avec vous, &nbsp;<br className="hide-md"/>
+                    <h2 id="philosophieOutils">La philosophie des outils Conum&nbsp;: co-construire avec vous, &nbsp;<br className="hide-md"/>
                     et en am&eacute;lioration continue</h2>
                     <img className="show-md echange" src="/logos/participation-cnfs.svg" style={{ display: 'none' }}/>
                     <p>
-                      Les outils des CnFS (Coop, CRA, carte, kit de communication, etc.) sont conçus en mettant l&rsquo;humain<br className="hide-md-br"/>
+                      Les outils des Conum (Coop, CRA, carte, kit de communication, etc.) sont conçus en mettant l&rsquo;humain<br className="hide-md-br"/>
                       &nbsp;au centre : avec la participation active de conseillers num&eacute;riques, de m&eacute;diateurs exp&eacute;riment&eacute;s,
                       ainsi<br className="hide-md-br"/> que d&rsquo;un panel vari&eacute; d&rsquo;acteurs de l&rsquo;&eacute;co-syst&egrave;me de la
                       m&eacute;diation num&eacute;rique.
@@ -283,7 +283,7 @@ function Propos() {
                       </li>
                       <li className="fr-mb-3w">
                         Le CRA (outil de Compte Rendu d&rsquo;Activit&eacute;) a &eacute;t&eacute; pourvu de multiples am&eacute;liorations
-                        apport&eacute;es par<br className="hide-md-br"/> les CnFS, leurs coordinateurs, et d&rsquo;autres m&eacute;diateurs
+                        apport&eacute;es par<br className="hide-md-br"/> les Conum, leurs coordinateurs, et d&rsquo;autres m&eacute;diateurs
                         num&eacute;riques confirm&eacute;s depuis sa conception<br className="hide-md-br"/> et son lancement en 2021.
                       </li>
                       <li className="fr-mb-3w">
@@ -314,13 +314,13 @@ function Propos() {
                         </div>
                         <div className="fr-col-6 fr-col-sm-3">
                           <img src="/logos/home-carto.png" className="fresque-img"/>
-                          <p className="fresque-text">Premiers desgins carte nationale CnFS, nov. 2021.</p>
+                          <p className="fresque-text">Premiers desgins carte nationale Conum, nov. 2021.</p>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div className="fr-col-12 fr-col-md-10 fr-mt-9w">
-                    <h2 id="historiqueConception">Historique de conception des services num&eacute;riques CnFS</h2>
+                    <h2 id="historiqueConception">Historique de conception des services num&eacute;riques Conum</h2>
                     <div>
                       <b>2020</b><br/>
                       <p>
@@ -332,11 +332,11 @@ function Propos() {
                         semestre 1 : articulation du processus de recrutement, maintient des espaces (50 000 candidats et&nbsp;<br className="hide-md-br"/>
                         structures)&nbsp;;
                         conception de l&rsquo;espace Coop.<br className="hide-md-br"/>
-                        semestre 2 : mise en ligne de la Coop ; conception de la carte nationale CnFS.
+                        semestre 2 : mise en ligne de la Coop ; conception de la carte nationale Conum.
                       </p>
                       <b>2022</b><br/>
                       <p>
-                        semestre 1 : mise en ligne de la carte nationale CnFS ; &eacute;volution de l&rsquo;outil de suivi d&rsquo;activit&eacute;.<br/>
+                        semestre 1 : mise en ligne de la carte nationale Conum ; &eacute;volution de l&rsquo;outil de suivi d&rsquo;activit&eacute;.<br/>
                         semestre 2 : constitution d&rsquo;&eacute;quipes d&eacute;di&eacute;es : Carte, Coop, Tableau de bord structures (environ 4 &agrave;
                         5<br className="hide-md-br"/> personnes par &eacute;quipe, les services sont en am&eacute;lioration continue).
                       </p>
@@ -350,7 +350,7 @@ function Propos() {
                     <img src="/logos/home-site-vitrine.png" className="fresque-img"/>
                     <p className="fresque-text">Lancement de la plateforme de recrutement, oct. 2020.</p>
                     <img src="/logos/home-carto.png" className="fresque-img"/>
-                    <p className="fresque-text">Premiers desgins carte nationale CnFS, nov. 2021.</p>
+                    <p className="fresque-text">Premiers desgins carte nationale Conum, nov. 2021.</p>
                   </div>
                 </div>
               </div>
