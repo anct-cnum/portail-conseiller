@@ -157,7 +157,7 @@ function BigButtonSuggestion() {
                 }
                 <ul className="fr-mt-3w">
                   <li>Vous pouvez retrouver votre annotation sur l&rsquo;historique de vos activit&eacute;s.</li>
-                  <li>L&rsquo;intitul&eacute; de votre annotation th&eacute;matique sera enregistr&eacute; dans la base de donn&eacute;es CnFS.<br/>
+                  <li>L&rsquo;intitul&eacute; de votre annotation th&eacute;matique sera enregistr&eacute; dans la base de donn&eacute;es Conum.<br/>
                     Celle-ci sera analys&eacute;e en vue d&rsquo;une am&eacute;lioration des boutons de th&eacute;matiques d&rsquo;accompagnement. </li>
                 </ul>
                 <div className="fr-mt-3w" style={{ textAlign: 'right' }}>

@@ -53,7 +53,7 @@ function ChoosePasswordHub({ match }) {
             <div className="fr-container">
               <div className="fr-grid-row fr-grid-row--center">
                 <div className="fr-col-12 fr-col-md-10">
-                  <h1 className="titre fr-my-2w fr-mb-md-5w ">Activer votre espace administrateur coop num&eacute;riques France Services</h1>
+                  <h1 className="titre fr-my-2w fr-mb-md-5w ">Activer votre espace administrateur coop num&eacute;riques</h1>
                   {tokenVerified &&
                   <p className="sous-titre fr-mb-2w fr-mb-md-4w">
                     Bonjour, vous &ecirc;tes sur le point de finaliser votre accès !
