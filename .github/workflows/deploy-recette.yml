@@ -60,6 +60,11 @@ jobs:
       with:
         source: ".htaccess"
         target: "build/.htaccess"
+    - name: copy robots.txt
+      uses: canastro/copy-file-action@master
+      with:
+        source: "robots-recette.txt"
+        target: "build/robots.txt"
     - name: Deploy on clever cloud
       uses: s0/git-publish-subdir-action@develop
       env:
