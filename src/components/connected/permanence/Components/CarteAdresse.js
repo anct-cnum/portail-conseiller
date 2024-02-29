@@ -18,7 +18,7 @@ function CarteAdresse({ prefixId }) {
 
   const marker = new Icon({ iconUrl: '/logos/permanences/pin.svg', iconSize: [25, 41] });
   useEffect(() => {
-    if (location?.coordinates) {
+    if (location?.coordinates && location?.coordinates.length === 2) {
       setPosition(location?.coordinates);
       setZoom(15);
       setPositionInitial(false);
