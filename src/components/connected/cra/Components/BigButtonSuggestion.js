@@ -24,7 +24,7 @@ function BigButtonSuggestion() {
   const searchSuggestion = e => {
     const value = e.target.value;
     setSuggestion(value);
-    if (value.length > 2) {
+    if (value.length > 5) {
       dispatch(craActions.searchSuggestion(changeToMinusculeWithTrim(value)));
     } else {
       dispatch(craActions.clearListeSousThemes());
