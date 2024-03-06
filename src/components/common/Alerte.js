@@ -25,13 +25,13 @@ export default function Alerte() {
               <p className={`fr-label flashBag ${alerte?.type}`}>
                 {alerte?.message}
                 {alerte?.icon &&
-                  <i className={`fr-ml-1w ${alerte?.icon}`} style={{ verticalAlign: 'middle' }}></i>
+                  <i className={`fr-ml-1w ${alerte.icon}`} style={{ verticalAlign: 'middle' }}></i>
                 }
                 {alerte?.description &&
                   <>
                     <br />
                     <span style={{ color: 'initial' }}>
-                      {alerte?.description}
+                      {alerte.description}
                     </span>
                   </>
                 }
