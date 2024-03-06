@@ -18,33 +18,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
-      - name: Retrieve cached dependencies
-        id: retrieve-dependencies
-        uses: actions/cache@v3
-        with:
-          key: node_modules-${{ hashFiles('yarn.lock') }}
-          path: node_modules
-      - name: Install dependencies
-        if: steps.retrieve-dependencies.outputs.cache-hit == false
-        run: yarn --frozen-lockfile
-      - name: Cache dependencies if not present
-        if: steps.retrieve-dependencies.outputs.cache-hit == false
-        uses: actions/cache@v3
-        with:
-          key: node_modules.-${{ hashFiles('yarn.lock') }}
-          path: node_modules
+      - name: Install modules
+        run: yarn
 
   build:
     needs: dependencies
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Retrieve cached dependencies
-        uses: actions/cache@v3
-        with:
-          key: node_modules-${{ hashFiles('yarn.lock') }}
-          path: node_modules
       - name: Override .env
         uses: SpicyPizza/create-envfile@v2.0
         with:
