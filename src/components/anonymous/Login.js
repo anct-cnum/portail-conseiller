@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../Footer';
 import { alerteActions, userActions } from '../../actions';
 import ModalResetPassword from './ModalResetPassword';
-import Spinner from 'react-loader-spinner';
+import { Oval } from 'react-loader-spinner';
 import ModalVerifyCode from './ModalVerifyCode';
 import { pluralize } from '../../utils/functionFormats';
 import Alerte from '../common/Alerte';
@@ -94,8 +94,7 @@ function Login() {
   return (
     <div className="Login">
       <div className="spinnerCustom">
-        <Spinner
-          type="Oval"
+        <Oval
           color="#00BFFF"
           height={100}
           width={100}

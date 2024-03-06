@@ -8,7 +8,7 @@ import { htmlDecode } from '../../../utils/functionEncodeDecode';
 import { statistiqueActions, historiqueCrasActions, alerteActions } from '../../../actions';
 import Footer from '../../Footer';
 import Thematique from './Thematique';
-import Spinner from 'react-loader-spinner';
+import { Oval } from 'react-loader-spinner';
 import Pagination from '../../admin/Pagination';
 import FiltreCra from './FiltreCra';
 import ConfirmationSuppressionCra from './SupprimerCra';
@@ -150,8 +150,7 @@ function HistoriqueCras() {
           </div>
           <Alerte />
           <div className="spinnerCustom">
-            <Spinner
-              type="Oval"
+            <Oval
               color="#00BFFF"
               height={100}
               width={100}

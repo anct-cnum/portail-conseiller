@@ -7,7 +7,7 @@ import RightPage from '../connected/statistics/RightPage';
 import BottomPage from '../connected/statistics/BottomPage';
 import StatisticsBanner from '../connected/statistics/StatisticsBanner';
 import Footer from '../Footer';
-import Spinner from 'react-loader-spinner';
+import { Oval } from 'react-loader-spinner';
 import Header from '../Header';
 import AdminHeader from '../admin/AdminHeader';
 import HeaderHub from '../hub/HeaderHub';
@@ -76,8 +76,7 @@ function StatistiquesNationales() {
       <div className="statistics dont-print">
         <div className="fr-container">
           <div className="spinnerCustom">
-            <Spinner
-              type="Oval"
+            <Oval
               color="#00BFFF"
               height={100}
               width={100}

@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Spinner from 'react-loader-spinner';
+import { Oval } from 'react-loader-spinner';
 
 import ModalUpdateForm from './ModalUpdateForm';
 import Footer from '../../Footer';
@@ -60,8 +60,7 @@ function MonEspaceCandidat() {
       <div className="mon-espace-candidat">
         <div className="fr-container">
           <div className="spinnerCustom">
-            <Spinner
-              type="Oval"
+            <Oval
               color="#00BFFF"
               height={100}
               width={100}

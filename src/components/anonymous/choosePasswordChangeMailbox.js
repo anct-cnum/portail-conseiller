@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Header from '../Header';
 import Footer from '../Footer';
 import { userActions } from '../../actions';
-import Spinner from 'react-loader-spinner';
+import { Oval } from 'react-loader-spinner';
 import { Link, useParams } from 'react-router-dom';
 
 function ChoosePasswordMailBox() {
@@ -97,9 +97,8 @@ function ChoosePasswordMailBox() {
                   { changeMailboxMessageError &&
                   <h2 style={{ color: 'red' }}>{changeMailboxMessageError}</h2>
                   }
-                  <Spinner
+                  <Oval
                     className="fr-mt-10w fr-mb-10w"
-                    type="Oval"
                     color="#00BFFF"
                     height="100"
                     width="100"

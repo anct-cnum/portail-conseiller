@@ -26,21 +26,21 @@ function Welcome() {
   return (
     <>
       <div className="welcome">
-        { conseiller && !conseiller?.supHierarchique &&
-        <div className="fr-container">
-          <div className="fr-grid-row fr-grid-row--center">
-            <div className="fr-col-12 fr-mt-15w fr-mb-3w">
-              <div className="info-rappel-hierarchique fr-mb-3w fr-py-1w">
-                <i className="ri-information-line information icone-info-rappel"></i>
-                <p className="margin-info">
-                  Afin que votre responsable hi&eacute;rarchique puisse recevoir toutes les informations concernant le dispositif et vous accompagner
-                  au mieux, merci de nous indiquer ses coordonn&eacute;es en compl&eacute;tant le formulaire dans l&apos;onglet Mes informations,
-                  contact hi&eacute;rarchique sur la page d&apos;accueil en haut &agrave; droite de votre Espace Coop.
-                </p>
+        {conseiller && !conseiller?.supHierarchique &&
+          <div className="fr-container">
+            <div className="fr-grid-row fr-grid-row--center">
+              <div className="fr-col-12 fr-mt-15w fr-mb-3w">
+                <div className="info-rappel-hierarchique fr-mb-3w fr-py-1w">
+                  <i className="ri-information-line information icone-info-rappel"></i>
+                  <p className="margin-info">
+                    Afin que votre responsable hi&eacute;rarchique puisse recevoir toutes les informations concernant le dispositif et vous accompagner
+                    au mieux, merci de nous indiquer ses coordonn&eacute;es en compl&eacute;tant le formulaire dans l&apos;onglet Mes informations,
+                    contact hi&eacute;rarchique sur la page d&apos;accueil en haut &agrave; droite de votre Espace Coop.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         }
         <div className="fr-container fr-container--fluid fond-sombre">
           <div className="fr-grid-row">
@@ -51,17 +51,17 @@ function Welcome() {
                     <div className="block-cra">
                       <Link to="/compte-rendu-activite" className="saisie-cra"
                         title="Acc&eacute;der &agrave; votre outil de suivi d&rsquo;activit&eacute;" >
-                        <img src="/logos/home-connected/icone-saisie.svg"/>
+                        <img src="/logos/home-connected/icone-saisie.svg" />
                         <span>Enregistrer une activit&eacute;</span>
                       </Link>
                       <Link to="/historique" className="historique-cra"
                         title="Acc&eacute;der &agrave; l&rsquo;historique de vos comptes rendus d&rsquo;activit&eacute;" >
-                        <img src="/logos/home-connected/icone-historique.svg"/><br/>
+                        <img src="/logos/home-connected/icone-historique.svg" /><br />
                         <span>Historique</span>
                       </Link>
                       <Link to="/statistiques" className="statistiques-cra"
                         title="Acc&eacute;der aux statistiques" >
-                        <img src="/logos/home-connected/icone-statistiques.svg"/><br/>
+                        <img src="/logos/home-connected/icone-statistiques.svg" /><br />
                         <span>Statistiques</span>
                       </Link>
                     </div>
@@ -71,7 +71,7 @@ function Welcome() {
                       <div className="fr-grid-row bloc-liens">
                         <div className="fr-col-12 fr-col-sm-4 menu-btn fr-mb-5w">
                           <a href={lienMattermost} target="blank" title="Acc&egrave;s espace discussion">
-                            <img src="/logos/home-connected/icone-discussion.svg" className="icone-btn icone-mattermost"/>
+                            <img src="/logos/home-connected/icone-discussion.svg" className="icone-btn icone-mattermost" />
                             Discussion
                             <span
                               data-tooltip-id="infobulle-menu"
@@ -92,7 +92,7 @@ function Welcome() {
                         </div>
                         <div className="fr-col-12 fr-col-sm-4 menu-btn fr-mb-5w">
                           <a href={lienWebmail} target="blank" title="Acc&eacute;der &agrave; ma boîte mail">
-                            <img src="/logos/home-connected/icone-courriel.svg" className="icone-btn icone-mail"/>
+                            <img src="/logos/home-connected/icone-courriel.svg" className="icone-btn icone-mail" />
                             Web mail
                             <span
                               data-tooltip-id="infobulle-menu"
@@ -113,25 +113,25 @@ function Welcome() {
                         </div>
                         <div className="fr-col-12 fr-col-sm-4 menu-btn fr-mb-5w">
                           <Link to="/mes-lieux-activite" title="Acc&eacute;der aux lieux d&rsquo;activit&eacute;">
-                            <img src="/logos/home-connected/icone-lieux.svg" className="icone-btn icone-lieux"/>
+                            <img src="/logos/home-connected/icone-lieux.svg" className="icone-btn icone-lieux" />
                             Lieux d&rsquo;activit&eacute;
                           </Link>
                         </div>
                         <div className="fr-col-12 fr-col-sm-4 menu-btn fr-mb-5w">
                           <a href={lienLaBase} rel="noreferrer" target="blank" title="Acc&eacute;der &agrave; Les Bases">
-                            <img src="/logos/home-connected/icone-la-base.svg" className="icone-btn icone-les-bases"/>
+                            <img src="/logos/home-connected/icone-la-base.svg" className="icone-btn icone-les-bases" />
                             Les Bases
                           </a>
                         </div>
                         <div className="fr-col-12 fr-col-sm-4 menu-btn fr-mb-5w">
                           <a href={lienRdvAideNumerique} target="blank" title="Acc&eacute;der &agrave; RDV Aide Num&eacute;rique">
-                            <img src="/logos/home-connected/logo-rdv-aide-numerique.svg" className="icone-btn icone-rdv-aide-numerique"/>
+                            <img src="/logos/home-connected/logo-rdv-aide-numerique.svg" className="icone-btn icone-rdv-aide-numerique" />
                             RDV Aide Num&eacute;rique
                           </a>
                         </div>
                         <div className="fr-col-12 fr-col-sm-4 menu-btn fr-mb-5w">
                           <a href={lienPix} target="blank" title="Acc&eacute;der &agrave; Pix">
-                            <img src="/logos/home-connected/icone-pix.svg" className="icone-btn icone-pix"/>
+                            <img src="/logos/home-connected/icone-pix.svg" className="icone-btn icone-pix" />
                             Pix
                           </a>
                         </div>
@@ -145,13 +145,13 @@ function Welcome() {
                       <div className="fr-grid-row">
                         <div className="fr-col-12 fr-col-sm-6 menu-btn fr-mb-5w fr-mt-md-7w fr-ml-md-n2w">
                           <a href="/statistiques-nationales" title="Acc&eacute;der aux Statistiques Nationales">
-                            <img src="/logos/home-connected/icone-nationale.svg" className="icone-btn icone-pix"/>
-                            <span>Statistiques <br/>nationales</span>
+                            <img src="/logos/home-connected/icone-nationale.svg" className="icone-btn icone-pix" />
+                            <span>Statistiques <br />nationales</span>
                           </a>
                         </div>
                         <div className="fr-col-12 fr-col-sm-6 menu-btn fr-mb-5w fr-mt-md-7w fr-ml-md-n3w">
                           <a href={lienBlog} target="blank" title="Acc&eacute;der au Blog">
-                            <img src="/logos/home-connected/icone-blog.svg" className="icone-btn icone-pix"/>
+                            <img src="/logos/home-connected/icone-blog.svg" className="icone-btn icone-pix" />
                             <span>M&eacute;dia Conum</span>
                           </a>
                         </div>
@@ -161,24 +161,24 @@ function Welcome() {
 
                   <div className="fr-col-12 fr-col-sm-4 fr-col-md-3 menu-btn fr-mb-5w">
                     <a href="https://www.conseiller-numerique.gouv.fr/kit-communication" target="blank">
-                      <img src="/logos/home-connected/icone-kit.svg" className=""/><br/>
+                      <img src="/logos/home-connected/icone-kit.svg" className="" /><br />
                       <span>Kit de communication</span>
                     </a>
                   </div>
                   <div className="fr-col-12 fr-col-sm-4 fr-col-md-3 menu-btn fr-mb-5w">
                     <a href="https://cdn.conseiller-numerique.gouv.fr/les-conseils-pour-bien-demarrer.pdf" target="blank">
-                      <img src="/logos/home-connected/icone-mission.svg" className=""/><br/>
-                      <span>Guide Bien d&eacute;marrer<br/> ma mission</span>
+                      <img src="/logos/home-connected/icone-mission.svg" className="" /><br />
+                      <span>Guide Bien d&eacute;marrer<br /> ma mission</span>
                     </a>
                   </div>
                 </div>
               </div>
             </div>
-            <Tooltip id="infobulle-menu" className="infobulle" arrowColor="white"/>
+            <Tooltip id="infobulle-menu" className="infobulle" style={{ zIndex: 1 }} arrowColor="white" />
           </div>
         </div>
       </div>
-      <Footer type="support"/>
+      <Footer type="support" />
     </>
   );
 }

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useLocation } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { alerteActions, conseillerActions } from '../../actions';
-import Spinner from 'react-loader-spinner';
+import { Oval } from 'react-loader-spinner';
 import Alerte from '../common/Alerte';
 
 function BannerHub() {
@@ -28,8 +28,7 @@ function BannerHub() {
     <div className="fr-container">
       <Alerte />
       <div className="spinnerCustom">
-        <Spinner
-          type="Oval"
+        <Oval
           color="#00BFFF"
           height={100}
           width={100}

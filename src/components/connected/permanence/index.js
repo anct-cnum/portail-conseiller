@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Spinner from 'react-loader-spinner';
+import { Oval } from 'react-loader-spinner';
 import { conseillerActions, permanenceActions } from '../../../actions';
 import { userEntityId } from '../../../helpers';
 
@@ -68,8 +68,7 @@ function Permanence() {
   return (
     <>
       <div className="spinnerCustom">
-        <Spinner
-          type="Oval"
+        <Oval
           color="#00BFFF"
           height={100}
           width={100}

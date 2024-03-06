@@ -6,7 +6,7 @@ import LeftPage from './LeftPage';
 import RightPage from './RightPage';
 import BottomPage from './BottomPage';
 import Footer from '../../Footer';
-import Spinner from 'react-loader-spinner';
+import { Oval } from 'react-loader-spinner';
 import StatisticsBanner from './StatisticsBanner';
 import { useLocation } from 'react-router';
 import ElementCodePostal from './Components/ElementCodePostal';
@@ -88,8 +88,7 @@ function Statistics() {
       <div className="statistics dont-print">
         <div className="fr-container">
           <div className="spinnerCustom">
-            <Spinner
-              type="Oval"
+            <Oval
               color="#00BFFF"
               height={100}
               width={100}
