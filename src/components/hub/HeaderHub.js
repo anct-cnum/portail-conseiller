@@ -33,7 +33,7 @@ function HeaderHub({ linkAccount }) {
 
               <div className="fr-header__service">
                 <div className="block-feuillet">
-                  <a href="/" title="Accueil - Conseiller Numerique France service">
+                  <a href="/" title="Accueil - Conseiller Numerique">
                     <div className="feuillet">
                       <p className="fr-header__service-title title-feuillet">Coop</p>
                       <p className="fr-header__service-tagline">Bienvenue sur le r&eacute;seau des conseillers num&eacute;riques</p>

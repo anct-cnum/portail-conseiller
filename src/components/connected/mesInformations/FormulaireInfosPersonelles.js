@@ -134,7 +134,7 @@ function FormulaireInfosPersonnelles() {
           Adresse mail personnelle<span className="obligatoire">&nbsp;*</span>
           <span className="fr-hint-text desc-input">
             Utilis&eacute;e pour votre candidature au dispositif.<br/>
-            Sert &eacute;galement &agrave; r&eacute;cup&eacute;rer le mot de passe du mail CnFS.
+            Sert &eacute;galement &agrave; r&eacute;cup&eacute;rer le mot de passe du mail Conum.
           </span>
         </label>
         <input

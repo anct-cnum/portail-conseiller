@@ -97,7 +97,7 @@ function FormulaireInfosProfessionnelles() {
         </div>
       }
 
-      <div className="fr-mb-2w">Adresse mail CnFS</div>
+      <div className="fr-mb-2w">Adresse mail Conum</div>
       <div className="contact-mail">
         <img src="/logos/home-connected/icone-courriel.svg" />
         <div className="infos-user fr-mb-md-6w">

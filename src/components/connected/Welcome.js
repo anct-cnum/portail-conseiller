@@ -152,7 +152,7 @@ function Welcome() {
                         <div className="fr-col-12 fr-col-sm-6 menu-btn fr-mb-5w fr-mt-md-7w fr-ml-md-n3w">
                           <a href={lienBlog} target="blank" title="Acc&eacute;der au Blog">
                             <img src="/logos/home-connected/icone-blog.svg" className="icone-btn icone-pix"/>
-                            <span>M&eacute;dia CnFS</span>
+                            <span>M&eacute;dia Conum</span>
                           </a>
                         </div>
                       </div>
