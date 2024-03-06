@@ -2,11 +2,10 @@ import dayjs from 'dayjs';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Tooltip } from 'react-tooltip';
-import FlashMessage from 'react-flash-message';
-import Pluralize from 'react-pluralize';
+import { pluralize } from '../../../utils/functionFormats';
 import labelsCorrespondance from '../../../data/labelsCorrespondance.json';
 import { htmlDecode } from '../../../utils/functionEncodeDecode';
-import { statistiqueActions, historiqueCrasActions } from '../../../actions';
+import { statistiqueActions, historiqueCrasActions, alerteActions } from '../../../actions';
 import Footer from '../../Footer';
 import Thematique from './Thematique';
 import Spinner from 'react-loader-spinner';
@@ -16,6 +15,7 @@ import ConfirmationSuppressionCra from './SupprimerCra';
 import SousTheme from './SousTheme';
 import FiltreDate from './FiltreDate';
 import FiltreLieu from './FiltreLieu';
+import Alerte from '../../common/Alerte';
 
 function HistoriqueCras() {
   const dispatch = useDispatch();
@@ -108,6 +108,35 @@ function HistoriqueCras() {
     }
   });
 
+  useEffect(() => {
+    if (isDeleted) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'valid',
+        message: 'Votre suivi d\'activité a bien été supprimé.',
+        icon: 'ri-check-line ri-xl',
+      }));
+    }
+    if (printFlashbag) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'valid',
+        icon: 'ri-check-line ri-xl',
+        message: 'Votre suivi d\'activité a bien été enregistré.',
+      }));
+    }
+    if (error) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'invalid',
+        message: error
+      }));
+    }
+    if (errorSuppression) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'invalid',
+        message: errorSuppression,
+      }));
+    }
+  }, [isDeleted, printFlashbag, error, errorSuppression]);
+
   return (
     <>
       <div className="historique-cras">
@@ -115,53 +144,24 @@ function HistoriqueCras() {
           <div className="fr-grid-row fr-grid-row--center">
             <div className="fr-col-12">
               <h1 className="titre">
-                  Historique des accompagnements
+                Historique des accompagnements
               </h1>
             </div>
           </div>
-          {isDeleted &&
-            <FlashMessage duration={5000}>
-              <p className="fr-label flashBag">
-                Votre suivi d&rsquo;activit&eacute; a bien &eacute;t&eacute; supprim&eacute;&nbsp;
-                <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
-              </p>
-            </FlashMessage>
-          }
-          { printFlashbag === true &&
-            <FlashMessage duration={5000}>
-              <p className="fr-label flashBag">
-                Votre suivi d&rsquo;activit&eacute; a bien &eacute;t&eacute; enregistr&eacute;&nbsp;
-                <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
-              </p>
-            </FlashMessage>
-          }
-          {error &&
-            <FlashMessage duration={5000}>
-              <p className="fr-label flashBag invalid">
-                {error}
-              </p>
-            </FlashMessage>
-          }
-          {errorSuppression &&
-            <FlashMessage duration={5000}>
-              <p className="fr-label flashBag invalid">
-                {errorSuppression}
-              </p>
-            </FlashMessage>
-          }
+          <Alerte />
           <div className="spinnerCustom">
             <Spinner
               type="Oval"
               color="#00BFFF"
               height={100}
               width={100}
-              visible={loading === true }
+              visible={loading === true}
             />
           </div>
           {(!accompagnements && !loading) &&
             <div className="fr-grid-row fr-grid-row--center">
               <div className="fr-col-6 fr-mt-15w fr-mb-7w">
-                  Vous n&rsquo;avez pas d&rsquo;accompagnement enregistr&eacute;.
+                Vous n&rsquo;avez pas d&rsquo;accompagnement enregistr&eacute;.
               </div>
               <div className="fr-col-12"></div>
               <div className="fr-col-3">
@@ -182,20 +182,24 @@ function HistoriqueCras() {
             <div className="fr-grid-row">
               <div className="fr-col-lg-8 fr-mt-1w fr-mb-8w">
                 {(thematique === null && canal === null && type === null) &&
-                  <Pluralize
-                    zero={'Vous n\'avez enregistré aucun accompagnement.'}
-                    singular={'Vous avez enregistré un accompagnement au total.'}
-                    plural={'Vous avez enregistré ' + total + ' accompagnements au total.'}
-                    count={total}
-                    showCount={false} />
+                  <>
+                    {pluralize(
+                      'Vous n\'avez enregistré aucun accompagnement.',
+                      'Vous avez enregistré un accompagnement au total.',
+                      'Vous avez enregistré ' + total + ' accompagnements au total.',
+                      total
+                    )}
+                  </>
                 }
                 {(thematique !== null || canal !== null || type !== null) &&
-                  <Pluralize
-                    zero={'Vous n\'avez enregistré aucun accompagnement en fonction de vos filtres.'}
-                    singular={'Vous avez enregistré un accompagnement en fonction de vos filtres.'}
-                    plural={'Vous avez enregistré ' + total + ' accompagnements en fonction de vos filtres.'}
-                    count={total}
-                    showCount={false} />
+                  <>
+                    {pluralize(
+                      'Vous n\'avez enregistré aucun accompagnement en fonction de vos filtres.',
+                      'Vous avez enregistré un accompagnement en fonction de vos filtres.',
+                      'Vous avez enregistré ' + total + ' accompagnements en fonction de vos filtres.',
+                      total
+                    )}
+                  </>
                 }
               </div>
 
@@ -205,13 +209,13 @@ function HistoriqueCras() {
                   <a className="fr-btn fr-btn--secondary fr-mr-md-2w" href="/statistiques">Consulter mes statistiques</a>
                   <span>P&eacute;riode du &nbsp;</span>
                   <span id="span-datePickerDebut" >
-                    <FiltreDate idDate="dateCraDebut"/>
+                    <FiltreDate idDate="dateCraDebut" />
                   </span>
                   <span id="span-datePickerFin" >
                     &nbsp;au&nbsp;
-                    <FiltreDate idDate="dateCraFin"/>
+                    <FiltreDate idDate="dateCraFin" />
                   </span>
-                  <FiltreLieu optionList={optionList}/>
+                  <FiltreLieu optionList={optionList} />
                 </div>
                 <div className="fr-table fr-table--bordered fr-table--layout-fixed cras">
                   <table>
@@ -273,7 +277,7 @@ function HistoriqueCras() {
                           <td>
                             {accompagnement.cra?.sousThemes?.map((sousTheme, idx) =>
                               <span key={idx} >
-                                <SousTheme sousTheme={sousTheme}/>
+                                <SousTheme sousTheme={sousTheme} />
                                 {idx + 1 < accompagnement.cra?.sousThemes.length &&
                                   <>&nbsp;/&nbsp;</>
                                 }
@@ -301,17 +305,17 @@ function HistoriqueCras() {
                       }
                     </tbody>
                   </table>
-                  <Tooltip className="infobulle" id="infobulle-menu" arrowColor="white"/>
+                  <Tooltip className="infobulle" id="infobulle-menu" arrowColor="white" />
                 </div>
               </div>
               <div className="fr-col-12 fr-mb-12w">
-                <Pagination current={page} pageCount={pageCount} navigate={navigate}/>
+                <Pagination current={page} pageCount={pageCount} navigate={navigate} />
               </div>
             </div>
           }
         </div>
       </div>
-      <Footer type="support"/>
+      <Footer type="support" />
     </>
   );
 }

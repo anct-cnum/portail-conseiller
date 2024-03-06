@@ -12,3 +12,4 @@ export * from './informations.actions';
 export * from './candidat.actions';
 export * from './supHierarchique.actions';
 export * from './historiqueCras.actions';
+export * from './alerte.actions';

@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Navigate } from 'react-router-dom';
 import Header from '../Header';
 import CoordinateurHeader from './CoordinateurHeader';
 import Conseillers from './Conseillers';
 import Territoires from '../admin/Territoires';
 import Statistics from '../connected/statistics/Statistics';
-import conseillerDetails from '../admin/ConseillerDetails';
 import Permanence from '../connected/permanence';
 import MesPermanences from '../connected/permanence/MesPermanences';
 import PermanenceUpdate from '../connected/permanence/PermanenceUpdate';
@@ -20,6 +19,7 @@ import UpdateCra from '../connected/cra/UpdateCra';
 import HistoriqueCras from '../connected/historiqueCras';
 import MonEspaceCandidat from '../connected/mesInformations/MonEspaceCandidat';
 import FormulaireSuperieurHierarchique from '../connected/mesInformations/FormulaireSupHierarchique';
+import ConseillerDetails from '../admin/ConseillerDetails';
 
 function Coordinateur() {
   const dispatch = useDispatch();
@@ -49,32 +49,32 @@ function Coordinateur() {
 
   return (
     <>
-      <Header linkAccount={user?.name}/>
+      <Header linkAccount={user?.name} />
       <div className="admin">
-        <CoordinateurHeader linkAccount={user?.name}/>
+        <CoordinateurHeader linkAccount={user?.name} />
         {(!voirPermanence || suspendrePermanence) &&
           <>
-            <Route path={'/mes-informations'} component={MesInformations} />
-            <Route exact path={`/compte-rendu-activite`} component={Cra} />
-            <Route path={`/compte-rendu-activite/:idCra`} component={UpdateCra} />
-            <Route path={'/mes-lieux-activite'} component={MesPermanences} />
-            <Route path={'/mon-lieu-activite/:idPermanence'} component={PermanenceUpdate} />
-            <Route path={'/mon-nouveau-lieu-activite'} component={PermanenceCreate} />
-            <Route path={`/accueil`} component={Conseillers} />
-            <Route path={`/territoires`} component={Territoires} />
-            <Route path={`/statistiques`} component={Statistics} />
-            <Route path={`/conseiller/:id`} component={conseillerDetails} />
-            <Route path={`/lieux-activite`} component={Permanence} />
-            <Route path={'/historique'} component={HistoriqueCras} />
-            <Route path={'/mon-espace-candidat'} component={MonEspaceCandidat} />
-            <Route path={'/contact-mon-responsable'} component={FormulaireSuperieurHierarchique} />
-            <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
+            <Route path={'/mes-informations'} element={<MesInformations />} />
+            <Route exact path={`/compte-rendu-activite`} element={<Cra />} />
+            <Route path={`/compte-rendu-activite/:idCra`} element={<UpdateCra />} />
+            <Route path={'/mes-lieux-activite'} element={<MesPermanences />} />
+            <Route path={'/mon-lieu-activite/:idPermanence'} element={<PermanenceUpdate />} />
+            <Route path={'/mon-nouveau-lieu-activite'} element={<PermanenceCreate />} />
+            <Route path={`/accueil`} element={<Conseillers />} />
+            <Route path={`/territoires`} element={<Territoires />} />
+            <Route path={`/statistiques`} element={<Statistics />} />
+            <Route path={`/conseiller/:id`} element={<ConseillerDetails />} />
+            <Route path={`/lieux-activite`} element={<Permanence />} />
+            <Route path={'/historique'} element={<HistoriqueCras />} />
+            <Route path={'/mon-espace-candidat'} element={<MonEspaceCandidat />} />
+            <Route path={'/contact-mon-responsable'} element={<FormulaireSuperieurHierarchique />} />
+            <Route exact path="/" element={<Navigate to="/accueil" />} />
           </>
         }
         {(voirPermanence && !suspendrePermanence) &&
           <>
-            <Route path={`/accueil`} component={Permanence} />
-            <Route path="/" render={() => (<Redirect to="/accueil" />)} />
+            <Route path={`/accueil`} element={<Permanence />} />
+            <Route path="/" element={<Navigate to="/accueil" />} />
           </>
         }
 

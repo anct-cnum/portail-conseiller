@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import FlashMessage from 'react-flash-message';
-
 import { formSupHierarchiqueActions } from '../../../actions/supHierarchique.actions';
 import telephoneHorsMetropole from '../../../data/indicatifs.json';
 import ModalUpdateForm from './ModalUpdateForm';
 import Footer from '../../Footer';
+import { alerteActions } from '../../../actions';
+import Alerte from '../../common/Alerte';
 
 function FormulaireSuperieurHierarchique() {
 
@@ -78,33 +78,36 @@ function FormulaireSuperieurHierarchique() {
     }
   }, [supHierarchique]);
 
+  useEffect(() => {
+    dispatch(alerteActions.getMessageAlerte({
+
+    }));
+  }, [structure]);
+
 
   useEffect(() => {
+    if (formSupHierarchique?.isCreated) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'valid',
+        message: 'Vos informations ont bien été enregistrées',
+        icon: 'ri-check-line ri-xl'
+      }));
+    }
+    if (formSupHierarchique?.error) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'invalid',
+        message: formSupHierarchique.error,
+        icon: 'ri-close-line ri-xl'
+      }));
+    }
     dispatch(formSupHierarchiqueActions.initFormSupHierarchiqueMessage({ isCreated: false, showError: false }));
-  }, []);
+  }, [formSupHierarchique?.isCreated, formSupHierarchique?.error]);
 
   return (
     <>
-      <ModalUpdateForm form={formSupHierarchique} showModal={showModal} setShowModal={setShowModal} formOrigin="superieurHierarchique"/>
-    
+      <ModalUpdateForm form={formSupHierarchique} showModal={showModal} setShowModal={setShowModal} formOrigin="superieurHierarchique" />
       <div className="mes-informations">
-        {formSupHierarchique.isCreated &&
-          <FlashMessage duration={10000}>
-            <p className="fr-label flashBag">
-              Vos informations ont bien &eacute;t&eacute; enregistr&eacute;es&nbsp;
-              <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
-            </p>
-          </FlashMessage>
-        }
-        {formSupHierarchique.error &&
-          <FlashMessage duration={10000}>
-            <p className="fr-label flashBag invalid">
-              {formSupHierarchique.error}
-              <i className="ri-close-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
-            </p>
-          </FlashMessage>
-        }
-
+        <Alerte />
         <div className="fr-container">
           <div className="fr-grid-row">
             <div className="fr-col-12">

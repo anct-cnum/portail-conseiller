@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-
-import FlashMessage from 'react-flash-message';
-import { candidatActions } from '../../../actions';
+import { alerteActions, candidatActions } from '../../../actions';
 
 function MaZoneGeographique({ setSubmitted, setShowModal, submitted }) {
   const dispatch = useDispatch();
@@ -71,28 +69,20 @@ function MaZoneGeographique({ setSubmitted, setShowModal, submitted }) {
     setSubmitted(false);
   }, [candidat]);
 
+  useEffect(() => {
+    if (erreur || erreursForm?.lengthError > 0) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'invalid',
+        message: 'Veuillez corriger les erreurs du formulaire.',
+        description: erreur?.toString() ?? '',
+        icon: 'ri-close-line ri-xl'
+      }));
+    }
+  }, [erreur, erreursForm]);
+
   return (
     <>
-      {(erreur || erreursForm?.lengthError > 0) &&
-        <FlashMessage duration={10000}>
-          <p className="fr-label flashBag invalid">
-            {erreursForm?.lengthError > 0 &&
-              <>
-                Veuillez corriger les erreurs du formulaire.
-              </>
-            }
-            {erreur &&
-              <>
-                {erreur.toString()}
-              </>
-            }
-            <i className="ri-close-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
-          </p>
-        </FlashMessage>
-      }
-
       <h2 className="sous-titre fr-mb-6w">Ma disponibilit&eacute; g&eacute;ographique</h2>
-
       <div className={`fr-input-group ${erreurCpVille ? 'fr-input-group--error fr-mb-6w' : 'fr-mb-12w'}`}>
         <label className="fr-label" htmlFor="nom">
           Code postal et nom de commune <span className="important">*</span>

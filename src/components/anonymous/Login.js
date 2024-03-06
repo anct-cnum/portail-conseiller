@@ -2,12 +2,12 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Footer from '../Footer';
-import FlashMessage from 'react-flash-message';
-import { userActions } from '../../actions';
+import { alerteActions, userActions } from '../../actions';
 import ModalResetPassword from './ModalResetPassword';
 import Spinner from 'react-loader-spinner';
 import ModalVerifyCode from './ModalVerifyCode';
-import Pluralize from 'react-pluralize';
+import { pluralize } from '../../utils/functionFormats';
+import Alerte from '../common/Alerte';
 
 function Login() {
 
@@ -67,6 +67,30 @@ function Login() {
     }
   }, [error, hiddenEmail]);
 
+  useEffect(() => {
+    if (successEmail) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'valid',
+        message: <p>Un e-mail vous a été envoyé</p>,
+      }));
+    }
+    if (messageCodeVerified) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'valid',
+        message: messageCodeVerified,
+      }));
+    }
+  }, [successEmail, messageCodeVerified]);
+
+  useEffect(() => {
+    if (errorEmail || errorCheckEmail) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'invalid',
+        message: errorCheckEmail || errorEmail,
+      }));
+    }
+  }, [errorEmail, errorCheckEmail]);
+
   return (
     <div className="Login">
       <div className="spinnerCustom">
@@ -78,41 +102,19 @@ function Login() {
           visible={loadingSendEmail}
         />
       </div>
-      {successEmail &&
-        <FlashMessage duration={5000}>
-          <p className="fr-label flashBag">
-            Un e-mail vous a &eacute;t&eacute; envoy&eacute;
-          </p>
-        </FlashMessage>
-      }
-      {messageCodeVerified &&
-        <FlashMessage duration={5000}>
-          <p className="fr-label flashBag">
-            {messageCodeVerified}
-          </p>
-        </FlashMessage>
-      }
+      <Alerte />
       {error?.attemptFail === 3 &&
-        <FlashMessage duration={20000}>
-          <p className="fr-label flashBag invalid">
-            Vous avez saisi un mot de passe incorrect &agrave; 3 reprises. Nous avons temporairement verrouill&eacute; votre compte.<br/>
-            R&eacute;essayez dans 10 min. Si vous l&rsquo;avez oubli&eacute;, cliquez sur&nbsp;
-            &quot;<Link to="/mot-de-passe-oublie" title="Mot de passe oubli&eacute; ?" >Mot de passe oubli&eacute; ?</Link>&quot;
-          </p>
-        </FlashMessage>
-      }
-      {(errorEmail || errorCheckEmail) &&
-        <FlashMessage duration={5000}>
-          <p className="fr-label flashBag invalid">
-            {errorEmail || errorCheckEmail}
-          </p>
-        </FlashMessage>
+        <p className="fr-label flashBag invalid">
+          Vous avez saisi un mot de passe incorrect &agrave; 3 reprises. Nous avons temporairement verrouill&eacute; votre compte.<br />
+          R&eacute;essayez dans 10 min. Si vous l&rsquo;avez oubli&eacute;, cliquez sur&nbsp;
+          &quot;<Link to="/mot-de-passe-oublie" title="Mot de passe oubli&eacute; ?" >Mot de passe oubli&eacute; ?</Link>&quot;
+        </p>
       }
       {showModalResetPassword &&
         <ModalResetPassword username={username} hiddenEmail={hiddenEmail} setShowModalResetPassword={setShowModalResetPassword} />
       }
       {showModalVerifyCode &&
-        <ModalVerifyCode setShowModalVerifyCode={setShowModalVerifyCode} email={username}/>
+        <ModalVerifyCode setShowModalVerifyCode={setShowModalVerifyCode} email={username} />
       }
       {role === 'structure' &&
         <dialog aria-labelledby="fr-modal-confirm-siret" role="dialog" id="fr-modal-confirm-siret" className="fr-modal modalOpened">
@@ -227,16 +229,13 @@ function Login() {
                 }
                 {error?.attemptFail < 3 &&
                   <div style={{ width: '280px', margin: 'auto auto' }}>
-                    <b>Mot de passe incorrect</b>, il vous<br/>
+                    <b>Mot de passe incorrect</b>, il vous<br />
                     reste&nbsp;
-                    <b><Pluralize
-                      zero={'tentative'}
-                      singular={'tentative'}
-                      plural={'tentatives'}
-                      count={countAttempt}
-                      showCount={true}/></b>&nbsp;avant<br/>
-                      le verrouillage de votre<br/>
-                      compte.</div>
+                    <b>
+                      {pluralize('tentative', 'tentative', 'tentatives', countAttempt, true)}
+                    </b>&nbsp;avant<br />
+                    le verrouillage de votre<br />
+                    compte.</div>
                 }
               </span>
               }

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Spinner from 'react-loader-spinner';
 
 import { permanenceActions, conseillerActions } from '../../../actions';
-import { userEntityId, history } from '../../../helpers';
+import { userEntityId } from '../../../helpers';
 
 import Banner from './Banner';
 import ContactProfessionel from './ContactProfessionel';
@@ -57,7 +57,7 @@ function PermanenceCreate() {
         dispatch(conseillerActions.get(userEntityId()));
         dispatch(permanenceActions.reinitiliserStatut());
         dispatch(permanenceActions.getListePermanences(structure?._id));
-        history.push('/mes-lieux-activite');
+        window.location.pathname = '/mes-lieux-activite';
       }, 3000);
     }
   }, [isCreated, isUpdated]);

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Spinner from 'react-loader-spinner';
 import { conseillerActions, permanenceActions } from '../../../actions';
-import { userEntityId, history } from '../../../helpers';
+import { userEntityId } from '../../../helpers';
 
 import ContactProfessionel from './ContactProfessionel';
 import PermanencePrincipale from './PermanencePrincipale';
@@ -60,7 +60,7 @@ function Permanence() {
           window.open(urlCartographie + '/' + redirection + '/details', '_blank', 'noopener,noreferrer');
         }
         dispatch(permanenceActions.getListePermanences(structure?._id));
-        history.push('/mes-lieux-activite');
+        window.location.pathname = '/mes-lieux-activite';
       }, 3000);
     }
   }, [isDeleted, isConseillerDeleted, isAllUpdated]);

@@ -1,11 +1,10 @@
-name: Déploiement sur l'espace demo
+name: Déploiement sur l'espace de demo
 
 on:
   workflow_dispatch:
   push:
     branches: [main]
-env:
-  branch:
+
 jobs:
   dependencies:
     runs-on: ubuntu-latest
@@ -18,21 +17,21 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
+          cache: 'npm'
       - name: Retrieve cached dependencies
         id: retrieve-dependencies
         uses: actions/cache@v3
         with:
-          key: node_modules-${{ hashFiles('yarn.lock') }}
+          key: node_modules-${{ hashFiles('package-lock.json') }}
           path: node_modules
       - name: Install dependencies
         if: steps.retrieve-dependencies.outputs.cache-hit == false
-        run: yarn --frozen-lockfile
+        run: npm ci --omit=dev
       - name: Cache dependencies if not present
         if: steps.retrieve-dependencies.outputs.cache-hit == false
         uses: actions/cache@v3
         with:
-          key: node_modules.-${{ hashFiles('yarn.lock') }}
+          key: node_modules.-${{ hashFiles('package-lock.json') }}
           path: node_modules
 
   build:
@@ -43,7 +42,7 @@ jobs:
       - name: Retrieve cached dependencies
         uses: actions/cache@v3
         with:
-          key: node_modules-${{ hashFiles('yarn.lock') }}
+          key: node_modules-${{ hashFiles('package-lock.json') }}
           path: node_modules
       - name: Override .env
         uses: SpicyPizza/create-envfile@v2.0
@@ -74,7 +73,7 @@ jobs:
           envkey_REACT_APP_SENTRY_TRACE_RATE: "0.01"
           file_name: .env
       - name: Build application
-        run: yarn run build
+        run: npm run build
       - name: copy .htaccess
         uses: canastro/copy-file-action@master
         with:

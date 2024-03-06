@@ -1,85 +1,85 @@
-$black-gradient: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%);
-$white-gradient: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 75.52%, #518FFF 100%);
-$blue-gradient: linear-gradient(180deg, #0063CB 0%, #000091 100%), #0063CB;
-$blue-gradient-redirection: linear-gradient(0deg, #9A9AFF 0%, #518FFF 96.15%);
-$small-blue-gradient: linear-gradient(0deg,#3558A2,#9A9AFF) border-box;
-$segment-gradient: linear-gradient(360deg, #3558A2 65.63%, #9A9AFF 100%);
-$mask-gradient: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-$red-gradient: linear-gradient(0deg,red,orange) border-box;
+$black-gradient: linear-gradient(180deg, #1e1e1e 0%, #161616 64.06%, #111111 100%);
+$white-gradient: linear-gradient(180deg, #ffffff 0%, #ffffff 75.52%, #518fff 100%);
+$blue-gradient: linear-gradient(180deg, #0063cb 0%, #000091 100%), #0063cb;
+$blue-gradient-redirection: linear-gradient(0deg, #9a9aff 0%, #518fff 96.15%);
+$small-blue-gradient: linear-gradient(0deg, #3558a2, #9a9aff) border-box;
+$segment-gradient: linear-gradient(360deg, #3558a2 65.63%, #9a9aff 100%);
+$mask-gradient:
+  linear-gradient(#fff 0 0) padding-box,
+  linear-gradient(#fff 0 0);
+$red-gradient: linear-gradient(0deg, red, orange) border-box;
 $errorDarkMode: #ff3333;
 $background: #1e1e1e;
 $blue: #2b8bf7;
 
+$lieuRattachementSelected: url(../../../public/logos/cra/logo-lieu-rattachement-selected.svg) no-repeat;
+$lieuRattachementActif: url(../../../public/logos/cra/logo-lieu-rattachement-actif.svg) no-repeat;
+$lieuRattachement: url(../../../public/logos/cra/logo-lieu-rattachement.svg) no-repeat;
+$lieuAutre: url(../../../public/logos/cra/logo-autre-lieu.svg) no-repeat;
+$lieuDistance: url(../../../public/logos/cra/logo-a-distance.svg) no-repeat;
+$lieuDomicile: url(../../../public/logos/cra/logo-a-domicile.svg) no-repeat;
+$calendrier: url(../../../public/logos/cra/logo-calendrier.svg) no-repeat;
+$lieuRattachementHover: url(../../../public/logos/cra/logo-lieu-rattachement-n.svg) no-repeat;
+$lieuAutreHover: url(../../../public/logos/cra/logo-autre-lieu-n.svg) no-repeat;
+$lieuDistanceHover: url(../../../public/logos/cra/logo-a-distance-n.svg) no-repeat;
+$lieuDomicileHover: url(../../../public/logos/cra/logo-a-domicile-n.svg) no-repeat;
+$calendrierHover: url(../../../public/logos/cra/logo-calendrier-n.svg) no-repeat;
 
-$lieuRattachementSelected: url(../../public/logos/cra/logo-lieu-rattachement-selected.svg) no-repeat;
-$lieuRattachementActif: url(../../public/logos/cra/logo-lieu-rattachement-actif.svg) no-repeat;
-$lieuRattachement: url(../../public/logos/cra/logo-lieu-rattachement.svg) no-repeat;
-$lieuAutre: url(../../public/logos/cra/logo-autre-lieu.svg) no-repeat;
-$lieuDistance: url(../../public/logos/cra/logo-a-distance.svg) no-repeat;
-$lieuDomicile: url(../../public/logos/cra/logo-a-domicile.svg) no-repeat;
-$calendrier: url(../../public/logos/cra/logo-calendrier.svg) no-repeat;
-$lieuRattachementHover: url(../../public/logos/cra/logo-lieu-rattachement-n.svg) no-repeat;
-$lieuAutreHover: url(../../public/logos/cra/logo-autre-lieu-n.svg) no-repeat;
-$lieuDistanceHover: url(../../public/logos/cra/logo-a-distance-n.svg) no-repeat;
-$lieuDomicileHover: url(../../public/logos/cra/logo-a-domicile-n.svg) no-repeat;
-$calendrierHover: url(../../public/logos/cra/logo-calendrier-n.svg) no-repeat;
+$diagnostic: url(../../../public/logos/cra/logo-diagnostic-numerique.svg) no-repeat;
+$equipeInfo: url(../../../public/logos/cra/logo-equip-info.svg) no-repeat;
+$cultureNum: url(../../../public/logos/cra/logo-culture.svg) no-repeat;
+$navigateur: url(../../../public/logos/cra/logo-naviguer.svg) no-repeat;
+$securite: url(../../../public/logos/cra/logo-securite.svg) no-repeat;
+$courriel: url(../../../public/logos/cra/logo-courriel.svg) no-repeat;
+$echanger: url(../../../public/logos/cra/logo-echanger-proches.svg) no-repeat;
+$bureautique: url(../../../public/logos/cra/logo-bureautique.svg) no-repeat;
+$contenus: url(../../../public/logos/cra/logo-contenus-numeriques.svg) no-repeat;
+$emploi: url(../../../public/logos/cra/logo-emploi.svg) no-repeat;
+$tpePme: url(../../../public/logos/cra/logo-tpe-pme.svg) no-repeat;
+$accompagner: url(../../../public/logos/cra/logo-accompagner-enfant.svg) no-repeat;
+$demarche: url(../../../public/logos/cra/logo-demarches.svg) no-repeat;
+$fraude: url(../../../public/logos/cra/logo-fraude.svg) no-repeat;
+$budget: url(../../../public/logos/cra/logo-budget.svg) no-repeat;
+$sante: url(../../../public/logos/cra/logo-sante.svg) no-repeat;
+$suggestion: url(../../../public/logos/cra/logo-suggestion.svg) no-repeat;
+$suggestionInactif: url(../../../public/logos/cra/logo-suggestion-inactif.svg) no-repeat;
+$scolaire: url(../../../public/logos/cra/logo-scolaire.svg) no-repeat;
+$autre: url(../../../public/logos/cra/logo-autre.svg) no-repeat;
 
-$diagnostic: url(../../public/logos/cra/logo-diagnostic-numerique.svg) no-repeat;
-$equipeInfo: url(../../public/logos/cra/logo-equip-info.svg) no-repeat;
-$cultureNum: url(../../public/logos/cra/logo-culture.svg) no-repeat;
-$navigateur: url(../../public/logos/cra/logo-naviguer.svg) no-repeat;
-$securite: url(../../public/logos/cra/logo-securite.svg) no-repeat;
-$courriel: url(../../public/logos/cra/logo-courriel.svg) no-repeat;
-$echanger: url(../../public/logos/cra/logo-echanger-proches.svg) no-repeat;
-$bureautique: url(../../public/logos/cra/logo-bureautique.svg) no-repeat;
-$contenus: url(../../public/logos/cra/logo-contenus-numeriques.svg) no-repeat;
-$emploi: url(../../public/logos/cra/logo-emploi.svg) no-repeat;
-$tpePme: url(../../public/logos/cra/logo-tpe-pme.svg) no-repeat;
-$accompagner: url(../../public/logos/cra/logo-accompagner-enfant.svg) no-repeat;
-$demarche: url(../../public/logos/cra/logo-demarches.svg) no-repeat;
-$fraude: url(../../public/logos/cra/logo-fraude.svg) no-repeat;
-$budget : url(../../public/logos/cra/logo-budget.svg) no-repeat;
-$sante: url(../../public/logos/cra/logo-sante.svg) no-repeat;
-$suggestion: url(../../public/logos/cra/logo-suggestion.svg) no-repeat;
-$suggestionInactif: url(../../public/logos/cra/logo-suggestion-inactif.svg) no-repeat;
-$scolaire : url(../../public/logos/cra/logo-scolaire.svg) no-repeat;
-$autre: url(../../public/logos/cra/logo-autre.svg) no-repeat;
+$diagnosticSelected: url(../../../public/logos/cra/logo-diagnostic-numerique-n.svg) no-repeat;
+$equipeInfoSelected: url(../../../public/logos/cra/logo-equip-info-n.svg) no-repeat;
+$cultureNumSelected: url(../../../public/logos/cra/logo-culture-n.svg) no-repeat;
+$navigateurSelected: url(../../../public/logos/cra/logo-naviguer-n.svg) no-repeat;
+$securiteSelected: url(../../../public/logos/cra/logo-securite-n.svg) no-repeat;
+$courrielSelected: url(../../../public/logos/cra/logo-courriel-n.svg) no-repeat;
+$echangerSelected: url(../../../public/logos/cra/logo-echanger-proches-n.svg) no-repeat;
+$bureautiqueSelected: url(../../../public/logos/cra/logo-bureautique-n.svg) no-repeat;
+$contenusSelected: url(../../../public/logos/cra/logo-contenus-numeriques-n.svg) no-repeat;
+$emploiSelected: url(../../../public/logos/cra/logo-emploi-n.svg) no-repeat;
+$tpePmeSelected: url(../../../public/logos/cra/logo-tpe-pme-n.svg) no-repeat;
+$accompagnerSelected: url(../../../public/logos/cra/logo-accompagner-enfant-n.svg) no-repeat;
+$demarcheSelected: url(../../../public/logos/cra/logo-demarches-n.svg) no-repeat;
+$fraudeSelected: url(../../../public/logos/cra/logo-fraude-n.svg) no-repeat;
+$budgetSelected: url(../../../public/logos/cra/logo-budget-n.svg) no-repeat;
+$santeSelected: url(../../../public/logos/cra/logo-sante-n.svg) no-repeat;
+$suggestionSelected: url(../../../public/logos/cra/logo-suggestion-n.svg) no-repeat;
+$scolaireSelected: url(../../../public/logos/cra/logo-scolaire-n.svg) no-repeat;
+$autreSelected: url(../../../public/logos/cra/logo-autre-n.svg) no-repeat;
 
-$diagnosticSelected: url(../../public/logos/cra/logo-diagnostic-numerique-n.svg) no-repeat;
-$equipeInfoSelected: url(../../public/logos/cra/logo-equip-info-n.svg) no-repeat;
-$cultureNumSelected: url(../../public/logos/cra/logo-culture-n.svg) no-repeat;
-$navigateurSelected: url(../../public/logos/cra/logo-naviguer-n.svg) no-repeat;
-$securiteSelected: url(../../public/logos/cra/logo-securite-n.svg) no-repeat;
-$courrielSelected: url(../../public/logos/cra/logo-courriel-n.svg) no-repeat;
-$echangerSelected: url(../../public/logos/cra/logo-echanger-proches-n.svg) no-repeat;
-$bureautiqueSelected: url(../../public/logos/cra/logo-bureautique-n.svg) no-repeat;
-$contenusSelected: url(../../public/logos/cra/logo-contenus-numeriques-n.svg) no-repeat;
-$emploiSelected: url(../../public/logos/cra/logo-emploi-n.svg) no-repeat;
-$tpePmeSelected: url(../../public/logos/cra/logo-tpe-pme-n.svg) no-repeat;
-$accompagnerSelected: url(../../public/logos/cra/logo-accompagner-enfant-n.svg) no-repeat;
-$demarcheSelected: url(../../public/logos/cra/logo-demarches-n.svg) no-repeat;
-$fraudeSelected: url(../../public/logos/cra/logo-fraude-n.svg) no-repeat;
-$budgetSelected : url(../../public/logos/cra/logo-budget-n.svg) no-repeat;
-$santeSelected: url(../../public/logos/cra/logo-sante-n.svg) no-repeat;
-$suggestionSelected: url(../../public/logos/cra/logo-suggestion-n.svg) no-repeat;
-$scolaireSelected : url(../../public/logos/cra/logo-scolaire-n.svg) no-repeat;
-$autreSelected: url(../../public/logos/cra/logo-autre-n.svg) no-repeat;
+$chevronGauche: url(../../../public/logos/cra/logo-chevron-gauche.svg) no-repeat;
+$chevronDroite: url(../../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
 
-$chevronGauche: url(../../public/logos/cra/logo-chevron-gauche.svg) no-repeat;
-$chevronDroite: url(../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
+$individuel: url(../../../public/logos/cra/logo-acc-individuel.svg) no-repeat;
+$atelier: url(../../../public/logos/cra/logo-atelier.svg) no-repeat;
+$logoDemande: url(../../../public/logos/cra/logo-demande-ponctuelle.svg) no-repeat;
+$redirection: url(../../../public/logos/cra/logo-redirection-structure.svg) no-repeat;
 
-$individuel: url(../../public/logos/cra/logo-acc-individuel.svg) no-repeat;
-$atelier: url(../../public/logos/cra/logo-atelier.svg) no-repeat;
-$logoDemande: url(../../public/logos/cra/logo-demande-ponctuelle.svg) no-repeat;
-$redirection: url(../../public/logos/cra/logo-redirection-structure.svg) no-repeat;
-
-$individuelSelected: url(../../public/logos/cra/logo-acc-individuel-n.svg) no-repeat;
-$atelierSelected: url(../../public/logos/cra/logo-atelier-n.svg) no-repeat;
-$logoDemandeSelected: url(../../public/logos/cra/logo-demande-ponctuelle-n.svg) no-repeat;
-$redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.svg) no-repeat;
+$individuelSelected: url(../../../public/logos/cra/logo-acc-individuel-n.svg) no-repeat;
+$atelierSelected: url(../../../public/logos/cra/logo-atelier-n.svg) no-repeat;
+$logoDemandeSelected: url(../../../public/logos/cra/logo-demande-ponctuelle-n.svg) no-repeat;
+$redirectionSelected: url(../../../public/logos/cra/logo-redirection-structure-n.svg) no-repeat;
 
 .cra {
-
   /* Chrome, Safari, Edge, Opera */
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
@@ -89,9 +89,9 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     margin: 0;
   }
 
-/* Firefox */
-  input[type=number] {
-    -moz-appearance:textfield;
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
     appearance: textfield;
   }
   .espacement {
@@ -124,7 +124,8 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
   .close-information {
     display: none;
   }
-  .information-message, .information-message-important {
+  .information-message,
+  .information-message-important {
     position: relative;
     color: #518fff;
     padding: 10px 10px 0 0;
@@ -164,14 +165,14 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
   .info-dom-dis-message {
     top: 30px;
   }
-  @supports (-moz-appearance:none) {
+  @supports (-moz-appearance: none) {
     .q1 {
       top: -98px;
     }
-    .info-rattachement{
+    .info-rattachement {
       top: -139px;
     }
-    .info-autre{
+    .info-autre {
       top: -114px;
     }
     .info-dom-dis-message {
@@ -187,26 +188,45 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
   .q6 {
     top: 0px;
   }
-  .info-rattachement, .info-autre, .info-date-dist-dom, .info-individuel, .info-ponctuelle, .info-collectif, .info-diagnostic, .info-naviguer,
-  .info-fraude, .info-demarche, .info-pro, .info-aidant, .info-scolaire, .info-suggestion, .info-top-12, .info-top-24, .info-top-34  {
+  .info-rattachement,
+  .info-autre,
+  .info-date-dist-dom,
+  .info-individuel,
+  .info-ponctuelle,
+  .info-collectif,
+  .info-diagnostic,
+  .info-naviguer,
+  .info-fraude,
+  .info-demarche,
+  .info-pro,
+  .info-aidant,
+  .info-scolaire,
+  .info-suggestion,
+  .info-top-12,
+  .info-top-24,
+  .info-top-34 {
     position: relative;
   }
-  .info-demarche, .info-suggestion {
+  .info-demarche,
+  .info-suggestion {
     top: 24px;
   }
   .info-fraude {
     top: 11px;
-    @supports (-moz-appearance:none) {
+    @supports (-moz-appearance: none) {
       top: 22px;
     }
   }
-  .info-naviguer, .info-pro {
+  .info-naviguer,
+  .info-pro {
     top: 12px;
   }
   .info-ponctuelle {
     top: 0px;
   }
-  .info-top-12, .info-individuel, .info-collectif {
+  .info-top-12,
+  .info-individuel,
+  .info-collectif {
     top: -12px;
   }
   .info-scolaire {
@@ -224,12 +244,13 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
   .info-aidant {
     top: -36px;
   }
-  .questionRequired, .labelError {
+  .questionRequired,
+  .labelError {
     color: $errorDarkMode;
   }
 
   .questionRequired::after {
-    content:" * ";
+    content: " * ";
   }
   .dropdown {
     position: relative;
@@ -251,7 +272,8 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     max-height: 200px;
   }
 
-  .dropdown-content:hover, .dropdown-content:focus {
+  .dropdown-content:hover,
+  .dropdown-content:focus {
     outline: none;
   }
 
@@ -271,12 +293,14 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     display: block;
   }
 
-  .responsiveSelect, .responsiveRecurrence {
-    width: calc(810%/12 - 271px);
+  .responsiveSelect,
+  .responsiveRecurrence {
+    width: calc(810% / 12 - 271px);
     padding-left: 0.75rem;
   }
 
-  .lessRecurrence, .moreRecurrence {
+  .lessRecurrence,
+  .moreRecurrence {
     border-radius: 20px 0 0 0;
     border: 1px solid $background;
     border-left: 1px solid #fff;
@@ -285,20 +309,21 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     width: 25%;
     &:hover {
       background-color: $background;
-      .labelCalculCustom{
+      .labelCalculCustom {
         color: #fff;
       }
     }
   }
   .lessRecurrence {
-    margin-top:0px;
+    margin-top: 0px;
     padding-top: 5px;
     border-radius: 0 0 0 20px;
     border-bottom: 1px solid #fff;
     border-left: 1px solid #fff;
     border-top: none;
   }
-  .labelRecurrence, .labelRecurrence-alt {
+  .labelRecurrence,
+  .labelRecurrence-alt {
     display: inline-block;
     position: relative;
     bottom: 67px;
@@ -347,7 +372,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       height: 48px;
       border-radius: 8px;
       // background-color: #cccccc
-    };
+    }
     &::-webkit-scrollbar-thumb {
       border-radius: 8px;
       background: #909090;
@@ -369,11 +394,12 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     padding: 1em 2em;
     height: 48px;
   }
-  .selecteurList:hover, .selecteurList:active {
+  .selecteurList:hover,
+  .selecteurList:active {
     color: #fff;
     width: auto;
     background: $blue-gradient;
-    }
+  }
   .styleInputAutre {
     border-top: solid 1px #3558a2;
     background-color: #fff;
@@ -383,7 +409,9 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     color: #000;
     height: 48px;
     width: 100%;
-    &:hover, &:focus, &:active   {
+    &:hover,
+    &:focus,
+    &:active {
       background: $blue-gradient;
       border-color: #3558a2;
       color: #fff;
@@ -400,7 +428,8 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     overflow: auto;
     width: 1000px;
   }
-  .styleLiButtonEnregistrer, .styleLiButtonEnregistrerDisabled {
+  .styleLiButtonEnregistrer,
+  .styleLiButtonEnregistrerDisabled {
     background-color: #43009e;
     text-align: center;
     padding-top: 5px;
@@ -410,7 +439,8 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     background-color: #aaa;
     cursor: not-allowed;
   }
-  .styleButtonEnregistrer, .styleButtonEnregistrerDisabled {
+  .styleButtonEnregistrer,
+  .styleButtonEnregistrerDisabled {
     background-color: #43009e;
     text-align: center;
     line-height: 24px;
@@ -432,21 +462,21 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     }
   }
   .styleButtonRedirection {
-    border: solid 1px #5398FF;
+    border: solid 1px #5398ff;
     border-radius: 0 0 20px 20px;
     position: relative;
     max-height: 250px;
-    }
+  }
 
   .baseline {
     color: #919191;
     font-size: 14px;
   }
-  .ageStatusValueSmallCount{
-      font-size: 32px;
-      font-weight: 500;
-      letter-spacing: 0;
-      line-height: 32px;
+  .ageStatusValueSmallCount {
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 32px;
   }
   .ageStatusLabelSmallCount {
     font-size: 16px;
@@ -480,7 +510,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     text-align: center;
     font-weight: 500;
     font-size: 16px;
-    cursor:pointer;
+    cursor: pointer;
     color: black;
     height: 104px;
     width: 100%;
@@ -511,9 +541,9 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       margin: auto;
     }
     .responsiveRecurrence {
-      width: calc(1000%/12);
+      width: calc(1000% / 12);
       margin: 0 auto;
-      padding-left: .5rem;
+      padding-left: 0.5rem;
     }
     .labelRecurrence span {
       display: block;
@@ -527,35 +557,34 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
 
   /* custom point de rupture SM du DS */
   @media (max-width: 576px) {
-
     .questionResponsive {
-      width: calc(1200%/12);
+      width: calc(1200% / 12);
     }
 
     .responsiveRecurrence {
-      width: calc(1200%/12);
-      padding-left: .5rem;
+      width: calc(1200% / 12);
+      padding-left: 0.5rem;
     }
   }
-   /** START RADIO CANAL & ACTIVITY **/
-   .radioRattachement, .radioRattachementAlt {
+  /** START RADIO CANAL & ACTIVITY **/
+  .radioRattachement,
+  .radioRattachementAlt {
     width: 100%;
     border-radius: 20px;
     background: $black-gradient;
     cursor: pointer;
     height: 144px;
     padding: 0px;
-
   }
 
   .radioRattachement-selected {
-    background: $white-gradient!important;
-    color: black!important;
+    background: $white-gradient !important;
+    color: black !important;
     span {
       color: #000 !important;
       .selectionner-autre {
         color: #666666 !important;
-        font-size: 14px !important;;
+        font-size: 14px !important;
       }
     }
     .logoIndividuel {
@@ -565,8 +594,6 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       background: $logoDemandeSelected !important;
     }
   }
-
-
 
   .labelBigRadioCustom {
     padding-top: 2.5rem;
@@ -610,24 +637,32 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     }
   }
 
-  .responsiveRadioCanal1, .responsiveRadioCanal2, .responsiveRadioActivity1, .responsiveRadioActivity2, .responsiveRadioActivity3Big {
-    width: calc(266%/12);
+  .responsiveRadioCanal1,
+  .responsiveRadioCanal2,
+  .responsiveRadioActivity1,
+  .responsiveRadioActivity2,
+  .responsiveRadioActivity3Big {
+    width: calc(266% / 12);
   }
 
-  .responsiveRadioCanal1, .responsiveRadioActivity1 {
+  .responsiveRadioCanal1,
+  .responsiveRadioActivity1 {
     margin-left: 0.75rem;
   }
 
   .responsiveRadioCanalVertical {
     align-self: flex-start;
-    width: calc(266%/12);
+    width: calc(266% / 12);
   }
 
   .responsiveRadioActivity3Small {
     display: none;
   }
 
-  .lieuRattachement, .atelierCollectif, .accIndividuel, .demPonctuelle {
+  .lieuRattachement,
+  .atelierCollectif,
+  .accIndividuel,
+  .demPonctuelle {
     height: 28px;
   }
 
@@ -635,28 +670,30 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     height: 26px;
   }
 
-  .distance, .domicile {
+  .distance,
+  .domicile {
     display: flex;
   }
 
-   /* custom point de rupture LG du DS */
-   @media (max-width: 1024px) {
-
-    .responsiveRadioCanal1, .responsiveRadioActivity1 {
+  /* custom point de rupture LG du DS */
+  @media (max-width: 1024px) {
+    .responsiveRadioCanal1,
+    .responsiveRadioActivity1 {
       margin-left: 0.5rem;
     }
   }
   /* custom point de rupture MD du DS */
   @media (max-width: 767px) {
-
-    .responsiveRadioCanal1, .responsiveRadioActivity1 {
-      width: calc(500%/12);
-      margin-left: calc(100%/12);
+    .responsiveRadioCanal1,
+    .responsiveRadioActivity1 {
+      width: calc(500% / 12);
+      margin-left: calc(100% / 12);
       padding-left: 0.5rem;
     }
 
-    .responsiveRadioCanal2, .responsiveRadioActivity2 {
-      width: calc(500%/12);
+    .responsiveRadioCanal2,
+    .responsiveRadioActivity2 {
+      width: calc(500% / 12);
     }
 
     .responsiveRadioActivity3Big {
@@ -665,14 +702,14 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
 
     .responsiveRadioActivity3Small {
       display: block;
-      margin-left: calc(100%/12);
-      width: calc(1000%/12);
+      margin-left: calc(100% / 12);
+      width: calc(1000% / 12);
       padding-left: 0.5rem;
     }
 
     .responsiveRadioCanalVertical {
-      width: calc(10000%/12);
-      margin-left: calc(100%/12);
+      width: calc(10000% / 12);
+      margin-left: calc(100% / 12);
       display: flex;
       padding-left: 0.5rem;
     }
@@ -682,44 +719,46 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     }
 
     .responsiveRadioCanalVertical .radioButton {
-      width: calc(550%/12);
+      width: calc(550% / 12);
     }
 
     .responsiveRadioCanalVertical .radioButton:first-child {
-      width: calc(540%/12);
+      width: calc(540% / 12);
     }
   }
   /* custom point de rupture SM du DS */
   @media (max-width: 576px) {
-
-    .responsiveRadioCanal1, .responsiveRadioActivity1, .responsiveRadioCanal2, .responsiveRadioActivity2 {
-      width: calc(600%/12);
+    .responsiveRadioCanal1,
+    .responsiveRadioActivity1,
+    .responsiveRadioCanal2,
+    .responsiveRadioActivity2 {
+      width: calc(600% / 12);
       margin-left: 0;
     }
 
     .responsiveRadioActivity3Small {
-      width: calc(12000%/12);
+      width: calc(12000% / 12);
       margin-left: 0;
     }
 
     .responsiveRadioCanalVertical {
-      width: calc(1200%/12);
+      width: calc(1200% / 12);
       margin-left: 0;
     }
 
     .responsiveRadioCanalVertical .radioButton {
-      width: calc(605%/12);
+      width: calc(605% / 12);
     }
 
     .responsiveRadioCanalVertical .radioButton:first-child {
-      width: calc(595%/12);
+      width: calc(595% / 12);
     }
-
   }
   /** END RADIO CANAL & ACTIVITY **/
 
   /** START SQUARE BUTTON AGE AND STATUT **/
-  .squareRattachement, .squareRattachementAlt {
+  .squareRattachement,
+  .squareRattachementAlt {
     width: 100%;
     height: 104px;
     border-radius: 20px;
@@ -729,16 +768,20 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
   }
 
   .squareRattachement-selected {
-    background-color: white!important;
-    color: black!important;
+    background-color: white !important;
+    color: black !important;
   }
 
   .squareLabel {
     font-size: 16px;
   }
 
-  .responsiveSquare1, .responsiveSquare2, .responsiveSquare3, .responsiveSquare4, .responsiveSquare5 {
-    width: calc(160%/12);
+  .responsiveSquare1,
+  .responsiveSquare2,
+  .responsiveSquare3,
+  .responsiveSquare4,
+  .responsiveSquare5 {
+    width: calc(160% / 12);
   }
 
   .responsiveSquare1 {
@@ -746,36 +789,38 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
   }
   /* custom point de rupture MD du DS */
   @media (max-width: 767px) {
-
     .responsiveSquare1 {
-      width: calc(200%/12);
-      margin-left: calc(100%/12);
+      width: calc(200% / 12);
+      margin-left: calc(100% / 12);
       padding-left: 0.5rem;
     }
 
-    .responsiveSquare2, .responsiveSquare3, .responsiveSquare4, .responsiveSquare5 {
-      width: calc(200%/12);
+    .responsiveSquare2,
+    .responsiveSquare3,
+    .responsiveSquare4,
+    .responsiveSquare5 {
+      width: calc(200% / 12);
     }
   }
-   /* custom point de rupture SM du DS */
-   @media (max-width: 576px) {
-
-    .responsiveSquare1, .responsiveSquare2 {
-      width: calc(600%/12);
+  /* custom point de rupture SM du DS */
+  @media (max-width: 576px) {
+    .responsiveSquare1,
+    .responsiveSquare2 {
+      width: calc(600% / 12);
       margin-left: 0;
     }
 
     .responsiveSquare3 {
-      width: calc(600%/12);
+      width: calc(600% / 12);
       padding-left: 0.5rem;
     }
 
     .responsiveSquare4 {
-      width: calc(600%/12);
+      width: calc(600% / 12);
     }
 
     .responsiveSquare5 {
-      width: calc(1200%/12);
+      width: calc(1200% / 12);
       padding-left: 0.5rem;
     }
 
@@ -785,8 +830,10 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
   }
   /** END SQUARE BUTTON AGE AND STATUT **/
   /** START SQUARE BUTTON TIME **/
-  .responsiveSquareTime1, .responsiveSquareTime2, .responsiveSquareTime3 {
-    width: calc(266%/12);
+  .responsiveSquareTime1,
+  .responsiveSquareTime2,
+  .responsiveSquareTime3 {
+    width: calc(266% / 12);
   }
 
   .responsiveSquareTime1 {
@@ -852,26 +899,29 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
   }
   /* custom point de rupture MD du DS */
   @media (max-width: 767px) {
-
     .responsiveSquareTime1 {
-      width: calc(333%/12);
-      margin-left: calc(100%/12);
+      width: calc(333% / 12);
+      margin-left: calc(100% / 12);
       padding-left: 0.5rem;
     }
 
-    .responsiveSquareTime2, .responsiveSquareTime3 {
-      width: calc(333%/12);
+    .responsiveSquareTime2,
+    .responsiveSquareTime3 {
+      width: calc(333% / 12);
     }
   }
 
   @media (max-width: 576px) {
-
-    .responsiveSquareTime1, .responsiveSquareTime2, .responsiveSquareTime3 {
+    .responsiveSquareTime1,
+    .responsiveSquareTime2,
+    .responsiveSquareTime3 {
       margin-left: 0;
-      width: calc(400%/12);
+      width: calc(400% / 12);
     }
 
-    .responsiveSquareTime1 .squareRattachement, .responsiveSquareTime2 .squareRattachement, .responsiveSquareTime3 .squareRattachement {
+    .responsiveSquareTime1 .squareRattachement,
+    .responsiveSquareTime2 .squareRattachement,
+    .responsiveSquareTime3 .squareRattachement {
       height: 80px;
     }
 
@@ -884,13 +934,14 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     }
 
     .SmallCountRadioButton .radioRattachement {
-      height: 80px!important;
+      height: 80px !important;
     }
-
   }
   /** END SQUARE BUTTON TIME **/
   /** START CHECKBOX BUTTON THEMES **/
-  .gradient-box, .gradient-box-blue, .inactif-box {
+  .gradient-box,
+  .gradient-box-blue,
+  .inactif-box {
     background: $black-gradient;
     border: solid 1px transparent;
     background-clip: padding-box;
@@ -901,9 +952,12 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     width: 100%;
     margin: auto;
     &:after {
-      content: '';
+      content: "";
       position: absolute;
-      top: 0; right: 0; bottom: 0; left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
       z-index: -1;
       margin: -1px;
       border-radius: inherit;
@@ -913,9 +967,12 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
   .gradient-box-blue {
     background: $blue-gradient-redirection;
     &:after {
-      content: '';
+      content: "";
       position: absolute;
-      top: 0; right: 0; bottom: 0; left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
       z-index: -1;
       margin: -1px;
       border-radius: inherit;
@@ -923,16 +980,17 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     }
   }
   @media (hover: hover) and (pointer: fine) {
-  .gradient-box button:hover, .gradient-box-redirection {
-    background: $white-gradient;
-    .radioRattachement {
-      color: #000;
+    .gradient-box button:hover,
+    .gradient-box-redirection {
+      background: $white-gradient;
+      .radioRattachement {
+        color: #000;
+      }
     }
   }
-}
   .gradient-box-redirection {
     .fr-label {
-      color:#000 !important;
+      color: #000 !important;
     }
     .logoRedirection {
       background: $redirectionSelected !important;
@@ -943,7 +1001,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     margin-top: -27px;
   }
   .inactif-box:after {
-      background: #666666 !important;
+    background: #666666 !important;
   }
   .checkboxButton {
     .checkboxRattachement2 {
@@ -951,7 +1009,8 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       border-radius: 20px;
       cursor: pointer;
       width: 100%;
-      .baseline, .text-suggestion-inactif {
+      .baseline,
+      .text-suggestion-inactif {
         color: #666666 !important;
       }
       .text-suggestion {
@@ -959,78 +1018,78 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
         overflow: auto;
       }
       @media (hover: hover) and (pointer: fine) {
-      &.inactif-btn:hover {
-        background: $black-gradient;
-        cursor: not-allowed;
+        &.inactif-btn:hover {
+          background: $black-gradient;
+          cursor: not-allowed;
+        }
+        &:hover {
+          background: $white-gradient;
+          color: black !important;
+          span {
+            color: black;
+          }
+          .diagnostic {
+            background: $diagnosticSelected;
+          }
+          .equipement {
+            background: $equipeInfoSelected;
+          }
+          .cultureNumerique {
+            background: $cultureNumSelected;
+          }
+          .navigateur {
+            background: $navigateurSelected;
+          }
+          .securite {
+            background: $securiteSelected;
+          }
+          .courriel {
+            background: $courrielSelected;
+          }
+          .echanger {
+            background: $echangerSelected;
+          }
+          .bureautique {
+            background: $bureautiqueSelected;
+          }
+          .contenus {
+            background: $contenusSelected;
+          }
+          .emploi {
+            background: $emploiSelected;
+          }
+          .tpePme {
+            background: $tpePmeSelected;
+          }
+          .accompagner {
+            background: $accompagnerSelected;
+          }
+          .demarche {
+            background: $demarcheSelected;
+          }
+          .fraude {
+            background: $fraudeSelected;
+          }
+          .budget {
+            background: $budgetSelected;
+          }
+          .sante {
+            background: $santeSelected;
+          }
+          .scolaire {
+            background: $scolaireSelected;
+          }
+          .suggestion {
+            background: $suggestionSelected;
+          }
+          .suggestionInactif {
+            background: $suggestionInactif;
+          }
+          .text-suggestion {
+            color: #8585f6;
+          }
+        }
       }
-      &:hover {
-        background: $white-gradient;
-        color: black!important;
-        span {
-          color: black;
-        }
-        .diagnostic {
-          background: $diagnosticSelected;
-        }
-        .equipement {
-          background: $equipeInfoSelected;
-        }
-        .cultureNumerique {
-          background: $cultureNumSelected;
-        }
-        .navigateur {
-          background: $navigateurSelected;
-        }
-        .securite {
-          background: $securiteSelected;
-        }
-        .courriel {
-          background: $courrielSelected;
-        }
-        .echanger {
-          background: $echangerSelected;
-        }
-        .bureautique {
-          background: $bureautiqueSelected;
-        }
-        .contenus {
-          background: $contenusSelected;
-        }
-        .emploi {
-          background: $emploiSelected;
-        }
-        .tpePme {
-          background: $tpePmeSelected;
-        }
-        .accompagner {
-          background: $accompagnerSelected;
-        }
-        .demarche {
-          background: $demarcheSelected;
-        }
-        .fraude {
-          background: $fraudeSelected;
-        }
-        .budget {
-          background: $budgetSelected;
-        }
-        .sante {
-          background: $santeSelected;
-        }
-        .scolaire {
-          background: $scolaireSelected;
-        }
-        .suggestion {
-          background: $suggestionSelected;
-        }
-        .suggestionInactif {
-          background: $suggestionInactif;
-        }
-        .text-suggestion {
-          color: #8585f6;
-        }
-      }
-    }
       .imageTheme {
         margin: 24px;
         width: 56px;
@@ -1066,7 +1125,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       .securiteSelected {
         background: $securiteSelected;
       }
-     .courriel {
+      .courriel {
         background: $courriel;
       }
       .courrielSelected {
@@ -1149,7 +1208,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
         background: $scolaireSelected;
       }
       .autre {
-        background:$autre;
+        background: $autre;
       }
       .autreSelected {
         background: $autreSelected;
@@ -1157,7 +1216,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     }
     .checkboxRattachement2-selected {
       background: $white-gradient;
-      color: black!important;
+      color: black !important;
       .baseline {
         color: #666666;
       }
@@ -1175,7 +1234,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
   }
 
   .checkboxRattachement-selected {
-    color: black!important;
+    color: black !important;
     .baseline {
       color: #2a2a2a;
     }
@@ -1190,18 +1249,22 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     position: relative;
     z-index: 1;
   }
-  .responsiveCheckbox1, .responsiveCheckbox1_2 {
-    width: calc(388%/12);
+  .responsiveCheckbox1,
+  .responsiveCheckbox1_2 {
+    width: calc(388% / 12);
     margin-left: 0.75rem;
   }
 
-  .responsiveCheckbox2, .responsiveCheckbox2_1, .responsiveCheckbox3, .responsiveCheckbox3_1 {
-    width: calc(388%/12);
+  .responsiveCheckbox2,
+  .responsiveCheckbox2_1,
+  .responsiveCheckbox3,
+  .responsiveCheckbox3_1 {
+    width: calc(388% / 12);
   }
 
   .responsiveCheckboxNewRow1 {
-    width: calc(388%/12);
-    margin-left: calc(211%/12);
+    width: calc(388% / 12);
+    margin-left: calc(211% / 12);
   }
 
   .questionCheckboxResponsive {
@@ -1211,16 +1274,19 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     display: inline-grid;
     justify-items: center;
   }
-  .fr-checkbox-group input[type=checkbox]+label {// pour la couleur du label
+  .fr-checkbox-group input[type="checkbox"] + label {
+    // pour la couleur du label
     color: black;
   }
 
-  .fr-checkbox-group input[type="checkbox" i] + label::before {// pour la couleur de la checkbox
-    box-shadow: inset 0 0 0 1px black!important;
+  .fr-checkbox-group input[type="checkbox" i] + label::before {
+    // pour la couleur de la checkbox
+    box-shadow: inset 0 0 0 1px black !important;
   }
 
-  .fr-checkbox-group input[type="checkbox" i]:checked + label::before { // pour la couleur du check en svg
-    --data-uri-svg: url(../../public/logos/cra/checkbox-sous-menu.svg)!important;
+  .fr-checkbox-group input[type="checkbox" i]:checked + label::before {
+    // pour la couleur du check en svg
+    --data-uri-svg: url(../../../public/logos/cra/checkbox-sous-menu.svg) !important;
     background-color: rgb(0, 0, 145);
   }
   @media (max-width: 991px) {
@@ -1239,7 +1305,12 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       width: 100%;
       height: 90px;
     }
-    .responsiveCheckbox1, .responsiveCheckbox3_1, .responsiveCheckbox2_1, .responsiveCheckbox2, .responsiveCheckbox1_2, .responsiveCheckbox3 {
+    .responsiveCheckbox1,
+    .responsiveCheckbox3_1,
+    .responsiveCheckbox2_1,
+    .responsiveCheckbox2,
+    .responsiveCheckbox1_2,
+    .responsiveCheckbox3 {
       width: 50%;
       margin-left: 0px;
     }
@@ -1259,9 +1330,13 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
 
   /* custom point de rupture SM du DS */
   @media (max-width: 576px) {
-
-    .responsiveCheckbox1, .responsiveCheckbox2, .responsiveCheckbox1_2, .responsiveCheckbox3_1, .responsiveCheckbox2_1, .responsiveCheckbox3 {
-      width: calc(1200%/12);
+    .responsiveCheckbox1,
+    .responsiveCheckbox2,
+    .responsiveCheckbox1_2,
+    .responsiveCheckbox3_1,
+    .responsiveCheckbox2_1,
+    .responsiveCheckbox3 {
+      width: calc(1200% / 12);
       margin-left: 0;
       padding-left: 0.5rem;
     }
@@ -1272,31 +1347,30 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
 
     .questionCheckboxResponsive {
       margin-left: 0;
-      width: calc(1200%/12);
+      width: calc(1200% / 12);
     }
   }
-    /** END SQUARE BUTTON TIME **/
+  /** END SQUARE BUTTON TIME **/
 
-    .submitCra {
-      background-color: white;
-      width: 70%;
-      border-radius: 48px;
-      height: 96px;
-      font-size: 20px;
+  .submitCra {
+    background-color: white;
+    width: 70%;
+    border-radius: 48px;
+    height: 96px;
+    font-size: 20px;
+  }
+
+  .submitCra:hover,
+  .submitCra:active {
+    --color-hover: $background !important;
+    --color-active: $background !important;
+  }
+
+  @media (max-width: 576px) {
+    .submitResponsive {
+      width: calc(800% / 12);
     }
-
-    .submitCra:hover, .submitCra:active {
-      --color-hover: $background!important;
-      --color-active: $background!important;
-    }
-
-    @media (max-width: 576px) {
-
-      .submitResponsive {
-        width: calc(800%/12);
-      }
-
-    }
+  }
 
   /* CRA V3 */
   .icon-cra {
@@ -1310,14 +1384,14 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     margin: 0;
   }
   .btn-guide {
-    border: 1px solid #8585F6;
+    border: 1px solid #8585f6;
     background-image: none;
     display: inline-block;
     text-align: center;
     font-style: normal;
     padding-top: 8px;
     margin-top: 15px;
-    color: #8585F6;
+    color: #8585f6;
     font-size: 16px;
     height: 40px;
     width: 180px;
@@ -1327,7 +1401,8 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     font-size: 14px;
     font-weight: 100;
   }
-  .responsiveElement2, .responsiveElementEnd2 {
+  .responsiveElement2,
+  .responsiveElementEnd2 {
     display: inline-block;
     border-radius: 20px;
     /** START SELECT CP **/
@@ -1344,7 +1419,8 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       display: none;
       width: 528px;
     }
-    .buttonCP, .inputCP {
+    .buttonCP,
+    .inputCP {
       background: $blue-gradient;
       border-radius: 20px 20px 0px 0px;
       line-height: 24px;
@@ -1373,7 +1449,6 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       font-size: 16px;
       color: #fff;
       width: 510px;
-
     }
     div.scrollOptions2 {
       background: $white-gradient;
@@ -1394,7 +1469,8 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
         }
       }
     }
-    .buttonCP-filled, .buttonPermanence-filled {
+    .buttonCP-filled,
+    .buttonPermanence-filled {
       background: $white-gradient;
       color: #2a2a2a;
       text-align: center;
@@ -1421,7 +1497,8 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       color: #fff;
       height: 144px;
       width: 264px;
-      .logoLieuRattachement, .logoAutreLieu {
+      .logoLieuRattachement,
+      .logoAutreLieu {
         background: $lieuRattachement;
         display: inline-block;
         height: 56px;
@@ -1430,7 +1507,9 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       .logoAutreLieu {
         background: $lieuAutre;
       }
-      .logoCalendrier, .logoDistance, .logoDomicile {
+      .logoCalendrier,
+      .logoDistance,
+      .logoDomicile {
         display: inline-block;
         height: 24px;
         width: 24px;
@@ -1461,13 +1540,15 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
         font-size: 14px;
         bottom: 5px;
       }
-      &:hover, &.selected {
+      &:hover,
+      &.selected {
         background: $white-gradient;
         color: #2a2a2a;
-        .labelBigRadioCustom, .labelSmallRadioCustom {
+        .labelBigRadioCustom,
+        .labelSmallRadioCustom {
           color: #2a2a2a;
         }
-        .logoLieuRattachement{
+        .logoLieuRattachement {
           background: $lieuRattachementHover;
         }
         .logoAutreLieu {
@@ -1482,7 +1563,6 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
         .logoDomicile {
           background: $lieuDomicileHover;
         }
-
       }
     }
     .logoRattachementSelected {
@@ -1524,7 +1604,8 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
           }
           &:hover {
             background: $blue-gradient;
-            .nomEnseigne, .adresse {
+            .nomEnseigne,
+            .adresse {
               color: #fff;
             }
           }
@@ -1535,7 +1616,6 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
           margin: auto;
           height: 60px;
           width: 240px;
-
         }
       }
       .logoRattachementActif {
@@ -1546,7 +1626,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
         width: 14px;
       }
       .lienPermanence {
-        border-top: 1px solid #9A9AFF;
+        border-top: 1px solid #9a9aff;
         display: inline-block;
         padding-left: 46px;
         color: #000091;
@@ -1572,13 +1652,16 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
   }
   .radioButton2 {
     .radioRattachement {
-      .logoIndividuel, .logoAtelier, .logoDemande, .logoRedirection {
+      .logoIndividuel,
+      .logoAtelier,
+      .logoDemande,
+      .logoRedirection {
         background: $individuel;
         display: inline-block;
         height: 56px;
         width: 56px;
       }
-      .logoAtelier{
+      .logoAtelier {
         background: $atelier;
       }
       .logoDemande {
@@ -1587,14 +1670,15 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       .logoRedirection {
         background: $redirection;
       }
-      &:hover, &:active {
+      &:hover,
+      &:active {
         span {
           color: #000 !important;
         }
         .logoIndividuel {
           background: $individuelSelected;
         }
-        .logoAtelier{
+        .logoAtelier {
           background: $atelierSelected;
         }
         .logoDemande {
@@ -1605,7 +1689,8 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
         }
       }
     }
-    .radioRattachement2::after, .smallRadioRattachement2::after {
+    .radioRattachement2::after,
+    .smallRadioRattachement2::after {
       content: "";
       position: absolute;
       inset: 0;
@@ -1613,7 +1698,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       border: 1px solid transparent;
       background: $small-blue-gradient;
       -webkit-mask: $mask-gradient;
-        mask:$mask-gradient;
+      mask: $mask-gradient;
       -webkit-mask-composite: xor;
       mask-composite: exclude;
     }
@@ -1629,10 +1714,11 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       width: 131px;
     }
   }
-  .buttonDate, .radioButton2.small {
+  .buttonDate,
+  .radioButton2.small {
     position: relative;
     top: 35px;
-    @supports (-moz-appearance:none) {
+    @supports (-moz-appearance: none) {
       top: 8px;
     }
   }
@@ -1647,7 +1733,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     border: 1px solid transparent;
     background: $red-gradient !important;
     -webkit-mask: $mask-gradient;
-      mask:$mask-gradient;
+    mask: $mask-gradient;
     -webkit-mask-composite: xor;
     mask-composite: exclude;
   }
@@ -1656,17 +1742,18 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     position: relative;
   }
   .disabled {
-    border : 1px solid #3d3d3d !important;
+    border: 1px solid #3d3d3d !important;
     color: #3d3d3d !important;
-    &::after, &:hover {
-      border : 1px solid #3d3d3d !important;
+    &::after,
+    &:hover {
+      border: 1px solid #3d3d3d !important;
       color: #3d3d3d !important;
       background: none !important;
     }
     .logoLieuRattachement {
       background: $lieuRattachementHover !important;
     }
-    .logoAutreLieu{
+    .logoAutreLieu {
       background: $lieuAutreHover !important;
     }
     .labelBigRadioCustom {
@@ -1679,54 +1766,66 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     font-size: 12px;
     width: 792px;
   }
-  .react-datepicker{
+  .react-datepicker__triangle {
+    display: none;
+  }
+  .react-datepicker {
     border-radius: 0 0 20px 20px;
     background-color: $background;
     border: 1px solid #8a8ae3;
     color: #fff;
-    left: 92px;
     top: -25px;
     .react-datepicker-popper {
       margin: 0 !important;
     }
-    .react-datepicker__triangle {
-      display: none;
+    .react-datepicker__navigation-icon::before {
+      border-color: black;
+    }
+    .react-datepicker__navigation-icon:hover::before {
+      border-color: gray;
     }
     .react-datepicker__navigation--previous {
-      background: $chevronGauche;
-      margin-left: 11px;
-      border: none;
-      height: 16px;
-      width: 10px;
+      margin-left: 8px;
+      height: 20px;
+      width: 14px;
+      top: 10px;
+      background: none;
       &:hover {
-        background: $chevronGauche;
+        background: none;
       }
     }
     .react-datepicker__navigation--next {
-      background: $chevronDroite;
-      margin-right: 11px;
+      margin-right: 8px;
       border: none;
-      height: 16px;
-      width: 10px;
+      height: 20px;
+      top: 10px;
+      width: 14px;
+      background: none;
       &:hover {
-        background: $chevronDroite;
+        background: none;
       }
     }
     .react-datepicker__header {
       background-color: #fff;
-      border-bottom: 1px solid #9A9AFF;
+      border-bottom: 1px solid #9a9aff;
       color: #161616;
-      .react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header {
+      .react-datepicker__current-month,
+      .react-datepicker-time__header,
+      .react-datepicker-year-header {
         color: #161616;
       }
-      .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+      .react-datepicker__day-name,
+      .react-datepicker__day,
+      .react-datepicker__time-name {
         color: #161616;
       }
       .react-datepicker__month {
         color: #161616;
       }
     }
-    .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+    .react-datepicker__day-name,
+    .react-datepicker__day,
+    .react-datepicker__time-name {
       font-size: 16px;
       font-weight: 200;
       color: #161616;
@@ -1751,10 +1850,14 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
         color: #666666;
       }
     }
-    .react-datepicker__day:hover, .react-datepicker__month-text:hover, .react-datepicker__quarter-text:hover, .react-datepicker__year-text:hover{
+    .react-datepicker__day:hover,
+    .react-datepicker__month-text:hover,
+    .react-datepicker__quarter-text:hover,
+    .react-datepicker__year-text:hover {
       color: $background;
     }
-    .react-datepicker__day--selected, .react-datepicker__day--keyboard-selected {
+    .react-datepicker__day--selected,
+    .react-datepicker__day--keyboard-selected {
       color: #fff;
       background: $blue-gradient;
       border-radius: 8px;
@@ -1774,7 +1877,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
   }
   .selectionner-autre {
     color: #666666 !important;
-    font-size: 14px !important;;
+    font-size: 14px !important;
   }
   .redirection-btn {
     background: $blue-gradient;
@@ -1785,7 +1888,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     text-align: center;
     line-height: 24px;
     font-size: 14px;
-    color : #fff;
+    color: #fff;
     height: 32px;
     button {
       font-size: 14px;
@@ -1794,7 +1897,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
         position: relative;
         top: 2px;
       }
-      &:hover{
+      &:hover {
         background: none !important;
         color: #fff;
         text-decoration: none;
@@ -1802,23 +1905,29 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     }
   }
   @media (max-width: 1111px) {
-    .responsiveElement2, .responsiveElementEnd2{
+    .responsiveElement2,
+    .responsiveElementEnd2 {
       button {
         width: 231px;
       }
       button.smallRadioRattachement2 {
         width: 116px;
       }
-      #buttonPermanences{
+      #buttonPermanences {
         width: 462px;
         .buttonPermanence {
           width: 100%;
         }
       }
-      .buttonCP, .inputCP,.dropdown-content2, .searchCP {
+      .buttonCP,
+      .inputCP,
+      .dropdown-content2,
+      .searchCP {
         width: 462px;
       }
-      .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+      .react-datepicker__day-name,
+      .react-datepicker__day,
+      .react-datepicker__time-name {
         height: 1.25rem;
         width: 1.25rem;
       }
@@ -1829,15 +1938,15 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     .information-message {
       width: 231px;
     }
-    .info-rattachement{
+    .info-rattachement {
       top: -95px;
-      @supports (-moz-appearance:none) {
+      @supports (-moz-appearance: none) {
         top: -115px;
       }
     }
-    .info-autre{
+    .info-autre {
       top: -96px;
-      @supports (-moz-appearance:none) {
+      @supports (-moz-appearance: none) {
         top: -114px;
       }
     }
@@ -1849,29 +1958,29 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     }
     .buttonDate {
       top: 25px;
-      @supports (-moz-appearance:none) {
+      @supports (-moz-appearance: none) {
         top: 8px;
       }
     }
-    .smallRadioRattachement2  {
+    .smallRadioRattachement2 {
       top: -10px;
-      @supports (-moz-appearance:none) {
+      @supports (-moz-appearance: none) {
         top: 0px;
       }
     }
     .q1 {
       top: -89px;
-      @supports (-moz-appearance:none) {
+      @supports (-moz-appearance: none) {
         top: -98px;
       }
     }
-
   }
   @media (max-width: 1102px) {
     .q2 {
       top: -53px;
     }
-    .info-collectif, .info-individuel {
+    .info-collectif,
+    .info-individuel {
       top: -24px;
     }
   }
@@ -1889,7 +1998,8 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     .q2 {
       top: -53px;
     }
-    .info-collectif, .info-ponctuelle {
+    .info-collectif,
+    .info-ponctuelle {
       top: -24px;
     }
     .info-individuel {
@@ -1906,35 +2016,41 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     }
   }
   @media (max-width: 867px) {
-    .responsiveElement2, .responsiveElementEnd2 {
+    .responsiveElement2,
+    .responsiveElementEnd2 {
       button {
         width: 192px;
       }
       button.smallRadioRattachement2 {
         width: 96px;
       }
-      #buttonPermanences{
+      #buttonPermanences {
         width: 576px;
         .buttonPermanence {
           width: 100%;
         }
       }
-      .buttonCP, .inputCP,.dropdown-content2, .searchCP {
+      .buttonCP,
+      .inputCP,
+      .dropdown-content2,
+      .searchCP {
         width: 384px;
       }
       .buttonDate {
         top: 25px;
-        @supports (-moz-appearance:none) {
+        @supports (-moz-appearance: none) {
           top: 18px;
         }
       }
-      .smallRadioRattachement2  {
+      .smallRadioRattachement2 {
         top: -10px;
-        @supports (-moz-appearance:none) {
+        @supports (-moz-appearance: none) {
           top: 10px;
         }
       }
-      .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+      .react-datepicker__day-name,
+      .react-datepicker__day,
+      .react-datepicker__time-name {
         font-size: 15px;
         height: 1.25rem;
         width: 0.9rem;
@@ -1952,19 +2068,19 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     }
     .q1 {
       top: -125px;
-      @supports (-moz-appearance:none) {
+      @supports (-moz-appearance: none) {
         top: -128px;
       }
     }
     .info-rattachement {
       top: -167px;
-      @supports (-moz-appearance:none) {
+      @supports (-moz-appearance: none) {
         top: -176px;
       }
     }
     .info-autre {
       top: -168px;
-      @supports (-moz-appearance:none) {
+      @supports (-moz-appearance: none) {
         top: -175px;
       }
     }
@@ -1975,8 +2091,8 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
   @media (max-width: 767px) {
     .titre {
       text-align: center;
-      font-size:28px;
-      line-height:40px;
+      font-size: 28px;
+      line-height: 40px;
     }
     .btn-guide {
       text-align: center;
@@ -1985,7 +2101,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       text-align: center;
       margin: auto;
     }
-    .responsiveElement2{
+    .responsiveElement2 {
       width: 50%;
       button {
         width: 100%;
@@ -1997,7 +2113,10 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
         display: block;
         width: 48%;
       }
-      .dropdown-content2, .buttonCP, .inputCP, .searchCP {
+      .dropdown-content2,
+      .buttonCP,
+      .inputCP,
+      .searchCP {
         width: 100%;
       }
       .buttonPermanence-filled {
@@ -2006,7 +2125,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       .force-width {
         width: 100% !important;
       }
-      #buttonPermanences{
+      #buttonPermanences {
         width: 96%;
         .listButtonPermanence .buttonPermanence {
           width: 100%;
@@ -2025,9 +2144,9 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       .buttonDate {
         top: 0px;
       }
-      .smallRadioRattachement2  {
+      .smallRadioRattachement2 {
         top: -35px;
-        @supports (-moz-appearance:none) {
+        @supports (-moz-appearance: none) {
           top: -8px;
         }
       }
@@ -2035,10 +2154,14 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
         left: 93px;
         top: -27px;
       }
-      .react-datepicker-wrapper, .react-datepicker__input-container, .react-datepicker__input-container button {
+      .react-datepicker-wrapper,
+      .react-datepicker__input-container,
+      .react-datepicker__input-container button {
         width: 100%;
       }
-      .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+      .react-datepicker__day-name,
+      .react-datepicker__day,
+      .react-datepicker__time-name {
         font-size: 16px;
         height: 1.5rem;
         width: 1.8rem;
@@ -2047,20 +2170,27 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       .react-datepicker__month-container {
         width: 100%;
       }
-      *, ::after, ::before {
+      *,
+      ::after,
+      ::before {
         width: 100%;
       }
       button.smallRadioRattachement2 {
         width: 50%;
       }
     }
-    .q1, .q2,.q6, .info-rattachement, .info-autre, .info-top-12 {
+    .q1,
+    .q2,
+    .q6,
+    .info-rattachement,
+    .info-autre,
+    .info-top-12 {
       top: 0;
     }
     .info-collectif {
       top: 0px;
     }
-    .information-message{
+    .information-message {
       width: 100%;
       margin-bottom: 15px;
     }
@@ -2081,13 +2211,16 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
     }
   }
   @media (max-width: 576px) {
-    .responsiveElement2, .responsiveRadioActivity1, .responsiveRadioActivity2 {
+    .responsiveElement2,
+    .responsiveRadioActivity1,
+    .responsiveRadioActivity2 {
       width: 100%;
     }
     .responsiveRadioActivity2 {
       margin-left: 8px;
     }
-    .responsiveElement2 .dropdown, .responsiveElement2 .buttonPermanence-filled {
+    .responsiveElement2 .dropdown,
+    .responsiveElement2 .buttonPermanence-filled {
       width: 95%;
     }
     .information-message-theme {
@@ -2098,7 +2231,7 @@ $redirectionSelected: url(../../public/logos/cra/logo-redirection-structure-n.sv
       height: auto;
     }
     .questionResponsive {
-      width: calc(1200%/12);
+      width: calc(1200% / 12);
     }
     .info-collectif {
       top: 0px;

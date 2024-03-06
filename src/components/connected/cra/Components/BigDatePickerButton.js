@@ -19,10 +19,19 @@ function BigDatePickerButton({ initDate }) {
       <button onClick={onClick} ref={ref} className={`${active ? 'selectedDate' : 'selected'}`}>
         <span className="logoCalendrier"></span>&nbsp;
         <b className="texteDatePicker">Le {value}</b>
-        <i className={active ? 'ri-arrow-up-s-line chevron-stats' : 'ri-arrow-down-s-line chevron-stats' }></i>
+        <i className={active ? 'ri-arrow-up-s-line chevron-stats' : 'ri-arrow-down-s-line chevron-stats'}></i>
       </button>
     ),
   );
+
+  // const CustomDateInput = forwardRef(
+  //   ({ value, onClick }, ref) => (
+  //     <span className={active ? 'date-btn date-active' : 'date-btn' } onClick={onClick} ref={ref}>
+  //       <b>{value}</b>
+  //       <i className={`dont-print ${active ? 'ri-arrow-up-s-line chevron-stats' : 'ri-arrow-down-s-line chevron-stats'} `}></i>
+  //     </span>
+  //   ),
+  // );
   CustomDateInput.displayName = 'CustomDateInput';
 
   useEffect(() => {
@@ -36,11 +45,6 @@ function BigDatePickerButton({ initDate }) {
       dateFormat="dd/MM/yyyy"
       locale="fr"
       popperPlacement="bottom-start"
-      popperModifiers={{
-        flip: { behavior: ['bottom-start'] },
-        preventOverflow: { enabled: false },
-        hide: { enabled: false }
-      }}
       selected={initDate}
       onChange={dateAccompagnement => setDate(dateAccompagnement)}
       onCalendarOpen={() => setActive(true)}
@@ -49,7 +53,7 @@ function BigDatePickerButton({ initDate }) {
       disabledKeyboardNavigation
       maxDate={new Date()}
       minDate={new Date('2020-01-01')}
-      formatWeekDay={nameOfDay => nameOfDay?.toUpperCase()?.substr(0, 1)}
+      // formatWeekDay={nameOfDay => nameOfDay?.toUpperCase()?.substr(0, 1)}
     />
   );
 }

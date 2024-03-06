@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 import App from './App';
 
@@ -18,6 +19,8 @@ it('App render without crashing', () => {
   store = mockStore(initialState);
   render(
     <Provider store={store}>
-      <App />
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
     </Provider>);
 });
