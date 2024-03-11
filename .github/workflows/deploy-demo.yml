@@ -6,7 +6,7 @@ on:
     branches: [main]
 
 jobs:
-  dependencies:
+  build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -50,7 +50,7 @@ jobs:
           envkey_REACT_APP_STRATEGYAUTH: "local"
           envkey_REACT_APP_VERSION: "1.2"
           envkey_REACT_APP_WEBMAIL_URL: "http://webmail.conseiller-numerique.fr"
-          envkey_REACT_APP_MATTERMOST_URL: "https://discussion.conseiller-numerique.gouv.fr"
+          envkey_REACT_APP_MATTERMOST_URL: "https://beta.discussion.conseiller-numerique.gouv.fr"
           envkey_REACT_APP_API: ${{ secrets.REACT_APP_API_DEMO }}
           envkey_REACT_APP_PIX_URL: "https://pix.fr/abc-pix-cnfs/"
           envkey_REACT_APP_PIX_CONNEXION_URL: "https://app.pix.fr/connexion"
