@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Route, Navigate } from 'react-router-dom';
+import { Route, Navigate, Routes } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import HeaderHub from './HeaderHub';
 import BannerHub from './BannerHub';
@@ -18,10 +18,12 @@ function Admin() {
         {!location.pathname.startsWith('/statistiques') &&
           <BannerHub />
         }
-        <Route path={`/statistiques`} element={<Statistiques />} />
-        <Route path={`/territoires`} element={<Territoires/>} />
-        <Route path={`/accueil`} element={<Navigate to="/territoires" />} />
-        <Route exact path="/" element={<Navigate to="/territoires" />} />
+        <Routes>
+          <Route path={`/statistiques`} element={<Statistiques />} />
+          <Route path={`/territoires`} element={<Territoires />} />
+          <Route path={`/accueil`} element={<Navigate to="/territoires" />} />
+          <Route exact path="/" element={<Navigate to="/territoires" />} />
+        </Routes>
       </div>
     </>
   );

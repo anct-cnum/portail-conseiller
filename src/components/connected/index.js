@@ -53,78 +53,31 @@ function Connected() {
     <>
       <Header linkAccount={user?.name} />
       <Routes>
-        {!user.pdfGenerator &&
+        {(!voirPermanence || suspendrePermanence) &&
           <>
-            {(!voirPermanence || suspendrePermanence) &&
-              <>
-                <Route path={`/accueil`} element={<Welcome />} />
-                <Route exact path={`/compte-rendu-activite`} element={<Cra />} />
-                <Route path={`/compte-rendu-activite/:idCra`} element={<UpdateCra />} />
-                <Route path={`/statistiques`} element={<Statistics />} />
-                <Route path={'/mes-informations'} element={<MesInformations />} />
-                <Route path={'/mon-espace-candidat'} element={<MonEspaceCandidat />} />
-                <Route path={'/contact-mon-responsable'} element={<FormulaireSuperieurHierarchique />} />
-                <Route path={`/lieux-activite`} element={<Permanence />} />
-                <Route path={'/mes-lieux-activite'} element={<MesPermanences />} />
-                <Route path={'/mon-lieu-activite/:idPermanence'} element={<PermanenceUpdate />} />
-                <Route path={'/mon-nouveau-lieu-activite'} element={<PermanenceCreate />} />
-                <Route path={'/historique'} element={<HistoriqueCras />} />
-                <Route exact path="/" element={<Navigate to="/accueil" />} />
-              </>
-            }
-
-            {(voirPermanence && !suspendrePermanence) &&
-              <>
-                <Route path={`/accueil`} element={<Permanence />} />
-                <Route path="/" element={<Navigate to="/accueil" />} />
-              </>
-            }
-
-            {voirFormulaire &&
-              <FormulaireSexeAge />
-            }
+            <Route path={`/accueil`} element={<Welcome />} />
+            <Route exact path={`/compte-rendu-activite`} element={<Cra />} />
+            <Route path={`/compte-rendu-activite/:idCra`} element={<UpdateCra />} />
+            <Route path={`/statistiques`} element={<Statistics />} />
+            <Route path={'/mes-informations'} element={<MesInformations />} />
+            <Route path={'/mon-espace-candidat'} element={<MonEspaceCandidat />} />
+            <Route path={'/contact-mon-responsable'} element={<FormulaireSuperieurHierarchique />} />
+            <Route path={`/lieux-activite`} element={<Permanence />} />
+            <Route path={'/mes-lieux-activite'} element={<MesPermanences />} />
+            <Route path={'/mon-lieu-activite/:idPermanence'} element={<PermanenceUpdate />} />
+            <Route path={'/mon-nouveau-lieu-activite'} element={<PermanenceCreate />} />
+            <Route path={'/historique'} element={<HistoriqueCras />} />
+            <Route exact path="/" element={<Navigate to="/accueil" />} />
           </>
         }
-        {user.pdfGenerator &&
+        {(voirPermanence && !suspendrePermanence) &&
           <>
-            <Route path={`/statistiques`} element={<Statistics />} />
-          </>
-        }{!user.pdfGenerator &&
-          <>
-            {(!voirPermanence || suspendrePermanence) &&
-              <>
-                <Route path={`/accueil`} element={<Welcome />} />
-                <Route exact path={`/compte-rendu-activite`} element={<Cra />} />
-                <Route path={`/compte-rendu-activite/:idCra`} element={<UpdateCra />} />
-                <Route path={`/statistiques`} element={<Statistics />} />
-                <Route path={'/mes-informations'} element={<MesInformations />} />
-                <Route path={'/mon-espace-candidat'} element={<MonEspaceCandidat />} />
-                <Route path={'/contact-mon-responsable'} element={<FormulaireSuperieurHierarchique />} />
-                <Route path={`/lieux-activite`} element={<Permanence />} />
-                <Route path={'/mes-lieux-activite'} element={<MesPermanences />} />
-                <Route path={'/mon-lieu-activite/:idPermanence'} element={<PermanenceUpdate />} />
-                <Route path={'/mon-nouveau-lieu-activite'} element={<PermanenceCreate />} />
-                <Route path={'/historique'} element={<HistoriqueCras />} />
-                <Route exact path="/" element={<Navigate to="/accueil" />} />
-              </>
-            }
-
-            {(voirPermanence && !suspendrePermanence) &&
-              <>
-                <Route path={`/accueil`} element={<Permanence />} />
-                <Route path="/" element={<Navigate to="/accueil" />} />
-              </>
-            }
-
-            {voirFormulaire &&
-              <FormulaireSexeAge />
-            }
+            <Route path={`/accueil`} element={<Permanence />} />
+            <Route path="/" element={<Navigate to="/accueil" />} />
           </>
         }
-        {user.pdfGenerator &&
-          <>
-            <Route path={`/statistiques`} element={<Statistics />} />
-          </>
+        {voirFormulaire &&
+          <FormulaireSexeAge />
         }
       </Routes>
     </>

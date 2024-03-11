@@ -79,13 +79,6 @@ function FormulaireSuperieurHierarchique() {
   }, [supHierarchique]);
 
   useEffect(() => {
-    dispatch(alerteActions.getMessageAlerte({
-
-    }));
-  }, [structure]);
-
-
-  useEffect(() => {
     if (formSupHierarchique?.isCreated) {
       dispatch(alerteActions.getMessageAlerte({
         type: 'valid',

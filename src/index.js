@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import { browserTracingIntegration } from '@sentry/browser';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from './reducers/rootReducer';
@@ -35,7 +35,7 @@ if (window.location.href.split(':').includes('file')) {
     ],
     dsn: process.env.REACT_APP_SENTRY_DSN,
     environment: process.env.REACT_APP_SENTRY_ENVIRONMENT,
-    integrations: [Sentry.browserTracingIntegration()],
+    integrations: [browserTracingIntegration()],
     tracesSampleRate: process.env.REACT_APP_SENTRY_TRACE_RATE,
   });
 }

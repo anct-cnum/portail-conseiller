@@ -40,7 +40,6 @@ export function pluralize(zero, singulier, pluriel, count, showCount = false) {
     case 1:
       phrase += singulier;
       break;
-
     default:
       phrase += pluriel;
       break;

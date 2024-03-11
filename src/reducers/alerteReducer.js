@@ -8,6 +8,7 @@ export default function alerte(state = initialState, action) {
   switch (action.type) {
     case 'GET_MESSAGE_ALERTE':
       return {
+        ...state,
         alerte: action.alerte
       };
     case 'RESET_MESSAGE_ALERTE':

@@ -3,7 +3,7 @@ name: Déploiement sur l'espace de recette
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: [recette]
 
 jobs:
   dependencies:
@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          cache: "npm"
       - name: Retrieve cached dependencies
         id: retrieve-dependencies
         uses: actions/cache@v3
@@ -50,7 +50,7 @@ jobs:
           envkey_REACT_APP_STRATEGYAUTH: "local"
           envkey_REACT_APP_VERSION: "1.2"
           envkey_REACT_APP_WEBMAIL_URL: "http://webmail.conseiller-numerique.fr"
-          envkey_REACT_APP_MATTERMOST_URL: "https://discussion.conseiller-numerique.gouv.fr"
+          envkey_REACT_APP_MATTERMOST_URL: "https://beta.discussion.conseiller-numerique.gouv.fr"
           envkey_REACT_APP_API: ${{ secrets.REACT_APP_API_RECETTE }}
           envkey_REACT_APP_PIX_URL: "https://pix.fr/abc-pix-cnfs/"
           envkey_REACT_APP_PIX_CONNEXION_URL: "https://app.pix.fr/connexion"

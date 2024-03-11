@@ -6,7 +6,7 @@ export default function Alerte() {
 
   const dispatch = useDispatch();
 
-  const alerte = useSelector(state => state?.alerte.alerte);
+  const alerte = useSelector(state => state?.alerte?.alerte);
 
   useEffect(() => {
     if (alerte?.type) {
