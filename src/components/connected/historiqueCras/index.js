@@ -27,8 +27,8 @@ function HistoriqueCras() {
   const error = useSelector(state => state.historiqueCras?.error);
   const errorSuppression = useSelector(state => state.cra?.error);
   const themes = useSelector(state => state.historiqueCras?.themes);
-  const printFlashbag = useSelector(state => state.cra?.printFlashbag);
-  const isDeleted = useSelector(state => state.cra?.isDeleted);
+  const printFlashbag = useSelector(state => state.cra.printFlashbag);
+  const isDeleted = useSelector(state => state.cra.isDeleted);
   const listeCodesPostaux = useSelector(state => state.statistique?.listeCodesPostaux);
   const dateDebutCra = useSelector(state => state.historiqueCras?.dateCraDebut);
   const dateFinCra = useSelector(state => state.historiqueCras?.dateCraFin);

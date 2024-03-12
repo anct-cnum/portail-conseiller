@@ -49,7 +49,7 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
 
   useEffect(() => {
     if (codePostal?.length === 5) {
-      setIndicatif(telephoneHorsMetropole?.find(item => item.codeDepartement === codePostal.substring(0, 3))?.indicatif ?? '+33');
+      setIndicatif(telephoneHorsMetropole?.find(item => item.codeDepartement === codePostal.substr(0, 3))?.indicatif ?? '+33');
     }
     if (geocodeAdresse) {
       dispatch(permanenceActions.updateField(prefixId + 'location', geocodeAdresse ??
