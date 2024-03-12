@@ -6,8 +6,6 @@ import ElementHighcharts from './Components/ElementHighcharts';
 import labelsCorrespondance from '../../../data/labelsCorrespondance.json';
 import { statistiqueActions } from '../../../actions/statistique.actions';
 
-require('dayjs/locale/fr');
-
 function BottomPage({ donneesStats, print, type }) {
 
   const dispatch = useDispatch();
