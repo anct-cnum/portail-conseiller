@@ -332,23 +332,24 @@ $background: #1e1e1e;
       display: none;
     }
     .react-datepicker__navigation--previous {
-      background: url(../../../public/logos/cra/logo-chevron-gauche.svg) no-repeat;
-      margin-left: 11px;
-      border: none;
-      height: 16px;
-      width: 10px;
+      margin-left: 8px;
+      height: 20px;
+      width: 14px;
+      top: 10px;
+      background: none;
       &:hover {
-        background: url(../../../public/logos/cra/logo-chevron-gauche.svg) no-repeat;
+        background: none;
       }
     }
     .react-datepicker__navigation--next {
-      background: url(../../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
-      margin-right: 11px;
+      margin-right: 8px;
       border: none;
-      height: 16px;
-      width: 10px;
+      height: 20px;
+      top: 10px;
+      width: 14px;
+      background: none;
       &:hover {
-        background: url(../../../public/logos/cra/logo-chevron-droite.svg) no-repeat;
+        background: none;
       }
     }
     .react-datepicker__header {
