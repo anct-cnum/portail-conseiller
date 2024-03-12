@@ -10,7 +10,7 @@ function FiltreLieu({ optionList }) {
 
   const setCodePostal = e => {
     const codePostal = e.target.value.split('-')[0];
-    const ville = e.target.value.substr(e.target.value.indexOf('-') + 1);
+    const ville = e.target.value.substring(e.target.value?.indexOf('-') + 1);
     const listCp = listeCodesPostaux?.find(i => i.id === codePostal)?.codeCommune;
     const codeCommune = listCp?.find(e => e.ville === ville)?.codeCommune;
     const selected = e.target.value;
