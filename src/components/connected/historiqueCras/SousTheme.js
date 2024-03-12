@@ -16,7 +16,7 @@ function SousTheme({ sousTheme }) {
 
   return (
     <span>
-      {annotations.toString().replace(',', ', ')}
+      {annotations.join(', ')}
     </span>
   );
 }

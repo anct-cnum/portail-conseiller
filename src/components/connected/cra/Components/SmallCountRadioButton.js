@@ -12,7 +12,7 @@ function SmallCountRadioButton({ type, typeKey, typeLabel, typeValue }) {
   const nbParticipants = cra?.nbParticipants;
   let nbParticipantsAge = cra?.nbParticipantsAge;
   let nbParticipantsStatut = cra?.nbParticipantsStatut;
-  let nbParticipantsAccompagnement = cra.nbParticipantsAccompagnement;
+  let nbParticipantsAccompagnement = cra?.nbParticipantsAccompagnement;
 
   const ajoutRetraitNbParticipants = (groupe, groupeNbParticipants, action, condition, operateur) => {
     if (condition) {

@@ -8,7 +8,7 @@ export const formatTelephone = (tel, codeDepartement) => {
 
   const findIndicatif = telephoneHorsMetropole.find(r => r.codeDepartement === codeDepartement);
 
-  const condition = value => !REGEX_PHONE_DEBUT.test(value) ? `${findIndicatif?.indicatif ?? '+33'}${value.substr(1)}` : value;
+  const condition = value => !REGEX_PHONE_DEBUT.test(value) ? `${findIndicatif?.indicatif ?? '+33'}${value.substring(1)}` : value;
   let telephone = tel?.trim();
   telephone = telephone ? condition(telephone) : '';
   if (!REGEX_ZERO.test(telephone) || !REGEX_PHONE.test(telephone)) {
