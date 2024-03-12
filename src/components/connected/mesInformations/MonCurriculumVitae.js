@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import FlashMessage from 'react-flash-message';
 import { useDropzone } from 'react-dropzone';
 import PropTypes from 'prop-types';
-import { candidatActions, conseillerActions } from '../../../actions';
+import { alerteActions, candidatActions, conseillerActions } from '../../../actions';
 
 function MonCurriculumVitae({ isUploaded, isDeleted, uploading, loadingDeleteCv, loadingDownloadCv }) {
   const dispatch = useDispatch();
@@ -54,6 +53,16 @@ function MonCurriculumVitae({ isUploaded, isDeleted, uploading, loadingDeleteCv,
   }, [blob, uploadError]);
 
   useEffect(() => {
+    if (uploadError || downloadError) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'invalid',
+        message: uploadError?.toString() ?? downloadError?.toString(),
+        icon: 'ri-close-line ri-xl'
+      }));
+    }
+  }, [uploadError, downloadError]);
+
+  useEffect(() => {
     if (isDownloaded || isUploaded || isDeleted) {
       dispatch(conseillerActions.get(user?.entity?.$id));
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -66,17 +75,6 @@ function MonCurriculumVitae({ isUploaded, isDeleted, uploading, loadingDeleteCv,
   return (
     <>
       <h2 className="sous-titre fr-mb-6w">Mon curriculum vit&aelig;</h2>
-      {(!isUploaded &&
-        (typeof uploadError === 'string' && uploadError?.length > 0) ||
-        (typeof downloadError === 'string' && downloadError?.length > 0)) &&
-        <FlashMessage duration={10000}>
-          <p className="fr-label flashBag invalid">
-            {uploadError?.toString() ?? downloadError?.toString()}
-            <i className="ri-close-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
-          </p>
-        </FlashMessage>
-      }
-
       <div className={`bouton-cv ${conseiller?.cv ? 'fr-mb-3w' : 'fr-mb-6w'} ${fileRejections.length > 0 ? 'dropZone drop-error' : ''}`}
         {...getRootProps()}>
         <input {...getInputProps()} />

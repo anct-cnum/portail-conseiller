@@ -1,6 +1,5 @@
 import { conseillerService } from '../services/conseiller.service.js';
 import download from 'downloadjs';
-import { history } from '../helpers';
 import dayjs from 'dayjs';
 
 export const conseillerActions = {
@@ -353,7 +352,7 @@ function isFormulaireChecked(sexe, isUpdated) {
 }
 
 function closeFormulaire() {
-  history.push('/accueil');
+  window.location.pathname = '/accueil';
   return { type: 'CLOSE_FORMULAIRE_SEXE_AGE' };
 }
 
@@ -389,7 +388,4 @@ function isSubordonne(coordinateurId, conseillerId) {
 
 function resetIsSubordonne() {
   return { type: 'RESET_IS_SUBORDONE' };
-
 }
-
-

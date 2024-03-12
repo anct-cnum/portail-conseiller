@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from '../../actions';
 import Header from '../Header';
 import Footer from '../Footer';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 
-function ForgottenPassword({ match = null }) {
+function ForgottenPassword() {
 
   const dispatch = useDispatch();
   const location = useLocation();
+  const { token } = useParams();
   const { fromModifPassword = false } = location.state || {};
-
-  const token = match.params.token;
 
   /* Etape 1*/
   const [inputEmail, setInputsEmail] = useState({
@@ -381,9 +379,5 @@ function ForgottenPassword({ match = null }) {
 
 
 }
-
-ForgottenPassword.propTypes = {
-  match: PropTypes.object
-};
 
 export default ForgottenPassword;

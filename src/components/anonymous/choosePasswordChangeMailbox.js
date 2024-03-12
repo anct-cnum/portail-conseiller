@@ -3,13 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import Header from '../Header';
 import Footer from '../Footer';
 import { userActions } from '../../actions';
-import Spinner from 'react-loader-spinner';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Oval } from 'react-loader-spinner';
+import { Link, useParams } from 'react-router-dom';
 
-function ChoosePasswordMailBox({ match }) {
+function ChoosePasswordMailBox() {
   const dispatch = useDispatch();
-
+  const { token } = useParams();
   const [inputs, setInputs] = useState({
     username: '',
     password: ''
@@ -18,9 +17,6 @@ function ChoosePasswordMailBox({ match }) {
   const [submitted, setSubmitted] = useState(false);
   const { passwordConfirm, password } = inputs;
   const error = useSelector(state => state.authentication.error);
-
-
-  const token = match.params.token;
   const verifyingToken = useSelector(state => state.createAccount.verifyingToken);
   const tokenVerified = useSelector(state => state.createAccount.tokenVerified);
   const user = useSelector(state => state.createAccount.user);
@@ -101,9 +97,8 @@ function ChoosePasswordMailBox({ match }) {
                   { changeMailboxMessageError &&
                   <h2 style={{ color: 'red' }}>{changeMailboxMessageError}</h2>
                   }
-                  <Spinner
+                  <Oval
                     className="fr-mt-10w fr-mb-10w"
-                    type="Oval"
                     color="#00BFFF"
                     height="100"
                     width="100"
@@ -255,9 +250,5 @@ function ChoosePasswordMailBox({ match }) {
     </div>
   );
 }
-
-ChoosePasswordMailBox.propTypes = {
-  match: PropTypes.object
-};
 
 export default ChoosePasswordMailBox;

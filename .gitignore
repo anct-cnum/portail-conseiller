@@ -12,10 +12,7 @@
 /build
 
 # Sub directories and index.html build by webpack
-/public/css
 /public/fonts
-/public/js
-/public/index.html
 
 # cache files
 /public/logos/leaflet

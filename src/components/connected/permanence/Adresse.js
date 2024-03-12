@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import Spinner from 'react-loader-spinner';
+import { Oval } from 'react-loader-spinner';
 import telephoneHorsMetropole from '../../../data/indicatifs.json';
 import InputText from './Components/InputText';
 import InputCheckbox from './Components/InputCheckbox';
@@ -134,8 +134,7 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
           <div className="listeAdresses">
             {loadingAdresses &&
               <div className="spinnerDiv">
-                <Spinner
-                  type="Oval"
+                <Oval
                   color="#00BFFF"
                   height={25}
                   width={25}

@@ -1,7 +1,6 @@
 import Joi from 'joi';
 import { supHierarchiqueService } from '../services/supHierarchique.service';
 import { userService } from '../services/user.service';
-import { history } from '../helpers';
 
 export const formSupHierarchiqueActions = {
   verifyFormulaire,
@@ -91,7 +90,7 @@ function createSupHierarchique(supHierarchique, conseillerId, username, password
       },
       error => {
         dispatch(failure(error.error));
-        history.push('/login');
+        window.location.pathname = '/login';
       }
     );
   };

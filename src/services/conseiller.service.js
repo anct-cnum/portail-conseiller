@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { authHeader, history } from '../helpers';
+import { authHeader } from '../helpers';
 import { userService } from './user.service';
 
 const apiUrlRoot = process.env.REACT_APP_API;
@@ -312,7 +312,7 @@ function handleResponse(response) {
       if (response.status === 401) {
         // auto logout if 401 response returned from api
         userService.logout();
-        history.push('/');
+        window.location.pathname = '/';
       }
       const error = (data && data.message) || response.statusText;
       return Promise.reject(error);
@@ -328,7 +328,7 @@ function handleFileResponse(response) {
       if (response.status === 401) {
         // auto logout if 401 response returned from api
         userService.logout();
-        history.push('/');
+        window.location.pathname = '/';
       }
 
       const error = (blob && blob.message) || response.statusText;

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
-import { conseillerActions, statistiqueActions } from '../../actions';
+import { alerteActions, conseillerActions, statistiqueActions } from '../../actions';
 import PropTypes from 'prop-types';
-import FlashMessage from 'react-flash-message';
+import Alerte from '../common/Alerte';
 
 function AdminHeader({ role }) {
   const location = useLocation();
@@ -24,14 +24,19 @@ function AdminHeader({ role }) {
     dispatch(conseillerActions.exportDonneesCnfsWithoutCRA());
   };
 
+  useEffect(() => {
+    if (errorCSV) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'invalid',
+        message: 'Aucun conseillers n\'est actuellement à M+2',
+      }));
+    }
+  }, [errorCSV]);
+
   return (
     <>
       <div className="fr-container">
-        {errorCSV &&
-          <FlashMessage duration={5000}>
-            <p className="flashBag invalid">Aucun conseillers n&rsquo;est actuellement à M+2</p>
-          </FlashMessage>
-        }
+        <Alerte />
         <div className="fr-grid-row fr-grid-row--right">
           <div className={`fr-col-lg-4 fr-col-12 ${role !== 'admin_coop' ? 'fr-mt-5w fr-mb-6w' : 'fr-mt-3w'}`}>
             <a className="statistiques_nationales-btn" href="statistiques-nationales">Statistiques Nationales</a>

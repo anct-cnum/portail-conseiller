@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { paginationActions, statistiqueActions } from '../../actions';
+import { alerteActions, paginationActions, statistiqueActions } from '../../actions';
 import PeriodStatistics from '../connected/statistics/StatisticsPeriod';
 import LeftPage from '../connected/statistics/LeftPage';
 import RightPage from '../connected/statistics/RightPage';
 import BottomPage from '../connected/statistics/BottomPage';
 import StatisticsBanner from '../connected/statistics/StatisticsBanner';
 import Footer from '../Footer';
-import Spinner from 'react-loader-spinner';
-import FlashMessage from 'react-flash-message';
+import { Oval } from 'react-loader-spinner';
 import Header from '../Header';
 import AdminHeader from '../admin/AdminHeader';
 import HeaderHub from '../hub/HeaderHub';
 import StatisticsPrint from './StatisticsPrint';
+import Alerte from '../common/Alerte';
 
 function StatistiquesNationales() {
   const dispatch = useDispatch();
@@ -37,6 +37,33 @@ function StatistiquesNationales() {
     dispatch(paginationActions.resetPage(false));
   }, [dateDebutStats, dateFinStats]);
 
+  useEffect(() => {
+    if (isPDFDownloaded === false) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'invalid',
+        message: 'Vos statistiques n\'ont pas pu êtretre téléchargées, veuillez réessayer !',
+      }));
+    }
+    if (errorPDF) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'invalid',
+        message: errorPDF,
+      }));
+    }
+    if (errorCSV) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'invalid',
+        message: errorCSV,
+      }));
+    }
+    if (errorExcel) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'invalid',
+        message: errorExcel,
+      }));
+    }
+  }, [isPDFDownloaded, errorPDF, errorCSV, errorExcel]);
+
   return (
     <div>
       {user?.role === 'hub_coop' ? <HeaderHub /> : <Header linkAccount={user?.name}/>}
@@ -49,43 +76,14 @@ function StatistiquesNationales() {
       <div className="statistics dont-print">
         <div className="fr-container">
           <div className="spinnerCustom">
-            <Spinner
-              type="Oval"
+            <Oval
               color="#00BFFF"
               height={100}
               width={100}
               visible={statsDataLoading === true || loadingPDF === true || loadingExcel === true || loadingCSV === true}
             />
           </div>
-
-          {isPDFDownloaded === false &&
-            <FlashMessage duration={5000}>
-              <p className="flashBag invalid">
-                Vos statistiques n&rsquo;ont pas pu &ecirc;tre t&eacute;l&eacute;charg&eacute;es, veuillez r&eacute;essayer !
-              </p>
-            </FlashMessage>
-          }
-          {errorPDF &&
-            <FlashMessage duration={5000}>
-              <p className="flashBag invalid">
-                {errorPDF}
-              </p>
-            </FlashMessage>
-          }
-          {errorCSV &&
-            <FlashMessage duration={5000}>
-              <p className="flashBag invalid">
-                {errorCSV}
-              </p>
-            </FlashMessage>
-          }
-          {errorExcel &&
-            <FlashMessage duration={5000}>
-              <p className="flashBag invalid">
-                {errorExcel}
-              </p>
-            </FlashMessage>
-          }
+          <Alerte />
           <div className="fr-grid-row">
             <div className="fr-col-12">
               <div className="fr-mt-2w fr-mt-md-9w fr-mt-lg-13w"></div>

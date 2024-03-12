@@ -30,3 +30,19 @@ export const formatAdresse = (adressePermanence, adresseStructure = null, rue = 
     adressePermanence?.ville ?? adresseStructure?.libelle_commune ?? ''
   ].join(' ').toUpperCase();
 };
+
+export function pluralize(zero, singulier, pluriel, count, showCount = false) {
+  let phrase = showCount ? count + ' ' : '';
+  switch (count) {
+    case 0:
+      phrase += zero;
+      break;
+    case 1:
+      phrase += singulier;
+      break;
+    default:
+      phrase += pluriel;
+      break;
+  }
+  return phrase;
+}

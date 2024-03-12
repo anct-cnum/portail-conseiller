@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { permanenceActions } from '../../../actions';
 import PropTypes from 'prop-types';
 import { Tooltip } from 'react-tooltip';
-import Pluralize from 'react-pluralize';
+import { pluralize } from '../../../utils/functionFormats';
 
 function SupprimerPermanence({ permanence, isDisabled, count }) {
   const dispatch = useDispatch();
@@ -53,11 +53,8 @@ function SupprimerPermanence({ permanence, isDisabled, count }) {
                     {count > 0 &&
                       <div className="fr-mb-5w">
                         (*)&nbsp;Ce lieu comporte&nbsp;
-                        <Pluralize
-                          singular={`compte rendu d'activité`}
-                          plural={`comptes rendus d'activités`}
-                          count={count}
-                          showCount={true} />. La suppression
+                        {pluralize('compte rendu d\'activité', 'compte rendu d\'activité', 'comptes rendus d\'activités', count, true)}
+                        . La suppression
                         impliquera &eacute;galement une suppression de la permanence dans les CRAs.
                       </div>
                     }

@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Pluralize from 'react-pluralize';
-
 import ElementNumber from './Components/ElementNumber';
 import ElementText from './Components/ElementText';
+import { pluralize } from '../../../utils/functionFormats';
 
 function StatisticsRenewal(props) {
 
@@ -14,14 +13,12 @@ function StatisticsRenewal(props) {
           <ElementNumber nombre={props.nbUsagersBeneficiantSuivi} classe="numbers-renewal"/>
         </div>
         <div className="fr-col-12 fr-col-md-10 fr-col-lg-9">
-          <ElementText textePluralize={
-            <Pluralize
-              zero={'Accompagnement avec suivi, soit :'}
-              singular={'Accompagnement avec suivi, soit :'}
-              plural={'Accompagnements avec suivi, soit :'}
-              count={props.nbUsagersBeneficiantSuivi}
-              showCount={false} />
-          } classe="text"/><br/>
+          <ElementText textePluralize={pluralize(
+            'Accompagnement avec suivi, soit :',
+            'Accompagnement avec suivi, soit :',
+            'Accompagnements avec suivi, soit :',
+            props.nbUsagersBeneficiantSuivi
+          )} classe="text"/><br/>
         </div>
         <div className="fr-col-12 fr-col-md-2 fr-col-lg-3">
           <ElementNumber nombre={props.tauxTotalUsagersAccompagnes} caracteresSpeciaux={props.caracteresSpeciaux} classe="many-numbers"/>
@@ -45,12 +42,12 @@ function StatisticsRenewal(props) {
           <ElementNumber nombre={props.nbReconduction} classe="many-numbers"/>
         </div>
         <div className="fr-col-12 fr-col-md-10 fr-col-lg-9">
-          <ElementText textePluralize={<Pluralize
-            zero={'redirection vers une autre structure agréée'}
-            singular={'redirection vers une autre structure agréée'}
-            plural={'redirections vers une autre structure agréée'}
-            count={props.nbReconduction}
-            showCount={false} />} classe="texts"/>
+          <ElementText textePluralize={pluralize(
+            'redirection vers une autre structure agréée',
+            'redirection vers une autre structure agréée',
+            'redirections vers une autre structure agréée',
+            props.nbReconduction
+          )} classe="texts"/>
         </div>
         <div className="fr-col-12">
           <div className="fr-m-lg-6w"></div>
@@ -61,12 +58,12 @@ function StatisticsRenewal(props) {
         <div className="fr-col-12 fr-mb-6w">
           <span className="numbers">{props.nbUsagersBeneficiantSuivi}</span>
           <span className="text">
-            <Pluralize
-              zero={'Accompagnement avec suivi, soit :'}
-              singular={'Accompagnement avec suivi, soit :'}
-              plural={'Accompagnements avec suivi, soit :'}
-              count={props.nbUsagersBeneficiantSuivi}
-              showCount={false} />
+            {pluralize(
+              'Accompagnement avec suivi, soit :',
+              'Accompagnement avec suivi, soit :',
+              'Accompagnements avec suivi, soit :',
+              props.nbUsagersBeneficiantSuivi,
+            )}
           </span>
         </div>
         <div className="fr-col-12 fr-mb-6w">
@@ -84,13 +81,12 @@ function StatisticsRenewal(props) {
         <div className="fr-col-12 fr-mt-6w">
           <span className="number">{props.nbReconduction}</span>
           <span className="text">
-            <Pluralize
-              zero={'redirection vers une autre structure agréée'}
-              singular={'redirection vers une autre structure agréée'}
-              plural={'redirections vers une autre structure agréée'}
-              count={props.nbReconduction}
-              showCount={false} />
-          </span>
+            {pluralize(
+              'redirection vers une autre structure agréée',
+              'redirection vers une autre structure agréée',
+              'redirections vers une autre structure agréée',
+              props.nbReconduction
+            )}</span>
         </div>
       </div>
     </>

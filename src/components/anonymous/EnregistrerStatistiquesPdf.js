@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import StatisticsPeriod from '../connected/statistics/StatisticsPeriod';
 import LeftPage from '../connected/statistics/LeftPage';
@@ -7,16 +6,14 @@ import RightPage from '../connected/statistics/RightPage';
 import BottomPage from '../connected/statistics/BottomPage';
 import { statistiqueActions } from '../../actions';
 import Header from '../Header';
+import { useParams } from 'react-router-dom';
 
-function EnregistrerStatistiquesPdf({ match }) {
+function EnregistrerStatistiquesPdf() {
 
   const dispatch = useDispatch();
-  const type = match.params?.type;
-  const id = match.params?.id;
-  const dateDebut = new Date(match.params?.dateDebut);
-  const dateFin = new Date(match.params?.dateFin);
-  const codePostal = match.params?.codePostal;
-  const ville = match.params?.ville;
+  const { type, id, dateDebut, dateFin, codePostal, ville } = useParams();
+  const dateDebutFormat = new Date(dateDebut);
+  const dateFinFormat = new Date(dateFin);
 
   const dateDebutStats = useSelector(state => state.statistique?.dateDebutStats);
   const dateFinStats = useSelector(state => state.statistique?.dateFinStats);
@@ -28,22 +25,22 @@ function EnregistrerStatistiquesPdf({ match }) {
 
   useEffect(() => {
     if ((type !== 'user' && type !== 'conseiller' && type !== 'nationales' && type !== 'structure') && territoire === undefined) {
-      dispatch(statistiqueActions.getTerritoire(type, id, dateFin));
+      dispatch(statistiqueActions.getTerritoire(type, id, dateFinFormat));
     }
   });
 
   useEffect(() => {
-    dispatch(statistiqueActions.changeDateStatsDebut(dateDebut));
-    dispatch(statistiqueActions.changeDateStatsFin(dateFin));
+    dispatch(statistiqueActions.changeDateStatsDebut(dateDebutFormat));
+    dispatch(statistiqueActions.changeDateStatsFin(dateFinFormat));
     dispatch(statistiqueActions.changeCodePostalStats(codePostal, ville));
     if ((type === 'user' || type === 'conseiller') && type !== 'nationales') {
-      dispatch(statistiqueActions.getStatsCra(dateDebut, dateFin, id, codePostal, ville));
+      dispatch(statistiqueActions.getStatsCra(dateDebutFormat, dateFinFormat, id, codePostal, ville));
     } else if (((type !== 'user' && type !== 'conseiller') && type !== 'nationales') && territoire?.conseillerIds) {
-      dispatch(statistiqueActions.getStatsCraTerritoire(dateDebut, dateFin, typeTerritoire, territoire?.conseillerIds));
+      dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutFormat, dateFinFormat, typeTerritoire, territoire?.conseillerIds));
     } else if (type === 'nationales') {
-      dispatch(statistiqueActions.getStatsCraNationale(dateDebut, dateFin));
+      dispatch(statistiqueActions.getStatsCraNationale(dateDebutFormat, dateFinFormat));
     } else if (type === 'structure') {
-      dispatch(statistiqueActions.getStatsCraStructure(dateDebut, dateFin, id, codePostal));
+      dispatch(statistiqueActions.getStatsCraStructure(dateDebutFormat, dateFinFormat, id, codePostal));
     }
   }, [territoire, codePostalStats, villeStats]);
 
@@ -120,8 +117,5 @@ function EnregistrerStatistiquesPdf({ match }) {
   );
 }
 
-EnregistrerStatistiquesPdf.propTypes = {
-  match: PropTypes.object
-};
 export default EnregistrerStatistiquesPdf;
 

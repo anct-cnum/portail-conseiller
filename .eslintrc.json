@@ -1,29 +1,26 @@
 {
-    "extends": [
-      "plugin:react/recommended"
-    ],
-    "env": {
+  "env": {
       "browser": true,
       "node": true,
       "es6": true,
       "mocha": true,
       "jest": true
-    },
-    "parser": "@babel/eslint-parser",
-    "parserOptions": {
-      "requireConfigFile": false,
-      "ecmaVersion": 2018,
-      "sourceType": "module",
+  },
+  "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended"
+  ],
+  "parserOptions": {
       "ecmaFeatures": {
-        "jsx": true
-      }
-    },
-    "settings": {
-      "react": {
-        "version": "16.0"
-      }
-    },
-    "rules": {
+          "jsx": true
+      },
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+  },
+  "plugins": [
+      "react"
+  ],
+  "rules": {
       "no-var": "error",
       "prefer-const": "off",
       "max-len": [
@@ -89,6 +86,7 @@
       "no-alert": "error",
       "no-caller": "error",
       "no-case-declarations": "off",
+      "no-console": "warn",
       "no-div-regex": "error",
       "no-else-return": "off",
       "no-empty-pattern": "error",
@@ -173,16 +171,15 @@
         }
       ],
       "no-unused-vars": [
-        "warn", {
-          "varsIgnorePattern": "^_"
-        }
+          "warn", {
+            "varsIgnorePattern": "^_"
+          }
       ],
       "no-use-before-define": [
         "error",
         "nofunc"
       ],
       // Node.js
-
       "handle-callback-err": 1,
       "no-mixed-requires": [
         "error",
@@ -359,5 +356,10 @@
         "error",
         "both"
       ]
-    }
+  },
+  "settings": {
+      "react": {
+        "version": "detect"
+      }
   }
+}

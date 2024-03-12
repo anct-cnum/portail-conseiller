@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { conseillerActions } from '../../actions';
-import Spinner from 'react-loader-spinner';
-import FlashMessage from 'react-flash-message';
+import { alerteActions, conseillerActions } from '../../actions';
+import { Oval } from 'react-loader-spinner';
+import Alerte from '../common/Alerte';
 
 function BannerHub() {
   const location = useLocation();
@@ -15,18 +15,20 @@ function BannerHub() {
   const errorCSV = useSelector(state => state.conseiller?.errorCSV);
   const exportConseiller = () => dispatch(conseillerActions.getStatistiquesHubCSV(hub));
 
+  useEffect(() => {
+    if (errorCSV) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'invalid',
+        message: errorCSV,
+      }));
+    }
+  }, [errorCSV]);
+
   return (
     <div className="fr-container">
-      {errorCSV &&
-        <FlashMessage duration={5000}>
-          <p className="flashBag invalid">
-            {errorCSV}
-          </p>
-        </FlashMessage>
-      }
+      <Alerte />
       <div className="spinnerCustom">
-        <Spinner
-          type="Oval"
+        <Oval
           color="#00BFFF"
           height={100}
           width={100}

@@ -1,5 +1,4 @@
 import { userService } from '../services/user.service.js';
-import { history } from '../helpers';
 
 export const userActions = {
   login,
@@ -21,15 +20,15 @@ function login(username, password, to) {
         data.user = getRole(data.user);
         if (data.user.role === 'structure_coop') {
           dispatch(failure('Vous n\'avez pas accès à cette application'));
-          return history.push('/login?role=structure');
+          window.location.pathname = '/login?role=structure';
         }
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(data));
         dispatch(success(data));
         if (to.pathname === '/') {
-          history.push('/accueil');
+          window.location.pathname = '/accueil';
         } else {
-          history.push(to);
+          window.location.pathname = to;
         }
       },
       error => {

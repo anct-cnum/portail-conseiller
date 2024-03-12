@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Navigate, Routes } from 'react-router-dom';
 import Header from '../Header';
 import Statistics from './statistics/Statistics';
 import Cra from './cra';
@@ -52,43 +52,34 @@ function Connected() {
   return (
     <>
       <Header linkAccount={user?.name} />
-      {!user.pdfGenerator &&
-        <>
-          {(!voirPermanence || suspendrePermanence) &&
-            <>
-              <Route path={`/accueil`} component={Welcome} />
-              <Route exact path={`/compte-rendu-activite`} component={Cra} />
-              <Route path={`/compte-rendu-activite/:idCra`} component={UpdateCra} />
-              <Route path={`/statistiques`} component={Statistics} />
-              <Route path={'/mes-informations'} component={MesInformations} />
-              <Route path={'/mon-espace-candidat'} component={MonEspaceCandidat} />
-              <Route path={'/contact-mon-responsable'} component={FormulaireSuperieurHierarchique} />
-              <Route path={`/lieux-activite`} component={Permanence} />
-              <Route path={'/mes-lieux-activite'} component={MesPermanences} />
-              <Route path={'/mon-lieu-activite/:idPermanence'} component={PermanenceUpdate} />
-              <Route path={'/mon-nouveau-lieu-activite'} component={PermanenceCreate} />
-              <Route path={'/historique'} component={HistoriqueCras} />
-              <Route exact path="/" render={() => (<Redirect to="/accueil" />)} />
-            </>
-          }
-
-          {(voirPermanence && !suspendrePermanence) &&
-            <>
-              <Route path={`/accueil`} component={Permanence} />
-              <Route path="/" render={() => (<Redirect to="/accueil" />)} />
-            </>
-          }
-
-          {voirFormulaire &&
-            <FormulaireSexeAge />
-          }
-        </>
-      }
-      {user.pdfGenerator &&
-        <>
-          <Route path={`/statistiques`} component={Statistics} />
-        </>
-      }
+      <Routes>
+        {(!voirPermanence || suspendrePermanence) &&
+          <>
+            <Route path={`/accueil`} element={<Welcome />} />
+            <Route exact path={`/compte-rendu-activite`} element={<Cra />} />
+            <Route path={`/compte-rendu-activite/:idCra`} element={<UpdateCra />} />
+            <Route path={`/statistiques`} element={<Statistics />} />
+            <Route path={'/mes-informations'} element={<MesInformations />} />
+            <Route path={'/mon-espace-candidat'} element={<MonEspaceCandidat />} />
+            <Route path={'/contact-mon-responsable'} element={<FormulaireSuperieurHierarchique />} />
+            <Route path={`/lieux-activite`} element={<Permanence />} />
+            <Route path={'/mes-lieux-activite'} element={<MesPermanences />} />
+            <Route path={'/mon-lieu-activite/:idPermanence'} element={<PermanenceUpdate />} />
+            <Route path={'/mon-nouveau-lieu-activite'} element={<PermanenceCreate />} />
+            <Route path={'/historique'} element={<HistoriqueCras />} />
+            <Route exact path="/" element={<Navigate to="/accueil" />} />
+          </>
+        }
+        {(voirPermanence && !suspendrePermanence) &&
+          <>
+            <Route path={`/accueil`} element={<Permanence />} />
+            <Route path="/" element={<Navigate to="/accueil" />} />
+          </>
+        }
+        {voirFormulaire &&
+          <FormulaireSexeAge />
+        }
+      </Routes>
     </>
   );
 }

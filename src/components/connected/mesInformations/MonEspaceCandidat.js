@@ -1,8 +1,7 @@
 
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import FlashMessage from 'react-flash-message';
-import Spinner from 'react-loader-spinner';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Oval } from 'react-loader-spinner';
 
 import ModalUpdateForm from './ModalUpdateForm';
 import Footer from '../../Footer';
@@ -10,14 +9,16 @@ import MaZoneGeographique from './MaZoneGeographique';
 import MonCurriculumVitae from './MonCurriculumVitae';
 import MonPix from './MonPix';
 import MaDisponibilite from './MaDisponibilite';
+import { alerteActions } from '../../../actions';
+import Alerte from '../../common/Alerte';
 
 function MonEspaceCandidat() {
-
+  const dispatch = useDispatch();
   const candidat = useSelector(state => state.candidat);
 
   const isUploaded = useSelector(state => state.candidat?.isUploaded);
   const isDeleted = useSelector(state => state.candidat?.isDeleted);
-  const succes = useSelector(state => state.candidat?.success);
+  const success = useSelector(state => state.candidat?.success);
   const uploading = useSelector(state => state.candidat?.uploading);
   const loadingCandidat = useSelector(state => state.candidat?.loading);
   const loadingConseiller = useSelector(state => state.conseiller?.loading);
@@ -28,14 +29,38 @@ function MonEspaceCandidat() {
   const [showModal, setShowModal] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  useEffect(() => {
+    if (success) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'valid',
+        message: 'Vos informations ont bien été enregistrées',
+        icon: 'ri-check-line ri-xl'
+      }));
+    }
+    if (isUploaded) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'valid',
+        message: 'Votre Curriculum Vitæ a été ajouté avec succès',
+        description: 'Important : il sera conservé seulement 6 mois sur votre espace candidat. Au delà, il vous sera recommandé de le télécharger de nouveau.',
+        icon: 'ri-check-line ri-xl'
+      }));
+    }
+    if (isDeleted) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'valid',
+        message: 'Votre Curriculum Vitæ a été supprimé avec succès',
+        icon: 'ri-check-line ri-xl'
+      }));
+    }
+  }, [success, isDeleted, isUploaded]);
+
   return (
     <>
       <ModalUpdateForm form={candidat} showModal={showModal} setShowModal={setShowModal} formOrigin="espaceCandidat" />
       <div className="mon-espace-candidat">
         <div className="fr-container">
           <div className="spinnerCustom">
-            <Spinner
-              type="Oval"
+            <Oval
               color="#00BFFF"
               height={100}
               width={100}
@@ -52,39 +77,7 @@ function MonEspaceCandidat() {
                 vous mettre en visibilit&eacute; des structures qui recrutent.
               </p>
             </div>
-
-            <div className="fr-col-12">
-              {succes &&
-                <FlashMessage duration={10000}>
-                  <p className="fr-label flashBag">
-                    Vos informations ont bien &eacute;t&eacute; enregistr&eacute;es&nbsp;
-                    <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
-                  </p>
-                </FlashMessage>
-              }
-
-              {isUploaded &&
-                <FlashMessage duration={10000} >
-                  <p className="fr-label flashBag">
-                    Votre Curriculum Vit&aelig; a &eacute;t&eacute; ajout&eacute; avec succ&egrave;s !
-                    <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
-                    <br /><br />
-                    <span style={{ color: 'initial' }}>
-                      Important : il sera conserv&eacute; seulement 6 mois sur votre espace candidat.&nbsp;
-                      Au del&agrave;, il vous sera recommand&eacute; de le t&eacute;l&eacute;charger de nouveau.
-                    </span>
-                  </p>
-                </FlashMessage>
-              }
-              {isDeleted &&
-                <FlashMessage duration={10000} >
-                  <p className="fr-label flashBag">
-                    Votre Curriculum Vit&aelig; a &eacute;t&eacute; supprim&eacute; avec succ&egrave;s !
-                    <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
-                  </p>
-                </FlashMessage>
-              }
-            </div>
+            <Alerte />
             <div className="fr-col-12">
               <MaDisponibilite />
               <hr className="fr-my-6w" />

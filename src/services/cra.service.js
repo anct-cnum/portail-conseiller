@@ -1,4 +1,4 @@
-import { authHeader, history, userEntityId } from '../helpers';
+import { authHeader, userEntityId } from '../helpers';
 import { userService } from './user.service';
 
 export const craService = {
@@ -82,7 +82,7 @@ function handleResponse(response) {
       if (response.status === 401) {
         // auto logout if 401 response returned from api
         userService.logout();
-        history.push('/');
+        window.location.pathname = '/';
       }
       const error = (data && data.message) || response.statusText;
       return Promise.reject(error);

@@ -190,7 +190,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
   }
 
   function setStatistiquesLegende(typeGraphique, isReoriente, optionLegend = false, donneesStats = false) {
-    let legende = { };
+    let legende = {};
 
     switch (typeGraphique) {
 
@@ -333,7 +333,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
   }
 
   function setStatistiquesAxeY(typeGraphique) {
-    let axeY = { };
+    let axeY = {};
 
     switch (typeGraphique) {
 
@@ -344,8 +344,10 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
             text: null
           },
           gridLineWidth: 0,
-          labels: '',
           fontSize: '12px',
+          labels: {
+            enabled: false
+          },
         };
 
         break;
@@ -428,7 +430,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
   }
 
   function setStatistiquesAxeX(typeGraphique, optionResponsive, categoriesAxeX) {
-    let axeX = { };
+    let axeX = {};
 
     switch (typeGraphique) {
 
@@ -516,7 +518,7 @@ function ElementHighcharts({ donneesStats, variablesGraphique, print, listeAutre
   }
 
   function setStatistiquesOptionsTrace(typeGraphique, optionResponsive, isReoriente) {
-    let optionsTrace = { };
+    let optionsTrace = {};
 
     switch (typeGraphique) {
 

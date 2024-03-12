@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Header from '../Header';
 import Footer from '../Footer';
-import PropTypes from 'prop-types';
 import { userActions } from '../../actions';
 
-function ChoosePasswordHub({ match }) {
+function ChoosePasswordHub() {
   const dispatch = useDispatch();
-
+  const { token } = useParams();
   const [inputs, setInputs] = useState({
     password: '',
     passwordConfirm: ''
@@ -16,8 +15,6 @@ function ChoosePasswordHub({ match }) {
   const [submitted, setSubmitted] = useState(false);
   const { passwordConfirm, password } = inputs;
   const error = useSelector(state => state.authentication.error);
-
-  const token = match.params.token;
   const verifyingToken = useSelector(state => state.createAccount.verifyingToken);
   const tokenVerified = useSelector(state => state.createAccount.tokenVerified);
   const passwordChoosen = useSelector(state => state.createAccount.passwordChoosen);
@@ -161,9 +158,5 @@ function ChoosePasswordHub({ match }) {
   );
 
 }
-
-ChoosePasswordHub.propTypes = {
-  match: PropTypes.object
-};
 
 export default ChoosePasswordHub;

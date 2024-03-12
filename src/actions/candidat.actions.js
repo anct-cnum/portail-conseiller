@@ -1,6 +1,5 @@
 import Joi from 'joi';
 import download from 'downloadjs';
-import { history } from '../helpers';
 import { userService } from '../services/user.service';
 import { candidatService } from '../services/candidat.service';
 import { conseillerService } from '../services/conseiller.service';
@@ -156,7 +155,7 @@ function updateCandidat(form, conseillerId, username, password) {
       },
       error => {
         dispatch(failure(error.error));
-        history.push('/login');
+        window.location.pathname = '/login';
       }
     );
   };

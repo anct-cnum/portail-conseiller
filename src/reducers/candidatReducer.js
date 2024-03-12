@@ -111,6 +111,7 @@ export default function candidat(state = initState, action) {
       return {
         ...state,
         downloading: true,
+        downloadError: false,
         isDownloaded: false
       };
     case 'GET_CURRICULUM_VITAE_SUCCESS':

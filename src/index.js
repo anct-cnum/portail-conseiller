@@ -1,14 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import { browserTracingIntegration } from '@sentry/browser';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import thunkMiddleware from 'redux-thunk';
+import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from './reducers/rootReducer';
 import * as Sentry from '@sentry/react';
-import { Integrations } from '@sentry/tracing';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const loginUrl = process.env.REACT_APP_ESPACE_COOP_URL + '/login';
 if (window.location.href.split(':').includes('file')) {
@@ -36,25 +35,29 @@ if (window.location.href.split(':').includes('file')) {
     ],
     dsn: process.env.REACT_APP_SENTRY_DSN,
     environment: process.env.REACT_APP_SENTRY_ENVIRONMENT,
-    integrations: [new Integrations.BrowserTracing()],
+    integrations: [browserTracingIntegration()],
     tracesSampleRate: process.env.REACT_APP_SENTRY_TRACE_RATE,
   });
 }
 
-const store = createStore(
-  rootReducer,
-  applyMiddleware(
-    thunkMiddleware
-  )
-);
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: getDefaultMiddleware => getDefaultMiddleware({
+    serializableCheck: false,
+    immutableCheck: false,
+  }),
+});
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <Router>
+        <App />
+      </Router>
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

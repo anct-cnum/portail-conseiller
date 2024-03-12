@@ -1,6 +1,5 @@
 import Joi from 'joi';
 import { userService } from '../services/user.service';
-import { history } from '../helpers';
 import { informationsService } from '../services/informations.service';
 
 export const formInformationsActions = {
@@ -114,7 +113,7 @@ function updateInformations(informations, conseillerId, username, password) {
       },
       error => {
         dispatch(failure(error.error));
-        history.push('/login');
+        window.location.pathname = '/login';
       }
     );
   };

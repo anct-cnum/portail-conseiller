@@ -5,7 +5,7 @@ import FilterDate from './FilterDate';
 import { conseillerActions, filtersAndSortsActions, statistiqueActions } from '../../actions';
 import { useLocation } from 'react-router';
 import download from 'downloadjs';
-import Spinner from 'react-loader-spinner';
+import { Oval } from 'react-loader-spinner';
 import codeRegions from './../../data/code_region.json';
 
 function currentPage(pagination, location) {
@@ -211,8 +211,7 @@ function FiltersAndSorts({ resetPage, user }) {
         }
       </div>
       <div className="spinnerCustom">
-        <Spinner
-          type="Oval"
+        <Oval
           color="#00BFFF"
           height={100}
           width={100}
