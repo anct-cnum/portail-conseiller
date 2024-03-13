@@ -44,7 +44,7 @@ function SelectPermanence({ voirInformation }) {
       {cra?.idPermanence &&
         <button className={`buttonPermanence-filled ${voirInformation ? 'force-width' : ''}`} onClick={onClickButtonFilled}>
           <span className="logoRattachementSelected"></span>
-          <span>{cra?.nomEnseigne?.length > 40 ? cra?.nomEnseigne?.toUpperCase().substr(0, 40) + ' [...]' : cra?.nomEnseigne?.toUpperCase()}</span>
+          <span>{cra?.nomEnseigne?.length > 40 ? cra?.nomEnseigne?.toUpperCase().substring(0, 40) + ' [...]' : cra?.nomEnseigne?.toUpperCase()}</span>
         </button>
       }
       {!cra?.idPermanence &&
@@ -59,7 +59,7 @@ function SelectPermanence({ voirInformation }) {
                   <span className="logoRattachementActif"></span>
                   <span style={{ display: 'inline-block' }}>
                     <div className="nomEnseigne">{permanence.nomEnseigne?.length > 40 ?
-                      permanence.nomEnseigne?.toUpperCase().substr(0, 40) + ' [...]' : permanence.nomEnseigne?.toUpperCase()}</div>
+                      permanence.nomEnseigne?.toUpperCase().substring(0, 40) + ' [...]' : permanence.nomEnseigne?.toUpperCase()}</div>
                     <div className="adresse">
                       {permanence?.adresse?.numeroRue !== 'null' ? permanence?.adresse?.numeroRue : ''}
                       {
