@@ -136,22 +136,15 @@ function Statistics() {
               <div className="fr-m-6w fr-m-xs-to-md-7v"></div>
             </div>
           </div>
-
-          { donneesStatistiques !== undefined &&
-            <div className="fr-grid-row">
-
-              <LeftPage donneesStats={donneesStatistiques} type={typeTerritoire}/>
-
-              <div className="fr-col-offset-md-1"></div>
-
-              <RightPage donneesStats={donneesStatistiques} print={false}/>
-
-              <BottomPage donneesStats={donneesStatistiques} print={false}/>
-
-            </div>
-          }
-          {!donneesStatistiques &&
-            <h2 className="centrerTexte">Il n&rsquo;y a aucune statistique pour le moment</h2>
+          {
+            donneesStatistiques && Object.keys(donneesStatistiques).length > 0 ?
+              <div className="fr-grid-row">
+                <LeftPage donneesStats={donneesStatistiques} type={typeTerritoire}/>
+                <div className="fr-col-offset-md-1"></div>
+                <RightPage donneesStats={donneesStatistiques} print={false}/>
+                <BottomPage donneesStats={donneesStatistiques} print={false}/>
+              </div> :
+              <h2 className="centrerTexte">Il n&rsquo;y a aucune statistique pour le moment</h2>
           }
         </div>
         <StatisticsBanner dateDebut={dateDebutStats} dateFin={dateFinStats}
