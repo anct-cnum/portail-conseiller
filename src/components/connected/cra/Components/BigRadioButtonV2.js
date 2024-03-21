@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { craActions } from '../../../../actions';
 import PropTypes from 'prop-types';
-import Pluralize from 'react-pluralize';
 import { getCraValue } from '../utils/CraFunctions';
+import { pluralize } from '../../../../utils/functionFormats';
 
 function BigRadioButton({ type, label, value, image, classDiv }) {
 
@@ -96,7 +96,7 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
         <div className="gradient-box">
           <button id={classDiv} className={styleClass} value={value} disabled={cra?.canal === 'domicile' && value === 'rattachement'}>
             <div value={value}>
-              <div className={classDiv !== undefined ? classDiv : '' } value={value}>
+              <div className={classDiv !== undefined ? classDiv : ''} value={value}>
                 <span className={image}></span>
               </div>
               <span className="fr-label labelBigRadioCustom" value={value}>
@@ -112,12 +112,7 @@ function BigRadioButton({ type, label, value, image, classDiv }) {
             <button className="radioRattachement gradient-box-redirection">
               <span className={image} value={value}></span>
               <span className={`fr-label`} value={value}>
-                <Pluralize
-                  zero={'personne redirigée'}
-                  singular={'personne redirigée'}
-                  plural={'personnes redirigées'}
-                  count={nbAccompagnementRedirection}
-                  showCount={true} />
+                {pluralize('personne redirigée', 'personne redirigée', 'personnes redirigées', nbAccompagnementRedirection, true)}
               </span>
             </button>
           }

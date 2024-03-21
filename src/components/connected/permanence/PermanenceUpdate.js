@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
-import Spinner from 'react-loader-spinner';
+import { Oval } from 'react-loader-spinner';
 
 import horairesInitiales from '../../../data/horairesInitiales.json';
 import { permanenceActions, conseillerActions } from '../../../actions';
-import { userEntityId, history } from '../../../helpers';
+import { userEntityId } from '../../../helpers';
 
 import Banner from './Banner';
 import Recapitulatif from './Recapitulatif';
@@ -18,13 +17,11 @@ import Validation from './Validation';
 import Footer from '../../Footer';
 import { formatAdresse, formatRue } from '../../../utils/functionFormats';
 import ValidationImpossible from './ValidationImpossible';
+import { useParams } from 'react-router-dom';
 
-
-function PermanenceUpdate({ match }) {
-
+function PermanenceUpdate() {
+  const { idPermanence } = useParams();
   const dispatch = useDispatch();
-
-  const idPermanence = match.params.idPermanence;
 
   const loading = useSelector(state => state.permanence?.loading);
   const listPermanences = useSelector(state => state.permanence?.permanences);
@@ -156,7 +153,7 @@ function PermanenceUpdate({ match }) {
     dispatch(permanenceActions.getGeocodeAdresse(adresseGeoloc, 'principal_'));
   }
 
-  useEffect(async () => {
+  useEffect(() => {
     if (structure) {
       dispatch(permanenceActions.getListePermanences(structure?._id));
     }
@@ -164,7 +161,7 @@ function PermanenceUpdate({ match }) {
       dispatch(permanenceActions.getMaPermanence(idPermanence));
     } else if (conseiller) {
       if ((maPermanence?._id !== idPermanence)) {
-        await dispatch(permanenceActions.getMaPermanence(idPermanence));
+        dispatch(permanenceActions.getMaPermanence(idPermanence));
       }
       setEstLieuPrincipal(maPermanence?.lieuPrincipalPour?.includes(conseiller?._id));
       if (maPermanence.estStructure && maPermanence?.lieuPrincipalPour?.includes(conseiller?._id)) {
@@ -217,7 +214,7 @@ function PermanenceUpdate({ match }) {
         dispatch(conseillerActions.get(userEntityId()));
         dispatch(permanenceActions.reinitiliserStatut());
         dispatch(permanenceActions.getListePermanences(structure?._id));
-        history.push('/mes-lieux-activite');
+        window.location.pathname = '/mes-lieux-activite';
       }, 3000);
     }
   }, [isUpdated, isCreated]);
@@ -225,18 +222,17 @@ function PermanenceUpdate({ match }) {
   return (
     <>
       <div className="spinnerCustom">
-        <Spinner
-          type="Oval"
+        <Oval
           color="#00BFFF"
           height={100}
           width={100}
-          visible={loading === true }
+          visible={loading === true}
         />
       </div>
       {(!maPermanenceLoading && !maPermanenceError) &&
         <>
           <div id="formulaire-horaires-adresse" >
-            <Banner/>
+            <Banner />
 
             {(isCreated || isUpdated) &&
               <p className="fr-label flashBag">
@@ -244,9 +240,9 @@ function PermanenceUpdate({ match }) {
                 {isCreated && <>cr&eacute;&eacute;</>}
                 {isUpdated && <>mis &agrave; jour</>}
                 {redirection === '/mes-lieux-activite' &&
-                <>
-                  ,&nbsp;vous allez &ecirc;tre redirig&eacute; vers votre liste de lieux d&rsquo;activit&eacute;.
-                </>
+                  <>
+                    ,&nbsp;vous allez &ecirc;tre redirig&eacute; vers votre liste de lieux d&rsquo;activit&eacute;.
+                  </>
                 }
               </p>
             }
@@ -255,7 +251,7 @@ function PermanenceUpdate({ match }) {
               <p className="fr-label flashBag invalid">
                 {showErrorMessage ?? errorUpdated ?
                   'Une erreur est survenue lors de la mise à jour de votre lieu d’activité.' :
-                  'Une erreur est survenue lors du traitement de vos informations.'}<br/>
+                  'Une erreur est survenue lors du traitement de vos informations.'}<br />
                 {errorUpdated}
               </p>
             }
@@ -273,24 +269,24 @@ function PermanenceUpdate({ match }) {
                       />
                     }
                     <div className="fr-col-1 col-logo">
-                      <img className="pin fr-mt-8w" src="/logos/permanences/pin.svg"/>
+                      <img className="pin fr-mt-8w" src="/logos/permanences/pin.svg" />
                     </div>
                     <div className="fr-col-8 ">
                       <h2 className="sous-titre fr-mt-7w fr-mb-4w">
                         {!estlieuPrincipal &&
-                        <>
-                          Lieu d&rsquo;activit&eacute; secondaire
-                          <span className="baseline fr-mt-1w">
-                            Un lieu d&rsquo;activit&eacute; secondaire correspond &agrave; une permanence o&ugrave; vous avez &eacute;t&eacute;
-                            d&eacute;l&eacute;gu&eacute;(e) et o&ugrave; vous exercez votre activit&eacute; de mani&egrave;re hebdomadaire.
-                          </span>
-                        </> }
-                        {estlieuPrincipal && <> Lieu d&rsquo;activit&eacute; principal </> }
+                          <>
+                            Lieu d&rsquo;activit&eacute; secondaire
+                            <span className="baseline fr-mt-1w">
+                              Un lieu d&rsquo;activit&eacute; secondaire correspond &agrave; une permanence o&ugrave; vous avez &eacute;t&eacute;
+                              d&eacute;l&eacute;gu&eacute;(e) et o&ugrave; vous exercez votre activit&eacute; de mani&egrave;re hebdomadaire.
+                            </span>
+                          </>}
+                        {estlieuPrincipal && <> Lieu d&rsquo;activit&eacute; principal </>}
                       </h2>
                       {existsPermanence &&
                         <div className="fr-col-offset-1 fr-col-11 fr-mb-4w invalid permanenceExiste">
-                            Une permanence a d&eacute;j&agrave; &eacute;t&eacute; cr&eacute;&eacute;e avec les coordonn&eacute;es que vous proposez.<br/>
-                            Merci de renseigner une nouvelle adresse ou de vous ajouter sur le lieu existant&nbsp;!
+                          Une permanence a d&eacute;j&agrave; &eacute;t&eacute; cr&eacute;&eacute;e avec les coordonn&eacute;es que vous proposez.<br />
+                          Merci de renseigner une nouvelle adresse ou de vous ajouter sur le lieu existant&nbsp;!
                         </div>
                       }
                     </div>
@@ -330,24 +326,24 @@ function PermanenceUpdate({ match }) {
 
 
                     <ListPermanences
-                      prefixId={estlieuPrincipal ? 'principal_' : 'secondaire_0_' }
+                      prefixId={estlieuPrincipal ? 'principal_' : 'secondaire_0_'}
                       conseillerId={conseiller?._id}
                       permanenceActuelId={maPermanence?._id}
                     />
 
                     <Adresse
                       codeDepartement={structure?.codeDepartement}
-                      prefixId={estlieuPrincipal ? 'principal_' : 'secondaire_0_' }
+                      prefixId={estlieuPrincipal ? 'principal_' : 'secondaire_0_'}
                       permanence={maPermanence}
                     />
                     <TypeAcces
-                      prefixId={estlieuPrincipal ? 'principal_' : 'secondaire_0_' }
+                      prefixId={estlieuPrincipal ? 'principal_' : 'secondaire_0_'}
                       islieuPrincipal={estlieuPrincipal}
                       permanence={maPermanence}
                       isUpdate={true}
                     />
                     <Horaires
-                      prefixId={estlieuPrincipal ? 'principal_' : 'secondaire_0_' }
+                      prefixId={estlieuPrincipal ? 'principal_' : 'secondaire_0_'}
                       horairesId={0}
                     />
                     <div className="fr-col-12 fr-mt-8w"></div>
@@ -357,12 +353,12 @@ function PermanenceUpdate({ match }) {
                         conseillerId={conseiller?._id}
                         structureId={structure?._id}
                         redirectionValidation="/mes-lieux-activite"
-                        statut={estlieuPrincipal ? 'principal_' : 'secondaire_0_' }
+                        statut={estlieuPrincipal ? 'principal_' : 'secondaire_0_'}
                         idPermanenceUrl={idPermanence}
                       />
                     }
                     {existsPermanence &&
-                      <ValidationImpossible statut={estlieuPrincipal ? 'principal_' : 'secondaire_0_' }/>
+                      <ValidationImpossible statut={estlieuPrincipal ? 'principal_' : 'secondaire_0_'} />
                     }
                   </div>
                 </div>
@@ -372,13 +368,9 @@ function PermanenceUpdate({ match }) {
         </>
       }
 
-      <Footer type="support"/>
+      <Footer type="support" />
     </>
   );
 }
-
-PermanenceUpdate.propTypes = {
-  match: PropTypes.object
-};
 
 export default PermanenceUpdate;

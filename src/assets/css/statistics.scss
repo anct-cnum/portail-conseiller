@@ -64,19 +64,11 @@
     .react-datepicker__triangle {
       display: none;
     }
-    .react-datepicker__navigation--previous {
-      background: url(../../public/logos/statistics/logo-chevron-gauche.svg) no-repeat;
-      margin-left: 11px;
-      border: none;
-      height: 16px;
-      width: 10px;
+    .react-datepicker__navigation--previous:hover {
+      background-color: initial;
     }
-    .react-datepicker__navigation--next {
-      background: url(../../public/logos/statistics/logo-chevron-droit.svg) no-repeat;
-      margin-right: 11px;
-      border: none;
-      height: 16px;
-      width: 10px;
+    .react-datepicker__navigation--next:hover {
+      background-color: initial;
     }
     .react-datepicker__header {
       border-top-right-radius: 1.4rem;

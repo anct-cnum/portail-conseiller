@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Menu from './connected/Menu';
-import MenuAdmin from './admin/MenuAdmin';
 import { filtersAndSortsActions, menuActions } from '../actions';
 
 function Header({ linkAccount, printClass }) {
@@ -57,7 +56,7 @@ function Header({ linkAccount, printClass }) {
               <div className="fr-header__menu-links">
               </div>
             </div>
-            { linkAccount !== undefined &&
+            {linkAccount !== undefined &&
               <>
                 <div className="fr-header__tools">
                   <nav className="fr-header__tools-links">
@@ -131,7 +130,7 @@ function Header({ linkAccount, printClass }) {
                                     setMenuAideShow(menuAideShow ? !menuAideShow : menuAideShow);
                                   }}>
                                   <span className="texte-user">{prenom ? prenom + ' ' + nom : email}&nbsp;
-                                    { role === 'conseiller' && conseiller && !conseiller?.supHierarchique &&
+                                    {role === 'conseiller' && conseiller && !conseiller?.supHierarchique &&
                                       <i className="ri-information-line information icone-info-header" ></i>
                                     }
                                   </span>
@@ -159,7 +158,7 @@ function Header({ linkAccount, printClass }) {
                                             }}>
                                             <i className="ri-user-6-line icone-menu fr-mr-1w"></i>
                                             Contact de mon responsable&nbsp;
-                                            { conseiller && !conseiller?.supHierarchique &&
+                                            {conseiller && !conseiller?.supHierarchique &&
                                               <i className="ri-information-line information icone-info-header"></i>
                                             }
                                             <br />
@@ -171,7 +170,7 @@ function Header({ linkAccount, printClass }) {
                                               setMenuUserShow(false);
                                             }}>
                                             <i className="ri-profile-line icone-menu fr-mr-1w"></i>
-                                             Mon espace candidat<br />
+                                            Mon espace candidat<br />
                                           </Link>
                                         </li>
                                       </>
@@ -220,28 +219,25 @@ function Header({ linkAccount, printClass }) {
             }
             <div className="rf-header__navbar">
               {linkAccount !== undefined &&
-              <>
-                <button
-                  className="fr-icon-menu-fill"
-                  data-fr-opened="false"
-                  aria-controls="header-nav-popin"
-                  aria-haspopup="menu"
-                  title="Ouvrir le menu"
-                  id="burgerMenu"
-                  onClick={toggleBurgerMenu}
-                >
-                </button>
-              </>
+                <>
+                  <button
+                    className="fr-icon-menu-fill"
+                    data-fr-opened="false"
+                    aria-controls="header-nav-popin"
+                    aria-haspopup="menu"
+                    title="Ouvrir le menu"
+                    id="burgerMenu"
+                    onClick={toggleBurgerMenu}
+                  >
+                  </button>
+                </>
               }
             </div>
           </div>
         </div>
       </div>
-
       {linkAccount !== undefined && linkAccount !== 'noConnected' && location.pathname !== '/validation' &&
-        <>
-          {role === 'conseiller' ? <Menu /> : <MenuAdmin />}
-        </>
+        <Menu />
       }
     </header>
   );

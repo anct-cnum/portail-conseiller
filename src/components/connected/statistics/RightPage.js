@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import { sortByMonthAndYear } from '../../../utils/functionsSort';
 import ElementHighcharts from './Components/ElementHighcharts';
+import dayjs from 'dayjs';
 
 function RightPage({ donneesStats, print }) {
 
@@ -32,7 +32,7 @@ function RightPage({ donneesStats, print }) {
   let statsEvolutionsMapped = [];
   for (const [annee, moisListe] of Object.entries(statsEvolutions)) {
     let statsEvolutionsMapped2 = moisListe.map(mois => {
-      mois.nom = moment().month(`${mois.mois}`).format('MMMM');
+      mois.nom = dayjs().locale('fr').month(`${mois.mois}`).format('MMMM');
       mois.nom = mois.nom?.concat(' ', annee);
       mois.annee = annee;
       mois.valeur = mois.totalCras;
@@ -52,7 +52,7 @@ function RightPage({ donneesStats, print }) {
   monthToPrint[0].forEach((value, index) => {
     if (statsEvolutionsFiltered.some(mois => mois.mois === value) === false) {
       let annee = monthToPrint[1][index];
-      let nom = moment().month(`${value}`).format('MMMM');
+      let nom = dayjs().locale('fr').month(`${value}`).format('MMMM');
       nom = nom?.concat(' ', annee);
       statsEvolutionsFiltered.push({ 'mois': value, 'valeur': 0, 'annee': annee.toString(), 'nom': nom });
     }
@@ -143,16 +143,14 @@ function RightPage({ donneesStats, print }) {
           <div className="fr-grid-row ">
 
             <div className="fr-col-12">
-              <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphique} print={print}/>
+              <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphique} print={print} />
             </div>
-
             <div className="fr-col-12">
-              <div className="fr-my-6w fr-m-xs-to-md-7v"><hr/></div>
+              <div className="fr-my-6w fr-m-xs-to-md-7v"><hr /></div>
             </div>
             <div className="fr-col-12 evolution-print">
               <span className="graphique-responsive-md-lg ">
-                <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolution} print={print}/>
-
+                <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolution} print={print} />
               </span>
             </div>
           </div>
@@ -160,18 +158,18 @@ function RightPage({ donneesStats, print }) {
       </div>
 
       <div className="fr-col-12 graphique-responsive-md dont-print">
-        <hr className="fr-my-6w"/>
-        <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphiqueSm} print={print}/>
-        <hr className="fr-my-6w"/>
-        <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolutionSM} print={print}/>
+        <hr className="fr-my-6w" />
+        <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphiqueSm} print={print} />
+        <hr className="fr-my-6w" />
+        <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolutionSM} print={print} />
       </div>
 
       <div className="fr-col-12 fr-mb-6w only-print theme-print">
         <div className="mozilla-espace-block"></div>
-        <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphique} print={true}/>
+        <ElementHighcharts donneesStats={statsThemes} variablesGraphique={barGraphique} print={true} />
       </div>
       <div className="fr-col-12 fr-mb-6w only-print evolution-print">
-        <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolution} print={print}/>
+        <ElementHighcharts donneesStats={statsEvolutionsFiltered} variablesGraphique={graphiqueEvolution} print={print} />
       </div>
     </>
 

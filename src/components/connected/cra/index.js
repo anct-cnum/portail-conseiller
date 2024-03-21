@@ -11,7 +11,6 @@ import Footer from '../../Footer';
 import Recurrence from './Recurrence';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddToHomeScreen } from 'react-pwa-add-to-homescreen';
-import { history } from '../../../helpers';
 import { craActions, permanenceActions } from '../../../actions';
 
 function Cra() {
@@ -29,7 +28,7 @@ function Cra() {
 
   useEffect(() => {
     if (printFlashbag) {
-      history.push('/historique');
+      window.location.pathname = '/historique';
     }
   }, [printFlashbag]);
   useEffect(() => {

@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
-import { history } from './helpers';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-
+import './assets/js/app.js';
+import './assets/css/app.scss';
 import Login from './components/anonymous/Login.js';
 import Home from './components/connected/Home';
-import Admin from './components/admin';
 import Hub from './components/hub';
 import Coordinateur from './components/coordinateur';
 import ChoosePassword from './components/anonymous/ChoosePassword';
@@ -15,7 +14,7 @@ import ForgottenPassword from './components/anonymous/ForgottenPassword';
 import EnregistrerStatistiquesPdf from './components/anonymous/EnregistrerStatistiquesPdf';
 import StatistiquesNationales from './components/anonymous/StatistiquesNationales';
 import PrivateRoute from './components/connected/PrivateRoute';
-import choosePasswordChangeMailbox from './components/anonymous/choosePasswordChangeMailbox';
+import ChoosePasswordChangeMailbox from './components/anonymous/choosePasswordChangeMailbox';
 import Propos from './components/anonymous/Propos';
 import EmailConfirmer from './components/anonymous/ConfirmationEmail';
 import { permanenceActions } from './actions';
@@ -46,41 +45,39 @@ function App() {
 
   return (
     <div className="App">
-      { (statsDataLoading === true || pdfLoading === true || loadingCSV === true || loadingExcel === true ||
+      {(statsDataLoading === true || pdfLoading === true || loadingCSV === true || loadingExcel === true ||
         downloadingExportCnfs === true || loadingHistorique === true || loadingPermanence === true || uploadingCV === true || loadingSendEmail === true ||
         loadingDeleteCv === true || loadingDownloadCv === true) &&
         <div className="wrapperModal"></div>
       }
-      <Router history={history}>
-        <Switch>
-          <Route path="/login" component={Login} />
-          <Route path="/mot-de-passe-oublie" component={ForgottenPassword} />
-          <Route path="/renouveler-mot-de-passe/:token" component={ForgottenPassword} />
-          <Route path="/inscription/:token" component={ChoosePassword} />
-          <Route path="/inscription-hub/:token" component={ChoosePasswordHub} />
-          <Route path="/conseillers/confirmation-email/:token" component={EmailConfirmer} />
-          <Route path="/changer-email/:token" component={choosePasswordChangeMailbox} />
-          <Route path="/validation" component={ValidationAccount} />
-          <Route path="/a-propos" component={Propos}/>
-          <Route path="/statistiques-nationales" component={StatistiquesNationales} />
-          <Route path="/statistiques/:type/:id/:dateDebut/:dateFin/:codePostal/:ville" component={EnregistrerStatistiquesPdf} />
-          <Route path="/statistiques/:type/:id/:dateDebut/:dateFin/:codePostal" component={EnregistrerStatistiquesPdf} />
-          <Route path="/statistiques/:type/:dateDebut/:dateFin" component={EnregistrerStatistiquesPdf} />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/mot-de-passe-oublie" element={<ForgottenPassword />} />
+        <Route path="/renouveler-mot-de-passe/:token" element={<ForgottenPassword />} />
+        <Route path="/inscription/:token" element={<ChoosePassword />} />
+        <Route path="/inscription-hub/:token" element={<ChoosePasswordHub />} />
+        <Route path="/conseillers/confirmation-email/:token" element={<EmailConfirmer />} />
+        <Route path="/changer-email/:token" element={<ChoosePasswordChangeMailbox />} />
+        <Route path="/validation" element={<ValidationAccount />} />
+        <Route path="/a-propos" element={<Propos />} />
+        <Route path="/statistiques-nationales" element={<StatistiquesNationales />} />
+        <Route path="/statistiques/:type/:id/:dateDebut/:dateFin/:codePostal/:ville" element={<EnregistrerStatistiquesPdf />} />
+        <Route path="/statistiques/:type/:id/:dateDebut/:dateFin/:codePostal" element={<EnregistrerStatistiquesPdf />} />
+        <Route path="/statistiques/:type/:dateDebut/:dateFin" element={<EnregistrerStatistiquesPdf />} />
+        <Route path="/" element={<PrivateRoute />}>
+          <Route index element={<Navigate to="/accueil" />} />
           {user?.role === 'conseiller' &&
-            <PrivateRoute exact path="*" component={Home}/>
-          }
-          {(user?.role === 'admin_coop') &&
-            <PrivateRoute exact path="*" component={Admin}/>
+            <Route path="*" element={<Home />} />
           }
           {(user?.role === 'hub_coop') &&
-            <PrivateRoute exact path="*" component={Hub}/>
+            <Route path="*" element={<Hub />} />
           }
           {user?.role === 'coordinateur_coop' &&
-          <PrivateRoute exact path="*" component={Coordinateur}/>
+            <Route path="*" element={<Coordinateur />} />
           }
-          <Redirect from="/" to="/login"/>
-        </Switch>
-      </Router>
+        </Route>
+        <Route path="*" element={<Navigate to="/login" />} />
+      </Routes>
     </div>
   );
 }

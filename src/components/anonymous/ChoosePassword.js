@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Header from '../Header';
 import Footer from '../Footer';
-import PropTypes from 'prop-types';
 import { userActions } from '../../actions';
 import slugify from 'slugify';
 
-function ChoosePassword({ match }) {
+function ChoosePassword() {
   const dispatch = useDispatch();
-
+  const { token } = useParams();
   const [inputs, setInputs] = useState({
     username: '',
     password: ''
@@ -18,9 +17,6 @@ function ChoosePassword({ match }) {
   const [submitted, setSubmitted] = useState(false);
   const { passwordConfirm, password } = inputs;
   const error = useSelector(state => state.authentication.error);
-
-
-  const token = match.params.token;
   const verifyingToken = useSelector(state => state.createAccount.verifyingToken);
   const tokenVerified = useSelector(state => state.createAccount.tokenVerified);
   const user = useSelector(state => state.createAccount.user);
@@ -235,9 +231,5 @@ function ChoosePassword({ match }) {
   );
 
 }
-
-ChoosePassword.propTypes = {
-  match: PropTypes.object
-};
 
 export default ChoosePassword;

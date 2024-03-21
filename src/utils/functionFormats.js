@@ -8,7 +8,7 @@ export const formatTelephone = (tel, codeDepartement) => {
 
   const findIndicatif = telephoneHorsMetropole.find(r => r.codeDepartement === codeDepartement);
 
-  const condition = value => !REGEX_PHONE_DEBUT.test(value) ? `${findIndicatif?.indicatif ?? '+33'}${value.substr(1)}` : value;
+  const condition = value => !REGEX_PHONE_DEBUT.test(value) ? `${findIndicatif?.indicatif ?? '+33'}${value.substring(1)}` : value;
   let telephone = tel?.trim();
   telephone = telephone ? condition(telephone) : '';
   if (!REGEX_ZERO.test(telephone) || !REGEX_PHONE.test(telephone)) {
@@ -30,3 +30,19 @@ export const formatAdresse = (adressePermanence, adresseStructure = null, rue = 
     adressePermanence?.ville ?? adresseStructure?.libelle_commune ?? ''
   ].join(' ').toUpperCase();
 };
+
+export function pluralize(zero, singulier, pluriel, count, showCount = false) {
+  let phrase = showCount ? count + ' ' : '';
+  switch (count) {
+    case 0:
+      phrase += zero;
+      break;
+    case 1:
+      phrase += singulier;
+      break;
+    default:
+      phrase += pluriel;
+      break;
+  }
+  return phrase;
+}

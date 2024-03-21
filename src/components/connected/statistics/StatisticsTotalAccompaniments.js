@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Pluralize from 'react-pluralize';
-
 import ElementNumber from './Components/ElementNumber';
 import ElementText from './Components/ElementText';
+import { pluralize } from '../../../utils/functionFormats';
 
 function StatisticsTotalAccompaniments({ type, nbTotalAccompagnements }) {
 
@@ -14,26 +13,24 @@ function StatisticsTotalAccompaniments({ type, nbTotalAccompagnements }) {
           <ElementNumber nombre={nbTotalAccompagnements} classe={type ? 'number-' + type : 'number'}/>
         </div>
         <div className={ type ? 'fr-col-12' : 'fr-col-9' }>
-          <ElementText textePluralize={
-            <Pluralize
-              zero={'nouvel usager accompagné durant cette période'}
-              singular={'nouvel usager accompagné durant cette période'}
-              plural={'nouveaux usagers accompagnés durant cette période'}
-              count={nbTotalAccompagnements}
-              showCount={false} />
-          } classe={type ? 'text-' + type : 'text'}/>
+          <ElementText textePluralize={pluralize(
+            'nouvel usager accompagné durant cette période',
+            'nouvel usager accompagné durant cette période',
+            'nouveaux usagers accompagnés durant cette période',
+            nbTotalAccompagnements
+          )} classe={type ? 'text-' + type : 'text'}/>
         </div>
       </div>
       <div className="fr-grid-row only-print">
         <div className="fr-col-12">
           <span className="numbers">{nbTotalAccompagnements}</span>
           <span className="text">
-            <Pluralize
-              zero={'nouvel usager accompagné durant cette période'}
-              singular={'nouvel usager accompagné durant cette période'}
-              plural={'nouveaux usagers accompagnés durant cette période'}
-              count={nbTotalAccompagnements}
-              showCount={false} />
+            {pluralize(
+              'nouvel usager accompagné durant cette période',
+              'nouvel usager accompagné durant cette période',
+              'nouveaux usagers accompagnés durant cette période',
+              nbTotalAccompagnements
+            )}
           </span>
         </div>
       </div>

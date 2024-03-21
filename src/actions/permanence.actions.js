@@ -1,5 +1,4 @@
 import { permanenceService } from '../services/permanence.service';
-import { history } from '../helpers';
 import Joi from 'joi';
 import { formatAdresse } from '../utils/functionFormats';
 
@@ -131,20 +130,33 @@ function verifyFormulaire(form, statut) {
   if (form?.fields?.filter(field => field.name === 'telephonePro')[0]?.value?.length < 12) {
     telephonePro = null;
   }
-  errors.push({ telephonePro: (Joi.object({
-    telephonePro: Joi.string().allow('', null).pattern(regExpNumero) }).validate({
-    telephonePro: telephonePro }).error) ?
-    'Un numéro de téléphone valide doit être saisi' : null });
+  errors.push({
+    telephonePro: (Joi.object({
+      telephonePro: Joi.string().allow('', null).pattern(regExpNumero)
+    }).validate({
+      telephonePro: telephonePro
+    }).error) ?
+      'Un numéro de téléphone valide doit être saisi' : null
+  });
 
-  errors.push({ emailPro: (Joi.object({
-    emailPro: Joi.string().allow('', null).pattern(regExpEmail) }).validate({
-    emailPro: form?.fields?.filter(field => field.name === 'emailPro')[0]?.value }).error) ?
-    'Une adresse email valide doit être saisie' : null });
+  errors.push({
+    emailPro: (Joi.object({
+      emailPro: Joi.string().allow('', null).pattern(regExpEmail)
+    }).validate({
+      emailPro: form?.fields?.filter(field => field.name === 'emailPro')[0]?.value
+    }).error) ?
+      'Une adresse email valide doit être saisie' : null
+  });
 
-  errors.push({ estStructure: (Joi.object({
-    estStructure: Joi.boolean().allow(true, false).required() }).validate({ estStructure:
-    form?.fields?.filter(field => field.name === 'estStructure')[0]?.value }).error) ?
-    'Vous devez indiquer si votre structure est votre lieu d\'activité principal ou non' : null });
+  errors.push({
+    estStructure: (Joi.object({
+      estStructure: Joi.boolean().allow(true, false).required()
+    }).validate({
+      estStructure:
+        form?.fields?.filter(field => field.name === 'estStructure')[0]?.value
+    }).error) ?
+      'Vous devez indiquer si votre structure est votre lieu d\'activité principal ou non' : null
+  });
 
   const champsAcceptes = [
     {
@@ -192,7 +204,8 @@ function verifyFormulaire(form, statut) {
       message: 'Au moins un type d\'accès doit obligatoirement être indiqué'
     },
     {
-      nom: 'horaires' }
+      nom: 'horaires'
+    }
   ];
 
   ['principal_', 'secondaire_'].forEach(champ => {
@@ -208,9 +221,12 @@ function verifyFormulaire(form, statut) {
             } else {
               errors.push({
                 [champ + id + '_' + accepte.nom]: (Joi.object({
-                  [champ + id + '_' + accepte.nom]: accepte.validation }).validate(
-                  { [champ + id + '_' + accepte.nom]:
-                    form?.fields?.filter(field => field.name === champ + id + '_' + accepte.nom)[0]?.value }).error) ? accepte.message : null
+                  [champ + id + '_' + accepte.nom]: accepte.validation
+                }).validate(
+                  {
+                    [champ + id + '_' + accepte.nom]:
+                      form?.fields?.filter(field => field.name === champ + id + '_' + accepte.nom)[0]?.value
+                  }).error) ? accepte.message : null
               });
             }
           });
@@ -226,9 +242,12 @@ function verifyFormulaire(form, statut) {
         } else if (accepte.nom !== 'itinerant') {
           errors.push({
             [champ + accepte.nom]: (Joi.object({
-              [champ + accepte.nom]: accepte.validation }).validate(
-              { [champ + accepte.nom]:
-                form?.fields?.filter(field => field.name === champ + accepte.nom)[0]?.value }).error) ? accepte.message : null
+              [champ + accepte.nom]: accepte.validation
+            }).validate(
+              {
+                [champ + accepte.nom]:
+                  form?.fields?.filter(field => field.name === champ + accepte.nom)[0]?.value
+              }).error) ? accepte.message : null
           });
         }
       });
@@ -276,16 +295,16 @@ function controleHoraires(horaires) {
       return;
     }
     if ((jour.matin[0] < '06:00' || jour.matin[0] > '13:00' && jour.matin[0] !== 'Fermé') ||
-        (jour.matin[1] < '06:00' || jour.matin[1] > '13:00' && jour.matin[1] !== 'Fermé')) {
+      (jour.matin[1] < '06:00' || jour.matin[1] > '13:00' && jour.matin[1] !== 'Fermé')) {
       erreursHoraires.push(id);
     }
     if ((jour.apresMidi[0] < '13:00' || jour.apresMidi[0] > '22:00' && jour.apresMidi[0] !== 'Fermé') ||
-        (jour.apresMidi[1] < '13:00' || jour.apresMidi[1] > '22:00' && jour.apresMidi[1] !== 'Fermé')) {
+      (jour.apresMidi[1] < '13:00' || jour.apresMidi[1] > '22:00' && jour.apresMidi[1] !== 'Fermé')) {
       erreursHoraires.push(id);
     }
     if ((jour.matin[0] > jour.matin[1] && jour.matin[1] !== 'Fermé') ||
-        (jour.apresMidi[0] > jour.apresMidi[1] && jour.apresMidi[0] !== 'Fermé') ||
-        (jour.matin[1] === 'Fermé' && jour.apresMidi[0] === 'Fermé' && jour.matin[0] > jour.apresMidi[1])) {
+      (jour.apresMidi[0] > jour.apresMidi[1] && jour.apresMidi[0] !== 'Fermé') ||
+      (jour.matin[1] === 'Fermé' && jour.apresMidi[0] === 'Fermé' && jour.matin[0] > jour.apresMidi[1])) {
       erreursHoraires.push(id);
     }
   });
@@ -482,7 +501,7 @@ function setHorairesLoading(loadingHoraires) {
 
 function suspensionFormulaire() {
   localStorage.setItem('suspension_permanence', true);
-  history.push('/accueil');
+  window.location.pathname = '/accueil';
   return { type: 'SUSPENSION_FORM' };
 }
 

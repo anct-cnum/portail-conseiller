@@ -10,7 +10,7 @@ function ElementText(props) {
 
 ElementText.propTypes = {
   texte: PropTypes.string,
-  textePluralize: PropTypes.object,
+  textePluralize: PropTypes.string,
   classe: PropTypes.string,
 };
 

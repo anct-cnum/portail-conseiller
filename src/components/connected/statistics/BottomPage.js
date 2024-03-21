@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Tooltip } from 'react-tooltip';
 import { useDispatch, useSelector } from 'react-redux';
-import 'moment/locale/fr';
 import ElementHighcharts from './Components/ElementHighcharts';
-
 import labelsCorrespondance from '../../../data/labelsCorrespondance.json';
 import { statistiqueActions } from '../../../actions/statistique.actions';
 

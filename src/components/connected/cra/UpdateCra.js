@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { history } from '../../../helpers';
 import Activite from './Activite';
 import Age from './Age';
 import Themes from './Themes';
@@ -14,10 +12,11 @@ import Recurrence from './Recurrence';
 import { craActions } from '../../../actions';
 import dayjs from 'dayjs';
 import CanalEtAdresse from './CanalEtAdresse';
+import { useParams } from 'react-router-dom';
 
-function UpdateCra({ match }) {
+function UpdateCra() {
   const dispatch = useDispatch();
-  const idCra = match.params.idCra;
+  const { idCra } = useParams();
   const urlAPropos = process.env.REACT_APP_AIDE_URL +
     '/article/comment-le-conseiller-numerique-rend-il-compte-de-ses-activites-et-a-quoi-cela-sert-il-16n3yhq/';
   const printFlashbag = useSelector(state => state.cra?.printFlashbag);
@@ -27,7 +26,7 @@ function UpdateCra({ match }) {
 
   useEffect(() => {
     if (printFlashbag) {
-      history.push('/historique');
+      window.location.pathname = '/historique';
     }
   }, [printFlashbag]);
 
@@ -55,7 +54,7 @@ function UpdateCra({ match }) {
           </div>
           {(error && !loading) &&
             <div className="fr-col-12 fr-mt-12w flashBag invalid">
-              Une erreur est survenue, le suivi d&rsquo;activit&eacute; n&rsquo;a pas pu &ecirc;tre trouv&eacute; !<br/>
+              Une erreur est survenue, le suivi d&rsquo;activit&eacute; n&rsquo;a pas pu &ecirc;tre trouv&eacute; !<br />
               Erreur : {error}
             </div>
           }
@@ -65,25 +64,22 @@ function UpdateCra({ match }) {
         </div>
         {(!error && !loading) &&
           <>
-            <CanalEtAdresse/>
-            <Activite/>
-            <Recurrence/>
-            <Age/>
-            <Statut/>
-            <Themes/>
-            <Duree/>
-            <Accompagnement/>
-            <ValidationButton/>
+            <CanalEtAdresse />
+            <Activite />
+            <Recurrence />
+            <Age />
+            <Statut />
+            <Themes />
+            <Duree />
+            <Accompagnement />
+            <ValidationButton />
           </>
         }
       </div>
 
-      <Footer type="support"/>
+      <Footer type="support" />
     </>
   );
 }
 
-UpdateCra.propTypes = {
-  match: PropTypes.object
-};
 export default UpdateCra;

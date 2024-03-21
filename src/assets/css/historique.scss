@@ -4,7 +4,8 @@
   a {
     background-image: none !important;
   }
-  .update-cra, .delete-cra {
+  .update-cra,
+  .delete-cra {
     background-image: none !important;
     display: inline-block;
     --hover-tint: none;
@@ -23,7 +24,7 @@
     font-weight: 400;
     font-size: 12px;
     line-height: 20px;
-    color: #CECECE;
+    color: #cecece;
   }
   .chevron-stats {
     margin: 0px 2px 0px 4px;
@@ -35,15 +36,16 @@
     position: absolute;
   }
   .date-btn {
-    &:hover, &:active {
-      color:#0a76f6;
+    &:hover,
+    &:active {
+      color: #0a76f6;
       cursor: pointer;
     }
   }
-  .date-active{
-    color:#0a76f6;
+  .date-active {
+    color: #0a76f6;
   }
-  .react-datepicker{
+  .react-datepicker {
     background-color: #1e1e1e;
     border: 1px solid #0a76f6;
     border-radius: 1.4rem;
@@ -53,15 +55,17 @@
       display: none;
     }
     .react-datepicker__navigation--previous {
-      background: url(../../public/logos/statistics/logo-chevron-gauche.svg) no-repeat;
+      background: none;
+      top: 10px;
       margin-left: 11px;
       border: none;
       height: 16px;
       width: 10px;
     }
     .react-datepicker__navigation--next {
-      background: url(../../public/logos/statistics/logo-chevron-droit.svg) no-repeat;
+      background: none;
       margin-right: 11px;
+      top: 10px;
       border: none;
       height: 16px;
       width: 10px;
@@ -72,17 +76,23 @@
       background-color: #1e1e1e;
       color: #fff;
 
-      .react-datepicker__current-month, .react-datepicker-time__header, .react-datepicker-year-header {
+      .react-datepicker__current-month,
+      .react-datepicker-time__header,
+      .react-datepicker-year-header {
         color: #fff;
       }
-      .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+      .react-datepicker__day-name,
+      .react-datepicker__day,
+      .react-datepicker__time-name {
         color: #fff;
       }
       .react-datepicker__month {
         color: #fff;
       }
     }
-    .react-datepicker__day-name, .react-datepicker__day, .react-datepicker__time-name {
+    .react-datepicker__day-name,
+    .react-datepicker__day,
+    .react-datepicker__time-name {
       font-size: 16px;
       color: #fff;
       width: 28px;
@@ -92,10 +102,14 @@
     .react-datepicker__day--outside-month {
       color: #909090;
     }
-    .react-datepicker__day:hover, .react-datepicker__month-text:hover, .react-datepicker__quarter-text:hover, .react-datepicker__year-text:hover{
+    .react-datepicker__day:hover,
+    .react-datepicker__month-text:hover,
+    .react-datepicker__quarter-text:hover,
+    .react-datepicker__year-text:hover {
       color: #1e1e1e;
     }
-    .react-datepicker__day--selected, .react-datepicker__day--keyboard-selected {
+    .react-datepicker__day--selected,
+    .react-datepicker__day--keyboard-selected {
       background-color: #fff;
       color: #1e1e1e;
     }
@@ -115,48 +129,53 @@
     inset: 0;
     border-radius: 20px;
     border: 1px solid transparent;
-    background: linear-gradient(0deg,#3558A2,#9A9AFF) border-box;
-    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-      mask:linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    background: linear-gradient(0deg, #3558a2, #9a9aff) border-box;
+    -webkit-mask:
+      linear-gradient(#fff 0 0) padding-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) padding-box,
+      linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
   }
   .box-bouton-menu {
-    background: linear-gradient(180deg, #1E1E1E 0%, #161616 64.06%, #111111 100%) !important;
+    background: linear-gradient(180deg, #1e1e1e 0%, #161616 64.06%, #111111 100%) !important;
     border-radius: 20px;
     position: relative;
     line-height: 24px;
     font-weight: 500;
-    color: #FFFFFF;
+    color: #ffffff;
     font-size: 16px;
     display: block;
     height: 104px;
   }
-  .bouton-home, .bouton-cra {
-    background: url(../../public/logos/historique/bouton_home.svg) no-repeat;
+  .bouton-home,
+  .bouton-cra {
+    background: url(../../../public/logos/historique/bouton_home.svg) no-repeat;
     display: inline-block;
     margin: 20px 11px -26px 24px;
     width: 64px;
     height: 64px;
   }
   .bouton-cra {
-    background: url(../../public/logos/historique/bouton_cra.svg) no-repeat;
+    background: url(../../../public/logos/historique/bouton_cra.svg) no-repeat;
     margin-bottom: -15px;
   }
   .suppression-cra {
-    font-family: 'Marianne';
-    background: #E0000F;
+    font-family: "Marianne";
+    background: #e0000f;
     text-align: center;
     font-style: normal;
     line-height: 24px;
     font-weight: 400;
     font-size: 16px;
-    color: #F5F5FE;
+    color: #f5f5fe;
     height: 42px;
     margin-left: 5px;
     &:hover {
-      background: #E0000F;
-      color: #F5F5FE;
+      background: #e0000f;
+      color: #f5f5fe;
     }
   }
   .tri-date {
@@ -208,10 +227,15 @@
     font-size: 12px;
     color: #666;
   }
-  .fr-nav__list > * > .fr-nav__btn[aria-current]::before, .fr-nav__list > * > .fr-nav__link[aria-current]::before, .fr-nav__list > .fr-nav__btn[aria-current]::before, .fr-nav__list > .fr-nav__link[aria-current]::before {
+  .fr-nav__list > * > .fr-nav__btn[aria-current]::before,
+  .fr-nav__list > * > .fr-nav__link[aria-current]::before,
+  .fr-nav__list > .fr-nav__btn[aria-current]::before,
+  .fr-nav__list > .fr-nav__link[aria-current]::before {
     width: 0% !important;
   }
-  #filtre-cra-themes, #filtre-cra-canal, #filtre-cra-type {
+  #filtre-cra-themes,
+  #filtre-cra-canal,
+  #filtre-cra-type {
     height: 33px;
     margin-top: -23px;
     .fr-nav__list .fr-nav__item.fr-nav__item--align-right {
@@ -221,7 +245,9 @@
         background-color: #242424 !important;
         padding-top: 10px !important;
         color: #fff !important;
-        &:hover, &:active, .fr-nav__btn[aria-expanded="true"] {
+        &:hover,
+        &:active,
+        .fr-nav__btn[aria-expanded="true"] {
           background-color: #9a9aff !important;
           color: #000091 !important;
         }
@@ -235,7 +261,7 @@
       background-color: #9a9aff !important;
       color: #000091 !important;
     }
-    .fr-menu__list{
+    .fr-menu__list {
       background-color: #242424 !important;
       padding: 0;
       .fr-nav__item {
@@ -243,7 +269,9 @@
         overflow: auto;
       }
     }
-    #filtre-themes, #filtre-canal, #filtre-type {
+    #filtre-themes,
+    #filtre-canal,
+    #filtre-type {
       border-radius: 0 20px 20px;
       border: 2px solid;
       color: #9a9aff;
@@ -289,9 +317,8 @@
         height: 55px;
       }
     }
-
   }
-  @media (max-width: 767px){
+  @media (max-width: 767px) {
     .fr-nav__list {
       margin-top: 9px !important;
       .fr-nav__btn {
@@ -314,5 +341,3 @@
     }
   }
 }
-
-

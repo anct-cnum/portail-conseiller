@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import fr from 'date-fns/locale/fr';
 import { useDispatch, useSelector } from 'react-redux';
-import { formulaireSexeAgeActions, conseillerActions } from '../../actions';
-import FlashMessage from 'react-flash-message';
+import { formulaireSexeAgeActions, conseillerActions, alerteActions } from '../../actions';
+import Alerte from '../common/Alerte';
 
 registerLocale('fr', fr);
 function FormulaireSexeAge() {
@@ -13,7 +13,6 @@ function FormulaireSexeAge() {
   const isUpdated = useSelector(state => state.conseiller?.isUpdated);
   const error = useSelector(state => state.conseiller?.error);
   const [inputs, setInputs] = useState({
-    errorInputs: false,
     date: '',
     sexe: '',
   });
@@ -22,7 +21,7 @@ function FormulaireSexeAge() {
   const maxDate = todayDate.getFullYear() - 18;
   const minDate = todayDate.getFullYear() - 99;
 
-  const { date, sexe, errorInputs } = inputs;
+  const { date, sexe } = inputs;
 
   function handleChange(e) {
     if (e?.target) {
@@ -35,15 +34,26 @@ function FormulaireSexeAge() {
 
   function handleSubmit() {
     if (date !== '' && date !== null && sexe !== '') {
-      setInputs(inputs => ({ ...inputs, errorInputs: false }));
       dispatch(formulaireSexeAgeActions.updateConseiller({ sexe: sexe, dateDeNaissance: date }));
       dispatch(conseillerActions.get($id));
       dispatch(conseillerActions.closeFormulaire());
     } else {
       window.scrollTo(0, 0);
-      setInputs(inputs => ({ ...inputs, errorInputs: true }));
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'invalid',
+        message: 'Erreur : veuillez remplir tous les champs obligatoires (*) du formulaire.',
+      }));
     }
   }
+
+  useEffect(() => {
+    if (error) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'invalid',
+        message: error,
+      }));
+    }
+  }, [error]);
 
   return (
     <>
@@ -56,17 +66,7 @@ function FormulaireSexeAge() {
                   <h1 id="fr-modal-title-modal-sexe-age" className="fr-modal__title">
                     Une derni&egrave;re &eacute;tape !
                   </h1>
-                  { (error || errorInputs) &&
-                    <div className="fr-mb-3w">
-                      <FlashMessage duration={10000} >
-                        <div className=" flashBag invalid">
-                          <span>
-                            {error ? error : 'Erreur : veuillez remplir tous les champs obligatoires (*) du formulaire.'}
-                          </span>
-                        </div>
-                      </FlashMessage>
-                    </div>
-                  }
+                  <Alerte />
                   <div className="element-gauche">
                     <div className="fr-form-group">
                       <fieldset className="fr-fieldset fr-fieldset--inline">

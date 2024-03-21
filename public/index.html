@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html lang="fr" data-fr-reset data-fr-theme="dark">
   <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
 
-    <link rel="icon" href="%PUBLIC_URL%/favicon-64.png" type="image/png" sizes="64x64"/>
-    <link rel="icon" href="%PUBLIC_URL%/favicon-32.png" type="image/png" sizes="32x32" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/pwaIcons/favicon-144.png"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="theme-color" content="#000000"/>
-    <meta name="description" content="Conseiller Num&eacute;rique"/>
+    <link
+      rel="icon"
+      href="%PUBLIC_URL%/favicon-64.png"
+      type="image/png"
+      sizes="64x64"
+    />
+    <link
+      rel="icon"
+      href="%PUBLIC_URL%/favicon-32.png"
+      type="image/png"
+      sizes="32x32"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/pwaIcons/favicon-144.png" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Conseiller Num&eacute;rique" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json"/>
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -24,7 +34,7 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Conseiller Num&eacute;rique</title>
-</head>
+  </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
@@ -40,19 +50,23 @@
     -->
     <!-- Matomo -->
     <script>
-      var _paq = window._paq = window._paq || [];
+      var _paq = (window._paq = window._paq || []);
       /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
       _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
       _paq.push(["setCookieDomain", "*.conseiller-numerique.gouv.fr"]);
       _paq.push(["setDomains", ["*.conseiller-numerique.gouv.fr"]]);
-      _paq.push(['trackPageView']);
-      _paq.push(['enableLinkTracking']);
-      (function() {
-        var u="https://stats.data.gouv.fr/";
-        _paq.push(['setTrackerUrl', u+'matomo.php']);
-        _paq.push(['setSiteId', '147']);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      _paq.push(["trackPageView"]);
+      _paq.push(["enableLinkTracking"]);
+      (function () {
+        var u = "https://stats.data.gouv.fr/";
+        _paq.push(["setTrackerUrl", u + "matomo.php"]);
+        _paq.push(["setSiteId", "147"]);
+        var d = document,
+          g = d.createElement("script"),
+          s = d.getElementsByTagName("script")[0];
+        g.async = true;
+        g.src = u + "matomo.js";
+        s.parentNode.insertBefore(g, s);
       })();
     </script>
     <!-- End Matomo Code -->

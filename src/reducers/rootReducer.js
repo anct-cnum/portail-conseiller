@@ -14,6 +14,7 @@ import supHierarchiqueReducer from './supHierarchiqueReducer';
 import informationsReducer from './informationsReducer';
 import historiqueCrasReducer from './historiqueCrasReducer';
 import candidatReducer from './candidatReducer';
+import alerteReducer from './alerteReducer';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
   formulaireInformations: informationsReducer,
   historiqueCras: historiqueCrasReducer,
   candidat: candidatReducer,
+  alerte: alerteReducer
 });
 
 export default rootReducer;

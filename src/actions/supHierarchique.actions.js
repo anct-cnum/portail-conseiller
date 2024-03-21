@@ -1,7 +1,6 @@
 import Joi from 'joi';
 import { supHierarchiqueService } from '../services/supHierarchique.service';
 import { userService } from '../services/user.service';
-import { history } from '../helpers';
 
 export const formSupHierarchiqueActions = {
   verifyFormulaire,
@@ -14,7 +13,7 @@ export const formSupHierarchiqueActions = {
 function verifyFormulaire(form) {
   let errors = [];
   //eslint-disable-next-line max-len
-  const regExpEmail = new RegExp(/^(([^<>()[\]\\.,;:\s@\\"]+(\.[^<>()[\]\\.,;:\s@\\"]+)*)|(\\".+\\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+  const regExpEmail = new RegExp(/^([a-zA-Z0-9]+(?:[\\._-][a-zA-Z0-9]+)*)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
   const regExpNumero = new RegExp(/^(?:(?:\+)(33|590|596|594|262|269))(?:[\s.-]*\d{3}){3,4}$/);
 
   errors.push({
@@ -91,7 +90,7 @@ function createSupHierarchique(supHierarchique, conseillerId, username, password
       },
       error => {
         dispatch(failure(error.error));
-        history.push('/login');
+        window.location.pathname = '/login';
       }
     );
   };

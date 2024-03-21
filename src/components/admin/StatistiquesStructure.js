@@ -5,7 +5,7 @@ import StatisticsPeriod from '../connected/statistics/StatisticsPeriod';
 import LeftPage from '../connected/statistics/LeftPage';
 import RightPage from '../connected/statistics/RightPage';
 import BottomPage from '../connected/statistics/BottomPage';
-import Spinner from 'react-loader-spinner';
+import { Oval } from 'react-loader-spinner';
 import StatisticsBanner from '../connected/statistics/StatisticsBanner';
 import FlashMessage from 'react-flash-message';
 import { useLocation } from 'react-router';
@@ -49,8 +49,7 @@ function StatistiquesStructure() {
     <div className="statistics">
       <div className="fr-container">
         <div className="spinnerCustom">
-          <Spinner
-            type="Oval"
+          <Oval
             color="#00BFFF"
             height={100}
             width={100}

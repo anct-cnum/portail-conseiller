@@ -1,0 +1,21 @@
+@use "./style";
+@use "./statistics";
+@use "./cra";
+@use "./validationAccount";
+@use "./choosePassword";
+@use "./welcome";
+@use "./login";
+@use "./admin";
+@use "./conseillerDetails";
+@use "./formulaire";
+@use "./mesInformations";
+@use "./historique";
+@use "./a-propos";
+@use "./statisitiquesPDF";
+@use "./monEspaceCandidat";
+
+@import "~@gouvfr/dsfr/dist/dsfr/dsfr.min.css";
+@import "~@gouvfr/dsfr/dist/utility/icons/icons-system/icons-system.css";
+@import "~react-datepicker/dist/react-datepicker.css";
+@import "~remixicon/fonts/remixicon.css";
+@import "~leaflet/dist/leaflet.css";

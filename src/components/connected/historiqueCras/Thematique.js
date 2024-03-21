@@ -10,8 +10,8 @@ function Thematique({ texte }) {
 
   return (
     <>
-      <img src={image} alt={alt} data-tooltip-id="infobulle-menu" data-tooltip-html={alt} className="logo"/>
-      <Tooltip className="infobulle" id="infobulle-menu" arrowColor="white"/>
+      <img src={image} alt={alt} data-tooltip-id={`infobulle-menu-${alt}`} data-tooltip-html={alt} className="logo"/>
+      <Tooltip className="infobulle" id={`infobulle-menu-${alt}`} arrowColor="white"/>
     </>
   );
 }

@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import Spinner from 'react-loader-spinner';
+import { Oval } from 'react-loader-spinner';
 import telephoneHorsMetropole from '../../../data/indicatifs.json';
 import InputText from './Components/InputText';
 import InputCheckbox from './Components/InputCheckbox';
@@ -49,7 +49,7 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
 
   useEffect(() => {
     if (codePostal?.length === 5) {
-      setIndicatif(telephoneHorsMetropole?.find(item => item.codeDepartement === codePostal.substr(0, 3))?.indicatif ?? '+33');
+      setIndicatif(telephoneHorsMetropole?.find(item => item.codeDepartement === codePostal.substring(0, 3))?.indicatif ?? '+33');
     }
     if (geocodeAdresse) {
       dispatch(permanenceActions.updateField(prefixId + 'location', geocodeAdresse ??
@@ -134,8 +134,7 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
           <div className="listeAdresses">
             {loadingAdresses &&
               <div className="spinnerDiv">
-                <Spinner
-                  type="Oval"
+                <Oval
                   color="#00BFFF"
                   height={25}
                   width={25}

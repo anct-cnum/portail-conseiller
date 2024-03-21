@@ -32,21 +32,19 @@ function StatisticsPrint({ user, nomComplet, nomStructure, dateDebutStats, dateF
               <div className="nationale-print" ></div>
             }
           </div>
-          { donneesStatistiques !== undefined &&
-          <>
-            <LeftPage donneesStats={donneesStatistiques} type={typeTerritoire}/>
+          {
+            donneesStatistiques && Object.keys(donneesStatistiques).length > 0 ?
+              <>
+                <LeftPage donneesStats={donneesStatistiques} type={typeTerritoire}/>
 
-            <RightPage donneesStats={donneesStatistiques} print={true}/>
+                <RightPage donneesStats={donneesStatistiques} print={true}/>
 
-            <BottomPage donneesStats={donneesStatistiques} print={true}/>
-
-          </>
+                <BottomPage donneesStats={donneesStatistiques} print={true}/>
+              </> :
+              <h2 className="centrerTexte">Il n’y a aucune statistique pour le moment</h2>
           }
         </div>
       </div>
-      {!donneesStatistiques &&
-        <h2 className="centrerTexte">Il n&rsquo;y a aucune statistique pour le moment</h2>
-      }
     </div>
   );
 }

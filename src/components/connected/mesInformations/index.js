@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { formInformationsActions } from '../../../actions/informations.actions';
 import { conseillerActions } from '../../../actions/conseiller.actions';
 import Footer from '../../Footer';
-import FlashMessage from 'react-flash-message';
 import { userEntityId } from '../../../helpers';
+import { alerteActions } from '../../../actions';
+import Alerte from '../../common/Alerte';
 
 function MesInformations() {
   const formInformations = useSelector(state => state.formulaireInformations);
@@ -17,41 +18,40 @@ function MesInformations() {
     dispatch(conseillerActions.get(userEntityId()));
   }, []);
 
+  useEffect(() => {
+    if (formInformations.isUpdated) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'valid',
+        message: 'Vos informations ont bien été enregistrées',
+        icon: 'ri-check-line ri-xl'
+      }));
+    }
+    if (formInformations.showConfirmationMail) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'valid',
+        message: 'Un mail de confirmation de votre nouvelle adresse mail vous a été envoyé pour valider votre changement',
+        icon: 'ri-check-line ri-xl'
+      }));
+    }
+    if (formInformations.showConfirmationMailPro) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'valid',
+        message: 'Un mail de confirmation de votre nouvelle adresse mail professionnelle vous a été envoyé pour valider votre changement',
+        icon: 'ri-check-line ri-xl'
+      }));
+    }
+    if (formInformations.error) {
+      dispatch(alerteActions.getMessageAlerte({
+        type: 'invalid',
+        message: formInformations.error,
+        icon: 'ri-close-line ri-xl'
+      }));
+    }
+  }, [formInformations]);
+
   return (
     <>
-      {formInformations.isUpdated &&
-        <FlashMessage duration={10000}>
-          <p className="fr-label flashBag">
-            Vos informations ont bien &eacute;t&eacute; enregistr&eacute;es&nbsp;
-            <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
-          </p>
-        </FlashMessage>
-      }
-      {formInformations.showConfirmationMail &&
-        <FlashMessage duration={10000}>
-          <p className="fr-label flashBag">
-            Un mail de confirmation de votre nouvelle adresse mail vous a &eacute;t&eacute; envoy&eacute; pour valider votre changement
-            <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
-          </p>
-        </FlashMessage>
-      }
-      {formInformations.showConfirmationMailPro &&
-        <FlashMessage duration={10000}>
-          <p className="fr-label flashBag">
-            Un mail de confirmation de votre nouvelle adresse mail professionnelle vous a &eacute;t&eacute; envoy&eacute; pour valider votre changement
-            <i className="ri-check-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
-          </p>
-        </FlashMessage>
-      }
-
-      {formInformations.error &&
-        <FlashMessage duration={10000}>
-          <p className="fr-label flashBag invalid">
-            {formInformations.error}
-            <i className="ri-close-line ri-xl" style={{ verticalAlign: 'middle' }}></i>
-          </p>
-        </FlashMessage>
-      }
+      <Alerte />
       <div className="mes-informations">
         <div className="fr-container">
           <div className="fr-grid-row">

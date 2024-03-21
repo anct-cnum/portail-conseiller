@@ -26,10 +26,10 @@ function BigCheckboxMultipleButton({ type, label, value, image, imageSelected, b
       sousthemesList = sousthemesList.filter((e, key) => {
         let nameSousTheme = sousthemesList[key][value];
         if (String(Object.keys(e)) === String(value)) {
-          if (sousthemesList && !nameSousTheme.includes(valueOnClick)) {
+          if (sousthemesList && !nameSousTheme?.includes(valueOnClick)) {
             sousthemesList[key][value] = [...nameSousTheme, valueOnClick];
           } else {
-            sousthemesList[key][value] = nameSousTheme.filter(i => i !== valueOnClick);
+            sousthemesList[key][value] = nameSousTheme?.filter(i => i !== valueOnClick);
           }
         }
         return sousthemesList;

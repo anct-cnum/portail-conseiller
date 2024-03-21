@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { craActions } from '../../../../actions';
 import { getCraValue } from '../utils/CraFunctions';
-import Pluralize from 'react-pluralize';
+import { pluralize } from '../../../../utils/functionFormats';
 
 function SmallRadioButton({ type, label, value, image, imageSelected, heightImage }) {
 
@@ -48,12 +48,7 @@ function SmallRadioButton({ type, label, value, image, imageSelected, heightImag
               <button className="radioRattachement gradient-box-redirection">
                 <span className={image} value={value} style={{ display: 'inline-block' }}></span>
                 <span className={`fr-label`} style={{ display: 'inline-block', marginLeft: '15px', position: 'relative', top: '-20px' }} value={value}>
-                  <Pluralize
-                    zero={'personne redirigée'}
-                    singular={'personne redirigée'}
-                    plural={'personnes redirigées'}
-                    count={nbAccompagnementRedirection}
-                    showCount={true} />
+                  {pluralize('personne redirigée', 'personne redirigée', 'personnes redirigées', nbAccompagnementRedirection, true)}
                 </span>
               </button>
             }
