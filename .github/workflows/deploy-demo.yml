@@ -72,6 +72,16 @@ jobs:
           envkey_REACT_APP_SENTRY_DSN: ${{ secrets.SENTRY_COOP_DSN }}
           envkey_REACT_APP_SENTRY_TRACE_RATE: "0.01"
           file_name: .env
+      - name: copy robots.txt
+        uses: canastro/copy-file-action@master
+        with:
+          source: "desindexation/robots.txt"
+          target: "public/robots.txt"
+      - name: copy index.html
+        uses: canastro/copy-file-action@master
+        with:
+          source: "desindexation/index.html"
+          target: "public/index.html"
       - name: Build application
         run: npm run build
       - name: copy .htaccess
@@ -79,11 +89,6 @@ jobs:
         with:
           source: ".htaccess"
           target: "build/.htaccess"
-      - name: copy robots.txt
-        uses: canastro/copy-file-action@master
-        with:
-          source: "desindexation/robots.txt"
-          target: "build/robots.txt"
       - name: Upload release bundle as artifact
         uses: actions/upload-artifact@v3
         with:
