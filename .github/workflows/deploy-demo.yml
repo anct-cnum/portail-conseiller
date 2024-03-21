@@ -6,7 +6,7 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  dependencies:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -62,8 +62,6 @@ jobs:
           envkey_REACT_APP_BLOG_URL: "https://media.conseiller-numerique.gouv.fr"
           envkey_REACT_APP_ESPACE_COOP_URL: "https://demo.coop.conseiller-numerique.gouv.fr"
           envkey_REACT_APP_TABLEAU_DE_PILOTAGE_URL: "https://pilotage.conseiller-numerique.gouv.fr"
-          envkey_REACT_APP_CRISP_URL: "https://go.crisp.chat/chat/embed/?website_id"
-          envkey_REACT_APP_CRISP_ID: "ea669e13-e40f-40c8-be23-e43565c0e62c"
           envkey_REACT_APP_NOMBRE_LIEU_SECONDAIRE: 15
           envkey_REACT_APP_INIT_COORDONNEES: 1.849121,46.624100
           envkey_REACT_APP_CV_FILE_MAX_SIZE: 10485760

@@ -76,6 +76,7 @@ function App() {
             <Route path="*" element={<Coordinateur />} />
           }
         </Route>
+        <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </div>
   );

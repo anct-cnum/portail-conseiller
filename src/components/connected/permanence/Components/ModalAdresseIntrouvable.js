@@ -8,10 +8,6 @@ function ModalAdresseIntrouvable({ prefixId }) {
   const erreurAdresse = erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'location'])[0]?.[prefixId + 'location'] ||
       erreursFormulaire?.filter(erreur => erreur?.[prefixId + 'rueVoie'])[0]?.[prefixId + 'rueVoie'];
   const [modalOpen, setModalOpen] = useState(erreurAdresse);
-  const handleSubmit = () => {
-    location.reload();
-    window.open(process.env.REACT_APP_CRISP_URL + '=' + process.env.REACT_APP_CRISP_ID, '_blank', 'noopener noreferrer');
-  };
 
   useEffect(() => {
     setModalOpen(erreurAdresse);
@@ -36,8 +32,10 @@ function ModalAdresseIntrouvable({ prefixId }) {
                   <p>
                     Si votre adresse est introuvable, nous vous invitons &agrave; contacter le support.
                   </p>
-                  <p>Vos donn&eacute;es saisies ne peuvent pas &ecirc;tre enregistr&eacute;es. </p>
-                  <button className="adresse-introuvable-btn" title="Lien vers l&rsquo;aide crisp" onClick={handleSubmit}>Contactez-nous</button>
+                  <p className="fr-mb-3w">Vos donn&eacute;es saisies ne peuvent pas &ecirc;tre enregistr&eacute;es. </p>
+                  <a className="adresse-introuvable-btn fr-px-8w fr-py-2w" href="mailto:conseiller-numerique@anct.gouv.fr">
+                    Contactez-nous
+                  </a>
                 </div>
               </div>
             </div>
