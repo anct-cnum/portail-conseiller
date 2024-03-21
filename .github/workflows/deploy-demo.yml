@@ -80,7 +80,7 @@ jobs:
       - name: copy robots.txt
         uses: canastro/copy-file-action@master
         with:
-          source: "robots-recette.txt"
+          source: "desindexation/robots.txt"
           target: "build/robots.txt"
       - name: Upload release bundle as artifact
         uses: actions/upload-artifact@v3
