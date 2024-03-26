@@ -40,6 +40,11 @@ function MesInformations() {
         icon: 'ri-check-line ri-xl'
       }));
     }
+    if (formInformations.showConfirmationMailPro || formInformations.showConfirmationMail) {
+      setTimeout(() => {
+        dispatch(formInformationsActions.initFormInformationsMessage({ isCreated: false, showError: false }));
+      }, 5000);
+    }
     if (formInformations.error) {
       dispatch(alerteActions.getMessageAlerte({
         type: 'invalid',
