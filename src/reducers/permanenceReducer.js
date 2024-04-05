@@ -121,15 +121,18 @@ export default function permanence(state = initialState, action) {
         isUpdated: false
       };
     case 'UPDATE_FIELD':
-      let fields = state?.fields ?? [];
-      delete state?.errorsFormulaire?.errors?.filter(erreur => erreur?.[action.field.name])[0]?.[action.field.name];
-      delete fields?.filter(field => field.name === action.field.name)[0]?.value;
-      delete fields?.filter(field => field.name === action.field.name)[0]?.name;
-      fields?.push(action.field);
-      fields = nettoyageState(fields);
+      const updatedFields = state.fields.map(field =>
+        field.name === action.field.name ? action.field : field
+      );
+      const updatedErrors = state.errorsFormulaire.errors
+      .filter(error => !error[action.field.name]);
       return {
         ...state,
-        fields: fields
+        fields: updatedFields,
+        errorsFormulaire: {
+          ...state.errorsFormulaire,
+          errors: updatedErrors
+        }
       };
     case 'DISABLED_FIELD':
       let disabledFields = state?.disabledFields ?? [];
