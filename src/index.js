@@ -33,6 +33,8 @@ if (window.location.href.split(':').includes('file')) {
       /metadata/i,
       // Problème avec l'extension bitwarden sur firefox
       /Permission denied to access property/i,
+      //RobotForm password manager
+      /Cannot redefine property: credentials/i
     ],
     dsn: process.env.REACT_APP_SENTRY_DSN,
     environment: process.env.REACT_APP_SENTRY_ENVIRONMENT,
