@@ -28,6 +28,7 @@ if (window.location.href.split(':').includes('file')) {
       /BetterJsPop/i,
       //Extension Safari
       /webkit-masked-url/i,
+      /t.onDisconnect/i,
       //can't redefine non-configurable property "metadata"
       /metadata/i,
       // Problème avec l'extension bitwarden sur firefox
