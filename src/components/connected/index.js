@@ -73,7 +73,7 @@ function Connected() {
         {(voirPermanence && !suspendrePermanence) &&
           <>
             <Route path={`/accueil`} element={<Permanence />} />
-            <Route path="/" element={<Navigate to="/accueil" />} />
+            <Route path="*" element={<Navigate to="/accueil" />} />
           </>
         }
         {voirFormulaire &&
