@@ -76,10 +76,10 @@ function Connected() {
             <Route path="*" element={<Navigate to="/accueil" />} />
           </>
         }
-        {voirFormulaire &&
-          <FormulaireSexeAge />
-        }
       </Routes>
+      {voirFormulaire &&
+          <FormulaireSexeAge />
+      }
     </>
   );
 }
