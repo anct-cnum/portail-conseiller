@@ -73,7 +73,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
     }
   }
 
-  useEffect(async () => {
+  useEffect(() => {
     if ((errorsForm?.lengthError === 0) && clickSubmit) {
 
       const conseillers = fields?.filter(field => field.name === prefixId + 'conseillers')[0]?.value ?? [];
@@ -118,10 +118,10 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
       nouveauLieu = JSON.parse(JSON.stringify(nouveauLieu).replace(/"\s+|\s+"/g, '"'));
 
       if (nouveauLieu?._id !== null && nouveauLieu?._id !== 'nouveau') {
-        await dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, false, 'secondaire_0_'));
+        dispatch(permanenceActions.updatePermanence(nouveauLieu._id, conseillerId, nouveauLieu, false, 'secondaire_0_'));
       } else if (prefixId) {
         nouveauLieu._id = null;
-        await dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, false, 'secondaire_0_'));
+        dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, false, 'secondaire_0_'));
       }
 
       show[0] = true;

@@ -15,7 +15,7 @@ const initialState = {
   showError: false,
   suspensionPermanence: false,
   permanencesReservees: [],
-  reloadList: true,
+  reloadList: false,
   listeAdresses: null,
   erreurAdresse: false,
   existsPermanence: false,
@@ -336,7 +336,7 @@ export default function permanence(state = initialState, action) {
         isCreated: action.isCreated,
         prefixIdLieuEnregistrable: action.prefixId,
         isEnded: action.isEnded,
-        redirection: String(action.idPermanence),
+        redirection: action.redirection ?? String(action.idPermanence),
       };
     case 'POST_PERMANENCE_FAILURE':
       return {
