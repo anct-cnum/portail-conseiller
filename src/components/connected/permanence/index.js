@@ -27,6 +27,7 @@ function Permanence() {
   const showErrorCreate = useSelector(state => state.permanence?.error);
   const errorAllUpdated = useSelector(state => state.permanence?.errorAllUpdated);
   const isEnded = useSelector(state => state.permanence?.isEnded);
+  const prefixIdLieuEnregistrable = useSelector(state => state.permanence?.prefixIdLieuEnregistrable);
 
   const isDeleted = useSelector(state => state.permanence?.isDeleted);
   const isConseillerDeleted = useSelector(state => state.permanence?.isConseillerDeleted);
@@ -44,7 +45,7 @@ function Permanence() {
     if (structure?._id) {
       dispatch(permanenceActions.getListePermanences(structure?._id));
     }
-  }, [structure?._id]);
+  }, [structure?._id, prefixIdLieuEnregistrable]);
 
   useEffect(() => {
     if (isConseillerDeleted || isDeleted) {
