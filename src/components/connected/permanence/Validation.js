@@ -106,7 +106,7 @@ function Validation({ conseillerId, structureId, statut = 'principal_', redirect
           nouveauLieu.idOldPermanence = idPermanenceUrl;
         }
         nouveauLieu._id = null;
-        dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, true, null));
+        dispatch(permanenceActions.createPermanence(conseillerId, nouveauLieu, true, null, redirection));
       } else if (prefixId === null) {
         dispatch(permanenceActions.validerPermanenceForm(conseillerId));
       }
