@@ -15,7 +15,7 @@ const initialState = {
   showError: false,
   suspensionPermanence: false,
   permanencesReservees: [],
-  reloadList: true,
+  reloadList: false,
   listeAdresses: null,
   erreurAdresse: false,
   existsPermanence: false,
