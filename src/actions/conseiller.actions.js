@@ -18,7 +18,6 @@ export const conseillerActions = {
   exportDonneesSubordonnes,
   resetExportDonneesCnfs,
   isFormulaireChecked,
-  closeFormulaire,
   isUserActif,
   isSubordonne,
   saveConseillerBeforeFilter,
@@ -349,11 +348,6 @@ function saveConseillerBeforeFilter(conseillers) {
 function isFormulaireChecked(sexe, isUpdated) {
   const show = !sexe || (sexe && isUpdated);
   return { type: 'SHOW_FORMULAIRE_SEXE_AGE', show };
-}
-
-function closeFormulaire() {
-  window.location.pathname = '/accueil';
-  return { type: 'CLOSE_FORMULAIRE_SEXE_AGE' };
 }
 
 function isUserActif(conseiller) {
