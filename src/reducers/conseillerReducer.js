@@ -197,11 +197,6 @@ export default function conseiller(state = initState, action) {
         ...state,
         showFormular: action.show
       };
-    case 'CLOSE_FORMULAIRE_SEXE_AGE':
-      return {
-        showFormular: false,
-        isUpdated: false
-      };
     case 'GETALL_REQUEST':
       return {
         ...state,

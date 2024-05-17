@@ -36,7 +36,6 @@ function FormulaireSexeAge() {
     if (date !== '' && date !== null && sexe !== '') {
       dispatch(formulaireSexeAgeActions.updateConseiller({ sexe: sexe, dateDeNaissance: date }));
       dispatch(conseillerActions.get($id));
-      dispatch(conseillerActions.closeFormulaire());
     } else {
       window.scrollTo(0, 0);
       dispatch(alerteActions.getMessageAlerte({
