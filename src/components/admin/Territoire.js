@@ -25,11 +25,7 @@ function Territoire({ territoire, currentPage, trClass }) {
         <td data-tooltip-id="infobulle-menu"
           data-tooltip-html="Taux d&rsquo;activation">{territoire?.tauxActivation ?? 0} %</td>
         <td>
-          <Link className="fr-btn details-btn" style={{ boxShadow: 'none' }} to={{
-            pathname: `/statistiques`,
-            territoire: territoire,
-            currentPage: currentPage,
-            origin: '/territoires' }}>
+          <Link className="fr-btn details-btn" style={{ boxShadow: 'none' }} state={{ territoire, currentPage }} to="/statistiques">
               D&eacute;tails
           </Link>
           <Tooltip className="infobulle" id="infobulle-menu" arrowColor="white"/>
