@@ -15,7 +15,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
   const downloadError = useSelector(state => state.conseiller?.downloadError);
   const user = useSelector(state => state.authentication?.user?.user);
   const blob = useSelector(state => state.conseiller?.blob);
-  const territoire = location?.territoire;
+  const territoire = location.state?.territoire;
   let typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : null;
   const isFirefoxForAndroid = isNavigatorFirefoxForAndroid();
 
@@ -65,7 +65,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
     } else {
       const conseillerIds = territoire?.conseillerIds ?? undefined;
       // eslint-disable-next-line max-len
-      dispatch(conseillerActions.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser, conseillerIds, codePostal));
+      dispatch(conseillerActions.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location.state?.idUser, conseillerIds, codePostal));
     }
   }
 
@@ -77,7 +77,7 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
     } else {
       const conseillerIds = territoire?.conseillerIds ?? undefined;
       // eslint-disable-next-line max-len
-      dispatch(conseillerActions.getStatistiquesAdminCoopExcel(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location?.idUser, conseillerIds, codePostal));
+      dispatch(conseillerActions.getStatistiquesAdminCoopExcel(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location.state?.idUser, conseillerIds, codePostal));
     }
   }
 
@@ -87,14 +87,15 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
     }
   }, [blob, downloadError]);
 
-  let linkTo = { currentPage: location?.currentPage, origin: '/statistiques' };
+  let linkTo = {};
+  let linkState = { currentPage: location.state?.currentPage };
   if (typeTerritoire) {
     linkTo.pathname = `/territoires`;
-    linkTo.conseillerIds = location?.conseillerIds;
-    linkTo.nomTerritoire = location?.nomDepartement;
-  } else if (location?.idUser) {
+    linkState.conseillerIds = location.state?.conseillerIds;
+    linkState.nomTerritoire = location.state?.nomDepartement;
+  } else if (location.state?.idUser) {
     linkTo.pathname = `/conseiller/${location?.idUser}`;
-    linkTo.currentPage = location?.currentPage;
+    linkState.currentPage = location.state?.currentPage;
   }
 
   return (
@@ -117,13 +118,13 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
             </div>
           </div>
           }
-          { (typeTerritoire || location?.idUser) &&
+          { (typeTerritoire || location.state?.idUser) &&
           <div className="fr-grid-row fr-grid-row--center">
             <div className="fr-col-xs-6 fr-col-sm-6 fr-col-md-7 fr-col-lg-8 afficher-etapes">
               <ul className="fr-footer__bottom-list liste-action">
                 <li className="fr-footer__bottom-item">
                   <Link className="fr-footer__bottom-link fr-pr-sm-1w" style={{ boxShadow: 'none', color: '#8585F6', fontSize: '16px' }}
-                    to={linkTo}>
+                    to={linkTo} state={linkState}>
                     <img className="image-banniere" src="/logos/statistics/logo-fleche-gauche.svg" alt="Revenir &agrave;
                     l’&eacute;tape pr&eacute;c&eacute;dente"
                     style={{ verticalAlign: 'super' }} />

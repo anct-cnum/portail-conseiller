@@ -35,8 +35,8 @@ function Statistics() {
   const user = useSelector(state => state?.authentication?.user?.user);
   const nomStructure = useSelector(state => state?.structure?.structure?.nom);
 
-  const territoire = location?.territoire;
-  const nomComplet = location?.nomComplet;
+  const territoire = location.state?.territoire;
+  const nomComplet = location.state?.nomComplet;
   const typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : '';
   let nomTerritoire = null;
   if (typeTerritoire) {
@@ -44,8 +44,8 @@ function Statistics() {
   }
 
   useEffect(() => {
-    if (location?.idUser) {
-      dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, location?.idUser));
+    if (location.state?.idUser) {
+      dispatch(statistiqueActions.getStatsCra(dateDebutStats, dateFinStats, location.state?.idUser));
     } else if (territoire) {
       dispatch(statistiqueActions.getStatsCraTerritoire(dateDebutStats, dateFinStats, typeTerritoire, territoire.conseillerIds));
     } else {

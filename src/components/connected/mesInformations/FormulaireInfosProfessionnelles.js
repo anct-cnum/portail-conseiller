@@ -102,12 +102,11 @@ function FormulaireInfosProfessionnelles() {
         <img src="/logos/home-connected/icone-courriel.svg" />
         <div className="infos-user fr-mb-md-6w">
           <span>{user.name}</span>
-          <Link to={{
-            pathname: '/mot-de-passe-oublie',
-            state: {
+          <Link
+            to="/mot-de-passe-oublie"
+            state={{
               fromModifPassword: true,
-            },
-          }} className="modif-password">
+            }} className="modif-password">
             Modification de mon mot de passe <span className="fr-fi-external-link-line fr-link--icon"></span>
           </Link>
         </div>
