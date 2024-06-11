@@ -87,7 +87,11 @@ function handleResponse(response) {
     const rolesAllowed = ['conseiller', 'admin_coop', 'hub_coop'];
     if (rolesAllowed.filter(role => roles.includes(role)).length === 0) {
       logout();
-      return Promise.reject({ error: 'Identifiants incorrects' });
+      const roleNotAllowed = roles.find(role => ['admin', 'structure', 'hub'].includes(role));
+      if (roleNotAllowed) {
+        window.location.href = `/login?role=${roleNotAllowed}`;
+      }
+      return Promise.reject({ error: 'Vous n\'avez pas accès à cette application' });
     }
     if (data.user?.passwordCreated === false) {
       logout();
