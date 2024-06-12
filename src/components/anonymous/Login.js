@@ -35,6 +35,7 @@ function Login() {
   const hiddenEmail = useSelector(state => state.checkMotDePasseOublie?.hiddenEmail);
   const errorCheckEmail = useSelector(state => state.checkMotDePasseOublie?.error);
   const messageCodeVerified = useSelector(state => state.authentication?.messageCodeVerified);
+  const formatRole = role => role?.replace(/(^\w{1})|([\s,-]+\w{1})/g, letter => letter.toUpperCase());
 
   useEffect(() => {
     dispatch(userActions.logout());
@@ -124,7 +125,7 @@ function Login() {
                   <div className="fr-modal__header"></div>
                   <div className="fr-modal__content">
                     <h1 id="fr-modal-title-modal-1" className="fr-modal__title">
-                      A partir de maintenant l&rsquo;espace Coop {role ?? error?.role} &eacute;volue et devient &quot;Le tableau de pilotage&quot;
+                      L&rsquo;espace Coop {formatRole(role ?? error?.role)} &eacute;volue et devient &quot;Le tableau de pilotage&quot;
                     </h1>
                     <p>
                       <strong>Pourquoi un changement de nom et d&rsquo;interface ?</strong><br />
