@@ -28,7 +28,6 @@
     "react-scripts": "^5.0.1",
     "react-tooltip": "^5.26.3",
     "redux": "^5.0.1",
-    "redux-mock-store": "^1.5.4",
     "remixicon": "^4.2.0",
     "slugify": "^1.6.6",
     "web-vitals": "^3.5.2"
@@ -36,14 +35,12 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src --max-warnings=0 --cache --cache-location node_modules/.cache/eslint"
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
   },
   "browserslist": {
@@ -58,18 +55,7 @@
       "last 1 safari version"
     ]
   },
-  "jest": {
-    "transformIgnorePatterns": [
-      "node_modules\/(?!axios)"
-    ],
-    "moduleNameMapper": {
-      "react-leaflet": "<rootDir>/src/mocks/reactLeafletMock.js"
-    }
-  },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.4.2",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^14.5.2",
     "autoprefixer": "^10.4.18",
     "eslint-plugin-react": "^7.34.0",
     "sass": "^1.71.1"
