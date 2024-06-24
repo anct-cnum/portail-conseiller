@@ -3,7 +3,7 @@
 1. With npm install, when prompted to choose directory to copy fonts file @gouv : put assets/fonts
 2. After npm install, run npm run watch to compile assets to public
 
-# Getting Started with Create React App
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
