@@ -154,7 +154,7 @@ function Propos() {
                           <img src="/logos/home-connected/icone-lieux.svg" className="icone-lieux"/>
                           <div className="text-icone">
                             <b>Lieux d&rsquo;activit&eacute; Conum</b><br/>
-                            <span className="sous-titre-2">Vous rend visible sur la carte nationale<br/> carte.conseiller-numerique.gouv.fr</span>
+                            <span className="sous-titre-2">Vous rend visible sur la carte nationale<br/> www.conseiller-numerique.gouv.fr/carte</span>
                           </div>
                         </div>
                         <div className="fr-col-12 sous-titre-2 fr-mb-4w show-md" style={{ display: 'none' }}>
