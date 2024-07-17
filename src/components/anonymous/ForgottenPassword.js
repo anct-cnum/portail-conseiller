@@ -95,11 +95,11 @@ function ForgottenPassword() {
                   <div className="fr-col-12 fr-col-md-10">
                     {fromModifPassword ?
                       <h1 className="titre fr-my-2w fr-mb-md-5w ">Modification de votre mot de passe</h1> :
-                      <h1 className="titre fr-my-2w fr-mb-md-5w ">R&eacute;cup&eacute;ration de mot de passe</h1>
+                      <h1 className="titre fr-my-2w fr-mb-md-5w ">Récupération de mot de passe</h1>
                     }
                     <p className="sous-titre fr-mb-4w fr-mb-md-4w">
-                      Votre mot de passe a une triple utilit&eacute; et vous sert &agrave; acc&eacute;der &agrave; trois services : l&rsquo;espace Coop,
-                      <br />l&rsquo;espace de discussion, ainsi que votre mail professionnel prenom.nom@conseiller-numerique.fr
+                      Votre mot de passe a une triple utilité et vous sert à accéder à trois services : l’espace Coop,
+                      <br />l’espace de discussion, ainsi que votre e-mail professionnel prenom.nom@conseiller-numerique.fr
                     </p>
                   </div>
                 </div>
@@ -120,20 +120,20 @@ function ForgottenPassword() {
                       </label>
                       {submittedEmail && validEmail &&
                         <div className="fr-mb-2w fr-mt-n2w">
-                          <div className="valid fr-mt-2w">L&rsquo;e-mail de renouvellement de mot de passe a pu &ecirc;tre envoy&eacute;
+                          <div className="valid fr-mt-2w">L’e-mail de renouvellement de mot de passe a pu être envoyé
                             sur votre adresse personnelle !</div>
                         </div>
                       }
                       {submittedEmail && errorEmail &&
                         <div className="fr-mb-2w fr-mt-n2w">
                           <div className="invalid fr-my-2w">
-                            {errorEmail === 'User not found' ? <>Cette adresse e-mail n&rsquo;existe pas dans la base de donn&eacute;es.</> : errorEmail}
+                            {errorEmail === 'User not found' ? <>Cette adresse e-mail n’existe pas dans la base de données.</> : errorEmail}
                           </div>
                         </div>
                       }
                       {submittedEmail && !username &&
                         <div className="fr-mb-2w fr-mt-n2w">
-                          <div className="invalid fr-mt-2w">Adresse email requise</div>
+                          <div className="invalid fr-mt-2w">Adresse e-mail requise</div>
                         </div>
                       }
                       <button className="btn-connexion fr-mb-6w fr-mb-md-7w" onClick={handleSubmitEmail}>Rechercher</button>
@@ -141,7 +141,7 @@ function ForgottenPassword() {
                     <div className="fr-col-12" style={{ textAlign: 'center' }}>
                       <a className="btn-besoin-aide fr-mb-6w fr-mb-md-7w"
                         href="https://aide.conseiller-numerique.gouv.fr/fr/category/espace-coop-1q1nuga/" target="blank" rel="noopener">
-                        J&rsquo;ai besoin d&rsquo;aide <span className="fr-fi-external-link-line fr-link--icon"></span>
+                        J’ai besoin d’aide <span className="fr-fi-external-link-line fr-link--icon"></span>
                       </a>
                     </div>
                   </div>
@@ -160,10 +160,10 @@ function ForgottenPassword() {
               <div className="fr-container">
                 <div className="fr-grid-row fr-grid-row--center">
                   <div className="fr-col-12 fr-col-md-10">
-                    <h1 className="titre fr-my-2w fr-mb-md-5w ">R&eacute;cup&eacute;ration de mot de passe</h1>
+                    <h1 className="titre fr-my-2w fr-mb-md-5w ">Récupération de mot de passe</h1>
                     <p className="sous-titre fr-mb-4w fr-mb-md-4w">
-                      Votre mot de passe a une triple utilit&eacute; et vous sert &agrave; acc&eacute;der &agrave; trois services : l&#39;espace Coop,
-                      <br />l&#39;espace de discussion, ainsi que votre mail professionnel prenom.nom@conseiller-numerique.fr
+                      Votre mot de passe a une triple utilité et vous sert à accéder à trois services : l’espace Coop,
+                      <br />l’espace de discussion, ainsi que votre e-mail professionnel prenom.nom@conseiller-numerique.fr
                     </p>
                   </div>
                 </div>
@@ -175,14 +175,14 @@ function ForgottenPassword() {
 
                   <div className="fr-col-8 fr-col-offset-2 fr-col-offset-2--right fr-mt-7w">
                     <div className="zone-etape1b">
-                      <h2 className="titre fr-mb-4v">R&eacute;initialiser le mot de passe <img className="cle" src="/logos/cle.svg" /></h2>
+                      <h2 className="titre fr-mb-4v">Réinitialiser le mot de passe <img className="cle" src="/logos/cle.svg" /></h2>
                       <p className="fr-mb-3w">
-                        Votre adresse {username} est bien renseign&eacute;e dans la base de donn&eacute;es.
+                        Votre adresse {username} est bien renseignée dans la base de données.
                       </p>
                       <p className="fr-mb-3w">
                         En cliquant sur &laquo;&nbsp;Envoyer le lien&nbsp;&raquo;, vous allez recevoir un message sur votre adresse e-mail personnelle
-                        (celle qui vous a servi &agrave; candidater au dispositif Conseiller num&eacute;rique) qui vous permettra de
-                        r&eacute;initialiser votre mot de passe.
+                        (celle qui vous a servi à candidater au dispositif Conseiller numérique) qui vous permettra de
+                        réinitialiser votre mot de passe.
                       </p>
                       <p className="fr-mb-md-3w"><b>Votre adresse e-mail personnelle :</b>
                         <br /><b>{hiddenEmail}</b>
@@ -190,7 +190,7 @@ function ForgottenPassword() {
 
                       <button className="btn-connexion fr-mb-6w fr-mb-md-7w" onClick={handleSendEmail}>Envoyer le lien</button>
 
-                      <p>Si vous avez toujours un probl&egrave;me, si cette adresse n&#39;est pas la votre, cliquez sur contacter le support en bas de page.</p>
+                      <p>Si vous avez toujours un probl&egrave;me, si cette adresse n’est pas la votre, cliquez sur contacter le support en bas de page.</p>
                     </div>
                   </div>
                 </div>
@@ -203,15 +203,14 @@ function ForgottenPassword() {
         /* Etape 1c */
         <div className="fr-container-fluid">
           <div className="fr-grid-row fr-grid-row--center">
-
             <div className="fr-col-12 zone-titre">
               <div className="fr-container">
                 <div className="fr-grid-row fr-grid-row--center">
                   <div className="fr-col-12 fr-col-md-10">
-                    <h1 className="titre fr-my-2w fr-mb-md-5w ">R&eacute;cup&eacute;ration de mot de passe</h1>
+                    <h1 className="titre fr-my-2w fr-mb-md-5w ">Récupération de mot de passe</h1>
                     <p className="sous-titre fr-mb-4w fr-mb-md-4w">
-                      Votre mot de passe a une triple utilit&eacute; et vous sert &agrave; acc&eacute;der &agrave; trois services : l&#39;espace Coop,
-                      <br />l&#39;espace de discussion, ainsi que votre mail professionnel prenom.nom@conseiller-numerique.fr
+                      Votre mot de passe a une triple utilité et vous sert à accéder à trois services : l’espace Coop,
+                      <br />l’espace de discussion, ainsi que votre e-mail professionnel prenom.nom@conseiller-numerique.fr
                     </p>
                   </div>
                 </div>
@@ -220,14 +219,13 @@ function ForgottenPassword() {
             <div className="fr-col-12 zone-mot-de-passe">
               <div className="fr-container">
                 <div className="fr-grid-row fr-grid-row--center">
-
                   <div className="fr-col-8 fr-col-offset-2 fr-col-offset-2--right fr-mt-7w">
                     <div className="zone-etape1c">
-                      <h2 className="titre fr-mb-4v">Un e-mail vient d&rsquo;&ecirc;tre envoy&eacute; &agrave; votre adresse
+                      <h2 className="titre fr-mb-4v">Un e-mail vient d’être envoyé à votre adresse
                         <br />{hiddenEmail}
                       </h2>
-                      <p>Votre mot de passe est unique et servira &agrave; la fois pour votre connexion au mail
-                        <br />@conseiller-numerique.fr, pour vous identifier sur l&rsquo;espace Coop et de discussion.
+                      <p>Votre mot de passe est unique et servira à la fois pour votre connexion au mail
+                        <br />@conseiller-numerique.fr, pour vous identifier sur l’espace Coop et de discussion.
                       </p>
                       <h5 className="fr-mb-4v">
                         Pensez à retourner sur votre boite mail
@@ -235,9 +233,9 @@ function ForgottenPassword() {
                       </h5>
                       <p><img className="cle" src="/logos/cle-precieuse.svg" /></p>
 
-                      <p className="fr-mb-3w">Notez-le en lieu sûr et gardez-le pr&eacute;cieusement&nbsp;!</p>
+                      <p className="fr-mb-3w">Notez-le en lieu sûr et gardez-le précieusement&nbsp;!</p>
 
-                      <p className="fr-mb-3w">Si vous avez toujours un probl&egrave;me, si cette adresse n&#39;est pas la votre,
+                      <p className="fr-mb-3w">Si vous avez toujours un probl&egrave;me, si cette adresse n’est pas la votre,
                         cliquez sur contacter le support en bas de page.</p>
                     </div>
                   </div>
@@ -251,12 +249,11 @@ function ForgottenPassword() {
         /* Etape 2 */
         <div className="fr-container-fluid">
           <div className="fr-grid-row fr-grid-row--center">
-
             <div className="fr-col-12 zone-titre">
               <h1 className="titre fr-my-2w fr-mb-md-5w ">Renouveler votre mot de passe</h1>
               <p className="sous-titre fr-mb-2w fr-mb-md-4w">
-                Bonjour <b>{user?.name}</b>, vous &ecirc;tes sur le point de finaliser votre renouvellement de mot de passe
-                <br />Conseiller num&eacute;rique
+                Bonjour <b>{user?.name}</b>, vous êtes sur le point de finaliser votre renouvellement de mot de passe
+                <br />Conseiller numérique
               </p>
             </div>
 
@@ -267,20 +264,19 @@ function ForgottenPassword() {
                     <div className="fr-col-12 fr-col-md-5 fr-mt-2w fr-mt-md-4w">
                       <h2 className="titre fr-mb-4v">Renouveler votre mot de passe <img className="cle" src="/logos/cle.svg" /></h2>
                       <p className="sous-titre fr-mb-3w">
-                        Celui-ci servira &agrave; la fois pour votre connexion au mail, pour vous identifier sur l&rsquo;espace Coop
-                        ainsi que sur le service de discussion en ligne, gardez-le pr&eacute;cieusement !
+                        Celui-ci servira à la fois pour votre connexion au mail, pour vous identifier sur l’espace Coop
+                        ainsi que sur le service de discussion en ligne, gardez-le précieusement !
                       </p>
                       <p className="fr-mb-3w">
-                        Un e-mail de validation sera envoy&eacute; &agrave; l’adresse {user?.persoEmail} lorsque vous cliquerez sur Valider.
+                        Un e-mail de validation sera envoyé à l’adresse {user?.persoEmail} lorsque vous cliquerez sur Valider.
                       </p>
                       <p className="fr-mb-md-3w">
-                        Acc&eacute;dez ensuite &agrave; cette derni&egrave;re afin de pouvoir effectuer
-                        votre premi&egrave;re connexion &agrave; l&rsquo;espace Coop.
+                        Accédez ensuite à cette derni&egrave;re afin de pouvoir effectuer
+                        votre premi&egrave;re connexion à l’espace Coop.
                       </p>
                     </div>
                   }
                   <div className="fr-col-12 fr-col-md-5">
-
                     {verifyingToken || choosingPassword &&
                       <div className="chargement">
                         Chargement...
@@ -291,29 +287,29 @@ function ForgottenPassword() {
                         <p style={{ textAlign: 'center' }} >
                           <img className="cle" src="/logos/cle-precieuse.svg" />
                         </p>
-                        <h6>Votre mot de passe a &eacute;t&eacute; renouvel&eacute; avec succ&egrave;s.</h6>
-                        <p>Un email vous a &eacute;t&eacute; envoy&eacute; pour vous confirmer cela !
+                        <h6>Votre mot de passe a été renouvelé avec succ&egrave;s.</h6>
+                        <p>Un e-mail vous a été envoyé pour vous confirmer cela !
                           <br />Vous pouvez dès maintenant vous connecter via le bouton ci-dessous :
                         </p>
                         <Link className="btn-connexion fr-mb-6w fr-mb-md-11w fr-p-5v" to={`/login`} style={{ textAlign: 'center' }}>
-                          Acc&eacute;der à mon espace
+                          Accéder à mon espace
                         </Link>
                       </div>
                     }
                     {tokenVerified === false &&
                       <div className="fr-mb-12w fr-mt-md-12w">
                         <h6 style={{ color: '#e0000f' }}>
-                          D&eacute;sol&eacute; mais le lien est invalide ou a d&eacute;j&agrave; &eacute;t&eacute; utilis&eacute;.
+                          Désolé mais le lien est invalide ou a déjà été utilisé.
                         </h6>
                         <div>
                           <p>Si vous avez rescement changer votre mot de passe :</p>
                           <Link className="btn-connexion fr-mb-2w fr-mb-md-6w fr-p-5v" to={`/login`} style={{ textAlign: 'center' }}>
-                            Acc&eacute;der à mon espace
+                            Accéder à mon espace
                           </Link>
                           <p>Si vous avez oublier votre mot de passe:</p>
                           <Link className="btn-connexion fr-mb-2w fr-mb-md-6w fr-p-5v" to={`/mot-de-passe-oublie`}
                             style={{ textAlign: 'center', whiteSpace: 'nowrap' }}>
-                            R&eacute;initialiser mon mot de passe
+                            Réinitialiser mon mot de passe
                           </Link>
                         </div>
                       </div>
@@ -325,7 +321,7 @@ function ForgottenPassword() {
                         <label className="fr-label">
                           Veuillez choisir votre mot de passe.
                           <br />Celui-ci doit contenir au moins 12 caract&egrave;res dont une minuscule, une majuscule, un chiffre et un
-                          caract&egrave;re sp&eacute;cial(!@#$%^&amp;*)
+                          caract&egrave;re spécial(!@#$%^&amp;*)
 
                           <input name="password" type="password" value={password}
                             onChange={handleChangePassword} className={(submittedPassword && !password ? ' is-invalid fr-input' : 'fr-input')}
@@ -339,7 +335,7 @@ function ForgottenPassword() {
                         }
                         {password && !checkComplexity.test(password) &&
                           <div className="fr-mt-2w fr-mb-n2w">
-                            <div className="invalid">Le mot de passe ne correspond pas aux exigences de s&eacute;curit&eacute;.</div>
+                            <div className="invalid">Le mot de passe ne correspond pas aux exigences de sécurité.</div>
                           </div>
                         }
 
@@ -376,8 +372,6 @@ function ForgottenPassword() {
       <Footer type="support" />
     </div>
   );
-
-
 }
 
 export default ForgottenPassword;

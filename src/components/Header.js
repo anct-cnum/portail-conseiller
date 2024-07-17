@@ -6,7 +6,6 @@ import Menu from './connected/Menu';
 import { filtersAndSortsActions, menuActions } from '../actions';
 
 function Header({ linkAccount, printClass }) {
-
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -36,18 +35,18 @@ function Header({ linkAccount, printClass }) {
               <div className="fr-header__brand-top">
                 <div className="fr-header__logo" style={{ paddingTop: '0rem', paddingBottom: '0.5rem' }}>
                   <img src="/logos/logo-conseiller-numerique-nb.svg" className="logo-conseiller-numerique"
-                    alt="logo Conseiller Num&eacute;rique" />
+                    alt="logo Conseiller Numérique" />
                 </div>
               </div>
 
               <div className="fr-header__service">
                 <div className="block-feuillet">
-                  <a href="/" title="Accueil - Conseiller Numerique">
+                  <Link to="/" title="Accueil - Conseiller Numerique">
                     <div className="feuillet">
                       <p className="fr-header__service-title title-feuillet">Coop</p>
-                      <p className="fr-header__service-tagline">Bienvenue sur le r&eacute;seau des conseillers num&eacute;riques</p>
+                      <p className="fr-header__service-tagline">Bienvenue sur le réseau des conseillers numériques</p>
                     </div>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -64,8 +63,8 @@ function Header({ linkAccount, printClass }) {
                       <li className="header-propos">
                         <ul className="fr-nav__list">
                           <li className="fr-nav__item">
-                            <Link className="fr-custom-link" style={{ marginTop: '-1px' }} to="/a-propos" title="&Agrave; propos de votre espace Coop" >
-                              &Agrave; propos
+                            <Link className="fr-custom-link" style={{ marginTop: '-1px' }} to="/a-propos" title="à propos de votre espace Coop" >
+                              à propos
                             </Link>
                           </li>
                         </ul>
@@ -97,7 +96,7 @@ function Header({ linkAccount, printClass }) {
                                             setMenuAideShow(false);
                                           }}>
                                           Aide espace Coop<br />
-                                          <span className="sous-titre-lien">Suivi d&rsquo;activit&eacute;, Pix, mail, etc.</span>
+                                          <span className="sous-titre-lien">Suivi d’activité, Pix, mail, etc.</span>
                                         </a>
                                       </li>
                                       <li className="aide-metier">
@@ -105,7 +104,7 @@ function Header({ linkAccount, printClass }) {
                                           onClick={() => {
                                             setMenuAideShow(false);
                                           }}>
-                                          Aide m&eacute;tier<br />
+                                          Aide métier<br />
                                           <span className="sous-titre-lien">Missions et cadre de travail.</span>
                                         </a>
                                       </li>
@@ -183,7 +182,7 @@ function Header({ linkAccount, printClass }) {
                                               setMenuUserShow(false);
                                             }}>
                                             <i className="ri-logout-box-r-line icone-menu fr-mr-1w"></i>
-                                            D&eacute;connexion<br />
+                                            Déconnexion<br />
                                           </Link>
                                         }
                                         {role !== 'conseiller' &&
@@ -193,7 +192,7 @@ function Header({ linkAccount, printClass }) {
                                               setMenuUserShow(false);
                                             }}>
                                             <i className="ri-logout-box-r-line icone-menu fr-mr-1w"></i>
-                                            D&eacute;connexion<br />
+                                            Déconnexion<br />
                                           </Link>
                                         }
                                       </li>
@@ -208,7 +207,7 @@ function Header({ linkAccount, printClass }) {
 
                       {linkAccount === 'noConnected' &&
                         <li className="fr-shortcuts__item">
-                          <a href="/login" className="fr-link" target="_self">J&rsquo;ai d&eacute;j&Agrave; un compte</a>
+                          <a href="/login" className="fr-link" target="_self">J’ai déjà un compte</a>
                         </li>
                       }
 
@@ -241,7 +240,6 @@ function Header({ linkAccount, printClass }) {
       }
     </header>
   );
-
 }
 
 Header.propTypes = {

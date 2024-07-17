@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Footer({ type, role }) {
-
   const aideCoop = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide_espace_coop';
   const aideMetier = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide-metier';
 
@@ -15,19 +14,19 @@ function Footer({ type, role }) {
             <div className="fr-footer__brand">
               <a className="fr-footer__brand-link">
                 <div style={{ display: 'inline-block' }} >
-                  <img src="/logos/logo-fr-nb.svg" alt="logo R&eacute;publique Française"
+                  <img src="/logos/logo-fr-nb.svg" alt=""
                     style={{ height: '80px', marginRight: '28px' }} className="logoFooter"/>
                 </div>
                 <div style={{ display: 'inline-block' }} >
                   <img
                     src="/logos/logo-sonum-anct-min.svg"
-                    alt="logo Agence Nationale de la Coh&eacute;sion des Territoires - Soci&eacute;t&eacute; num&eacute;rique"
+                    alt=""
                     style={{ height: '80px', marginRight: '50px' }}
                     className="logoFooter"
                   />
                 </div>
                 <div style={{ display: 'inline-block' }} >
-                  <img src="/logos/logo-france-relance-nb.svg" alt="logo France Relance"
+                  <img src="/logos/logo-france-relance-nb.svg" alt=""
                     style={{ height: '70px', marginBottom: '-10px' }} className="logoFooter"/>
                 </div>
               </a>
@@ -35,17 +34,23 @@ function Footer({ type, role }) {
 
             <div className="fr-footer__content">
               <p className="fr-footer__content-desc">
-                Conseiller num&eacute;rique est un dispositif financ&eacute; par l&rsquo;&Eacute;tat dans le cadre de France Relance.
-                Il est pilot&eacute; par l&rsquo;Agence nationale de la coh&eacute;sion des territoires avec l&rsquo;appui de la Banque des Territoires.</p>
+                Conseiller numérique est un dispositif financé par l’état dans le cadre de France Relance.
+                Il est piloté par l’Agence nationale de la cohésion des territoires avec l’appui de la Banque des Territoires.</p>
               <ul className="fr-footer__content-list">
                 <li className="fr-footer__content-item">
-                  <a className="fr-footer__content-link" href="https://agence-cohesion-territoires.gouv.fr/">anct.gouv.fr</a>
+                  <a className="fr-footer__content-link" href="https://agence-cohesion-territoires.gouv.fr/" rel="noreferrer" target="_blank">
+                    anct.gouv.fr
+                  </a>
                 </li>
                 <li className="fr-footer__content-item">
-                  <a className="fr-footer__content-link" href="https://societenumerique.gouv.fr/">societenumerique.gouv.fr</a>
+                  <a className="fr-footer__content-link" href="https://societenumerique.gouv.fr/" rel="noreferrer" target="_blank">
+                    societenumerique.gouv.fr
+                  </a>
                 </li>
                 <li className="fr-footer__content-item">
-                  <a className="fr-footer__content-link" href="https://www.banquedesterritoires.fr/">banquedesterritoires.fr</a>
+                  <a className="fr-footer__content-link" href="https://www.banquedesterritoires.fr/" rel="noreferrer" target="_blank">
+                    banquedesterritoires.fr
+                  </a>
                 </li>
               </ul>
             </div>
@@ -57,13 +62,13 @@ function Footer({ type, role }) {
             <div className="fr-footer__brand">
               {role !== 'structure_coop' &&
                 <>
-                  <a className="fr-footer__brand-link lien-footer" href={aideCoop} target="blank" rel="noreferrer">
-                    <img src="/logos/bulle-ressourcerie.svg" className="bulle-ressourcerie" alt="liens aide vers Mattermost"/>
+                  <a className="fr-footer__brand-link lien-footer" href={aideCoop} target="_blank" rel="noreferrer">
+                    <img src="/logos/bulle-ressourcerie.svg" className="bulle-ressourcerie" alt=""/>
                     <span>Aide espace Coop</span>
                   </a>
-                  <a className="fr-footer__brand-link lien-footer" href={aideMetier} target="blank" rel="noreferrer">
-                    <img src="/logos/bulle-ressourcerie.svg" className="bulle-ressourcerie" alt="liens aide vers Mattermost"/>
-                    <span>Aide m&eacute;tier</span>
+                  <a className="fr-footer__brand-link lien-footer" href={aideMetier} target="_blank" rel="noreferrer">
+                    <img src="/logos/bulle-ressourcerie.svg" className="bulle-ressourcerie" alt=""/>
+                    <span>Aide métier</span>
                   </a>
                 </>
               }
@@ -71,18 +76,24 @@ function Footer({ type, role }) {
 
             <div className="fr-footer__content">
               <p className="fr-footer__content-desc">
-                L&rsquo;&eacute;quipe Conseiller num&eacute;rique travaille en am&eacute;lioration continue.
-                Vous rencontrez un probl&egrave;me, vous souhaitez exprimer un avis ? Rendez-vous sur les canaux d&rsquo;aide de votre espace de
+                L’équipe Conseiller numérique travaille en amélioration continue.
+                Vous rencontrez un problème, vous souhaitez exprimer un avis ? Rendez-vous sur les canaux d’aide de votre espace de
                 discussion en cliquant sur les boutons ci-dessus.</p>
               <ul className="fr-footer__content-list">
                 <li className="fr-footer__content-item">
-                  <a className="fr-footer__content-link" href="https://agence-cohesion-territoires.gouv.fr/">anct.gouv.fr</a>
+                  <a className="fr-footer__content-link" href="https://agence-cohesion-territoires.gouv.fr/" rel="noreferrer" target="_blank">
+                    anct.gouv.fr
+                  </a>
                 </li>
                 <li className="fr-footer__content-item">
-                  <a className="fr-footer__content-link" href="https://societenumerique.gouv.fr/">societenumerique.gouv.fr</a>
+                  <a className="fr-footer__content-link" href="https://societenumerique.gouv.fr/" rel="noreferrer" target="_blank">
+                    societenumerique.gouv.fr
+                  </a>
                 </li>
                 <li className="fr-footer__content-item">
-                  <a className="fr-footer__content-link" href="https://www.banquedesterritoires.fr/">banquedesterritoires.fr</a>
+                  <a className="fr-footer__content-link" href="https://www.banquedesterritoires.fr/" rel="noreferrer" target="_blank">
+                    banquedesterritoires.fr
+                  </a>
                 </li>
               </ul>
             </div>
@@ -98,24 +109,24 @@ function Footer({ type, role }) {
             </li>
             <li className="fr-footer__bottom-item">
               <a className="fr-footer__bottom-link fr-px-1w" href="https://www.conseiller-numerique.gouv.fr/accessibilite">
-                Accessibilit&eacute;: non conforme
+                Accessibilité : non conforme
               </a>
             </li>
             <li className="fr-footer__bottom-item">
               <a className="fr-footer__bottom-link fr-px-1w" href="https://www.conseiller-numerique.gouv.fr/mentions-legales">
-                Mentions l&eacute;gales
+                Mentions légales
               </a>
             </li>
             <li className="fr-footer__bottom-item">
               <a className="fr-footer__bottom-link fr-px-1w"
                 href="https://cdn.conseiller-numerique.gouv.fr/CGU-Donn%C3%A9es_personnellesConseiller_Num%C3%A9rique.pdf">
-                Donn&eacute;es personnelles
+                Données personnelles
               </a>
             </li>
             <li className="fr-footer__bottom-item">
               <a className="fr-footer__bottom-link fr-px-1w"
                 href="https://cdn.conseiller-numerique.gouv.fr/CGU-Donn%C3%A9es_personnellesConseiller_Num%C3%A9rique.pdf">
-                Conditions g&eacute;n&eacute;rales d&rsquo;utilisation
+                Conditions générales d’utilisation
               </a>
             </li>
           </ul>
@@ -127,9 +138,7 @@ function Footer({ type, role }) {
         </div>
       </div>
     </footer>
-
   );
-
 }
 
 Footer.propTypes = {
