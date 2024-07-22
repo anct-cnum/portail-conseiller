@@ -13,9 +13,7 @@
     "@gouvfr/dsfr": "^1.6.0",
     "@reduxjs/toolkit": "^2.2.1",
     "@sentry/react": "^8.13.0",
-    "@sentry/tracing": "^7.105.0",
     "axios": "^1.6.7",
-    "canvas": "^2.11.2",
     "dayjs": "^1.11.10",
     "downloadjs": "^1.4.7",
     "highcharts": "^9.0.1",
@@ -39,14 +37,7 @@
     "web-vitals": "^4.2.1"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.18",
-    "eslint-plugin-react": "^7.34.0",
-    "sass": "^1.71.1"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
+    "eslint-plugin-react": "^7.34.0"
   },
   "browserslist": {
     "production": [
