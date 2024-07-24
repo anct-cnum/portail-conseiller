@@ -8,8 +8,8 @@ import Alerte from '../common/Alerte';
 function AdminHeader({ role }) {
   const location = useLocation();
   const dispatch = useDispatch();
-  const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
-  const lienLaBase = process.env.REACT_APP_LABASE_URL;
+  const lienMattermost = import.meta.env.VITE_APP_MATTERMOST_URL;
+  const lienLaBase = import.meta.env.VITE_APP_LABASE_URL;
   let statsTerritoiresError = useSelector(state => state.statistique.statsTerritoiresError);
   const statistiques = useSelector(state => state.statistique.statsAdmin);
   const errorCSV = useSelector(state => state.conseiller?.errorCSV);

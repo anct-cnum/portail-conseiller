@@ -7,9 +7,9 @@ import HeaderHub from '../hub/HeaderHub';
 function Propos() {
 
   const user = useSelector(state => state.authentication?.user?.user);
-  const aideCoop = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide_espace_coop';
-  const atelierActivite = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/atelier-nec---suivi-dactivite';
-  const atelierPartenariats = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/atelier-nec-2022---demarches-partenariales';
+  const aideCoop = import.meta.env.VITE_APP_MATTERMOST_URL + '/cnum/channels/aide_espace_coop';
+  const atelierActivite = import.meta.env.VITE_APP_MATTERMOST_URL + '/cnum/channels/atelier-nec---suivi-dactivite';
+  const atelierPartenariats = import.meta.env.VITE_APP_MATTERMOST_URL + '/cnum/channels/atelier-nec-2022---demarches-partenariales';
 
   document.addEventListener('scroll', () => {
     if (window.innerWidth > 767 && document.documentElement.scrollTop > 3350) {

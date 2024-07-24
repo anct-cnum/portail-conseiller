@@ -7,8 +7,8 @@ function Menu() {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const aideCoop = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide_espace_coop';
-  const aideMetier = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide-metier';
+  const aideCoop = import.meta.env.VITE_APP_MATTERMOST_URL + '/cnum/channels/aide_espace_coop';
+  const aideMetier = import.meta.env.VITE_APP_MATTERMOST_URL + '/cnum/channels/aide-metier';
 
   const menu = useSelector(state => state.menu);
   const voirPermanence = useSelector(state => state?.permanence?.hasPermanence);

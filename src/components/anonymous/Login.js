@@ -20,7 +20,7 @@ function Login() {
   const location = useLocation();
 
   const role = new URLSearchParams(location.search).get('role');
-  const urlTableauDePilotage = process.env.REACT_APP_TABLEAU_DE_PILOTAGE_URL;
+  const urlTableauDePilotage = import.meta.env.VITE_APP_TABLEAU_DE_PILOTAGE_URL;
   const [submitted, setSubmitted] = useState(false);
   const [showModalResetPassword, setShowModalResetPassword] = useState(false);
   const [showModalVerifyCode, setShowModalVerifyCode] = useState(false);
@@ -219,7 +219,7 @@ function Login() {
                 {error.errorActivation === true ?
                   <Fragment>
                     <a
-                      href={process.env.REACT_APP_AIDE_URL + `/article/quand-vais-je-recevoir-mon-acces-a-lespace-coop-1acxbw6/`}
+                      href={import.meta.env.VITE_APP_AIDE_URL + `/article/quand-vais-je-recevoir-mon-acces-a-lespace-coop-1acxbw6/`}
                       target="blank"
                       rel="noopener noreferrer">
                       Merci d&rsquo;activer votre compte coop <span className="fr-fi-external-link-line fr-link--icon"></span>

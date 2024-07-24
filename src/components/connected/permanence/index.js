@@ -16,7 +16,7 @@ import ValidationImpossible from './ValidationImpossible';
 
 function Permanence() {
   const dispatch = useDispatch();
-  const urlCartographie = process.env.REACT_APP_CARTOGRAPHIE_URL;
+  const urlCartographie = import.meta.env.VITE_APP_CARTOGRAPHIE_URL;
   const loading = useSelector(state => state.permanence?.loading);
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const structure = useSelector(state => state.structure?.structure);

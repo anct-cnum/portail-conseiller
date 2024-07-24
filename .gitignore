@@ -9,7 +9,7 @@
 /coverage
 
 # production
-/build
+/dist
 
 # Sub directories and index.html build by webpack
 /public/fonts

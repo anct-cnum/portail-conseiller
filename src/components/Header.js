@@ -23,8 +23,8 @@ function Header({ linkAccount, printClass }) {
     dispatch(menuActions.toggleMenu());
     dispatch(menuActions.toggleNav());
   };
-  const aideCoop = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide_espace_coop';
-  const aideMetier = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide-metier';
+  const aideCoop = import.meta.env.VITE_APP_MATTERMOST_URL + '/cnum/channels/aide_espace_coop';
+  const aideMetier = import.meta.env.VITE_APP_MATTERMOST_URL + '/cnum/channels/aide-metier';
 
   return (
     <header className={printClass + ' fr-header'} role="banner">

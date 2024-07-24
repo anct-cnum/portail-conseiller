@@ -41,7 +41,7 @@ function PermanenceUpdate() {
   const existsPermanence = useSelector(state => state.permanence?.existsPermanence);
 
   const adresseStructure = structure?.insee?.adresse;
-  const urlCartographie = process.env.REACT_APP_CARTOGRAPHIE_URL;
+  const urlCartographie = import.meta.env.VITE_APP_CARTOGRAPHIE_URL;
 
 
   const [estlieuPrincipal, setEstLieuPrincipal] = useState(null);

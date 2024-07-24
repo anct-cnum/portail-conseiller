@@ -10,7 +10,7 @@ export const craService = {
   searchSuggestion,
 };
 
-const apiUrlRoot = process.env.REACT_APP_API;
+const apiUrlRoot = import.meta.env.VITE_APP_API;
 
 function createCra(cra) {
   // eslint-disable-next-line no-unused-vars

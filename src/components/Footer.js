@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Footer({ type, role }) {
-  const aideCoop = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide_espace_coop';
-  const aideMetier = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide-metier';
+  const aideCoop = import.meta.env.VITE_APP_MATTERMOST_URL + '/cnum/channels/aide_espace_coop';
+  const aideMetier = import.meta.env.VITE_APP_MATTERMOST_URL + '/cnum/channels/aide-metier';
 
   return (
     <footer className="fr-footer" role="contentinfo" id="footer">

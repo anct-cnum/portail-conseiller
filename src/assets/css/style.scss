@@ -1,6 +1,6 @@
 @font-face {
   font-family: MarianneExtraBold;
-  src: url(../../../public/fontsAddons/Marianne-ExtraBold.woff2);
+  src: url(/fontsAddons/Marianne-ExtraBold.woff2);
 }
 
 .fr-header {
@@ -49,7 +49,7 @@
       .block-feuillet {
         margin: -2.5rem -2rem -2rem -2rem !important;
         .feuillet {
-          background-image: url(../../../public/logos/feuillets.svg);
+          background-image: url(/logos/feuillets.svg);
           background-repeat: no-repeat;
           background-position-x: 5.3rem;
           background-position-y: -1rem;

@@ -58,7 +58,7 @@ function ValidationAccount() {
           <div className="fr-col-1"></div>
           <div className="fr-col-10" style={{ textAlign: 'center' }}>
             <p>
-              <a href={process.env.REACT_APP_WEBMAIL_URL} className="fr-btn fr-text--bold big-btn finalButton" title="Acc&eacute;der au webmail">
+              <a href={import.meta.env.VITE_APP_WEBMAIL_URL} className="fr-btn fr-text--bold big-btn finalButton" title="Acc&eacute;der au webmail">
                 Acc&eacute;der au webmail
               </a>
             </p>

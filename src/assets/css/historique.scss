@@ -152,14 +152,14 @@
   }
   .bouton-home,
   .bouton-cra {
-    background: url(../../../public/logos/historique/bouton_home.svg) no-repeat;
+    background: url(/logos/historique/bouton_home.svg) no-repeat;
     display: inline-block;
     margin: 20px 11px -26px 24px;
     width: 64px;
     height: 64px;
   }
   .bouton-cra {
-    background: url(../../../public/logos/historique/bouton_cra.svg) no-repeat;
+    background: url(/logos/historique/bouton_cra.svg) no-repeat;
     margin-bottom: -15px;
   }
   .suppression-cra {

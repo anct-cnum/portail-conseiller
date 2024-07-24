@@ -7,8 +7,8 @@ function MenuHub() {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
-  const lienLaBase = process.env.REACT_APP_LABASE_URL;
+  const lienMattermost = import.meta.env.VITE_APP_MATTERMOST_URL;
+  const lienLaBase = import.meta.env.VITE_APP_LABASE_URL;
 
   let menu = useSelector(state => state.menu);
   const toggleBurgerMenu = () => {

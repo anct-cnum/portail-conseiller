@@ -9,10 +9,10 @@ import rootReducer from './reducers/rootReducer';
 import * as Sentry from '@sentry/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-const loginUrl = process.env.REACT_APP_ESPACE_COOP_URL + '/login';
+const loginUrl = import.meta.env.VITE_APP_ESPACE_COOP_URL + '/login';
 if (window.location.href.split(':').includes('file')) {
   window.location.href = loginUrl;
-} else if (process.env.REACT_APP_SENTRY_ENABLED === 'true') {
+} else if (import.meta.env.VITE_APP_SENTRY_ENABLED === 'true') {
   Sentry.init({
     ignoreErrors: [
       // plugins/extensions
@@ -36,10 +36,10 @@ if (window.location.href.split(':').includes('file')) {
       //RobotForm password manager
       /Cannot redefine property: credentials/i
     ],
-    dsn: process.env.REACT_APP_SENTRY_DSN,
-    environment: process.env.REACT_APP_SENTRY_ENVIRONMENT,
+    dsn: import.meta.env.VITE_APP_SENTRY_DSN,
+    environment: import.meta.env.VITE_APP_SENTRY_ENVIRONMENT,
     integrations: [browserTracingIntegration()],
-    tracesSampleRate: process.env.REACT_APP_SENTRY_TRACE_RATE,
+    tracesSampleRate: import.meta.env.VITE_APP_SENTRY_TRACE_RATE,
   });
 }
 

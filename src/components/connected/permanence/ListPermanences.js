@@ -88,7 +88,7 @@ function ListPermanences({ prefixId, conseillerId, permanenceActuelId = null, fi
       if (geocodeAdresse) {
         let resultGeocode = null;
         if (prefixId !== 'principal_' && geocodeAdresse.length !== 0) {
-          resultGeocode = geocodeAdresse[0]?.geometry ?? { type: 'Point', coordinates: process.env.REACT_APP_INIT_COORDONNEES.split(',') };
+          resultGeocode = geocodeAdresse[0]?.geometry ?? { type: 'Point', coordinates: import.meta.env.VITE_APP_INIT_COORDONNEES.split(',') };
         }
         dispatch(permanenceActions.updateField(prefixId + 'location', resultGeocode));
       }

@@ -16,7 +16,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
   const dispatch = useDispatch();
 
   const form = useSelector(state => state.permanence);
-  const lieuxSecondaires = Array.from({ length: process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE }, () => ({}));
+  const lieuxSecondaires = Array.from({ length: import.meta.env.VITE_APP_NOMBRE_LIEU_SECONDAIRE }, () => ({}));
   const fields = useSelector(state => state.permanence?.fields);
   const errorsForm = useSelector(state => state.permanence?.errorsFormulaire);
   const validForms = useSelector(state => state.permanence?.formulairesValides);
@@ -27,7 +27,7 @@ function PermanenceSecondaire({ structure, structureId, conseillerId, codeDepart
   const existsPermanence = useSelector(state => state.permanence?.existsPermanence);
 
   const [show, setShow] = useState(
-    Array.from({ length: process.env.REACT_APP_NOMBRE_LIEU_SECONDAIRE }, () => (false))
+    Array.from({ length: import.meta.env.VITE_APP_NOMBRE_LIEU_SECONDAIRE }, () => (false))
   );
 
   const [clickSubmit, setClickSubmit] = useState(false);

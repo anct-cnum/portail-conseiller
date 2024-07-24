@@ -7,8 +7,8 @@ import Alerte from '../common/Alerte';
 
 function BannerHub() {
   const location = useLocation();
-  const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
-  const lienLaBase = process.env.REACT_APP_LABASE_URL;
+  const lienMattermost = import.meta.env.VITE_APP_MATTERMOST_URL;
+  const lienLaBase = import.meta.env.VITE_APP_LABASE_URL;
   const hub = useSelector(state => state.authentication?.user?.user?.hub);
   const dispatch = useDispatch();
   const loadingCSV = useSelector(state => state.conseiller?.loadingCSV);

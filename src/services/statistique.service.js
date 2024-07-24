@@ -28,7 +28,7 @@ function territoireQueryString(nomOrdre, territoire, ordre, dateDebut, dateFin, 
 }
 
 function getStatsCra(dateDebut, dateFin, idUser, codePostal, codeCommune) {
-  const apiUrlRoot = process.env.REACT_APP_API;
+  const apiUrlRoot = import.meta.env.VITE_APP_API;
   const requestOptions = {
     method: 'GET',
     headers: authHeader(),
@@ -42,7 +42,7 @@ function getStatsCra(dateDebut, dateFin, idUser, codePostal, codeCommune) {
 }
 
 function getStatsAdmin() {
-  const apiUrlRoot = process.env.REACT_APP_API;
+  const apiUrlRoot = import.meta.env.VITE_APP_API;
   const requestOptions = {
     method: 'GET',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' })
@@ -52,7 +52,7 @@ function getStatsAdmin() {
 }
 
 function getTerritoire(typeTerritoire, idTerritoire, date) {
-  const apiUrlRoot = process.env.REACT_APP_API;
+  const apiUrlRoot = import.meta.env.VITE_APP_API;
   const requestOptions = {
     method: 'GET',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
@@ -64,7 +64,7 @@ function getTerritoire(typeTerritoire, idTerritoire, date) {
 }
 
 function getStatsTerritoires(territoire, dateDebut, dateFin, page, nomOrdre, ordre) {
-  const apiUrlRoot = process.env.REACT_APP_API;
+  const apiUrlRoot = import.meta.env.VITE_APP_API;
   const requestOptions = {
     method: 'GET',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
@@ -77,7 +77,7 @@ function getStatsTerritoires(territoire, dateDebut, dateFin, page, nomOrdre, ord
 }
 
 function getStatsCraTerritoire(dateDebut, dateFin, typeTerritoire, conseillerIds) {
-  const apiUrlRoot = process.env.REACT_APP_API;
+  const apiUrlRoot = import.meta.env.VITE_APP_API;
   const requestOptions = {
     method: 'GET',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
@@ -88,7 +88,7 @@ function getStatsCraTerritoire(dateDebut, dateFin, typeTerritoire, conseillerIds
 }
 
 function getStatsCraStructure(dateDebut, dateFin, idStructure, codePostal) {
-  const apiUrlRoot = process.env.REACT_APP_API;
+  const apiUrlRoot = import.meta.env.VITE_APP_API;
   const requestOptions = {
     method: 'GET',
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
@@ -98,7 +98,7 @@ function getStatsCraStructure(dateDebut, dateFin, idStructure, codePostal) {
 }
 
 function getStatsCraNationale(dateDebut, dateFin) {
-  const apiUrlRoot = process.env.REACT_APP_API;
+  const apiUrlRoot = import.meta.env.VITE_APP_API;
   const requestOptions = {
     method: 'GET',
     headers: authHeader(),
@@ -118,7 +118,7 @@ async function getExportDonneesTerritoire(territoire, dateDebut, dateFin, nomOrd
       })
   };
 
-  const apiUrlRoot = process.env.REACT_APP_API;
+  const apiUrlRoot = import.meta.env.VITE_APP_API;
   const exportTerritoiresRoute = '/exports/territoires.csv/';
 
   return handleFileResponse(
@@ -127,7 +127,7 @@ async function getExportDonneesTerritoire(territoire, dateDebut, dateFin, nomOrd
 }
 
 function getCodesPostauxCrasConseiller() {
-  const apiUrlRoot = process.env.REACT_APP_API;
+  const apiUrlRoot = import.meta.env.VITE_APP_API;
   const requestOptions = {
     method: 'GET',
     headers: authHeader(),
@@ -137,7 +137,7 @@ function getCodesPostauxCrasConseiller() {
 }
 
 function getCodesPostauxCrasConseillerStructure(idStructure) {
-  const apiUrlRoot = process.env.REACT_APP_API;
+  const apiUrlRoot = import.meta.env.VITE_APP_API;
   const requestOptions = {
     method: 'GET',
     headers: authHeader(),

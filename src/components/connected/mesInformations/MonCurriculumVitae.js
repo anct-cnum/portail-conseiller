@@ -34,7 +34,7 @@ function MonCurriculumVitae({ isUploaded, isDeleted, uploading, loadingDeleteCv,
   }, []);
 
   const { acceptedFiles, fileRejections, getRootProps, getInputProps, isDragActive } = useDropzone(
-    { onDrop, accept: '.pdf', maxFiles: 1, maxSize: process.env.REACT_APP_CV_FILE_MAX_SIZE });
+    { onDrop, accept: '.pdf', maxFiles: 1, maxSize: import.meta.env.VITE_APP_CV_FILE_MAX_SIZE });
 
   const downloadCV = () => {
     dispatch(candidatActions.getCurriculumVitae(user?.entity?.$id, conseiller));

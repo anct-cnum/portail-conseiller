@@ -53,7 +53,7 @@ function Adresse({ codeDepartement, prefixId, chargeCarteFistSecondaire }) {
     }
     if (geocodeAdresse) {
       dispatch(permanenceActions.updateField(prefixId + 'location', geocodeAdresse ??
-      { type: 'Point', coordinates: process.env.REACT_APP_INIT_COORDONNEES.split(',') }));
+      { type: 'Point', coordinates: import.meta.env.VITE_APP_INIT_COORDONNEES.split(',') }));
     }
   }, [codePostal, geocodeAdresse]);
 

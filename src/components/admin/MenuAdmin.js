@@ -8,10 +8,10 @@ function MenuAdmin() {
   const dispatch = useDispatch();
   const location = useLocation();
   const role = useSelector(state => state.authentication?.user?.user?.role);
-  const lienLaBase = process.env.REACT_APP_LABASE_URL;
-  const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
-  const aideCoop = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide_espace_coop';
-  const aideMetier = process.env.REACT_APP_MATTERMOST_URL + '/cnum/channels/aide-metier';
+  const lienLaBase = import.meta.env.VITE_APP_LABASE_URL;
+  const lienMattermost = import.meta.env.VITE_APP_MATTERMOST_URL;
+  const aideCoop = import.meta.env.VITE_APP_MATTERMOST_URL + '/cnum/channels/aide_espace_coop';
+  const aideMetier = import.meta.env.VITE_APP_MATTERMOST_URL + '/cnum/channels/aide-metier';
 
   let menu = useSelector(state => state.menu);
   const toggleBurgerMenu = () => {

@@ -13,11 +13,11 @@ function CoordinateurHeader() {
   const conseiller = useSelector(state => state.conseiller?.conseiller);
   const user = useSelector(state => state.authentication.user.user);
 
-  const lienPix = `${process.env.REACT_APP_PIX_URL}?control1714940=${conseiller?.prenom}&control1714939=${conseiller?.nom}&control1714941=${user?.name}`;
-  const lienWebmail = process.env.REACT_APP_WEBMAIL_URL;
-  const lienRdvAideNumerique = process.env.REACT_APP_RDV_AIDE_NUMERIQUE_URL;
-  const lienMattermost = process.env.REACT_APP_MATTERMOST_URL;
-  const lienLaBase = process.env.REACT_APP_LABASE_URL;
+  const lienPix = `${import.meta.env.VITE_APP_PIX_URL}?control1714940=${conseiller?.prenom}&control1714939=${conseiller?.nom}&control1714941=${user?.name}`;
+  const lienWebmail = import.meta.env.VITE_APP_WEBMAIL_URL;
+  const lienRdvAideNumerique = import.meta.env.VITE_APP_RDV_AIDE_NUMERIQUE_URL;
+  const lienMattermost = import.meta.env.VITE_APP_MATTERMOST_URL;
+  const lienLaBase = import.meta.env.VITE_APP_LABASE_URL;
 
   useEffect(() => {
     dispatch(conseillerActions.get(userEntityId()));

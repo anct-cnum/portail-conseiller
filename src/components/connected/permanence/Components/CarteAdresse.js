@@ -12,7 +12,7 @@ function CarteAdresse({ prefixId }) {
   const checkboxSiret = fields?.filter(field => field.name === prefixId + 'checkboxSiret')[0]?.value;
   const estStructure = fields?.filter(field => field.name === 'estStructure')[0]?.value;
 
-  const [position, setPosition] = useState(process.env.REACT_APP_INIT_COORDONNEES.split(','));
+  const [position, setPosition] = useState(import.meta.env.VITE_APP_INIT_COORDONNEES.split(','));
   const [zoom, setZoom] = useState(5);
   const [positionInitial, setPositionInitial] = useState(true);
 
@@ -24,7 +24,7 @@ function CarteAdresse({ prefixId }) {
       setPositionInitial(false);
     } else {
       // Dans le cas où la perm principale , click sur le bouton "Non" (reset de l'adresse)
-      setPosition(process.env.REACT_APP_INIT_COORDONNEES.split(','));
+      setPosition(import.meta.env.VITE_APP_INIT_COORDONNEES.split(','));
       setZoom(5);
       setPositionInitial(true);
     }

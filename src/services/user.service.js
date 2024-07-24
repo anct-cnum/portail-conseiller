@@ -11,8 +11,8 @@ export const userService = {
 
 function login(username, password) {
 
-  const strategy = process.env.REACT_APP_STRATEGYAUTH;
-  const apiUrlAuth = `${process.env.REACT_APP_API}/authentication`;
+  const strategy = import.meta.env.VITE_APP_STRATEGYAUTH;
+  const apiUrlAuth = `${import.meta.env.VITE_APP_API}/authentication`;
 
   const requestOptions = {
     method: 'POST',
@@ -102,7 +102,7 @@ function handleResponse(response) {
 }
 
 function choosePassword(token, password, typeEmail) {
-  const apiUrlRoot = process.env.REACT_APP_API;
+  const apiUrlRoot = import.meta.env.VITE_APP_API;
 
   const requestOptions = {
     method: 'POST',
@@ -120,7 +120,7 @@ function choosePassword(token, password, typeEmail) {
 }
 
 function verifyToken(token) {
-  const apiUrlRoot = process.env.REACT_APP_API;
+  const apiUrlRoot = import.meta.env.VITE_APP_API;
   const requestOptions = {
     method: 'GET'
   };
@@ -130,7 +130,7 @@ function verifyToken(token) {
 }
 
 function checkForgottenPasswordEmail(username) {
-  const apiUrlRoot = process.env.REACT_APP_API;
+  const apiUrlRoot = import.meta.env.VITE_APP_API;
 
   const requestOptions = {
     method: 'POST',
@@ -147,7 +147,7 @@ function checkForgottenPasswordEmail(username) {
 }
 
 function sendForgottenPasswordEmail(username) {
-  const apiUrlRoot = process.env.REACT_APP_API;
+  const apiUrlRoot = import.meta.env.VITE_APP_API;
 
   const requestOptions = {
     method: 'POST',
@@ -164,7 +164,7 @@ function sendForgottenPasswordEmail(username) {
 }
 
 function choosePasswordMailBox(token, password) {
-  const apiUrlRoot = process.env.REACT_APP_API;
+  const apiUrlRoot = import.meta.env.VITE_APP_API;
 
   const requestOptions = {
     method: 'PATCH',
@@ -179,7 +179,7 @@ function choosePasswordMailBox(token, password) {
 }
 
 function verifyCode(code, email) {
-  const apiUrlRoot = process.env.REACT_APP_API;
+  const apiUrlRoot = import.meta.env.VITE_APP_API;
 
   const requestOptions = {
     method: 'PATCH',
