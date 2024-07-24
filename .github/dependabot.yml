@@ -10,6 +10,7 @@ updates:
       - dependency-name: "eslint*"
       - dependency-name: "@typescript-eslint/*"
       - dependency-name: "@feathersjs/*"
+      - dependency-name: "@gouvfr/dsfr"
     groups:
       minor-and-patch:
         update-types:

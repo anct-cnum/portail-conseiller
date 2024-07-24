@@ -10,7 +10,7 @@
     "start": "serve -s build"
   },
   "dependencies": {
-    "@gouvfr/dsfr": "^1.12.1",
+    "@gouvfr/dsfr": "^1.6.0",
     "@reduxjs/toolkit": "^2.2.6",
     "@sentry/react": "^8.19.0",
     "axios": "^1.7.2",
