@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import './assets/js/app.js';
-import './assets/css/app.scss';
 import Login from './components/anonymous/Login.js';
 import Home from './components/connected/Home';
 import Hub from './components/hub';
@@ -19,13 +17,20 @@ import Propos from './components/anonymous/Propos';
 import EmailConfirmer from './components/anonymous/ConfirmationEmail';
 import { permanenceActions } from './actions';
 
+import './assets/js/app.js';
+import './assets/css/app.scss';
+import '@gouvfr/dsfr/dist/utility/icons/icons-system/icons-system.min.css';
+import 'react-datepicker/dist/react-datepicker.min.css';
+import 'remixicon/fonts/remixicon.css';
+import 'leaflet/dist/leaflet.css';
+
 function App() {
-  let statsDataLoading = useSelector(state => state.statistique?.statsDataLoading);
-  let pdfLoading = useSelector(state => state.conseiller?.loadingPDF);
-  let loadingCSV = useSelector(state => state.conseiller?.loadingCSV);
-  let loadingExcel = useSelector(state => state.conseiller?.loadingExcel);
+  const statsDataLoading = useSelector(state => state.statistique?.statsDataLoading);
+  const pdfLoading = useSelector(state => state.conseiller?.loadingPDF);
+  const loadingCSV = useSelector(state => state.conseiller?.loadingCSV);
+  const loadingExcel = useSelector(state => state.conseiller?.loadingExcel);
   const loadingSendEmail = useSelector(state => state.motDePasseOublie?.loading);
-  let downloadingExportCnfs = useSelector(state => state.conseiller?.downloadingExportCnfs);
+  const downloadingExportCnfs = useSelector(state => state.conseiller?.downloadingExportCnfs);
   const loadingHistorique = useSelector(state => state.historiqueCras?.loading);
   const loadingPermanence = useSelector(state => state.permanence?.loading);
   const uploadingCV = useSelector(state => state.candidat?.uploading);
