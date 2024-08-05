@@ -13,8 +13,7 @@ export const craService = {
 const apiUrlRoot = import.meta.env.VITE_APP_API;
 
 function createCra(cra) {
-  // eslint-disable-next-line no-unused-vars
-  const { idStructure, ...craObj } = cra;
+  const { ...craObj } = cra;
 
   const requestOptions = {
     method: 'POST',

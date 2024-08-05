@@ -7,16 +7,24 @@ import { conseillerActions } from '../../../actions';
 import dayjs from 'dayjs';
 import { isNavigatorFirefoxForAndroid } from '../../../utils/functionGetNavigatorPlateform';
 
-// eslint-disable-next-line max-len
-function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePostal = null, ville = null, idSubordonne = null, nomSubordonneeCSV = null, codeCommune = null }) {
-
+function StatisticsBanner({
+  dateDebut,
+  dateFin,
+  idTerritoire,
+  typeStats,
+  codePostal = null,
+  ville = null,
+  idSubordonne = null,
+  nomSubordonneeCSV = null,
+  codeCommune = null
+}) {
   const location = useLocation();
   const dispatch = useDispatch();
   const downloadError = useSelector(state => state.conseiller?.downloadError);
   const user = useSelector(state => state.authentication?.user?.user);
   const blob = useSelector(state => state.conseiller?.blob);
   const territoire = location.state?.territoire;
-  let typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : null;
+  const typeTerritoire = territoire ? useSelector(state => state.filtersAndSorts?.territoire) : null;
   const isFirefoxForAndroid = isNavigatorFirefoxForAndroid();
 
   function getTypeStatistique(type) {
@@ -64,8 +72,11 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
       dispatch(conseillerActions.getStatistiquesCSV(dateDebut, dateFin, codePostal, ville, codeCommune, idSubordonne, getTitleExport()));
     } else {
       const conseillerIds = territoire?.conseillerIds ?? undefined;
-      // eslint-disable-next-line max-len
-      dispatch(conseillerActions.getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location.state?.idUser, conseillerIds, codePostal));
+      dispatch(
+        conseillerActions.getStatistiquesAdminCoopCSV(
+          dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location.state?.idUser, conseillerIds, codePostal
+        )
+      );
     }
   }
 
@@ -76,8 +87,11 @@ function StatisticsBanner({ dateDebut, dateFin, idTerritoire, typeStats, codePos
       dispatch(conseillerActions.getStatistiquesExcel(dateDebut, dateFin, codePostal, ville, codeCommune, idSubordonne, getTitleExport()));
     } else {
       const conseillerIds = territoire?.conseillerIds ?? undefined;
-      // eslint-disable-next-line max-len
-      dispatch(conseillerActions.getStatistiquesAdminCoopExcel(dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location.state?.idUser, conseillerIds, codePostal));
+      dispatch(
+        conseillerActions.getStatistiquesAdminCoopExcel(
+          dateDebut, dateFin, type, type !== 'user' ? idTerritoire : location.state?.idUser, conseillerIds, codePostal
+        )
+      );
     }
   }
 

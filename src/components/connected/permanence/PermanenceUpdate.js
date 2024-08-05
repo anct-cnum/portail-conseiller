@@ -138,8 +138,9 @@ function PermanenceUpdate() {
       updateGeocodeAdress(maPermanence, 'principal_');
     } else {
       dispatch(permanenceActions.rebootGeocodeAdresse(maPermanence?.lieuPrincipalPour?.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_'));
-      // eslint-disable-next-line max-len
-      dispatch(permanenceActions.disabledField(maPermanence?.lieuPrincipalPour?.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_', adresseGeoloc?.rue?.trim() === '' ? false : estStructure));
+      dispatch(permanenceActions.disabledField(
+        maPermanence?.lieuPrincipalPour?.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_', adresseGeoloc?.rue?.trim() === '' ? false : estStructure
+      ));
       dispatch(permanenceActions.updateLieuEnregistrable(maPermanence?.lieuPrincipalPour?.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_'));
       dispatch(permanenceActions.updateField(
         maPermanence?.lieuPrincipalPour?.includes(conseiller?._id) ? 'principal_checkboxSiret' : 'secondaire_0_checkboxSiret', false
@@ -195,8 +196,9 @@ function PermanenceUpdate() {
       dispatch(permanenceActions.updateField(
         maPermanence?.lieuPrincipalPour?.includes(conseiller?._id) ? 'principal_checkboxSiret' : 'secondaire_0_checkboxSiret', false
       ));
-      // eslint-disable-next-line max-len
-      dispatch(permanenceActions.disabledField(maPermanence?.lieuPrincipalPour?.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_', adresse?.rue === '' ? false : maPermanence?.estStructure));
+      dispatch(permanenceActions.disabledField(
+        maPermanence?.lieuPrincipalPour?.includes(conseiller?._id) ? 'principal_' : 'secondaire_0_', adresse?.rue === '' ? false : maPermanence?.estStructure
+      ));
 
       const show = [!maPermanence?.lieuPrincipalPour?.includes(conseiller?._id)];
       dispatch(permanenceActions.montrerLieuSecondaire(show));

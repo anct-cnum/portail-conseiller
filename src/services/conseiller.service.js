@@ -83,7 +83,6 @@ function cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtrePr
 
 }
 
-// eslint-disable-next-line max-len
 function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre, ordre, idStructure = null, region) {
   const requestOptions = {
     method: 'GET',
@@ -99,10 +98,9 @@ function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGr
     certifie,
     filterStructureId,
     filterRegion
-  // eslint-disable-next-line max-len
   } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreGroupeCRA, filtreParNom, filtreCertifie, idStructure, null, region);
   // eslint-disable-next-line max-len
-  let uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${profil}${certifie}${groupeCRA}${filterByName}${filterDateStart}${filterDateEnd}${filterStructureId}${ordreColonne}${filterRegion}`;
+  const uri = `${apiUrlRoot}/conseillers?$skip=${page}&statut=RECRUTE${profil}${certifie}${groupeCRA}${filterByName}${filterDateStart}${filterDateEnd}${filterStructureId}${ordreColonne}${filterRegion}`;
 
   return fetch(uri, requestOptions).then(handleResponse);
 }
@@ -114,7 +112,7 @@ function getConseillersSubordonnes(page, dateDebut, dateFin, filtreProfil, ordre
   };
 
   // eslint-disable-next-line max-len
-  let uri = `${apiUrlRoot}/conseillers/subordonnes?page=${page}&dateDebut=${dateDebut}&dateFin=${dateFin}&filtreProfil=${filtreProfil}&ordreNom=${ordreNom}&ordre=${ordre}&idCoordinateur=${idCoordinateur}`;
+  const uri = `${apiUrlRoot}/conseillers/subordonnes?page=${page}&dateDebut=${dateDebut}&dateFin=${dateFin}&filtreProfil=${filtreProfil}&ordreNom=${ordreNom}&ordre=${ordre}&idCoordinateur=${idCoordinateur}`;
 
   return fetch(uri, requestOptions).then(handleResponse);
 }
@@ -136,8 +134,8 @@ function getStatistiquesAdminCoopPDF(dateDebut, dateFin, type, idType, codePosta
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
   };
 
-  // eslint-disable-next-line max-len
-  return fetch(`${apiUrlRoot}/stats/admincoop/statistiques.pdf?dateDebut=${dateDebut}&dateFin=${dateFin}&type=${type}&idType=${idType}&codePostal=${codePostal}`,
+  return fetch(
+    `${apiUrlRoot}/stats/admincoop/statistiques.pdf?dateDebut=${dateDebut}&dateFin=${dateFin}&type=${type}&idType=${idType}&codePostal=${codePostal}`,
     requestOptions).then(response => !response.ok ? handleResponse(response) : handleFileResponse(response));
 }
 
@@ -171,8 +169,9 @@ function getStatistiquesAdminCoopCSV(dateDebut, dateFin, type, idType, conseille
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
   };
 
-  // eslint-disable-next-line max-len
-  return fetch(`${apiUrlRoot}/stats/admincoop/statistiques.csv?dateDebut=${dateDebut}&dateFin=${dateFin}&type=${type}&idType=${idType}&codePostal=${codePostal}&conseillerIds=${conseillerIds}`,
+  return fetch(
+    // eslint-disable-next-line max-len
+    `${apiUrlRoot}/stats/admincoop/statistiques.csv?dateDebut=${dateDebut}&dateFin=${dateFin}&type=${type}&idType=${idType}&codePostal=${codePostal}&conseillerIds=${conseillerIds}`,
     requestOptions).then(handleFileResponse);
 }
 
@@ -182,8 +181,9 @@ function getStatistiquesAdminCoopExcel(dateDebut, dateFin, type, idType, conseil
     headers: Object.assign(authHeader(), { 'Content-Type': 'application/json' }),
   };
 
-  // eslint-disable-next-line max-len
-  return fetch(`${apiUrlRoot}/stats/admincoop/statistiques.xlsx?dateDebut=${dateDebut}&dateFin=${dateFin}&type=${type}&idType=${idType}&codePostal=${codePostal}&conseillerIds=${conseillerIds}`,
+  return fetch(
+    // eslint-disable-next-line max-len
+    `${apiUrlRoot}/stats/admincoop/statistiques.xlsx?dateDebut=${dateDebut}&dateFin=${dateFin}&type=${type}&idType=${idType}&codePostal=${codePostal}&conseillerIds=${conseillerIds}`,
     requestOptions).then(handleFileResponse);
 }
 
@@ -210,8 +210,18 @@ function createSexeAge(user) {
   return fetch(`${apiUrlRoot}/conseillers/createSexeAge`, requestOptions).then(handleResponse);
 }
 
-// eslint-disable-next-line max-len
-function getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre, ordre, idStructure = null, region = 'tous') {
+function getExportDonneesCnfs(
+  dateDebut,
+  dateFin,
+  filtreProfil,
+  filtreCertifie,
+  filtreGroupeCRA,
+  filtreParNom,
+  nomOrdre,
+  ordre,
+  idStructure = null,
+  region = 'tous'
+) {
   const requestOptions = {
     method: 'GET',
     headers: {
@@ -221,7 +231,7 @@ function getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, 
     }
   };
 
-  let {
+  const {
     ordreColonne,
     filterDateStart,
     filterDateEnd,
@@ -234,8 +244,10 @@ function getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, 
   } = cnfsQueryStringParameters(nomOrdre, ordre, dateDebut, dateFin, filtreProfil, filtreGroupeCRA, filtreParNom, filtreCertifie, idStructure, null, region);
 
   const exportCnfsRoute = '/exports/cnfs.csv';
-  // eslint-disable-next-line max-len
-  return fetch(`${apiUrlRoot}${exportCnfsRoute}?statut=RECRUTE${profil}${certifie}${groupeCRA}${filterByName}${filterDateStart}${filterDateEnd}${filterStructureId}${ordreColonne}${filterRegion}`,
+
+  return fetch(
+    // eslint-disable-next-line max-len
+    `${apiUrlRoot}${exportCnfsRoute}?statut=RECRUTE${profil}${certifie}${groupeCRA}${filterByName}${filterDateStart}${filterDateEnd}${filterStructureId}${ordreColonne}${filterRegion}`,
     requestOptions
   ).then(handleFileResponse);
 }
@@ -255,8 +267,8 @@ function exportDonneesSubordonnes(dateDebut, dateFin, filtreProfil, nomOrdre, or
 
   const exportCnfsRoute = '/exports/subordonnes.csv';
 
-  // eslint-disable-next-line max-len
-  return fetch(`${apiUrlRoot}${exportCnfsRoute}?statut=RECRUTE${profil}${filterDateStart}${filterDateEnd}${filterCoordinateurId}${ordreColonne}`,
+  return fetch(
+    `${apiUrlRoot}${exportCnfsRoute}?statut=RECRUTE${profil}${filterDateStart}${filterDateEnd}${filterCoordinateurId}${ordreColonne}`,
     requestOptions
   ).then(handleFileResponse);
 }
@@ -267,10 +279,11 @@ function isSubordonne(coordinateurId, conseillerId) {
     headers: authHeader()
   };
 
-  let uri = `${apiUrlRoot}/conseiller/isSubordonne?idCoordinateur=${coordinateurId}&idConseiller=${conseillerId}`;
+  const uri = `${apiUrlRoot}/conseiller/isSubordonne?idCoordinateur=${coordinateurId}&idConseiller=${conseillerId}`;
 
   return fetch(uri, requestOptions).then(handleResponse);
 }
+
 function getExportDonneesCnfsWithoutCRA() {
   const requestOptions = {
     method: 'GET',

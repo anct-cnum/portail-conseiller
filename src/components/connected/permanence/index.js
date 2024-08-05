@@ -35,7 +35,6 @@ function Permanence() {
   const redirection = useSelector(state => state.permanence?.redirection);
   const existsPermanence = useSelector(state => state.permanence?.existsPermanence);
 
-  // eslint-disable-next-line max-len
   const permanencePrincipale = listPermanences && listPermanences?.find(permanence => permanence?.lieuPrincipalPour?.includes(conseiller?._id));
 
   useEffect(() => {

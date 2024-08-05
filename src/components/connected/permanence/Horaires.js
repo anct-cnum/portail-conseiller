@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unknown-property */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -123,7 +122,7 @@ function Horaires({ prefixId, horairesId }) {
                               required name={prefixId + jour + 'MatinDebut'} min="06:00" max="13:00" onChange={e => {
                                 handleChange(e, idx, 'matin', 0);
                               }}/>
-                            <input className="horaires-fin without_ampm" type="time" timeformat="24h"
+                            <input className="horaires-fin without_ampm" type="time"
                               value={ horaires[prefixId + 'horaires'][idx]?.matin[1] }
                               step={ (horaires[prefixId + 'horaires'][idx]?.matin[1] === 'Fermé') ? '3600' : '60'}
                               required name={prefixId + jour + 'MatinFin'} min="06:00" max="13:00" onChange={e => {

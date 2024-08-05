@@ -34,7 +34,6 @@ const removeCodePrefix = type =>
   type.startsWith('code') ? type.substring('code'.length) : type;
 
 const statistiquesAdminFileName = (dateDebut, dateFin, type, idType, codePostal) =>
-  // eslint-disable-next-line max-len
   `Statistiques_${removeCodePrefix(type)}${codePostal ? `_${codePostal}` : ''}${idType ? `_${idType}` : ''}_${formatDate(dateDebut)}_${formatDate(dateFin)}`;
 
 function get(id) {
@@ -61,13 +60,35 @@ function get(id) {
   }
 }
 
-// eslint-disable-next-line max-len
-function getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre = 'prenom', ordre = 1, filtreParStructureId, filtreRegion) {
+function getAll(
+  page,
+  dateDebut,
+  dateFin,
+  filtreProfil,
+  filtreCertifie,
+  filtreGroupeCRA,
+  filtreParNom,
+  nomOrdre = 'prenom',
+  ordre = 1,
+  filtreParStructureId,
+  filtreRegion
+) {
   return dispatch => {
     dispatch(request());
-    let promises = [];
-    // eslint-disable-next-line max-len
-    let promise = conseillerService.getAll(page, dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre, ordre, filtreParStructureId, filtreRegion);
+    const promises = [];
+    const promise = conseillerService.getAll(
+      page,
+      dateDebut,
+      dateFin,
+      filtreProfil,
+      filtreCertifie,
+      filtreGroupeCRA,
+      filtreParNom,
+      nomOrdre,
+      ordre,
+      filtreParStructureId,
+      filtreRegion
+    );
     promises.push(promise);
 
     let conseillers = null;
@@ -269,13 +290,33 @@ function getStatistiquesHubCSV(hub) {
   }
 }
 
-// eslint-disable-next-line max-len
-function exportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre = 'prenom', ordre = 1, idStructure, region) {
+function exportDonneesCnfs(
+  dateDebut,
+  dateFin,
+  filtreProfil,
+  filtreCertifie,
+  filtreGroupeCRA,
+  filtreParNom,
+  nomOrdre = 'prenom',
+  ordre = 1,
+  idStructure,
+  region
+) {
   return dispatch => {
     dispatch(request());
 
-    // eslint-disable-next-line max-len
-    conseillerService.getExportDonneesCnfs(dateDebut, dateFin, filtreProfil, filtreCertifie, filtreGroupeCRA, filtreParNom, nomOrdre, ordre, idStructure, region).then(
+    conseillerService.getExportDonneesCnfs(
+      dateDebut,
+      dateFin,
+      filtreProfil,
+      filtreCertifie,
+      filtreGroupeCRA,
+      filtreParNom,
+      nomOrdre,
+      ordre,
+      idStructure,
+      region
+    ).then(
       exportCnfsFileBlob => dispatch(success(exportCnfsFileBlob)),
       exportCnfsFileError => dispatch(failure(exportCnfsFileError))
     );

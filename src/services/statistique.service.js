@@ -36,8 +36,8 @@ function getStatsCra(dateDebut, dateFin, idUser, codePostal, codeCommune) {
 
   const idConseiller = idUser ?? userEntityId();
 
-  // eslint-disable-next-line max-len
-  return fetch(`${apiUrlRoot}/stats/cra?dateDebut=${dateDebut}&dateFin=${dateFin}&idConseiller=${idConseiller}&codePostal=${codePostal}&codeCommune=${codeCommune}`,
+  return fetch(
+    `${apiUrlRoot}/stats/cra?dateDebut=${dateDebut}&dateFin=${dateFin}&idConseiller=${idConseiller}&codePostal=${codePostal}&codeCommune=${codeCommune}`,
     requestOptions).then(handleResponse);
 }
 

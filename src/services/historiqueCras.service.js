@@ -13,8 +13,10 @@ function getHistoriqueCrasListe(theme, canal, type, sort, dateDebutCra, dateFinC
     method: 'GET',
     headers: authHeader()
   };
-  // eslint-disable-next-line max-len
-  return fetch(`${apiUrlRoot}/historique-cras/liste?theme=${theme}&canal=${canal}&type=${type}&sort=${sort}&dateDebut=${dateDebutCra}&dateFin=${dateFinCra}&codePostal=${codePostal}&codeCommune=${codeCommune}&page=${page}`, requestOptions).then(handleResponse);
+
+  return fetch(
+    // eslint-disable-next-line max-len
+    `${apiUrlRoot}/historique-cras/liste?theme=${theme}&canal=${canal}&type=${type}&sort=${sort}&dateDebut=${dateDebutCra}&dateFin=${dateFinCra}&codePostal=${codePostal}&codeCommune=${codeCommune}&page=${page}`, requestOptions).then(handleResponse);
 }
 
 function getHistoriqueCrasThematiques() {
