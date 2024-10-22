@@ -36,6 +36,7 @@ function Login() {
   const errorCheckEmail = useSelector(state => state.checkMotDePasseOublie?.error);
   const messageCodeVerified = useSelector(state => state.authentication?.messageCodeVerified);
   const formatRole = role => role?.replace(/(^\w{1})|([\s,-]+\w{1})/g, letter => letter.toUpperCase());
+  const urlFaq = import.meta.env.VITE_APP_AIDE_URL;
 
   useEffect(() => {
     dispatch(userActions.logout());
@@ -154,13 +155,16 @@ function Login() {
       {/* Start content */}
       <div className="fr-container" style={{ backgroundColor: '#2a2a2a', margin: '0px', maxWidth: 'unset' }}>
         <div className="fr-grid-row fr-grid-row--gutters fr-py-xs-1w fr-py-md-8w" style={{ marginBottom: 0 }}>
-          <div class="fr-callout fr-icon-information-line">
-            <h3 class="fr-callout__title">Votre Espace Coop fait peau neuve !</h3>
-            <p class="fr-callout__text">
-              A partir du 15.11.2024, l'espace coop cèdera sa place à un nouvel outil : La Coop de la médiation.<br/>
-              Pour que le transfert de votre compte soit effectif, nous vous invitons à renseigner votre adresse e-mail professionnelle dans la rubrique "Mes informations".
-              L'adresse e-mail renseignée vous permettra de vous connecter à la Coop de la médiation dès le 15.11.2024.
-              Pour plus d'infos, consultez le <a href="https://aide.conseiller-numerique.gouv.fr/fr/article/fin-de-la-messagerie-conseiller-numeriquefr-mettre-a-jour-mon-adresse-professionnelle-15v1vlk/">tutoriel</a>
+          <div className="fr-callout fr-icon-information-line">
+            <h3 className="fr-callout__title">Votre Espace Coop fait peau neuve !</h3>
+            <p className="fr-callout__text">
+              A partir du 15.11.2024, l&lsquo;espace coop cèdera sa place à un nouvel outil : La Coop de la médiation.<br />
+              Pour que le transfert de votre compte soit effectif, nous vous invitons à renseigner votre adresse e-mail
+              professionnelle dans la rubrique &quot;Mes informations&quot;.
+              L&lsquo;adresse e-mail renseignée vous permettra de vous connecter à la Coop de la médiation dès le 15.11.2024.
+              Pour plus d&lsquo;infos, consultez le <a
+                href={`${urlFaq}/article/fin-de-la-messagerie-conseiller-numeriquefr-mettre-a-jour-mon-adresse-professionnelle-15v1vlk/`}>
+              tutoriel</a>
             </p>
           </div>
           <div className="margeLeft"></div>
