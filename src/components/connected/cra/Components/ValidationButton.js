@@ -26,7 +26,11 @@ function ValidationButton() {
         redirectionValide += organisme[Object.keys(organisme)[0]];
       });
       cra.accompagnement = { atelier: cra?.nbAccompagnementAtelier ?? 0, individuel: cra?.nbAccompagnementIndividuel ?? 0, redirection: redirectionValide };
-      let { ...dataCraToSend } = cra;
+      /* eslint-disable */
+      let { errorsRequired, printError, searchCP, searchInput, saveInProgress, error, showSelectRedirection, nbParticipantsAge,
+        nbParticipantsStatut, nbParticipantsAccompagnement, nbAccompagnementAtelier, nbAccompagnementIndividuel, nbAccompagnementRedirection, nbOrganisme, organisme,
+        printFlashbag, buttonCP, buttonPermanences, buttonPermanence, nomEnseigne, listeSousThemes, errorSousTheme, loadingSuggestion, loading, countCra,
+        ...dataCraToSend } = cra;
       dataCraToSend.idStructure = conseiller?.structureId;
 
       if (dataCraToSend?.sousThemes?.length === 0) {
