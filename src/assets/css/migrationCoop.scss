@@ -1,0 +1,109 @@
+.page-migration {
+    max-width: auto;
+    min-height: 688px;
+    padding: 96px 102px 96px 102px;
+    margin-bottom: 126px;
+    border-radius: 32px;
+}
+
+.div-annonce-migration {
+    max-width: 588px;
+    min-height: 496px;
+    margin-bottom: 40px;
+
+    h1 {
+        width: 588px;
+        height: 96px;
+        font-family: Marianne;
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 48px;
+        text-align: left;
+        margin-bottom: 40px;
+    }
+
+    div {
+        max-width: 588px;
+        min-height: 408px;
+        margin-bottom: 24px;
+
+        div {
+            width: 538px;
+            min-height: 104px;
+            padding: 16px 24px 16px 24px;
+            margin-bottom: 16px;
+            border-radius: 8px;
+
+            img {
+                width: 64px;
+                height: 64px;
+                border-radius: 8px;
+            }
+
+            p:nth-of-type(1) {
+                max-width: 410px;
+                min-height: 72px;
+                margin-bottom: 4px;
+
+            }
+        }
+
+        p:nth-of-type(2) {
+            font-family: Marianne;
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 32px;
+            text-align: left;
+            width: 588px;
+            height: 160px;
+
+
+
+        }
+    }
+
+}
+
+.div-coop-mediation-numerique {
+    width: 282px;
+    height: 448px;
+    margin-bottom: 40px;
+
+
+    div {
+        width: 282px;
+        height: 58.5px;
+        margin-bottom: 12px;
+        display: flex;
+
+        img {
+            width: 58.5px;
+            height: 58.5px;
+            padding: 11.7px;
+            margin-bottom: 8px;
+            border-radius: 16px 0px 0px 0px;
+
+        }
+
+        p {
+            width: 205.96px;
+            height: 43.91px;
+            top: 7.29px;
+            left: 76.04px;
+        }
+    }
+
+    img {
+        width: 282px;
+        height: 353.39px;
+        border-radius: 16px;
+    }
+
+}
+
+// TODO : Fix responsive footer à faire
+@media (max-width: 426px) {
+    // footer {
+    //   min-width: 100vw;
+    // }
+ }
