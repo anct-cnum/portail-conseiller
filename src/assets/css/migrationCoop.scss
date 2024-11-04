@@ -101,9 +101,8 @@
 
 }
 
-// TODO : Fix responsive footer à faire
 @media (max-width: 426px) {
-    // footer {
-    //   min-width: 100vw;
-    // }
+    .footer-responsive {
+        display: inline-block;
+    }
  }

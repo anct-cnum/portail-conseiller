@@ -3,7 +3,7 @@ import Footer from '../Footer';
 
 function MigrationCoop() {
   return (
-    <div>
+    <div className="footer-responsive">
       <div className="page-migration">
         <div className="fr-container">
           <div className="fr-grid-row">
@@ -29,12 +29,13 @@ function MigrationCoop() {
                     numérique.
                   </p>
                 </div>
-                <button
-                  className="fr-btn fr-btn--icon-right fr-fi-external-link-line fr-link--icon"
-                  href=""
-                >
-                  Voir le site
-                </button>
+                <a href="https://coop-numerique.anct.gouv.fr">
+                  <button
+                    className="fr-btn fr-btn--icon-right fr-fi-external-link-line fr-link--icon"
+                  >
+                    Voir le site
+                  </button>
+                </a>
               </div>
             </div>
             <div className="fr-col-2"></div>
