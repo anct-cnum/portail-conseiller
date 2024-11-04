@@ -1,26 +1,27 @@
 import React, { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import Login from './components/anonymous/Login.js';
+// import Login from './components/anonymous/Login.js';
+import MigrationCoop from './components/anonymous/MigrationCoop';
 import Home from './components/connected/Home';
 import Hub from './components/hub';
 import Coordinateur from './components/coordinateur';
-import ChoosePassword from './components/anonymous/ChoosePassword';
-import ChoosePasswordHub from './components/anonymous/ChoosePasswordHub';
-import ValidationAccount from './components/connected/ValidationAccount';
-import ForgottenPassword from './components/anonymous/ForgottenPassword';
-import EnregistrerStatistiquesPdf from './components/anonymous/EnregistrerStatistiquesPdf';
-import StatistiquesNationales from './components/anonymous/StatistiquesNationales';
+// import ChoosePassword from './components/anonymous/ChoosePassword';
+// import ChoosePasswordHub from './components/anonymous/ChoosePasswordHub';
+// import ValidationAccount from './components/connected/ValidationAccount';
+// import ForgottenPassword from './components/anonymous/ForgottenPassword';
+// import EnregistrerStatistiquesPdf from './components/anonymous/EnregistrerStatistiquesPdf';
+// import StatistiquesNationales from './components/anonymous/StatistiquesNationales';
 import PrivateRoute from './components/connected/PrivateRoute';
-import ChoosePasswordChangeMailbox from './components/anonymous/choosePasswordChangeMailbox';
-import Propos from './components/anonymous/Propos';
-import EmailConfirmer from './components/anonymous/ConfirmationEmail';
+// import ChoosePasswordChangeMailbox from './components/anonymous/choosePasswordChangeMailbox';
+// import Propos from './components/anonymous/Propos';
+// import EmailConfirmer from './components/anonymous/ConfirmationEmail';
 import { permanenceActions } from './actions';
 
 import './assets/js/app.js';
 import './assets/css/app.scss';
 import '@gouvfr/dsfr/dist/utility/icons/icons-system/icons-system.min.css';
-import 'react-datepicker/dist/react-datepicker.min.css';
+// import 'react-datepicker/dist/react-datepicker.min.css';
 import 'remixicon/fonts/remixicon.css';
 import 'leaflet/dist/leaflet.css';
 
@@ -56,8 +57,8 @@ function App() {
         <div className="wrapperModal"></div>
       }
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/mot-de-passe-oublie" element={<ForgottenPassword />} />
+        <Route path="/login" element={<MigrationCoop />} />
+        {/* <Route path="/mot-de-passe-oublie" element={<ForgottenPassword />} />
         <Route path="/renouveler-mot-de-passe/:token" element={<ForgottenPassword />} />
         <Route path="/inscription/:token" element={<ChoosePassword />} />
         <Route path="/inscription-hub/:token" element={<ChoosePasswordHub />} />
@@ -68,7 +69,7 @@ function App() {
         <Route path="/statistiques-nationales" element={<StatistiquesNationales />} />
         <Route path="/statistiques/:type/:id/:dateDebut/:dateFin/:codePostal/:ville" element={<EnregistrerStatistiquesPdf />} />
         <Route path="/statistiques/:type/:id/:dateDebut/:dateFin/:codePostal" element={<EnregistrerStatistiquesPdf />} />
-        <Route path="/statistiques/:type/:dateDebut/:dateFin" element={<EnregistrerStatistiquesPdf />} />
+        <Route path="/statistiques/:type/:dateDebut/:dateFin" element={<EnregistrerStatistiquesPdf />} /> */}
         <Route path="/" element={<PrivateRoute />}>
           <Route index element={<Navigate to="/accueil" />} />
           {user?.role === 'conseiller' &&
